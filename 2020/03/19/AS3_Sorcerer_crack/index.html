@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"usmacd.com","root":"/","scheme":"Gemini","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="AS3 Sorcerer是一款flash action Script的商业反编译软件。  www.as3sorcerer.com    软件为Delphi编写，加了未知壳，使用PEID 0.94无法正确查出，使用核心扫描发现是   Delphi编写，这个软件有一个特点修改一个字节就报错。由于时间原因没有具体跟相关代码。    破解方法使用LPK.dll动态修改as3.exe内存达到破解目前，">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AS3 Sorcerer 3.0 破解思路">
+<meta property="og:url" content="http://usmacd.com/2020/03/19/AS3_Sorcerer_crack/index.html">
+<meta property="og:site_name" content="安全代码">
+<meta property="og:description" content="AS3 Sorcerer是一款flash action Script的商业反编译软件。  www.as3sorcerer.com    软件为Delphi编写，加了未知壳，使用PEID 0.94无法正确查出，使用核心扫描发现是   Delphi编写，这个软件有一个特点修改一个字节就报错。由于时间原因没有具体跟相关代码。    破解方法使用LPK.dll动态修改as3.exe内存达到破解目前，">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-03-19T08:34:31.917Z">
+<meta property="article:modified_time" content="2020-03-19T08:34:31.917Z">
+<meta property="article:author" content="henices">
+<meta property="article:tag" content="Crack">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://usmacd.com/2020/03/19/AS3_Sorcerer_crack/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>AS3 Sorcerer 3.0 破解思路 | 安全代码</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">安全代码</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-fw fa-sitemap"></i>Sitemap</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="en">
+    <link itemprop="mainEntityOfPage" href="http://usmacd.com/2020/03/19/AS3_Sorcerer_crack/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="henices">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="安全代码">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          AS3 Sorcerer 3.0 破解思路
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-03-19 16:34:31" itemprop="dateCreated datePublished" datetime="2020-03-19T16:34:31+08:00">2020-03-19</time>
+            </span>
+
+          
+            <span class="post-meta-item" title="Views" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>   AS3 Sorcerer是一款flash action Script的商业反编译软件。  <a href="http://www.as3sorcerer.com" target="_blank" rel="noopener">www.as3sorcerer.com</a></p>
+<p>   软件为Delphi编写，加了未知壳，使用PEID 0.94无法正确查出，使用核心扫描发现是<br>   Delphi编写，这个软件有一个特点修改一个字节就报错。由于时间原因没有具体跟相关代码。</p>
+<p>   破解方法使用LPK.dll动态修改as3.exe内存达到破解目前，在Windows Xp下比较完美，<br>   在Windows 7下已经无法通过LPK.dll进行DLL hijack，可以通过DLL注入达到同样的目的。</p>
+<p>   难点有几个，OD加载报错，attack也报错。使用海风月影的StrongOD可以正常attach。<br>   OD 1.1目前最大的问题是插件冲突严重，安装了OllyAdv后，无法成功加载as3.exe.<br>   遇上强壳时可以使用phantom的protect DRx，可以解决一下问题，总之要尽量避免冲突。<br>   接下来的难点就是如何找到破解的关键点，进行内存patch。</p>
+<p>   使用OD查找字符串参考Unicode，搜索trial</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">006974C2    E8 65ABFDFF     call    0067202C</span><br><span class="line">006974C7    84C0            test    al, al</span><br><span class="line">006974C9    75 1C           jnz     short 006974E7</span><br><span class="line">006974CB    B9 E4756900     mov     ecx, 006975E4                    ; e</span><br><span class="line">006974D0    BA 50766900     mov     edx, 00697650                    ;Sorry!</span><br></pre></td></tr></table></figure>
+
+<p>   这里有个坑，在OD中看到的代码有可能不是最终运行的代码，只有真正在OD里断下，进<br>   入程序领空后，看到的代码才是解密后的真正代码。这里在这里浪费了很多时间。换句<br>   话说就是要先保证能调试起来，能调试能下断点基本就成功了一半。</p>
+<p>   上面的代码是非常经典的关键代码，主要处理了 0067202C让它返回1就OK了。F7跟进</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">0067202C  - E9 EE9D1900     jmp     0080BE1F</span><br><span class="line">00672031    CC              int3</span><br><span class="line">00672032    CC              int3</span><br><span class="line">00672033    CC              int3</span><br><span class="line">00672034    CC              int3</span><br><span class="line">00672035    CC              int3</span><br><span class="line">00672036    CC              int3</span><br><span class="line">00672037    90              nop</span><br></pre></td></tr></table></figure>
+
+<p>   进入就去一个jmp，后面的大段跳转非常多，跟踪困难。好在有很多int3，可以自己<br>   写一段汇编代码解决。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">0067202C    33C0            xor     eax, eax</span><br><span class="line">0067202E    83C0 01         add     eax, 0x1</span><br><span class="line">00672031    90              nop</span><br><span class="line">00672032    90              nop</span><br><span class="line">00672033    90              nop</span><br><span class="line">00672034    90              nop</span><br><span class="line">00672035    90              nop</span><br><span class="line">00672036    C3              retn</span><br></pre></td></tr></table></figure>
+<p>核心代码</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">HANDLE handle = GetModuleHandle(<span class="literal">NULL</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> RVA = <span class="number">0x67202C</span> - <span class="number">0x400000</span>;</span><br><span class="line"><span class="keyword">int</span> VA = <span class="keyword">int</span>(handle) + RVA;</span><br><span class="line"></span><br><span class="line"><span class="keyword">unsigned</span> <span class="keyword">char</span> p405213[<span class="number">11</span>] = &#123;  </span><br><span class="line">      <span class="number">0x33</span>, <span class="number">0xC0</span>, <span class="number">0x83</span>, <span class="number">0xC0</span>, <span class="number">0x01</span>, <span class="number">0x90</span>, <span class="number">0x90</span>, <span class="number">0x90</span>, <span class="number">0x90</span>, <span class="number">0x90</span>, <span class="number">0xC3</span></span><br><span class="line">&#125;;</span><br><span class="line">VirtualProtectEx(hProcess, (LPVOID)VA, <span class="number">11</span>, PAGE_EXECUTE_READWRITE, &amp;Oldpp);</span><br><span class="line">WriteProcessMemory(hProcess, (LPVOID)VA, p405213, <span class="number">11</span>, <span class="literal">NULL</span>);</span><br></pre></td></tr></table></figure>
+
+<p>GetModuleHandle用于动态获取进程加载基址。</p>
+<h2 id="LPK-dll"><a href="#LPK-dll" class="headerlink" title="LPK.dll"></a>LPK.dll</h2><p>Windows 7 不能默认已经不能使用LPK.dll，必须导入下面注册表键值，重启电脑<br>才能使用。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Windows Registry Editor Version 5.00 </span><br><span class="line"></span><br><span class="line">[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager] </span><br><span class="line">&quot;ExcludeFromKnownDlls&quot;&#x3D;hex(7):6c,00,70,00,6b,00,2e,00,64,00,6c,00,6c,00,00,00,\ </span><br><span class="line">00,00</span><br></pre></td></tr></table></figure>
+
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Crack/" rel="tag"># Crack</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/03/19/Android_binder_fuzzing/" rel="prev" title="Android Binder Fuzzing 的一些思路">
+      <i class="fa fa-chevron-left"></i> Android Binder Fuzzing 的一些思路
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/03/19/304/" rel="next" title="紫竹桥附近看病情况">
+      紫竹桥附近看病情况 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#LPK-dll"><span class="nav-number">1.</span> <span class="nav-text">LPK.dll</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">henices</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">22</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/henices" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;henices" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://weibo.com/henices" title="Weibo → https:&#x2F;&#x2F;weibo.com&#x2F;henices" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>Weibo</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/henices" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;henices" rel="noopener" target="_blank"><i class="fa fa-fw fa-twitter"></i>Twitter</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="fa fa-fw fa-rss"></i>RSS</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">henices</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a>
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">Theme – <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="Total Visitors">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="Total Views">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

