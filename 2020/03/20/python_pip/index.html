@@ -27,8 +27,8 @@
 <meta property="og:site_name" content="安全代码">
 <meta property="og:description" content="Q：Fedora 31 提供的 Python3.7， 想使用 Python3.8， 用系统的pip3 只会给 Python3.7 安装库，如何解决 A: 12curl -O https:&#x2F;&#x2F;bootstrap.pypa.io&#x2F;get-pip.pypython3.8 get-pip.py  执行上面命令后，会在 &#x2F;usr&#x2F;local&#x2F;bin&#x2F; 下生成和 pip 相关的脚本，把这些脚本删除，要不可能会">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2020-03-20T01:52:33.504Z">
-<meta property="article:modified_time" content="2020-03-20T01:52:33.504Z">
+<meta property="article:published_time" content="2020-03-20T02:02:28.310Z">
+<meta property="article:modified_time" content="2020-03-20T02:02:28.310Z">
 <meta property="article:author" content="henices">
 <meta property="article:tag" content="Programming">
 <meta name="twitter:card" content="summary">
@@ -183,7 +183,7 @@
               </span>
               <span class="post-meta-item-text">Posted on</span>
 
-              <time title="Created: 2020-03-20 09:52:33" itemprop="dateCreated datePublished" datetime="2020-03-20T09:52:33+08:00">2020-03-20</time>
+              <time title="Created: 2020-03-20 10:02:28" itemprop="dateCreated datePublished" datetime="2020-03-20T10:02:28+08:00">2020-03-20</time>
             </span>
 
           
@@ -208,7 +208,7 @@
 <p>A:</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">curl -O https://bootstrap.pypa.io/get-pip.py</span><br><span class="line">python3.8 get-pip.py</span><br></pre></td></tr></table></figure>
 
-<p>执行上面命令后，会在 /usr/local/bin/ 下生成和 pip 相关的脚本，把这些脚本删除，要不可能会和系统的 pip3 冲突。<br>帮面可以使用下面的命令行安装 Python3.8 的库</p>
+<p>执行上面命令后，会在 /usr/local/bin/ 下生成和 pip 相关的脚本，把这些脚本删除，要不可能会和系统的 pip3 冲突。<br>接下来就可以使用下面的命令行安装 Python3.8 的库</p>
 <p><code>python3.8 -m pip install pyhash --user</code></p>
 <p>在安装过程中可能会因为众所周知的原因导致网络出错，备好梯子即可。</p>
 
