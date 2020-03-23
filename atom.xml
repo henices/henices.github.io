@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://usmacd.com/"/>
-  <updated>2020-03-20T02:02:28.310Z</updated>
+  <updated>2020-03-23T02:56:06.150Z</updated>
   <id>http://usmacd.com/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>一加 (oneplus ) 3T 非root 开启 P3 色域</title>
+    <link href="http://usmacd.com/2020/03/23/oneplus3T_p3/"/>
+    <id>http://usmacd.com/2020/03/23/oneplus3T_p3/</id>
+    <published>2020-03-23T02:56:06.150Z</published>
+    <updated>2020-03-23T02:56:06.150Z</updated>
+    
+    <content type="html"><![CDATA[<p>一加3T其实和一加5用的是同一块屏幕，网上流传的方法多需要root权限。非root 开启 p3 色域的方法，<br>连接 adb 输入下面的命令 <code>settings put system screen_color_mode_settings_value 4</code> 实测有效，重启后不失效。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;一加3T其实和一加5用的是同一块屏幕，网上流传的方法多需要root权限。非root 开启 p3 色域的方法，&lt;br&gt;连接 adb 输入下面的命令 &lt;code&gt;settings put system screen_color_mode_settings_value 4&lt;/co
+      
+    
+    </summary>
+    
+    
+    
+      <category term="Life" scheme="http://usmacd.com/tags/Life/"/>
+    
+  </entry>
   
   <entry>
     <title>Python 多版本使用 pip</title>
@@ -488,33 +512,6 @@
       <category term="Security" scheme="http://usmacd.com/tags/Security/"/>
     
       <category term="windows" scheme="http://usmacd.com/tags/windows/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>VIM + SVN 管理</title>
-    <link href="http://usmacd.com/2020/03/19/svn_vim/"/>
-    <id>http://usmacd.com/2020/03/19/svn_vim/</id>
-    <published>2020-03-19T08:34:31.917Z</published>
-    <updated>2020-03-19T08:34:31.917Z</updated>
-    
-    <content type="html"><![CDATA[<p>公司使用svn管理源代码，避免不了要和svn打交道，有几个比较好的解决方案。</p><h2 id="1-vcscommand-vim"><a href="#1-vcscommand-vim" class="headerlink" title="1. vcscommand.vim"></a>1. vcscommand.vim</h2><p><a href="http://www.vim.org/scripts/script.php?script_id=90" target="_blank" rel="noopener">http://www.vim.org/scripts/script.php?script_id=90</a></p><p>这个插件的特点是支持的版本管理工具多,支持git，svn等常见版本管理工具。<br>vcscommand.vim插件默认绑定了无差别的快捷键，使用起来非常方便。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">|&lt;Leader&gt;|ca VCSAdd</span><br><span class="line">|&lt;Leader&gt;|cn VCSAnnotate</span><br><span class="line">|&lt;Leader&gt;|cN VCSAnnotate!</span><br><span class="line">|&lt;Leader&gt;|cc VCSCommit</span><br><span class="line">|&lt;Leader&gt;|cD VCSDelete</span><br><span class="line">|&lt;Leader&gt;|cd VCSDiff</span><br><span class="line">|&lt;Leader&gt;|cg VCSGotoOriginal</span><br><span class="line">|&lt;Leader&gt;|cG VCSGotoOriginal!</span><br><span class="line">|&lt;Leader&gt;|ci VCSInfo</span><br><span class="line">|&lt;Leader&gt;|cl VCSLog</span><br><span class="line">|&lt;Leader&gt;|cL VCSLock</span><br><span class="line">|&lt;Leader&gt;|cr VCSReview</span><br><span class="line">|&lt;Leader&gt;|cs VCSStatus</span><br><span class="line">|&lt;Leader&gt;|cu VCSUpdate</span><br><span class="line">|&lt;Leader&gt;|cU VCSUnlock</span><br><span class="line">|&lt;Leader&gt;|cv VCSVimDiff</span><br></pre></td></tr></table></figure><p>这个 <code>&lt;Leader&gt;</code> 得看你定义了什么快捷键，vim 默认的是 <code>\</code></p><h2 id="2-vim-unite-svn"><a href="#2-vim-unite-svn" class="headerlink" title="2.  vim-unite-svn"></a>2.  vim-unite-svn</h2><p>小日本写的unite.vim的svn插件，unite.vim 是一个非常不错的vim插件，<br>它的作用是 为vim 写简单界面，要使用vim-unite-svn首先需要安装unite.vim 插件，<br>折腾这个插件的原因是vcscommand.vim有些不太好的地方。</p><ul><li>buffer管理的不太好</li><li>status 比较弱</li><li>羡慕emacs的vc mode的体验</li></ul><p><a href="https://github.com/Shougo/unite.vim" target="_blank" rel="noopener">https://github.com/Shougo/unite.vim</a></p><p>小日本写的 <code>vim-unite-svn</code> 插件太久没有更新了，有一些bug，我修改了一下，用了<br>一段时间暂时没有发现什么问题。</p><p><a href="https://github.com/henices/vim-unite-svn" target="_blank" rel="noopener">https://github.com/henices/vim-unite-svn</a></p><p>支持基本的svn命令， svn status, svn info, svn diff, svn commit, svn up</p><p>使用示例</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">:Unite svn&#x2F;status</span><br><span class="line">:Unite svn&#x2F;diff</span><br><span class="line">:Unite svn&#x2F;blame</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;公司使用svn管理源代码，避免不了要和svn打交道，有几个比较好的解决方案。&lt;/p&gt;
-&lt;h2 id=&quot;1-vcscommand-vim&quot;&gt;&lt;a href=&quot;#1-vcscommand-vim&quot; class=&quot;headerlink&quot; title=&quot;1. vcscommand.
-      
-    
-    </summary>
-    
-    
-    
-      <category term="linux" scheme="http://usmacd.com/tags/linux/"/>
-    
-      <category term="vim" scheme="http://usmacd.com/tags/vim/"/>
     
   </entry>
   
