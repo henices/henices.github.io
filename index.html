@@ -180,7 +180,7 @@
               </span>
               <span class="post-meta-item-text">Posted on</span>
 
-              <time title="Created: 2020-03-24 16:18:13" itemprop="dateCreated datePublished" datetime="2020-03-24T16:18:13+08:00">2020-03-24</time>
+              <time title="Created: 2020-03-24 16:24:13" itemprop="dateCreated datePublished" datetime="2020-03-24T16:24:13+08:00">2020-03-24</time>
             </span>
 
           
@@ -196,7 +196,14 @@
       
           <p>向大家安利一款 markdown 笔记软件， VNote  <a href="http://t.cn/RXj6L39" target="_blank" rel="noopener">http://t.cn/RXj6L39</a><br>此软件目前已经 1300 多个commits 了，做为一个有些开源软件维护经历的人，深感不易。<br>用了太多 markdown 笔记软件，此软件使得最为顺手，尤其作为程序员 vim 模式 让我感到非常舒服，<br>大量图表的支持比如 UML 流程图，让我用起来很顺手。</p>
 <p><img src="https://raw.githubusercontent.com/tamlok/vnote/master/screenshots/_vnotemaini_1525154456_1561295841.png" alt="VNote"></p>
-<p>在 Linux 下编译 VNote 显示有明显改进，下面是编译的方法：</p>
+<p>我前后尝试过各种笔记软件，我理想的软件有几点：</p>
+<ul>
+<li>a. 支持文件管理</li>
+<li>b. 不要乱改数据，容易迁移</li>
+<li>c. 支持 markdown</li>
+<li>d. 跨平台，支持 Mac 和 Linux</li>
+</ul>
+<p>最后，终于发现了 VNote，有点惊喜。在 Linux 下编译 VNote 显示有明显改进，下面是编译的方法：</p>
 <ol>
 <li>下载 QT SDK</li>
 </ol>
@@ -212,7 +219,7 @@
 <p>使用下面命令编译</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">chmod a+x ./build_linux.sh</span><br><span class="line">./build_linux.sh</span><br></pre></td></tr></table></figure>
 
-<p>将生成的 libfcitxplatforminputcontextplugin.so copy 到 <code>/home/henices/Qt5.9.0/5.9/gcc_64/plugins/platforminputcontexts/</code></p>
+<p>将生成的 libfcitxplatforminputcontextplugin.so copy 到<br><code>/home/henices/Qt5.9.0/5.9/gcc_64/plugins/platforminputcontexts/</code></p>
 <ol start="3">
 <li>获取VNote 源码</li>
 </ol>
