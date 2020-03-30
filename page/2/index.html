@@ -156,6 +156,67 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://usmacd.com/2020/03/19/Fedora31/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="henices">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="安全代码">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/03/19/Fedora31/" class="post-title-link" itemprop="url">Fedora31 的几个变化</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-03-19 16:34:31" itemprop="dateCreated datePublished" datetime="2020-03-19T16:34:31+08:00">2020-03-19</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="1-默认启用-Cgroups-V2"><a href="#1-默认启用-Cgroups-V2" class="headerlink" title="1. 默认启用 Cgroups V2"></a>1. 默认启用 Cgroups V2</h2><p>nozuonodie， 升级到 Fedora 31 后， CgroupsV2 已经默认开启，理由是原来不是默认开启没人用，现在让 Fedora 用户先当当小白鼠，<br>于是 Docker 就倒下了。<a href="http://t.cn/Ai1sI5LH" target="_blank" rel="noopener">http://t.cn/Ai1sI5LH</a>   grub2 配置文件 /etc/default/grub， 内核参数添加 systemd.unified_cgroup_hierarchy=0<br>可以重新开启  CgroupsV1 ​​​​</p>
+<h2 id="2-默认的-Python-为-Python3"><a href="#2-默认的-Python-为-Python3" class="headerlink" title="2. 默认的 Python 为 Python3"></a>2. 默认的 Python 为 Python3</h2><p><a href="https://fedoraproject.org/wiki/Changes/Python_means_Python3" target="_blank" rel="noopener">https://fedoraproject.org/wiki/Changes/Python_means_Python3</a></p>
+<p>唉，不得不说 Fedora 这次有点太激进了， 搞得我编译 chromium 又出问题了。 要换回去有个歪招</p>
+<p><code>ln -s /usr/bin/python2 /usr/local/bin/python</code></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
     <link itemprop="mainEntityOfPage" href="http://usmacd.com/2020/03/19/android_intent_base_attack/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1076,69 +1137,6 @@ oradebug call system &quot;/usr/bin/whoami      &gt;/tmp/ret&quot;;</code></p>
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://usmacd.com/2020/03/19/other/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="henices">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="安全代码">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/03/19/other/" class="post-title-link" itemprop="url">一些杂谈</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2020-03-19 16:34:31" itemprop="dateCreated datePublished" datetime="2020-03-19T16:34:31+08:00">2020-03-19</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>整个春节被武汉的新型冠状病毒肺炎搞得人心惶惶，2020 注定是我们这辈人难忘的一年，非典的时候比较小感觉没那么恐怖，现在的感觉就完全不一样了，整天都在洗手中度过。</p>
-<p>在病情扩散期间，大量消息满天飞，给政府提意见的更是比比皆是，但是大家都忽视了 一点，就是要相信专业。很多人不太明白专业和非专业之间的差距，可以想象一下你和一 个围棋九段的人下围棋，怎么换到医学领域大家就都是专家了？</p>
-<p>我看到一个建议轻征不隔离，把资源让给重症者。</p>
-<p>大家觉得这个建议如何？提这个建议的人说，主要依据是死亡人不多。这个犯了几个错误， 第一，要看死亡率，而不是死亡人数，患病的人多了，自然死人的就多了。第二，根据我 有限的常识，病毒是会自适应性的进化的，感染的人多了，可能就会产生更nb 的变种了。</p>
-<p>这个事情主要还是相信国家，相信我们的祖国。我觉得这个事情一定会解决了，只是时间 和损失程度问题，一季度的gdp 肯定是受影响了，希望疫情快点过去，天佑中华！</p>
-<p>最后希望所有看到此文的，新年幸福安康！</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -1209,7 +1207,7 @@ oradebug call system &quot;/usr/bin/whoami      &gt;/tmp/ret&quot;;</code></p>
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">25</span>
+          <span class="site-state-item-count">26</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
