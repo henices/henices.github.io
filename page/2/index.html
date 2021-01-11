@@ -161,6 +161,83 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://usmacd.com/2020/03/19/AS3_Sorcerer_crack/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="henices">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="安全代码">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/03/19/AS3_Sorcerer_crack/" class="post-title-link" itemprop="url">AS3 Sorcerer 3.0 破解思路</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-03-19 16:34:31" itemprop="dateCreated datePublished" datetime="2020-03-19T16:34:31+08:00">2020-03-19</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>   AS3 Sorcerer是一款flash action Script的商业反编译软件。  <a href="http://www.as3sorcerer.com" target="_blank" rel="noopener">www.as3sorcerer.com</a></p>
+<p>   软件为Delphi编写，加了未知壳，使用PEID 0.94无法正确查出，使用核心扫描发现是<br>   Delphi编写，这个软件有一个特点修改一个字节就报错。由于时间原因没有具体跟相关代码。</p>
+<p>   破解方法使用LPK.dll动态修改as3.exe内存达到破解目前，在Windows Xp下比较完美，<br>   在Windows 7下已经无法通过LPK.dll进行DLL hijack，可以通过DLL注入达到同样的目的。</p>
+<p>   难点有几个，OD加载报错，attack也报错。使用海风月影的StrongOD可以正常attach。<br>   OD 1.1目前最大的问题是插件冲突严重，安装了OllyAdv后，无法成功加载as3.exe.<br>   遇上强壳时可以使用phantom的protect DRx，可以解决一下问题，总之要尽量避免冲突。<br>   接下来的难点就是如何找到破解的关键点，进行内存patch。</p>
+<p>   使用OD查找字符串参考Unicode，搜索trial</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">006974C2    E8 65ABFDFF     call    0067202C</span><br><span class="line">006974C7    84C0            test    al, al</span><br><span class="line">006974C9    75 1C           jnz     short 006974E7</span><br><span class="line">006974CB    B9 E4756900     mov     ecx, 006975E4                    ; e</span><br><span class="line">006974D0    BA 50766900     mov     edx, 00697650                    ;Sorry!</span><br></pre></td></tr></table></figure>
+
+<p>   这里有个坑，在OD中看到的代码有可能不是最终运行的代码，只有真正在OD里断下，进<br>   入程序领空后，看到的代码才是解密后的真正代码。这里在这里浪费了很多时间。换句<br>   话说就是要先保证能调试起来，能调试能下断点基本就成功了一半。</p>
+<p>   上面的代码是非常经典的关键代码，主要处理了 0067202C让它返回1就OK了。F7跟进</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">0067202C  - E9 EE9D1900     jmp     0080BE1F</span><br><span class="line">00672031    CC              int3</span><br><span class="line">00672032    CC              int3</span><br><span class="line">00672033    CC              int3</span><br><span class="line">00672034    CC              int3</span><br><span class="line">00672035    CC              int3</span><br><span class="line">00672036    CC              int3</span><br><span class="line">00672037    90              nop</span><br></pre></td></tr></table></figure>
+
+<p>   进入就去一个jmp，后面的大段跳转非常多，跟踪困难。好在有很多int3，可以自己<br>   写一段汇编代码解决。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">0067202C    33C0            xor     eax, eax</span><br><span class="line">0067202E    83C0 01         add     eax, 0x1</span><br><span class="line">00672031    90              nop</span><br><span class="line">00672032    90              nop</span><br><span class="line">00672033    90              nop</span><br><span class="line">00672034    90              nop</span><br><span class="line">00672035    90              nop</span><br><span class="line">00672036    C3              retn</span><br></pre></td></tr></table></figure>
+<p>核心代码</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">HANDLE handle = GetModuleHandle(<span class="literal">NULL</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> RVA = <span class="number">0x67202C</span> - <span class="number">0x400000</span>;</span><br><span class="line"><span class="keyword">int</span> VA = <span class="keyword">int</span>(handle) + RVA;</span><br><span class="line"></span><br><span class="line"><span class="keyword">unsigned</span> <span class="keyword">char</span> p405213[<span class="number">11</span>] = &#123;  </span><br><span class="line">      <span class="number">0x33</span>, <span class="number">0xC0</span>, <span class="number">0x83</span>, <span class="number">0xC0</span>, <span class="number">0x01</span>, <span class="number">0x90</span>, <span class="number">0x90</span>, <span class="number">0x90</span>, <span class="number">0x90</span>, <span class="number">0x90</span>, <span class="number">0xC3</span></span><br><span class="line">&#125;;</span><br><span class="line">VirtualProtectEx(hProcess, (LPVOID)VA, <span class="number">11</span>, PAGE_EXECUTE_READWRITE, &amp;Oldpp);</span><br><span class="line">WriteProcessMemory(hProcess, (LPVOID)VA, p405213, <span class="number">11</span>, <span class="literal">NULL</span>);</span><br></pre></td></tr></table></figure>
+
+<p>GetModuleHandle用于动态获取进程加载基址。</p>
+<h2 id="LPK-dll"><a href="#LPK-dll" class="headerlink" title="LPK.dll"></a>LPK.dll</h2><p>Windows 7 不能默认已经不能使用LPK.dll，必须导入下面注册表键值，重启电脑<br>才能使用。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Windows Registry Editor Version 5.00 </span><br><span class="line"></span><br><span class="line">[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager] </span><br><span class="line">&quot;ExcludeFromKnownDlls&quot;&#x3D;hex(7):6c,00,70,00,6b,00,2e,00,64,00,6c,00,6c,00,00,00,\ </span><br><span class="line">00,00</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="http://usmacd.com/2020/03/19/Android_binder_fuzzing/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1015,94 +1092,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://usmacd.com/2020/03/19/llvm_coverage/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="henices">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="安全代码">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/03/19/llvm_coverage/" class="post-title-link" itemprop="url">llvm Coverage 可视化</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2020-03-19 16:34:31" itemprop="dateCreated datePublished" datetime="2020-03-19T16:34:31+08:00">2020-03-19</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="Google-提供的工具"><a href="#Google-提供的工具" class="headerlink" title="Google 提供的工具"></a>Google 提供的工具</h2><p>Google 提供了一个工具 <a href="https://cs.chromium.org/chromium/src/tools/code_coverage/coverage.py" target="_blank" rel="noopener">https://cs.chromium.org/chromium/src/tools/code_coverage/coverage.py</a></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$ gn gen out&#x2F;coverage \</span><br><span class="line">    --args&#x3D;&#39;use_clang_coverage&#x3D;true is_component_build&#x3D;false dcheck_always_on&#x3D;true&#39;</span><br><span class="line">$ python tools&#x2F;code_coverage&#x2F;coverage.py \</span><br><span class="line">    crypto_unittests url_unittests \</span><br><span class="line">    -b out&#x2F;coverage -o out&#x2F;report \</span><br><span class="line">    -c &#39;out&#x2F;coverage&#x2F;crypto_unittests&#39; \</span><br><span class="line">    -c &#39;out&#x2F;coverage&#x2F;url_unittests --gtest_filter&#x3D;URLParser.PathURL&#39; \</span><br><span class="line">    -f url&#x2F; -f crypto&#x2F;</span><br></pre></td></tr></table></figure>
-
-<p>一些参数的含义:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">-b 测试 coverage 的 target 的路径</span><br><span class="line">-o 输出报告的路径</span><br><span class="line">-c 测试 coverage 的命令行</span><br><span class="line">-f 过滤，只显示某些路径的 coverage</span><br></pre></td></tr></table></figure>
-<p><img src="https://raw.githubusercontent.com/henices/pictures/master/20190111174252715_1005029405.png" alt="workflow"></p>
-<p>实际操作表明， coverage.py 不是太好用。 还是需要一步一步来，比较稳妥。</p>
-<h2 id="0-编译"><a href="#0-编译" class="headerlink" title="(0)  编译"></a>(0)  编译</h2><p>在 chromium 项目下，可以直接使用 <code>use_clang_coverage=true and is_component_build=false</code><br>如果不是 chromium 项目， 则需要自己 指定参数， 例如在 skia 项目中，可以这么写：</p>
-<p>args.gn</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cc &#x3D; &quot;&#x2F;home&#x2F;henices&#x2F;clang7&#x2F;bin&#x2F;clang&quot;</span><br><span class="line">cxx &#x3D; &quot;&#x2F;home&#x2F;henices&#x2F;clang7&#x2F;bin&#x2F;clang++&quot;</span><br><span class="line">extra_cflags &#x3D; [ &quot;-fprofile-instr-generate&quot;, &quot;-fcoverage-mapping&quot; ]</span><br><span class="line">extra_ldflags &#x3D; [ &quot;-fprofile-instr-generate&quot;,  &quot;-fcoverage-mapping&quot; ]</span><br></pre></td></tr></table></figure>
-
-<p>如果是自己的项目，使用 clang 编译时加上这两个参数 -fprofile-instr-generate -fcoverage-mapping</p>
-<h2 id="1-生成-Raw-Profiles-文件"><a href="#1-生成-Raw-Profiles-文件" class="headerlink" title="(1) 生成 Raw Profiles 文件"></a>(1) 生成 Raw Profiles 文件</h2><p><code>export LLVM_PROFILE_FILE=&quot;out/report/target.%4m.profraw&quot;</code>  使用这个命令<br>限制 profraw 文件的个数。</p>
-<p>%p      进程 ID<br>%h      hostname<br>%Nm  生成几个 profraw 文件</p>
-<p>写个循环，将所有的样本跑一遍。 timeout 10 指定程序超时时间。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> i  <span class="keyword">in</span> path ; <span class="keyword">do</span> timeout 10 target  <span class="variable">$i</span> ; <span class="keyword">done</span></span><br></pre></td></tr></table></figure>
-
-<p>将在 out/report 目录下， 生成  profraw 文件， 如果没有生成， 则说明上面的代码编译出了问题。</p>
-<h2 id="2-生成-Indexed-Profile"><a href="#2-生成-Indexed-Profile" class="headerlink" title="(2) 生成 Indexed Profile"></a>(2) 生成 Indexed Profile</h2><p><code>/home/henices/clang7/bin/llvm-profdata merge -j=1 -sparse -o out/report/coverage.profdata out/report/*.profraw</code></p>
-<p>-sparse 能大幅减小 profraw 文件大小</p>
-<h2 id="3-生成-Coverage-report"><a href="#3-生成-Coverage-report" class="headerlink" title="(3) 生成 Coverage report"></a>(3) 生成 Coverage report</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">/home/henices/clang7/bin/llvm-cov show -output-dir=out/report -format=html \</span><br><span class="line">    -Xdemangler c++filt -Xdemangler -n -instr-profile=out/report/coverage.profdata \</span><br><span class="line">    -object=out/coverage/target</span><br></pre></td></tr></table></figure>
-
-<p>打开 out/report/index.html 可以看到详细的 html 报告，非常不错。</p>
-<p><img src="https://raw.githubusercontent.com/henices/pictures/master/20190118160208151_604337546.png" alt="llvm-coverge-html"></p>
-<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><ul>
-<li><a href="https://www.chromium.org/developers/how-tos/get-the-code/working-with-release-branches" target="_blank" rel="noopener">working with release branches</a></li>
-<li><a href="https://chromium.googlesource.com/chromium/src/+/master/docs/code_coverage.md" target="_blank" rel="noopener">Code Coverage in Chromium</a></li>
-<li><a href="http://logan.tw/posts/2015/04/28/check-code-coverage-with-clang-and-lcov/" target="_blank" rel="noopener">Check Code Coverage with Clang and LCOV</a></li>
-<li><a href="https://github.com/google/oss-fuzz/blob/master/infra/base-images/base-runner/coverage" target="_blank" rel="noopener">oss-fuzz coverage</a></li>
-<li><a href="https://clang.llvm.org/docs/SourceBasedCodeCoverage.html" target="_blank" rel="noopener">Source-based Code Coverage</a></li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1172,7 +1161,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">28</span>
+          <span class="site-state-item-count">29</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -1233,7 +1222,7 @@
 <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2020</span>
+  <span itemprop="copyrightYear">2021</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
