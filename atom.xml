@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://usmacd.com/"/>
-  <updated>2021-01-20T06:00:18.905Z</updated>
+  <updated>2021-02-04T05:45:51.084Z</updated>
   <id>http://usmacd.com/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>在 Android 手机上的使用 stunnel  （不需要 root ）</title>
+    <link href="http://usmacd.com/2021/02/04/android_stunnel/"/>
+    <id>http://usmacd.com/2021/02/04/android_stunnel/</id>
+    <published>2021-02-04T05:45:51.084Z</published>
+    <updated>2021-02-04T05:45:51.084Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="Android-stunnel"><a href="#Android-stunnel" class="headerlink" title="Android stunnel"></a>Android stunnel</h2><p><a href="https://github.com/comp500/SSLSocks.git" target="_blank" rel="noopener">https://github.com/comp500/SSLSocks.git</a>  这个项目可以使用 android 版本的 stunnel</p><p><a href="https://www.stunnel.org/downloads/stunnel-5.57-android.zip" target="_blank" rel="noopener">https://www.stunnel.org/downloads/stunnel-5.57-android.zip</a></p><p>具体配置和使用命令行差距不大，参考 <a href="https://github.com/comp500/SSLSocks/blob/master/README.md" target="_blank" rel="noopener">https://github.com/comp500/SSLSocks/blob/master/README.md</a></p><h2 id="设置全局代理"><a href="#设置全局代理" class="headerlink" title="设置全局代理"></a>设置全局代理</h2><ol><li>在 wifi 连接的情况</li></ol><p>打开wifi 列表 -&gt; 长按连接的 wifi  -&gt; 点击修改 -&gt; 高级选项 -&gt; 填写代理相关信息</p><ol start="2"><li>使用 adb shell 执行命令</li></ol><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell settings put global http_proxy 192.168.xx.xxx:8888</span><br></pre></td></tr></table></figure><ol start="3"><li>Proxy Toggle</li></ol><p><a href="https://github.com/theappbusiness/android-proxy-toggle.git" target="_blank" rel="noopener">https://github.com/theappbusiness/android-proxy-toggle.git</a></p><p>要正常使用 app 需要用 adb shell 连接上设置相应的权限：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell pm grant com.kinandcarta.create.proxytoggle android.permission.WRITE_SECURE_SETTINGS</span><br></pre></td></tr></table></figure><h2 id="恢复无代理"><a href="#恢复无代理" class="headerlink" title="恢复无代理"></a>恢复无代理</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">adb shell settings delete global http_proxy</span><br><span class="line">adb shell settings delete global global_http_proxy_host</span><br><span class="line">adb shell settings delete global global_http_proxy_port</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;Android-stunnel&quot;&gt;&lt;a href=&quot;#Android-stunnel&quot; class=&quot;headerlink&quot; title=&quot;Android stunnel&quot;&gt;&lt;/a&gt;Android stunnel&lt;/h2&gt;&lt;p&gt;&lt;a href=&quot;https://g
+      
+    
+    </summary>
+    
+    
+    
+      <category term="Android" scheme="http://usmacd.com/tags/Android/"/>
+    
+  </entry>
   
   <entry>
     <title>How to request a RESERVED CVE</title>
@@ -484,33 +508,6 @@
     
     
       <category term="Security" scheme="http://usmacd.com/tags/Security/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>基本面需要关注的点</title>
-    <link href="http://usmacd.com/2020/03/19/fundamental/"/>
-    <id>http://usmacd.com/2020/03/19/fundamental/</id>
-    <published>2020-03-19T08:34:31.917Z</published>
-    <updated>2020-03-19T08:34:31.917Z</updated>
-    
-    <content type="html"><![CDATA[<p>准备多写点东西，内容将不在局限于网络安全。</p><p>不得不说搞金融的这些人很厉害，各种玩法坑死大家了。<br>除了一般需要关注的点，还需要关注几个地方，其实这些点在某些情况下比PE，ROE 啥的都重要：</p><ul><li>可转债 （一堆家伙喜欢套利）</li><li>配股   （散户不太喜欢配股）</li><li>融资盘 （主力不喜欢太多人做轿子）</li><li>增发   （这个情况比较复杂，增发价是比较重要的）</li><li>质押   （太高可能暴雷）</li><li>GDR   （还是套利）</li><li>商誉   （可能要计提，影响净利润）</li><li>减持   （主力不喜欢给大股东抬轿子)</li></ul><p>要了解这些情况最可靠的方法为读公告，一般情况雪球和东方财富股吧会有人讨论。</p><p><a href="https://xueqiu.com/" target="_blank" rel="noopener">https://xueqiu.com/</a><br><a href="http://guba.eastmoney.com/" target="_blank" rel="noopener">http://guba.eastmoney.com/</a></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;准备多写点东西，内容将不在局限于网络安全。&lt;/p&gt;
-&lt;p&gt;不得不说搞金融的这些人很厉害，各种玩法坑死大家了。&lt;br&gt;除了一般需要关注的点，还需要关注几个地方，其实这些点在某些情况下比PE，ROE 啥的都重要：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;可转债 （一堆家伙喜欢套利）&lt;/li&gt;
-      
-    
-    </summary>
-    
-    
-    
-      <category term="investment" scheme="http://usmacd.com/tags/investment/"/>
     
   </entry>
   
