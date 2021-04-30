@@ -185,7 +185,7 @@
               </span>
               <span class="post-meta-item-text">Posted on</span>
 
-              <time title="Created: 2021-04-30 09:23:32" itemprop="dateCreated datePublished" datetime="2021-04-30T09:23:32+08:00">2021-04-30</time>
+              <time title="Created: 2021-04-30 09:26:55" itemprop="dateCreated datePublished" datetime="2021-04-30T09:26:55+08:00">2021-04-30</time>
             </span>
 
           
@@ -210,12 +210,11 @@
 <p><a target="_blank" rel="noopener" href="https://www.thunderbird.net/en-US/thunderbird/78.0/releasenotes/">https://www.thunderbird.net/en-US/thunderbird/78.0/releasenotes/</a></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">TLS 1.0 and 1.1 disabled</span><br></pre></td></tr></table></figure>
 
-<p>如果开启 mozilla 也给出了相应的方案</p>
+<p>如何开启 TLS 1.0， mozilla 也给出了相应的方案</p>
 <p><a target="_blank" rel="noopener" href="https://support.mozilla.org/en-US/kb/thunderbird-78-faq#w_how-to-enable-outdated-security-protocols-tls-1-0-and-1-1">https://support.mozilla.org/en-US/kb/thunderbird-78-faq#w_how-to-enable-outdated-security-protocols-tls-1-0-and-1-1</a></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">How to enable outdated security protocols TLS 1.0 and 1.1</span><br><span class="line"></span><br><span class="line">Open Config Editor (about:config)</span><br><span class="line">≡ &gt; Preferences &gt; Find in Preferences</span><br><span class="line">In the searchbox, type: about:config, then press Enter.</span><br><span class="line">Click on the button Config Editor… in the search result.</span><br><span class="line">In the about:config dialog, search for: security.tls.version.min</span><br><span class="line">Double-click on the found preference security.tls.version.min and change its value to 1, then press Enter.</span><br><span class="line">Restart Thunderbird and try to download your messages.</span><br><span class="line">If you can receive and&#x2F;or send your messages after changing this preference:</span><br><span class="line"></span><br><span class="line">Please inform your email provider to upgrade the security protocols on the server to support TLS 1.2.</span><br><span class="line">Revert the preference security.tls.version.min to its original value as soon as possible by repeating </span><br><span class="line">the above procedure, then right-click on the preference and choose Reset from the context menu.</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
-<p>看上去解决方案很简单，把 Preferences 中的 搜索框里输入 about:config，点击点击进入。将其中的<br><code>security.tls.version.min</code> 设置为 1 就好了，但是在 Fedora 34 中不起作用。我用 wireshark 抓了包看，ThunderBird 自己报告不支持的协议版本。</p>
-<p>我仔细研究了一下 ThunderBird 相关的 config 项有下面几个：</p>
+<p>看上去解决方案很简单，在 Preferences 中的搜索框里输入 <code>about:config</code> 点击点击进入，将其中的<br><code>security.tls.version.min</code> 设置为 1 就好了，但是在 Fedora 34 中不起作用。<br>我用 wireshark 抓了包看，ThunderBird 自己报告不支持的协议版本。我仔细研究了一下 ThunderBird 相关的 config 项有下面几个：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">security.tls.version.min</span><br><span class="line">security.tls.version.enable-deprecated</span><br><span class="line">security.tls.version.fallback-limit</span><br></pre></td></tr></table></figure>
 
 <p>我把这几个选项都设置了一下，分别设置为 1 true 1，还是不管用。</p>
