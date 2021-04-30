@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 4.2.0">
+<meta name="generator" content="Hexo 5.4.0">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
@@ -374,7 +374,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#0-Android的安全模型"><span class="nav-number">1.</span> <span class="nav-text">0. Android的安全模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Intent"><span class="nav-number">2.</span> <span class="nav-text">1. Intent</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Intent-Spoofing"><span class="nav-number">3.</span> <span class="nav-text">2. Intent Spoofing</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-一般解决方案"><span class="nav-number">3.1.</span> <span class="nav-text">2.1 一般解决方案</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-漏洞实例"><span class="nav-number">3.2.</span> <span class="nav-text">2.2 漏洞实例</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#启用手机GPS"><span class="nav-number">3.2.1.</span> <span class="nav-text">启用手机GPS</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#江苏银行手机银行下载安装任意apk（可木马）"><span class="nav-number">3.2.2.</span> <span class="nav-text">江苏银行手机银行下载安装任意apk（可木马）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#美团外卖客户端本地拒绝服务漏洞"><span class="nav-number">3.2.3.</span> <span class="nav-text">美团外卖客户端本地拒绝服务漏洞</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#航旅纵横手势锁轻易绕过及其它漏洞"><span class="nav-number">3.2.4.</span> <span class="nav-text">航旅纵横手势锁轻易绕过及其它漏洞</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考链接"><span class="nav-number">4.</span> <span class="nav-text">参考链接</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#0-Android%E7%9A%84%E5%AE%89%E5%85%A8%E6%A8%A1%E5%9E%8B"><span class="nav-number">1.</span> <span class="nav-text">0. Android的安全模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Intent"><span class="nav-number">2.</span> <span class="nav-text">1. Intent</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Intent-Spoofing"><span class="nav-number">3.</span> <span class="nav-text">2. Intent Spoofing</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-%E4%B8%80%E8%88%AC%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="nav-number">3.1.</span> <span class="nav-text">2.1 一般解决方案</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-%E6%BC%8F%E6%B4%9E%E5%AE%9E%E4%BE%8B"><span class="nav-number">3.2.</span> <span class="nav-text">2.2 漏洞实例</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%90%AF%E7%94%A8%E6%89%8B%E6%9C%BAGPS"><span class="nav-number">3.2.1.</span> <span class="nav-text">启用手机GPS</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B1%9F%E8%8B%8F%E9%93%B6%E8%A1%8C%E6%89%8B%E6%9C%BA%E9%93%B6%E8%A1%8C%E4%B8%8B%E8%BD%BD%E5%AE%89%E8%A3%85%E4%BB%BB%E6%84%8Fapk%EF%BC%88%E5%8F%AF%E6%9C%A8%E9%A9%AC%EF%BC%89"><span class="nav-number">3.2.2.</span> <span class="nav-text">江苏银行手机银行下载安装任意apk（可木马）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BE%8E%E5%9B%A2%E5%A4%96%E5%8D%96%E5%AE%A2%E6%88%B7%E7%AB%AF%E6%9C%AC%E5%9C%B0%E6%8B%92%E7%BB%9D%E6%9C%8D%E5%8A%A1%E6%BC%8F%E6%B4%9E"><span class="nav-number">3.2.3.</span> <span class="nav-text">美团外卖客户端本地拒绝服务漏洞</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%88%AA%E6%97%85%E7%BA%B5%E6%A8%AA%E6%89%8B%E5%8A%BF%E9%94%81%E8%BD%BB%E6%98%93%E7%BB%95%E8%BF%87%E5%8F%8A%E5%85%B6%E5%AE%83%E6%BC%8F%E6%B4%9E"><span class="nav-number">3.2.4.</span> <span class="nav-text">航旅纵横手势锁轻易绕过及其它漏洞</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E9%93%BE%E6%8E%A5"><span class="nav-number">4.</span> <span class="nav-text">参考链接</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -388,7 +388,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">30</span>
+          <span class="site-state-item-count">31</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>

@@ -20,20 +20,20 @@
     var CONFIG = {"hostname":"usmacd.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="Android stunnelhttps:&#x2F;&#x2F;github.com&#x2F;comp500&#x2F;SSLSocks.git  这个项目可以使用 android 版本的 stunnel, 其实就是调用 https:&#x2F;&#x2F;www.stunnel.org&#x2F;downloads&#x2F;stunnel-5.57-android.zip 具体配置和使用命令行差距不大，参考：https:&#x2F;&#x2F;github.com&#x2F;comp500&#x2F;SSL">
+  <meta name="description" content="我在公司使用 Linux 作用主力机已经 10 多年了，自从抛弃 Ubuntu 转入 Fedora 怀抱，生活幸福了不少。早年最大的问题是 OFFICE 软件，工作中少不了要和 doc、ppx，xls 打交道，又没有太好的软件可以使用。刚开始基本就两个解决方案，wine office 和永中 OFFICE，这两个方案都不是太理想，wine 的速度很慢，永中则兼容性比较差，还会出现文档格式看起来就有">
 <meta property="og:type" content="article">
-<meta property="og:title" content="在 Android 手机上的使用 stunnel  （不需要 root ）">
-<meta property="og:url" content="http://usmacd.com/2021/02/04/android_stunnel/index.html">
+<meta property="og:title" content="ThunerBird 78.8.1 连接 TLS 1.0 失败问题和 Linux 乱谈">
+<meta property="og:url" content="http://usmacd.com/2021/04/30/thunderbird.tls.1.0/index.html">
 <meta property="og:site_name" content="安全代码">
-<meta property="og:description" content="Android stunnelhttps:&#x2F;&#x2F;github.com&#x2F;comp500&#x2F;SSLSocks.git  这个项目可以使用 android 版本的 stunnel, 其实就是调用 https:&#x2F;&#x2F;www.stunnel.org&#x2F;downloads&#x2F;stunnel-5.57-android.zip 具体配置和使用命令行差距不大，参考：https:&#x2F;&#x2F;github.com&#x2F;comp500&#x2F;SSL">
+<meta property="og:description" content="我在公司使用 Linux 作用主力机已经 10 多年了，自从抛弃 Ubuntu 转入 Fedora 怀抱，生活幸福了不少。早年最大的问题是 OFFICE 软件，工作中少不了要和 doc、ppx，xls 打交道，又没有太好的软件可以使用。刚开始基本就两个解决方案，wine office 和永中 OFFICE，这两个方案都不是太理想，wine 的速度很慢，永中则兼容性比较差，还会出现文档格式看起来就有">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2021-02-04T05:47:39.806Z">
-<meta property="article:modified_time" content="2021-02-04T05:47:39.806Z">
+<meta property="article:published_time" content="2021-04-30T01:03:05.805Z">
+<meta property="article:modified_time" content="2021-04-30T01:03:05.805Z">
 <meta property="article:author" content="henices">
-<meta property="article:tag" content="Android">
+<meta property="article:tag" content="linux">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://usmacd.com/2021/02/04/android_stunnel/">
+<link rel="canonical" href="http://usmacd.com/2021/04/30/thunderbird.tls.1.0/">
 
 
 <script id="page-configurations">
@@ -46,7 +46,7 @@
   };
 </script>
 
-  <title>在 Android 手机上的使用 stunnel  （不需要 root ） | 安全代码</title>
+  <title>ThunerBird 78.8.1 连接 TLS 1.0 失败问题和 Linux 乱谈 | 安全代码</title>
   
 
 
@@ -167,7 +167,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://usmacd.com/2021/02/04/android_stunnel/">
+    <link itemprop="mainEntityOfPage" href="http://usmacd.com/2021/04/30/thunderbird.tls.1.0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -180,7 +180,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          在 Android 手机上的使用 stunnel  （不需要 root ）
+          ThunerBird 78.8.1 连接 TLS 1.0 失败问题和 Linux 乱谈
         </h1>
 
         <div class="post-meta">
@@ -190,7 +190,7 @@
               </span>
               <span class="post-meta-item-text">Posted on</span>
 
-              <time title="Created: 2021-02-04 13:47:39" itemprop="dateCreated datePublished" datetime="2021-02-04T13:47:39+08:00">2021-02-04</time>
+              <time title="Created: 2021-04-30 09:03:05" itemprop="dateCreated datePublished" datetime="2021-04-30T09:03:05+08:00">2021-04-30</time>
             </span>
 
           
@@ -204,26 +204,40 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="Android-stunnel"><a href="#Android-stunnel" class="headerlink" title="Android stunnel"></a>Android stunnel</h2><p><a href="https://github.com/comp500/SSLSocks.git" target="_blank" rel="noopener">https://github.com/comp500/SSLSocks.git</a>  这个项目可以使用 android 版本的 stunnel, 其实就是调用 <a href="https://www.stunnel.org/downloads/stunnel-5.57-android.zip" target="_blank" rel="noopener">https://www.stunnel.org/downloads/stunnel-5.57-android.zip</a></p>
-<p>具体配置和使用命令行差距不大，参考：<br><a href="https://github.com/comp500/SSLSocks/blob/master/README.md" target="_blank" rel="noopener">https://github.com/comp500/SSLSocks/blob/master/README.md</a></p>
-<h2 id="设置全局代理"><a href="#设置全局代理" class="headerlink" title="设置全局代理"></a>设置全局代理</h2><ol>
-<li>在 wifi 连接的情况</li>
-</ol>
-<p>打开wifi 列表 -&gt; 长按连接的 wifi  -&gt; 点击修改 -&gt; 高级选项 -&gt; 填写代理相关信息</p>
-<ol start="2">
-<li>使用 adb shell 执行命令</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell settings put global http_proxy 192.168.xx.xxx:8888</span><br></pre></td></tr></table></figure>
+        <p>我在公司使用 Linux 作用主力机已经 10 多年了，自从抛弃 Ubuntu 转入 Fedora 怀抱，生活幸福了不少。<br>早年最大的问题是 OFFICE 软件，工作中少不了要和 doc、ppx，xls 打交道，又没有太好的软件可以使用。<br>刚开始基本就两个解决方案，wine office 和永中 OFFICE，这两个方案都不是太理想，wine 的速度很慢，<br>永中则兼容性比较差，还会出现文档格式看起来就有明显差异的情况。。</p>
+<p>随着金山 wps 的发展，现在 OFFICE 的问题基本解决，作为轻度 EXCEL 使用者基本已经满足需求了。Linux<br>现在主要问题是字体渲染比较差，中文经常看起来发虚，如果能把问题再解决一下也非常不错了。作为Linux<br>老用户，各种魔改后，也能较好使用了，但后面发现还是换个显示器更管用。要解决中文显示问题，有两个<br>字体很管用，文泉驿微米黒和微软雅黑，实践证明把系统字体用上面两个字体替换，显示效果也就好了不少了。</p>
+<p>Ubuntu Linux 最大的问题就是不太稳定，基本每次大版本升级显示都要挂，弄得我都有点心理阴影了，周围<br>还挺多同学，最终放弃了，一个直接用 Windows 了，还有一个 Windows 上跑一个 Linux 虚拟机。还有就是<br>喜欢乱改，什么 upstart，Unity，后面都没有称为主流，bug 就更不用说了，经常挺闹心的。</p>
+<p>Fedora 从近些年的使用情况来看，还是很不错的，网络中流传是 Redhat Linux Enterprise 的小白版本，<br>但是其实只要 bug 修得快，你大概率是感觉不到的。遇上问题，放狗一搜就会发现 redhat 已经有 bug 在<br>处理中了，于是乎就有了今天这篇。</p>
+<p>在升级到 Fedara 33 和 ThunderBird 78 后，使用 TLS 连接公司的 ExChange 邮件服务器就连不上了。<br>我们公司的内网安全审核非常严格，邮件不使用加密连接要限时整改。放狗一搜发现，大批人员都遇上了<br>相同的问题，也有人给出了解决方案。</p>
+<p><a href="https://support.mozilla.org/en-US/questions/1295861" target="_blank" rel="noopener">https://support.mozilla.org/en-US/questions/1295861</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">I think this could be due to the minimum version of TLS supported by TB 78. The release notes state that versions lower than 1.2 are disabled, so if your server only supports v. 1.1, you might be able to fix sending by changing the preference security.tls.version.min to 2 from the default 3, in Config. editor.</span><br></pre></td></tr></table></figure>
 
-<ol start="3">
-<li>Proxy Toggle</li>
-</ol>
-<p><a href="https://github.com/theappbusiness/android-proxy-toggle.git" target="_blank" rel="noopener">https://github.com/theappbusiness/android-proxy-toggle.git</a></p>
-<p>要正常使用 app 需要用 adb shell 连接上设置相应的权限：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell pm grant com.kinandcarta.create.proxytoggle android.permission.WRITE_SECURE_SETTINGS</span><br></pre></td></tr></table></figure>
+<p><a href="https://www.thunderbird.net/en-US/thunderbird/78.0/releasenotes/" target="_blank" rel="noopener">https://www.thunderbird.net/en-US/thunderbird/78.0/releasenotes/</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">TLS 1.0 and 1.1 disabled</span><br></pre></td></tr></table></figure>
 
-<h2 id="恢复无代理"><a href="#恢复无代理" class="headerlink" title="恢复无代理"></a>恢复无代理</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">adb shell settings delete global http_proxy</span><br><span class="line">adb shell settings delete global global_http_proxy_host</span><br><span class="line">adb shell settings delete global global_http_proxy_port</span><br></pre></td></tr></table></figure>
+<p>如果开启 mozilla 也给出了相应的方案</p>
+<p><a href="https://support.mozilla.org/en-US/kb/thunderbird-78-faq#w_how-to-enable-outdated-security-protocols-tls-1-0-and-1-1" target="_blank" rel="noopener">https://support.mozilla.org/en-US/kb/thunderbird-78-faq#w_how-to-enable-outdated-security-protocols-tls-1-0-and-1-1</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">How to enable outdated security protocols TLS 1.0 and 1.1</span><br><span class="line"></span><br><span class="line">Open Config Editor (about:config)</span><br><span class="line">≡ &gt; Preferences &gt; Find in Preferences</span><br><span class="line">In the searchbox, type: about:config, then press Enter.</span><br><span class="line">Click on the button Config Editor… in the search result.</span><br><span class="line">In the about:config dialog, search for: security.tls.version.min</span><br><span class="line">Double-click on the found preference security.tls.version.min and change its value to 1, then press Enter.</span><br><span class="line">Restart Thunderbird and try to download your messages.</span><br><span class="line">If you can receive and&#x2F;or send your messages after changing this preference:</span><br><span class="line"></span><br><span class="line">Please inform your email provider to upgrade the security protocols on the server to support TLS 1.2.</span><br><span class="line">Revert the preference security.tls.version.min to its original value as soon as possible by repeating </span><br><span class="line">the above procedure, then right-click on the preference and choose Reset from the context menu.</span><br></pre></td></tr></table></figure>
 
+<p>看上去解决方案很简单，把 Preferences 中的 搜索框里输入 about:config，点击点击进入。将其中的<br><code>security.tls.version.min</code> 设置为 1 就好了，但是在 Fedora 34 中不起作用。我用 wireshark 抓了包看，ThunderBird 自己报告不支持的协议版本。</p>
+<p>我仔细研究了一下 ThunderBird 相关的 config 项有下面几个：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">security.tls.version.min</span><br><span class="line">security.tls.version.enable-deprecated</span><br><span class="line">security.tls.version.fallback-limit</span><br></pre></td></tr></table></figure>
+
+<p>我把这几个选项都设置了一下，分别设置为 1 true 1，还是不管用。</p>
+<p>在 Fedora 33 上这个问题就没解决，这都 Fedora 34 了，所以又花了时间研究了一下。没好办法，放狗，运气<br>不错，看到了这篇</p>
+<p><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1674092#c11" target="_blank" rel="noopener">https://bugzilla.mozilla.org/show_bug.cgi?id=1674092#c11</a></p>
+<p>原来 Fedora 还有个 <code>StrongCryptoSettings</code> ，看文档可以修改</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">update-crypto-policies --set DEFAULT:FEDORA32</span><br><span class="line">update-crypto-policies --set LEGACY</span><br><span class="line">reboot</span><br></pre></td></tr></table></figure>
+
+
+<p>关键的内容就是下面这几行</p>
+<p>cat /etc/crypto-policies/state/CURRENT.pol</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">min_tls_version &#x3D; TLS1.2</span><br><span class="line">protocol &#x3D; TLS1.3 TLS1.2 DTLS1.2</span><br></pre></td></tr></table></figure>
+
+<p>执行后变为</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">min_tls_version &#x3D; TLS1.0</span><br><span class="line">protocol &#x3D; TLS1.3 TLS1.2 TLS1.1 TLS1.0 DTLS1.2 DTLS1.0</span><br></pre></td></tr></table></figure>
+
+<p>重启系统后，又可以开心地使用 ThunderBird 了 ^_^</p>
 
     </div>
 
@@ -233,7 +247,7 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/Android/" rel="tag"># Android</a>
+              <a href="/tags/linux/" rel="tag"># linux</a>
           </div>
 
         
@@ -242,13 +256,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2021/01/20/request_RESERVED_CVE/" rel="prev" title="How to request a RESERVED CVE">
-      <i class="fa fa-chevron-left"></i> How to request a RESERVED CVE
+    <a href="/2021/02/04/android_stunnel/" rel="prev" title="在 Android 手机上的使用 stunnel  （不需要 root ）">
+      <i class="fa fa-chevron-left"></i> 在 Android 手机上的使用 stunnel  （不需要 root ）
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2021/04/30/thunderbird.tls.1.0/" rel="next" title="ThunerBird 78.8.1 连接 TLS 1.0 失败问题和 Linux 乱谈">
-      ThunerBird 78.8.1 连接 TLS 1.0 失败问题和 Linux 乱谈 <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -307,7 +318,6 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Android-stunnel"><span class="nav-number">1.</span> <span class="nav-text">Android stunnel</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%BE%E7%BD%AE%E5%85%A8%E5%B1%80%E4%BB%A3%E7%90%86"><span class="nav-number">2.</span> <span class="nav-text">设置全局代理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%81%A2%E5%A4%8D%E6%97%A0%E4%BB%A3%E7%90%86"><span class="nav-number">3.</span> <span class="nav-text">恢复无代理</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
