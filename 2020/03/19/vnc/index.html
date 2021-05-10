@@ -261,7 +261,7 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl start vncserver@:1</span><br></pre></td></tr></table></figure>
 
 <p>参考文档：</p>
-<p><a href="https://docs.fedoraproject.org/en-US/Fedora/21/html/System_Administrators_Guide/ch-TigerVNC.html" target="_blank" rel="noopener">https://docs.fedoraproject.org/en-US/Fedora/21/html/System_Administrators_Guide/ch-TigerVNC.html</a></p>
+<p><a target="_blank" rel="noopener" href="https://docs.fedoraproject.org/en-US/Fedora/21/html/System_Administrators_Guide/ch-TigerVNC.html">https://docs.fedoraproject.org/en-US/Fedora/21/html/System_Administrators_Guide/ch-TigerVNC.html</a></p>
 <h2 id="3-直接调用命令行"><a href="#3-直接调用命令行" class="headerlink" title="(3)直接调用命令行"></a>(3)直接调用命令行</h2><p>使用上面的方法过于繁琐，可以直接调用 vncserver 的命令行</p>
 <p><code>vncserver :2 -geometry 1920x1080 -depth 24</code></p>
 <h2 id="4-改变vnc的默认桌面"><a href="#4-改变vnc的默认桌面" class="headerlink" title="(4) 改变vnc的默认桌面"></a>(4) 改变vnc的默认桌面</h2><p>vim ~/.vnc/xstartup</p>
@@ -285,6 +285,9 @@
 
           <div class="post-nav">
             <div class="post-nav-item">
+                <a href="/2020/03/19/cve-2012-3137/" rel="prev" title="Oracle Database身份验证协议安全限制绕过漏洞(CVE-2012-3137)">
+                  <i class="fa fa-chevron-left"></i> Oracle Database身份验证协议安全限制绕过漏洞(CVE-2012-3137)
+                </a>
             </div>
             <div class="post-nav-item">
                 <a href="/2020/03/19/vim_special_char/" rel="next" title="vim 输入特殊字符">

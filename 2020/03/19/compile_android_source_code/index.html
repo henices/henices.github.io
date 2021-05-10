@@ -246,7 +246,7 @@
     
     <div class="post-body" itemprop="articleBody">
         <h2 id="☆-1-下载源码"><a href="#☆-1-下载源码" class="headerlink" title="☆ 1. 下载源码"></a>☆ 1. 下载源码</h2><p>由于众所周知的原因，国内访问 Android 源码不大方便， 清华大学做了一件好事， 弄了个 mirror。</p>
-<p><a href="https://mirrors.tuna.tsinghua.edu.cn/help/AOSP/" target="_blank" rel="noopener">https://mirrors.tuna.tsinghua.edu.cn/help/AOSP/</a></p>
+<p><a target="_blank" rel="noopener" href="https://mirrors.tuna.tsinghua.edu.cn/help/AOSP/">https://mirrors.tuna.tsinghua.edu.cn/help/AOSP/</a></p>
 <h3 id="下载-repo"><a href="#下载-repo" class="headerlink" title="下载 repo"></a>下载 repo</h3><p>Google 自己搞一个源码同步工具，需要下下载。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">mkdir ~/bin</span><br><span class="line">PATH=~/bin:<span class="variable">$PATH</span></span><br><span class="line">curl https://storage.googleapis.com/git-repo-downloads/repo &gt; ~/bin/repo</span><br><span class="line">chmod a+x ~/bin/repo</span><br></pre></td></tr></table></figure>
 
@@ -257,11 +257,11 @@
 <h3 id="编译特定版本的-Android"><a href="#编译特定版本的-Android" class="headerlink" title="编译特定版本的 Android"></a>编译特定版本的 Android</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">repo init -u https://aosp.tuna.tsinghua.edu.cn/platform/manifest -b android-4.0.1_r1</span><br><span class="line">repo sync</span><br></pre></td></tr></table></figure>
 
 <p>其中版本号的对应关系可以从这个页面获得：</p>
-<p><a href="https://source.android.com/setup/start/build-numbers" target="_blank" rel="noopener">https://source.android.com/setup/start/build-numbers</a></p>
-<h3 id="下载对应设备的-Driver-Binary"><a href="#下载对应设备的-Driver-Binary" class="headerlink" title="下载对应设备的 Driver Binary"></a>下载对应设备的 Driver Binary</h3><p>Pixel 2 就直接可以看这个 <a href="https://developers.google.com/android/drivers#walleye" target="_blank" rel="noopener">https://developers.google.com/android/drivers#walleye</a><br>目前最新的两个链接为：</p>
+<p><a target="_blank" rel="noopener" href="https://source.android.com/setup/start/build-numbers">https://source.android.com/setup/start/build-numbers</a></p>
+<h3 id="下载对应设备的-Driver-Binary"><a href="#下载对应设备的-Driver-Binary" class="headerlink" title="下载对应设备的 Driver Binary"></a>下载对应设备的 Driver Binary</h3><p>Pixel 2 就直接可以看这个 <a target="_blank" rel="noopener" href="https://developers.google.com/android/drivers#walleye">https://developers.google.com/android/drivers#walleye</a><br>目前最新的两个链接为：</p>
 <ul>
-<li><a href="https://dl.google.com/dl/android/aosp/google_devices-walleye-pq2a.190305.002-78f45eb0.tgz" target="_blank" rel="noopener">https://dl.google.com/dl/android/aosp/google_devices-walleye-pq2a.190305.002-78f45eb0.tgz</a></li>
-<li><a href="https://dl.google.com/dl/android/aosp/qcom-walleye-pq2a.190305.002-a7c70412.tgz" target="_blank" rel="noopener">https://dl.google.com/dl/android/aosp/qcom-walleye-pq2a.190305.002-a7c70412.tgz</a> </li>
+<li><a target="_blank" rel="noopener" href="https://dl.google.com/dl/android/aosp/google_devices-walleye-pq2a.190305.002-78f45eb0.tgz">https://dl.google.com/dl/android/aosp/google_devices-walleye-pq2a.190305.002-78f45eb0.tgz</a></li>
+<li><a target="_blank" rel="noopener" href="https://dl.google.com/dl/android/aosp/qcom-walleye-pq2a.190305.002-a7c70412.tgz">https://dl.google.com/dl/android/aosp/qcom-walleye-pq2a.190305.002-a7c70412.tgz</a> </li>
 </ul>
 <p>将这两个文件在 aosp 根目录解压</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">tar zxvf google_devices-walleye-pq2a.190305.002-78f45eb0.tgz</span><br><span class="line">tar zxvf qcom-walleye-pq2a.190305.002-a7c70412.tgz</span><br></pre></td></tr></table></figure>
@@ -276,10 +276,10 @@
 
 <h2 id="☆-3-注意事项"><a href="#☆-3-注意事项" class="headerlink" title="☆ 3. 注意事项"></a>☆ 3. 注意事项</h2><p>清华这个 mirror 是定时同步的，所以实时性并不好，如果遇到某个特定版本下载失败，<br>可以等待一段时间后，再重新执行同步命令。编译时需要的内存比较大，小内存可能导致编译失败，<br>另外，如果在虚拟机里编译的话，记得多设置几个CPU核，这样编译速度会快一些。</p>
 <h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
-<li><a href="https://mirrors.tuna.tsinghua.edu.cn/help/AOSP/" target="_blank" rel="noopener">https://mirrors.tuna.tsinghua.edu.cn/help/AOSP/</a></li>
-<li><a href="https://source.android.com/setup/build/downloading" target="_blank" rel="noopener">https://source.android.com/setup/build/downloading</a></li>
-<li><a href="https://source.android.com/setup/build/building" target="_blank" rel="noopener">https://source.android.com/setup/build/building</a></li>
-<li><a href="https://developers.google.com/android/drivers" target="_blank" rel="noopener">https://developers.google.com/android/drivers</a></li>
+<li><a target="_blank" rel="noopener" href="https://mirrors.tuna.tsinghua.edu.cn/help/AOSP/">https://mirrors.tuna.tsinghua.edu.cn/help/AOSP/</a></li>
+<li><a target="_blank" rel="noopener" href="https://source.android.com/setup/build/downloading">https://source.android.com/setup/build/downloading</a></li>
+<li><a target="_blank" rel="noopener" href="https://source.android.com/setup/build/building">https://source.android.com/setup/build/building</a></li>
+<li><a target="_blank" rel="noopener" href="https://developers.google.com/android/drivers">https://developers.google.com/android/drivers</a></li>
 </ul>
 
     </div>
@@ -297,8 +297,8 @@
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2020/03/19/cve-2012-3137/" rel="prev" title="Oracle Database身份验证协议安全限制绕过漏洞(CVE-2012-3137)">
-                  <i class="fa fa-chevron-left"></i> Oracle Database身份验证协议安全限制绕过漏洞(CVE-2012-3137)
+                <a href="/2020/03/19/fundamental/" rel="prev" title="基本面需要关注的点">
+                  <i class="fa fa-chevron-left"></i> 基本面需要关注的点
                 </a>
             </div>
             <div class="post-nav-item">

@@ -245,10 +245,10 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <p>Apk无源码调试的方法有很多，现在发现使用Android Studio 结合 JEB　感觉良好，<br>主要是参考　<a href="http://www.jianshu.com/p/c7899e5ea182" target="_blank" rel="noopener">http://www.jianshu.com/p/c7899e5ea182</a>　这篇记录下了具体步骤。</p>
-<h2 id="1-下载-smalidea"><a href="#1-下载-smalidea" class="headerlink" title="1. 下载 smalidea"></a>1. 下载 smalidea</h2><p><a href="https://bitbucket.org/JesusFreke/smali/downloads/smalidea-0.03.zip" target="_blank" rel="noopener">https://bitbucket.org/JesusFreke/smali/downloads/smalidea-0.03.zip</a></p>
+        <p>Apk无源码调试的方法有很多，现在发现使用Android Studio 结合 JEB　感觉良好，<br>主要是参考　<a target="_blank" rel="noopener" href="http://www.jianshu.com/p/c7899e5ea182">http://www.jianshu.com/p/c7899e5ea182</a>　这篇记录下了具体步骤。</p>
+<h2 id="1-下载-smalidea"><a href="#1-下载-smalidea" class="headerlink" title="1. 下载 smalidea"></a>1. 下载 smalidea</h2><p><a target="_blank" rel="noopener" href="https://bitbucket.org/JesusFreke/smali/downloads/smalidea-0.03.zip">https://bitbucket.org/JesusFreke/smali/downloads/smalidea-0.03.zip</a></p>
 <p>在Android studio的插件仓库中没有找到这个插件，需要下载本地安装<br>File -&gt; Settings -&gt; Plugins -&gt; Install plugin from disk  选择下载的插件，重启后生效。</p>
-<h2 id="2-apktool-输出源码文件"><a href="#2-apktool-输出源码文件" class="headerlink" title="2. apktool 输出源码文件"></a>2. apktool 输出源码文件</h2><p><a href="https://github.com/iBotPeaches/Apktool/releases/download/2.2.0/apktool_2.2.0.jar" target="_blank" rel="noopener">https://github.com/iBotPeaches/Apktool/releases/download/2.2.0/apktool_2.2.0.jar</a></p>
+<h2 id="2-apktool-输出源码文件"><a href="#2-apktool-输出源码文件" class="headerlink" title="2. apktool 输出源码文件"></a>2. apktool 输出源码文件</h2><p><a target="_blank" rel="noopener" href="https://github.com/iBotPeaches/Apktool/releases/download/2.2.0/apktool_2.2.0.jar">https://github.com/iBotPeaches/Apktool/releases/download/2.2.0/apktool_2.2.0.jar</a></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java -jar apktool_2.2.0.jar d -f xx.apk -o xx</span><br></pre></td></tr></table></figure>
 
 <p>如果正常的将输出 smali 源码文件</p>
@@ -263,7 +263,7 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb forward tcp:5005 jdwp:debug_process_pid</span><br></pre></td></tr></table></figure>
 
 <p>执行命令后，可以看到adb监听本地5005 端口。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; netstat -antp | grep 5005</span><br><span class="line"> tcp        0      0 127.0.0.1:5005          0.0.0.0:*               LISTEN      4728&#x2F;adb</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; netstat -antp | grep 5005</span><br><span class="line"> tcp        0      0 127.0.0.1:5005          0.0.0.0:*               LISTEN      4728&#x2F;adb  </span><br></pre></td></tr></table></figure>
 
 <h2 id="7-设置断点，调试"><a href="#7-设置断点，调试" class="headerlink" title="7. 设置断点，调试"></a>7. 设置断点，调试</h2><p>点击源码左侧栏可以设置断点，点击工具栏上的debug （一个小虫的按钮），开始调试。在<br>这个步骤上我遇上了一个错误。</p>
 <p>java.io.IOException “handshake failed - connection prematurally closed”</p>

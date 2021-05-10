@@ -247,13 +247,13 @@
     <div class="post-body" itemprop="articleBody">
         <p>在申请 CVE 过程中会遇到一个问题，向软件官方提交漏洞修复后，由于软件官方不是CNA 无法直接分配CVE，而申请CVE 通常需要一个软件官方确认的链接，而有些比较正规的软件在漏洞修复之前是不会有公开链接的，这就无法申请CVE了。</p>
 <p>有点鸡生蛋，蛋生鸡的感觉。解决这个问题的办法是申请一个 RESERVED CVE。</p>
-<h2 id="申请-RESERVED-CVE-方法"><a href="#申请-RESERVED-CVE-方法" class="headerlink" title="申请 RESERVED CVE 方法"></a>申请 RESERVED CVE 方法</h2><p>申请 RESERVED CVE，也是需要填写的CVE 申请表格的 <a href="https://cveform.mitre.org/，选择" target="_blank" rel="noopener">https://cveform.mitre.org/，选择</a> Request CVE ID</p>
+<h2 id="申请-RESERVED-CVE-方法"><a href="#申请-RESERVED-CVE-方法" class="headerlink" title="申请 RESERVED CVE 方法"></a>申请 RESERVED CVE 方法</h2><p>申请 RESERVED CVE，也是需要填写的CVE 申请表格的 <a target="_blank" rel="noopener" href="https://cveform.mitre.org/，选择">https://cveform.mitre.org/，选择</a> Request CVE ID</p>
 <p>根据提示的重要信息：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">IMPORTANT: Once a CVE ID is assigned to your vulnerability, it will not be published </span><br><span class="line">in the CVE List until you have submitted a URL pointing to public information about </span><br><span class="line">the vulnerability. Without a public reference, the CVE ID will display as &quot;RESERVED&quot; </span><br><span class="line">in the CVE List. Please update CVE with a reference to the vulnerability&#39;s </span><br><span class="line">details as soon as possible. See this FAQ for more information.</span><br></pre></td></tr></table></figure>
 
 <p>只要将 public reference 留空，就可以申请 RESERVED CVE 了。CVE 官方收到请求后会有确认的邮件。</p>
 <h2 id="CVE-官方分配-CVE-ID"><a href="#CVE-官方分配-CVE-ID" class="headerlink" title="CVE 官方分配 CVE ID"></a>CVE 官方分配 CVE ID</h2><p>CVE 官方收到 RESERVED CVE 请求后，会给分配一个 CVE ID，但是状态为 ** RESERVED ** ，不会有公开细节。</p>
-<h2 id="RESERVED-CVE-申请公开"><a href="#RESERVED-CVE-申请公开" class="headerlink" title="RESERVED CVE 申请公开"></a>RESERVED CVE 申请公开</h2><p>当软件官方确认已经修复漏洞，并且发布新版后，可以通知 CVE 官方更新 CVE 的状态。还是通过填写 <a href="https://cveform.mitre.org/" target="_blank" rel="noopener">https://cveform.mitre.org/</a> 表格，选择 Notify CVE about a publication，填写相关信息。</p>
+<h2 id="RESERVED-CVE-申请公开"><a href="#RESERVED-CVE-申请公开" class="headerlink" title="RESERVED CVE 申请公开"></a>RESERVED CVE 申请公开</h2><p>当软件官方确认已经修复漏洞，并且发布新版后，可以通知 CVE 官方更新 CVE 的状态。还是通过填写 <a target="_blank" rel="noopener" href="https://cveform.mitre.org/">https://cveform.mitre.org/</a> 表格，选择 Notify CVE about a publication，填写相关信息。</p>
 <h2 id="一些注意事项"><a href="#一些注意事项" class="headerlink" title="一些注意事项"></a>一些注意事项</h2><ol>
 <li>将 <a href="mailto:cve-request@mitre.org">cve-request@mitre.org</a> 和  <a href="mailto:cve@mitre.org">cve@mitre.org</a> 加入邮件白名单 （有可能邮件会被截拦）</li>
 <li>在申请公开步骤中，CVE 官方有可能和你要公开披露的链接，如果软件官方不给写，可以自己写一个</li>

@@ -9,13 +9,6 @@
   </url>
   
   <url>
-    <loc>http://usmacd.com/about/index.html</loc>
-    
-    <lastmod>2021-03-01</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://usmacd.com/2021/02/04/android_stunnel/</loc>
     
     <lastmod>2021-02-04</lastmod>
@@ -33,6 +26,13 @@
     <loc>http://usmacd.com/2020/09/28/onefuzz/</loc>
     
     <lastmod>2020-09-28</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://usmacd.com/about/index.html</loc>
+    
+    <lastmod>2020-07-21</lastmod>
     
   </url>
   
@@ -79,14 +79,14 @@
   </url>
   
   <url>
-    <loc>http://usmacd.com/tags/index.html</loc>
+    <loc>http://usmacd.com/categories/index.html</loc>
     
     <lastmod>2020-03-19</lastmod>
     
   </url>
   
   <url>
-    <loc>http://usmacd.com/categories/index.html</loc>
+    <loc>http://usmacd.com/tags/index.html</loc>
     
     <lastmod>2020-03-19</lastmod>
     
@@ -163,13 +163,6 @@
   </url>
   
   <url>
-    <loc>http://usmacd.com/2020/03/19/cve-2012-3137/</loc>
-    
-    <lastmod>2020-03-19</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://usmacd.com/2020/03/19/fundamental/</loc>
     
     <lastmod>2020-03-19</lastmod>
@@ -239,6 +232,13 @@
     
   </url>
   
+  <url>
+    <loc>http://usmacd.com/2020/03/19/cve-2012-3137/</loc>
+    
+    <lastmod>2020-03-19</lastmod>
+    
+  </url>
+  
 
   <url>
     <loc>http://usmacd.com/</loc>
@@ -284,6 +284,13 @@
   </url>
   
   <url>
+    <loc>http://usmacd.com/tags/windows/</loc>
+    <lastmod>2021-05-10</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>http://usmacd.com/tags/Malware/</loc>
     <lastmod>2021-05-10</lastmod>
     <changefreq>daily</changefreq>
@@ -298,7 +305,7 @@
   </url>
   
   <url>
-    <loc>http://usmacd.com/tags/windows/</loc>
+    <loc>http://usmacd.com/tags/Programming/</loc>
     <lastmod>2021-05-10</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -306,13 +313,6 @@
   
   <url>
     <loc>http://usmacd.com/tags/vim/</loc>
-    <lastmod>2021-05-10</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://usmacd.com/tags/Programming/</loc>
     <lastmod>2021-05-10</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>

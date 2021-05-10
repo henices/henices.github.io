@@ -247,7 +247,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <p>向大家安利一款 markdown 笔记软件， VNote  <a href="http://t.cn/RXj6L39" target="_blank" rel="noopener">http://t.cn/RXj6L39</a><br>此软件目前已经 1300 多个commits 了，做为一个有些开源软件维护经历的人，深感不易。<br>用了太多 markdown 笔记软件，此软件使得最为顺手，尤其作为程序员 vim 模式 让我感到非常舒服，<br>大量图表的支持比如 UML 流程图，让我用起来很顺手。</p>
+        <p>向大家安利一款 markdown 笔记软件， VNote  <a target="_blank" rel="noopener" href="http://t.cn/RXj6L39">http://t.cn/RXj6L39</a><br>此软件目前已经 1300 多个commits 了，做为一个有些开源软件维护经历的人，深感不易。<br>用了太多 markdown 笔记软件，此软件使得最为顺手，尤其作为程序员 vim 模式 让我感到非常舒服，<br>大量图表的支持比如 UML 流程图，让我用起来很顺手。</p>
 <p><img src="https://raw.githubusercontent.com/henices/pictures/master/vnote.png" alt="VNote"></p>
 <p>我前后尝试过各种笔记软件，我理想的软件有几点：</p>
 <ul>
@@ -260,14 +260,14 @@
 <ol>
 <li>下载 QT SDK</li>
 </ol>
-<p><a href="https://mirrors4.tuna.tsinghua.edu.cn/qt/official_releases/qt/5.9/5.9.0/qt-opensource-linux-x64-5.9.0.run" target="_blank" rel="noopener">https://mirrors4.tuna.tsinghua.edu.cn/qt/official_releases/qt/5.9/5.9.0/qt-opensource-linux-x64-5.9.0.run</a></p>
+<p><a target="_blank" rel="noopener" href="https://mirrors4.tuna.tsinghua.edu.cn/qt/official_releases/qt/5.9/5.9.0/qt-opensource-linux-x64-5.9.0.run">https://mirrors4.tuna.tsinghua.edu.cn/qt/official_releases/qt/5.9/5.9.0/qt-opensource-linux-x64-5.9.0.run</a></p>
 <p>将 Qt5.9 安装到 /home/henices/Qt5.9.0/</p>
 <ol start="2">
 <li>编译 fcitx-qt5</li>
 </ol>
-<p>git clone <a href="https://gitlab.com/fcitx/fcitx-qt5.git" target="_blank" rel="noopener">https://gitlab.com/fcitx/fcitx-qt5.git</a></p>
+<p>git clone <a target="_blank" rel="noopener" href="https://gitlab.com/fcitx/fcitx-qt5.git">https://gitlab.com/fcitx/fcitx-qt5.git</a></p>
 <p>准备编译脚本 <code>build_linux.sh</code>， 指定下载的QT</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">QTDIR=<span class="string">"/home/henices/Qt5.9.0/5.9/gcc_64/"</span></span><br><span class="line">PATH=<span class="string">"<span class="variable">$QTDIR</span>/bin:<span class="variable">$PATH</span>"</span></span><br><span class="line">LDFLAGS=-L<span class="variable">$QTDIR</span>/lib</span><br><span class="line">CPPFLAGS=-I<span class="variable">$QTDIR</span>/include</span><br><span class="line"></span><br><span class="line">rm -rf build</span><br><span class="line">mkdir -p build</span><br><span class="line"><span class="built_in">cd</span> build</span><br><span class="line">cmake ..</span><br><span class="line">make -j8</span><br></pre></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">QTDIR=<span class="string">&quot;/home/henices/Qt5.9.0/5.9/gcc_64/&quot;</span></span><br><span class="line">PATH=<span class="string">&quot;<span class="variable">$QTDIR</span>/bin:<span class="variable">$PATH</span>&quot;</span></span><br><span class="line">LDFLAGS=-L<span class="variable">$QTDIR</span>/lib</span><br><span class="line">CPPFLAGS=-I<span class="variable">$QTDIR</span>/include</span><br><span class="line"></span><br><span class="line">rm -rf build</span><br><span class="line">mkdir -p build</span><br><span class="line"><span class="built_in">cd</span> build</span><br><span class="line">cmake ..</span><br><span class="line">make -j8</span><br></pre></td></tr></table></figure>
 
 <p>使用下面命令编译</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">chmod a+x ./build_linux.sh</span><br><span class="line">./build_linux.sh</span><br></pre></td></tr></table></figure>
@@ -282,7 +282,7 @@
 <li>编译</li>
 </ol>
 <p>build_linux.sh</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">QTDIR=<span class="string">"/home/henices/Qt5.9.0/5.9/gcc_64/"</span></span><br><span class="line">PATH=<span class="string">"<span class="variable">$QTDIR</span>/bin:<span class="variable">$PATH</span>"</span></span><br><span class="line">LDFLAGS=-L<span class="variable">$QTDIR</span>/lib</span><br><span class="line">CPPFLAGS=-I<span class="variable">$QTDIR</span>/include</span><br><span class="line"></span><br><span class="line">rm -rf build</span><br><span class="line">mkdir -p build</span><br><span class="line"><span class="built_in">cd</span> build</span><br><span class="line">qmake -v</span><br><span class="line">qmake PREFIX=/usr/<span class="built_in">local</span> CONFIG-=debug CONFIG+=release ../VNote.pro</span><br><span class="line">make -j8</span><br></pre></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">QTDIR=<span class="string">&quot;/home/henices/Qt5.9.0/5.9/gcc_64/&quot;</span></span><br><span class="line">PATH=<span class="string">&quot;<span class="variable">$QTDIR</span>/bin:<span class="variable">$PATH</span>&quot;</span></span><br><span class="line">LDFLAGS=-L<span class="variable">$QTDIR</span>/lib</span><br><span class="line">CPPFLAGS=-I<span class="variable">$QTDIR</span>/include</span><br><span class="line"></span><br><span class="line">rm -rf build</span><br><span class="line">mkdir -p build</span><br><span class="line"><span class="built_in">cd</span> build</span><br><span class="line">qmake -v</span><br><span class="line">qmake PREFIX=/usr/<span class="built_in">local</span> CONFIG-=debug CONFIG+=release ../VNote.pro</span><br><span class="line">make -j8</span><br></pre></td></tr></table></figure>
 
 <p>使用下面命令编译</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">chmod a+x .&#x2F;build_linux.sh</span><br><span class="line">.&#x2F;build_linux.sh</span><br></pre></td></tr></table></figure>
@@ -291,7 +291,7 @@
 <li>安装</li>
 </ol>
 <p><code>sudo make install</code></p>
-<h3 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h3><p><a href="https://tamlok.gitee.io/vnote/zh_cn/#!docs/%E5%BC%80%E5%8F%91%E8%80%85/%E6%9E%84%E5%BB%BAVNote.md" target="_blank" rel="noopener">https://tamlok.gitee.io/vnote/zh_cn/#!docs/%E5%BC%80%E5%8F%91%E8%80%85/%E6%9E%84%E5%BB%BAVNote.md</a></p>
+<h3 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h3><p><a target="_blank" rel="noopener" href="https://tamlok.gitee.io/vnote/zh_cn/#!docs/%E5%BC%80%E5%8F%91%E8%80%85/%E6%9E%84%E5%BB%BAVNote.md">https://tamlok.gitee.io/vnote/zh_cn/#!docs/%E5%BC%80%E5%8F%91%E8%80%85/%E6%9E%84%E5%BB%BAVNote.md</a></p>
 
     </div>
 
