@@ -253,7 +253,7 @@
 <p>需要订阅 Azure， 可能要收费</p>
 <h2 id="安装-onefuzz-CLI"><a href="#安装-onefuzz-CLI" class="headerlink" title="安装 onefuzz CLI"></a>安装 onefuzz CLI</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">wget https://github.com/microsoft/onefuzz/releases/download/1.0.0/onefuzz-1.0.0-py3-none-any.whl</span><br><span class="line">wget https://github.com/microsoft/onefuzz/releases/download/1.0.0/onefuzztypes-1.0.0-py3-none-any.whl</span><br><span class="line">pip install ./onefuzz*.whl</span><br></pre></td></tr></table></figure>
 
-<h2 id="执行-fuzz-任务"><a href="#执行-fuzz-任务" class="headerlink" title="执行 fuzz 任务"></a>执行 fuzz 任务</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">onefuzz template libfuzzer basic my-project my-target build-1 my-pool --target_exe fuzz.exe</span><br></pre></td></tr></table></figure>
+<h2 id="执行-fuzz-任务"><a href="#执行-fuzz-任务" class="headerlink" title="执行 fuzz 任务"></a>执行 fuzz 任务</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">onefuzz template libfuzzer basic my-project my-target build-1 my-pool --target_exe fuzz.exe</span><br></pre></td></tr></table></figure>
 
 <h2 id="支持的平台"><a href="#支持的平台" class="headerlink" title="支持的平台"></a>支持的平台</h2><ol>
 <li>Python 的 CLI 客户端，需要 Python 3.7 +</li>
