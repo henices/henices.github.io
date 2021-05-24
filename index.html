@@ -225,7 +225,7 @@
       </span>
       <span class="post-meta-item-text">Posted on</span>
 
-      <time title="Created: 2021-05-24 11:36:53" itemprop="dateCreated datePublished" datetime="2021-05-24T11:36:53+08:00">2021-05-24</time>
+      <time title="Created: 2021-05-24 12:05:03" itemprop="dateCreated datePublished" datetime="2021-05-24T12:05:03+08:00">2021-05-24</time>
     </span>
 
   
@@ -239,11 +239,11 @@
     
     <div class="post-body" itemprop="articleBody">
           <h2 id="软件介绍"><a href="#软件介绍" class="headerlink" title="软件介绍"></a>软件介绍</h2><p>010Editor是一款快速且强大的十六进制编辑器。用来编辑二进制文件。有一个友好易于使用的界面，无限次的<br>undo和redo操作。另外还可以打印十六进制的字节或者以书签的方式标出某些重要的字节。<br>支持二进制模板（binary template）系统。</p>
-<h2 id="保持试用"><a href="#保持试用" class="headerlink" title="保持试用"></a>保持试用</h2><p>国外软件很多时候相当厚道了，试用基本是全功能，轻微延时，和不能自动更新二进制模板，就日常使用来说基本<br>是完全够用了。</p>
+<h2 id="保持试用"><a href="#保持试用" class="headerlink" title="保持试用"></a>保持试用</h2><p>国外软件很多时候相当厚道了，试用基本是全功能，轻微延时和不能自动更新二进制模板，就日常使用来说基本<br>是完全够用了。</p>
 <p>关键文件为 <code>~/.config/SweetScape/010 Editor.ini</code>，无法使用的时侯可以把这个文件清空，将恢复30天试用状态，<br>或者简单粗暴的将文件设置为只读。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod 444 <span class="string">&quot;010 Editor.ini&quot;</span></span><br></pre></td></tr></table></figure>
 
-<p>用IDA逆向的时侯没有发现这个文件比较奇怪。这个文件是 是使用strace命令发现的，strace命令支持 <code>-e</code> 的过<br>滤参数，将 有效减少输出，一般来说看strace日志文件可以从最后往前看。</p>
+<p>用IDA逆向的时侯没有发现这个文件比较奇怪。这个文件是 是使用strace命令发现的，strace命令支持 <code>-e</code> 的过<br>滤参数将有效减少输出，一般来说看strace日志文件可以从最后往前看。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">strace -e trace=file ./010editor</span><br></pre></td></tr></table></figure>
 
 <p>从代码上看有使用网络验证需要在hosts文件中屏敝两个网站， 可以减少一些不必要的麻烦。</p>
