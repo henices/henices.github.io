@@ -129,7 +129,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">31</span>
+          <span class="site-state-item-count">32</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -192,6 +192,88 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://usmacd.com/2021/05/24/010editor/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="henices">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="安全代码">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2021/05/24/010editor/" class="post-title-link" itemprop="url">010editor 保持试用</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2021-05-24 11:36:53" itemprop="dateCreated datePublished" datetime="2021-05-24T11:36:53+08:00">2021-05-24</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="软件介绍"><a href="#软件介绍" class="headerlink" title="软件介绍"></a>软件介绍</h2><p>010Editor是一款快速且强大的十六进制编辑器。用来编辑二进制文件。有一个友好易于使用的界面，无限次的<br>undo和redo操作。另外还可以打印十六进制的字节或者以书签的方式标出某些重要的字节。<br>支持二进制模板（binary template）系统。</p>
+<h2 id="保持试用"><a href="#保持试用" class="headerlink" title="保持试用"></a>保持试用</h2><p>国外软件很多时候相当厚道了，试用基本是全功能，轻微延时，和不能自动更新二进制模板，就日常使用来说基本<br>是完全够用了。</p>
+<p>关键文件为 <code>~/.config/SweetScape/010 Editor.ini</code>，无法使用的时侯可以把这个文件清空，将恢复30天试用状态，<br>或者简单粗暴的将文件设置为只读。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod 444 <span class="string">&quot;010 Editor.ini&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>用IDA逆向的时侯没有发现这个文件比较奇怪。这个文件是 是使用strace命令发现的，strace命令支持 <code>-e</code> 的过<br>滤参数，将 有效减少输出，一般来说看strace日志文件可以从最后往前看。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">strace -e trace=file ./010editor</span><br></pre></td></tr></table></figure>
+
+<p>从代码上看有使用网络验证需要在hosts文件中屏敝两个网站， 可以减少一些不必要的麻烦。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1 www.sweetscape.com</span><br><span class="line">127.0.0.1 www.010editor.com</span><br></pre></td></tr></table></figure>
+
+<p>我现在已经是注册用户了，在很长的一段时间内，这方法是管用的，做个备忘。</p>
+<p>scz 补充：</p>
+<p>之前github上的那个开源keygen还能用，或者就用</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">user    user</span><br><span class="line">pass    3470D4AC7CEFACD9297A</span><br></pre></td></tr></table></figure>
+
+<p>只是hosts更改可能不够，windows上用wf.msc阻止010 Editor联网，Linux好像没有简单办法阻止特定进程联网，<br>只能变相利用uid、gid达成目的。</p>
+<p>How to block internet access to certain programs on Linux<br><a target="_blank" rel="noopener" href="https://serverfault.com/questions/550276/how-to-block-internet-access-to-certain-programs-on-linux">https://serverfault.com/questions/550276/how-to-block-internet-access-to-certain-programs-on-linux</a></p>
+<p><a target="_blank" rel="noopener" href="https://unix.stackexchange.com/questions/104830/block-specific-application-with-iptables">https://unix.stackexchange.com/questions/104830/block-specific-application-with-iptables</a></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -968,76 +1050,6 @@
     
     <div class="post-body" itemprop="articleBody">
           <p>一加3T其实和一加5用的是同一块屏幕，网上流传的方法多需要root权限。非root 开启 p3 色域的方法，<br>连接 adb 输入下面的命令 <code>settings put system screen_color_mode_settings_value 4</code> 实测有效，重启后不失效。</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://usmacd.com/2020/03/20/python_pip/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="henices">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="安全代码">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2020/03/20/python_pip/" class="post-title-link" itemprop="url">Python 多版本使用 pip</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2020-03-20 10:02:28" itemprop="dateCreated datePublished" datetime="2020-03-20T10:02:28+08:00">2020-03-20</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>Q：Fedora 31 提供的 Python3.7， 想使用 Python3.8， 用系统的pip3 只会给 Python3.7 安装库，如何解决</p>
-<p>A:</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">curl -O https://bootstrap.pypa.io/get-pip.py</span><br><span class="line">python3.8 get-pip.py</span><br></pre></td></tr></table></figure>
-
-<p>执行上面命令后，会在 /usr/local/bin/ 下生成和 pip 相关的脚本，把这些脚本删除，要不可能会和系统的 pip3 冲突。<br>接下来就可以使用下面的命令行安装 Python3.8 的库</p>
-<p><code>python3.8 -m pip install pyhash --user</code></p>
-<p>在安装过程中可能会因为众所周知的原因导致网络出错，备好梯子即可。</p>
 
       
     </div>
