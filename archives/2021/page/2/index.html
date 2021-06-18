@@ -20,28 +20,23 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
 <script class="next-config" data-name="main" type="application/json">{&quot;hostname&quot;:&quot;usmacd.com&quot;,&quot;root&quot;:&quot;&#x2F;&quot;,&quot;images&quot;:&quot;&#x2F;images&quot;,&quot;scheme&quot;:&quot;Gemini&quot;,&quot;version&quot;:&quot;8.4.0&quot;,&quot;exturl&quot;:false,&quot;sidebar&quot;:{&quot;position&quot;:&quot;left&quot;,&quot;display&quot;:&quot;post&quot;,&quot;padding&quot;:18,&quot;offset&quot;:12},&quot;copycode&quot;:false,&quot;bookmark&quot;:{&quot;enable&quot;:false,&quot;color&quot;:&quot;#222&quot;,&quot;save&quot;:&quot;auto&quot;},&quot;fancybox&quot;:false,&quot;mediumzoom&quot;:false,&quot;lazyload&quot;:false,&quot;pangu&quot;:false,&quot;comments&quot;:{&quot;style&quot;:&quot;tabs&quot;,&quot;active&quot;:null,&quot;storage&quot;:true,&quot;lazyload&quot;:false,&quot;nav&quot;:null},&quot;motion&quot;:{&quot;enable&quot;:true,&quot;async&quot;:false,&quot;transition&quot;:{&quot;post_block&quot;:&quot;fadeIn&quot;,&quot;post_header&quot;:&quot;fadeInDown&quot;,&quot;post_body&quot;:&quot;fadeInDown&quot;,&quot;coll_header&quot;:&quot;fadeInLeft&quot;,&quot;sidebar&quot;:&quot;fadeInUp&quot;}},&quot;prism&quot;:false,&quot;i18n&quot;:{&quot;placeholder&quot;:&quot;Searching...&quot;,&quot;empty&quot;:&quot;We didn&#39;t find any results for the search: ${query}&quot;,&quot;hits_time&quot;:&quot;${hits} results found in ${time} ms&quot;,&quot;hits&quot;:&quot;${hits} results found&quot;}}</script>
-<meta name="description" content="1. 默认启用 Cgroups V2nozuonodie， 升级到 Fedora 31 后， CgroupsV2 已经默认开启，理由是原来不是默认开启没人用，现在让 Fedora 用户先当当小白鼠，于是 Docker 就倒下了。http:&#x2F;&#x2F;t.cn&#x2F;Ai1sI5LH   grub2 配置文件 &#x2F;etc&#x2F;default&#x2F;grub， 内核参数添加 systemd.unified_cgroup_hie">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Fedora31 的几个变化">
-<meta property="og:url" content="http://usmacd.com/2020/03/19/Fedora31/index.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="安全代码">
+<meta property="og:url" content="http://usmacd.com/archives/2021/page/2/index.html">
 <meta property="og:site_name" content="安全代码">
-<meta property="og:description" content="1. 默认启用 Cgroups V2nozuonodie， 升级到 Fedora 31 后， CgroupsV2 已经默认开启，理由是原来不是默认开启没人用，现在让 Fedora 用户先当当小白鼠，于是 Docker 就倒下了。http:&#x2F;&#x2F;t.cn&#x2F;Ai1sI5LH   grub2 配置文件 &#x2F;etc&#x2F;default&#x2F;grub， 内核参数添加 systemd.unified_cgroup_hie">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2020-03-19T08:34:31.917Z">
-<meta property="article:modified_time" content="2020-03-19T08:34:31.917Z">
 <meta property="article:author" content="henices">
-<meta property="article:tag" content="linux">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="http://usmacd.com/2020/03/19/Fedora31/">
+<link rel="canonical" href="http://usmacd.com/archives/2021/page/2/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{&quot;sidebar&quot;:&quot;&quot;,&quot;isHome&quot;:false,&quot;isPost&quot;:true,&quot;lang&quot;:&quot;en&quot;,&quot;comments&quot;:true,&quot;permalink&quot;:&quot;http:&#x2F;&#x2F;usmacd.com&#x2F;2020&#x2F;03&#x2F;19&#x2F;Fedora31&#x2F;&quot;,&quot;path&quot;:&quot;2020&#x2F;03&#x2F;19&#x2F;Fedora31&#x2F;&quot;,&quot;title&quot;:&quot;Fedora31 的几个变化&quot;}</script>
+<script class="next-config" data-name="page" type="application/json">{&quot;sidebar&quot;:&quot;&quot;,&quot;isHome&quot;:false,&quot;isPost&quot;:false,&quot;lang&quot;:&quot;en&quot;,&quot;comments&quot;:&quot;&quot;,&quot;permalink&quot;:&quot;&quot;,&quot;path&quot;:&quot;archives&#x2F;2021&#x2F;page&#x2F;2&#x2F;index.html&quot;,&quot;title&quot;:&quot;&quot;}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">&quot;&quot;</script>
-<title>Fedora31 的几个变化 | 安全代码</title><script src="/js/config.js"></script>
+<title>Archive | 安全代码</title><script src="/js/config.js"></script>
   
 
 
@@ -108,7 +103,7 @@
 
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+    <div class="sidebar-inner sidebar-overview-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           Table of Contents
@@ -121,7 +116,6 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E9%BB%98%E8%AE%A4%E5%90%AF%E7%94%A8-Cgroups-V2"><span class="nav-number">1.</span> <span class="nav-text">1. 默认启用 Cgroups V2</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E9%BB%98%E8%AE%A4%E7%9A%84-Python-%E4%B8%BA-Python3"><span class="nav-number">2.</span> <span class="nav-text">2. 默认的 Python 为 Python3</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -197,92 +191,53 @@
 </noscript>
 
 
-    <div class="main-inner post posts-expand">
+    <div class="main-inner archive posts-collapse">
 
 
   
-
-
-<div class="post-block">
   
   
+  <div class="post-block">
+    <div class="post-content">
+      <div class="collection-title">
+        
+        <span class="collection-header">OK! 34 posts in total. Keep on posting.</span>
+      </div>
 
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://usmacd.com/2020/03/19/Fedora31/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="henices">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="安全代码">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          Fedora31 的几个变化
-        </h1>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2020-03-19 16:34:31" itemprop="dateCreated datePublished" datetime="2020-03-19T16:34:31+08:00">2020-03-19</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-        <h2 id="1-默认启用-Cgroups-V2"><a href="#1-默认启用-Cgroups-V2" class="headerlink" title="1. 默认启用 Cgroups V2"></a>1. 默认启用 Cgroups V2</h2><p>nozuonodie， 升级到 Fedora 31 后， CgroupsV2 已经默认开启，理由是原来不是默认开启没人用，现在让 Fedora 用户先当当小白鼠，<br>于是 Docker 就倒下了。<a target="_blank" rel="noopener" href="http://t.cn/Ai1sI5LH">http://t.cn/Ai1sI5LH</a>   grub2 配置文件 /etc/default/grub， 内核参数添加 systemd.unified_cgroup_hierarchy=0<br>可以重新开启  CgroupsV1 ​​​​</p>
-<h2 id="2-默认的-Python-为-Python3"><a href="#2-默认的-Python-为-Python3" class="headerlink" title="2. 默认的 Python 为 Python3"></a>2. 默认的 Python 为 Python3</h2><p><a target="_blank" rel="noopener" href="https://fedoraproject.org/wiki/Changes/Python_means_Python3">https://fedoraproject.org/wiki/Changes/Python_means_Python3</a></p>
-<p>唉，不得不说 Fedora 这次有点太激进了， 搞得我编译 chromium 又出问题了。 要换回去有个歪招</p>
-<p><code>ln -s /usr/bin/python2 /usr/local/bin/python</code></p>
-
+      
+    <div class="collection-year">
+      <span class="collection-header">2021</span>
     </div>
 
-    
-    
-    
+  <article itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+      <div class="post-meta-container">
+        <time itemprop="dateCreated"
+              datetime="2021-01-20T14:00:18+08:00"
+              content="2021-01-20">
+          01-20
+        </time>
+      </div>
 
-    <footer class="post-footer">
-          <div class="post-tags">
-              <a href="/tags/linux/" rel="tag"># linux</a>
-          </div>
+      <div class="post-title">
+          <a class="post-title-link" href="/2021/01/20/request_RESERVED_CVE/" itemprop="url">
+            <span itemprop="name">How to request a RESERVED CVE</span>
+          </a>
+      </div>
 
-        
-
-          <div class="post-nav">
-            <div class="post-nav-item">
-                <a href="/2020/03/19/android_intent_base_attack/" rel="prev" title="Intent Spoofing 攻击">
-                  <i class="fa fa-chevron-left"></i> Intent Spoofing 攻击
-                </a>
-            </div>
-            <div class="post-nav-item">
-                <a href="/2020/03/19/BaiduNetdisk/" rel="next" title="Linux 下使用百度网盘">
-                  Linux 下使用百度网盘 <i class="fa fa-chevron-right"></i>
-                </a>
-            </div>
-          </div>
-    </footer>
+      
+    </header>
   </article>
-</div>
 
 
-
-
-
+    </div>
+  </div>
+  
+  
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/archives/2021/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/archives/2021/">1</a><span class="page-number current">2</span>
+  </nav>
 <script src="/js/comments.js"></script>
 </div>
   </main>

