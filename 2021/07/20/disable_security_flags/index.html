@@ -20,28 +20,28 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
 <script class="next-config" data-name="main" type="application/json">{&quot;hostname&quot;:&quot;usmacd.com&quot;,&quot;root&quot;:&quot;&#x2F;&quot;,&quot;images&quot;:&quot;&#x2F;images&quot;,&quot;scheme&quot;:&quot;Gemini&quot;,&quot;version&quot;:&quot;8.4.0&quot;,&quot;exturl&quot;:false,&quot;sidebar&quot;:{&quot;position&quot;:&quot;left&quot;,&quot;display&quot;:&quot;post&quot;,&quot;padding&quot;:18,&quot;offset&quot;:12},&quot;copycode&quot;:false,&quot;bookmark&quot;:{&quot;enable&quot;:false,&quot;color&quot;:&quot;#222&quot;,&quot;save&quot;:&quot;auto&quot;},&quot;fancybox&quot;:false,&quot;mediumzoom&quot;:false,&quot;lazyload&quot;:false,&quot;pangu&quot;:false,&quot;comments&quot;:{&quot;style&quot;:&quot;tabs&quot;,&quot;active&quot;:null,&quot;storage&quot;:true,&quot;lazyload&quot;:false,&quot;nav&quot;:null},&quot;motion&quot;:{&quot;enable&quot;:true,&quot;async&quot;:false,&quot;transition&quot;:{&quot;post_block&quot;:&quot;fadeIn&quot;,&quot;post_header&quot;:&quot;fadeInDown&quot;,&quot;post_body&quot;:&quot;fadeInDown&quot;,&quot;coll_header&quot;:&quot;fadeInLeft&quot;,&quot;sidebar&quot;:&quot;fadeInUp&quot;}},&quot;prism&quot;:false,&quot;i18n&quot;:{&quot;placeholder&quot;:&quot;Searching...&quot;,&quot;empty&quot;:&quot;We didn&#39;t find any results for the search: ${query}&quot;,&quot;hits_time&quot;:&quot;${hits} results found in ${time} ms&quot;,&quot;hits&quot;:&quot;${hits} results found&quot;}}</script>
-<meta name="description" content="AS3 Sorcerer是一款flash action Script的商业反编译软件。  www.as3sorcerer.com    软件为Delphi编写，加了未知壳，使用PEID 0.94无法正确查出，使用核心扫描发现是   Delphi编写，这个软件有一个特点修改一个字节就报错。由于时间原因没有具体跟相关代码。    破解方法使用LPK.dll动态修改as3.exe内存达到破解目前，">
+<meta name="description" content="今天遇上某 App 禁止截屏，其实就是使用了下面这段代码 1getWindow().setFlags(LayoutParams.FLAG_SECURE, LayoutParams.FLAG_SECURE);   使用 frida 脚本可以绕过绕过这个限制 （使用 frida 需要将手机 root）。 12345678910111213Java.perform(function () &amp;#123;">
 <meta property="og:type" content="article">
-<meta property="og:title" content="AS3 Sorcerer 3.0 破解思路">
-<meta property="og:url" content="http://usmacd.com/2020/03/19/AS3_Sorcerer_crack/index.html">
+<meta property="og:title" content="恢复 Android App 的截屏功能">
+<meta property="og:url" content="http://usmacd.com/2021/07/20/disable_security_flags/index.html">
 <meta property="og:site_name" content="安全代码">
-<meta property="og:description" content="AS3 Sorcerer是一款flash action Script的商业反编译软件。  www.as3sorcerer.com    软件为Delphi编写，加了未知壳，使用PEID 0.94无法正确查出，使用核心扫描发现是   Delphi编写，这个软件有一个特点修改一个字节就报错。由于时间原因没有具体跟相关代码。    破解方法使用LPK.dll动态修改as3.exe内存达到破解目前，">
+<meta property="og:description" content="今天遇上某 App 禁止截屏，其实就是使用了下面这段代码 1getWindow().setFlags(LayoutParams.FLAG_SECURE, LayoutParams.FLAG_SECURE);   使用 frida 脚本可以绕过绕过这个限制 （使用 frida 需要将手机 root）。 12345678910111213Java.perform(function () &amp;#123;">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2020-03-19T08:34:31.917Z">
-<meta property="article:modified_time" content="2020-03-19T08:34:31.917Z">
+<meta property="article:published_time" content="2021-07-20T08:30:18.145Z">
+<meta property="article:modified_time" content="2021-07-20T08:30:18.145Z">
 <meta property="article:author" content="henices">
-<meta property="article:tag" content="Crack">
+<meta property="article:tag" content="Android">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="http://usmacd.com/2020/03/19/AS3_Sorcerer_crack/">
+<link rel="canonical" href="http://usmacd.com/2021/07/20/disable_security_flags/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{&quot;sidebar&quot;:&quot;&quot;,&quot;isHome&quot;:false,&quot;isPost&quot;:true,&quot;lang&quot;:&quot;en&quot;,&quot;comments&quot;:true,&quot;permalink&quot;:&quot;http:&#x2F;&#x2F;usmacd.com&#x2F;2020&#x2F;03&#x2F;19&#x2F;AS3_Sorcerer_crack&#x2F;&quot;,&quot;path&quot;:&quot;2020&#x2F;03&#x2F;19&#x2F;AS3_Sorcerer_crack&#x2F;&quot;,&quot;title&quot;:&quot;AS3 Sorcerer 3.0 破解思路&quot;}</script>
+<script class="next-config" data-name="page" type="application/json">{&quot;sidebar&quot;:&quot;&quot;,&quot;isHome&quot;:false,&quot;isPost&quot;:true,&quot;lang&quot;:&quot;en&quot;,&quot;comments&quot;:true,&quot;permalink&quot;:&quot;http:&#x2F;&#x2F;usmacd.com&#x2F;2021&#x2F;07&#x2F;20&#x2F;disable_security_flags&#x2F;&quot;,&quot;path&quot;:&quot;2021&#x2F;07&#x2F;20&#x2F;disable_security_flags&#x2F;&quot;,&quot;title&quot;:&quot;恢复 Android App 的截屏功能&quot;}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">&quot;&quot;</script>
-<title>AS3 Sorcerer 3.0 破解思路 | 安全代码</title><script src="/js/config.js"></script>
+<title>恢复 Android App 的截屏功能 | 安全代码</title><script src="/js/config.js"></script>
   
 
 
@@ -121,7 +121,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#LPK-dll"><span class="nav-number">1.</span> <span class="nav-text">LPK.dll</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8-objection"><span class="nav-number">1.</span> <span class="nav-text">使用 objection</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%88%AA%E5%B1%8F%E5%B0%8F%E6%8A%80%E5%B7%A7-%EF%BC%88lzx%EF%BC%89"><span class="nav-number">2.</span> <span class="nav-text">截屏小技巧 （lzx）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-number">3.</span> <span class="nav-text">参考</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -208,7 +208,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://usmacd.com/2020/03/19/AS3_Sorcerer_crack/">
+    <link itemprop="mainEntityOfPage" href="http://usmacd.com/2021/07/20/disable_security_flags/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -221,7 +221,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          AS3 Sorcerer 3.0 破解思路
+          恢复 Android App 的截屏功能
         </h1>
 
         <div class="post-meta-container">
@@ -232,7 +232,7 @@
       </span>
       <span class="post-meta-item-text">Posted on</span>
 
-      <time title="Created: 2020-03-19 16:34:31" itemprop="dateCreated datePublished" datetime="2020-03-19T16:34:31+08:00">2020-03-19</time>
+      <time title="Created: 2021-07-20 16:30:18" itemprop="dateCreated datePublished" datetime="2021-07-20T16:30:18+08:00">2021-07-20</time>
     </span>
 
   
@@ -245,26 +245,20 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <p>   AS3 Sorcerer是一款flash action Script的商业反编译软件。  <a target="_blank" rel="noopener" href="http://www.as3sorcerer.com">www.as3sorcerer.com</a></p>
-<p>   软件为Delphi编写，加了未知壳，使用PEID 0.94无法正确查出，使用核心扫描发现是<br>   Delphi编写，这个软件有一个特点修改一个字节就报错。由于时间原因没有具体跟相关代码。</p>
-<p>   破解方法使用LPK.dll动态修改as3.exe内存达到破解目前，在Windows Xp下比较完美，<br>   在Windows 7下已经无法通过LPK.dll进行DLL hijack，可以通过DLL注入达到同样的目的。</p>
-<p>   难点有几个，OD加载报错，attack也报错。使用海风月影的StrongOD可以正常attach。<br>   OD 1.1目前最大的问题是插件冲突严重，安装了OllyAdv后，无法成功加载as3.exe.<br>   遇上强壳时可以使用phantom的protect DRx，可以解决一下问题，总之要尽量避免冲突。<br>   接下来的难点就是如何找到破解的关键点，进行内存patch。</p>
-<p>   使用OD查找字符串参考Unicode，搜索trial</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">006974C2    E8 65ABFDFF     call    0067202C</span><br><span class="line">006974C7    84C0            test    al, al</span><br><span class="line">006974C9    75 1C           jnz     short 006974E7</span><br><span class="line">006974CB    B9 E4756900     mov     ecx, 006975E4                    ; e</span><br><span class="line">006974D0    BA 50766900     mov     edx, 00697650                    ;Sorry!</span><br></pre></td></tr></table></figure>
+        <p>今天遇上某 App 禁止截屏，其实就是使用了下面这段代码</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">getWindow().setFlags(LayoutParams.FLAG_SECURE, LayoutParams.FLAG_SECURE);</span><br></pre></td></tr></table></figure>
 
-<p>   这里有个坑，在OD中看到的代码有可能不是最终运行的代码，只有真正在OD里断下，进<br>   入程序领空后，看到的代码才是解密后的真正代码。这里在这里浪费了很多时间。换句<br>   话说就是要先保证能调试起来，能调试能下断点基本就成功了一半。</p>
-<p>   上面的代码是非常经典的关键代码，主要处理了 0067202C让它返回1就OK了。F7跟进</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">0067202C  - E9 EE9D1900     jmp     0080BE1F</span><br><span class="line">00672031    CC              int3</span><br><span class="line">00672032    CC              int3</span><br><span class="line">00672033    CC              int3</span><br><span class="line">00672034    CC              int3</span><br><span class="line">00672035    CC              int3</span><br><span class="line">00672036    CC              int3</span><br><span class="line">00672037    90              nop</span><br></pre></td></tr></table></figure>
 
-<p>   进入就去一个jmp，后面的大段跳转非常多，跟踪困难。好在有很多int3，可以自己<br>   写一段汇编代码解决。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">0067202C    33C0            xor     eax, eax</span><br><span class="line">0067202E    83C0 01         add     eax, 0x1</span><br><span class="line">00672031    90              nop</span><br><span class="line">00672032    90              nop</span><br><span class="line">00672033    90              nop</span><br><span class="line">00672034    90              nop</span><br><span class="line">00672035    90              nop</span><br><span class="line">00672036    C3              retn</span><br></pre></td></tr></table></figure>
-<p>核心代码</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">HANDLE handle = GetModuleHandle(<span class="literal">NULL</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> RVA = <span class="number">0x67202C</span> - <span class="number">0x400000</span>;</span><br><span class="line"><span class="keyword">int</span> VA = <span class="keyword">int</span>(handle) + RVA;</span><br><span class="line"></span><br><span class="line"><span class="keyword">unsigned</span> <span class="keyword">char</span> p405213[<span class="number">11</span>] = &#123;  </span><br><span class="line">      <span class="number">0x33</span>, <span class="number">0xC0</span>, <span class="number">0x83</span>, <span class="number">0xC0</span>, <span class="number">0x01</span>, <span class="number">0x90</span>, <span class="number">0x90</span>, <span class="number">0x90</span>, <span class="number">0x90</span>, <span class="number">0x90</span>, <span class="number">0xC3</span></span><br><span class="line">&#125;;</span><br><span class="line">VirtualProtectEx(hProcess, (LPVOID)VA, <span class="number">11</span>, PAGE_EXECUTE_READWRITE, &amp;Oldpp);</span><br><span class="line">WriteProcessMemory(hProcess, (LPVOID)VA, p405213, <span class="number">11</span>, <span class="literal">NULL</span>);</span><br></pre></td></tr></table></figure>
+<p>使用 frida 脚本可以绕过绕过这个限制 （使用 frida 需要将手机 root）。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">Java.perform(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">   <span class="comment">// https://developer.android.com/reference/android/view/WindowManager.LayoutParams.html#FLAG_SECURE</span></span><br><span class="line">   <span class="keyword">var</span> FLAG_SECURE = <span class="number">0x2000</span>;</span><br><span class="line">   <span class="keyword">var</span> Window = Java.use(<span class="string">&quot;android.view.Window&quot;</span>);</span><br><span class="line">   <span class="keyword">var</span> setFlags = Window.setFlags;  <span class="comment">//.overload(&quot;int&quot;, &quot;int&quot;)</span></span><br><span class="line"></span><br><span class="line">   setFlags.implementation = <span class="function"><span class="keyword">function</span> (<span class="params">flags, mask</span>) </span>&#123;</span><br><span class="line">       <span class="built_in">console</span>.log(<span class="string">&quot;Disabling FLAG_SECURE...&quot;</span>);</span><br><span class="line">       flags &amp;= ~FLAG_SECURE;</span><br><span class="line">       setFlags.call(<span class="built_in">this</span>, flags, mask);</span><br><span class="line">       <span class="comment">// Since setFlags returns void, we don&#x27;t need to return anything</span></span><br><span class="line">   &#125;;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 
-<p>GetModuleHandle用于动态获取进程加载基址。</p>
-<h2 id="LPK-dll"><a href="#LPK-dll" class="headerlink" title="LPK.dll"></a>LPK.dll</h2><p>Windows 7 不能默认已经不能使用LPK.dll，必须导入下面注册表键值，重启电脑<br>才能使用。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Windows Registry Editor Version 5.00 </span><br><span class="line"></span><br><span class="line">[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager] </span><br><span class="line">&quot;ExcludeFromKnownDlls&quot;=hex(7):6c,00,70,00,6b,00,2e,00,64,00,6c,00,6c,00,00,00,\ </span><br><span class="line">00,00</span><br></pre></td></tr></table></figure>
+<p>执行 frida 命令 <code>frida -U -l disable.js -n com.changsha.apps.android.mycs --no-pause</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">$ frida -U -l disable.js -n com.changsha.apps.android.mycs --no-pause</span><br><span class="line"></span><br><span class="line">[Pixel 2::com.changsha.apps.android.mycs]-&gt;</span><br><span class="line">[Pixel 2::com.changsha.apps.android.mycs]-&gt;</span><br><span class="line">[Pixel 2::com.changsha.apps.android.mycs]-&gt; Disabling FLAG_SECURE...</span><br><span class="line">Disabling FLAG_SECURE...</span><br><span class="line">Disabling FLAG_SECURE...</span><br><span class="line">Disabling FLAG_SECURE...</span><br><span class="line">Disabling FLAG_SECURE...</span><br><span class="line">Disabling FLAG_SECURE...</span><br><span class="line">Disabling FLAG_SECURE...</span><br><span class="line">Disabling FLAG_SECURE...</span><br><span class="line">Disabling FLAG_SECURE...</span><br><span class="line">Disabling FLAG_SECURE...</span><br></pre></td></tr></table></figure>
 
+<p>值得注意的是，这里使用了 <code>-n</code> 参数， attach 到目标进程，要不 App 会自动重启。看到输出调试信息后，<br>就可以正常截屏了。</p>
+<h3 id="使用-objection"><a href="#使用-objection" class="headerlink" title="使用 objection"></a>使用 objection</h3><p>objection 有此功能，执行下面命令即可： <code>android ui FLAG_SECURE false</code>  但是我测试失败了。</p>
+<h3 id="截屏小技巧-（lzx）"><a href="#截屏小技巧-（lzx）" class="headerlink" title="截屏小技巧 （lzx）"></a>截屏小技巧 （lzx）</h3><p>Android 截屏，可以使用一个快速的技巧  <code>adb exec-out screencap -p &gt; test.png</code></p>
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a target="_blank" rel="noopener" href="https://bhamza.me/2019/11/03/Android-Frida-hooking-disabling-FLAG-SECURE.html">https://bhamza.me/2019/11/03/Android-Frida-hooking-disabling-FLAG-SECURE.html</a></p>
 
     </div>
 
@@ -274,21 +268,18 @@
 
     <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/Crack/" rel="tag"># Crack</a>
+              <a href="/tags/Android/" rel="tag"># Android</a>
           </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2020/03/19/Android_binder_fuzzing/" rel="prev" title="Android Binder Fuzzing 的一些思路">
-                  <i class="fa fa-chevron-left"></i> Android Binder Fuzzing 的一些思路
+                <a href="/2021/06/28/fupangjiqiao/" rel="prev" title="高效复盘技巧">
+                  <i class="fa fa-chevron-left"></i> 高效复盘技巧
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2020/03/19/xorddos_hide/" rel="next" title="xorddos 样本进程隐藏的小伎俩">
-                  xorddos 样本进程隐藏的小伎俩 <i class="fa fa-chevron-right"></i>
-                </a>
             </div>
           </div>
     </footer>

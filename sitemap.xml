@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://usmacd.com/2021/07/20/disable_security_flags/</loc>
+    
+    <lastmod>2021-07-20</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://usmacd.com/2021/06/28/fupangjiqiao/</loc>
     
     <lastmod>2021-06-28</lastmod>
@@ -277,78 +284,78 @@
 
   <url>
     <loc>http://usmacd.com/</loc>
-    <lastmod>2021-06-28</lastmod>
+    <lastmod>2021-07-20</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
 
   
   <url>
+    <loc>http://usmacd.com/tags/Life/</loc>
+    <lastmod>2021-07-20</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>http://usmacd.com/tags/linux/</loc>
-    <lastmod>2021-06-28</lastmod>
+    <lastmod>2021-07-20</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://usmacd.com/tags/Crack/</loc>
-    <lastmod>2021-06-28</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://usmacd.com/tags/Life/</loc>
-    <lastmod>2021-06-28</lastmod>
+    <lastmod>2021-07-20</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://usmacd.com/tags/Security/</loc>
-    <lastmod>2021-06-28</lastmod>
+    <lastmod>2021-07-20</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://usmacd.com/tags/Android/</loc>
-    <lastmod>2021-06-28</lastmod>
+    <lastmod>2021-07-20</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://usmacd.com/tags/windows/</loc>
-    <lastmod>2021-06-28</lastmod>
+    <lastmod>2021-07-20</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://usmacd.com/tags/Malware/</loc>
-    <lastmod>2021-06-28</lastmod>
+    <lastmod>2021-07-20</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://usmacd.com/tags/investment/</loc>
-    <lastmod>2021-06-28</lastmod>
+    <lastmod>2021-07-20</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://usmacd.com/tags/Programming/</loc>
-    <lastmod>2021-06-28</lastmod>
+    <lastmod>2021-07-20</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://usmacd.com/tags/vim/</loc>
-    <lastmod>2021-06-28</lastmod>
+    <lastmod>2021-07-20</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
