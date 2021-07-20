@@ -27,9 +27,10 @@
 <meta property="og:site_name" content="安全代码">
 <meta property="og:description" content="今天遇上某 App 禁止截屏，其实就是使用了下面这段代码 1getWindow().setFlags(LayoutParams.FLAG_SECURE, LayoutParams.FLAG_SECURE);   使用 frida 脚本可以绕过绕过这个限制 （使用 frida 需要将手机 root）。 12345678910111213Java.perform(function () &amp;#123;">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2021-07-20T08:30:18.145Z">
-<meta property="article:modified_time" content="2021-07-20T08:30:18.145Z">
+<meta property="article:published_time" content="2021-07-20T08:34:48.860Z">
+<meta property="article:modified_time" content="2021-07-20T08:34:48.860Z">
 <meta property="article:author" content="henices">
+<meta property="article:tag" content="Security">
 <meta property="article:tag" content="Android">
 <meta name="twitter:card" content="summary">
 
@@ -232,7 +233,7 @@
       </span>
       <span class="post-meta-item-text">Posted on</span>
 
-      <time title="Created: 2021-07-20 16:30:18" itemprop="dateCreated datePublished" datetime="2021-07-20T16:30:18+08:00">2021-07-20</time>
+      <time title="Created: 2021-07-20 16:34:48" itemprop="dateCreated datePublished" datetime="2021-07-20T16:34:48+08:00">2021-07-20</time>
     </span>
 
   
@@ -252,13 +253,16 @@
 <p>使用 frida 脚本可以绕过绕过这个限制 （使用 frida 需要将手机 root）。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">Java.perform(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">   <span class="comment">// https://developer.android.com/reference/android/view/WindowManager.LayoutParams.html#FLAG_SECURE</span></span><br><span class="line">   <span class="keyword">var</span> FLAG_SECURE = <span class="number">0x2000</span>;</span><br><span class="line">   <span class="keyword">var</span> Window = Java.use(<span class="string">&quot;android.view.Window&quot;</span>);</span><br><span class="line">   <span class="keyword">var</span> setFlags = Window.setFlags;  <span class="comment">//.overload(&quot;int&quot;, &quot;int&quot;)</span></span><br><span class="line"></span><br><span class="line">   setFlags.implementation = <span class="function"><span class="keyword">function</span> (<span class="params">flags, mask</span>) </span>&#123;</span><br><span class="line">       <span class="built_in">console</span>.log(<span class="string">&quot;Disabling FLAG_SECURE...&quot;</span>);</span><br><span class="line">       flags &amp;= ~FLAG_SECURE;</span><br><span class="line">       setFlags.call(<span class="built_in">this</span>, flags, mask);</span><br><span class="line">       <span class="comment">// Since setFlags returns void, we don&#x27;t need to return anything</span></span><br><span class="line">   &#125;;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 
-<p>执行 frida 命令 <code>frida -U -l disable.js -n com.changsha.apps.android.mycs --no-pause</code></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">$ frida -U -l disable.js -n com.changsha.apps.android.mycs --no-pause</span><br><span class="line"></span><br><span class="line">[Pixel 2::com.changsha.apps.android.mycs]-&gt;</span><br><span class="line">[Pixel 2::com.changsha.apps.android.mycs]-&gt;</span><br><span class="line">[Pixel 2::com.changsha.apps.android.mycs]-&gt; Disabling FLAG_SECURE...</span><br><span class="line">Disabling FLAG_SECURE...</span><br><span class="line">Disabling FLAG_SECURE...</span><br><span class="line">Disabling FLAG_SECURE...</span><br><span class="line">Disabling FLAG_SECURE...</span><br><span class="line">Disabling FLAG_SECURE...</span><br><span class="line">Disabling FLAG_SECURE...</span><br><span class="line">Disabling FLAG_SECURE...</span><br><span class="line">Disabling FLAG_SECURE...</span><br><span class="line">Disabling FLAG_SECURE...</span><br></pre></td></tr></table></figure>
+<p>执行 frida 命令 <code>frida -U -l disable.js -n com.apps.android --no-pause</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">$ frida -U -l disable.js -n com.apps.android --no-pause</span><br><span class="line"></span><br><span class="line">[Pixel 2::com.apps.android]-&gt;</span><br><span class="line">[Pixel 2::com.apps.android]-&gt;</span><br><span class="line">[Pixel 2::com.apps.android]-&gt; Disabling FLAG_SECURE...</span><br><span class="line">Disabling FLAG_SECURE...</span><br><span class="line">Disabling FLAG_SECURE...</span><br><span class="line">Disabling FLAG_SECURE...</span><br><span class="line">Disabling FLAG_SECURE...</span><br><span class="line">Disabling FLAG_SECURE...</span><br><span class="line">Disabling FLAG_SECURE...</span><br><span class="line">Disabling FLAG_SECURE...</span><br><span class="line">Disabling FLAG_SECURE...</span><br><span class="line">Disabling FLAG_SECURE...</span><br></pre></td></tr></table></figure>
 
 <p>值得注意的是，这里使用了 <code>-n</code> 参数， attach 到目标进程，要不 App 会自动重启。看到输出调试信息后，<br>就可以正常截屏了。</p>
-<h3 id="使用-objection"><a href="#使用-objection" class="headerlink" title="使用 objection"></a>使用 objection</h3><p>objection 有此功能，执行下面命令即可： <code>android ui FLAG_SECURE false</code>  但是我测试失败了。</p>
+<h3 id="使用-objection"><a href="#使用-objection" class="headerlink" title="使用 objection"></a>使用 objection</h3><p>objection「2」有此功能，执行下面命令即可： <code>android ui FLAG_SECURE false</code>  但是我测试失败了。</p>
 <h3 id="截屏小技巧-（lzx）"><a href="#截屏小技巧-（lzx）" class="headerlink" title="截屏小技巧 （lzx）"></a>截屏小技巧 （lzx）</h3><p>Android 截屏，可以使用一个快速的技巧  <code>adb exec-out screencap -p &gt; test.png</code></p>
-<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a target="_blank" rel="noopener" href="https://bhamza.me/2019/11/03/Android-Frida-hooking-disabling-FLAG-SECURE.html">https://bhamza.me/2019/11/03/Android-Frida-hooking-disabling-FLAG-SECURE.html</a></p>
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><ul>
+<li>[1] <a target="_blank" rel="noopener" href="https://bhamza.me/2019/11/03/Android-Frida-hooking-disabling-FLAG-SECURE.html">https://bhamza.me/2019/11/03/Android-Frida-hooking-disabling-FLAG-SECURE.html</a></li>
+<li>[2] <a target="_blank" rel="noopener" href="https://github.com/sensepost/objection">https://github.com/sensepost/objection</a></li>
+</ul>
 
     </div>
 
@@ -268,6 +272,7 @@
 
     <footer class="post-footer">
           <div class="post-tags">
+              <a href="/tags/Security/" rel="tag"># Security</a>
               <a href="/tags/Android/" rel="tag"># Android</a>
           </div>
 
