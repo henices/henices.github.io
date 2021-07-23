@@ -225,7 +225,7 @@
       </span>
       <span class="post-meta-item-text">Posted on</span>
 
-      <time title="Created: 2021-07-23 13:11:52" itemprop="dateCreated datePublished" datetime="2021-07-23T13:11:52+08:00">2021-07-23</time>
+      <time title="Created: 2021-07-23 13:17:19" itemprop="dateCreated datePublished" datetime="2021-07-23T13:17:19+08:00">2021-07-23</time>
     </span>
 
   
@@ -254,7 +254,7 @@
 
 <h3 id="配置中文环境"><a href="#配置中文环境" class="headerlink" title="配置中文环境"></a>配置中文环境</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sudo vim /etc/locale.conf</span><br><span class="line"></span><br><span class="line"><span class="built_in">export</span> LANG=<span class="string">&quot;zh_CN.UTF-8&quot;</span></span><br><span class="line"><span class="built_in">export</span> LC_CTYPE=<span class="string">&quot;zh_CN.UTF-8&quot;</span></span><br></pre></td></tr></table></figure>
 
-<h3 id="安装词库"><a href="#安装词库" class="headerlink" title="安装词库"></a>安装词库</h3><p>rime 现在已经使用 plum 管理词库，如果需要安装双拼输入法的，可以执行下面的命令：</p>
+<h3 id="安装-rime-词库"><a href="#安装-rime-词库" class="headerlink" title="安装 rime 词库"></a>安装 rime 词库</h3><p>rime 现在已经使用 plum 管理词库，如果需要安装双拼输入法的，可以执行下面的命令：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">curl -fsSL https://git.io/rime-install | bash</span><br><span class="line">rime_frontend=fcitx5-rime bash rime-install double_pinyin</span><br></pre></td></tr></table></figure>
 
 <p>rime 为了保证输入速度，词库很小，为了能够自动显示更多的词组，就需要使用拓展词库。</p>
@@ -278,7 +278,8 @@
 <figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">PreeditInApplication=True</span></span><br></pre></td></tr></table></figure>
 
 <p>或者按快捷键 <code>ctrl + alt + p</code></p>
-<h3 id="让-fcitx5-正确显示菜单"><a href="#让-fcitx5-正确显示菜单" class="headerlink" title="让 fcitx5 正确显示菜单"></a>让 fcitx5 正确显示菜单</h3><p>要让 fcitx 正确显示菜单，关键在于让 rime 输入法默认处于激活状态，根据 fcitx5 配置的提示第一个输入法为非激活状态。</p>
+<h3 id="让-fcitx5-正确显示菜单"><a href="#让-fcitx5-正确显示菜单" class="headerlink" title="让 fcitx5 正确显示菜单"></a>让 fcitx5 正确显示菜单</h3><p>要做这个步骤是因为 rime 有 「部署」、「同步」这几个操作按钮，如果不正确配置的话在 fcitx5 上没法正常显示。<br>fcitx5 在任务上有个托盘图标，点击右键就可以看到这些菜单。</p>
+<p>要让 fcitx 正确显示菜单，关键在于让 rime 输入法默认处于激活状态，根据 fcitx5 配置的提示第一个输入法为非激活状态。</p>
 <ul>
 <li>（1） 将第一个输入法设置为  键盘-英语 （美国），第二个输入法设置为 中州韵</li>
 <li>（2） 在全局设置中，勾上默认状态为激活，共享输入状态设置为 <code>程序</code></li>
