@@ -225,7 +225,7 @@
       </span>
       <span class="post-meta-item-text">Posted on</span>
 
-      <time title="Created: 2021-07-23 13:17:19" itemprop="dateCreated datePublished" datetime="2021-07-23T13:17:19+08:00">2021-07-23</time>
+      <time title="Created: 2021-07-23 14:06:01" itemprop="dateCreated datePublished" datetime="2021-07-23T14:06:01+08:00">2021-07-23</time>
     </span>
 
   
@@ -268,12 +268,14 @@
 <p>设置完成后，要重新启动输入法，比如要输入 ☆ ，输入  <code>/xh</code> 即可</p>
 <h3 id="将用户词库导入-rime"><a href="#将用户词库导入-rime" class="headerlink" title="将用户词库导入 rime"></a>将用户词库导入 rime</h3><p><code>rime_dict_manager -i luna_pinyin luna_pinyin.userdb.txt</code></p>
 <p>这一步很关键啊，多年的积累不能浪费了。</p>
-<h3 id="配置-fcitx5-皮肤"><a href="#配置-fcitx5-皮肤" class="headerlink" title="配置 fcitx5 皮肤"></a>配置 fcitx5 皮肤</h3><p>fcitx5 默认的皮肤不太好看，所以下载更新了皮肤。</p>
+<h3 id="配置-fcitx5-皮肤"><a href="#配置-fcitx5-皮肤" class="headerlink" title="配置 fcitx5 皮肤"></a>配置 fcitx5 皮肤</h3><p>fcitx5 默认的皮肤不太好看，所以下载更新了皮肤，这款简约风格的皮肤非常符合老夫的胃口。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/thep0y/fcitx5-themes.git</span><br><span class="line">cp spring ~/.<span class="built_in">local</span>/share/fcitx5/themes -r</span><br></pre></td></tr></table></figure>
 
 <p>修改配置文件 <code>~/.config/fcitx5/conf/classicui.conf</code></p>
 <figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 垂直候选列表</span></span><br><span class="line"><span class="string">Vertical</span> <span class="string">Candidate</span> <span class="string">List=False</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 按屏幕 DPI 使用</span></span><br><span class="line"><span class="string">PerScreenDPI=True</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Font (设置成你喜欢的字体)</span></span><br><span class="line"><span class="string">Font=&quot;Smartisan</span> <span class="string">Compact</span> <span class="string">CNS</span> <span class="number">13</span><span class="string">&quot;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"># 主题(这里要改成你想要使用的主题名，主题名就在下面)</span></span><br><span class="line"><span class="string">Theme=spring</span></span><br></pre></td></tr></table></figure>
 
+<p>另外还有一款 fcitx5 皮肤相对流行：<a target="_blank" rel="noopener" href="https://github.com/hosxy/Fcitx5-Material-Color">https://github.com/hosxy/Fcitx5-Material-Color</a></p>
+<p>切换皮肤的方法是，点击鼠标右键点击 配置 -&gt; 附加组件 -&gt; 经典用户界面 -&gt; 点击右边图标 -&gt; 选择皮肤</p>
 <h3 id="设置-fcitx-rime-单行模式"><a href="#设置-fcitx-rime-单行模式" class="headerlink" title="设置 fcitx rime 单行模式"></a>设置 fcitx rime 单行模式</h3><p>如果要将输入法设置为单行模式，需要修改配置文件 <code>~/.config/fcitx5/conf/rime.conf</code></p>
 <figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">PreeditInApplication=True</span></span><br></pre></td></tr></table></figure>
 
