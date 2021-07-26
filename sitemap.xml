@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://usmacd.com/2021/07/26/root_android11_pixel2/</loc>
+    
+    <lastmod>2021-07-26</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://usmacd.com/2021/07/26/fcitx5-rime/</loc>
     
     <lastmod>2021-07-26</lastmod>
@@ -198,14 +205,14 @@
   </url>
   
   <url>
-    <loc>http://usmacd.com/2020/03/19/apk_debug/</loc>
+    <loc>http://usmacd.com/2020/03/19/compile_android_source_code/</loc>
     
     <lastmod>2020-03-19</lastmod>
     
   </url>
   
   <url>
-    <loc>http://usmacd.com/2020/03/19/compile_android_source_code/</loc>
+    <loc>http://usmacd.com/2020/03/19/apk_debug/</loc>
     
     <lastmod>2020-03-19</lastmod>
     

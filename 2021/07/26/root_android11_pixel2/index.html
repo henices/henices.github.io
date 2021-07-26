@@ -20,23 +20,28 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"usmacd.com","root":"/","images":"/images","scheme":"Gemini","version":"8.6.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
-<meta property="og:type" content="website">
-<meta property="og:title" content="安全代码">
-<meta property="og:url" content="http://usmacd.com/archives/2021/02/index.html">
+<meta name="description" content="要正常使用 frida 首先需要把手机给 root 了， 在最近测试的情况发现 Android 10 和 Android 11 系统工作比较正常， Android 6和其他系统似乎差一些？ 要刷机首先需要下载 adb 等工具，这些工具由 Android 的 SDK platform tools 提供，下载地址为：https:&#x2F;&#x2F;developer.android.com&#x2F;studio&#x2F;releas">
+<meta property="og:type" content="article">
+<meta property="og:title" content="root Pixel2 Android 11 的方法">
+<meta property="og:url" content="http://usmacd.com/2021/07/26/root_android11_pixel2/index.html">
 <meta property="og:site_name" content="安全代码">
+<meta property="og:description" content="要正常使用 frida 首先需要把手机给 root 了， 在最近测试的情况发现 Android 10 和 Android 11 系统工作比较正常， Android 6和其他系统似乎差一些？ 要刷机首先需要下载 adb 等工具，这些工具由 Android 的 SDK platform tools 提供，下载地址为：https:&#x2F;&#x2F;developer.android.com&#x2F;studio&#x2F;releas">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2021-07-26T06:14:38.744Z">
+<meta property="article:modified_time" content="2021-07-26T06:14:38.744Z">
 <meta property="article:author" content="henices">
+<meta property="article:tag" content="Android">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="http://usmacd.com/archives/2021/02/">
+<link rel="canonical" href="http://usmacd.com/2021/07/26/root_android11_pixel2/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":false,"lang":"en","comments":"","permalink":"","path":"archives/2021/02/index.html","title":""}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://usmacd.com/2021/07/26/root_android11_pixel2/","path":"2021/07/26/root_android11_pixel2/","title":"root Pixel2 Android 11 的方法"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>Archive | 安全代码</title>
+<title>root Pixel2 Android 11 的方法 | 安全代码</title>
   
 
 
@@ -191,50 +196,96 @@
 </noscript>
 
 
-    <div class="main-inner archive posts-collapse">
+    <div class="main-inner post posts-expand">
 
 
   
+
+
+<div class="post-block">
   
   
-  <div class="post-block">
-    <div class="post-content">
-      <div class="collection-title">
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://usmacd.com/2021/07/26/root_android11_pixel2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="henices">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="安全代码">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          root Pixel2 Android 11 的方法
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2021-07-26 14:14:38" itemprop="dateCreated datePublished" datetime="2021-07-26T14:14:38+08:00">2021-07-26</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>要正常使用 frida 首先需要把手机给 root 了， 在最近测试的情况发现 Android 10 和 Android 11 系统工作比较正常， Android 6<br>和其他系统似乎差一些？</p>
+<p>要刷机首先需要下载 <code>adb</code> 等工具，这些工具由 Android 的 SDK platform tools 提供，下载地址为：<a target="_blank" rel="noopener" href="https://developer.android.com/studio/releases/platform-tools">https://developer.android.com/studio/releases/platform-tools</a><br>选择相应的操作系统版本下载即可， Google 提供了 Windows、Linux、Mac 等系统的支持。</p>
+<p>基础镜像可以选择的 Google 的官方镜像 Factory Image，如果能自己编译 Android 系统则更好，在调试的时候可以看到系统库的符号。</p>
+<p>我的 Android 手机为 Pixel 2 在 <a target="_blank" rel="noopener" href="https://developers.google.com/android/images#walleye">https://developers.google.com/android/images#walleye</a> 上可以查找相应的镜像， 下个最新的 <a target="_blank" rel="noopener" href="https://dl.google.com/dl/android/aosp/walleye-rp1a.201005.004.a1-factory-0c23f6cf.zip">https://dl.google.com/dl/android/aosp/walleye-rp1a.201005.004.a1-factory-0c23f6cf.zip</a></p>
+<p>要想刷镜像前提条件是先要解锁 bootloader， Pixel 新手机解锁的命令和以前有变化，可以参考 <a target="_blank" rel="noopener" href="https://source.android.com/devices/bootloader/locking_unlocking">https://source.android.com/devices/bootloader/locking_unlocking</a></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">adb reboot bootloader</span><br><span class="line">fastboot flashing unlock_critical</span><br></pre></td></tr></table></figure>
+
+<p>下载解压后，里面有个 flash-all 的脚本，将手机重启到 fastboot 模式后可以直接运行， <code>adb reboot bootloader</code>， 重启到 fastboot 模式后，执行 flash-all 脚本，刷机系统镜像就完成了。</p>
+<p>以前 root  Android 用的都是 SuperSU 和 TWRP， 这次使用了一个不同的方法 <a target="_blank" rel="noopener" href="https://github.com/topjohnwu/Magisk">Magisk</a> ， 安装的方法参见：<br><a target="_blank" rel="noopener" href="https://topjohnwu.github.io/Magisk/install.html">https://topjohnwu.github.io/Magisk/install.html</a></p>
+<p>有两种模式， patch boot 或者 patch recovery， 安装 Magisk app 后如果界面显示  <code>Ramdisk：Yes</code>，则需要 patch boot。<br>Magisk app 的下载地址 <a target="_blank" rel="noopener" href="https://github.com/topjohnwu/Magisk/releases/download/v23.0/Magisk-v23.0.apk">https://github.com/topjohnwu/Magisk/releases/download/v23.0/Magisk-v23.0.apk</a></p>
+<p>patch 完 image 后，需要将修改后的 image 重新刷一次， <code>fastboot flash boot /path/to/magisk_patched.img or fastboot flash recovery /path/to/magisk_patched.img</code></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Android/" rel="tag"># Android</a>
+          </div>
+
         
-        <span class="collection-header">OK! 39 posts in total. Keep on posting.</span>
-      </div>
 
-      
-    <div class="collection-year">
-      <span class="collection-header">2021</span>
-    </div>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2021-02-04T13:47:39+08:00"
-              content="2021-02-04">
-          02-04
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2021/02/04/android_stunnel/" itemprop="url">
-            <span itemprop="name">在 Android 手机上的使用 stunnel  （不需要 root ）</span>
-          </a>
-      </div>
-
-      
-    </header>
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/07/26/fcitx5-rime/" rel="prev" title="fedora 上安装 fcitx5 rime">
+                  <i class="fa fa-chevron-left"></i> fedora 上安装 fcitx5 rime
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
   </article>
+</div>
 
 
-    </div>
-  </div>
-  
-  
-  
+
+
+
 
 </div>
   </main>

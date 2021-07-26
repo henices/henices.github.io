@@ -129,7 +129,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">38</span>
+          <span class="site-state-item-count">39</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -192,6 +192,80 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://usmacd.com/2021/07/26/root_android11_pixel2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="henices">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="安全代码">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2021/07/26/root_android11_pixel2/" class="post-title-link" itemprop="url">root Pixel2 Android 11 的方法</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2021-07-26 14:14:38" itemprop="dateCreated datePublished" datetime="2021-07-26T14:14:38+08:00">2021-07-26</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>要正常使用 frida 首先需要把手机给 root 了， 在最近测试的情况发现 Android 10 和 Android 11 系统工作比较正常， Android 6<br>和其他系统似乎差一些？</p>
+<p>要刷机首先需要下载 <code>adb</code> 等工具，这些工具由 Android 的 SDK platform tools 提供，下载地址为：<a target="_blank" rel="noopener" href="https://developer.android.com/studio/releases/platform-tools">https://developer.android.com/studio/releases/platform-tools</a><br>选择相应的操作系统版本下载即可， Google 提供了 Windows、Linux、Mac 等系统的支持。</p>
+<p>基础镜像可以选择的 Google 的官方镜像 Factory Image，如果能自己编译 Android 系统则更好，在调试的时候可以看到系统库的符号。</p>
+<p>我的 Android 手机为 Pixel 2 在 <a target="_blank" rel="noopener" href="https://developers.google.com/android/images#walleye">https://developers.google.com/android/images#walleye</a> 上可以查找相应的镜像， 下个最新的 <a target="_blank" rel="noopener" href="https://dl.google.com/dl/android/aosp/walleye-rp1a.201005.004.a1-factory-0c23f6cf.zip">https://dl.google.com/dl/android/aosp/walleye-rp1a.201005.004.a1-factory-0c23f6cf.zip</a></p>
+<p>要想刷镜像前提条件是先要解锁 bootloader， Pixel 新手机解锁的命令和以前有变化，可以参考 <a target="_blank" rel="noopener" href="https://source.android.com/devices/bootloader/locking_unlocking">https://source.android.com/devices/bootloader/locking_unlocking</a></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">adb reboot bootloader</span><br><span class="line">fastboot flashing unlock_critical</span><br></pre></td></tr></table></figure>
+
+<p>下载解压后，里面有个 flash-all 的脚本，将手机重启到 fastboot 模式后可以直接运行， <code>adb reboot bootloader</code>， 重启到 fastboot 模式后，执行 flash-all 脚本，刷机系统镜像就完成了。</p>
+<p>以前 root  Android 用的都是 SuperSU 和 TWRP， 这次使用了一个不同的方法 <a target="_blank" rel="noopener" href="https://github.com/topjohnwu/Magisk">Magisk</a> ， 安装的方法参见：<br><a target="_blank" rel="noopener" href="https://topjohnwu.github.io/Magisk/install.html">https://topjohnwu.github.io/Magisk/install.html</a></p>
+<p>有两种模式， patch boot 或者 patch recovery， 安装 Magisk app 后如果界面显示  <code>Ramdisk：Yes</code>，则需要 patch boot。<br>Magisk app 的下载地址 <a target="_blank" rel="noopener" href="https://github.com/topjohnwu/Magisk/releases/download/v23.0/Magisk-v23.0.apk">https://github.com/topjohnwu/Magisk/releases/download/v23.0/Magisk-v23.0.apk</a></p>
+<p>patch 完 image 后，需要将修改后的 image 重新刷一次， <code>fastboot flash boot /path/to/magisk_patched.img or fastboot flash recovery /path/to/magisk_patched.img</code></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -933,89 +1007,6 @@
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">min_tls_version = TLS1.0</span><br><span class="line">protocol = TLS1.3 TLS1.2 TLS1.1 TLS1.0 DTLS1.2 DTLS1.0</span><br></pre></td></tr></table></figure>
 
 <p>重启系统后，又可以开心地使用 ThunderBird 了 ^_^</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://usmacd.com/2021/02/04/android_stunnel/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="henices">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="安全代码">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/02/04/android_stunnel/" class="post-title-link" itemprop="url">在 Android 手机上的使用 stunnel  （不需要 root ）</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2021-02-04 13:47:39" itemprop="dateCreated datePublished" datetime="2021-02-04T13:47:39+08:00">2021-02-04</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="Android-stunnel"><a href="#Android-stunnel" class="headerlink" title="Android stunnel"></a>Android stunnel</h2><p><a target="_blank" rel="noopener" href="https://github.com/comp500/SSLSocks.git">https://github.com/comp500/SSLSocks.git</a>  这个项目可以使用 android 版本的 stunnel, 其实就是调用 <a target="_blank" rel="noopener" href="https://www.stunnel.org/downloads/stunnel-5.57-android.zip">https://www.stunnel.org/downloads/stunnel-5.57-android.zip</a></p>
-<p>具体配置和使用命令行差距不大，参考：<br><a target="_blank" rel="noopener" href="https://github.com/comp500/SSLSocks/blob/master/README.md">https://github.com/comp500/SSLSocks/blob/master/README.md</a></p>
-<h2 id="设置全局代理"><a href="#设置全局代理" class="headerlink" title="设置全局代理"></a>设置全局代理</h2><ol>
-<li>在 wifi 连接的情况</li>
-</ol>
-<p>打开wifi 列表 -&gt; 长按连接的 wifi  -&gt; 点击修改 -&gt; 高级选项 -&gt; 填写代理相关信息</p>
-<ol start="2">
-<li>使用 adb shell 执行命令</li>
-</ol>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell settings put global http_proxy 192.168.xx.xxx:8888</span><br></pre></td></tr></table></figure>
-
-<ol start="3">
-<li>Proxy Toggle</li>
-</ol>
-<p><a target="_blank" rel="noopener" href="https://github.com/theappbusiness/android-proxy-toggle.git">https://github.com/theappbusiness/android-proxy-toggle.git</a></p>
-<p>要正常使用 app 需要用 adb shell 连接上设置相应的权限：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell pm grant com.kinandcarta.create.proxytoggle android.permission.WRITE_SECURE_SETTINGS</span><br></pre></td></tr></table></figure>
-
-<h2 id="恢复无代理"><a href="#恢复无代理" class="headerlink" title="恢复无代理"></a>恢复无代理</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">adb shell settings delete global http_proxy</span><br><span class="line">adb shell settings delete global global_http_proxy_host</span><br><span class="line">adb shell settings delete global global_http_proxy_port</span><br></pre></td></tr></table></figure>
-
 
       
     </div>

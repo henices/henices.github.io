@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://usmacd.com/"/>
-  <updated>2021-07-26T02:11:58.423Z</updated>
+  <updated>2021-07-26T06:14:38.744Z</updated>
   <id>http://usmacd.com/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>root Pixel2 Android 11 的方法</title>
+    <link href="http://usmacd.com/2021/07/26/root_android11_pixel2/"/>
+    <id>http://usmacd.com/2021/07/26/root_android11_pixel2/</id>
+    <published>2021-07-26T06:14:38.744Z</published>
+    <updated>2021-07-26T06:14:38.744Z</updated>
+    
+    <content type="html"><![CDATA[<p>要正常使用 frida 首先需要把手机给 root 了， 在最近测试的情况发现 Android 10 和 Android 11 系统工作比较正常， Android 6<br>和其他系统似乎差一些？</p><p>要刷机首先需要下载 <code>adb</code> 等工具，这些工具由 Android 的 SDK platform tools 提供，下载地址为：<a href="https://developer.android.com/studio/releases/platform-tools">https://developer.android.com/studio/releases/platform-tools</a><br>选择相应的操作系统版本下载即可， Google 提供了 Windows、Linux、Mac 等系统的支持。</p><p>基础镜像可以选择的 Google 的官方镜像 Factory Image，如果能自己编译 Android 系统则更好，在调试的时候可以看到系统库的符号。</p><p>我的 Android 手机为 Pixel 2 在 <a href="https://developers.google.com/android/images#walleye">https://developers.google.com/android/images#walleye</a> 上可以查找相应的镜像， 下个最新的 <a href="https://dl.google.com/dl/android/aosp/walleye-rp1a.201005.004.a1-factory-0c23f6cf.zip">https://dl.google.com/dl/android/aosp/walleye-rp1a.201005.004.a1-factory-0c23f6cf.zip</a></p><p>要想刷镜像前提条件是先要解锁 bootloader， Pixel 新手机解锁的命令和以前有变化，可以参考 <a href="https://source.android.com/devices/bootloader/locking_unlocking">https://source.android.com/devices/bootloader/locking_unlocking</a></p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">adb reboot bootloader</span><br><span class="line">fastboot flashing unlock_critical</span><br></pre></td></tr></table></figure><p>下载解压后，里面有个 flash-all 的脚本，将手机重启到 fastboot 模式后可以直接运行， <code>adb reboot bootloader</code>， 重启到 fastboot 模式后，执行 flash-all 脚本，刷机系统镜像就完成了。</p><p>以前 root  Android 用的都是 SuperSU 和 TWRP， 这次使用了一个不同的方法 <a href="https://github.com/topjohnwu/Magisk">Magisk</a> ， 安装的方法参见：<br><a href="https://topjohnwu.github.io/Magisk/install.html">https://topjohnwu.github.io/Magisk/install.html</a></p><p>有两种模式， patch boot 或者 patch recovery， 安装 Magisk app 后如果界面显示  <code>Ramdisk：Yes</code>，则需要 patch boot。<br>Magisk app 的下载地址 <a href="https://github.com/topjohnwu/Magisk/releases/download/v23.0/Magisk-v23.0.apk">https://github.com/topjohnwu/Magisk/releases/download/v23.0/Magisk-v23.0.apk</a></p><p>patch 完 image 后，需要将修改后的 image 重新刷一次， <code>fastboot flash boot /path/to/magisk_patched.img or fastboot flash recovery /path/to/magisk_patched.img</code></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;要正常使用 frida 首先需要把手机给 root 了， 在最近测试的情况发现 Android 10 和 Android 11 系统工作比较正常， Android 6&lt;br&gt;和其他系统似乎差一些？&lt;/p&gt;
+&lt;p&gt;要刷机首先需要下载 &lt;code&gt;adb&lt;/code&gt; 等工具，
+      
+    
+    </summary>
+    
+    
+    
+      <category term="Android" scheme="http://usmacd.com/tags/Android/"/>
+    
+  </entry>
   
   <entry>
     <title>fedora 上安装 fcitx5 rime</title>
@@ -489,31 +514,6 @@
     
     
       <category term="Malware" scheme="http://usmacd.com/tags/Malware/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>AS3 Sorcerer 3.0 破解思路</title>
-    <link href="http://usmacd.com/2020/03/19/AS3_Sorcerer_crack/"/>
-    <id>http://usmacd.com/2020/03/19/AS3_Sorcerer_crack/</id>
-    <published>2020-03-19T08:34:31.917Z</published>
-    <updated>2020-03-19T08:34:31.917Z</updated>
-    
-    <content type="html"><![CDATA[<p>   AS3 Sorcerer是一款flash action Script的商业反编译软件。  <a href="http://www.as3sorcerer.com">www.as3sorcerer.com</a></p><p>   软件为Delphi编写，加了未知壳，使用PEID 0.94无法正确查出，使用核心扫描发现是<br>   Delphi编写，这个软件有一个特点修改一个字节就报错。由于时间原因没有具体跟相关代码。</p><p>   破解方法使用LPK.dll动态修改as3.exe内存达到破解目前，在Windows Xp下比较完美，<br>   在Windows 7下已经无法通过LPK.dll进行DLL hijack，可以通过DLL注入达到同样的目的。</p><p>   难点有几个，OD加载报错，attack也报错。使用海风月影的StrongOD可以正常attach。<br>   OD 1.1目前最大的问题是插件冲突严重，安装了OllyAdv后，无法成功加载as3.exe.<br>   遇上强壳时可以使用phantom的protect DRx，可以解决一下问题，总之要尽量避免冲突。<br>   接下来的难点就是如何找到破解的关键点，进行内存patch。</p><p>   使用OD查找字符串参考Unicode，搜索trial</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">006974C2    E8 65ABFDFF     call    0067202C</span><br><span class="line">006974C7    84C0            test    al, al</span><br><span class="line">006974C9    75 1C           jnz     short 006974E7</span><br><span class="line">006974CB    B9 E4756900     mov     ecx, 006975E4                    ; e</span><br><span class="line">006974D0    BA 50766900     mov     edx, 00697650                    ;Sorry!</span><br></pre></td></tr></table></figure><p>   这里有个坑，在OD中看到的代码有可能不是最终运行的代码，只有真正在OD里断下，进<br>   入程序领空后，看到的代码才是解密后的真正代码。这里在这里浪费了很多时间。换句<br>   话说就是要先保证能调试起来，能调试能下断点基本就成功了一半。</p><p>   上面的代码是非常经典的关键代码，主要处理了 0067202C让它返回1就OK了。F7跟进</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">0067202C  - E9 EE9D1900     jmp     0080BE1F</span><br><span class="line">00672031    CC              int3</span><br><span class="line">00672032    CC              int3</span><br><span class="line">00672033    CC              int3</span><br><span class="line">00672034    CC              int3</span><br><span class="line">00672035    CC              int3</span><br><span class="line">00672036    CC              int3</span><br><span class="line">00672037    90              nop</span><br></pre></td></tr></table></figure><p>   进入就去一个jmp，后面的大段跳转非常多，跟踪困难。好在有很多int3，可以自己<br>   写一段汇编代码解决。</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">0067202C    33C0            xor     eax, eax</span><br><span class="line">0067202E    83C0 01         add     eax, 0x1</span><br><span class="line">00672031    90              nop</span><br><span class="line">00672032    90              nop</span><br><span class="line">00672033    90              nop</span><br><span class="line">00672034    90              nop</span><br><span class="line">00672035    90              nop</span><br><span class="line">00672036    C3              retn</span><br></pre></td></tr></table></figure><p>核心代码</p><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">HANDLE handle = GetModuleHandle(<span class="literal">NULL</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> RVA = <span class="number">0x67202C</span> - <span class="number">0x400000</span>;</span><br><span class="line"><span class="keyword">int</span> VA = <span class="keyword">int</span>(handle) + RVA;</span><br><span class="line"></span><br><span class="line"><span class="keyword">unsigned</span> <span class="keyword">char</span> p405213[<span class="number">11</span>] = &#123;  </span><br><span class="line">      <span class="number">0x33</span>, <span class="number">0xC0</span>, <span class="number">0x83</span>, <span class="number">0xC0</span>, <span class="number">0x01</span>, <span class="number">0x90</span>, <span class="number">0x90</span>, <span class="number">0x90</span>, <span class="number">0x90</span>, <span class="number">0x90</span>, <span class="number">0xC3</span></span><br><span class="line">&#125;;</span><br><span class="line">VirtualProtectEx(hProcess, (LPVOID)VA, <span class="number">11</span>, PAGE_EXECUTE_READWRITE, &amp;Oldpp);</span><br><span class="line">WriteProcessMemory(hProcess, (LPVOID)VA, p405213, <span class="number">11</span>, <span class="literal">NULL</span>);</span><br></pre></td></tr></table></figure><p>GetModuleHandle用于动态获取进程加载基址。</p><h2 id="LPK-dll"><a href="#LPK-dll" class="headerlink" title="LPK.dll"></a>LPK.dll</h2><p>Windows 7 不能默认已经不能使用LPK.dll，必须导入下面注册表键值，重启电脑<br>才能使用。</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Windows Registry Editor Version 5.00 </span><br><span class="line"></span><br><span class="line">[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager] </span><br><span class="line">&quot;ExcludeFromKnownDlls&quot;=hex(7):6c,00,70,00,6b,00,2e,00,64,00,6c,00,6c,00,00,00,\ </span><br><span class="line">00,00</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;   AS3 Sorcerer是一款flash action Script的商业反编译软件。  &lt;a href=&quot;http://www.as3sorcerer.com&quot;&gt;www.as3sorcerer.com&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;   软件为Delphi编写，加了未知壳，
-      
-    
-    </summary>
-    
-    
-    
-      <category term="Crack" scheme="http://usmacd.com/tags/Crack/"/>
     
   </entry>
   
