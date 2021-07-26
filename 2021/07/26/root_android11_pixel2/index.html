@@ -27,8 +27,8 @@
 <meta property="og:site_name" content="安全代码">
 <meta property="og:description" content="要正常使用 frida 首先需要把手机给 root 了， 在最近测试的情况发现 Android 10 和 Android 11 系统工作比较正常， Android 6和其他系统似乎差一些？ 要刷机首先需要下载 adb 等工具，这些工具由 Android 的 SDK platform tools 提供，下载地址为：https:&#x2F;&#x2F;developer.android.com&#x2F;studio&#x2F;releas">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2021-07-26T06:23:30.645Z">
-<meta property="article:modified_time" content="2021-07-26T06:23:30.645Z">
+<meta property="article:published_time" content="2021-07-26T06:25:53.315Z">
+<meta property="article:modified_time" content="2021-07-26T06:25:53.315Z">
 <meta property="article:author" content="henices">
 <meta property="article:tag" content="Android">
 <meta name="twitter:card" content="summary">
@@ -231,7 +231,7 @@
       </span>
       <span class="post-meta-item-text">Posted on</span>
 
-      <time title="Created: 2021-07-26 14:23:30" itemprop="dateCreated datePublished" datetime="2021-07-26T14:23:30+08:00">2021-07-26</time>
+      <time title="Created: 2021-07-26 14:25:53" itemprop="dateCreated datePublished" datetime="2021-07-26T14:25:53+08:00">2021-07-26</time>
     </span>
 
   
@@ -254,7 +254,7 @@
 <p>下载解压后，里面有个 flash-all 的脚本，将手机重启到 fastboot 模式后可以直接运行， <code>adb reboot bootloader</code>， 重启到 fastboot 模式后，执行 flash-all 脚本，刷机系统镜像就完成了。</p>
 <p>以前 root  Android 用的都是 SuperSU 和 TWRP， 这次使用了一个不同的方法 <a target="_blank" rel="noopener" href="https://github.com/topjohnwu/Magisk">Magisk</a> ， 安装的方法参见：<br><a target="_blank" rel="noopener" href="https://topjohnwu.github.io/Magisk/install.html">https://topjohnwu.github.io/Magisk/install.html</a></p>
 <p>有两种模式， patch boot 或者 patch recovery， 安装 Magisk app 后如果界面显示  <code>Ramdisk：Yes</code>，则需要 patch boot。<br>Magisk app 的下载地址 <a target="_blank" rel="noopener" href="https://github.com/topjohnwu/Magisk/releases/download/v23.0/Magisk-v23.0.apk">https://github.com/topjohnwu/Magisk/releases/download/v23.0/Magisk-v23.0.apk</a></p>
-<p>安装 Magisk app 后， 选择需要 patch 的镜像文件，选择后会自动生成新的修改过后的镜像文件。<br>获得修改后的镜像问文件后，需要将修改后的镜像文件重新刷一次</p>
+<p>安装 Magisk app 后， 选择需要 patch 的镜像文件，选择后会自动生成新的修改过后的镜像文件。<br>获得修改后的镜像文件后，需要将修改后的镜像文件重新刷一次</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fastboot flash boot /path/to/magisk_patched.img <span class="comment">#or fastboot flash recovery /path/to/magisk_patched.img</span></span><br></pre></td></tr></table></figure>
 
 <p>刷完新的修改后的镜像，重启系统，Root 就完成了。</p>
