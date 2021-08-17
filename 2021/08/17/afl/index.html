@@ -20,23 +20,30 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"usmacd.com","root":"/","images":"/images","scheme":"Gemini","version":"8.6.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
-<meta property="og:type" content="website">
-<meta property="og:title" content="安全代码">
-<meta property="og:url" content="http://usmacd.com/archives/2020/03/page/3/index.html">
+<meta name="description" content="afl-fuzz 的整体架构，新手理解起来还是比较费劲，网络上发现一张图觉得不错，放上来大家看看，感谢原作者。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="afl-fuzz 框架">
+<meta property="og:url" content="http://usmacd.com/2021/08/17/afl/index.html">
 <meta property="og:site_name" content="安全代码">
+<meta property="og:description" content="afl-fuzz 的整体架构，新手理解起来还是比较费劲，网络上发现一张图觉得不错，放上来大家看看，感谢原作者。">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://raw.githubusercontent.com/henices/pictures/master/afl-fuzz.png">
+<meta property="article:published_time" content="2021-08-17T07:24:09.415Z">
+<meta property="article:modified_time" content="2021-08-17T07:24:09.415Z">
 <meta property="article:author" content="henices">
+<meta property="article:tag" content="Security">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/henices/pictures/master/afl-fuzz.png">
 
 
-<link rel="canonical" href="http://usmacd.com/archives/2020/03/page/3/">
+<link rel="canonical" href="http://usmacd.com/2021/08/17/afl/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":false,"lang":"en","comments":"","permalink":"","path":"archives/2020/03/page/3/index.html","title":""}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://usmacd.com/2021/08/17/afl/","path":"2021/08/17/afl/","title":"afl-fuzz 框架"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>Archive | 安全代码</title>
+<title>afl-fuzz 框架 | 安全代码</title>
   
 
 
@@ -191,133 +198,87 @@
 </noscript>
 
 
-    <div class="main-inner archive posts-collapse">
+    <div class="main-inner post posts-expand">
 
 
   
+
+
+<div class="post-block">
   
   
-  <div class="post-block">
-    <div class="post-content">
-      <div class="collection-title">
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://usmacd.com/2021/08/17/afl/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="henices">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="安全代码">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          afl-fuzz 框架
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2021-08-17 15:24:09" itemprop="dateCreated datePublished" datetime="2021-08-17T15:24:09+08:00">2021-08-17</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>afl-fuzz 的整体架构，新手理解起来还是比较费劲，网络上发现一张图觉得不错，放上来大家看看，感谢原作者。</p>
+<p><img src="https://raw.githubusercontent.com/henices/pictures/master/afl-fuzz.png" alt="afl-fuzz"></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Security/" rel="tag"># Security</a>
+          </div>
+
         
-        <span class="collection-header">OK! 40 posts in total. Keep on posting.</span>
-      </div>
 
-      
-    <div class="collection-year">
-      <span class="collection-header">2020</span>
-    </div>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2020-03-19T16:34:31+08:00"
-              content="2020-03-19">
-          03-19
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2020/03/19/android_intent_base_attack/" itemprop="url">
-            <span itemprop="name">Intent Spoofing 攻击</span>
-          </a>
-      </div>
-
-      
-    </header>
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/07/26/root_android11_pixel2/" rel="prev" title="root Pixel2 Android 11 的方法">
+                  <i class="fa fa-chevron-left"></i> root Pixel2 Android 11 的方法
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
   </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2020-03-19T16:34:31+08:00"
-              content="2020-03-19">
-          03-19
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2020/03/19/anti_sandbox/" itemprop="url">
-            <span itemprop="name">一些反沙盒的新技术</span>
-          </a>
-      </div>
-
-      
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2020-03-19T16:34:31+08:00"
-              content="2020-03-19">
-          03-19
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2020/03/19/apk_debug/" itemprop="url">
-            <span itemprop="name">使用Android Studio 调试无源码apk程序</span>
-          </a>
-      </div>
-
-      
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2020-03-19T16:34:31+08:00"
-              content="2020-03-19">
-          03-19
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2020/03/19/compile_android_source_code/" itemprop="url">
-            <span itemprop="name">编译 Android 系统源码  （AOSP）</span>
-          </a>
-      </div>
-
-      
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2020-03-19T16:34:31+08:00"
-              content="2020-03-19">
-          03-19
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2020/03/19/fundamental/" itemprop="url">
-            <span itemprop="name">基本面需要关注的点</span>
-          </a>
-      </div>
-
-      
-    </header>
-  </article>
+</div>
 
 
-    </div>
-  </div>
-  
-  
-  
-  <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/archives/2020/03/page/2/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/archives/2020/03/">1</a><a class="page-number" href="/archives/2020/03/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/archives/2020/03/page/4/">4</a><a class="page-number" href="/archives/2020/03/page/5/">5</a><a class="extend next" rel="next" href="/archives/2020/03/page/4/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
-  </nav>
+
+
+
 
 </div>
   </main>
