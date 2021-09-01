@@ -20,15 +20,15 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"usmacd.com","root":"/","images":"/images","scheme":"Gemini","version":"8.6.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
-<meta name="description" content="SSL pinningSSL Pinning是一种防止中间人攻击的技术，主要机制是在客户端发起请求–&gt;收到服务器发来的证书进行校验，如果收到的证书不被客户端信任，就直接断开连接不继续求情。可以发现中间人攻击的要点的伪造了一个假的服务端证书给了客户端，客户端误以为真。解决思路就是，客户端也预置一份服务端的证书，比较一下就知道真假了。 SSL-pinning有两种方式：证书锁定（Certific">
+<meta name="description" content="SSL pinningSSL Pinning是一种防止中间人攻击的技术，主要机制是在客户端发起请求–&gt;收到服务器发来的证书进行校验，如果收到的证书不被客户端信任，就直接断开连接不继续请求。可以发现中间人攻击的要点是伪造了一个假的服务端证书给了客户端，客户端误以为真。解决思路就是，客户端也预置一份服务端的证书，比较一下就知道真假了。 SSL-pinning有两种方式：证书锁定（Certific">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Andorid 绕过 SSL Pinning 抓 https 报文">
 <meta property="og:url" content="http://usmacd.com/2021/09/01/Android_SSL_Pinning/index.html">
 <meta property="og:site_name" content="安全代码">
-<meta property="og:description" content="SSL pinningSSL Pinning是一种防止中间人攻击的技术，主要机制是在客户端发起请求–&gt;收到服务器发来的证书进行校验，如果收到的证书不被客户端信任，就直接断开连接不继续求情。可以发现中间人攻击的要点的伪造了一个假的服务端证书给了客户端，客户端误以为真。解决思路就是，客户端也预置一份服务端的证书，比较一下就知道真假了。 SSL-pinning有两种方式：证书锁定（Certific">
+<meta property="og:description" content="SSL pinningSSL Pinning是一种防止中间人攻击的技术，主要机制是在客户端发起请求–&gt;收到服务器发来的证书进行校验，如果收到的证书不被客户端信任，就直接断开连接不继续请求。可以发现中间人攻击的要点是伪造了一个假的服务端证书给了客户端，客户端误以为真。解决思路就是，客户端也预置一份服务端的证书，比较一下就知道真假了。 SSL-pinning有两种方式：证书锁定（Certific">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2021-09-01T04:01:46.650Z">
-<meta property="article:modified_time" content="2021-09-01T04:01:46.650Z">
+<meta property="article:published_time" content="2021-09-01T04:16:16.663Z">
+<meta property="article:modified_time" content="2021-09-01T04:16:16.663Z">
 <meta property="article:author" content="henices">
 <meta property="article:tag" content="Android">
 <meta property="article:tag" content="Security">
@@ -233,7 +233,7 @@
       </span>
       <span class="post-meta-item-text">Posted on</span>
 
-      <time title="Created: 2021-09-01 12:01:46" itemprop="dateCreated datePublished" datetime="2021-09-01T12:01:46+08:00">2021-09-01</time>
+      <time title="Created: 2021-09-01 12:16:16" itemprop="dateCreated datePublished" datetime="2021-09-01T12:16:16+08:00">2021-09-01</time>
     </span>
 
   
@@ -246,7 +246,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <h3 id="SSL-pinning"><a href="#SSL-pinning" class="headerlink" title="SSL pinning"></a>SSL pinning</h3><p>SSL Pinning是一种防止中间人攻击的技术，主要机制是在客户端发起请求–&gt;收到服务器发来的证书进行校验，如果收到的证书不被客户端信任，就直接断开连接不继续求情。可以发现中间人攻击的要点的伪造了一个假的服务端证书给了客户端，客户端误以为真。解决思路就是，客户端也预置一份服务端的证书，比较一下就知道真假了。</p>
+        <h3 id="SSL-pinning"><a href="#SSL-pinning" class="headerlink" title="SSL pinning"></a>SSL pinning</h3><p>SSL Pinning是一种防止中间人攻击的技术，主要机制是在客户端发起请求–&gt;收到服务器发来的证书进行校验，如果收到的证书不被客户端信任，就直接断开连接不继续请求。可以发现中间人攻击的要点是伪造了一个假的服务端证书给了客户端，客户端误以为真。解决思路就是，客户端也预置一份服务端的证书，比较一下就知道真假了。</p>
 <p>SSL-pinning有两种方式：证书锁定（Certificate Pinning） 和公钥锁定（ Public Key Pinning）。</p>
 <h4 id="证书锁定"><a href="#证书锁定" class="headerlink" title="证书锁定"></a>证书锁定</h4><p>需要在客户端代码内置仅接受指定域名的证书，而不接受操作系统或浏览器内置的CA根证书对应的任何证书，通过这种授权方式，保障了APP与服务端通信的唯一性和安全性，因此客户端与服务端（例如API网关）之间的通信是可以保证绝对安全。但是CA签发证书都存在有效期问题，缺点是在证书续期后需要将证书重新内置到APP中。</p>
 <h4 id="公钥锁定"><a href="#公钥锁定" class="headerlink" title="公钥锁定"></a>公钥锁定</h4><p>提取证书中的公钥并内置到客户端中，通过与服务器对比公钥值来验证连接的正确性。制作证书密钥时，公钥在证书的续期前后都可以保持不变（即密钥对不变），所以可以避免证书有效期问题，一般推荐这种做法。</p>
