@@ -129,7 +129,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">42</span>
+          <span class="site-state-item-count">43</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -192,6 +192,103 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://usmacd.com/2020/03/19/apk_debug/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="henices">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="安全代码">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2020/03/19/apk_debug/" class="post-title-link" itemprop="url">使用Android Studio 调试无源码apk程序</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2020-03-19 16:34:31" itemprop="dateCreated datePublished" datetime="2020-03-19T16:34:31+08:00">2020-03-19</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>Apk无源码调试的方法有很多，现在发现使用Android Studio 结合 JEB　感觉良好，<br>主要是参考　<a target="_blank" rel="noopener" href="http://www.jianshu.com/p/c7899e5ea182">http://www.jianshu.com/p/c7899e5ea182</a>　这篇记录下了具体步骤。</p>
+<h2 id="1-下载-smalidea"><a href="#1-下载-smalidea" class="headerlink" title="1. 下载 smalidea"></a>1. 下载 smalidea</h2><p><a target="_blank" rel="noopener" href="https://bitbucket.org/JesusFreke/smali/downloads/smalidea-0.03.zip">https://bitbucket.org/JesusFreke/smali/downloads/smalidea-0.03.zip</a></p>
+<p>在Android studio的插件仓库中没有找到这个插件，需要下载本地安装<br>File -&gt; Settings -&gt; Plugins -&gt; Install plugin from disk  选择下载的插件，重启后生效。</p>
+<h2 id="2-apktool-输出源码文件"><a href="#2-apktool-输出源码文件" class="headerlink" title="2. apktool 输出源码文件"></a>2. apktool 输出源码文件</h2><p><a target="_blank" rel="noopener" href="https://github.com/iBotPeaches/Apktool/releases/download/2.2.0/apktool_2.2.0.jar">https://github.com/iBotPeaches/Apktool/releases/download/2.2.0/apktool_2.2.0.jar</a></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java -jar apktool_2.2.0.jar d -f xx.apk -o xx</span><br></pre></td></tr></table></figure>
+
+<p>如果正常的将输出 smali 源码文件</p>
+<h2 id="3-Android-Studio-导入源码"><a href="#3-Android-Studio-导入源码" class="headerlink" title="3. Android Studio 导入源码"></a>3. Android Studio 导入源码</h2><p>File -&gt; New -&gt; import project  选择刚才导出的xx文件夹</p>
+<h2 id="4-增加Android-Stuido的调试选项"><a href="#4-增加Android-Stuido的调试选项" class="headerlink" title="4. 增加Android Stuido的调试选项"></a>4. 增加Android Stuido的调试选项</h2><p>Android Studio 界面上选择 Run-&gt; Edit Configurations，点击+号，新建remote类型调试<br>器，默认的监听端口为5005，如果默认端口被占用则需要修改端口号。</p>
+<h2 id="5-以调试模式启动应用"><a href="#5-以调试模式启动应用" class="headerlink" title="5. 以调试模式启动应用"></a>5. 以调试模式启动应用</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell am start -D -n aa.bb/.activity</span><br></pre></td></tr></table></figure>
+
+<p>进程将挂起，aa.bb是package name，.activity 是要启动的activity 一般指定MainAcvitiy即可</p>
+<h2 id="6-建立调试通道"><a href="#6-建立调试通道" class="headerlink" title="6. 建立调试通道"></a>6. 建立调试通道</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell ps | grep aa.bb</span><br></pre></td></tr></table></figure>
+
+<p>获得调试进程的pid</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb forward tcp:5005 jdwp:debug_process_pid</span><br></pre></td></tr></table></figure>
+
+<p>执行命令后，可以看到adb监听本地5005 端口。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; netstat -antp | grep 5005</span><br><span class="line"> tcp        0      0 127.0.0.1:5005          0.0.0.0:*               LISTEN      4728/adb  </span><br></pre></td></tr></table></figure>
+
+<h2 id="7-设置断点，调试"><a href="#7-设置断点，调试" class="headerlink" title="7. 设置断点，调试"></a>7. 设置断点，调试</h2><p>点击源码左侧栏可以设置断点，点击工具栏上的debug （一个小虫的按钮），开始调试。在<br>这个步骤上我遇上了一个错误。</p>
+<p>java.io.IOException “handshake failed - connection prematurally closed”</p>
+<p>这个错误是因为adb版本问题，取消Android内部的adb集成就可以了。具体方法是<br>Tools -&gt; Android -&gt; Enable adb integration 取消掉前面的勾就可以了。</p>
+<p>如果看到Connected to the target VM, address: ‘localhost:5005’, transport: ‘socket’ 就大功告成了。</p>
+<h2 id="8-其他一些说明事项"><a href="#8-其他一些说明事项" class="headerlink" title="8. 其他一些说明事项"></a>8. 其他一些说明事项</h2><p>要调试apk程序是有一些要求的，下面几种情况可以调试apk程序。</p>
+<ul>
+<li>/default.prop ro.debuggable=1</li>
+</ul>
+<p>我的手机就属于这种情况</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">getprop  | grep ro.debug</span><br><span class="line">[ro.debuggable]: [1]</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>APK 中AndroidManifest.xml 有这句 android:debuggable=true</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1113,76 +1210,6 @@ oradebug call system &quot;/usr/bin/whoami      &gt;/tmp/ret&quot;;</code></p>
 <p>支持基本的svn命令， svn status, svn info, svn diff, svn commit, svn up</p>
 <p>使用示例</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">:Unite svn/status</span><br><span class="line">:Unite svn/diff</span><br><span class="line">:Unite svn/blame</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://usmacd.com/2020/03/19/vim_special_char/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="henices">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="安全代码">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2020/03/19/vim_special_char/" class="post-title-link" itemprop="url">vim 输入特殊字符</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2020-03-19 16:34:31" itemprop="dateCreated datePublished" datetime="2020-03-19T16:34:31+08:00">2020-03-19</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>vim 的编辑能力确实很强，今天说一下如何在vim中输入特殊字符，比如音标、unicode 字符。</p>
-<p><a target="_blank" rel="noopener" href="http://vimhelp.appspot.com/digraph.txt.html">http://vimhelp.appspot.com/digraph.txt.html</a><br><a target="_blank" rel="noopener" href="http://vimhelp.appspot.com/insert.txt.html#i_CTRL-V_digit">http://vimhelp.appspot.com/insert.txt.html#i_CTRL-V_digit</a></p>
-<p>关键就在上面两篇，可能许多人不喜欢看复杂的文章，我这里简单介绍一下用法。</p>
-<p>输入音标 ə</p>
-<p>i 进入编辑模式    CTRL-vu0259<br>那如何知道 ə 的 unicode hex number 是 0259呢，在vim的normal 模式下，将光标移动到ə输入ga</p>
-<p>输入 ⇒</p>
-<p>i 进入编辑模式   CTRL-k=&gt;<br>:dig 可以看到支持这种方法输入的unicode 字符</p>
 
       
     </div>

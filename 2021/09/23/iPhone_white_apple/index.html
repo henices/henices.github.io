@@ -20,30 +20,30 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"usmacd.com","root":"/","images":"/images","scheme":"Gemini","version":"8.7.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
-<meta name="description" content="afl-fuzz 的整体架构，新手理解起来还是比较费劲，网络上发现一张图觉得不错，放上来大家看看，感谢原作者。">
+<meta name="description" content="上周媳妇的 iPhone 提示内存满了，重启后就进入白苹果状态。安装 itunes 以更新的方式重刷系统后恢复正常 （如果选择恢复模式则会丢失数据）。刷系统的时候一度遇上 14 错误，重新使用更新系统的方式再刷了一遍后，顺利通过 （运气不错）。顺利登录 iPhone 后马上删除各种 App，清理后台驻留的程序，在此也提示大家 iPhone 手机也是要定期维护啊。 说起来就上面几句话，实际操作起来比">
 <meta property="og:type" content="article">
-<meta property="og:title" content="afl-fuzz 框架">
-<meta property="og:url" content="http://usmacd.com/2021/08/17/afl/index.html">
+<meta property="og:title" content="iPhone 内存满了, 白苹果问题解决方法">
+<meta property="og:url" content="http://usmacd.com/2021/09/23/iPhone_white_apple/index.html">
 <meta property="og:site_name" content="安全代码">
-<meta property="og:description" content="afl-fuzz 的整体架构，新手理解起来还是比较费劲，网络上发现一张图觉得不错，放上来大家看看，感谢原作者。">
+<meta property="og:description" content="上周媳妇的 iPhone 提示内存满了，重启后就进入白苹果状态。安装 itunes 以更新的方式重刷系统后恢复正常 （如果选择恢复模式则会丢失数据）。刷系统的时候一度遇上 14 错误，重新使用更新系统的方式再刷了一遍后，顺利通过 （运气不错）。顺利登录 iPhone 后马上删除各种 App，清理后台驻留的程序，在此也提示大家 iPhone 手机也是要定期维护啊。 说起来就上面几句话，实际操作起来比">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://raw.githubusercontent.com/henices/pictures/master/afl-fuzz.png">
-<meta property="article:published_time" content="2021-08-17T07:24:09.415Z">
-<meta property="article:modified_time" content="2021-08-17T07:24:09.415Z">
+<meta property="og:image" content="https://support.apple.com/library/content/dam/edam/applecare/images/en_US/iOS/ios13-iphone-xs-restore-iphone.jpg">
+<meta property="article:published_time" content="2021-09-23T01:51:01.457Z">
+<meta property="article:modified_time" content="2021-09-23T01:51:01.457Z">
 <meta property="article:author" content="henices">
-<meta property="article:tag" content="Security">
+<meta property="article:tag" content="Life">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://raw.githubusercontent.com/henices/pictures/master/afl-fuzz.png">
+<meta name="twitter:image" content="https://support.apple.com/library/content/dam/edam/applecare/images/en_US/iOS/ios13-iphone-xs-restore-iphone.jpg">
 
 
-<link rel="canonical" href="http://usmacd.com/2021/08/17/afl/">
+<link rel="canonical" href="http://usmacd.com/2021/09/23/iPhone_white_apple/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://usmacd.com/2021/08/17/afl/","path":"2021/08/17/afl/","title":"afl-fuzz 框架"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://usmacd.com/2021/09/23/iPhone_white_apple/","path":"2021/09/23/iPhone_white_apple/","title":"iPhone 内存满了, 白苹果问题解决方法"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>afl-fuzz 框架 | 安全代码</title>
+<title>iPhone 内存满了, 白苹果问题解决方法 | 安全代码</title>
   
 
 
@@ -110,7 +110,7 @@
 
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           Table of Contents
@@ -123,6 +123,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%BA%E5%88%B6%E9%87%8D%E6%96%B0%E5%90%AF%E5%8A%A8-iPhone"><span class="nav-number">1.</span> <span class="nav-text">强制重新启动 iPhone</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%9B%E5%85%A5-DFU-%E6%A8%A1%E5%BC%8F"><span class="nav-number">2.</span> <span class="nav-text">进入 DFU 模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85-itunes-%E5%88%B7%E6%9C%BA"><span class="nav-number">3.</span> <span class="nav-text">安装 itunes 刷机</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8B%E5%90%8E%E7%9A%84%E6%B8%85%E7%90%86%E5%B7%A5%E4%BD%9C"><span class="nav-number">4.</span> <span class="nav-text">事后的清理工作</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -209,7 +210,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://usmacd.com/2021/08/17/afl/">
+    <link itemprop="mainEntityOfPage" href="http://usmacd.com/2021/09/23/iPhone_white_apple/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -222,7 +223,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          afl-fuzz 框架
+          iPhone 内存满了, 白苹果问题解决方法
         </h1>
 
         <div class="post-meta-container">
@@ -233,7 +234,7 @@
       </span>
       <span class="post-meta-item-text">Posted on</span>
 
-      <time title="Created: 2021-08-17 15:24:09" itemprop="dateCreated datePublished" datetime="2021-08-17T15:24:09+08:00">2021-08-17</time>
+      <time title="Created: 2021-09-23 09:51:01" itemprop="dateCreated datePublished" datetime="2021-09-23T09:51:01+08:00">2021-09-23</time>
     </span>
 
   
@@ -246,8 +247,33 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <p>afl-fuzz 的整体架构，新手理解起来还是比较费劲，网络上发现一张图觉得不错，放上来大家看看，感谢原作者。</p>
-<p><img src="https://raw.githubusercontent.com/henices/pictures/master/afl-fuzz.png" alt="afl-fuzz"></p>
+        <p>上周媳妇的 iPhone 提示内存满了，重启后就进入白苹果状态。安装 itunes 以更新的方式重刷系统后恢复正常 （如果选择恢复模式则会丢失数据）。<br>刷系统的时候一度遇上 14 错误，重新使用更新系统的方式再刷了一遍后，顺利通过 （运气不错）。顺利登录 iPhone 后马上删除各种 App，清理后台驻留的程序，在此也提示大家 iPhone 手机也是要定期维护啊。</p>
+<p>说起来就上面几句话，实际操作起来比较麻烦，大概弄了一个早上，把几个要点总结一下。</p>
+<h2 id="强制重新启动-iPhone"><a href="#强制重新启动-iPhone" class="headerlink" title="强制重新启动 iPhone"></a>强制重新启动 iPhone</h2><p>其实在刷机前我尝试了强制重启 iPhone，强制重启 iPhone 的方法可以参考下面链接：<br><a target="_blank" rel="noopener" href="https://support.apple.com/zh-cn/guide/iphone/iph8903c3ee6/ios">https://support.apple.com/zh-cn/guide/iphone/iph8903c3ee6/ios</a></p>
+<p>新版 iPhone 可以使用下面的方法</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">强制重新启动配备面容 ID 的 iPhone</span><br><span class="line"></span><br><span class="line">若要强制重新启动 iPhone X、iPhone XS、iPhone XR、iPhone 11、iPhone 12 或 iPhone 13，请执行以下操作：</span><br><span class="line"></span><br><span class="line">按下并快速松开调高音量按钮，按下并快速松开调低音量按钮，然后按住侧边按钮。当 Apple 标志出现时，松开按钮。</span><br></pre></td></tr></table></figure>
+
+<p>但是强制重启 iPhone 并没有成功，手机依然处于白苹果状态没有响应。</p>
+<h2 id="进入-DFU-模式"><a href="#进入-DFU-模式" class="headerlink" title="进入 DFU 模式"></a>进入 DFU 模式</h2><p>不进入 DFU 模式无法刷机，iPhone 不同机型进入 DFU 模式的方法不相同，具体的可以参考下面链接：<br><a target="_blank" rel="noopener" href="https://support.apple.com/en-us/HT201263">https://support.apple.com/en-us/HT201263</a></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">iPhone 8 or later: Press and quickly release the Volume Up button. Press and quickly release the Volume Down button. Then, press and hold the Side button until you see the recovery mode screen.</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://support.apple.com/library/content/dam/edam/applecare/images/en_US/iOS/ios13-iphone-xs-restore-iphone.jpg" alt="DFU" title="DFU"></p>
+<h2 id="安装-itunes-刷机"><a href="#安装-itunes-刷机" class="headerlink" title="安装 itunes 刷机"></a>安装 itunes 刷机</h2><p>安装 itunes 的过程就不在细说了，正常安装即可。更新过程需要注意中间某个步骤可能耗时很长，不要着急得慢慢等，Apple 还专门有链接说明这个问题。<br><a target="_blank" rel="noopener" href="https://support.apple.com/zh-cn/HT203435">https://support.apple.com/zh-cn/HT203435</a></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">出现这种情况后，进度条可能移动非常缓慢或似乎不移动。</span><br><span class="line"></span><br><span class="line">请等待设备完成更新、恢复或抹掉过程。</span><br><span class="line"></span><br><span class="line">进度条会显示安装进度。所用时间取决于设备上的文件数量，以及您是要抹掉、更新还是升级 iOS 或 iPadOS。如果设备上只有很少数据或没有数据，或者如果您要抹掉设备上的数据，这个过程可能只需一分钟时间。如果设备包含大量文件，则这个过程可能需要数分钟至一小时不等。</span><br></pre></td></tr></table></figure>
+
+<p>刷机过程中大概率会遇上 14 错误，网络上说法很多大概就两点。</p>
+<ul>
+<li>（1）挑线，要保证 USB 数据线有效，优先使用 USB 2.0</li>
+<li>（2）多刷几次，反复刷</li>
+</ul>
+<p>我这次运气不错，遇上 14 错误后，换了个 USB 2.0 的口重刷一次就过了，祝大家好运。</p>
+<p>重启后需要输入密码，提示尝试恢复数据，进步跑完就大功告成了。</p>
+<h2 id="事后的清理工作"><a href="#事后的清理工作" class="headerlink" title="事后的清理工作"></a>事后的清理工作</h2><p>恢复完数据，登录媳妇的手机发现一下几点问题：</p>
+<ul>
+<li>（1） 手机存储空间紧张</li>
+<li>（2） 后台驻留的程序比较多</li>
+</ul>
+<p>导致白苹果的原因未知，将这些问题解决了一下，希望能正常使用了。</p>
 
     </div>
 
@@ -257,21 +283,18 @@
 
     <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/Security/" rel="tag"># Security</a>
+              <a href="/tags/Life/" rel="tag"># Life</a>
           </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2021/07/26/root_android11_pixel2/" rel="prev" title="root Pixel2 Android 11 的方法">
-                  <i class="fa fa-chevron-left"></i> root Pixel2 Android 11 的方法
+                <a href="/2021/09/01/Android_SSL_Pinning/" rel="prev" title="Andorid 绕过 SSL Pinning 抓 https 报文">
+                  <i class="fa fa-chevron-left"></i> Andorid 绕过 SSL Pinning 抓 https 报文
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2021/08/23/a_change/" rel="next" title="关于A股变盘的假期效应思考">
-                  关于A股变盘的假期效应思考 <i class="fa fa-chevron-right"></i>
-                </a>
             </div>
           </div>
     </footer>

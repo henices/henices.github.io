@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://usmacd.com/"/>
-  <updated>2021-09-01T04:16:16.663Z</updated>
+  <updated>2021-09-23T01:51:01.457Z</updated>
   <id>http://usmacd.com/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>iPhone 内存满了, 白苹果问题解决方法</title>
+    <link href="http://usmacd.com/2021/09/23/iPhone_white_apple/"/>
+    <id>http://usmacd.com/2021/09/23/iPhone_white_apple/</id>
+    <published>2021-09-23T01:51:01.457Z</published>
+    <updated>2021-09-23T01:51:01.457Z</updated>
+    
+    <content type="html"><![CDATA[<p>上周媳妇的 iPhone 提示内存满了，重启后就进入白苹果状态。安装 itunes 以更新的方式重刷系统后恢复正常 （如果选择恢复模式则会丢失数据）。<br>刷系统的时候一度遇上 14 错误，重新使用更新系统的方式再刷了一遍后，顺利通过 （运气不错）。顺利登录 iPhone 后马上删除各种 App，清理后台驻留的程序，在此也提示大家 iPhone 手机也是要定期维护啊。</p><p>说起来就上面几句话，实际操作起来比较麻烦，大概弄了一个早上，把几个要点总结一下。</p><h2 id="强制重新启动-iPhone"><a href="#强制重新启动-iPhone" class="headerlink" title="强制重新启动 iPhone"></a>强制重新启动 iPhone</h2><p>其实在刷机前我尝试了强制重启 iPhone，强制重启 iPhone 的方法可以参考下面链接：<br><a href="https://support.apple.com/zh-cn/guide/iphone/iph8903c3ee6/ios">https://support.apple.com/zh-cn/guide/iphone/iph8903c3ee6/ios</a></p><p>新版 iPhone 可以使用下面的方法</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">强制重新启动配备面容 ID 的 iPhone</span><br><span class="line"></span><br><span class="line">若要强制重新启动 iPhone X、iPhone XS、iPhone XR、iPhone 11、iPhone 12 或 iPhone 13，请执行以下操作：</span><br><span class="line"></span><br><span class="line">按下并快速松开调高音量按钮，按下并快速松开调低音量按钮，然后按住侧边按钮。当 Apple 标志出现时，松开按钮。</span><br></pre></td></tr></table></figure><p>但是强制重启 iPhone 并没有成功，手机依然处于白苹果状态没有响应。</p><h2 id="进入-DFU-模式"><a href="#进入-DFU-模式" class="headerlink" title="进入 DFU 模式"></a>进入 DFU 模式</h2><p>不进入 DFU 模式无法刷机，iPhone 不同机型进入 DFU 模式的方法不相同，具体的可以参考下面链接：<br><a href="https://support.apple.com/en-us/HT201263">https://support.apple.com/en-us/HT201263</a></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">iPhone 8 or later: Press and quickly release the Volume Up button. Press and quickly release the Volume Down button. Then, press and hold the Side button until you see the recovery mode screen.</span><br></pre></td></tr></table></figure><p><img src="https://support.apple.com/library/content/dam/edam/applecare/images/en_US/iOS/ios13-iphone-xs-restore-iphone.jpg" alt="DFU" title="DFU"></p><h2 id="安装-itunes-刷机"><a href="#安装-itunes-刷机" class="headerlink" title="安装 itunes 刷机"></a>安装 itunes 刷机</h2><p>安装 itunes 的过程就不在细说了，正常安装即可。更新过程需要注意中间某个步骤可能耗时很长，不要着急得慢慢等，Apple 还专门有链接说明这个问题。<br><a href="https://support.apple.com/zh-cn/HT203435">https://support.apple.com/zh-cn/HT203435</a></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">出现这种情况后，进度条可能移动非常缓慢或似乎不移动。</span><br><span class="line"></span><br><span class="line">请等待设备完成更新、恢复或抹掉过程。</span><br><span class="line"></span><br><span class="line">进度条会显示安装进度。所用时间取决于设备上的文件数量，以及您是要抹掉、更新还是升级 iOS 或 iPadOS。如果设备上只有很少数据或没有数据，或者如果您要抹掉设备上的数据，这个过程可能只需一分钟时间。如果设备包含大量文件，则这个过程可能需要数分钟至一小时不等。</span><br></pre></td></tr></table></figure><p>刷机过程中大概率会遇上 14 错误，网络上说法很多大概就两点。</p><ul><li>（1）挑线，要保证 USB 数据线有效，优先使用 USB 2.0</li><li>（2）多刷几次，反复刷</li></ul><p>我这次运气不错，遇上 14 错误后，换了个 USB 2.0 的口重刷一次就过了，祝大家好运。</p><p>重启后需要输入密码，提示尝试恢复数据，进步跑完就大功告成了。</p><h2 id="事后的清理工作"><a href="#事后的清理工作" class="headerlink" title="事后的清理工作"></a>事后的清理工作</h2><p>恢复完数据，登录媳妇的手机发现一下几点问题：</p><ul><li>（1） 手机存储空间紧张</li><li>（2） 后台驻留的程序比较多</li></ul><p>导致白苹果的原因未知，将这些问题解决了一下，希望能正常使用了。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;上周媳妇的 iPhone 提示内存满了，重启后就进入白苹果状态。安装 itunes 以更新的方式重刷系统后恢复正常 （如果选择恢复模式则会丢失数据）。&lt;br&gt;刷系统的时候一度遇上 14 错误，重新使用更新系统的方式再刷了一遍后，顺利通过 （运气不错）。顺利登录 iPhone
+      
+    
+    </summary>
+    
+    
+    
+      <category term="Life" scheme="http://usmacd.com/tags/Life/"/>
+    
+  </entry>
   
   <entry>
     <title>Andorid 绕过 SSL Pinning 抓 https 报文</title>
@@ -495,30 +519,6 @@
     
     
       <category term="windows" scheme="http://usmacd.com/tags/windows/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Markdown 笔记软件： VNote</title>
-    <link href="http://usmacd.com/2020/03/25/vnote/"/>
-    <id>http://usmacd.com/2020/03/25/vnote/</id>
-    <published>2020-03-25T02:27:01.295Z</published>
-    <updated>2020-03-25T02:27:01.295Z</updated>
-    
-    <content type="html"><![CDATA[<p>向大家安利一款 markdown 笔记软件， VNote  <a href="http://t.cn/RXj6L39">http://t.cn/RXj6L39</a><br>此软件目前已经 1300 多个commits 了，做为一个有些开源软件维护经历的人，深感不易。<br>用了太多 markdown 笔记软件，此软件使得最为顺手，尤其作为程序员 vim 模式 让我感到非常舒服，<br>大量图表的支持比如 UML 流程图，让我用起来很顺手。</p><p><img src="https://raw.githubusercontent.com/henices/pictures/master/vnote.png" alt="VNote"></p><p>我前后尝试过各种笔记软件，我理想的软件有几点：</p><ul><li>a. 支持文件管理</li><li>b. 不要乱改数据，容易迁移</li><li>c. 支持 markdown</li><li>d. 跨平台，支持 Mac 和 Linux</li></ul><p>最后，终于发现了 VNote，有点惊喜。在 Linux 下编译 VNote 显示有明显改进，下面是编译的方法：</p><ol><li>下载 QT SDK</li></ol><p><a href="https://mirrors4.tuna.tsinghua.edu.cn/qt/official_releases/qt/5.9/5.9.0/qt-opensource-linux-x64-5.9.0.run">https://mirrors4.tuna.tsinghua.edu.cn/qt/official_releases/qt/5.9/5.9.0/qt-opensource-linux-x64-5.9.0.run</a></p><p>将 Qt5.9 安装到 /home/henices/Qt5.9.0/</p><ol start="2"><li>编译 fcitx-qt5</li></ol><p>git clone <a href="https://gitlab.com/fcitx/fcitx-qt5.git">https://gitlab.com/fcitx/fcitx-qt5.git</a></p><p>准备编译脚本 <code>build_linux.sh</code>， 指定下载的QT</p><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">QTDIR=<span class="string">&quot;/home/henices/Qt5.9.0/5.9/gcc_64/&quot;</span></span><br><span class="line">PATH=<span class="string">&quot;<span class="variable">$QTDIR</span>/bin:<span class="variable">$PATH</span>&quot;</span></span><br><span class="line">LDFLAGS=-L<span class="variable">$QTDIR</span>/lib</span><br><span class="line">CPPFLAGS=-I<span class="variable">$QTDIR</span>/include</span><br><span class="line"></span><br><span class="line">rm -rf build</span><br><span class="line">mkdir -p build</span><br><span class="line"><span class="built_in">cd</span> build</span><br><span class="line">cmake ..</span><br><span class="line">make -j8</span><br></pre></td></tr></table></figure><p>使用下面命令编译</p><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">chmod a+x ./build_linux.sh</span><br><span class="line">./build_linux.sh</span><br></pre></td></tr></table></figure><p>将生成的 libfcitxplatforminputcontextplugin.so copy 到<br><code>/home/henices/Qt5.9.0/5.9/gcc_64/plugins/platforminputcontexts/</code></p><ol start="3"><li>获取VNote 源码</li></ol><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/tamlok/vnote.git vnote.git</span><br><span class="line"><span class="built_in">cd</span> vnote.git</span><br><span class="line">git submodule update --init</span><br></pre></td></tr></table></figure><ol start="4"><li>编译</li></ol><p>build_linux.sh</p><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">QTDIR=<span class="string">&quot;/home/henices/Qt5.9.0/5.9/gcc_64/&quot;</span></span><br><span class="line">PATH=<span class="string">&quot;<span class="variable">$QTDIR</span>/bin:<span class="variable">$PATH</span>&quot;</span></span><br><span class="line">LDFLAGS=-L<span class="variable">$QTDIR</span>/lib</span><br><span class="line">CPPFLAGS=-I<span class="variable">$QTDIR</span>/include</span><br><span class="line"></span><br><span class="line">rm -rf build</span><br><span class="line">mkdir -p build</span><br><span class="line"><span class="built_in">cd</span> build</span><br><span class="line">qmake -v</span><br><span class="line">qmake PREFIX=/usr/<span class="built_in">local</span> CONFIG-=debug CONFIG+=release ../VNote.pro</span><br><span class="line">make -j8</span><br></pre></td></tr></table></figure><p>使用下面命令编译</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">chmod a+x ./build_linux.sh</span><br><span class="line">./build_linux.sh</span><br></pre></td></tr></table></figure><ol start="5"><li>安装</li></ol><p><code>sudo make install</code></p><h3 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h3><p><a href="https://tamlok.gitee.io/vnote/zh_cn/#!docs/%E5%BC%80%E5%8F%91%E8%80%85/%E6%9E%84%E5%BB%BAVNote.md">https://tamlok.gitee.io/vnote/zh_cn/#!docs/%E5%BC%80%E5%8F%91%E8%80%85/%E6%9E%84%E5%BB%BAVNote.md</a></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;向大家安利一款 markdown 笔记软件， VNote  &lt;a href=&quot;http://t.cn/RXj6L39&quot;&gt;http://t.cn/RXj6L39&lt;/a&gt;&lt;br&gt;此软件目前已经 1300 多个commits 了，做为一个有些开源软件维护经历的人，深感不易。&lt;br
-      
-    
-    </summary>
-    
-    
-    
-      <category term="Programming" scheme="http://usmacd.com/tags/Programming/"/>
     
   </entry>
   
