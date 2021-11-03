@@ -19,7 +19,7 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
-<script class="next-config" data-name="main" type="application/json">{"hostname":"usmacd.com","root":"/","images":"/images","scheme":"Gemini","version":"8.7.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
+<script class="next-config" data-name="main" type="application/json">{"hostname":"usmacd.com","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.8.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
 <meta name="description" content="Upatre 使用了一些新的逃逸技术来逃逸动态沙盒引擎的检查，这些技巧都非常的简单，但是非常的有效果。事实上，VirusTotal上Upatre的检出率并不高，新变种出来基本都检测不出来，说明现在的恶意软件对付杀毒软件是越来越有办法了。 目前在恶意软件上加壳倒是越来越少了，因为加壳容易引起杀软引擎的注意，相反地目前的恶意软件大量使用边执行边修改自身代码的方法来躲避杀软，不执行的话看起来就像是一个正">
 <meta property="og:type" content="article">
 <meta property="og:title" content="一些反沙盒的新技术">
@@ -126,8 +126,7 @@
         <!--/noindex-->
 
         <div class="site-overview-wrap sidebar-panel">
-          <div class="site-overview">
-            <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
   <p class="site-author-name" itemprop="name">henices</p>
   <div class="site-description" itemprop="description"></div>
 </div>
@@ -176,7 +175,6 @@
     </ul>
   </div>
 
-          </div>
         </div>
       </div>
     </div>
@@ -275,13 +273,13 @@
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2020/03/19/compile_android_source_code/" rel="prev" title="编译 Android 系统源码  （AOSP）">
-                  <i class="fa fa-chevron-left"></i> 编译 Android 系统源码  （AOSP）
+                <a href="/2020/03/19/apk_debug/" rel="prev" title="使用Android Studio 调试无源码apk程序">
+                  <i class="fa fa-chevron-left"></i> 使用Android Studio 调试无源码apk程序
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2020/03/19/apk_debug/" rel="next" title="使用Android Studio 调试无源码apk程序">
-                  使用Android Studio 调试无源码apk程序 <i class="fa fa-chevron-right"></i>
+                <a href="/2020/03/19/android_intent_base_attack/" rel="next" title="Intent Spoofing 攻击">
+                  Intent Spoofing 攻击 <i class="fa fa-chevron-right"></i>
                 </a>
             </div>
           </div>
@@ -320,6 +318,7 @@
 <script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
 
   
+
 
 
 
