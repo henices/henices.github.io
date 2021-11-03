@@ -248,7 +248,7 @@
         <p>主要特色：Intercept HTTP &amp; HTTPS requests and responses and modify them on the fly</p>
 <p>使用python编写，可以在windows，Linux， Mac 下运行，这点比 fiddler 有优势。可以修改<br>报文内容，这点很不错。</p>
 <ul>
-<li>官方网站： <a target="_blank" rel="noopener" href="http://www.mitmproxy.org">http://www.mitmproxy.org</a></li>
+<li>官方网站： <a target="_blank" rel="noopener" href="http://www.mitmproxy.org/">http://www.mitmproxy.org</a></li>
 <li>文档：<a target="_blank" rel="noopener" href="http://docs.mitmproxy.org/en/stable/">http://docs.mitmproxy.org/en/stable/</a></li>
 </ul>
 <h2 id="1-安装"><a href="#1-安装" class="headerlink" title="1. 安装"></a>1. 安装</h2><p>参考 <a target="_blank" rel="noopener" href="http://docs.mitmproxy.org/en/stable/install.html">http://docs.mitmproxy.org/en/stable/install.html</a></p>
@@ -265,7 +265,9 @@
 - i, j, k, l    上下左右，同 vi
 - enter         进入具体报文
 - tab           详细报文内容页面，显示标签调整
-- E             导出报文内容</code></pre><h2 id="3-HTTPS"><a href="#3-HTTPS" class="headerlink" title="3. HTTPS"></a>3. HTTPS</h2><p>使用mitmproxy 最大的原因就是因为它可以对付https报文。</p>
+- E             导出报文内容
+</code></pre>
+<h2 id="3-HTTPS"><a href="#3-HTTPS" class="headerlink" title="3. HTTPS"></a>3. HTTPS</h2><p>使用mitmproxy 最大的原因就是因为它可以对付https报文。</p>
 <h3 id="3-1-导入mitmproxy的-CA"><a href="#3-1-导入mitmproxy的-CA" class="headerlink" title="3.1 导入mitmproxy的 CA"></a>3.1 导入mitmproxy的 CA</h3><p>参考 <a target="_blank" rel="noopener" href="http://docs.mitmproxy.org/en/stable/certinstall.html">http://docs.mitmproxy.org/en/stable/certinstall.html</a></p>
 <p>mitmproxy 的 CA 证书放在 ~/.mitmproxy 目录， 可以在不同设备中添加。</p>
 <h3 id="3-2-目标设备为Linux"><a href="#3-2-目标设备为Linux" class="headerlink" title="3.2 目标设备为Linux"></a>3.2 目标设备为Linux</h3><h4 id="☆-Google-Chrome"><a href="#☆-Google-Chrome" class="headerlink" title="☆ Google Chrome"></a>☆ Google Chrome</h4><p>设置 -&gt; HTTPS/SSL -&gt; 证书管理 -&gt; 授权中心</p>
@@ -274,7 +276,7 @@
 <h3 id="3-3-目标设备为-Android"><a href="#3-3-目标设备为-Android" class="headerlink" title="3.3 目标设备为 Android"></a>3.3 目标设备为 Android</h3><h4 id="3-3-1-导入证书"><a href="#3-3-1-导入证书" class="headerlink" title="3.3.1 导入证书"></a>3.3.1 导入证书</h4><p>adb push ~/.mitmproxy/mitmproxy-ca-cert.cer /sdcard/Download</p>
 <p>设置 -&gt;  安全 -&gt; 证书存储 -&gt; 从手机存储安装， 选择上传的CA证书。</p>
 <h4 id="3-3-2-设置代理"><a href="#3-3-2-设置代理" class="headerlink" title="3.3.2 设置代理"></a>3.3.2 设置代理</h4><p>emulator 上可以通过下面的命令行，设置代理。</p>
-<p>./emulator -avd 7.0_x86 -http-proxy <a target="_blank" rel="noopener" href="http://a.b.c.d:8080">http://a.b.c.d:8080</a></p>
+<p>./emulator -avd 7.0_x86 -http-proxy <a target="_blank" rel="noopener" href="http://a.b.c.d:8080/">http://a.b.c.d:8080</a></p>
 <p>真实的设备上，据网络上的文章说，可以通过设置 APN来实现，没有测试。</p>
 <h4 id="3-3-3-启动-mitmproxy"><a href="#3-3-3-启动-mitmproxy" class="headerlink" title="3.3.3 启动 mitmproxy"></a>3.3.3 启动 mitmproxy</h4><p>mitmproxy -b a.b.c.d -p 8080</p>
 <h2 id="4-透明模式"><a href="#4-透明模式" class="headerlink" title="4. 透明模式"></a>4. 透明模式</h2><p>mitmproxy 支持透明部署，具体的方法可以参考下面的文章。</p>

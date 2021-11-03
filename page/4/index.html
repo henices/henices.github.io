@@ -349,83 +349,6 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://usmacd.com/2020/03/19/anti_sandbox/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="henices">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="安全代码">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2020/03/19/anti_sandbox/" class="post-title-link" itemprop="url">一些反沙盒的新技术</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2020-03-19 16:34:31" itemprop="dateCreated datePublished" datetime="2020-03-19T16:34:31+08:00">2020-03-19</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>Upatre 使用了一些新的逃逸技术来逃逸动态沙盒引擎的检查，这些技巧都非常的简单，但<br>是非常的有效果。事实上，VirusTotal上Upatre的检出率并不高，新变种出来基本都检测不<br>出来，说明现在的恶意软件对付杀毒软件是越来越有办法了。</p>
-<p>目前在恶意软件上加壳倒是越来越少了，因为加壳容易引起杀软引擎的注意，相反地目前的<br>恶意软件大量使用边执行边修改自身代码的方法来躲避杀软，不执行的话看起来就像是一个<br>正常的软件，而真正执行起来代码却全变了，这也算是一种进化。</p>
-<p>下面说说两种最近遇到的沙盒逃逸的办法，样本md5: ac3558b973402ef6a27e03c391f20533</p>
-<h2 id="检查开机时间"><a href="#检查开机时间" class="headerlink" title="检查开机时间"></a>检查开机时间</h2><p>一般使用沙盒的分析引擎的做法都是安装一个全新的系统，做系统镜像。然后在检查的时候<br>加载镜像，执行样本。而开机的时间往往都被忽略了，基本都不会超过10分钟。</p>
-<p>Upatre 样本所采取的方法是利用GetTickCount 获取开机的毫秒数，当开机时间小于12分钟<br>是就不执行恶意的行为。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">004013B3    BB D8FE0A00         MOV EBX,0AFED8</span><br><span class="line">004013B8    FF55 DC             CALL DWORD PTR SS:[EBP-24]   ; kernel32.GetTickCount</span><br><span class="line">004013BB    3BC3                CMP EAX,EBX</span><br><span class="line">004013BD    0F82 6F020000       JB 00401632</span><br><span class="line"></span><br><span class="line">00401632    6A 00               PUSH 0</span><br><span class="line">00401634    FF55 F4             CALL DWORD PTR SS:[EBP-C]    ; kernel32.ExitProcess</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>0xAFED8 是 720600毫秒 12分钟多一点，不到进程退出了。</p>
-<h2 id="检查鼠标位置"><a href="#检查鼠标位置" class="headerlink" title="检查鼠标位置"></a>检查鼠标位置</h2><p>Upatre样本使用的第二种沙盒逃逸的方法是检查鼠标位置的变化，动态沙盒分析系统大多是<br>自动化的系统，也就是不使用鼠标，如果Upatre样本检查到鼠标的位置没有发生变化，同样<br>不会执行恶意行为。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">0040197C   8D85 04FFFFFF       lea eax,dword ptr ss:[ebp-0xFC]</span><br><span class="line">00401982   50                  push eax</span><br><span class="line">00401983   FF95 20FFFFFF       call dword ptr ss:[ebp-0xE0]      ;  user32.GetCursorPos</span><br><span class="line">00401989   8D85 0CFFFFFF       lea eax,dword ptr ss:[ebp-0xF4]</span><br><span class="line">0040198F   50                  push eax</span><br><span class="line">00401990   FF95 20FFFFFF       call dword ptr ss:[ebp-0xE0]      ;  user32.GetCursorPos</span><br><span class="line">00401996   8B85 04FFFFFF       mov eax,dword ptr ss:[ebp-0xFC]</span><br><span class="line">0040199C   8B9D 0CFFFFFF       mov ebx,dword ptr ss:[ebp-0xF4]</span><br><span class="line">004019A2   39D8                cmp eax,ebx</span><br><span class="line">004019A4   74 D6               je short 62.0040197C</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>只要鼠标一动就退出循环，继续往下执行。</p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>最近出现的样本在反动态沙盒检测方面明显地进化了，针对性极强，不再局限于古老的<br>IsDebuggerPresent，而是利用PEB检查CPU核数等技术办法来检测，沙盒对抗估技术在后面<br>的日子里一定会更加迅速的进化。</p>
-<h2 id="致谢"><a href="#致谢" class="headerlink" title="致谢"></a>致谢</h2><p>非常感谢西安研究中心的同事提供的样本，同时感谢同事lzx在样本分析时给予的大力支持。</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
     <link itemprop="mainEntityOfPage" href="http://usmacd.com/2020/03/19/apk_debug/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -497,6 +420,83 @@
 <ul>
 <li>APK 中AndroidManifest.xml 有这句 android:debuggable=true</li>
 </ul>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://usmacd.com/2020/03/19/anti_sandbox/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="henices">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="安全代码">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2020/03/19/anti_sandbox/" class="post-title-link" itemprop="url">一些反沙盒的新技术</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2020-03-19 16:34:31" itemprop="dateCreated datePublished" datetime="2020-03-19T16:34:31+08:00">2020-03-19</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>Upatre 使用了一些新的逃逸技术来逃逸动态沙盒引擎的检查，这些技巧都非常的简单，但<br>是非常的有效果。事实上，VirusTotal上Upatre的检出率并不高，新变种出来基本都检测不<br>出来，说明现在的恶意软件对付杀毒软件是越来越有办法了。</p>
+<p>目前在恶意软件上加壳倒是越来越少了，因为加壳容易引起杀软引擎的注意，相反地目前的<br>恶意软件大量使用边执行边修改自身代码的方法来躲避杀软，不执行的话看起来就像是一个<br>正常的软件，而真正执行起来代码却全变了，这也算是一种进化。</p>
+<p>下面说说两种最近遇到的沙盒逃逸的办法，样本md5: ac3558b973402ef6a27e03c391f20533</p>
+<h2 id="检查开机时间"><a href="#检查开机时间" class="headerlink" title="检查开机时间"></a>检查开机时间</h2><p>一般使用沙盒的分析引擎的做法都是安装一个全新的系统，做系统镜像。然后在检查的时候<br>加载镜像，执行样本。而开机的时间往往都被忽略了，基本都不会超过10分钟。</p>
+<p>Upatre 样本所采取的方法是利用GetTickCount 获取开机的毫秒数，当开机时间小于12分钟<br>是就不执行恶意的行为。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">004013B3    BB D8FE0A00         MOV EBX,0AFED8</span><br><span class="line">004013B8    FF55 DC             CALL DWORD PTR SS:[EBP-24]   ; kernel32.GetTickCount</span><br><span class="line">004013BB    3BC3                CMP EAX,EBX</span><br><span class="line">004013BD    0F82 6F020000       JB 00401632</span><br><span class="line"></span><br><span class="line">00401632    6A 00               PUSH 0</span><br><span class="line">00401634    FF55 F4             CALL DWORD PTR SS:[EBP-C]    ; kernel32.ExitProcess</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>0xAFED8 是 720600毫秒 12分钟多一点，不到进程退出了。</p>
+<h2 id="检查鼠标位置"><a href="#检查鼠标位置" class="headerlink" title="检查鼠标位置"></a>检查鼠标位置</h2><p>Upatre样本使用的第二种沙盒逃逸的方法是检查鼠标位置的变化，动态沙盒分析系统大多是<br>自动化的系统，也就是不使用鼠标，如果Upatre样本检查到鼠标的位置没有发生变化，同样<br>不会执行恶意行为。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">0040197C   8D85 04FFFFFF       lea eax,dword ptr ss:[ebp-0xFC]</span><br><span class="line">00401982   50                  push eax</span><br><span class="line">00401983   FF95 20FFFFFF       call dword ptr ss:[ebp-0xE0]      ;  user32.GetCursorPos</span><br><span class="line">00401989   8D85 0CFFFFFF       lea eax,dword ptr ss:[ebp-0xF4]</span><br><span class="line">0040198F   50                  push eax</span><br><span class="line">00401990   FF95 20FFFFFF       call dword ptr ss:[ebp-0xE0]      ;  user32.GetCursorPos</span><br><span class="line">00401996   8B85 04FFFFFF       mov eax,dword ptr ss:[ebp-0xFC]</span><br><span class="line">0040199C   8B9D 0CFFFFFF       mov ebx,dword ptr ss:[ebp-0xF4]</span><br><span class="line">004019A2   39D8                cmp eax,ebx</span><br><span class="line">004019A4   74 D6               je short 62.0040197C</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>只要鼠标一动就退出循环，继续往下执行。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>最近出现的样本在反动态沙盒检测方面明显地进化了，针对性极强，不再局限于古老的<br>IsDebuggerPresent，而是利用PEB检查CPU核数等技术办法来检测，沙盒对抗估技术在后面<br>的日子里一定会更加迅速的进化。</p>
+<h2 id="致谢"><a href="#致谢" class="headerlink" title="致谢"></a>致谢</h2><p>非常感谢西安研究中心的同事提供的样本，同时感谢同事lzx在样本分析时给予的大力支持。</p>
 
       
     </div>
@@ -978,7 +978,7 @@
           <p>主要特色：Intercept HTTP &amp; HTTPS requests and responses and modify them on the fly</p>
 <p>使用python编写，可以在windows，Linux， Mac 下运行，这点比 fiddler 有优势。可以修改<br>报文内容，这点很不错。</p>
 <ul>
-<li>官方网站： <a target="_blank" rel="noopener" href="http://www.mitmproxy.org">http://www.mitmproxy.org</a></li>
+<li>官方网站： <a target="_blank" rel="noopener" href="http://www.mitmproxy.org/">http://www.mitmproxy.org</a></li>
 <li>文档：<a target="_blank" rel="noopener" href="http://docs.mitmproxy.org/en/stable/">http://docs.mitmproxy.org/en/stable/</a></li>
 </ul>
 <h2 id="1-安装"><a href="#1-安装" class="headerlink" title="1. 安装"></a>1. 安装</h2><p>参考 <a target="_blank" rel="noopener" href="http://docs.mitmproxy.org/en/stable/install.html">http://docs.mitmproxy.org/en/stable/install.html</a></p>
@@ -995,7 +995,9 @@
 - i, j, k, l    上下左右，同 vi
 - enter         进入具体报文
 - tab           详细报文内容页面，显示标签调整
-- E             导出报文内容</code></pre><h2 id="3-HTTPS"><a href="#3-HTTPS" class="headerlink" title="3. HTTPS"></a>3. HTTPS</h2><p>使用mitmproxy 最大的原因就是因为它可以对付https报文。</p>
+- E             导出报文内容
+</code></pre>
+<h2 id="3-HTTPS"><a href="#3-HTTPS" class="headerlink" title="3. HTTPS"></a>3. HTTPS</h2><p>使用mitmproxy 最大的原因就是因为它可以对付https报文。</p>
 <h3 id="3-1-导入mitmproxy的-CA"><a href="#3-1-导入mitmproxy的-CA" class="headerlink" title="3.1 导入mitmproxy的 CA"></a>3.1 导入mitmproxy的 CA</h3><p>参考 <a target="_blank" rel="noopener" href="http://docs.mitmproxy.org/en/stable/certinstall.html">http://docs.mitmproxy.org/en/stable/certinstall.html</a></p>
 <p>mitmproxy 的 CA 证书放在 ~/.mitmproxy 目录， 可以在不同设备中添加。</p>
 <h3 id="3-2-目标设备为Linux"><a href="#3-2-目标设备为Linux" class="headerlink" title="3.2 目标设备为Linux"></a>3.2 目标设备为Linux</h3><h4 id="☆-Google-Chrome"><a href="#☆-Google-Chrome" class="headerlink" title="☆ Google Chrome"></a>☆ Google Chrome</h4><p>设置 -&gt; HTTPS/SSL -&gt; 证书管理 -&gt; 授权中心</p>
@@ -1004,7 +1006,7 @@
 <h3 id="3-3-目标设备为-Android"><a href="#3-3-目标设备为-Android" class="headerlink" title="3.3 目标设备为 Android"></a>3.3 目标设备为 Android</h3><h4 id="3-3-1-导入证书"><a href="#3-3-1-导入证书" class="headerlink" title="3.3.1 导入证书"></a>3.3.1 导入证书</h4><p>adb push ~/.mitmproxy/mitmproxy-ca-cert.cer /sdcard/Download</p>
 <p>设置 -&gt;  安全 -&gt; 证书存储 -&gt; 从手机存储安装， 选择上传的CA证书。</p>
 <h4 id="3-3-2-设置代理"><a href="#3-3-2-设置代理" class="headerlink" title="3.3.2 设置代理"></a>3.3.2 设置代理</h4><p>emulator 上可以通过下面的命令行，设置代理。</p>
-<p>./emulator -avd 7.0_x86 -http-proxy <a target="_blank" rel="noopener" href="http://a.b.c.d:8080">http://a.b.c.d:8080</a></p>
+<p>./emulator -avd 7.0_x86 -http-proxy <a target="_blank" rel="noopener" href="http://a.b.c.d:8080/">http://a.b.c.d:8080</a></p>
 <p>真实的设备上，据网络上的文章说，可以通过设置 APN来实现，没有测试。</p>
 <h4 id="3-3-3-启动-mitmproxy"><a href="#3-3-3-启动-mitmproxy" class="headerlink" title="3.3.3 启动 mitmproxy"></a>3.3.3 启动 mitmproxy</h4><p>mitmproxy -b a.b.c.d -p 8080</p>
 <h2 id="4-透明模式"><a href="#4-透明模式" class="headerlink" title="4. 透明模式"></a>4. 透明模式</h2><p>mitmproxy 支持透明部署，具体的方法可以参考下面的文章。</p>
@@ -1125,8 +1127,7 @@
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line">SQL&gt; oradebug help</span><br><span class="line">HELP           [command]                 Describe one or all commands</span><br><span class="line">SETMYPID                                 Debug current process</span><br><span class="line">SETOSPID       &lt;ospid&gt;                   Set OS pid of process to debug</span><br><span class="line">SETORAPID      &lt;orapid&gt; [&#x27;force&#x27;]        Set Oracle pid of process to debug</span><br><span class="line">SETORAPNAME    &lt;orapname&gt;                Set Oracle process name to debug</span><br><span class="line">SHORT_STACK                              Get abridged OS stack</span><br><span class="line">CURRENT_SQL                              Get current SQL</span><br><span class="line">DUMP           &lt;dump_name&gt; &lt;lvl&gt; [addr]  Invoke named dump</span><br><span class="line">DUMPSGA        [bytes]                   Dump fixed SGA</span><br><span class="line">DUMPLIST                                 Print a list of available dumps</span><br><span class="line">EVENT          &lt;text&gt;                    Set trace event in process</span><br><span class="line">SESSION_EVENT  &lt;text&gt;                    Set trace event in session</span><br><span class="line">DUMPVAR        &lt;p|s|uga&gt; &lt;name&gt; [level]  Print/dump a fixed PGA/SGA/UGA variable</span><br><span class="line">DUMPTYPE       &lt;address&gt; &lt;type&gt; &lt;count&gt;  Print/dump an address with type info</span><br><span class="line">SETVAR         &lt;p|s|uga&gt; &lt;name&gt; &lt;value&gt;  Modify a fixed PGA/SGA/UGA variable</span><br><span class="line">PEEK           &lt;addr&gt; &lt;len&gt; [level]      Print/Dump memory</span><br><span class="line">POKE           &lt;addr&gt; &lt;len&gt; &lt;value&gt;      Modify memory</span><br><span class="line">WAKEUP         &lt;orapid&gt;                  Wake up Oracle process</span><br><span class="line">SUSPEND                                  Suspend execution</span><br><span class="line">RESUME                                   Resume execution</span><br><span class="line">FLUSH                                    Flush pending writes to trace file</span><br><span class="line">CLOSE_TRACE                              Close trace file</span><br><span class="line">TRACEFILE_NAME                           Get name of trace file</span><br><span class="line">LKDEBUG                                  Invoke global enqueue service debugger</span><br><span class="line">NSDBX                                    Invoke CGS name-service debugger</span><br><span class="line">-G             &lt;Inst-List | def | all&gt;   Parallel oradebug command prefix</span><br><span class="line">-R             &lt;Inst-List | def | all&gt;   Parallel oradebug prefix (return output</span><br><span class="line">SETINST        &lt;instance# .. | all&gt;      Set instance list in double quotes</span><br><span class="line">SGATOFILE      &lt;SGA dump dir&gt;         Dump SGA to file; dirname in double quotes</span><br><span class="line">DMPCOWSGA      &lt;SGA dump dir&gt; Dump &amp; map SGA as COW; dirname in double quotes</span><br><span class="line">MAPCOWSGA      &lt;SGA dump dir&gt;         Map SGA as COW; dirname in double quotes</span><br><span class="line">HANGANALYZE    [level] [syslevel]        Analyze system hang</span><br><span class="line">FFBEGIN                                  Flash Freeze the Instance</span><br><span class="line">FFDEREGISTER                             FF deregister instance from cluster</span><br><span class="line">FFTERMINST                               Call exit and terminate instance</span><br><span class="line">FFRESUMEINST                             Resume the flash frozen instance</span><br><span class="line">FFSTATUS                                 Flash freeze status of instance</span><br><span class="line">SKDSTTPCS      &lt;ifname&gt;  &lt;ofname&gt;        Helps translate PCs to names</span><br><span class="line">WATCH          &lt;address&gt; &lt;len&gt; &lt;self|exist|all|target&gt;  Watch a region of memory</span><br><span class="line">DELETE         &lt;local|global|target&gt; watchpoint &lt;id&gt;    Delete a watchpoint</span><br><span class="line">SHOW           &lt;local|global|target&gt; watchpoints        Show  watchpoints</span><br><span class="line">DIRECT_ACCESS  &lt;set/enable/disable command | select query&gt; Fixed table access</span><br><span class="line">CORE                                     Dump core without crashing process</span><br><span class="line">IPC                                      Dump ipc information</span><br><span class="line">UNLIMIT                                  Unlimit the size of the trace file</span><br><span class="line">PROCSTAT                                 Dump process statistics</span><br><span class="line">CALL           [-t count] &lt;func&gt; [arg1]...[argn]  Invoke function with arguments</span><br></pre></td></tr></table></figure>
 
 <p>功能非常丰富， 下面我们用到的是 CALL 可以直接调用oracle进程使用的函数。</p>
-<h4 id="执行的语句"><a href="#执行的语句" class="headerlink" title="执行的语句"></a>执行的语句</h4><p><code>oradebug setmypid;
-oradebug call system &quot;/usr/bin/whoami      &gt;/tmp/ret&quot;;</code></p>
+<h4 id="执行的语句"><a href="#执行的语句" class="headerlink" title="执行的语句"></a>执行的语句</h4><p><code>oradebug setmypid; oradebug call system &quot;/usr/bin/whoami      &gt;/tmp/ret&quot;;</code></p>
 <h4 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h4><ol>
 <li>这里权限要求是SYSDBA</li>
 <li>双引号里必须是使用TAB而不能使用空格</li>
