@@ -199,6 +199,120 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://usmacd.com/2021/11/29/vnote/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="henices">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="安全代码">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2021/11/29/vnote/" class="post-title-link" itemprop="url">Markdown 笔记软件： VNote</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2021-11-29 13:58:13" itemprop="dateCreated datePublished" datetime="2021-11-29T13:58:13+08:00">2021-11-29</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>向大家安利一款 markdown 笔记软件， VNote  <a target="_blank" rel="noopener" href="http://t.cn/RXj6L39">http://t.cn/RXj6L39</a><br>此软件目前已经 1300 多个commits 了，做为一个有些开源软件维护经历的人，深感不易。<br>用了太多 markdown 笔记软件，此软件使得最为顺手，尤其作为程序员 vim 模式 让我感到非常舒服，<br>大量图表的支持比如 UML 流程图，让我用起来很顺手。</p>
+<p><img src="https://raw.githubusercontent.com/henices/pictures/master/vnote.png" alt="VNote"></p>
+<p>我前后尝试过各种笔记软件，我理想的软件有几点：</p>
+<ul>
+<li>a. 支持文件管理</li>
+<li>b. 不要乱改数据，容易迁移</li>
+<li>c. 支持 markdown</li>
+<li>d. 跨平台，支持 Mac 和 Linux</li>
+</ul>
+<p>最后，终于发现了 VNote，有点惊喜。在 Linux 下编译 VNote 显示有明显改进，下面是编译的方法：</p>
+<ol>
+<li>下载 QT SDK</li>
+</ol>
+<p><a target="_blank" rel="noopener" href="https://mirrors4.tuna.tsinghua.edu.cn/qt/official_releases/qt/5.9/5.9.0/qt-opensource-linux-x64-5.9.0.run">https://mirrors4.tuna.tsinghua.edu.cn/qt/official_releases/qt/5.9/5.9.0/qt-opensource-linux-x64-5.9.0.run</a></p>
+<p>将 Qt5.9 安装到 /home/henices/Qt5.9.0/</p>
+<ol start="2">
+<li>编译 fcitx-qt5</li>
+</ol>
+<p>git clone <a target="_blank" rel="noopener" href="https://gitlab.com/fcitx/fcitx-qt5.git">https://gitlab.com/fcitx/fcitx-qt5.git</a></p>
+<p>准备编译脚本 <code>build_linux.sh</code>， 指定下载的QT</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">QTDIR=<span class="string">&quot;/home/henices/Qt5.9.0/5.9/gcc_64/&quot;</span></span><br><span class="line">PATH=<span class="string">&quot;<span class="variable">$QTDIR</span>/bin:<span class="variable">$PATH</span>&quot;</span></span><br><span class="line">LDFLAGS=-L<span class="variable">$QTDIR</span>/lib</span><br><span class="line">CPPFLAGS=-I<span class="variable">$QTDIR</span>/include</span><br><span class="line"></span><br><span class="line">rm -rf build</span><br><span class="line">mkdir -p build</span><br><span class="line"><span class="built_in">cd</span> build</span><br><span class="line">cmake ..</span><br><span class="line">make -j8</span><br></pre></td></tr></table></figure>
+
+<p>使用下面命令编译</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">chmod a+x ./build_linux.sh</span><br><span class="line">./build_linux.sh</span><br></pre></td></tr></table></figure>
+
+<p>将生成的 libfcitxplatforminputcontextplugin.so copy 到<br><code>/home/henices/Qt5.9.0/5.9/gcc_64/plugins/platforminputcontexts/</code></p>
+<ol start="3">
+<li>获取VNote 源码</li>
+</ol>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/tamlok/vnote.git vnote.git</span><br><span class="line"><span class="built_in">cd</span> vnote.git</span><br><span class="line">git submodule update --init</span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li>编译</li>
+</ol>
+<p>build_linux.sh</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">QTDIR=<span class="string">&quot;/home/henices/Qt5.9.0/5.9/gcc_64/&quot;</span></span><br><span class="line">PATH=<span class="string">&quot;<span class="variable">$QTDIR</span>/bin:<span class="variable">$PATH</span>&quot;</span></span><br><span class="line">LDFLAGS=-L<span class="variable">$QTDIR</span>/lib</span><br><span class="line">CPPFLAGS=-I<span class="variable">$QTDIR</span>/include</span><br><span class="line"></span><br><span class="line">rm -rf build</span><br><span class="line">mkdir -p build</span><br><span class="line"><span class="built_in">cd</span> build</span><br><span class="line">qmake -v</span><br><span class="line">qmake PREFIX=/usr/<span class="built_in">local</span> CONFIG-=debug CONFIG+=release ../VNote.pro</span><br><span class="line">make -j8</span><br></pre></td></tr></table></figure>
+
+<p>使用下面命令编译</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">chmod a+x ./build_linux.sh</span><br><span class="line">./build_linux.sh</span><br></pre></td></tr></table></figure>
+
+<ol start="5">
+<li>安装</li>
+</ol>
+<p><code>sudo make install</code></p>
+<ol start="6">
+<li>运行</li>
+</ol>
+<p>Fedora 升级到 35 后，Vnote 的阅读模式不能正常显示，需要禁用 Qtwebengine 的 sandbox</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./vnote --no-sandbox</span><br></pre></td></tr></table></figure>
+
+<h3 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h3><p><a target="_blank" rel="noopener" href="https://tamlok.gitee.io/vnote/zh_cn/#!docs/%E5%BC%80%E5%8F%91%E8%80%85/%E6%9E%84%E5%BB%BAVNote.md">https://tamlok.gitee.io/vnote/zh_cn/#!docs/%E5%BC%80%E5%8F%91%E8%80%85/%E6%9E%84%E5%BB%BAVNote.md</a></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
     <link itemprop="mainEntityOfPage" href="http://usmacd.com/2021/11/05/webview_java/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1037,86 +1151,6 @@
 <p>值得一提的是这个仓库有两个分支，fcitx4 分支 和 fcitx5 分支，使用的时候一定要分清楚，这两个分支如果<br>使用错了，就没法正常使用 fcitx.vim 插件了。fcitx4 和 fcitx5 dbus 对象名字有变化，导致代码通用性不好。<br>现在默认分支为 fcitx5，如果你使用 fcitx4 可能直接 git clone 下来就会发现插件用不了，我也是因为这个<br>原因才发现 fcitx 居然更新了。</p>
 <h3 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h3><ul>
 <li><a target="_blank" rel="noopener" href="https://xuthus.cc/misc/fedora-install-fcitx5.html">https://xuthus.cc/misc/fedora-install-fcitx5.html</a></li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://usmacd.com/2021/07/20/disable_security_flags/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="henices">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="安全代码">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/07/20/disable_security_flags/" class="post-title-link" itemprop="url">恢复 Android App 的截屏功能</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2021-07-20 16:34:48" itemprop="dateCreated datePublished" datetime="2021-07-20T16:34:48+08:00">2021-07-20</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>今天遇上某 App 禁止截屏，其实就是使用了下面这段代码</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">getWindow().setFlags(LayoutParams.FLAG_SECURE, LayoutParams.FLAG_SECURE);</span><br></pre></td></tr></table></figure>
-
-
-<p>使用 frida 脚本可以绕过绕过这个限制 （使用 frida 需要将手机 root）。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">Java.perform(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">   <span class="comment">// https://developer.android.com/reference/android/view/WindowManager.LayoutParams.html#FLAG_SECURE</span></span><br><span class="line">   <span class="keyword">var</span> FLAG_SECURE = <span class="number">0x2000</span>;</span><br><span class="line">   <span class="keyword">var</span> Window = Java.use(<span class="string">&quot;android.view.Window&quot;</span>);</span><br><span class="line">   <span class="keyword">var</span> setFlags = Window.setFlags;  <span class="comment">//.overload(&quot;int&quot;, &quot;int&quot;)</span></span><br><span class="line"></span><br><span class="line">   setFlags.implementation = <span class="function"><span class="keyword">function</span> (<span class="params">flags, mask</span>) </span>&#123;</span><br><span class="line">       <span class="built_in">console</span>.log(<span class="string">&quot;Disabling FLAG_SECURE...&quot;</span>);</span><br><span class="line">       flags &amp;= ~FLAG_SECURE;</span><br><span class="line">       setFlags.call(<span class="built_in">this</span>, flags, mask);</span><br><span class="line">       <span class="comment">// Since setFlags returns void, we don&#x27;t need to return anything</span></span><br><span class="line">   &#125;;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<p>执行 frida 命令 <code>frida -U -l disable.js -n com.apps.android --no-pause</code></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">$ frida -U -l disable.js -n com.apps.android --no-pause</span><br><span class="line"></span><br><span class="line">[Pixel 2::com.apps.android]-&gt;</span><br><span class="line">[Pixel 2::com.apps.android]-&gt;</span><br><span class="line">[Pixel 2::com.apps.android]-&gt; Disabling FLAG_SECURE...</span><br><span class="line">Disabling FLAG_SECURE...</span><br><span class="line">Disabling FLAG_SECURE...</span><br><span class="line">Disabling FLAG_SECURE...</span><br><span class="line">Disabling FLAG_SECURE...</span><br><span class="line">Disabling FLAG_SECURE...</span><br><span class="line">Disabling FLAG_SECURE...</span><br><span class="line">Disabling FLAG_SECURE...</span><br><span class="line">Disabling FLAG_SECURE...</span><br><span class="line">Disabling FLAG_SECURE...</span><br></pre></td></tr></table></figure>
-
-<p>值得注意的是，这里使用了 <code>-n</code> 参数， attach 到目标进程，要不 App 会自动重启。看到输出调试信息后，<br>就可以正常截屏了。</p>
-<h3 id="使用-objection"><a href="#使用-objection" class="headerlink" title="使用 objection"></a>使用 objection</h3><p>objection「2」有此功能，执行下面命令即可： <code>android ui FLAG_SECURE false</code>  但是我测试失败了。</p>
-<h3 id="截屏小技巧-（lzx）"><a href="#截屏小技巧-（lzx）" class="headerlink" title="截屏小技巧 （lzx）"></a>截屏小技巧 （lzx）</h3><p>Android 截屏，可以使用一个快速的技巧  <code>adb exec-out screencap -p &gt; test.png</code></p>
-<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><ul>
-<li>[1] <a target="_blank" rel="noopener" href="https://bhamza.me/2019/11/03/Android-Frida-hooking-disabling-FLAG-SECURE.html">https://bhamza.me/2019/11/03/Android-Frida-hooking-disabling-FLAG-SECURE.html</a></li>
-<li>[2] <a target="_blank" rel="noopener" href="https://github.com/sensepost/objection">https://github.com/sensepost/objection</a></li>
 </ul>
 
       
