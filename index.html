@@ -282,12 +282,22 @@
 <li>安装</li>
 </ol>
 <p><code>sudo make install</code></p>
-<ol start="6">
-<li>运行</li>
+<h2 id="诡异问题"><a href="#诡异问题" class="headerlink" title="诡异问题"></a>诡异问题</h2><p>Fedora 升级到 35 后，Vnote 出现了一系列问题</p>
+<ol>
+<li><p>vnote 的阅读模式不能正常显示 （Qt 5.12.11）</p>
+<p>解决这个问题需要禁用 Qtwebengine 的 sandbox </p>
+</li>
 </ol>
-<p>Fedora 升级到 35 后，Vnote 的阅读模式不能正常显示，需要禁用 Qtwebengine 的 sandbox</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./vnote --no-sandbox</span><br></pre></td></tr></table></figure>
 
+<ol start="2">
+<li><p>导出 pdf 文件 cpu 100%  （Fedora 系统自带 Qt 5.15.2 编译）</p>
+</li>
+<li><p>官方提供的 Linux AppImage 文件无法打开 Fcitx5 输入法。</p>
+<p>最终解决问题的方法是下载 Qt5.15.2 重新编译 Vnote， Qt 从 5.15 开始不提供离线安装包，非常不方便。官方提供的在线升级包如果太新只能安装 Qt 6，所以必须下载老版本的 <a target="_blank" rel="noopener" href="https://download.qt.io/archive/online_installers/4.0/qt-unified-linux-x64-4.0.1-1-online.run">https://download.qt.io/archive/online_installers/4.0/qt-unified-linux-x64-4.0.1-1-online.run</a></p>
+</li>
+</ol>
+<p>具体内容可以参考 <a target="_blank" rel="noopener" href="https://github.com/vnotex/vnote/issues/1942">https://github.com/vnotex/vnote/issues/1942</a> 的讨论</p>
 <h3 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h3><p><a target="_blank" rel="noopener" href="https://tamlok.gitee.io/vnote/zh_cn/#!docs/%E5%BC%80%E5%8F%91%E8%80%85/%E6%9E%84%E5%BB%BAVNote.md">https://tamlok.gitee.io/vnote/zh_cn/#!docs/%E5%BC%80%E5%8F%91%E8%80%85/%E6%9E%84%E5%BB%BAVNote.md</a></p>
 
       

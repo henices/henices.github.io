@@ -414,83 +414,6 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://usmacd.com/2020/03/19/anti_sandbox/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="henices">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="安全代码">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2020/03/19/anti_sandbox/" class="post-title-link" itemprop="url">一些反沙盒的新技术</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2020-03-19 16:34:31" itemprop="dateCreated datePublished" datetime="2020-03-19T16:34:31+08:00">2020-03-19</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>Upatre 使用了一些新的逃逸技术来逃逸动态沙盒引擎的检查，这些技巧都非常的简单，但<br>是非常的有效果。事实上，VirusTotal上Upatre的检出率并不高，新变种出来基本都检测不<br>出来，说明现在的恶意软件对付杀毒软件是越来越有办法了。</p>
-<p>目前在恶意软件上加壳倒是越来越少了，因为加壳容易引起杀软引擎的注意，相反地目前的<br>恶意软件大量使用边执行边修改自身代码的方法来躲避杀软，不执行的话看起来就像是一个<br>正常的软件，而真正执行起来代码却全变了，这也算是一种进化。</p>
-<p>下面说说两种最近遇到的沙盒逃逸的办法，样本md5: ac3558b973402ef6a27e03c391f20533</p>
-<h2 id="检查开机时间"><a href="#检查开机时间" class="headerlink" title="检查开机时间"></a>检查开机时间</h2><p>一般使用沙盒的分析引擎的做法都是安装一个全新的系统，做系统镜像。然后在检查的时候<br>加载镜像，执行样本。而开机的时间往往都被忽略了，基本都不会超过10分钟。</p>
-<p>Upatre 样本所采取的方法是利用GetTickCount 获取开机的毫秒数，当开机时间小于12分钟<br>是就不执行恶意的行为。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">004013B3    BB D8FE0A00         MOV EBX,0AFED8</span><br><span class="line">004013B8    FF55 DC             CALL DWORD PTR SS:[EBP-24]   ; kernel32.GetTickCount</span><br><span class="line">004013BB    3BC3                CMP EAX,EBX</span><br><span class="line">004013BD    0F82 6F020000       JB 00401632</span><br><span class="line"></span><br><span class="line">00401632    6A 00               PUSH 0</span><br><span class="line">00401634    FF55 F4             CALL DWORD PTR SS:[EBP-C]    ; kernel32.ExitProcess</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>0xAFED8 是 720600毫秒 12分钟多一点，不到进程退出了。</p>
-<h2 id="检查鼠标位置"><a href="#检查鼠标位置" class="headerlink" title="检查鼠标位置"></a>检查鼠标位置</h2><p>Upatre样本使用的第二种沙盒逃逸的方法是检查鼠标位置的变化，动态沙盒分析系统大多是<br>自动化的系统，也就是不使用鼠标，如果Upatre样本检查到鼠标的位置没有发生变化，同样<br>不会执行恶意行为。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">0040197C   8D85 04FFFFFF       lea eax,dword ptr ss:[ebp-0xFC]</span><br><span class="line">00401982   50                  push eax</span><br><span class="line">00401983   FF95 20FFFFFF       call dword ptr ss:[ebp-0xE0]      ;  user32.GetCursorPos</span><br><span class="line">00401989   8D85 0CFFFFFF       lea eax,dword ptr ss:[ebp-0xF4]</span><br><span class="line">0040198F   50                  push eax</span><br><span class="line">00401990   FF95 20FFFFFF       call dword ptr ss:[ebp-0xE0]      ;  user32.GetCursorPos</span><br><span class="line">00401996   8B85 04FFFFFF       mov eax,dword ptr ss:[ebp-0xFC]</span><br><span class="line">0040199C   8B9D 0CFFFFFF       mov ebx,dword ptr ss:[ebp-0xF4]</span><br><span class="line">004019A2   39D8                cmp eax,ebx</span><br><span class="line">004019A4   74 D6               je short 62.0040197C</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>只要鼠标一动就退出循环，继续往下执行。</p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>最近出现的样本在反动态沙盒检测方面明显地进化了，针对性极强，不再局限于古老的<br>IsDebuggerPresent，而是利用PEB检查CPU核数等技术办法来检测，沙盒对抗估技术在后面<br>的日子里一定会更加迅速的进化。</p>
-<h2 id="致谢"><a href="#致谢" class="headerlink" title="致谢"></a>致谢</h2><p>非常感谢西安研究中心的同事提供的样本，同时感谢同事lzx在样本分析时给予的大力支持。</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
     <link itemprop="mainEntityOfPage" href="http://usmacd.com/2020/03/19/apk_debug/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -562,6 +485,83 @@
 <ul>
 <li>APK 中AndroidManifest.xml 有这句 android:debuggable=true</li>
 </ul>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://usmacd.com/2020/03/19/anti_sandbox/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="henices">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="安全代码">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2020/03/19/anti_sandbox/" class="post-title-link" itemprop="url">一些反沙盒的新技术</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2020-03-19 16:34:31" itemprop="dateCreated datePublished" datetime="2020-03-19T16:34:31+08:00">2020-03-19</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>Upatre 使用了一些新的逃逸技术来逃逸动态沙盒引擎的检查，这些技巧都非常的简单，但<br>是非常的有效果。事实上，VirusTotal上Upatre的检出率并不高，新变种出来基本都检测不<br>出来，说明现在的恶意软件对付杀毒软件是越来越有办法了。</p>
+<p>目前在恶意软件上加壳倒是越来越少了，因为加壳容易引起杀软引擎的注意，相反地目前的<br>恶意软件大量使用边执行边修改自身代码的方法来躲避杀软，不执行的话看起来就像是一个<br>正常的软件，而真正执行起来代码却全变了，这也算是一种进化。</p>
+<p>下面说说两种最近遇到的沙盒逃逸的办法，样本md5: ac3558b973402ef6a27e03c391f20533</p>
+<h2 id="检查开机时间"><a href="#检查开机时间" class="headerlink" title="检查开机时间"></a>检查开机时间</h2><p>一般使用沙盒的分析引擎的做法都是安装一个全新的系统，做系统镜像。然后在检查的时候<br>加载镜像，执行样本。而开机的时间往往都被忽略了，基本都不会超过10分钟。</p>
+<p>Upatre 样本所采取的方法是利用GetTickCount 获取开机的毫秒数，当开机时间小于12分钟<br>是就不执行恶意的行为。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">004013B3    BB D8FE0A00         MOV EBX,0AFED8</span><br><span class="line">004013B8    FF55 DC             CALL DWORD PTR SS:[EBP-24]   ; kernel32.GetTickCount</span><br><span class="line">004013BB    3BC3                CMP EAX,EBX</span><br><span class="line">004013BD    0F82 6F020000       JB 00401632</span><br><span class="line"></span><br><span class="line">00401632    6A 00               PUSH 0</span><br><span class="line">00401634    FF55 F4             CALL DWORD PTR SS:[EBP-C]    ; kernel32.ExitProcess</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>0xAFED8 是 720600毫秒 12分钟多一点，不到进程退出了。</p>
+<h2 id="检查鼠标位置"><a href="#检查鼠标位置" class="headerlink" title="检查鼠标位置"></a>检查鼠标位置</h2><p>Upatre样本使用的第二种沙盒逃逸的方法是检查鼠标位置的变化，动态沙盒分析系统大多是<br>自动化的系统，也就是不使用鼠标，如果Upatre样本检查到鼠标的位置没有发生变化，同样<br>不会执行恶意行为。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">0040197C   8D85 04FFFFFF       lea eax,dword ptr ss:[ebp-0xFC]</span><br><span class="line">00401982   50                  push eax</span><br><span class="line">00401983   FF95 20FFFFFF       call dword ptr ss:[ebp-0xE0]      ;  user32.GetCursorPos</span><br><span class="line">00401989   8D85 0CFFFFFF       lea eax,dword ptr ss:[ebp-0xF4]</span><br><span class="line">0040198F   50                  push eax</span><br><span class="line">00401990   FF95 20FFFFFF       call dword ptr ss:[ebp-0xE0]      ;  user32.GetCursorPos</span><br><span class="line">00401996   8B85 04FFFFFF       mov eax,dword ptr ss:[ebp-0xFC]</span><br><span class="line">0040199C   8B9D 0CFFFFFF       mov ebx,dword ptr ss:[ebp-0xF4]</span><br><span class="line">004019A2   39D8                cmp eax,ebx</span><br><span class="line">004019A4   74 D6               je short 62.0040197C</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>只要鼠标一动就退出循环，继续往下执行。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>最近出现的样本在反动态沙盒检测方面明显地进化了，针对性极强，不再局限于古老的<br>IsDebuggerPresent，而是利用PEB检查CPU核数等技术办法来检测，沙盒对抗估技术在后面<br>的日子里一定会更加迅速的进化。</p>
+<h2 id="致谢"><a href="#致谢" class="headerlink" title="致谢"></a>致谢</h2><p>非常感谢西安研究中心的同事提供的样本，同时感谢同事lzx在样本分析时给予的大力支持。</p>
 
       
     </div>
