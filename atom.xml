@@ -6,7 +6,7 @@
   <link href="http://usmacd.com/atom.xml" rel="self"/>
   
   <link href="http://usmacd.com/"/>
-  <updated>2022-02-21T03:28:25.235Z</updated>
+  <updated>2022-02-21T03:30:52.032Z</updated>
   <id>http://usmacd.com/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>logseq 试用报告</title>
+    <link href="http://usmacd.com/2022/02/21/logseq/"/>
+    <id>http://usmacd.com/2022/02/21/logseq/</id>
+    <published>2022-02-21T03:30:52.032Z</published>
+    <updated>2022-02-21T03:30:52.032Z</updated>
+    
+    <content type="html"><![CDATA[<p>最近双链笔记的概念比较火热， Roam Research 大概是第一个实现此功能的软件，后续 Notion、Obsidian、logseq 等软件大步跟进，这些软件各有千秋。下面这段是参考资料文章中的一小段，很有参考意义：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Roam 的突破在于，理论上，把软件设计理念与卡片盒笔记法紧紧捆绑：</span><br><span class="line">卢曼（Niklas Luhmann）得益于卡片盒笔记法，从公务员成为德国当代重要的社会学家，</span><br><span class="line">因此基于卡片盒笔记法的 Roam 也可以助力你的成功；</span><br><span class="line">技术上，推出双向链接、可视化笔记间的联系、嵌入（Transclusion）等功能，</span><br><span class="line">让生产、查找笔记更加高效，于此同时，还省却维护层级结构的麻烦。</span><br></pre></td></tr></table></figure><p><img src="https://cdn.sspai.com/editor/u_5b3wva6y/15988547133856.jpg"><br><img src="https://cdn.sspai.com/editor/u_5b3wva6y/15988547133893.png"></p><p>上面两张图片就是<strong>卡片盒笔记法</strong> 最形象的表示了，个人觉得这种方法很适合自己。</p><p>为了体验双链笔记，我花费了不少时间，上面的几个软件都体验了一下，Roam 是收费软件，银子不够所以不选，Notion 笔记存储在云端，不符合我数据安全的要求也不选，剩下的就只有两个选项了 Obsidian 和 logseq 。</p><h2 id="Obsidian"><a href="#Obsidian" class="headerlink" title="Obsidian"></a>Obsidian</h2><p>软件主页：<a href="https://obsidian.md/">https://obsidian.md/</a><br><img src="https://obsidian.md/images/screenshot.png"></p><p>挺多人选择用 Obsidian 的原因是它的 MarkDown 语法支持得比较好，MarkDown 语法有很多的使用者，类似 Typora 的 MarkDown 语法笔记是当前笔记软件的主流，这使得这些笔记软件的使用者过渡到 obsidian 会比较平滑。我是开源<br>MarkDown 笔记软件 Vnote 的重度使用者，一度想使用 Obsidian 作为主力软件。</p><p>Obsidian 有挺多优点，比如它对个人用户永久免费，但是它不开源，而且 <a href="https://help.obsidian.md/How+to/Link+to+blocks">Link+to+blocks</a> 的语法比较别扭。最终还是没有选择它，有人说Obsidina 插件非常丰富，我自己没有折腾过。</p><h2 id="logseq"><a href="#logseq" class="headerlink" title="logseq"></a>logseq</h2><p>软件主页：<a href="https://logseq.com/">https://logseq.com/</a><br>源码仓库：<a href="https://github.com/logseq/logseq">https://github.com/logseq/logseq</a></p><p><img src="https://asset.logseq.com/static/img/credits.png"></p><p>说了这么就终于到正主了，第一次知道双链笔记这个概念是因为有个网友在网上说使用效果不错，过渡很平滑。可能有先入为主的关系，另外我本人对开源软件一向有莫名的好感，所以主观意识上就很喜欢这个软件。logseq 的粒度足够，block reference 使用非常方便，另外 logseq 的 PDF 标记功能对于需要大量阅读论文的我来说非常好用。</p><p><img src="https://discuss.logseq.com/uploads/default/original/2X/4/440999b555e2956a882fdb4f3bfff866b2a2c352.png"></p><p>但是 logseq 也不是没有缺点，logseq 对 markdown 语法的支持不是很好，即使直接导入 MarkDown 文件，最后显示的结果感觉也是有问题，各类标题直接转化成 block 了，这是有问题的。但是从这个角度说 logseq 就是一个纯粹的双链笔记软件而不是一个添加了双链功能的 MarkDown 笔记软件。</p><h2 id="最终的笔记管理方法"><a href="#最终的笔记管理方法" class="headerlink" title="最终的笔记管理方法"></a>最终的笔记管理方法</h2><p>说到这，问题就简化了，平时的文档记录仍然使用 MarkDown 笔记软件，只是在平时记录的时候使用双链笔记软件。这样的笔记管理方法看上去比较麻烦，其实却很完美，想写文章的时候直接用 VNote，平时知识积累记录的时候就用 logseq，根本就不用过渡，只需要启用一个新软件即可。</p><p>基于 block 的双链笔记最大的好处就是没有输出负担，一些很随意的想法都可以记录下来，因为大家确实不可能每次都有大段的想法可以输出。有人说用 logseq一年写了 30万字，我开始觉得有点夸张，但是使用一个多月发现可能属实，现在我自己都写了几万字了。每个想法 (block) 之间可能会有联系，不断记录想法，不断联系，慢慢的真能发现一些意想不到的东西之间居然有联系，而这些联系很有可能是一些关键的底层逻辑。平时在记录的时候手工划分目录，层次关系，其实已经将一些想法，概念给逻辑化了，这样的记录方法很难摆脱固有的认知，而基于 block 的双链笔记就自由的多，不断记录，不断整理，汇总就交给软件来完成吧。</p><p>我现在已经通过 logseq 的记录想清楚了一些问题，在平时的工作记录中也不断地稳步螺旋推进，在此向大家推荐这款笔记软件。</p><h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p><a href="https://sspai.com/post/69503">双链笔记软件推荐：Logseq 和它的五种用法</a><br><a href="https://sspai.com/post/65273">请不要神化双链笔记</a></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;最近双链笔记的概念比较火热， Roam Research 大概是第一个实现此功能的软件，后续 Notion、Obsidian、logseq 等软件大步跟进，这些软件各有千秋。下面这段是参考资料文章中的一小段，很有参考意义：&lt;/p&gt;
+&lt;figure class=&quot;highli</summary>
+      
+    
+    
+    
+    
+    <category term="Software" scheme="http://usmacd.com/tags/Software/"/>
+    
+  </entry>
   
   <entry>
     <title>Markdown 笔记软件： VNote</title>
@@ -35,29 +58,6 @@
     
     
     <category term="Programming" scheme="http://usmacd.com/tags/Programming/"/>
-    
-    <category term="Software" scheme="http://usmacd.com/tags/Software/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>logseq 试用报告</title>
-    <link href="http://usmacd.com/2022/02/21/logseq/"/>
-    <id>http://usmacd.com/2022/02/21/logseq/</id>
-    <published>2022-02-21T03:27:21.938Z</published>
-    <updated>2022-02-21T03:27:21.938Z</updated>
-    
-    <content type="html"><![CDATA[<p>最近双链笔记的概念比较火热， Roam Research 大概是第一个实现此功能的软件，后续 Notion、Obsidian、logseq 等软件大步跟进，这些软件各有千秋。下面这段是参考资料文章中的一小段，很有参考意义：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Roam 的突破在于，理论上，把软件设计理念与卡片盒笔记法紧紧捆绑：</span><br><span class="line">卢曼（Niklas Luhmann）得益于卡片盒笔记法，从公务员成为德国当代重要的社会学家，</span><br><span class="line">因此基于卡片盒笔记法的 Roam 也可以助力你的成功；</span><br><span class="line">技术上，推出双向链接、可视化笔记间的联系、嵌入（Transclusion）等功能，</span><br><span class="line">让生产、查找笔记更加高效，于此同时，还省却维护层级结构的麻烦。</span><br></pre></td></tr></table></figure><p><img src="https://cdn.sspai.com/editor/u_5b3wva6y/15988547133856.jpg"><br><img src="https://cdn.sspai.com/editor/u_5b3wva6y/15988547133893.png"></p><p>上面两张图片就是<strong>卡片盒笔记法</strong> 最形象的表示了，个人觉得这种方法很适合自己。</p><p>为了体验双链笔记，我花费了不少时间，上面的几个软件都体验了一下，Roam 是收费软件，银子不够所以不选，Notion 笔记存储在云端，不符合我数据安全的要求也不选，<br>剩下的就只有两个选项了 Obsidian 和 logseq 。</p><h2 id="Obsidian"><a href="#Obsidian" class="headerlink" title="Obsidian"></a>Obsidian</h2><p>软件主页：<a href="https://obsidian.md/">https://obsidian.md/</a><br><img src="https://obsidian.md/images/screenshot.png"></p><p>挺多人选择用 Obsidian 的原因是它的 MarkDown 语法支持得比较好，MarkDown 语法有很多的使用者，类似 Typora<br>的 MarkDown 语法笔记是当前笔记软件的主流，这使得这些笔记软件的使用者过渡到 obsidian 会比较平滑。我是开源<br>MarkDown 笔记软件 Vnote 的重度使用者，一度想使用 Obsidian 作为主力软件。</p><p>Obsidian 有挺多优点，比如它对个人用户永久免费，但是它不开源，而且 <a href="https://help.obsidian.md/How+to/Link+to+blocks">Link+to+blocks</a> 的语法比较别扭。<br>最终还是没有选择它，有人说Obsidina 插件非常丰富，我自己没有折腾过。</p><h2 id="logseq"><a href="#logseq" class="headerlink" title="logseq"></a>logseq</h2><p>软件主页：<a href="https://logseq.com/">https://logseq.com/</a><br>源码仓库：<a href="https://github.com/logseq/logseq">https://github.com/logseq/logseq</a></p><p><img src="https://asset.logseq.com/static/img/credits.png"></p><p>说了这么就终于到正主了，第一次知道双链笔记这个概念是因为有个网友在网上说使用效果不错，过渡很平滑。可能有先入为主的关系，另外我本人<br>对开源软件一向有莫名的好感，所以主观意识上就很喜欢这个软件。logseq 的粒度足够，block reference 使用非常方便，另外 logseq 的 PDF 标记功能<br>对于需要大量阅读论文的我来说非常好用。</p><p><img src="https://discuss.logseq.com/uploads/default/original/2X/4/440999b555e2956a882fdb4f3bfff866b2a2c352.png"></p><p>但是 logseq 也不是没有缺点，logseq 对 markdown 语法的支持不是很好，即使直接导入 MarkDown 文件，最后显示的结果感觉也是有问题，<br>各类标题直接转化成 block 了，这是有问题的。但是从这个角度说 logseq 就是一个纯粹的双链笔记软件而不是一个添加了双链功能的 MarkDown 笔记软件。</p><h2 id="最终的笔记管理方法"><a href="#最终的笔记管理方法" class="headerlink" title="最终的笔记管理方法"></a>最终的笔记管理方法</h2><p>说到这，问题就简化了，平时的文档记录仍然使用 MarkDown 笔记软件，只是在平时记录的时候使用双链笔记软件。这样的笔记管理方法看上去比较麻烦，<br>其实却很完美，想写文章的时候直接用 VNote，平时知识积累记录的时候就用 logseq，根本就不用过渡，只需要启用一个新软件即可。</p><p>基于 block 的双链笔记最大的好处就是没有输出负担，一些很随意的想法都可以记录下来，因为大家确实不可能每次都有大段的想法可以输出。有人说用 logseq<br>一年写了 30万字，我开始觉得有点夸张，但是使用一个多月发现可能属实，现在我自己都写了几万字了。每个想法 (block) 之间可能会有联系，不断记录想法，不断<br>联系，慢慢的真能发现一些意想不到的东西之间居然有联系，而这些联系很有可能是一些关键的底层逻辑。平时在记录的时候手工划分目录，层次关系，其实已经将一些想法，<br>概念给逻辑化了，这样的记录方法很难摆脱固有的认知，而基于 block 的双链笔记就自由的多，不断记录，不断整理，汇总就交给软件来完成吧。</p><p>我现在已经通过 logseq 的记录想清楚了一些问题，在平时的工作记录中也不断地稳步螺旋推进，在此向大家推荐这款笔记软件。</p><h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p><a href="https://sspai.com/post/69503">双链笔记软件推荐：Logseq 和它的五种用法</a><br><a href="https://sspai.com/post/65273">请不要神化双链笔记</a></p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;最近双链笔记的概念比较火热， Roam Research 大概是第一个实现此功能的软件，后续 Notion、Obsidian、logseq 等软件大步跟进，这些软件各有千秋。下面这段是参考资料文章中的一小段，很有参考意义：&lt;/p&gt;
-&lt;figure class=&quot;highli</summary>
-      
-    
-    
-    
     
     <category term="Software" scheme="http://usmacd.com/tags/Software/"/>
     
