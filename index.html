@@ -226,7 +226,7 @@
       </span>
       <span class="post-meta-item-text">Posted on</span>
 
-      <time title="Created: 2022-03-04 10:01:40" itemprop="dateCreated datePublished" datetime="2022-03-04T10:01:40+08:00">2022-03-04</time>
+      <time title="Created: 2022-03-04 10:07:24" itemprop="dateCreated datePublished" datetime="2022-03-04T10:07:24+08:00">2022-03-04</time>
     </span>
 
   
@@ -241,12 +241,12 @@
     <div class="post-body" itemprop="articleBody">
           <p>paper: <a target="_blank" rel="noopener" href="https://www.s3.eurecom.fr/docs/fuzzing22_fioraldi_report.pdf">https://www.s3.eurecom.fr/docs/fuzzing22_fioraldi_report.pdf</a></p>
 <h2 id="两个实验的结论-主要基于-FuzzBench"><a href="#两个实验的结论-主要基于-FuzzBench" class="headerlink" title="两个实验的结论 (主要基于 FuzzBench)"></a>两个实验的结论 (主要基于 FuzzBench)</h2><ul>
-<li>Our conclusion after this experiment is that AFL, and follow-ups fuzzers like AFL++, should provide an optionto disable hitcounts. AFL++ provides many different op-tions, and the users are suggested to run an instance ofeach variant when doing parallel fuzzing, a common use-case in real-world setups. The fact that in our experiments,hitcounts have shown a highly variadic behavior suggeststhat users should include a variant without hitcounts when doing parallel or ensemble fuzzing like OSS-Fuzz [3].</li>
+<li>Our conclusion after this experiment is that AFL, and follow-ups fuzzers like AFL++, should provide an optionto disable hitcounts. AFL++ provides many different op-tions, and the users are suggested to run an instance ofeach variant when doing parallel fuzzing, a common use-case in real-world setups. The fact that in our experiments,hitcounts have shown a highly variadic behavior suggeststhat users should include a variant without hitcounts when doing parallel or ensemble fuzzing like OSS-Fuzz.</li>
 <li>The conclusion we can draw from this experiment is that it would be a mistake to underestimate the impact of the novelty search. In particular, researchers proposing new approaches that also modify this aspect should care-fully evaluate – in isolation – the benefit of a different mechanism to decide if an input is interesting, as AFL’s novelty search provides a strong baseline.</li>
 </ul>
 <h2 id="论文中计划要评估的-afl-fuzz-的一些技术"><a href="#论文中计划要评估的-afl-fuzz-的一些技术" class="headerlink" title="论文中计划要评估的 afl-fuzz 的一些技术"></a>论文中计划要评估的 afl-fuzz 的一些技术</h2><ul>
 <li>Hitcounts:Hitcounts are adopted by other fuzzers to-day, but AFL was the first to introduce this concept.Despite its wide adoption, the impact of this optimization (overplain edge coverage) has never been measured in isolation on a large set of targets.</li>
-<li>Novelty search vs. maximization of a fitness:While AFL considers every new discovered hitcount as interesting, both other early fuzzing solutions and more recent tools [33]instead only consider testcases that maximize a given metricas interesting. For instance, VUZZER uses the sum of all the weights of the executed basic blocks.<ul>
+<li>Novelty search vs. maximization of a fitness:While AFL considers every new discovered hitcount as interesting, both other early fuzzing solutions and more recent tools instead only consider testcases that maximize a given metricas interesting. For instance, VUZZER uses the sum of all the weights of the executed basic blocks.<ul>
 <li>In this experiment, we benchmark the AFL approach versusa fitness maximization and the combination of the two ap-proaches, as proposed by VUZZER</li>
 <li>We expect the novelty search to outperforms both of the competing algorithms,</li>
 </ul>
