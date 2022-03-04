@@ -26,8 +26,8 @@
 <meta property="og:site_name" content="安全代码">
 <meta property="og:description" content="paper: https:&#x2F;&#x2F;www.s3.eurecom.fr&#x2F;docs&#x2F;fuzzing22_fioraldi_report.pdf 两个实验的结论 (主要基于 FuzzBench) Our conclusion after this experiment is that AFL, and follow-ups fuzzers like AFL++, should provide an opti">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2022-03-04T02:11:36.281Z">
-<meta property="article:modified_time" content="2022-03-04T02:11:36.281Z">
+<meta property="article:published_time" content="2022-03-04T02:13:59.350Z">
+<meta property="article:modified_time" content="2022-03-04T02:13:59.350Z">
 <meta property="article:author" content="henices">
 <meta property="article:tag" content="Security">
 <meta name="twitter:card" content="summary">
@@ -233,7 +233,7 @@
       </span>
       <span class="post-meta-item-text">Posted on</span>
 
-      <time title="Created: 2022-03-04 10:11:36" itemprop="dateCreated datePublished" datetime="2022-03-04T10:11:36+08:00">2022-03-04</time>
+      <time title="Created: 2022-03-04 10:13:59" itemprop="dateCreated datePublished" datetime="2022-03-04T10:13:59+08:00">2022-03-04</time>
     </span>
 
   
@@ -252,22 +252,22 @@
 <li>The conclusion we can draw from this experiment is that it would be a mistake to underestimate the impact of the novelty search. In particular, researchers proposing new approaches that also modify this aspect should care-fully evaluate – in isolation – the benefit of a different mechanism to decide if an input is interesting, as AFL’s novelty search provides a strong baseline.</li>
 </ul>
 <h2 id="论文中计划要评估的-afl-fuzz-的一些技术"><a href="#论文中计划要评估的-afl-fuzz-的一些技术" class="headerlink" title="论文中计划要评估的 afl-fuzz 的一些技术"></a>论文中计划要评估的 afl-fuzz 的一些技术</h2><ul>
-<li>Hitcounts:Hitcounts are adopted by other fuzzers to-day, but AFL was the first to introduce this concept.Despite its wide adoption, the impact of this optimization (overplain edge coverage) has never been measured in isolation on a large set of targets.</li>
-<li>Novelty search vs. maximization of a fitness:While AFL considers every new discovered hitcount as interesting, both other early fuzzing solutions and more recent tools instead only consider testcases that maximize a given metricas interesting. For instance, VUZZER uses the sum of all the weights of the executed basic blocks.<ul>
+<li><strong>Hitcounts</strong>: Hitcounts are adopted by other fuzzers to-day, but AFL was the first to introduce this concept.Despite its wide adoption, the impact of this optimization (overplain edge coverage) has never been measured in isolation on a large set of targets.</li>
+<li><strong>Novelty search vs. maximization of a fitness</strong>: While AFL considers every new discovered hitcount as interesting, both other early fuzzing solutions and more recent tools instead only consider testcases that maximize a given metricas interesting. For instance, VUZZER uses the sum of all the weights of the executed basic blocks.<ul>
 <li>In this experiment, we benchmark the AFL approach versusa fitness maximization and the combination of the two ap-proaches, as proposed by VUZZER</li>
 <li>We expect the novelty search to outperforms both of the competing algorithms,</li>
 </ul>
 </li>
-<li>Corpus culling:The prioritization of the small and fast testcases in the AFL corpus selection algorithm trades speed with the fuzzing of more complex testcases that often corresponds to complex program states<ul>
+<li><strong>Corpus culling</strong>: The prioritization of the small and fast testcases in the AFL corpus selection algorithm trades speed with the fuzzing of more complex testcases that often corresponds to complex program states<ul>
 <li>In this experiment, we want to assess the difference in using the AFL corpus culling mechanism versus using the entire corpus.</li>
 <li>We expect faster growth in coverage over time and,potentially, more bugs triggered in the same time window</li>
 </ul>
 </li>
-<li>Score calculation:The performance score used to cal-culate how many times to mutate and execute the input in the havoc, and splice stages are derived from many variables,mainly testcase size and execution time<ul>
+<li><strong>Score calculation</strong>: The performance score used to cal-culate how many times to mutate and execute the input in the havoc, and splice stages are derived from many variables,mainly testcase size and execution time<ul>
 <li>In this experiment, we want to measure the delta between the AFL solution and the baseline, represented by a constantand a random score</li>
 </ul>
 </li>
-<li>Corpus scheduling:The FIFO policy used by AFL is only one of the possible policies that a fuzzer can adopt to select the next testcase<ul>
+<li><strong>Corpus scheduling</strong>: The FIFO policy used by AFL is only one of the possible policies that a fuzzer can adopt to select the next testcase<ul>
 <li>Thus, we evaluate AFL versus a modified version that implements the baseline, random selection, and the opposite approach, a LIFO scheduler.</li>
 </ul>
 </li>
@@ -275,13 +275,13 @@
 <li>We modified the AFL codebase to implement splicing as a mutation operator to compare the two.</li>
 </ul>
 </li>
-<li>Trimming:Trimming the testcases allows the fuzzer to reduce the size of the input files and consequently give priority to small inputs, under the assumptions that large inputs introduce a slowdown in the execution and the mutations would be less likely to modify an important portion of the binary structure<ul>
-<li>Despite the fact that this algorithm can bring the twoimportant benefits described above, we argue that reducing the size of the testcases could lead to lose state coverage.Additionally, the trimming phase could become a bottleneck for slow targets</li>
+<li><strong>Trimming</strong>: Trimming the testcases allows the fuzzer to reduce the size of the input files and consequently give priority to small inputs, under the assumptions that large inputs introduce a slowdown in the execution and the mutations would be less likely to modify an important portion of the binary structure<ul>
+<li>Despite the fact that this algorithm can bring the two important benefits described above, we argue that reducing the size of the testcases could lead to lose state coverage.Additionally, the trimming phase could become a bottleneck for slow targets</li>
 <li>Therefore, in our evaluation we plan tocompare the default version of AFL against a modified one,where we disabled trimming</li>
 </ul>
 </li>
-<li>Collisions:As explained in section III-F the AFL ap-proach to instrument the source code of the target programs consists of assigning an identifier for each basic block at compile-time.<ul>
-<li>We want to benchmark this feature as the collision-freevariant is simpler than the original implementation with pc-guard, raising the question why random identifiers are used in AFL</li>
+<li><strong>Collisions</strong>: As explained in section III-F the AFL ap-proach to instrument the source code of the target programs consists of assigning an identifier for each basic block at compile-time.<ul>
+<li>We want to benchmark this feature as the collision-free variant is simpler than the original implementation with pc-guard, raising the question why random identifiers are used in AFL</li>
 </ul>
 </li>
 </ul>
