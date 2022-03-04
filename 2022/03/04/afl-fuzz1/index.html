@@ -26,8 +26,8 @@
 <meta property="og:site_name" content="安全代码">
 <meta property="og:description" content="paper: https:&#x2F;&#x2F;www.s3.eurecom.fr&#x2F;docs&#x2F;fuzzing22_fioraldi_report.pdf 两个实验的结论 (主要基于 FuzzBench) Our conclusion after this experiment is that AFL, and follow-ups fuzzers like AFL++, should provide an opti">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2022-03-04T02:07:24.796Z">
-<meta property="article:modified_time" content="2022-03-04T02:07:24.796Z">
+<meta property="article:published_time" content="2022-03-04T02:08:36.533Z">
+<meta property="article:modified_time" content="2022-03-04T02:08:36.533Z">
 <meta property="article:author" content="henices">
 <meta property="article:tag" content="Security">
 <meta name="twitter:card" content="summary">
@@ -233,7 +233,7 @@
       </span>
       <span class="post-meta-item-text">Posted on</span>
 
-      <time title="Created: 2022-03-04 10:07:24" itemprop="dateCreated datePublished" datetime="2022-03-04T10:07:24+08:00">2022-03-04</time>
+      <time title="Created: 2022-03-04 10:08:36" itemprop="dateCreated datePublished" datetime="2022-03-04T10:08:36+08:00">2022-03-04</time>
     </span>
 
   
@@ -248,7 +248,7 @@
     <div class="post-body" itemprop="articleBody">
         <p>paper: <a target="_blank" rel="noopener" href="https://www.s3.eurecom.fr/docs/fuzzing22_fioraldi_report.pdf">https://www.s3.eurecom.fr/docs/fuzzing22_fioraldi_report.pdf</a></p>
 <h2 id="两个实验的结论-主要基于-FuzzBench"><a href="#两个实验的结论-主要基于-FuzzBench" class="headerlink" title="两个实验的结论 (主要基于 FuzzBench)"></a>两个实验的结论 (主要基于 FuzzBench)</h2><ul>
-<li>Our conclusion after this experiment is that AFL, and follow-ups fuzzers like AFL++, should provide an optionto disable hitcounts. AFL++ provides many different op-tions, and the users are suggested to run an instance ofeach variant when doing parallel fuzzing, a common use-case in real-world setups. The fact that in our experiments,hitcounts have shown a highly variadic behavior suggeststhat users should include a variant without hitcounts when doing parallel or ensemble fuzzing like OSS-Fuzz.</li>
+<li>Our conclusion after this experiment is that AFL, and follow-ups fuzzers like AFL++, should provide an optionto disable hitcounts. AFL++ provides many different op-tions, and the users are suggested to run an instance of each variant when doing parallel fuzzing, a common use-case in real-world setups. The fact that in our experiments,hitcounts have shown a highly variadic behavior suggeststhat users should include a variant without hitcounts when doing parallel or ensemble fuzzing like OSS-Fuzz.</li>
 <li>The conclusion we can draw from this experiment is that it would be a mistake to underestimate the impact of the novelty search. In particular, researchers proposing new approaches that also modify this aspect should care-fully evaluate – in isolation – the benefit of a different mechanism to decide if an input is interesting, as AFL’s novelty search provides a strong baseline.</li>
 </ul>
 <h2 id="论文中计划要评估的-afl-fuzz-的一些技术"><a href="#论文中计划要评估的-afl-fuzz-的一些技术" class="headerlink" title="论文中计划要评估的 afl-fuzz 的一些技术"></a>论文中计划要评估的 afl-fuzz 的一些技术</h2><ul>
