@@ -128,7 +128,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">51</span>
+          <span class="site-state-item-count">52</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -193,6 +193,98 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://usmacd.com/2022/03/07/logseq2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="henices">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="安全代码">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/03/07/logseq2/" class="post-title-link" itemprop="url">Untitled</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2022-03-07 12:00:29" itemprop="dateCreated datePublished" datetime="2022-03-07T12:00:29+08:00">2022-03-07</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="Logseq-使用小结-（二）"><a href="#Logseq-使用小结-（二）" class="headerlink" title="Logseq 使用小结 （二）"></a>Logseq 使用小结 （二）</h1><p>用了 Logseq 一段时间了，做个简单的总结，国内的很多文章，在我看来还是不太简单明了。</p>
+<h2 id="Flashcards"><a href="#Flashcards" class="headerlink" title="Flashcards"></a>Flashcards</h2><p>可以把记录的知识点当作卡片来记忆，用过 Anki 的同学，应该都比较熟悉了，使用的记忆算法为 <a target="_blank" rel="noopener" href="https://www.supermemo.com/en/archives1990-2015/english/ol/sm5">SM-5</a><br>要将一个 block 记为卡片非常简单，使用 <code>#card</code> 标签就可以了。</p>
+<p><img src="https://github.com/henices/pictures/raw/master/logseq5.png"></p>
+<h3 id="卡片组"><a href="#卡片组" class="headerlink" title="卡片组"></a>卡片组</h3><p>有些卡片可能是归属同一个大类，这时候就可以使用卡片组了。像我上面这个例子中，要记忆的单词都在 <code>英语单词积累</code>下，就可以使用语法 <code>&#123;&#123;cards 英语单词积累&#125;&#125;</code> 效果如下图，<br>可以看出我已经积累了7张卡片了。</p>
+<p><img src="https://github.com/henices/pictures/raw/master/logseq6.png"></p>
+<p>要背诵需要记忆的卡片时，单击左侧的 Flashcards 就可以了，使用方面没有什么特别的地方，有三个选项可以选择。</p>
+<p><img src="https://github.com/henices/pictures/raw/master/logseq7.png"></p>
+<h2 id="theme-（皮肤）"><a href="#theme-（皮肤）" class="headerlink" title="theme （皮肤）"></a>theme （皮肤）</h2><p>皮肤就是青菜萝卜各有所爱了，推荐两款我自己比较喜欢的的皮肤。</p>
+<p><img src="https://github.com/henices/pictures/raw/master/logseq8.png"></p>
+<p>Github 仓库地址如下：</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/pengx17/logseq-laurel-theme">https://github.com/pengx17/logseq-laurel-theme</a><br><a target="_blank" rel="noopener" href="https://github.com/tobealive/logseq-allday-theme">https://github.com/tobealive/logseq-allday-theme</a></p>
+<p>有两种方法可以设置皮肤：</p>
+<ul>
+<li>custom.css</li>
+<li>plugin system</li>
+</ul>
+<p>使用 custom.css，打开 Settings -&gt;     General -&gt;  Custom theme  点击 <code>custom.css</code> 复制 css 内容，保存退出即可。<br>使用插件系统，则需要先把插件系统打开，Settings  -&gt;  Advanced -&gt; Plug-in system 。打开插件系统后，可以直接使用<br>Plugins -&gt; Marketplace -&gt; themes 选择你喜欢的 theme 点击 <code>Install</code> 就可以了</p>
+<p>不过还是推荐使用 Logseq 自带的插件管理系统来安装，可以自动升级比较方便，切换皮肤可以点击右上角 三个点 -&gt; Themes 选择皮肤。 </p>
+<h2 id="plugin-（插件）"><a href="#plugin-（插件）" class="headerlink" title="plugin （插件）"></a>plugin （插件）</h2><p>使用 Logseq 插件同样是两种方法：</p>
+<ul>
+<li>plugin system</li>
+<li>Load unpacked plugin</li>
+</ul>
+<p>使用插件系统的方法和上面安装皮肤的步骤大致相同，依次点击 Plugins -&gt; Marketplace -&gt; Plugins ，选择插件点击 <code>Install</code> 即可。<br>要加载 <code>unpacked plugin</code> 首先要打开开发者模式 Settings  -&gt;  Advanced -&gt; Developer mode ,  设置为打开。打开后使用插件管理系统<br>Plugins -&gt; Installed -&gt; Load unpacked plugin 选择相关目录就可以了。</p>
+<p>具体的插件可以参考 <a target="_blank" rel="noopener" href="https://github.com/logseq/awesome-logseq#Plugins">https://github.com/logseq/awesome-logseq#Plugins</a> 下面的插件都挺不错的。</p>
+<h2 id="query"><a href="#query" class="headerlink" title="query"></a>query</h2><p>query 算是 Logseq 的高级功能了，我用的也不多，输入 <code>/query</code> 回车就可以自动进入 query 了，具体的语法很灵活可以参考：<br><a target="_blank" rel="noopener" href="https://logseq.github.io/#/page/queries">https://logseq.github.io/#/page/queries</a></p>
+<p>油管上有相关 video，大家可以参考一下：<br><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=GDauxjx_bdA&amp;ab_channel=OneStutteringMind">https://www.youtube.com/watch?v=GDauxjx_bdA&amp;ab_channel=OneStutteringMind</a><br><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=qQ8DzumRZkM&amp;ab_channel=OneStutteringMind">https://www.youtube.com/watch?v=qQ8DzumRZkM&amp;ab_channel=OneStutteringMind</a></p>
+<h2 id="写在后面的话"><a href="#写在后面的话" class="headerlink" title="写在后面的话"></a>写在后面的话</h2><p>Logseq 的功能还是挺多的，两篇文章也不可能全部介绍完，官方文档总是最好的资料：<a target="_blank" rel="noopener" href="https://logseq.github.io/#/page/Contents">https://logseq.github.io/#/page/Contents</a></p>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p><a target="_blank" rel="noopener" href="https://logseq.github.io/">https://logseq.github.io</a><br><a target="_blank" rel="noopener" href="https://www.usmacd.com/2022/02/21/logseq/">https://www.usmacd.com/2022/02/21/logseq/</a></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1174,95 +1266,6 @@
 <ul>
 <li>EOF</li>
 </ul>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://usmacd.com/2021/09/23/iPhone_white_apple/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="henices">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="安全代码">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/09/23/iPhone_white_apple/" class="post-title-link" itemprop="url">iPhone 内存满了, 白苹果问题解决方法</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2021-09-23 10:58:52" itemprop="dateCreated datePublished" datetime="2021-09-23T10:58:52+08:00">2021-09-23</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>上周媳妇的 iPhone 提示内存满了，重启后就进入白苹果状态。安装 itunes 以更新的方式重刷系统后恢复正常 （如果选择恢复模式则会丢失数据）。<br>刷系统的时候一度遇上 14 错误，重新使用更新系统的方式再刷了一遍后，顺利通过 （运气不错）。顺利登录 iPhone 后马上删除各种 App，清理后台驻留的程序，在此也提示大家 iPhone 手机也是要定期维护啊。</p>
-<p>说起来就上面几句话，实际操作起来比较麻烦，大概弄了一个早上，把几个要点总结一下。</p>
-<h2 id="强制重新启动-iPhone"><a href="#强制重新启动-iPhone" class="headerlink" title="强制重新启动 iPhone"></a>强制重新启动 iPhone</h2><p>其实在刷机前我尝试了强制重启 iPhone，强制重启 iPhone 的方法可以参考下面链接：<br><a target="_blank" rel="noopener" href="https://support.apple.com/zh-cn/guide/iphone/iph8903c3ee6/ios">https://support.apple.com/zh-cn/guide/iphone/iph8903c3ee6/ios</a></p>
-<p>新版 iPhone 可以使用下面的方法</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">强制重新启动配备面容 ID 的 iPhone</span><br><span class="line"></span><br><span class="line">若要强制重新启动 iPhone X、iPhone XS、iPhone XR、iPhone 11、iPhone 12 或 iPhone 13，请执行以下操作：</span><br><span class="line"></span><br><span class="line">按下并快速松开调高音量按钮，按下并快速松开调低音量按钮，然后按住侧边按钮。当 Apple 标志出现时，松开按钮。</span><br></pre></td></tr></table></figure>
-
-<p>但是强制重启 iPhone 并没有成功，手机依然处于白苹果状态没有响应。</p>
-<h2 id="进入-DFU-模式"><a href="#进入-DFU-模式" class="headerlink" title="进入 DFU 模式"></a>进入 DFU 模式</h2><p>不进入 DFU 模式无法刷机，iPhone 不同机型进入 DFU 模式的方法不相同，具体的可以参考下面链接：<br><a target="_blank" rel="noopener" href="https://support.apple.com/en-us/HT201263">https://support.apple.com/en-us/HT201263</a></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">iPhone 8 or later: Press and quickly release the Volume Up button. </span><br><span class="line">Press and quickly release the Volume Down button. </span><br><span class="line">Then, press and hold the Side button until you see the recovery mode screen.</span><br></pre></td></tr></table></figure>
-
-<h2 id="安装-itunes-刷机"><a href="#安装-itunes-刷机" class="headerlink" title="安装 itunes 刷机"></a>安装 itunes 刷机</h2><p>安装 itunes 的过程就不在细说了，正常安装即可。更新过程需要注意中间某个步骤可能耗时很长，不要着急得慢慢等，Apple 还专门有链接说明这个问题。<br><a target="_blank" rel="noopener" href="https://support.apple.com/zh-cn/HT203435">https://support.apple.com/zh-cn/HT203435</a></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">出现这种情况后，进度条可能移动非常缓慢或似乎不移动。</span><br><span class="line"></span><br><span class="line">请等待设备完成更新、恢复或抹掉过程。</span><br><span class="line"></span><br><span class="line">进度条会显示安装进度。所用时间取决于设备上的文件数量，以及您是要抹掉、更新还是升级 iOS 或 iPadOS。</span><br><span class="line">如果设备上只有很少数据或没有数据，或者如果您要抹掉设备上的数据，这个过程可能只需一分钟时间。</span><br><span class="line">如果设备包含大量文件，则这个过程可能需要数分钟至一小时不等。</span><br></pre></td></tr></table></figure>
-
-<p>刷机过程中大概率会遇上 14 错误，网络上说法很多大概就两点。</p>
-<ul>
-<li>（1）挑线，要保证 USB 数据线有效，优先使用 USB 2.0</li>
-<li>（2）多刷几次，反复刷</li>
-</ul>
-<p>我这次运气不错，遇上 14 错误后，换了个 USB 2.0 的口重刷一次就过了，祝大家好运。</p>
-<p>重启后需要输入密码，提示尝试恢复数据，进度跑完就大功告成了。</p>
-<h2 id="事后的清理工作"><a href="#事后的清理工作" class="headerlink" title="事后的清理工作"></a>事后的清理工作</h2><p>恢复完数据，登录媳妇的手机发现以下几点问题：</p>
-<ul>
-<li>（1） 手机存储空间紧张</li>
-<li>（2） 后台驻留的程序比较多</li>
-</ul>
-<p>导致白苹果的原因未知，将这些问题解决了一下，希望能正常使用了。</p>
 
       
     </div>
