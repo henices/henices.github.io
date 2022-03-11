@@ -93,7 +93,6 @@
         <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li>
         <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li>
         <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li>
-        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a></li>
         <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a></li>
         <li class="menu-item menu-item-sitemap"><a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>Sitemap</a></li>
   </ul>
@@ -273,14 +272,14 @@
 <h2 id="1-生成-Raw-Profiles-文件"><a href="#1-生成-Raw-Profiles-文件" class="headerlink" title="(1) 生成 Raw Profiles 文件"></a>(1) 生成 Raw Profiles 文件</h2><p><code>export LLVM_PROFILE_FILE=&quot;out/report/target.%4m.profraw&quot;</code>  使用这个命令<br>限制 profraw 文件的个数。</p>
 <p>%p      进程 ID<br>%h      hostname<br>%Nm  生成几个 profraw 文件</p>
 <p>写个循环，将所有的样本跑一遍。 timeout 10 指定程序超时时间。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> i  <span class="keyword">in</span> path ; <span class="keyword">do</span> timeout 10 target  <span class="variable">$i</span> ; <span class="keyword">done</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> i  <span class="keyword">in</span> path ; <span class="keyword">do</span> <span class="built_in">timeout</span> 10 target  <span class="variable">$i</span> ; <span class="keyword">done</span></span><br></pre></td></tr></table></figure>
 
-<p>将在 out/report 目录下， 生成  profraw 文件， 如果没有生成， 则说明上面的代码编译出了问题。</p>
+<p>将在 out&#x2F;report 目录下， 生成  profraw 文件， 如果没有生成， 则说明上面的代码编译出了问题。</p>
 <h2 id="2-生成-Indexed-Profile"><a href="#2-生成-Indexed-Profile" class="headerlink" title="(2) 生成 Indexed Profile"></a>(2) 生成 Indexed Profile</h2><p><code>/home/henices/clang7/bin/llvm-profdata merge -j=1 -sparse -o out/report/coverage.profdata out/report/*.profraw</code></p>
 <p>-sparse 能大幅减小 profraw 文件大小</p>
 <h2 id="3-生成-Coverage-report"><a href="#3-生成-Coverage-report" class="headerlink" title="(3) 生成 Coverage report"></a>(3) 生成 Coverage report</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">/home/henices/clang7/bin/llvm-cov show -output-dir=out/report -format=html \</span><br><span class="line">    -Xdemangler c++filt -Xdemangler -n -instr-profile=out/report/coverage.profdata \</span><br><span class="line">    -object=out/coverage/target</span><br></pre></td></tr></table></figure>
 
-<p>打开 out/report/index.html 可以看到详细的 html 报告，非常不错。</p>
+<p>打开 out&#x2F;report&#x2F;index.html 可以看到详细的 html 报告，非常不错。</p>
 <p><img src="https://raw.githubusercontent.com/henices/pictures/master/20190118160208151_604337546.png" alt="llvm-coverge-html"></p>
 <h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><ul>
 <li><a target="_blank" rel="noopener" href="https://www.chromium.org/developers/how-tos/get-the-code/working-with-release-branches">working with release branches</a></li>

@@ -85,7 +85,6 @@
         <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li>
         <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li>
         <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li>
-        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a></li>
         <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a></li>
         <li class="menu-item menu-item-sitemap"><a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>Sitemap</a></li>
   </ul>
@@ -254,7 +253,7 @@
 <p>输入音标 ə</p>
 <p>i 进入编辑模式    CTRL-vu0259<br>那如何知道 ə 的 unicode hex number 是 0259呢，在vim的normal 模式下，将光标移动到ə输入ga</p>
 <p>输入 ⇒</p>
-<p>i 进入编辑模式   CTRL-k=&gt;<br>:dig 可以看到支持这种方法输入的unicode 字符</p>
+<p>i 进入编辑模式   CTRL-k&#x3D;&gt;<br>:dig 可以看到支持这种方法输入的unicode 字符</p>
 
       
     </div>
@@ -328,7 +327,7 @@
 
 <h2 id="2-创建服务"><a href="#2-创建服务" class="headerlink" title="(2) 创建服务"></a>(2) 创建服务</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp /lib/systemd/system/vncserver@.service /etc/systemd/system/vncserver@.service</span><br></pre></td></tr></table></figure>
 
-<p>编辑 /etc/systemd/system/vncserver@.service 替换下面两行的USER为实际用户名</p>
+<p>编辑 &#x2F;etc&#x2F;systemd&#x2F;system&#x2F;vncserver@.service 替换下面两行的USER为实际用户名</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ExecStart=/sbin/runuser -l USER -c &quot;/usr/bin/vncserver %i -geometry 1280x1024&quot;</span><br><span class="line">PIDFile=/home/USER/.vnc/%H%i.pid</span><br></pre></td></tr></table></figure>
 
 <p>执行命令 <code>systemctl daemon-reload</code></p>
@@ -342,7 +341,7 @@
 <p><a target="_blank" rel="noopener" href="https://docs.fedoraproject.org/en-US/Fedora/21/html/System_Administrators_Guide/ch-TigerVNC.html">https://docs.fedoraproject.org/en-US/Fedora/21/html/System_Administrators_Guide/ch-TigerVNC.html</a></p>
 <h2 id="3-直接调用命令行"><a href="#3-直接调用命令行" class="headerlink" title="(3)直接调用命令行"></a>(3)直接调用命令行</h2><p>使用上面的方法过于繁琐，可以直接调用 vncserver 的命令行</p>
 <p><code>vncserver :2 -geometry 1920x1080 -depth 24</code></p>
-<h2 id="4-改变vnc的默认桌面"><a href="#4-改变vnc的默认桌面" class="headerlink" title="(4) 改变vnc的默认桌面"></a>(4) 改变vnc的默认桌面</h2><p>vim ~/.vnc/xstartup</p>
+<h2 id="4-改变vnc的默认桌面"><a href="#4-改变vnc的默认桌面" class="headerlink" title="(4) 改变vnc的默认桌面"></a>(4) 改变vnc的默认桌面</h2><p>vim ~&#x2F;.vnc&#x2F;xstartup</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/sh</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">unset</span> SESSION_MANAGER</span><br><span class="line"><span class="built_in">unset</span> DBUS_SESSION_BUS_ADDRESS</span><br><span class="line"><span class="comment">#exec /etc/X11/xinit/xinitrc</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">exec</span> /bin/sh /etc/xdg/xfce4/xinitrc</span><br></pre></td></tr></table></figure>
 
 <p>必须改变默认桌面，要不可能登录不进去。</p>
