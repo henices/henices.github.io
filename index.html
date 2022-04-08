@@ -237,7 +237,7 @@
       </span>
       <span class="post-meta-item-text">Posted on</span>
 
-      <time title="Created: 2022-04-08 15:12:51" itemprop="dateCreated datePublished" datetime="2022-04-08T15:12:51+08:00">2022-04-08</time>
+      <time title="Created: 2022-04-08 15:16:09" itemprop="dateCreated datePublished" datetime="2022-04-08T15:16:09+08:00">2022-04-08</time>
     </span>
 
   
@@ -307,7 +307,7 @@
 
 <p>调用路径为 </p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">`DEFINE_PROTO_FUZZER` -&gt; `DEFINE_TEXT_PROTO_FUZZER` -&gt; `DEFINE_PROTO_FUZZER_IMPL` -&gt; `DEFINE_TEST_ONE_PROTO_INPUT_IMPL` -&gt; `LLVMFuzzerTestOneInput` -&gt; `TestOneProtoInput`。</span><br></pre></td></tr></table></figure>
-<p>最终还是实现了<code>LLVMFuzzerTestOneInput</code> libfuzzer 的入口方法，使用 macro 可以少写不少代码非常方便，从这里就可以看出 fuzz 的<br>target function 必须和 <code>LLVMFuzzerTestOneInput</code> 的参数类型一致</p>
+<p>最终还是实现了<code>LLVMFuzzerTestOneInput</code> libfuzzer 的入口方法，使用 macro 可以少写不少代码非常方便，从这里就可以看出 fuzz 的 target function 必须和 <code>LLVMFuzzerTestOneInput</code> 的参数类型一致</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// fuzz_target.cc</span></span><br><span class="line"><span class="keyword">extern</span> <span class="string">&quot;C&quot;</span> <span class="type">int</span> <span class="title function_">LLVMFuzzerTestOneInput</span><span class="params">(<span class="type">const</span> <span class="type">uint8_t</span> *Data, <span class="type">size_t</span> Size)</span> &#123;</span><br><span class="line">  DoSomethingInterestingWithMyAPI(Data, Size);</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;  <span class="comment">// Non-zero return values are reserved for future use.</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>libfuzzer_macro.cc</p>
