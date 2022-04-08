@@ -398,7 +398,7 @@
   </url>
   
   <url>
-    <loc>http://usmacd.com/2020/03/19/compile_android_source_code/</loc>
+    <loc>http://usmacd.com/2020/03/19/cve-2012-3137/</loc>
     
     <lastmod>2020-03-19</lastmod>
     
@@ -407,7 +407,7 @@
   </url>
   
   <url>
-    <loc>http://usmacd.com/2020/03/19/cve-2012-3137/</loc>
+    <loc>http://usmacd.com/2020/03/19/compile_android_source_code/</loc>
     
     <lastmod>2020-03-19</lastmod>
     
@@ -515,13 +515,6 @@
 
   
   <url>
-    <loc>http://usmacd.com/tags/Life/</loc>
-    <lastmod>2022-04-08</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>http://usmacd.com/tags/linux/</loc>
     <lastmod>2022-04-08</lastmod>
     <changefreq>weekly</changefreq>
@@ -530,6 +523,13 @@
   
   <url>
     <loc>http://usmacd.com/tags/Crack/</loc>
+    <lastmod>2022-04-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://usmacd.com/tags/Life/</loc>
     <lastmod>2022-04-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
