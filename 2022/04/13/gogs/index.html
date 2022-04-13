@@ -23,25 +23,25 @@
     <meta name="description" content="gogs 使用了也有一年多了，小团队使用基本还行。有几个问题，第一界面代码 merge 有问题，第二不支持代码 review，如果能解决上面两个问题就好用很多了。下面两段是年前折腾 gogs 的记录，没有啥技术含量，只是做个备份。 切换皮肤https:&#x2F;&#x2F;github.com&#x2F;Kos-M&#x2F;GogsThemes 提供了两款皮肤，文中给出的方法要修改 gogs 配置，直接使用 TamperMonkey">
 <meta property="og:type" content="article">
 <meta property="og:title" content="gogs 皮肤和源码升级">
-<meta property="og:url" content="http://usmacd.com/2022/02/21/gogs/index.html">
+<meta property="og:url" content="http://usmacd.com/2022/04/13/gogs/index.html">
 <meta property="og:site_name" content="安全代码">
 <meta property="og:description" content="gogs 使用了也有一年多了，小团队使用基本还行。有几个问题，第一界面代码 merge 有问题，第二不支持代码 review，如果能解决上面两个问题就好用很多了。下面两段是年前折腾 gogs 的记录，没有啥技术含量，只是做个备份。 切换皮肤https:&#x2F;&#x2F;github.com&#x2F;Kos-M&#x2F;GogsThemes 提供了两款皮肤，文中给出的方法要修改 gogs 配置，直接使用 TamperMonkey">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://github.com/henices/pictures/raw/master/gogs0.png">
 <meta property="og:image" content="https://github.com/henices/pictures/raw/master/gogs1.png">
-<meta property="article:published_time" content="2022-02-21T04:09:29.975Z">
-<meta property="article:modified_time" content="2022-02-21T04:09:29.975Z">
+<meta property="article:published_time" content="2022-04-13T03:21:39.541Z">
+<meta property="article:modified_time" content="2022-04-13T03:21:39.541Z">
 <meta property="article:author" content="henices">
 <meta property="article:tag" content="Programming">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://github.com/henices/pictures/raw/master/gogs0.png">
 
 
-<link rel="canonical" href="http://usmacd.com/2022/02/21/gogs/">
+<link rel="canonical" href="http://usmacd.com/2022/04/13/gogs/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://usmacd.com/2022/02/21/gogs/","path":"2022/02/21/gogs/","title":"gogs 皮肤和源码升级"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://usmacd.com/2022/04/13/gogs/","path":"2022/04/13/gogs/","title":"gogs 皮肤和源码升级"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
 <title>gogs 皮肤和源码升级 | 安全代码</title>
@@ -218,7 +218,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://usmacd.com/2022/02/21/gogs/">
+    <link itemprop="mainEntityOfPage" href="http://usmacd.com/2022/04/13/gogs/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -247,7 +247,7 @@
       </span>
       <span class="post-meta-item-text">Posted on</span>
 
-      <time title="Created: 2022-02-21 12:09:29" itemprop="dateCreated datePublished" datetime="2022-02-21T12:09:29+08:00">2022-02-21</time>
+      <time title="Created: 2022-04-13 11:21:39" itemprop="dateCreated datePublished" datetime="2022-04-13T11:21:39+08:00">2022-04-13</time>
     </span>
 
   
@@ -262,7 +262,7 @@
     <div class="post-body" itemprop="articleBody">
         <p>gogs 使用了也有一年多了，小团队使用基本还行。有几个问题，第一界面代码 merge 有问题，第二不支持代码 review，<br>如果能解决上面两个问题就好用很多了。下面两段是年前折腾 gogs 的记录，没有啥技术含量，只是做个备份。</p>
 <h2 id="切换皮肤"><a href="#切换皮肤" class="headerlink" title="切换皮肤"></a>切换皮肤</h2><p><a target="_blank" rel="noopener" href="https://github.com/Kos-M/GogsThemes">https://github.com/Kos-M/GogsThemes</a> 提供了两款皮肤，文中给出的方法要修改 gogs 配置，直接使用 TamperMonkey 就可以了。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ==UserScript==</span></span><br><span class="line"><span class="comment">// @name         Gogs Theme</span></span><br><span class="line"><span class="comment">// @resource     IMPORTED_CSS https://raw.githubusercontent.com/Kos-M/GogsThemes/master/themes/dark_theme.css</span></span><br><span class="line"><span class="comment">// @namespace    http://tampermonkey.net/</span></span><br><span class="line"><span class="comment">// @version      0.1</span></span><br><span class="line"><span class="comment">// @description  try to take over the world!</span></span><br><span class="line"><span class="comment">// @author       You</span></span><br><span class="line"><span class="comment">// @match        http://gogs.fuzzplat.intra.nsfocus.com:8000/*</span></span><br><span class="line"><span class="comment">// @grant        GM_getResourceText</span></span><br><span class="line"><span class="comment">// @grant        GM_addStyle</span></span><br><span class="line"><span class="comment">// ==/UserScript==</span></span><br><span class="line"></span><br><span class="line">(<span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="string">&#x27;use strict&#x27;</span>;</span><br><span class="line">    <span class="keyword">const</span> my_css = <span class="title function_">GM_getResourceText</span>(<span class="string">&quot;IMPORTED_CSS&quot;</span>);</span><br><span class="line">    <span class="title function_">GM_addStyle</span>(my_css);</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ==UserScript==</span></span><br><span class="line"><span class="comment">// @name         Gogs Theme</span></span><br><span class="line"><span class="comment">// @resource     IMPORTED_CSS https://raw.githubusercontent.com/Kos-M/GogsThemes/master/themes/dark_theme.css</span></span><br><span class="line"><span class="comment">// @namespace    http://tampermonkey.net/</span></span><br><span class="line"><span class="comment">// @version      0.1</span></span><br><span class="line"><span class="comment">// @description  try to take over the world!</span></span><br><span class="line"><span class="comment">// @author       You</span></span><br><span class="line"><span class="comment">// @match        http://website:8000/*</span></span><br><span class="line"><span class="comment">// @grant        GM_getResourceText</span></span><br><span class="line"><span class="comment">// @grant        GM_addStyle</span></span><br><span class="line"><span class="comment">// ==/UserScript==</span></span><br><span class="line"></span><br><span class="line">(<span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="string">&#x27;use strict&#x27;</span>;</span><br><span class="line">    <span class="keyword">const</span> my_css = <span class="title function_">GM_getResourceText</span>(<span class="string">&quot;IMPORTED_CSS&quot;</span>);</span><br><span class="line">    <span class="title function_">GM_addStyle</span>(my_css);</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure>
 
 <p>使用后效果图</p>
 <p><img src="https://github.com/henices/pictures/raw/master/gogs0.png"></p>
@@ -298,14 +298,11 @@
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2021/12/24/stock_experience/" rel="prev" title="个人炒股经历">
-                  <i class="fa fa-chevron-left"></i> 个人炒股经历
+                <a href="/2022/04/08/libprotobuf-mutator/" rel="prev" title="libprotobuf-mutator 简单分析">
+                  <i class="fa fa-chevron-left"></i> libprotobuf-mutator 简单分析
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2022/02/21/logseq/" rel="next" title="logseq 试用报告">
-                  logseq 试用报告 <i class="fa fa-chevron-right"></i>
-                </a>
             </div>
           </div>
     </footer>
