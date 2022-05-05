@@ -6,7 +6,7 @@
   <link href="http://usmacd.com/atom.xml" rel="self"/>
   
   <link href="http://usmacd.com/"/>
-  <updated>2022-04-13T03:21:39.541Z</updated>
+  <updated>2022-05-05T08:41:29.835Z</updated>
   <id>http://usmacd.com/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Keynote - How Do You Actually Find Bugs?</title>
+    <link href="http://usmacd.com/2022/05/05/How_do_you_actually_find_bugs/"/>
+    <id>http://usmacd.com/2022/05/05/How_do_you_actually_find_bugs/</id>
+    <published>2022-05-05T08:41:29.835Z</published>
+    <updated>2022-05-05T08:41:29.835Z</updated>
+    
+    <content type="html"><![CDATA[<ul><li>Temperament<ul><li>Curiosity</li><li>Detail-oriented</li><li>Ability to deal with failure and continual evidence that you’re wrong</li></ul></li><li>Learn how to deal with failure<ul><li>Two projects (can be unrealeted, or different parts of the same)<ul><li>Learn to recognize whe you have hit a wall and have become unproductive</li><li>Switch to your secondary project</li></ul></li><li>Consider having a development project as your seconary project<ul><li>Do an achiveable, measurable task</li><li>Regain a sense of achievement</li></ul></li></ul></li><li>Moving on - Knowning when to quit<ul><li>You will return it in the future</li></ul></li><li>Motivation - Remaining Enager<ul><li>The more you’re curious about how a technology works or how an algorithm achives its goal, the less monotonous code review is</li></ul></li><li>Motivation - bug patching<ul><li>bugs being patched is frustrating<ul><li>… but they are evidence that you were on the right track!</li></ul></li></ul></li><li>Confidence<ul><li>Research is a daunting filed to enter</li><li>Some security reseacher you respect had the same self-doubt coming in, and have recurrences from time to time</li><li>Growth mindset: “I can’t do that … Yet”</li></ul></li><li>Bias and assumptions<ul><li>Common code reviewer biases<ul><li>Everyone has looked at the already (many eyes make all bugs shallow)</li><li>Even if I found something, it will be unexploitable (Server side)</li><li>The X attack surface is not interesting now (eg, media parsing in browsers)</li><li>There are no more bugs in this</li><li>The protocol doesn’t allow you to do X</li></ul></li></ul></li><li>Auditing Process<ul><li>Understanding the code</li><li>Documenting your findings</li><li>Identifying bias</li><li>Tooling</li><li>Revisit the code base</li><li>Analyze failures</li></ul></li><li>Attampt to understand the code<ul><li>A lot of people try to short-circuit this process<ul><li>Reliance on tools</li><li>Fuzzers&#x2F;static analyzers are a guide, not the whole process</li></ul></li><li>Many of today’s vulnerabilities are complex, and require in-depth understanding of the codebase</li><li>The more you understand about how the program works, the better equipped you are to find bugs ( and exploit them)</li><li>The best way to understand how something works is to explain to someone else</li></ul></li><li>What I’m looking for<ul><li>software risk &#x3D; available attack surface * complexity</li><li>attack surface can be indirect<ul><li>even mitigations are attack surface</li></ul></li><li>often you initial perception of attack surface is naive<ul><li>Hidden&#x2F;non-obvious attack surfaces are the best</li></ul></li><li>Complexity is plentiful<ul><li>Feature driven (thanks w3c)</li><li>Legacy support</li><li>Often avoidable: the anomaly of cheap complexity</li></ul></li></ul></li><li>Borrwoing ideas<ul><li>Bugtracker &#x2F; Diffs<ul><li>Can show where a bug is</li><li>Can inspire new ideas: variants, same bugs in other codebase</li><li>Mean but viable: track commits by error-prone developers</li></ul></li><li>Comments in the codebase<ul><li>Descripbe things I’d never thought of</li></ul></li></ul></li><li>Document your findings<ul><li>Get into the habit of documenting<ul><li>ideas, bugs candidates, idiosyncrasies, data structure, algorithms</li></ul></li><li>Documenting failed ideas is as important as documenting successful ones<ul><li>avoids repeating thie idea sometime later</li></ul></li><li>Long term view: I’m going to revisit this later</li></ul></li><li>Revisit code bases and failed bugs<ul><li>code bases are not static<ul><li>coee rewritten</li><li>Features added&#x2F;changed</li></ul></li><li>Environment is not static</li></ul></li><li>Analyze your failures<ul><li>if someone succeeds where you didn’t, have a look at what they found</li><li>Try to figure out: why did I miss it?</li><li>Is this a one-off or teachable trick&#x2F;blind spot</li><li>Can you improve on that?</li><li>Is there a pattern in those falures?</li><li>Failures is an oppotunity to learn</li></ul></li></ul>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;ul&gt;
+&lt;li&gt;Temperament&lt;ul&gt;
+&lt;li&gt;Curiosity&lt;/li&gt;
+&lt;li&gt;Detail-oriented&lt;/li&gt;
+&lt;li&gt;Ability to deal with failure and continual evidence that you’re wro</summary>
+      
+    
+    
+    
+    
+    <category term="Security" scheme="http://usmacd.com/tags/Security/"/>
+    
+  </entry>
   
   <entry>
     <title>gogs 皮肤和源码升级</title>
@@ -459,31 +485,6 @@
     
     
     <category term="investment" scheme="http://usmacd.com/tags/investment/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>紫竹桥附近看病情况</title>
-    <link href="http://usmacd.com/2021/06/28/304/"/>
-    <id>http://usmacd.com/2021/06/28/304/</id>
-    <published>2021-06-28T05:26:53.143Z</published>
-    <updated>2021-06-28T05:26:53.143Z</updated>
-    
-    <content type="html"><![CDATA[<p>作为一个长期在帝都紫竹桥混吃的中年大叔，经常遇到需要看病的情况，主要需求有两个 （大人看病，小孩看病）。</p><p>总结附近医院情况，个人理解，供参考：</p><p>466:</p><p>缺点：没有儿科，巨贵，感觉医生喜欢过度治疗，据说一些科室已被私人承包，媳妇和自己都被坑过。<br>优点：离紫竹桥距离近，三甲，人通常比较少，小病，偷懒的时候可以过去。据说牙科不错，但是我没有去过。</p><p>304:</p><p>缺点：信息化程度相对较弱，但是看病流程梳理得不错。<br>优点：三甲，有儿科，对小儿看病有一定优待。医生水平不错，小孩在这看过几次，治疗效果不错。</p><p>现在304 改名为 解放军总医院第四医学中心，儿科的实力比以往有较大提升。</p><p>四季青：</p><p>缺点：二级医院，儿科有的医生感觉不太专业。<br>优点：挂号方便，有儿科，医院较大。</p><p>北方医院：</p><p>缺点：二级医院， 医院较小。<br>优点：离紫竹桥距离近，有保健科，小孩打预防针不错。</p><p>空总：</p><p>在这个医院多个科室看过病，家人还在这做过微创手术。</p><p>缺点：挂号有点难，人多，儿科水平一般。<br>优点：三甲，皮肤科北京有名，各科室水平比较均衡。信息化程度高，看病挺方便。</p><p>海总：</p><p>这个医院我没有去过，距离稍远。</p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;作为一个长期在帝都紫竹桥混吃的中年大叔，经常遇到需要看病的情况，主要需求有两个 （大人看病，小孩看病）。&lt;/p&gt;
-&lt;p&gt;总结附近医院情况，个人理解，供参考：&lt;/p&gt;
-&lt;p&gt;466:&lt;/p&gt;
-&lt;p&gt;缺点：没有儿科，巨贵，感觉医生喜欢过度治疗，据说一些科室已被私人承包，媳妇和自</summary>
-      
-    
-    
-    
-    
-    <category term="Life" scheme="http://usmacd.com/tags/Life/"/>
     
   </entry>
   

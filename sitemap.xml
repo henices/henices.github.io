@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://usmacd.com/2022/05/05/How_do_you_actually_find_bugs/</loc>
+    
+    <lastmod>2022-05-05</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>http://usmacd.com/2022/04/13/gogs/</loc>
     
     <lastmod>2022-04-13</lastmod>
@@ -557,14 +566,14 @@
   </url>
   
   <url>
-    <loc>http://usmacd.com/tags/investment/</loc>
+    <loc>http://usmacd.com/tags/windows/</loc>
     <lastmod>2022-05-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>http://usmacd.com/tags/windows/</loc>
+    <loc>http://usmacd.com/tags/investment/</loc>
     <lastmod>2022-05-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
