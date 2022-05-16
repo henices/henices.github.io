@@ -232,7 +232,7 @@
       </span>
       <span class="post-meta-item-text">Posted on</span>
 
-      <time title="Created: 2022-05-16 16:38:22" itemprop="dateCreated datePublished" datetime="2022-05-16T16:38:22+08:00">2022-05-16</time>
+      <time title="Created: 2022-05-16 16:40:35" itemprop="dateCreated datePublished" datetime="2022-05-16T16:40:35+08:00">2022-05-16</time>
     </span>
 
   
@@ -258,7 +258,7 @@
 
 <p>可是仔细一琢磨， Fedora 35 Nvida 驱动不是工作正常吗，可以上去看看用的是哪个版本的驱动，执行命令 <code>nvidia-settings</code>,在 System Information 中发现使用的就是最新版本的驱动 <strong>510.68.02</strong>，看样子最新版本的驱动也没有问题，一下陷入了困境。😰</p>
 <p>没啥好办法，还是 Google 搜索一下，结果发现了一个链接在讨论这个问题，和我遇上的现象一样，作者最终解决了问题<br><a target="_blank" rel="noopener" href="https://ask.fedoraproject.org/t/fedora-linux-kernel-update-breaks-nvidia-driver/21954/11">Fedora Linux kernel update breaks NVIDIA driver</a></p>
-<p>原来是旧版的驱动没有卸载干净，根据 rpmfusion.org 的文档，<a target="_blank" rel="noopener" href="https://rpmfusion.org/Howto/NVIDIA#Uninstall_the_NVIDIA_driver">https://rpmfusion.org/Howto/NVIDIA#Uninstall_the_NVIDIA_driver</a> 驱动卸载 Nvidia 驱动需要使用命令 <code>dnf remove xorg-x11-drv-nvidia\*</code></p>
+<p>原来是旧版的驱动没有卸载干净，根据 rpmfusion.org 的文档 <a target="_blank" rel="noopener" href="https://rpmfusion.org/Howto/NVIDIA#Uninstall_the_NVIDIA_driver">https://rpmfusion.org/Howto/NVIDIA#Uninstall_the_NVIDIA_driver</a><br>驱动卸载 Nvidia 驱动需要使用命令 <code>dnf remove xorg-x11-drv-nvidia\*</code></p>
 <p>按照下面的命令操作了一遍，重启系统，熟悉的登录界面终于又出现了。😄</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sudo dnf remove xorg-x11-drv-nouveau</span><br><span class="line">sudo dnf remove xorg-x11-drv-nvidia\*</span><br><span class="line">sudo dnf install xorg-x11-drv-nvidia akmod-nvidia kmod-nvidia.x86_64</span><br><span class="line">sudo reboot</span><br></pre></td></tr></table></figure>
 
