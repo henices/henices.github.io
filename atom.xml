@@ -6,7 +6,7 @@
   <link href="http://usmacd.com/atom.xml" rel="self"/>
   
   <link href="http://usmacd.com/"/>
-  <updated>2022-05-16T08:58:37.938Z</updated>
+  <updated>2022-06-08T01:36:46.456Z</updated>
   <id>http://usmacd.com/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>关于定投的一些思考</title>
+    <link href="http://usmacd.com/2022/06/08/Automatic_Investment_Plan/"/>
+    <id>http://usmacd.com/2022/06/08/Automatic_Investment_Plan/</id>
+    <published>2022-06-08T01:36:46.456Z</published>
+    <updated>2022-06-08T01:36:46.456Z</updated>
+    
+    <content type="html"><![CDATA[<ul><li>定投只有在低估的时候买，当估值进入中位数以上就不要买了，同时定投标的的估值应该在历史底部区域。</li><li>定投的本质不是价值投资，而是相信估值回归中位数。 </li><li>周期性行业适合定投，比如券商，钢铁，煤炭。一般按时间定投，如果大幅下跌也要买。</li></ul>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;ul&gt;
+&lt;li&gt;定投只有在低估的时候买，当估值进入中位数以上就不要买了，同时定投标的的估值应该在历史底部区域。&lt;/li&gt;
+&lt;li&gt;定投的本质不是价值投资，而是相信估值回归中位数。 &lt;/li&gt;
+&lt;li&gt;周期性行业适合定投，比如券商，钢铁，煤炭。一般按时间定投，如果大幅下跌也要买。</summary>
+      
+    
+    
+    
+    
+    <category term="investment" scheme="http://usmacd.com/tags/investment/"/>
+    
+  </entry>
   
   <entry>
     <title>升级 Fedora 36，遇上 Nvidia 驱动问题</title>
@@ -454,31 +479,6 @@
     
     
     <category term="linux" scheme="http://usmacd.com/tags/linux/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>恢复 Android App 的截屏功能</title>
-    <link href="http://usmacd.com/2021/07/20/disable_security_flags/"/>
-    <id>http://usmacd.com/2021/07/20/disable_security_flags/</id>
-    <published>2021-07-20T08:34:48.860Z</published>
-    <updated>2021-07-20T08:34:48.860Z</updated>
-    
-    <content type="html"><![CDATA[<p>今天遇上某 App 禁止截屏，其实就是使用了下面这段代码</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">getWindow().setFlags(LayoutParams.FLAG_SECURE, LayoutParams.FLAG_SECURE);</span><br></pre></td></tr></table></figure><p>使用 frida 脚本可以绕过绕过这个限制 （使用 frida 需要将手机 root）。</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="title class_">Java</span>.<span class="title function_">perform</span>(<span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">   <span class="comment">// https://developer.android.com/reference/android/view/WindowManager.LayoutParams.html#FLAG_SECURE</span></span><br><span class="line">   <span class="keyword">var</span> <span class="variable constant_">FLAG_SECURE</span> = <span class="number">0x2000</span>;</span><br><span class="line">   <span class="keyword">var</span> <span class="title class_">Window</span> = <span class="title class_">Java</span>.<span class="title function_">use</span>(<span class="string">&quot;android.view.Window&quot;</span>);</span><br><span class="line">   <span class="keyword">var</span> setFlags = <span class="title class_">Window</span>.<span class="property">setFlags</span>;  <span class="comment">//.overload(&quot;int&quot;, &quot;int&quot;)</span></span><br><span class="line"></span><br><span class="line">   setFlags.<span class="property">implementation</span> = <span class="keyword">function</span> (<span class="params">flags, mask</span>) &#123;</span><br><span class="line">       <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;Disabling FLAG_SECURE...&quot;</span>);</span><br><span class="line">       flags &amp;= ~<span class="variable constant_">FLAG_SECURE</span>;</span><br><span class="line">       setFlags.<span class="title function_">call</span>(<span class="variable language_">this</span>, flags, mask);</span><br><span class="line">       <span class="comment">// Since setFlags returns void, we don&#x27;t need to return anything</span></span><br><span class="line">   &#125;;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure><p>执行 frida 命令 <code>frida -U -l disable.js -n com.apps.android --no-pause</code></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">$ frida -U -l disable.js -n com.apps.android --no-pause</span><br><span class="line"></span><br><span class="line">[Pixel 2::com.apps.android]-&gt;</span><br><span class="line">[Pixel 2::com.apps.android]-&gt;</span><br><span class="line">[Pixel 2::com.apps.android]-&gt; Disabling FLAG_SECURE...</span><br><span class="line">Disabling FLAG_SECURE...</span><br><span class="line">Disabling FLAG_SECURE...</span><br><span class="line">Disabling FLAG_SECURE...</span><br><span class="line">Disabling FLAG_SECURE...</span><br><span class="line">Disabling FLAG_SECURE...</span><br><span class="line">Disabling FLAG_SECURE...</span><br><span class="line">Disabling FLAG_SECURE...</span><br><span class="line">Disabling FLAG_SECURE...</span><br><span class="line">Disabling FLAG_SECURE...</span><br></pre></td></tr></table></figure><p>值得注意的是，这里使用了 <code>-n</code> 参数， attach 到目标进程，要不 App 会自动重启。看到输出调试信息后，<br>就可以正常截屏了。</p><h3 id="使用-objection"><a href="#使用-objection" class="headerlink" title="使用 objection"></a>使用 objection</h3><p>objection「2」有此功能，执行下面命令即可： <code>android ui FLAG_SECURE false</code>  但是我测试失败了。</p><h3 id="截屏小技巧-（lzx）"><a href="#截屏小技巧-（lzx）" class="headerlink" title="截屏小技巧 （lzx）"></a>截屏小技巧 （lzx）</h3><p>Android 截屏，可以使用一个快速的技巧  <code>adb exec-out screencap -p &gt; test.png</code></p><h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><ul><li>[1] <a href="https://bhamza.me/2019/11/03/Android-Frida-hooking-disabling-FLAG-SECURE.html">https://bhamza.me/2019/11/03/Android-Frida-hooking-disabling-FLAG-SECURE.html</a></li><li>[2] <a href="https://github.com/sensepost/objection">https://github.com/sensepost/objection</a></li></ul>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;今天遇上某 App 禁止截屏，其实就是使用了下面这段代码&lt;/p&gt;
-&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;</summary>
-      
-    
-    
-    
-    
-    <category term="Android" scheme="http://usmacd.com/tags/Android/"/>
-    
-    <category term="Security" scheme="http://usmacd.com/tags/Security/"/>
     
   </entry>
   
