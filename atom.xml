@@ -6,7 +6,7 @@
   <link href="http://usmacd.com/atom.xml" rel="self"/>
   
   <link href="http://usmacd.com/"/>
-  <updated>2022-06-30T01:45:31.689Z</updated>
+  <updated>2022-06-30T01:59:36.888Z</updated>
   <id>http://usmacd.com/</id>
   
   <author>
@@ -20,23 +20,23 @@
     <title>市场情绪指标</title>
     <link href="http://usmacd.com/2022/06/30/stock_emotion/"/>
     <id>http://usmacd.com/2022/06/30/stock_emotion/</id>
-    <published>2022-06-30T01:45:31.689Z</published>
-    <updated>2022-06-30T01:45:31.689Z</updated>
+    <published>2022-06-30T01:59:36.888Z</published>
+    <updated>2022-06-30T01:59:36.888Z</updated>
     
-    <content type="html"><![CDATA[<ul><li>涨&#x2F;跌停板数</li><li>涨停封版成功率</li><li>涨跌股票比率</li><li>大盘成交量额</li><li>融资余额情况</li><li>北向资金净流入 （参考）</li></ul><p>可以量化一下，有时间考虑程序实现。</p>]]></content>
+    <content type="html"><![CDATA[<p>可以量化一下，有时间考虑程序实现。</p><ul><li>涨&#x2F;跌停板数</li><li>涨停封版成功率</li><li>涨跌股票比率</li><li>大盘成交量额</li><li>融资余额情况</li><li>北向资金净流入 （参考）</li></ul>]]></content>
     
     
       
       
-    <summary type="html">&lt;ul&gt;
+    <summary type="html">&lt;p&gt;可以量化一下，有时间考虑程序实现。&lt;/p&gt;
+&lt;ul&gt;
 &lt;li&gt;涨&amp;#x2F;跌停板数&lt;/li&gt;
 &lt;li&gt;涨停封版成功率&lt;/li&gt;
 &lt;li&gt;涨跌股票比率&lt;/li&gt;
 &lt;li&gt;大盘成交量额&lt;/li&gt;
 &lt;li&gt;融资余额情况&lt;/li&gt;
 &lt;li&gt;北向资金净流入 （参考）&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;可以量化一下，有时间考虑程序实现。&lt;</summary>
+&lt;/</summary>
       
     
     
@@ -321,9 +321,9 @@
     
     
     
-    <category term="Security" scheme="http://usmacd.com/tags/Security/"/>
-    
     <category term="Android" scheme="http://usmacd.com/tags/Android/"/>
+    
+    <category term="Security" scheme="http://usmacd.com/tags/Security/"/>
     
   </entry>
   
@@ -412,9 +412,9 @@
     
     
     
-    <category term="Security" scheme="http://usmacd.com/tags/Security/"/>
-    
     <category term="Android" scheme="http://usmacd.com/tags/Android/"/>
+    
+    <category term="Security" scheme="http://usmacd.com/tags/Security/"/>
     
   </entry>
   
