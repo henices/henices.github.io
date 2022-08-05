@@ -27,18 +27,15 @@
 <meta property="og:site_name" content="安全代码">
 <meta property="og:description" content="1. IntroductionHypervisor was known as hard target to fuzz over several years. Even though, lots of prior pioneers( Peter Hlavaty, Chaitin Tech, StarLabs, Peleg Hadar and Ophir Harpaz and many others">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://usmacd.com/assets/images/wtf-vbox-blahblah1.png">
-<meta property="og:image" content="http://usmacd.com/assets/images/wtf-vbox-blahblah2.png">
-<meta property="og:image" content="http://usmacd.com/assets/images/wtf-vbox-blahblah3.png">
+<meta property="og:image" content="https://github.com/henices/pictures/raw/master/wtf-vbox-blahblah1.png">
+<meta property="og:image" content="https://github.com/henices/pictures/raw/master/wtf-vbox-blahblah2.png">
+<meta property="og:image" content="https://github.com/henices/pictures/raw/master/wtf-vbox-blahblah3.png">
 <meta property="article:published_time" content="2022-07-21T08:00:00.000Z">
 <meta property="article:modified_time" content="2022-07-21T08:00:00.000Z">
 <meta property="article:author" content="henices">
-<meta property="article:tag" content="Hypervisor">
-<meta property="article:tag" content="Fuzzing">
-<meta property="article:tag" content="Snapshot Fuzzing">
-<meta property="article:tag" content="VirtualBox">
+<meta property="article:tag" content="Archives">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://usmacd.com/assets/images/wtf-vbox-blahblah1.png">
+<meta name="twitter:image" content="https://github.com/henices/pictures/raw/master/wtf-vbox-blahblah1.png">
 
 
 <link rel="canonical" href="http://usmacd.com/2022/07/21/2022-07-21-When-Hypervisor-Met-Snapshot-Fuzzing/">
@@ -143,13 +140,9 @@
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
-      <div class="site-state-item site-state-categories">
-        <span class="site-state-item-count">1</span>
-        <span class="site-state-item-name">categories</span>
-      </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-count">12</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -249,15 +242,6 @@
 
       <time title="Created: 2022-07-21 16:00:00" itemprop="dateCreated datePublished" datetime="2022-07-21T16:00:00+08:00">2022-07-21</time>
     </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/blog/" itemprop="url" rel="index"><span itemprop="name">blog</span></a>
-        </span>
-    </span>
 
   
 </div>
@@ -278,7 +262,7 @@
 <p>SVGA is something like “<a target="_blank" rel="noopener" href="https://www.zerodayinitiative.com/blog/2021/1/6/mindshare-analysis-of-vmware-workstation-and-esxi-using-debug-symbols-from-flings">JavaScript of hypervisors</a>“. Because of its complex nature, many hypervisor bugs are oriented by SVGA. And that’s the reason why I choose it as a first target.</p>
 <p>VirtualBox have a function called <a target="_blank" rel="noopener" href="https://github.com/mdaniel/virtualbox-org-svn-vbox-trunk/blob/8fe9163/src/VBox/Devices/Graphics/DevVGA-SVGA.cpp#L4505">vmsvgaR3FifoLoop</a>. It <a target="_blank" rel="noopener" href="https://github.com/mdaniel/virtualbox-org-svn-vbox-trunk/blob/8fe9163/src/VBox/Devices/Graphics/DevVGA-SVGA.cpp#L4757">waits</a> until guest submit new command data through GPA. So this is a good spot( or should I call it <a target="_blank" rel="noopener" href="https://youtu.be/ZaOtY4i5w_U">source</a>? ) to take a snapshot.</p>
 <p>I set a breakpoint on <code>vmsvgaR3FifoLoop+4E2</code> to take snapshot. It is same position as <a target="_blank" rel="noopener" href="https://github.com/mdaniel/virtualbox-org-svn-vbox-trunk/blob/8fe9163/src/VBox/Devices/Graphics/DevVGA-SVGA.cpp#L4783">here</a>, start of switch-case routine for <a target="_blank" rel="noopener" href="https://github.com/mdaniel/virtualbox-org-svn-vbox-trunk/blob/8fe9163eabe8b7a7f14f29c88c13a458f38fe25e/src/VBox/Devices/Graphics/vmsvga_include/svga_reg.h#L152">SVGA</a> and <a target="_blank" rel="noopener" href="https://github.com/mdaniel/virtualbox-org-svn-vbox-trunk/blob/8fe9163eabe8b7a7f14f29c88c13a458f38fe25e/src/VBox/Additions/3D/mesa/mesa-17.3.9/src/gallium/drivers/svga/include/svga3d_cmd.h#L56">SVGA3D</a> command.</p>
-<p><img src="/assets/images/wtf-vbox-blahblah1.png" alt="blahblah1"></p>
+<p><img src="https://github.com/henices/pictures/raw/master/wtf-vbox-blahblah1.png" alt="blahblah1"></p>
 <p>After creating snapshot, I had to decide make it <a target="_blank" rel="noopener" href="https://github.com/0vercl0k/wtf/blob/main/src/wtf/fuzzer_tlv_server.cc">run multiple times in single execution</a> or <a target="_blank" rel="noopener" href="https://github.com/0vercl0k/wtf/blob/main/src/wtf/fuzzer_hevd.cc">not</a>. Because SVGA is consist of various commands like define, update, delete something…, I thought fuzz campaign must handle multiple SVGA commands during single round.</p>
 <p>First, I had to define structure to contains multiple testcases. Luckily, <a target="_blank" rel="noopener" href="https://twitter.com/0vercl0k">0vercl0k</a> already write <a target="_blank" rel="noopener" href="https://github.com/0vercl0k/wtf/blob/4a9bf55/src/wtf/fuzzer_tlv_server.cc#L24-L75">nice example</a> to doing that. So I did same thing as below.</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">define</span> SVGA_CMD_BODY_MAX 0xA000</span></span><br><span class="line"></span><br><span class="line"><span class="type">const</span> <span class="type">uint32_t</span> SvgaCmdList[] = &#123;<span class="number">1</span>, <span class="number">3</span>, <span class="number">19</span>, <span class="number">22</span>, <span class="number">25</span>, <span class="number">29</span>, <span class="number">30</span>, <span class="number">33</span>, <span class="number">34</span>, <span class="number">35</span>, <span class="number">36</span>, <span class="number">37</span>, <span class="number">38</span>, <span class="number">39</span>, <span class="number">40</span>, <span class="number">41</span>, <span class="number">42</span>, <span class="number">1040</span>, <span class="number">1041</span>, <span class="number">1042</span>, <span class="number">1043</span>, <span class="number">1044</span>, <span class="number">1046</span>, <span class="number">1047</span>, <span class="number">1048</span>, <span class="number">1049</span>, <span class="number">1050</span>, <span class="number">1051</span>, <span class="number">1052</span>, <span class="number">1053</span>, <span class="number">1054</span>, <span class="number">1055</span>, <span class="number">1056</span>, <span class="number">1057</span>, <span class="number">1058</span>, <span class="number">1059</span>, <span class="number">1060</span>, <span class="number">1061</span>, <span class="number">1062</span>, <span class="number">1063</span>, <span class="number">1064</span>, <span class="number">1065</span>, <span class="number">1066</span>, <span class="number">1067</span>, <span class="number">1068</span>, <span class="number">1069</span>, <span class="number">1070</span>, <span class="number">1071</span>, <span class="number">1072</span>, <span class="number">1073</span>, <span class="number">1074</span>, <span class="number">1075</span>, <span class="number">1076</span>, <span class="number">1077</span>, <span class="number">1078</span>, <span class="number">1079</span>, <span class="number">1080</span>, <span class="number">1081</span>&#125;;</span><br><span class="line"></span><br><span class="line"><span class="type">const</span> <span class="type">uint32_t</span> SvgaCmdListLen = <span class="number">58</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">SvgaCmd_t</span> &#123;</span><br><span class="line">  <span class="type">uint32_t</span> SvgaCmdCode;</span><br><span class="line">  std::vector&lt;<span class="type">uint8_t</span>&gt; SvgaBody;</span><br><span class="line">  <span class="built_in">NLOHMANN_DEFINE_TYPE_INTRUSIVE</span>(SvgaCmd_t, SvgaCmdCode, SvgaBody);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">SvgaCmds_t</span> &#123;</span><br><span class="line">  std::vector&lt;SvgaCmd_t&gt; SvgaCmds;</span><br><span class="line">  <span class="built_in">NLOHMANN_DEFINE_TYPE_INTRUSIVE</span>(SvgaCmds_t, SvgaCmds);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">struct</span> &#123;</span><br><span class="line">  std::deque&lt;SvgaCmd_t&gt; SvgaCmds;</span><br><span class="line">  CpuState_t Context;</span><br><span class="line">  <span class="type">uint8_t</span> SvgaCmdBody[SVGA_CMD_BODY_MAX];</span><br><span class="line">  <span class="type">uint32_t</span> SvgaCmdBodySize;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="type">void</span> <span class="title">RestoreGprs</span><span class="params">(Backend_t *B)</span> </span>&#123;</span><br><span class="line">    <span class="type">const</span> <span class="keyword">auto</span> &amp;C = Context;</span><br><span class="line">    B-&gt;<span class="built_in">Rsp</span>(C.Rsp);</span><br><span class="line">    B-&gt;<span class="built_in">Rip</span>(C.Rip);</span><br><span class="line">    B-&gt;<span class="built_in">Rax</span>(C.Rax);</span><br><span class="line">    B-&gt;<span class="built_in">Rbx</span>(C.Rbx);</span><br><span class="line">    B-&gt;<span class="built_in">Rcx</span>(C.Rcx);</span><br><span class="line">    B-&gt;<span class="built_in">Rdx</span>(C.Rdx);</span><br><span class="line">    B-&gt;<span class="built_in">Rsi</span>(C.Rsi);</span><br><span class="line">    B-&gt;<span class="built_in">Rdi</span>(C.Rdi);</span><br><span class="line">    B-&gt;<span class="built_in">R8</span>(C.R8);</span><br><span class="line">    B-&gt;<span class="built_in">R9</span>(C.R9);</span><br><span class="line">    B-&gt;<span class="built_in">R10</span>(C.R10);</span><br><span class="line">    B-&gt;<span class="built_in">R11</span>(C.R11);</span><br><span class="line">    B-&gt;<span class="built_in">R12</span>(C.R12);</span><br><span class="line">    B-&gt;<span class="built_in">R13</span>(C.R13);</span><br><span class="line">    B-&gt;<span class="built_in">R14</span>(C.R14);</span><br><span class="line">    B-&gt;<span class="built_in">R15</span>(C.R15);</span><br><span class="line">  &#125;</span><br><span class="line">&#125; GlobalState;</span><br><span class="line"></span><br><span class="line"><span class="function">SvgaCmds_t <span class="title">Deserialize</span><span class="params">(<span class="type">const</span> <span class="type">uint8_t</span> *Buffer, <span class="type">const</span> <span class="type">size_t</span> BufferSize)</span> </span>&#123;</span><br><span class="line">  <span class="type">const</span> <span class="keyword">auto</span> &amp;Root = json::json::<span class="built_in">parse</span>(Buffer, Buffer + BufferSize);</span><br><span class="line">  <span class="keyword">return</span> Root.<span class="built_in">get</span>&lt;SvgaCmds_t&gt;();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">bool</span> <span class="title">InsertTestcase</span><span class="params">(<span class="type">const</span> <span class="type">uint8_t</span> *Buffer, <span class="type">const</span> <span class="type">size_t</span> BufferSize)</span> </span>&#123;</span><br><span class="line">  GlobalState.SvgaCmds.<span class="built_in">clear</span>();</span><br><span class="line"></span><br><span class="line">  <span class="type">const</span> <span class="keyword">auto</span> &amp;Root = <span class="built_in">Deserialize</span>(Buffer, BufferSize);</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">auto</span> SvgaCmd : Root.SvgaCmds) &#123;</span><br><span class="line">    GlobalState.SvgaCmds.<span class="built_in">emplace_back</span>(std::<span class="built_in">move</span>(SvgaCmd));</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -306,9 +290,9 @@
 
 <p>Yep. That’s really everything. I use this fuzz module several hours and it founds interesting crash.</p>
 <h1 id="3-Vulnerability-TL-DR"><a href="#3-Vulnerability-TL-DR" class="headerlink" title="3. Vulnerability( TL;DR )"></a>3. Vulnerability( TL;DR )</h1><p>Crash occurred in <code>vmsvga3dSurfaceCopy</code> function( <strong>PageHeap</strong> needed ).</p>
-<p><img src="/assets/images/wtf-vbox-blahblah2.png" alt="blahblah2"></p>
+<p><img src="https://github.com/henices/pictures/raw/master/wtf-vbox-blahblah2.png" alt="blahblah2"></p>
 <p>This function trying to copy surface data from one to another using surface id and there’s no boundary check between surface, so it become exploitable wildcopy vulnerability in heap memory.</p>
-<p><img src="/assets/images/wtf-vbox-blahblah3.png" alt="spot the bug"></p>
+<p><img src="https://github.com/henices/pictures/raw/master/wtf-vbox-blahblah3.png" alt="spot the bug"></p>
 <p>This vulnerability patched in <a target="_blank" rel="noopener" href="https://www.oracle.com/security-alerts/cpujul2022.html">6.1.36 release</a> at July, 2022.</p>
 <h1 id="4-Conclusion"><a href="#4-Conclusion" class="headerlink" title="4. Conclusion"></a>4. Conclusion</h1><p>I think importance of snapshot fuzzing is, it makes researcher to focus on target itself. </p>
 <p>Unlike other fuzzers based on runtime and DBI are often create (very) unreasonable side effect or need lots of time to create working harness. The concept of snapshot fuzzing makes it possible to reduce this waste of time.</p>
@@ -321,10 +305,7 @@
 
     <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/Hypervisor/" rel="tag"># Hypervisor</a>
-              <a href="/tags/Fuzzing/" rel="tag"># Fuzzing</a>
-              <a href="/tags/Snapshot-Fuzzing/" rel="tag"># Snapshot Fuzzing</a>
-              <a href="/tags/VirtualBox/" rel="tag"># VirtualBox</a>
+              <a href="/tags/Archives/" rel="tag"># Archives</a>
           </div>
 
         

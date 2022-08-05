@@ -574,28 +574,7 @@
   </url>
   
   <url>
-    <loc>http://usmacd.com/tags/Hypervisor/</loc>
-    <lastmod>2022-08-05</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>http://usmacd.com/tags/Fuzzing/</loc>
-    <lastmod>2022-08-05</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>http://usmacd.com/tags/Snapshot-Fuzzing/</loc>
-    <lastmod>2022-08-05</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>http://usmacd.com/tags/VirtualBox/</loc>
+    <loc>http://usmacd.com/tags/Archives/</loc>
     <lastmod>2022-08-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -665,12 +644,5 @@
   </url>
   
 
-  
-  <url>
-    <loc>http://usmacd.com/categories/blog/</loc>
-    <lastmod>2022-08-05</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
   
 </urlset>
