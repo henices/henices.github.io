@@ -11,6 +11,15 @@
   </url>
   
   <url>
+    <loc>http://usmacd.com/2022/07/21/2022-07-21-When-Hypervisor-Met-Snapshot-Fuzzing/</loc>
+    
+    <lastmod>2022-07-21</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>http://usmacd.com/2022/06/30/stock_emotion/</loc>
     
     <lastmod>2022-06-30</lastmod>
@@ -544,7 +553,7 @@
 
   <url>
     <loc>http://usmacd.com/</loc>
-    <lastmod>2022-08-02</lastmod>
+    <lastmod>2022-08-05</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -552,81 +561,116 @@
   
   <url>
     <loc>http://usmacd.com/tags/linux/</loc>
-    <lastmod>2022-08-02</lastmod>
+    <lastmod>2022-08-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://usmacd.com/tags/Crack/</loc>
-    <lastmod>2022-08-02</lastmod>
+    <lastmod>2022-08-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://usmacd.com/tags/Hypervisor/</loc>
+    <lastmod>2022-08-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://usmacd.com/tags/Fuzzing/</loc>
+    <lastmod>2022-08-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://usmacd.com/tags/Snapshot-Fuzzing/</loc>
+    <lastmod>2022-08-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://usmacd.com/tags/VirtualBox/</loc>
+    <lastmod>2022-08-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://usmacd.com/tags/Life/</loc>
-    <lastmod>2022-08-02</lastmod>
+    <lastmod>2022-08-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://usmacd.com/tags/Android/</loc>
-    <lastmod>2022-08-02</lastmod>
+    <lastmod>2022-08-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://usmacd.com/tags/Security/</loc>
-    <lastmod>2022-08-02</lastmod>
+    <lastmod>2022-08-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://usmacd.com/tags/investment/</loc>
-    <lastmod>2022-08-02</lastmod>
+    <lastmod>2022-08-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://usmacd.com/tags/Malware/</loc>
-    <lastmod>2022-08-02</lastmod>
+    <lastmod>2022-08-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://usmacd.com/tags/windows/</loc>
-    <lastmod>2022-08-02</lastmod>
+    <lastmod>2022-08-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://usmacd.com/tags/Programming/</loc>
-    <lastmod>2022-08-02</lastmod>
+    <lastmod>2022-08-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://usmacd.com/tags/Software/</loc>
-    <lastmod>2022-08-02</lastmod>
+    <lastmod>2022-08-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://usmacd.com/tags/vim/</loc>
-    <lastmod>2022-08-02</lastmod>
+    <lastmod>2022-08-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
 
+  
+  <url>
+    <loc>http://usmacd.com/categories/blog/</loc>
+    <lastmod>2022-08-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
   
 </urlset>
