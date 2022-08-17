@@ -253,7 +253,10 @@
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ wine idag.exe</span><br></pre></td></tr></table></figure>
 
 <p>IDA Pro 6.1 成功运行.但是idapython 有些问题需要处理，引起idapython不能正常运行的原因主要有下面两个：</p>
-<h2 id="文件缺失"><a href="#文件缺失" class="headerlink" title="文件缺失"></a>文件缺失</h2><p>大概会报下面错误 <code>err:module:import_dll Library python27.dll (which is needed by L&quot;C:\\ida61\\plugins\\python.plw&quot;) not found</code><br>要解决这个错误，需要从windows下拷贝两个文件过来，这两个文件是 msvcr90.dll，python27.dll</p>
+<h2 id="文件缺失"><a href="#文件缺失" class="headerlink" title="文件缺失"></a>文件缺失</h2><p>大概会报下面错误 </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">err:module:import_dll Library python27.dll (which is needed by L&quot;C:\\ida61\\plugins\\python.plw&quot;) not found</span><br></pre></td></tr></table></figure>
+
+<p>要解决这个错误，需要从windows下拷贝两个文件过来，这两个文件是 msvcr90.dll，python27.dll</p>
 <h2 id="环境变量"><a href="#环境变量" class="headerlink" title="环境变量"></a>环境变量</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ wine idag.exe</span><br></pre></td></tr></table></figure>
 
 <p>会报下面类似错误， ImportError: No module named site，发生这个错误的原因是找不到python安装路径，可以使用unix下的python使用shell命令设置环境变量</p>
