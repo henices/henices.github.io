@@ -560,6 +560,15 @@
   </url>
   
   <url>
+    <loc>http://usmacd.com/2015/09/17/malware_Dyre/</loc>
+    
+    <lastmod>2015-09-16</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>http://usmacd.com/2015/03/10/root_android_emulator/</loc>
     
     <lastmod>2015-03-09</lastmod>
@@ -646,14 +655,14 @@
   </url>
   
   <url>
-    <loc>http://usmacd.com/tags/Life/</loc>
+    <loc>http://usmacd.com/tags/Archives/</loc>
     <lastmod>2022-08-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>http://usmacd.com/tags/Archives/</loc>
+    <loc>http://usmacd.com/tags/Life/</loc>
     <lastmod>2022-08-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>

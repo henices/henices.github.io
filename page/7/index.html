@@ -126,7 +126,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">66</span>
+          <span class="site-state-item-count">67</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -191,6 +191,81 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://usmacd.com/2015/03/10/root_android_emulator/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="henices">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="安全代码">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 安全代码">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2015/03/10/root_android_emulator/" class="post-title-link" itemprop="url">root Android emulator</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2015-03-10 00:00:00" itemprop="dateCreated datePublished" datetime="2015-03-10T00:00:00+08:00">2015-03-10</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>一个的简单的脚本就可以实现自动化root，以下代码在 Android 4.4.2 的 emulator上实验成功。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">sudo ./adb start-server</span><br><span class="line">./adb shell mount -o rw,remount -t yaffs2 /dev/block/mtdblock0 /system</span><br><span class="line">./adb push su /system/xbin/su</span><br><span class="line">./adb install Superuser.apk</span><br><span class="line">./adb shell <span class="built_in">chmod</span> 06755 /system/xbin/su</span><br><span class="line">./adb shell /system/xbin/su -d</span><br></pre></td></tr></table></figure>
+
+<p>其中涉及的二进制文件都可以从 [2] 下载，最关键的步骤是执行su -d，不执行的话SuperSu会报找不到su的二进制文件。</p>
+<p>关于android 的emulator有个特性，&#x2F;system 下的所有更改在下次重启时会丢失。解决这个问题的方法有很多种，最简单的方法是从tmp目录下拷贝emulator-xxx 文件到avd目录。avd目录默认在 ~&#x2F;.android&#x2F;avd </p>
+<p>&#x2F;tmp&#x2F;android-user&#x2F;emulator-xxxx, 将这个文件重命名为system.img，这样重启后，&#x2F;system下的修改不会丢失。</p>
+<p>[1] <a target="_blank" rel="noopener" href="http://www.claudxiao.net/2013/10/persistent-change-emulator-system-partition/">http://www.claudxiao.net/2013/10/persistent-change-emulator-system-partition/</a><br>[2] <a target="_blank" rel="noopener" href="http://download.chainfire.eu/589/SuperSU/UPDATE-SuperSU-v2.16.zip">http://download.chainfire.eu/589/SuperSU/UPDATE-SuperSU-v2.16.zip</a><br>[3] <a target="_blank" rel="noopener" href="http://stackoverflow.com/questions/15417105/forcing-the-android-emulator-to-store-changes-to-system">http://stackoverflow.com/questions/15417105/forcing-the-android-emulator-to-store-changes-to-system</a></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
