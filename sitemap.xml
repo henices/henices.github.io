@@ -533,7 +533,7 @@
   </url>
   
   <url>
-    <loc>http://usmacd.com/2020/03/19/vnc/</loc>
+    <loc>http://usmacd.com/2020/03/19/vim_special_char/</loc>
     
     <lastmod>2020-03-19</lastmod>
     
@@ -542,7 +542,7 @@
   </url>
   
   <url>
-    <loc>http://usmacd.com/2020/03/19/vim_special_char/</loc>
+    <loc>http://usmacd.com/2020/03/19/vnc/</loc>
     
     <lastmod>2020-03-19</lastmod>
     
@@ -554,6 +554,15 @@
     <loc>http://usmacd.com/2015/12/03/malware_time_delay_escape/</loc>
     
     <lastmod>2015-12-02</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://usmacd.com/2015/03/10/root_android_emulator/</loc>
+    
+    <lastmod>2015-03-09</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -583,13 +592,6 @@
   </url>
   
   <url>
-    <loc>http://usmacd.com/tags/Life/</loc>
-    <lastmod>2022-08-17</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>http://usmacd.com/tags/Archives/</loc>
     <lastmod>2022-08-17</lastmod>
     <changefreq>weekly</changefreq>
@@ -597,7 +599,7 @@
   </url>
   
   <url>
-    <loc>http://usmacd.com/tags/Security/</loc>
+    <loc>http://usmacd.com/tags/Life/</loc>
     <lastmod>2022-08-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -605,6 +607,13 @@
   
   <url>
     <loc>http://usmacd.com/tags/Android/</loc>
+    <lastmod>2022-08-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://usmacd.com/tags/Security/</loc>
     <lastmod>2022-08-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
