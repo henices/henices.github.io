@@ -1181,7 +1181,8 @@
     <div class="post-body" itemprop="articleBody">
           <h2 id="0-概述"><a href="#0-概述" class="headerlink" title="0. 概述"></a>0. 概述</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sha256   : 523b9e8057ef0905e2c7d51b742d4be9374cf2eee5a810f05d987604847c549d</span><br><span class="line">md5      : c2d73485095efdbd7ab625e469affb11</span><br><span class="line">filename : Invoice_00739287.scr</span><br></pre></td></tr></table></figure>
 
-<p>脱壳后的程序中可以看到 C:\CPP_PROJECTS_GIT\DYRE\x64\Release\dyrecontroller.pdb 因此大多数杀软将样本命名为dyre。Dyre的主要目标为在线银行。<br>样本看上去是一个PDF文件，其实则是使用scr后缀的可执行文件，引诱受害者点击文件。<br>Dyre的一些其他样本 MD5：</p>
+<p>脱壳后的程序中可以看到 C:\CPP_PROJECTS_GIT\DYRE\x64\Release\dyrecontroller.pdb 因此大多数杀软将样本命名为dyre。Dyre的主要目标为在线银行。样本看上去是一个PDF文件，其实则是使用scr后缀的可执行文件，引诱受害者点击文件。</p>
+<p>Dyre的一些其他样本 MD5：</p>
 <ul>
 <li>999bc5e16312db6abff5f6c9e54c546f</li>
 <li>b44634d90a9ff2ed8a9d0304c11bf612</li>
@@ -1205,7 +1206,7 @@
 <p>VirusTotal 的Passive DNS 可以也可以看到一些内容</p>
 <p><img src="http://2.bp.blogspot.com/-7qnGX4wX1Jo/Vfrgw5tHK0I/AAAAAAAABQw/JVXCbacLraA/s640/%25E5%25B1%258F%25E5%25B9%2595%25E5%25BF%25AB%25E7%2585%25A7%2B2015-09-17%2B%25E4%25B8%258B%25E5%258D%258811.44.25.png" alt="virusTotal"></p>
 <p>从链接提供的内容来看，Dyre使用HTTP协议来进行C&amp;C通讯，C&amp;C服务器的IP在代码中硬编码。</p>
-<h2 id="4-高级技术"><a href="#4-高级技术" class="headerlink" title="4. 高级技术"></a>4. 高级技术</h2><h3 id="4-1-脱壳"><a href="#4-1-脱壳" class="headerlink" title="4.1 脱壳"></a>4.1 脱壳</h3><p>这个样本使用了反混淆技术，不仔细看的话就像一个正常的MFC程序，其实运行到一定阶段， 进程空间里所有的代码都被替换。<br>脱壳过程中未发现反调试的现象，OEP应该是4021F0，在OD里设置硬件执行断点，F9就可以dump了，修复IAT后可以正常运行。</p>
+<h2 id="4-高级技术"><a href="#4-高级技术" class="headerlink" title="4. 高级技术"></a>4. 高级技术</h2><h3 id="4-1-脱壳"><a href="#4-1-脱壳" class="headerlink" title="4.1 脱壳"></a>4.1 脱壳</h3><p>这个样本使用了反混淆技术，不仔细看的话就像一个正常的MFC程序，其实运行到一定阶段， 进程空间里所有的代码都被替换。脱壳过程中未发现反调试的现象，OEP应该是4021F0，在OD里设置硬件执行断点，F9就可以dump了，修复IAT后可以正常运行。</p>
 <h3 id="4-2-进程注入"><a href="#4-2-进程注入" class="headerlink" title="4.2 进程注入"></a>4.2 进程注入</h3><p>我们的目标代码应该是注入到 Explorer 中的代码。其实脱壳后的样本的资源文件里包含了注入到Explorer的代码，分别是PAYLOAD32和PAYLOAD64.</p>
 <p><img src="http://3.bp.blogspot.com/-C3jyE4a0hCM/VfqDzC5jqgI/AAAAAAAABPw/91b98B1dHmQ/s640/payload.png" alt="resources"></p>
 <p>Dyre的进程注入和一般的样本有一定的区别，使用了ZwQueueApcThread来启动，而并没有使ZwSetContextThread。在跨进程写则使用了ZwMapViewOfSection而没有使用大家熟悉的ZwWriteVirtualMemory，隐蔽性较强。</p>
