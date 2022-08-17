@@ -126,7 +126,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">58</span>
+          <span class="site-state-item-count">59</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -899,6 +899,98 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://usmacd.com/2020/03/19/vnc/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="henices">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="安全代码">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 安全代码">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2020/03/19/vnc/" class="post-title-link" itemprop="url">Fedora 安装 vnc server</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2020-03-19 16:34:31" itemprop="dateCreated datePublished" datetime="2020-03-19T16:34:31+08:00">2020-03-19</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>因为疫情，现在公司启用远程办公了，不得已在工作机上开了vncserver，这篇文档做个记录。</p>
+<h2 id="1-安装"><a href="#1-安装" class="headerlink" title="(1) 安装"></a>(1) 安装</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo dnf install tigervnc-server</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-创建服务"><a href="#2-创建服务" class="headerlink" title="(2) 创建服务"></a>(2) 创建服务</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp /lib/systemd/system/vncserver@.service /etc/systemd/system/vncserver@.service</span><br></pre></td></tr></table></figure>
+
+<p>编辑 &#x2F;etc&#x2F;systemd&#x2F;system&#x2F;vncserver@.service 替换下面两行的USER为实际用户名</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ExecStart=/sbin/runuser -l USER -c &quot;/usr/bin/vncserver %i -geometry 1280x1024&quot;</span><br><span class="line">PIDFile=/home/USER/.vnc/%H%i.pid</span><br></pre></td></tr></table></figure>
+
+<p>执行命令 <code>systemctl daemon-reload</code></p>
+<p>使用vpnpasswd修改密码</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">~]<span class="comment"># su - USER</span></span><br><span class="line">~]$ vncpasswd</span><br><span class="line">Password:</span><br><span class="line">Verify:</span><br></pre></td></tr></table></figure>
+
+<p>启动vncserver的命令行</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl start vncserver@:1</span><br></pre></td></tr></table></figure>
+
+<p>参考文档：</p>
+<p><a target="_blank" rel="noopener" href="https://docs.fedoraproject.org/en-US/Fedora/21/html/System_Administrators_Guide/ch-TigerVNC.html">https://docs.fedoraproject.org/en-US/Fedora/21/html/System_Administrators_Guide/ch-TigerVNC.html</a></p>
+<h2 id="3-直接调用命令行"><a href="#3-直接调用命令行" class="headerlink" title="(3)直接调用命令行"></a>(3)直接调用命令行</h2><p>使用上面的方法过于繁琐，可以直接调用 vncserver 的命令行</p>
+<p><code>vncserver :2 -geometry 1920x1080 -depth 24</code></p>
+<h2 id="4-改变vnc的默认桌面"><a href="#4-改变vnc的默认桌面" class="headerlink" title="(4) 改变vnc的默认桌面"></a>(4) 改变vnc的默认桌面</h2><p>vim ~&#x2F;.vnc&#x2F;xstartup</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/sh</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">unset</span> SESSION_MANAGER</span><br><span class="line"><span class="built_in">unset</span> DBUS_SESSION_BUS_ADDRESS</span><br><span class="line"><span class="comment">#exec /etc/X11/xinit/xinitrc</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">exec</span> /bin/sh /etc/xdg/xfce4/xinitrc</span><br></pre></td></tr></table></figure>
+
+<p>必须改变默认桌面，要不可能登录不进去。</p>
+<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><p>个人觉得从安全角度看，使用命令启用 vncserver 是比较合理的，要用了就打开，用完就关。另外vncserver 连接加了一层 tunnel，安全无小事。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
     <link itemprop="mainEntityOfPage" href="http://usmacd.com/2020/03/19/vim_special_char/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -974,7 +1066,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://usmacd.com/2020/03/19/vnc/">
+    <link itemprop="mainEntityOfPage" href="http://usmacd.com/2015/12/03/malware_time_delay_escape/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -992,7 +1084,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2020/03/19/vnc/" class="post-title-link" itemprop="url">Fedora 安装 vnc server</a>
+          <a href="/2015/12/03/malware_time_delay_escape/" class="post-title-link" itemprop="url">通过延迟执行的方法来逃逸杀软</a>
         </h2>
 
         <div class="post-meta-container">
@@ -1003,7 +1095,7 @@
       </span>
       <span class="post-meta-item-text">Posted on</span>
 
-      <time title="Created: 2020-03-19 16:34:31" itemprop="dateCreated datePublished" datetime="2020-03-19T16:34:31+08:00">2020-03-19</time>
+      <time title="Created: 2015-12-03 00:00:00" itemprop="dateCreated datePublished" datetime="2015-12-03T00:00:00+08:00">2015-12-03</time>
     </span>
 
   
@@ -1016,30 +1108,9 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p>因为疫情，现在公司启用远程办公了，不得已在工作机上开了vncserver，这篇文档做个记录。</p>
-<h2 id="1-安装"><a href="#1-安装" class="headerlink" title="(1) 安装"></a>(1) 安装</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo dnf install tigervnc-server</span><br></pre></td></tr></table></figure>
+          <h2 id="pony-2-0"><a href="#pony-2-0" class="headerlink" title="pony 2.0"></a>pony 2.0</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">; KAV heuristic fucker</span><br><span class="line"></span><br><span class="line">KAVHeurKiller proc uses esi</span><br><span class="line">    LOCAL   counter: DWORD</span><br><span class="line">    AntiDisasmTrick</span><br><span class="line">    push    eax</span><br><span class="line">    mov ecx, ecx</span><br><span class="line">    pop eax</span><br><span class="line">    mov ecx, ecx</span><br><span class="line">    push    eax</span><br><span class="line">    sub esi, esi</span><br><span class="line">    pop eax</span><br><span class="line">    mov ecx, ecx</span><br><span class="line">    push    19131011</span><br><span class="line">    mov ecx, ecx</span><br><span class="line">    pop counter</span><br><span class="line">    mov edx, eax</span><br><span class="line">    .WHILE  counter</span><br><span class="line">        mov edx, eax</span><br><span class="line">        mov ecx, ecx</span><br><span class="line">        add eax, esi</span><br><span class="line">        mov edx, eax</span><br><span class="line">        mov ecx, ecx</span><br><span class="line">        push    eax</span><br><span class="line">        mov ecx, ecx</span><br><span class="line">        mov edx, eax</span><br><span class="line">        invoke  GetTickCount</span><br><span class="line">        mov ecx, ecx</span><br><span class="line">        pop eax</span><br><span class="line">        mov edx, eax</span><br><span class="line">        mov ecx, ecx</span><br><span class="line">        add eax, edx</span><br><span class="line">        mov ecx, ecx</span><br><span class="line">        mov edx, eax</span><br><span class="line">        dec counter</span><br><span class="line">    .ENDW</span><br><span class="line">    ret</span><br><span class="line">KAVHeurKiller endp</span><br></pre></td></tr></table></figure>
 
-<h2 id="2-创建服务"><a href="#2-创建服务" class="headerlink" title="(2) 创建服务"></a>(2) 创建服务</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp /lib/systemd/system/vncserver@.service /etc/systemd/system/vncserver@.service</span><br></pre></td></tr></table></figure>
-
-<p>编辑 &#x2F;etc&#x2F;systemd&#x2F;system&#x2F;vncserver@.service 替换下面两行的USER为实际用户名</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ExecStart=/sbin/runuser -l USER -c &quot;/usr/bin/vncserver %i -geometry 1280x1024&quot;</span><br><span class="line">PIDFile=/home/USER/.vnc/%H%i.pid</span><br></pre></td></tr></table></figure>
-
-<p>执行命令 <code>systemctl daemon-reload</code></p>
-<p>使用vpnpasswd修改密码</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">~]<span class="comment"># su - USER</span></span><br><span class="line">~]$ vncpasswd</span><br><span class="line">Password:</span><br><span class="line">Verify:</span><br></pre></td></tr></table></figure>
-
-<p>启动vncserver的命令行</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl start vncserver@:1</span><br></pre></td></tr></table></figure>
-
-<p>参考文档：</p>
-<p><a target="_blank" rel="noopener" href="https://docs.fedoraproject.org/en-US/Fedora/21/html/System_Administrators_Guide/ch-TigerVNC.html">https://docs.fedoraproject.org/en-US/Fedora/21/html/System_Administrators_Guide/ch-TigerVNC.html</a></p>
-<h2 id="3-直接调用命令行"><a href="#3-直接调用命令行" class="headerlink" title="(3)直接调用命令行"></a>(3)直接调用命令行</h2><p>使用上面的方法过于繁琐，可以直接调用 vncserver 的命令行</p>
-<p><code>vncserver :2 -geometry 1920x1080 -depth 24</code></p>
-<h2 id="4-改变vnc的默认桌面"><a href="#4-改变vnc的默认桌面" class="headerlink" title="(4) 改变vnc的默认桌面"></a>(4) 改变vnc的默认桌面</h2><p>vim ~&#x2F;.vnc&#x2F;xstartup</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/sh</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">unset</span> SESSION_MANAGER</span><br><span class="line"><span class="built_in">unset</span> DBUS_SESSION_BUS_ADDRESS</span><br><span class="line"><span class="comment">#exec /etc/X11/xinit/xinitrc</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">exec</span> /bin/sh /etc/xdg/xfce4/xinitrc</span><br></pre></td></tr></table></figure>
-
-<p>必须改变默认桌面，要不可能登录不进去。</p>
-<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><p>个人觉得从安全角度看，使用命令启用 vncserver 是比较合理的，要用了就打开，用完就关。另外vncserver 连接加了一层 tunnel，安全无小事。</p>
+<h2 id="pony-1-9"><a href="#pony-1-9" class="headerlink" title="pony 1.9"></a>pony 1.9</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">.WHILE  TRUE</span><br><span class="line">    invoke  GetTickCount</span><br><span class="line">    mov ecx, 10</span><br><span class="line">    xor edx, edx</span><br><span class="line">    div ecx</span><br><span class="line">    .IF edx == 5</span><br><span class="line">        .BREAK</span><br><span class="line">    .ENDIF</span><br><span class="line">.ENDW</span><br></pre></td></tr></table></figure>
 
       
     </div>

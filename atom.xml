@@ -343,9 +343,9 @@
     
     
     
-    <category term="Android" scheme="http://usmacd.com/tags/Android/"/>
-    
     <category term="Security" scheme="http://usmacd.com/tags/Security/"/>
+    
+    <category term="Android" scheme="http://usmacd.com/tags/Android/"/>
     
   </entry>
   
@@ -434,9 +434,9 @@
     
     
     
-    <category term="Android" scheme="http://usmacd.com/tags/Android/"/>
-    
     <category term="Security" scheme="http://usmacd.com/tags/Security/"/>
+    
+    <category term="Android" scheme="http://usmacd.com/tags/Android/"/>
     
   </entry>
   
