@@ -126,7 +126,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">67</span>
+          <span class="site-state-item-count">68</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -191,6 +191,112 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://usmacd.com/2015/09/17/malware_Dyre/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="henices">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="安全代码">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 安全代码">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2015/09/17/malware_Dyre/" class="post-title-link" itemprop="url">Dyre 简单分析</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2015-09-17 00:00:00" itemprop="dateCreated datePublished" datetime="2015-09-17T00:00:00+08:00">2015-09-17</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="0-概述"><a href="#0-概述" class="headerlink" title="0. 概述"></a>0. 概述</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sha256   : 523b9e8057ef0905e2c7d51b742d4be9374cf2eee5a810f05d987604847c549d</span><br><span class="line">md5      : c2d73485095efdbd7ab625e469affb11</span><br><span class="line">filename : Invoice_00739287.scr</span><br></pre></td></tr></table></figure>
+
+<p>脱壳后的程序中可以看到 C:\CPP_PROJECTS_GIT\DYRE\x64\Release\dyrecontroller.pdb 因此大多数杀软将样本命名为dyre。Dyre的主要目标为在线银行。样本看上去是一个PDF文件，其实则是使用scr后缀的可执行文件，引诱受害者点击文件。</p>
+<p>Dyre的一些其他样本 MD5：</p>
+<ul>
+<li>999bc5e16312db6abff5f6c9e54c546f</li>
+<li>b44634d90a9ff2ed8a9d0304c11bf612</li>
+<li>dd207384b31d118745ebc83203a4b04a</li>
+</ul>
+<h2 id="1-感染与传播"><a href="#1-感染与传播" class="headerlink" title="1. 感染与传播"></a>1. 感染与传播</h2><p>从网上的公开资料来看，样本主要传播途径为钓鱼邮件。</p>
+<p><img src="http://2.bp.blogspot.com/-AyJ8UbhJvUM/VfrX9MpDSPI/AAAAAAAABQg/22nJydJKjOs/s400/Figure-21.png" alt="fishing"></p>
+<h2 id="2-工作流程"><a href="#2-工作流程" class="headerlink" title="2. 工作流程"></a>2. 工作流程</h2><ul>
+<li>复制自身 (C:\Documents and Settings\user\Application Data\googleupdaterr.exe)</li>
+<li>执行复本文件</li>
+<li>删除自身</li>
+<li>注入Explorer 进程</li>
+<li>googleupdaterr.exe 进程退出</li>
+</ul>
+<p>由于注入Explorer后，进程退出，在任务管理器中看不到任何可疑进程，代码在Explorer中 执行。Dyre 通过写注册表启动项实现自启动，系统启动后将自动执行恶意文件。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">key   : HKLM\SOFTWARE\MICROSOFT\WINDOWS\CURRENTVERSION\RUN\GoogleUpdate</span><br><span class="line">value : C:\Documents and Settings\sys\Application Data\googleupdaterr.exe</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-网络协议"><a href="#3-网络协议" class="headerlink" title="3. 网络协议"></a>3. 网络协议</h2><p>由于时间较长了，url链接基本都访问不了了，所以这部分内容就不重点说了。<br><a target="_blank" rel="noopener" href="http://192.99.6.61/cho1017/W512600.19532DF60D132DC4E0153BE41218BD1A/5/publickey/">http://192.99.6.61/cho1017/W512600.19532DF60D132DC4E0153BE41218BD1A/5/publickey/</a><br>217.12.207.151:8900 和 192.99.6.61:80 都已失效。</p>
+<p>可以参考下面这篇文章的图片</p>
+<p><a target="_blank" rel="noopener" href="http://phishme.com/project-dyre-new-rat-slurps-bank-credentials-bypasses-ssl/">Project Dyre: New RAT Slurps Bank Credentials, Bypasses SSL</a></p>
+<p>VirusTotal 的Passive DNS 可以也可以看到一些内容</p>
+<p><img src="http://2.bp.blogspot.com/-7qnGX4wX1Jo/Vfrgw5tHK0I/AAAAAAAABQw/JVXCbacLraA/s640/%25E5%25B1%258F%25E5%25B9%2595%25E5%25BF%25AB%25E7%2585%25A7%2B2015-09-17%2B%25E4%25B8%258B%25E5%258D%258811.44.25.png" alt="virusTotal"></p>
+<p>从链接提供的内容来看，Dyre使用HTTP协议来进行C&amp;C通讯，C&amp;C服务器的IP在代码中硬编码。</p>
+<h2 id="4-高级技术"><a href="#4-高级技术" class="headerlink" title="4. 高级技术"></a>4. 高级技术</h2><h3 id="4-1-脱壳"><a href="#4-1-脱壳" class="headerlink" title="4.1 脱壳"></a>4.1 脱壳</h3><p>这个样本使用了反混淆技术，不仔细看的话就像一个正常的MFC程序，其实运行到一定阶段， 进程空间里所有的代码都被替换。脱壳过程中未发现反调试的现象，OEP应该是4021F0，在OD里设置硬件执行断点，F9就可以dump了，修复IAT后可以正常运行。</p>
+<h3 id="4-2-进程注入"><a href="#4-2-进程注入" class="headerlink" title="4.2 进程注入"></a>4.2 进程注入</h3><p>我们的目标代码应该是注入到 Explorer 中的代码。其实脱壳后的样本的资源文件里包含了注入到Explorer的代码，分别是PAYLOAD32和PAYLOAD64.</p>
+<p><img src="http://3.bp.blogspot.com/-C3jyE4a0hCM/VfqDzC5jqgI/AAAAAAAABPw/91b98B1dHmQ/s640/payload.png" alt="resources"></p>
+<p>Dyre的进程注入和一般的样本有一定的区别，使用了ZwQueueApcThread来启动，而并没有使ZwSetContextThread。在跨进程写则使用了ZwMapViewOfSection而没有使用大家熟悉的ZwWriteVirtualMemory，隐蔽性较强。</p>
+<p><img src="http://4.bp.blogspot.com/-CMW6dQ5QppI/VfrQ455zqhI/AAAAAAAABQQ/5IcOj6LJQRE/s640/injection.png" alt="injection"></p>
+<p>新版的Ollydbg 2.01， 支持调试子进程，在子进程中可以看到以下代码</p>
+<p><img src="http://3.bp.blogspot.com/-eC45mc0InZw/VfqEHblwFgI/AAAAAAAABP4/DvoOTi-sIvc/s640/NtQueueApcThread.png" alt="OD2"><br><img src="http://1.bp.blogspot.com/-KWDSgO7N6VE/VfqEPgtwTPI/AAAAAAAABQA/udrCHhMNvOI/s640/027F0000.png" alt="OD2.1"></p>
+<p>可以确认注入的确实是资源文件里的payload</p>
+<h2 id="附录A"><a href="#附录A" class="headerlink" title="附录A"></a>附录A</h2><h3 id="strings"><a href="#strings" class="headerlink" title="strings"></a>strings</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">cashproonline.bankofamerica.com/AuthenticationFrameworkWeb/cpo/login/public/loginMain.faces</span><br><span class="line">businessaccess.citibank.citigroup.com/cbusol/signon.do</span><br><span class="line">www.bankline.natwest.com/CWSLogon/logon.do?CTAuthMode=RBSG_CORP4P&amp;domain=.bankline.natwest.com&amp;ct-web-server-id=Internet&amp;CT_ORIG_URL=%2Fbankline%2Fnatwest%2Fdefault.jsp&amp;ct_orig_uri=https%3A%2F%2Fwww.bankline.natwest.com%3A443%2Fbankline%2Fnatwest%2Fdefault.jsp</span><br><span class="line">www.bankline.rbs.com/CWSLogon/logon.do?CTAuthMode=RBSG_CORP4P&amp;domain=.bankline.rbs.com&amp;ct-web-server-id=Internet&amp;CT_ORIG_URL=%2Fbankline%2Frbs%2Fdefault.jsp&amp;ct_orig_uri=https%3A%2F%2Fwww.bankline.rbs.com%3A443%2Fbankline%2Frbs%2Fdefault.jsp</span><br><span class="line">www.bankline.ulsterbank.ie/CWSLogon/logon.do?CTAuthMode=RBSG_CORP4P&amp;domain=.bankline.ulsterbank.ie&amp;ct-web-server-id=Internet&amp;CT_ORIG_URL=%2Fbankline%2Fubr%2Fdefault.jsp&amp;ct_orig_uri=https%3A%2F%2Fwww.bankline.ulsterbank.ie%3A443%2Fbankline%2Fubr%2Fdefault.jsp</span><br><span class="line">TRUE</span><br><span class="line">AUTOBACKCONN</span><br><span class="line">%02x</span><br><span class="line">cashproonline.bankofamerica.com/materials</span><br><span class="line">user_id=</span><br><span class="line">company_id=</span><br><span class="line">businessaccess.citibank.citigroup.com/materials</span><br><span class="line">business_code=</span><br><span class="line">business_name=</span><br><span class="line">0x%x</span><br><span class="line">85.25.148.6</span><br><span class="line">c1shproonline.bankofamerica.com</span><br><span class="line">cashproonline.bankofamerica.com/AuthenticationFrameworkWeb/</span><br><span class="line">cashproonline.bankofamerica.com/assets/</span><br><span class="line">b1sinessaccess.citibank.citigroup.com</span><br><span class="line">businessaccess.citibank.citigroup.com/assets/</span><br><span class="line">businessaccess.citibank.citigroup.com/CitiBusinessOnlineFiles/</span><br><span class="line">www.b1nkline.natwest.com</span><br><span class="line">www.bankline.natwest.com/</span><br><span class="line">www.b1nkline.rbs.com</span><br><span class="line">www.bankline.rbs.com/</span><br><span class="line">www.b1nkline.ulsterbank.ie</span><br><span class="line">www.bankline.ulsterbank.ie/</span><br></pre></td></tr></table></figure>
+
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p><a target="_blank" rel="noopener" href="https://www.virustotal.com/en/file/dc276b0113694ecc62913311e2580857754aa890173dfaa9d95afad6396bb741/analysis/">https://www.virustotal.com/en/file/dc276b0113694ecc62913311e2580857754aa890173dfaa9d95afad6396bb741/analysis/</a><br><a target="_blank" rel="noopener" href="https://www.fireeye.com/blog/threat-research/2015/07/dyre_banking_trojan.html">https://www.fireeye.com/blog/threat-research/2015/07/dyre_banking_trojan.html</a><br><a target="_blank" rel="noopener" href="https://www.blueliv.com/downloads/documentation/reports/Network_insights_of_Dyre_and_Dridex_Trojan_bankers.pdf">https://www.blueliv.com/downloads/documentation/reports/Network_insights_of_Dyre_and_Dridex_Trojan_bankers.pdf</a><br><a target="_blank" rel="noopener" href="https://portal.sec.ibm.com/mss/html/en_US/support_resources/pdf/Dyre_Wolf_MSS_Threat_Report.pdf">https://portal.sec.ibm.com/mss/html/en_US/support_resources/pdf/Dyre_Wolf_MSS_Threat_Report.pdf</a><br><a target="_blank" rel="noopener" href="http://www.seculert.com/blog/2015/04/new-dyre-version-evades-sandboxes.html">http://www.seculert.com/blog/2015/04/new-dyre-version-evades-sandboxes.html</a><br><a target="_blank" rel="noopener" href="https://blogs.cisco.com/security/talos/threat-spotlight-dyre">https://blogs.cisco.com/security/talos/threat-spotlight-dyre</a></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 

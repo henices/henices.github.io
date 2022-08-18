@@ -560,6 +560,15 @@
   </url>
   
   <url>
+    <loc>http://usmacd.com/2015/10/21/malware_DZSM/</loc>
+    
+    <lastmod>2015-10-20</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>http://usmacd.com/2015/09/17/malware_Dyre/</loc>
     
     <lastmod>2015-09-16</lastmod>
@@ -634,7 +643,7 @@
 
   <url>
     <loc>http://usmacd.com/</loc>
-    <lastmod>2022-08-17</lastmod>
+    <lastmod>2022-08-18</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -642,84 +651,84 @@
   
   <url>
     <loc>http://usmacd.com/tags/linux/</loc>
-    <lastmod>2022-08-17</lastmod>
+    <lastmod>2022-08-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://usmacd.com/tags/Crack/</loc>
-    <lastmod>2022-08-17</lastmod>
+    <lastmod>2022-08-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://usmacd.com/tags/Archives/</loc>
-    <lastmod>2022-08-17</lastmod>
+    <lastmod>2022-08-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://usmacd.com/tags/Life/</loc>
-    <lastmod>2022-08-17</lastmod>
+    <lastmod>2022-08-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://usmacd.com/tags/Android/</loc>
-    <lastmod>2022-08-17</lastmod>
+    <lastmod>2022-08-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://usmacd.com/tags/Security/</loc>
-    <lastmod>2022-08-17</lastmod>
+    <lastmod>2022-08-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://usmacd.com/tags/investment/</loc>
-    <lastmod>2022-08-17</lastmod>
+    <lastmod>2022-08-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://usmacd.com/tags/Malware/</loc>
-    <lastmod>2022-08-17</lastmod>
+    <lastmod>2022-08-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://usmacd.com/tags/windows/</loc>
-    <lastmod>2022-08-17</lastmod>
+    <lastmod>2022-08-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://usmacd.com/tags/Programming/</loc>
-    <lastmod>2022-08-17</lastmod>
+    <lastmod>2022-08-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://usmacd.com/tags/Software/</loc>
-    <lastmod>2022-08-17</lastmod>
+    <lastmod>2022-08-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://usmacd.com/tags/vim/</loc>
-    <lastmod>2022-08-17</lastmod>
+    <lastmod>2022-08-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
