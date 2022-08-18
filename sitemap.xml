@@ -632,6 +632,15 @@
   </url>
   
   <url>
+    <loc>http://usmacd.com/2008/05/25/hook_ntResume/</loc>
+    
+    <lastmod>2008-05-24</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>http://usmacd.com/2008/04/27/int23_native_api/</loc>
     
     <lastmod>2008-04-26</lastmod>
