@@ -667,6 +667,15 @@
     <priority>0.6</priority>
   </url>
   
+  <url>
+    <loc>http://usmacd.com/2004/10/13/search_sql_injection/</loc>
+    
+    <lastmod>2004-10-12</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
 
   <url>
     <loc>http://usmacd.com/</loc>
