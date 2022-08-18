@@ -425,7 +425,7 @@
   </url>
   
   <url>
-    <loc>http://usmacd.com/2020/03/19/anti_sandbox/</loc>
+    <loc>http://usmacd.com/2020/03/19/apk_debug/</loc>
     
     <lastmod>2020-03-19</lastmod>
     
@@ -434,7 +434,7 @@
   </url>
   
   <url>
-    <loc>http://usmacd.com/2020/03/19/apk_debug/</loc>
+    <loc>http://usmacd.com/2020/03/19/anti_sandbox/</loc>
     
     <lastmod>2020-03-19</lastmod>
     
@@ -590,6 +590,15 @@
     <loc>http://usmacd.com/2015/03/10/root_android_emulator/</loc>
     
     <lastmod>2015-03-09</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://usmacd.com/2014/10/08/fedora_pptp_vpn/</loc>
+    
+    <lastmod>2014-10-07</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
