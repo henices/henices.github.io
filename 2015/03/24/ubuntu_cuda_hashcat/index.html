@@ -20,28 +20,28 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"usmacd.com","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.12.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="小技巧。但是用的人好像不多。例子：  Windows 2000 下 123456789101112131415161718NtQuerySystemInformationNo &#x3D; 0x97;_declspec(naked)NTSTATUS __stdcall PrivateNtQuerySystemInformation    (IN     SYSTEM_INFORMATION_CLASS,">
+    <meta name="description" content="首先需要下载正确的驱动和软件，下载的软件版本一定要正确。下面的两个链接地址是我实验成功的版本。 N卡驱动 ：http:&#x2F;&#x2F;us.download.nvidia.com&#x2F;XFree86&#x2F;Linux-x86_64&#x2F;346.47&#x2F;NVIDIA-Linux-x86_64-346.47.runoclHashcat: https:&#x2F;&#x2F;hashcat.net&#x2F;files&#x2F;cudaHashcat-1.35.7z">
 <meta property="og:type" content="article">
-<meta property="og:title" content="int 2eh 方式调用Native api">
-<meta property="og:url" content="http://usmacd.com/2008/04/27/int23_native_api/index.html">
+<meta property="og:title" content="安全代码">
+<meta property="og:url" content="http://usmacd.com/2015/03/24/ubuntu_cuda_hashcat/index.html">
 <meta property="og:site_name" content="安全代码">
-<meta property="og:description" content="小技巧。但是用的人好像不多。例子：  Windows 2000 下 123456789101112131415161718NtQuerySystemInformationNo &#x3D; 0x97;_declspec(naked)NTSTATUS __stdcall PrivateNtQuerySystemInformation    (IN     SYSTEM_INFORMATION_CLASS,">
+<meta property="og:description" content="首先需要下载正确的驱动和软件，下载的软件版本一定要正确。下面的两个链接地址是我实验成功的版本。 N卡驱动 ：http:&#x2F;&#x2F;us.download.nvidia.com&#x2F;XFree86&#x2F;Linux-x86_64&#x2F;346.47&#x2F;NVIDIA-Linux-x86_64-346.47.runoclHashcat: https:&#x2F;&#x2F;hashcat.net&#x2F;files&#x2F;cudaHashcat-1.35.7z">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2008-04-26T16:00:00.000Z">
-<meta property="article:modified_time" content="2008-04-26T16:00:00.000Z">
+<meta property="article:published_time" content="2015-03-23T16:00:00.000Z">
+<meta property="article:modified_time" content="2015-03-23T16:00:00.000Z">
 <meta property="article:author" content="henices">
-<meta property="article:tag" content="windows">
+<meta property="article:tag" content="Security">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="http://usmacd.com/2008/04/27/int23_native_api/">
+<link rel="canonical" href="http://usmacd.com/2015/03/24/ubuntu_cuda_hashcat/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://usmacd.com/2008/04/27/int23_native_api/","path":"2008/04/27/int23_native_api/","title":"int 2eh 方式调用Native api"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://usmacd.com/2015/03/24/ubuntu_cuda_hashcat/","path":"2015/03/24/ubuntu_cuda_hashcat/","title":""}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>int 2eh 方式调用Native api | 安全代码</title>
+<title> | 安全代码</title>
   
 
 
@@ -104,7 +104,7 @@
 
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           Table of Contents
@@ -117,6 +117,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E8%A6%81%E6%B1%82"><span class="nav-number">1.</span> <span class="nav-text">基本要求</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E4%BA%9B%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C"><span class="nav-number">2.</span> <span class="nav-text">一些准备工作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85"><span class="nav-number">3.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E9%93%BE%E6%8E%A5"><span class="nav-number">4.</span> <span class="nav-text">参考链接</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -206,7 +207,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://usmacd.com/2008/04/27/int23_native_api/">
+    <link itemprop="mainEntityOfPage" href="http://usmacd.com/2015/03/24/ubuntu_cuda_hashcat/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -219,12 +220,12 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="int 2eh 方式调用Native api | 安全代码">
+      <meta itemprop="name" content=" | 安全代码">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          int 2eh 方式调用Native api
+          
         </h1>
 
         <div class="post-meta-container">
@@ -235,7 +236,7 @@
       </span>
       <span class="post-meta-item-text">Posted on</span>
 
-      <time title="Created: 2008-04-27 00:00:00" itemprop="dateCreated datePublished" datetime="2008-04-27T00:00:00+08:00">2008-04-27</time>
+      <time title="Created: 2015-03-24 00:00:00" itemprop="dateCreated datePublished" datetime="2015-03-24T00:00:00+08:00">2015-03-24</time>
     </span>
 
   
@@ -248,8 +249,26 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <p>小技巧。但是用的人好像不多。例子：  Windows 2000 下</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">NtQuerySystemInformationNo = <span class="number">0x97</span>;</span><br><span class="line"></span><br><span class="line">_declspec(naked)</span><br><span class="line">NTSTATUS __stdcall <span class="title function_">PrivateNtQuerySystemInformation</span></span><br><span class="line">    <span class="params">(IN     SYSTEM_INFORMATION_CLASS,</span></span><br><span class="line"><span class="params">    IN OUT PVOID,</span></span><br><span class="line"><span class="params">    IN     ULONG,</span></span><br><span class="line"><span class="params">    OUT    PULONG OPTIONAL)</span></span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">    _asm &#123;</span><br><span class="line">        mov eax, NtQuerySystemInformationNo</span><br><span class="line">        lea edx, [esp+<span class="number">4</span>]</span><br><span class="line">        <span class="type">int</span> <span class="number">2</span>Eh</span><br><span class="line">        ret <span class="number">10</span>h</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        <p>首先需要下载正确的驱动和软件，下载的软件版本一定要正确。下面的两个链接地址是我实验成功的版本。</p>
+<p>N卡驱动 ：<a target="_blank" rel="noopener" href="http://us.download.nvidia.com/XFree86/Linux-x86_64/346.47/NVIDIA-Linux-x86_64-346.47.run">http://us.download.nvidia.com/XFree86/Linux-x86_64/346.47/NVIDIA-Linux-x86_64-346.47.run</a><br>oclHashcat: <a target="_blank" rel="noopener" href="https://hashcat.net/files/cudaHashcat-1.35.7z">https://hashcat.net/files/cudaHashcat-1.35.7z</a></p>
+<p>关键是需要ForceWare 346.x或者更新的版本，ForceWare驱动是nVIDIA 系列显卡最新官方版本名称, 估计和AMD的催化剂类似。如果安装驱动的版本不对运行oclhashcat的时候会报 ERROR: cuModuleLoad() 209 错误，排查了较长时间发现是驱动版本不对，340.x的驱动无法正常工作，一定需要 346.x 的驱动。</p>
+<h2 id="基本要求"><a href="#基本要求" class="headerlink" title="基本要求"></a>基本要求</h2><p><a target="_blank" rel="noopener" href="http://us.download.nvidia.com/XFree86/Linux-x86_64/346.47/README/index.html">http://us.download.nvidia.com/XFree86/Linux-x86_64/346.47/README/index.html</a></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">binutils                  2.9.5</span><br><span class="line">GNU make                  3.77</span><br><span class="line">gcc                       2.91.66</span><br><span class="line">kernel                    2.6.18* and newer</span><br><span class="line">XFree86                   4.0.1 and newer</span><br><span class="line">X.Org                     1.0, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9, 1.10, 1.11, 1.12, 1.13, 1.14, 1.15, 1.16, 1.17</span><br><span class="line">Kernel modutils           2.1.121 and newer</span><br><span class="line">glibc                     2.0</span><br></pre></td></tr></table></figure>
+
+<h2 id="一些准备工作"><a href="#一些准备工作" class="headerlink" title="一些准备工作"></a>一些准备工作</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install build-essential</span><br><span class="line">sudo apt-get install linux-image-extra-virtual</span><br></pre></td></tr></table></figure>
+
+<p>卸载原有的nvidia的驱动，不然会发生冲突：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ sudo apt-get remove nvidia* &amp;&amp; sudo apt-get autoremove</span><br><span class="line">$ sudo apt-get --purge remove xserver-xorg-video-nouveau</span><br></pre></td></tr></table></figure>
+
+<p>禁用nouveau  (这个是开源的N卡驱动)</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">$ sudo vi /etc/modprobe.d/blacklist-nouveau.conf</span><br><span class="line"></span><br><span class="line">blacklist nouveau</span><br><span class="line">blacklist lbm-nouveau</span><br><span class="line">options nouveau modeset=0</span><br><span class="line"><span class="built_in">alias</span> nouveau off</span><br><span class="line"><span class="built_in">alias</span> lbm-nouveau off</span><br><span class="line"></span><br><span class="line">$ <span class="built_in">echo</span> options nouveau modeset=0 | sudo <span class="built_in">tee</span> -a /etc/modprobe.d/nouveau-kms.conf</span><br><span class="line">$ sudo update-initramfs -u</span><br><span class="line">$ sudo reboot</span><br></pre></td></tr></table></figure>
+
+<p>停用X，不然安装过程会出错。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo service lightdm stop</span><br></pre></td></tr></table></figure>
+
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">chmod</span> +x ./NVIDIA-Linux-x86_64-346.47.run</span><br><span class="line">$ sudo ./NVIDIA-Linux-x86_64-346.47.run</span><br><span class="line">$ sudo reboot</span><br></pre></td></tr></table></figure>
+
+<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><p><a target="_blank" rel="noopener" href="https://hashcat.net/oclhashcat/">https://hashcat.net/oclhashcat/</a><br><a target="_blank" rel="noopener" href="http://www.nvidia.com/object/unix.html">http://www.nvidia.com/object/unix.html</a><br><a target="_blank" rel="noopener" href="http://ubuntuhandbook.org/index.php/2015/01/install-nvidia-346-35-ubuntu-1404/">http://ubuntuhandbook.org/index.php/2015/01/install-nvidia-346-35-ubuntu-1404/</a><br><a target="_blank" rel="noopener" href="http://tleyden.github.io/blog/2014/10/25/cuda-6-dot-5-on-aws-gpu-instance-running-ubuntu-14-dot-04/">http://tleyden.github.io/blog/2014/10/25/cuda-6-dot-5-on-aws-gpu-instance-running-ubuntu-14-dot-04/</a></p>
 
     </div>
 
@@ -259,20 +278,20 @@
 
     <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/windows/" rel="tag"># windows</a>
+              <a href="/tags/Security/" rel="tag"># Security</a>
           </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2008/04/07/T60_device/" rel="prev" title="联想 IBM THINKPAD T60装windows 2003/2008红外线设备驱动解决">
-                  <i class="fa fa-chevron-left"></i> 联想 IBM THINKPAD T60装windows 2003/2008红外线设备驱动解决
+                <a href="/2015/03/10/root_android_emulator/" rel="prev" title="root Android emulator">
+                  <i class="fa fa-chevron-left"></i> root Android emulator
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2010/01/28/get_system_shell_windows/" rel="next" title="获取system权限的cmdshell">
-                  获取system权限的cmdshell <i class="fa fa-chevron-right"></i>
+                <a href="/2015/09/17/malware_Dyre/" rel="next" title="Dyre 简单分析">
+                  Dyre 简单分析 <i class="fa fa-chevron-right"></i>
                 </a>
             </div>
           </div>

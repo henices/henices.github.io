@@ -578,6 +578,15 @@
   </url>
   
   <url>
+    <loc>http://usmacd.com/2015/03/24/ubuntu_cuda_hashcat/</loc>
+    
+    <lastmod>2015-03-23</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>http://usmacd.com/2015/03/10/root_android_emulator/</loc>
     
     <lastmod>2015-03-09</lastmod>
