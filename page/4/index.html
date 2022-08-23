@@ -126,7 +126,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">72</span>
+          <span class="site-state-item-count">73</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -191,6 +191,107 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://usmacd.com/2021/04/30/thunderbird.tls.1.0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="henices">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="安全代码">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 安全代码">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2021/04/30/thunderbird.tls.1.0/" class="post-title-link" itemprop="url">ThunerBird 78.8.1 连接 TLS 1.0 失败问题和 Linux 乱谈</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2021-04-30 09:28:43" itemprop="dateCreated datePublished" datetime="2021-04-30T09:28:43+08:00">2021-04-30</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>我在公司使用 Linux 作用主力机已经 10 多年了，自从抛弃 Ubuntu 转入 Fedora 怀抱，生活幸福了不少。<br>早年最大的问题是 OFFICE 软件，工作中少不了要和 doc、ppx，xls 打交道，又没有太好的软件可以使用。<br>刚开始基本就两个解决方案，wine office 和永中 OFFICE，这两个方案都不是太理想，wine 的速度很慢，<br>永中则兼容性比较差，还会出现文档格式看起来就有明显差异的情况。。</p>
+<p>随着金山 wps 的发展，现在 OFFICE 的问题基本解决，作为轻度 EXCEL 使用者基本已经满足需求了。Linux<br>现在主要问题是字体渲染比较差，中文经常看起来发虚，如果能把这个问题彻底解决就非常不错了。作为Linux<br>老用户，各种魔改后，也能较好使用了，但后面发现还是换个显示器更管用。要解决中文显示问题，有两个<br>字体很管用，文泉驿微米黒和微软雅黑，实践证明把系统字体用上面两个字体替换，显示效果也就好了不少了。</p>
+<p>Ubuntu Linux 最大的问题就是不太稳定，基本每次大版本升级显示都要挂，弄得我都有点心理阴影了，原来<br>周围还挺多同学使用 Linux，最终放弃了，一个直接用 Windows 了，还有一个 Windows 上跑一个 Linux 虚拟机。<br>Ubuntu 还有个坏习惯喜欢乱改，upstart，Unity等，后面都没有成为主流，bug 就更不用说了，经常挺闹心的。</p>
+<p>Fedora 从近些年的使用情况来看，还是很不错的，网络中流传是 Redhat Linux Enterprise 的小白版本，<br>但是其实只要 bug 修得快，你大概率是感觉不到的。遇上问题，放狗一搜就会发现 redhat 已经有 bug 在<br>处理中了，于是乎就有了今天这篇。</p>
+<p>在升级到 Fedara 33 和 ThunderBird 78 后，使用 TLS 连接公司的 ExChange 邮件服务器就连不上了。<br>我们公司的内网安全审核非常严格，邮件不使用加密连接要限时整改。放狗一搜发现，大批人员都遇上了<br>相同的问题，也有人给出了解决方案。</p>
+<p><a target="_blank" rel="noopener" href="https://support.mozilla.org/en-US/questions/1295861">https://support.mozilla.org/en-US/questions/1295861</a></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">I think this could be due to the minimum version of TLS supported by TB 78. The release notes state </span><br><span class="line">that versions lower than 1.2 are disabled, so if your server only supports v. 1.1, </span><br><span class="line">you might be able to fix sending by changing the preference security.tls.version.min to 2 from the default 3, in Config. editor.</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><a target="_blank" rel="noopener" href="https://www.thunderbird.net/en-US/thunderbird/78.0/releasenotes/">https://www.thunderbird.net/en-US/thunderbird/78.0/releasenotes/</a></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">TLS 1.0 and 1.1 disabled</span><br></pre></td></tr></table></figure>
+
+<p>如何开启 TLS 1.0， mozilla 也给出了相应的方案</p>
+<p><a target="_blank" rel="noopener" href="https://support.mozilla.org/en-US/kb/thunderbird-78-faq#w_how-to-enable-outdated-security-protocols-tls-1-0-and-1-1">https://support.mozilla.org/en-US/kb/thunderbird-78-faq#w_how-to-enable-outdated-security-protocols-tls-1-0-and-1-1</a></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">How to enable outdated security protocols TLS 1.0 and 1.1</span><br><span class="line"></span><br><span class="line">Open Config Editor (about:config)</span><br><span class="line">≡ &gt; Preferences &gt; Find in Preferences</span><br><span class="line">In the searchbox, type: about:config, then press Enter.</span><br><span class="line">Click on the button Config Editor… in the search result.</span><br><span class="line">In the about:config dialog, search for: security.tls.version.min</span><br><span class="line">Double-click on the found preference security.tls.version.min and change its value to 1, then press Enter.</span><br><span class="line">Restart Thunderbird and try to download your messages.</span><br><span class="line">If you can receive and/or send your messages after changing this preference:</span><br><span class="line"></span><br><span class="line">Please inform your email provider to upgrade the security protocols on the server to support TLS 1.2.</span><br><span class="line">Revert the preference security.tls.version.min to its original value as soon as possible by repeating </span><br><span class="line">the above procedure, then right-click on the preference and choose Reset from the context menu.</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>看上去解决方案很简单，在 Preferences 中的搜索框里输入 <code>about:config</code> 点击进入，将其中的<br><code>security.tls.version.min</code> 设置为 1 就好了，但是在 Fedora 34 中不起作用。我用 wireshark 抓了包看，<br>ThunderBird 自己报告不支持的协议版本。我仔细研究了一下 ThunderBird 相关的 config 项有下面几个：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">security.tls.version.min</span><br><span class="line">security.tls.version.enable-deprecated</span><br><span class="line">security.tls.version.fallback-limit</span><br></pre></td></tr></table></figure>
+
+<p>我把这几个选项都设置了一下，分别设置为 1 true 1，还是不管用。</p>
+<p>在 Fedora 33 上这个问题就没解决，这都 Fedora 34 了，所以又花了时间研究了一下。没好办法，放狗，运气<br>不错，看到了这篇</p>
+<p><a target="_blank" rel="noopener" href="https://bugzilla.mozilla.org/show_bug.cgi?id=1674092#c11">https://bugzilla.mozilla.org/show_bug.cgi?id=1674092#c11</a></p>
+<p>原来 Fedora 还有个 <code>StrongCryptoSettings</code> ，看文档可以修改</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">update-crypto-policies --set DEFAULT:FEDORA32</span><br><span class="line">update-crypto-policies --set LEGACY</span><br><span class="line">reboot</span><br></pre></td></tr></table></figure>
+
+
+<p>关键的内容就是下面这几行</p>
+<p>cat &#x2F;etc&#x2F;crypto-policies&#x2F;state&#x2F;CURRENT.pol</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">min_tls_version = TLS1.2</span><br><span class="line">protocol = TLS1.3 TLS1.2 DTLS1.2</span><br></pre></td></tr></table></figure>
+
+<p>执行后变为</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">min_tls_version = TLS1.0</span><br><span class="line">protocol = TLS1.3 TLS1.2 TLS1.1 TLS1.0 DTLS1.2 DTLS1.0</span><br></pre></td></tr></table></figure>
+
+<p>重启系统后，又可以开心地使用 ThunderBird 了 ^_^</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -340,7 +441,7 @@
 <h2 id="CVE-官方分配-CVE-ID"><a href="#CVE-官方分配-CVE-ID" class="headerlink" title="CVE 官方分配 CVE ID"></a>CVE 官方分配 CVE ID</h2><p>CVE 官方收到 RESERVED CVE 请求后，会给分配一个 CVE ID，但是状态为 ** RESERVED ** ，不会有公开细节。</p>
 <h2 id="RESERVED-CVE-申请公开"><a href="#RESERVED-CVE-申请公开" class="headerlink" title="RESERVED CVE 申请公开"></a>RESERVED CVE 申请公开</h2><p>当软件官方确认已经修复漏洞，并且发布新版后，可以通知 CVE 官方更新 CVE 的状态。还是通过填写 <a target="_blank" rel="noopener" href="https://cveform.mitre.org/">https://cveform.mitre.org/</a> 表格，选择 Notify CVE about a publication，填写相关信息。</p>
 <h2 id="一些注意事项"><a href="#一些注意事项" class="headerlink" title="一些注意事项"></a>一些注意事项</h2><ol>
-<li>将 <a href="mailto:&#x63;&#118;&#101;&#x2d;&#x72;&#101;&#x71;&#117;&#101;&#x73;&#116;&#64;&#109;&#105;&#x74;&#x72;&#x65;&#46;&#x6f;&#114;&#103;">&#x63;&#118;&#101;&#x2d;&#x72;&#101;&#x71;&#117;&#101;&#x73;&#116;&#64;&#109;&#105;&#x74;&#x72;&#x65;&#46;&#x6f;&#114;&#103;</a> 和  <a href="mailto:&#x63;&#118;&#x65;&#x40;&#x6d;&#105;&#116;&#x72;&#x65;&#46;&#111;&#114;&#103;">&#x63;&#118;&#x65;&#x40;&#x6d;&#105;&#116;&#x72;&#x65;&#46;&#111;&#114;&#103;</a> 加入邮件白名单 （有可能邮件会被截拦）</li>
+<li>将 <a href="mailto:&#99;&#x76;&#101;&#45;&#114;&#101;&#x71;&#x75;&#x65;&#115;&#x74;&#x40;&#109;&#x69;&#x74;&#114;&#x65;&#46;&#x6f;&#x72;&#x67;">&#99;&#x76;&#101;&#45;&#114;&#101;&#x71;&#x75;&#x65;&#115;&#x74;&#x40;&#109;&#x69;&#x74;&#114;&#x65;&#46;&#x6f;&#x72;&#x67;</a> 和  <a href="mailto:&#x63;&#118;&#x65;&#x40;&#x6d;&#105;&#116;&#x72;&#101;&#x2e;&#111;&#114;&#103;">&#x63;&#118;&#x65;&#x40;&#x6d;&#105;&#116;&#x72;&#101;&#x2e;&#111;&#114;&#103;</a> 加入邮件白名单 （有可能邮件会被截拦）</li>
 <li>在申请公开步骤中，CVE 官方有可能和你要公开披露的链接，如果软件官方不给写，可以自己写一个</li>
 </ol>
 <p>披露要求的信息：</p>
@@ -1031,94 +1132,6 @@
 
 <p>xorddos 样本多态主要就是用这个函数，每次在文件末尾写上10个字节的随机字符。<br>这样样本md5和大小都会发生变化，使得一些检测方法失效。</p>
 <h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><p>正因为这种隐藏方法并不理想，后面xorddos出现了带rootkit的版本，进化了。</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://usmacd.com/2020/03/19/AS3_Sorcerer_crack/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="henices">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="安全代码">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 安全代码">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2020/03/19/AS3_Sorcerer_crack/" class="post-title-link" itemprop="url">AS3 Sorcerer 3.0 破解思路</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2020-03-19 16:34:31" itemprop="dateCreated datePublished" datetime="2020-03-19T16:34:31+08:00">2020-03-19</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>   AS3 Sorcerer是一款flash action Script的商业反编译软件。  <a target="_blank" rel="noopener" href="http://www.as3sorcerer.com/">www.as3sorcerer.com</a></p>
-<p>   软件为Delphi编写，加了未知壳，使用PEID 0.94无法正确查出，使用核心扫描发现是<br>   Delphi编写，这个软件有一个特点修改一个字节就报错。由于时间原因没有具体跟相关代码。</p>
-<p>   破解方法使用LPK.dll动态修改as3.exe内存达到破解目前，在Windows Xp下比较完美，<br>   在Windows 7下已经无法通过LPK.dll进行DLL hijack，可以通过DLL注入达到同样的目的。</p>
-<p>   难点有几个，OD加载报错，attack也报错。使用海风月影的StrongOD可以正常attach。<br>   OD 1.1目前最大的问题是插件冲突严重，安装了OllyAdv后，无法成功加载as3.exe.<br>   遇上强壳时可以使用phantom的protect DRx，可以解决一下问题，总之要尽量避免冲突。<br>   接下来的难点就是如何找到破解的关键点，进行内存patch。</p>
-<p>   使用OD查找字符串参考Unicode，搜索trial</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">006974C2    E8 65ABFDFF     call    0067202C</span><br><span class="line">006974C7    84C0            test    al, al</span><br><span class="line">006974C9    75 1C           jnz     short 006974E7</span><br><span class="line">006974CB    B9 E4756900     mov     ecx, 006975E4                    ; e</span><br><span class="line">006974D0    BA 50766900     mov     edx, 00697650                    ;Sorry!</span><br></pre></td></tr></table></figure>
-
-<p>   这里有个坑，在OD中看到的代码有可能不是最终运行的代码，只有真正在OD里断下，进<br>   入程序领空后，看到的代码才是解密后的真正代码。这里在这里浪费了很多时间。换句<br>   话说就是要先保证能调试起来，能调试能下断点基本就成功了一半。</p>
-<p>   上面的代码是非常经典的关键代码，主要处理了 0067202C让它返回1就OK了。F7跟进</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">0067202C  - E9 EE9D1900     jmp     0080BE1F</span><br><span class="line">00672031    CC              int3</span><br><span class="line">00672032    CC              int3</span><br><span class="line">00672033    CC              int3</span><br><span class="line">00672034    CC              int3</span><br><span class="line">00672035    CC              int3</span><br><span class="line">00672036    CC              int3</span><br><span class="line">00672037    90              nop</span><br></pre></td></tr></table></figure>
-
-<p>   进入就去一个jmp，后面的大段跳转非常多，跟踪困难。好在有很多int3，可以自己<br>   写一段汇编代码解决。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">0067202C    33C0            xor     eax, eax</span><br><span class="line">0067202E    83C0 01         add     eax, 0x1</span><br><span class="line">00672031    90              nop</span><br><span class="line">00672032    90              nop</span><br><span class="line">00672033    90              nop</span><br><span class="line">00672034    90              nop</span><br><span class="line">00672035    90              nop</span><br><span class="line">00672036    C3              retn</span><br></pre></td></tr></table></figure>
-<p>核心代码</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">HANDLE handle = GetModuleHandle(<span class="literal">NULL</span>);</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> RVA = <span class="number">0x67202C</span> - <span class="number">0x400000</span>;</span><br><span class="line"><span class="type">int</span> VA = <span class="type">int</span>(handle) + RVA;</span><br><span class="line"></span><br><span class="line"><span class="type">unsigned</span> <span class="type">char</span> p405213[<span class="number">11</span>] = &#123;  </span><br><span class="line">      <span class="number">0x33</span>, <span class="number">0xC0</span>, <span class="number">0x83</span>, <span class="number">0xC0</span>, <span class="number">0x01</span>, <span class="number">0x90</span>, <span class="number">0x90</span>, <span class="number">0x90</span>, <span class="number">0x90</span>, <span class="number">0x90</span>, <span class="number">0xC3</span></span><br><span class="line">&#125;;</span><br><span class="line">VirtualProtectEx(hProcess, (LPVOID)VA, <span class="number">11</span>, PAGE_EXECUTE_READWRITE, &amp;Oldpp);</span><br><span class="line">WriteProcessMemory(hProcess, (LPVOID)VA, p405213, <span class="number">11</span>, <span class="literal">NULL</span>);</span><br></pre></td></tr></table></figure>
-
-<p>GetModuleHandle用于动态获取进程加载基址。</p>
-<h2 id="LPK-dll"><a href="#LPK-dll" class="headerlink" title="LPK.dll"></a>LPK.dll</h2><p>Windows 7 不能默认已经不能使用LPK.dll，必须导入下面注册表键值，重启电脑<br>才能使用。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Windows Registry Editor Version 5.00 </span><br><span class="line"></span><br><span class="line">[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager] </span><br><span class="line">&quot;ExcludeFromKnownDlls&quot;=hex(7):6c,00,70,00,6b,00,2e,00,64,00,6c,00,6c,00,00,00,\ </span><br><span class="line">00,00</span><br></pre></td></tr></table></figure>
-
 
       
     </div>
