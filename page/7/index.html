@@ -126,7 +126,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">75</span>
+          <span class="site-state-item-count">76</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -191,6 +191,90 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://usmacd.com/2017/03/24/android_emulator_debug/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="henices">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="安全代码">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 安全代码">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2017/03/24/android_emulator_debug/" class="post-title-link" itemprop="url">在虚拟机中调试android 手机的方法</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2017-03-24 00:00:00" itemprop="dateCreated datePublished" datetime="2017-03-24T00:00:00+08:00">2017-03-24</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>由于Google的源码是在ubuntu下编译的，Google官方提供了较为详细的编译说明，所以使用 了ubuntu 14.04 进行编译，编译完成后有一个问题，如何进行源码调试。（源代码在虚拟机中）</p>
+<p>首先的想法是直接使用中virutalBox 的USB 把手机给连到guest，折腾了一下比较麻烦， 首先需要安装virutalbox 的 Extension Pack，</p>
+<p>Oracle VM VirtualBox Extension Pack</p>
+<p>下载后安装，没有成功，找不到USB设备。后面想到adb 其实是通过tcp 和Android设备通讯， 所以只要做端口映射打个通道，就可以解决在virutalBox的虚拟机里调试手机的问题。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tcp        0      0 127.0.0.1:5037          0.0.0.0:*               LISTEN      26706/adb </span><br></pre></td></tr></table></figure>
+
+<p>在guest里执行下面两条命令</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">autossh -nNL1234:localhost:1234  10.0.2.2 </span><br><span class="line">autossh -nNL5037:localhost:5037  10.0.2.2 </span><br></pre></td></tr></table></figure>
+
+<p>其中 10.0.2.2 是host的ip，5037 是adb 默认监听的端口，1234 是gdbserver 监听的端 口，利用ssh在host和guest 打个通道。</p>
+<p>在host执行adb forward 命令</p>
+<p>adb forward tcp:1234 tcp:1234<br>这条命令在host和手机上建立了一条通道。</p>
+<p>这样就搞定了adb的连接问题。执行这三行命令后在ubuntu下， adb devices 可以看到下面的输出, 问题得到解决。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt; adb devices  </span><br><span class="line">List of devices attached  01b00af93dc59e163        device </span><br><span class="line"></span><br><span class="line">gdbclient system_server :1234 4475</span><br></pre></td></tr></table></figure>
+
+<p>输出正常，可以开始调试了。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1009,83 +1093,6 @@
     
     <div class="post-body" itemprop="articleBody">
           <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sc</span> Create SuperCMD binPath=<span class="string">&quot;cmd /K start&quot;</span> <span class="built_in">type</span>=own <span class="built_in">type</span>=interact</span><br><span class="line"><span class="built_in">sc</span> <span class="built_in">start</span> SuperCMD</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://usmacd.com/2009/09/18/sqlserver2005_xpcmdshell/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="henices">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="安全代码">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 安全代码">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2009/09/18/sqlserver2005_xpcmdshell/" class="post-title-link" itemprop="url">SQL Server 2005 xp_cmdshell</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2009-09-18 00:00:00" itemprop="dateCreated datePublished" datetime="2009-09-18T00:00:00+08:00">2009-09-18</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>SQL Server 2005 中引入的 xp_cmdshell 选项是服务器配置选项，<br>使系统管理员能够控制是否可以在系统上执行 xp_cmdshell 扩展存储过程。</p>
-<h2 id="1-如何在sql-server-2005-中开启xp-cmdshell"><a href="#1-如何在sql-server-2005-中开启xp-cmdshell" class="headerlink" title="1.  如何在sql server 2005 中开启xp_cmdshell"></a>1.  如何在sql server 2005 中开启xp_cmdshell</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- To allow advanced options to be changed.</span></span><br><span class="line"><span class="keyword">EXEC</span> sp_configure <span class="string">&#x27;show advanced options&#x27;</span>, <span class="number">1</span></span><br><span class="line">GO</span><br><span class="line"><span class="comment">-- To update the currently configured value for advanced options.</span></span><br><span class="line">RECONFIGURE</span><br><span class="line">GO</span><br><span class="line"><span class="comment">-- To enable the feature.</span></span><br><span class="line"><span class="keyword">EXEC</span> sp_configure <span class="string">&#x27;xp_cmdshell&#x27;</span>, <span class="number">1</span></span><br><span class="line">GO</span><br><span class="line"><span class="comment">-- To update the currently configured value for this feature.</span></span><br><span class="line">RECONFIGURE</span><br><span class="line">GO</span><br></pre></td></tr></table></figure>
-
-<h2 id="2-如何查询sql-server-2005-拓展存储过程xp-cmdshell-状态"><a href="#2-如何查询sql-server-2005-拓展存储过程xp-cmdshell-状态" class="headerlink" title="2. 如何查询sql server 2005 拓展存储过程xp_cmdshell 状态"></a>2. 如何查询sql server 2005 拓展存储过程xp_cmdshell 状态</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> sys.configurations <span class="keyword">where</span> name<span class="operator">=</span><span class="string">&#x27;xp_cmdshell&#x27;</span></span><br><span class="line">GO</span><br></pre></td></tr></table></figure>
-
-<p>查看value的值， 1 为开启， 0 为关闭</p>
-<h2 id="3-如何查看public角色对哪些拓展存储过程有执行权限"><a href="#3-如何查看public角色对哪些拓展存储过程有执行权限" class="headerlink" title="3. 如何查看public角色对哪些拓展存储过程有执行权限"></a>3. 如何查看public角色对哪些拓展存储过程有执行权限</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> sysusers.name, sysobjects.name, sysprotects.action <span class="keyword">from</span> sysobjects, sysusers, sysprotects</span><br><span class="line"><span class="keyword">where</span> sysobjects.id<span class="operator">=</span>sysprotects.id <span class="keyword">and</span> sysprotects.uid <span class="operator">=</span> sysusers.uid <span class="keyword">and</span> </span><br><span class="line">sysprotects.protecttype<span class="operator">=</span><span class="number">205</span> <span class="keyword">and</span> sysprotects.action<span class="operator">=</span> <span class="number">224</span> <span class="keyword">and</span> (sysusers.name<span class="operator">=</span><span class="string">&#x27;public&#x27;</span> <span class="keyword">or</span></span><br><span class="line">sysusers.name<span class="operator">=</span><span class="string">&#x27;guest&#x27;</span> ) <span class="keyword">and</span> sysobjects.type<span class="operator">=</span><span class="string">&#x27;X&#x27;</span></span><br><span class="line"></span><br><span class="line">GO</span><br></pre></td></tr></table></figure>
-
-<h2 id="4-如何去掉public角色对拓展存储过程的执行权限"><a href="#4-如何去掉public角色对拓展存储过程的执行权限" class="headerlink" title="4. 如何去掉public角色对拓展存储过程的执行权限"></a>4. 如何去掉public角色对拓展存储过程的执行权限</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">deny <span class="keyword">execute</span> <span class="keyword">on</span> xp_dirtree <span class="keyword">to</span> public</span><br><span class="line">GO</span><br></pre></td></tr></table></figure>
 
       
     </div>
