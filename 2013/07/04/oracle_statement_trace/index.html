@@ -20,12 +20,12 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"usmacd.com","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.12.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="Q.  Oracle 数据库如何trace执行的SQL statement  开启trace  方法(1) : 执行SQL语句 12SQL&gt; alter system set sql_trace &#x3D; true;SQL&gt; alter system SET EVENTS &amp;#x27;10046 trace name context forever, level 12&amp;#x27;;  方法(">
+    <meta name="description" content="Q.  Oracle 数据库如何trace执行的SQL statement 1. 开启trace方法(1) : 执行SQL语句 12SQL&gt; alter system set sql_trace &#x3D; true;SQL&gt; alter system SET EVENTS &amp;#x27;10046 trace name context forever, level 12&amp;#x27;;  方法(">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Oracle 数据库如何trace 执行的SQL statement">
 <meta property="og:url" content="http://usmacd.com/2013/07/04/oracle_statement_trace/index.html">
 <meta property="og:site_name" content="安全代码">
-<meta property="og:description" content="Q.  Oracle 数据库如何trace执行的SQL statement  开启trace  方法(1) : 执行SQL语句 12SQL&gt; alter system set sql_trace &#x3D; true;SQL&gt; alter system SET EVENTS &amp;#x27;10046 trace name context forever, level 12&amp;#x27;;  方法(">
+<meta property="og:description" content="Q.  Oracle 数据库如何trace执行的SQL statement 1. 开启trace方法(1) : 执行SQL语句 12SQL&gt; alter system set sql_trace &#x3D; true;SQL&gt; alter system SET EVENTS &amp;#x27;10046 trace name context forever, level 12&amp;#x27;;  方法(">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2013-07-03T16:00:00.000Z">
 <meta property="article:modified_time" content="2013-07-03T16:00:00.000Z">
@@ -104,7 +104,7 @@
 
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           Table of Contents
@@ -117,6 +117,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E5%BC%80%E5%90%AFtrace"><span class="nav-number">1.</span> <span class="nav-text">1. 开启trace</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E5%85%B3%E9%97%AD-trace"><span class="nav-number">2.</span> <span class="nav-text">2. 关闭 trace</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-trace%E7%9B%B8%E5%85%B3%E7%9A%84%E5%87%A0%E4%B8%AA%E5%8F%82%E6%95%B0"><span class="nav-number">3.</span> <span class="nav-text">3. trace相关的几个参数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-trc-%E6%96%87%E4%BB%B6%E5%88%86%E6%9E%90"><span class="nav-number">4.</span> <span class="nav-text">4.  trc 文件分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E9%93%BE%E6%8E%A5"><span class="nav-number">5.</span> <span class="nav-text">参考链接</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -249,40 +250,28 @@
     
     <div class="post-body" itemprop="articleBody">
         <p>Q.  Oracle 数据库如何trace执行的SQL statement</p>
-<ol>
-<li>开启trace</li>
-</ol>
-<p>方法(1) : 执行SQL语句</p>
+<h2 id="1-开启trace"><a href="#1-开启trace" class="headerlink" title="1. 开启trace"></a>1. 开启trace</h2><p>方法(1) : 执行SQL语句</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SQL</span><span class="operator">&gt;</span> <span class="keyword">alter</span> <span class="keyword">system</span> <span class="keyword">set</span> sql_trace <span class="operator">=</span> <span class="literal">true</span>;</span><br><span class="line"><span class="keyword">SQL</span><span class="operator">&gt;</span> <span class="keyword">alter</span> <span class="keyword">system</span> <span class="keyword">SET</span> EVENTS <span class="string">&#x27;10046 trace name context forever, level 12&#x27;</span>;</span><br></pre></td></tr></table></figure>
 
 <p>方法(2) : 修改init.ora 配置文件</p>
 <p>还可以修改init.ora 文件添加 event&#x3D;”10046 trace name context forever,level 12”  来达到目的，<br>修改以后需要重新启动数据库。</p>
-<ol start="2">
-<li>关闭 trace</li>
-</ol>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SQL</span><span class="operator">&gt;</span> <span class="keyword">alter</span> <span class="keyword">system</span> <span class="keyword">set</span> EVENTS <span class="string">&#x27;10046 trace name context off&#x27;</span>;</span><br></pre></td></tr></table></figure>
+<h2 id="2-关闭-trace"><a href="#2-关闭-trace" class="headerlink" title="2. 关闭 trace"></a>2. 关闭 trace</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SQL</span><span class="operator">&gt;</span> <span class="keyword">alter</span> <span class="keyword">system</span> <span class="keyword">set</span> EVENTS <span class="string">&#x27;10046 trace name context off&#x27;</span>;</span><br></pre></td></tr></table></figure>
 
-<ol start="3">
-<li>trace相关的几个参数</li>
-</ol>
-<ul>
+<h2 id="3-trace相关的几个参数"><a href="#3-trace相关的几个参数" class="headerlink" title="3. trace相关的几个参数"></a>3. trace相关的几个参数</h2><ul>
 <li>MAX_DUMP_FILE_SIZE    dump 文件大小</li>
 <li>USER_DUMP_DEST           dump 文件路径</li>
 </ul>
 <p>可以使用下面语句参看：</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SQL</span><span class="operator">&gt;</span> <span class="keyword">show</span> <span class="keyword">parameter</span> user_dump_dest;</span><br><span class="line"></span><br><span class="line">NAME				     TYPE	 <span class="keyword">VALUE</span></span><br><span class="line"><span class="comment">------------------------------------ ----------- ------------------------------</span></span><br><span class="line">user_dump_dest			     string	 <span class="operator">/</span>u01<span class="operator">/</span>app<span class="operator">/</span>diag<span class="operator">/</span>rdbms<span class="operator">/</span>orcl<span class="operator">/</span>orcl<span class="operator">/</span>trace</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">SQL</span><span class="operator">&gt;</span> <span class="keyword">show</span> <span class="keyword">parameter</span> max_dump_file_size;</span><br><span class="line"></span><br><span class="line">NAME				     TYPE	 <span class="keyword">VALUE</span></span><br><span class="line"><span class="comment">------------------------------------ ----------- ------------------------------</span></span><br><span class="line">max_dump_file_size		     string	 unlimited</span><br></pre></td></tr></table></figure>
 
-<ol start="4">
-<li>trc 文件分析</li>
-</ol>
-<p>方法(1)</p>
+<h2 id="4-trc-文件分析"><a href="#4-trc-文件分析" class="headerlink" title="4.  trc 文件分析"></a>4.  trc 文件分析</h2><p>方法(1)</p>
 <p>可以使用trc2sql.pl 来提取trc文件中的SQL语句</p>
 <p>下载地址: <a target="_blank" rel="noopener" href="https://gist.github.com/henices/5097678">https://gist.github.com/henices/5097678</a></p>
 <p>方法(2)</p>
 <p>oracle提供tkprof 命令可以解析trc文件，使用方法为：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ tkprof tracefile outputfile</span><br></pre></td></tr></table></figure>
 
-<p>参考链接： <a target="_blank" rel="noopener" href="http://www.eygle.com/case/Use.sql_trace.to.Diagnose.database.htm">http://www.eygle.com/case/Use.sql_trace.to.Diagnose.database.htm</a></p>
+<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><p>参考链接： <a target="_blank" rel="noopener" href="http://www.eygle.com/case/Use.sql_trace.to.Diagnose.database.htm">http://www.eygle.com/case/Use.sql_trace.to.Diagnose.database.htm</a></p>
 
     </div>
 
