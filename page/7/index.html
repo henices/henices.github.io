@@ -260,7 +260,9 @@
 
 <p>其中 10.0.2.2 是host的ip，5037 是adb 默认监听的端口，1234 是gdbserver 监听的端 口，利用ssh在host和guest 打个通道。</p>
 <p>在host执行adb forward 命令</p>
-<p>adb forward tcp:1234 tcp:1234<br>这条命令在host和手机上建立了一条通道。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb forward tcp:1234 tcp:1234 </span><br></pre></td></tr></table></figure>
+
+<p>这条命令在host和手机上建立了一条通道。</p>
 <p>这样就搞定了adb的连接问题。执行这三行命令后在ubuntu下， adb devices 可以看到下面的输出, 问题得到解决。</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt; adb devices  </span><br><span class="line">List of devices attached  01b00af93dc59e163        device </span><br><span class="line"></span><br><span class="line">gdbclient system_server :1234 4475</span><br></pre></td></tr></table></figure>
 
