@@ -126,7 +126,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">78</span>
+          <span class="site-state-item-count">79</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -1124,7 +1124,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://usmacd.com/2013/06/19/linux_ida_pro/">
+    <link itemprop="mainEntityOfPage" href="http://usmacd.com/2013/07/04/oracle_statement_trace/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -1142,7 +1142,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2013/06/19/linux_ida_pro/" class="post-title-link" itemprop="url">Linux 下运行 IDA Pro</a>
+          <a href="/2013/07/04/oracle_statement_trace/" class="post-title-link" itemprop="url">Oracle 数据库如何trace 执行的SQL statement</a>
         </h2>
 
         <div class="post-meta-container">
@@ -1153,14 +1153,7 @@
       </span>
       <span class="post-meta-item-text">Posted on</span>
 
-      <time title="Created: 2013-06-19 00:00:00" itemprop="dateCreated datePublished" datetime="2013-06-19T00:00:00+08:00">2013-06-19</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2014-09-08 00:00:00" itemprop="dateModified" datetime="2014-09-08T00:00:00+08:00">2014-09-08</time>
+      <time title="Created: 2013-07-04 00:00:00" itemprop="dateCreated datePublished" datetime="2013-07-04T00:00:00+08:00">2013-07-04</time>
     </span>
 
   
@@ -1173,21 +1166,41 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p>IDA Pro 6.2 + 的Linux 版本提供了Qt 界面，可以在各大平台正常运行。买不起也有办法 ，使用 wine 可以很好地运行IDA Pro，显示效果基本OK，爱折腾的同学可以自行调整字体。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ wine idag.exe</span><br></pre></td></tr></table></figure>
+          <p>Q.  Oracle 数据库如何trace执行的SQL statement</p>
+<ol>
+<li>开启trace</li>
+</ol>
+<p>方法(1) : 执行SQL语句</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SQL</span><span class="operator">&gt;</span> <span class="keyword">alter</span> <span class="keyword">system</span> <span class="keyword">set</span> sql_trace <span class="operator">=</span> <span class="literal">true</span>;</span><br><span class="line"><span class="keyword">SQL</span><span class="operator">&gt;</span> <span class="keyword">alter</span> <span class="keyword">system</span> <span class="keyword">SET</span> EVENTS <span class="string">&#x27;10046 trace name context forever, level 12&#x27;</span>;</span><br></pre></td></tr></table></figure>
 
-<p>IDA Pro 6.1 成功运行.但是idapython 有些问题需要处理，引起idapython不能正常运行的原因主要有下面两个：</p>
-<h2 id="文件缺失"><a href="#文件缺失" class="headerlink" title="文件缺失"></a>文件缺失</h2><p>大概会报下面错误 </p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">err:module:import_dll Library python27.dll (which is needed by L&quot;C:\\ida61\\plugins\\python.plw&quot;) not found</span><br></pre></td></tr></table></figure>
+<p>方法(2) : 修改init.ora 配置文件</p>
+<p>还可以修改init.ora 文件添加 event&#x3D;”10046 trace name context forever,level 12”  来达到目的，<br>修改以后需要重新启动数据库。</p>
+<ol start="2">
+<li>关闭 trace</li>
+</ol>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SQL</span><span class="operator">&gt;</span> <span class="keyword">alter</span> <span class="keyword">system</span> <span class="keyword">set</span> EVENTS <span class="string">&#x27;10046 trace name context off&#x27;</span>;</span><br></pre></td></tr></table></figure>
 
-<p>要解决这个错误，需要从windows下拷贝两个文件过来，这两个文件是 msvcr90.dll，python27.dll</p>
-<h2 id="环境变量"><a href="#环境变量" class="headerlink" title="环境变量"></a>环境变量</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ wine idag.exe</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>trace相关的几个参数</li>
+</ol>
+<ul>
+<li>MAX_DUMP_FILE_SIZE    dump 文件大小</li>
+<li>USER_DUMP_DEST           dump 文件路径</li>
+</ul>
+<p>可以使用下面语句参看：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SQL</span><span class="operator">&gt;</span> <span class="keyword">show</span> <span class="keyword">parameter</span> user_dump_dest;</span><br><span class="line"></span><br><span class="line">NAME				     TYPE	 <span class="keyword">VALUE</span></span><br><span class="line"><span class="comment">------------------------------------ ----------- ------------------------------</span></span><br><span class="line">user_dump_dest			     string	 <span class="operator">/</span>u01<span class="operator">/</span>app<span class="operator">/</span>diag<span class="operator">/</span>rdbms<span class="operator">/</span>orcl<span class="operator">/</span>orcl<span class="operator">/</span>trace</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">SQL</span><span class="operator">&gt;</span> <span class="keyword">show</span> <span class="keyword">parameter</span> max_dump_file_size;</span><br><span class="line"></span><br><span class="line">NAME				     TYPE	 <span class="keyword">VALUE</span></span><br><span class="line"><span class="comment">------------------------------------ ----------- ------------------------------</span></span><br><span class="line">max_dump_file_size		     string	 unlimited</span><br></pre></td></tr></table></figure>
 
-<p>会报下面类似错误， ImportError: No module named site，发生这个错误的原因是找不到python安装路径，可以使用unix下的python使用shell命令设置环境变量</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">export</span> PYTHONPATH=/usr/lib/python2.7/</span><br><span class="line">$ wine idag.exe</span><br></pre></td></tr></table></figure>
+<ol start="4">
+<li>trc 文件分析</li>
+</ol>
+<p>方法(1)</p>
+<p>可以使用trc2sql.pl 来提取trc文件中的SQL语句</p>
+<p>下载地址: <a target="_blank" rel="noopener" href="https://gist.github.com/henices/5097678">https://gist.github.com/henices/5097678</a></p>
+<p>方法(2)</p>
+<p>oracle提供tkprof 命令可以解析trc文件，使用方法为：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ tkprof tracefile outputfile</span><br></pre></td></tr></table></figure>
 
-<h2 id="Python-问题"><a href="#Python-问题" class="headerlink" title="Python 问题"></a>Python 问题</h2><p>在使用过程中发现idapython还是有一些问题，使用wine安装Windows的python后问题得到解决，主要是C语言写的python模块的问题。</p>
-<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><p><a target="_blank" rel="noopener" href="http://www.openrce.org/forums/posts/463">http://www.openrce.org/forums/posts/463</a></p>
+<p>参考链接： <a target="_blank" rel="noopener" href="http://www.eygle.com/case/Use.sql_trace.to.Diagnose.database.htm">http://www.eygle.com/case/Use.sql_trace.to.Diagnose.database.htm</a></p>
 
       
     </div>
