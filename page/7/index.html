@@ -126,7 +126,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">76</span>
+          <span class="site-state-item-count">77</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -607,6 +607,96 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://usmacd.com/2015/07/10/android_bootimg/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="henices">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="安全代码">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 安全代码">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2015/07/10/android_bootimg/" class="post-title-link" itemprop="url">Android boot.img 格式分析</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2015-07-10 00:00:00" itemprop="dateCreated datePublished" datetime="2015-07-10T00:00:00+08:00">2015-07-10</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>首先需要搞到boot.img，网络上流传的方法是通过&#x2F;proc&#x2F;mtd 在获取需要的信息</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&gt; ./adb shell</span><br><span class="line">&gt; su</span><br><span class="line">&gt; cat /proc/mtd</span><br><span class="line"></span><br><span class="line">dev:    size   erasesize  name</span><br><span class="line">mtd0: 00700000 00020000 &quot;boot&quot;</span><br><span class="line">mtd1: 07c20000 00020000 &quot;cache&quot;</span><br><span class="line">mtd2: 00700000 00020000 &quot;recovery&quot;</span><br><span class="line">mtd3: 00140000 00020000 &quot;splash&quot;</span><br><span class="line">mtd4: 00700000 00020000 &quot;FOTA_STO&quot;</span><br><span class="line">mtd5: 09e80000 00020000 &quot;system&quot;</span><br><span class="line">mtd6: 0a4e0000 00020000 &quot;userdata&quot;</span><br><span class="line">mtd7: 00080000 00020000 &quot;misc&quot;</span><br><span class="line">mtd8: 00180000 00020000 &quot;persist&quot;</span><br></pre></td></tr></table></figure>
+
+<p>但是在Nexus4, Android 4.4.4 已经找不到这个文件了</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt; cat /proc/mtd</span><br><span class="line"></span><br><span class="line">cat: /proc/mtd: No such file or directory</span><br></pre></td></tr></table></figure>
+
+<p>但是还是有方法可以获取到需要的信息。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&gt; mount</span><br><span class="line"></span><br><span class="line">.....</span><br><span class="line">/dev/block/platform/msm_sdcc.1/by-name/system /system ext4 ro,seclabel,relatime,data=ordered 0 0</span><br><span class="line">/dev/block/platform/msm_sdcc.1/by-name/cache /cache ext4 rw,seclabel,nosuid,nodev,noatime,data=ordered 0 0</span><br><span class="line">.....</span><br></pre></td></tr></table></figure>
+
+<p> 可以看到大致上面的输出（上面的输出省略了部分内容），从输出中可以看出 &#x2F;dev&#x2F;block&#x2F;platform&#x2F;msm_sdcc.1&#x2F;by-name<br>是一个比较有意思的路径，有by-name 的信息。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">&gt; ls /dev/block/platform/msm_sdcc.1/by-name/</span><br><span class="line"></span><br><span class="line">lrwxrwxrwx root     root              2014-06-30 20:50 DDR -&gt; /dev/block/mmcblk0p24</span><br><span class="line">lrwxrwxrwx root     root              2014-06-30 20:50 aboot -&gt; /dev/block/mmcblk0p12</span><br><span class="line">lrwxrwxrwx root     root              2014-06-30 20:50 abootb -&gt; /dev/block/mmcblk0p15</span><br><span class="line">lrwxrwxrwx root     root              2014-06-30 20:50 boot -&gt; /dev/block/mmcblk0p6</span><br><span class="line">lrwxrwxrwx root     root              2014-06-30 20:50 cache -&gt; /dev/block/mmcblk0p22</span><br><span class="line">lrwxrwxrwx root     root              2014-06-30 20:50 grow -&gt; /dev/block/mmcblk0p25</span><br><span class="line">lrwxrwxrwx root     root              2014-06-30 20:50 m9kefs1 -&gt; /dev/block/mmcblk0p8</span><br><span class="line">lrwxrwxrwx root     root              2014-06-30 20:50 m9kefs2 -&gt; /dev/block/mmcblk0p9</span><br><span class="line">lrwxrwxrwx root     root              2014-06-30 20:50 m9kefs3 -&gt; /dev/block/mmcblk0p10</span><br><span class="line">lrwxrwxrwx root     root              2014-06-30 20:50 metadata -&gt; /dev/block/mmcblk0p18</span><br><span class="line">lrwxrwxrwx root     root              2014-06-30 20:50 misc -&gt; /dev/block/mmcblk0p19</span><br><span class="line">lrwxrwxrwx root     root              2014-06-30 20:50 modem -&gt; /dev/block/mmcblk0p1</span><br><span class="line">lrwxrwxrwx root     root              2014-06-30 20:50 persist -&gt; /dev/block/mmcblk0p20</span><br><span class="line">lrwxrwxrwx root     root              2014-06-30 20:50 recovery -&gt; /dev/block/mmcblk0p7</span><br><span class="line">lrwxrwxrwx root     root              2014-06-30 20:50 rpm -&gt; /dev/block/mmcblk0p11</span><br><span class="line">lrwxrwxrwx root     root              2014-06-30 20:50 rpmb -&gt; /dev/block/mmcblk0p16</span><br><span class="line">lrwxrwxrwx root     root              2014-06-30 20:50 sbl1 -&gt; /dev/block/mmcblk0p2</span><br><span class="line">lrwxrwxrwx root     root              2014-06-30 20:50 sbl2 -&gt; /dev/block/mmcblk0p3</span><br><span class="line">lrwxrwxrwx root     root              2014-06-30 20:50 sbl2b -&gt; /dev/block/mmcblk0p13</span><br><span class="line">lrwxrwxrwx root     root              2014-06-30 20:50 sbl3 -&gt; /dev/block/mmcblk0p4</span><br><span class="line">lrwxrwxrwx root     root              2014-06-30 20:50 sbl3b -&gt; /dev/block/mmcblk0p14</span><br><span class="line">lrwxrwxrwx root     root              2014-06-30 20:50 system -&gt; /dev/block/mmcblk0p21</span><br><span class="line">lrwxrwxrwx root     root              2014-06-30 20:50 tz -&gt; /dev/block/mmcblk0p5</span><br><span class="line">lrwxrwxrwx root     root              2014-06-30 20:50 tzb -&gt; /dev/block/mmcblk0p17</span><br><span class="line">lrwxrwxrwx root     root              2014-06-30 20:50 userdata -&gt; /dev/block/mmcblk0p23</span><br></pre></td></tr></table></figure>
+
+<p>哈哈，一清二楚。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&gt; dd if=/dev/block/mmcblk0p6 of=/sdcard/boot.img bs=4096</span><br><span class="line">5632+0 records in</span><br><span class="line">5632+0 records out</span><br><span class="line">23068672 bytes transferred in 2.398 secs (9619963 bytes/sec)</span><br><span class="line"></span><br><span class="line">&gt;./adb pull /sdcard/boot.img /tmp/boot.img</span><br><span class="line">4270 KB/s (23068672 bytes in 5.275s)</span><br></pre></td></tr></table></figure>
+
+<p> boot.img 主要由两部分组成，kernel 和 ramdisk，下面使用010editor来写一个模版，解析boot.img。从Android的源码可以知道boot.img的结构 app&#x2F;aboot&#x2F;bootimg.h</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">+-----------------+ </span><br><span class="line">| boot header     | 1 page</span><br><span class="line">+-----------------+</span><br><span class="line">| kernel          | n pages</span><br><span class="line">+-----------------+</span><br><span class="line">| ramdisk         | m pages</span><br><span class="line">+-----------------+</span><br><span class="line">| second stage    | o pages</span><br><span class="line">+-----------------+</span><br><span class="line">| device tree     | p pages</span><br><span class="line">+-----------------+</span><br></pre></td></tr></table></figure>
+
+<pre><code>  boot header 的结构定义如下：
+</code></pre>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">boot_img_hdr</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="type">unsigned</span> <span class="type">char</span> magic[BOOT_MAGIC_SIZE];</span><br><span class="line">    <span class="type">unsigned</span> kernel_size;  <span class="comment">/* size in bytes */</span></span><br><span class="line">    <span class="type">unsigned</span> kernel_addr;  <span class="comment">/* physical load addr */</span></span><br><span class="line">    <span class="type">unsigned</span> ramdisk_size; <span class="comment">/* size in bytes */</span></span><br><span class="line">    <span class="type">unsigned</span> ramdisk_addr; <span class="comment">/* physical load addr */</span></span><br><span class="line">    <span class="type">unsigned</span> second_size;  <span class="comment">/* size in bytes */</span></span><br><span class="line">    <span class="type">unsigned</span> second_addr;  <span class="comment">/* physical load addr */</span></span><br><span class="line">    <span class="type">unsigned</span> tags_addr;    <span class="comment">/* physical addr for kernel tags */</span></span><br><span class="line">    <span class="type">unsigned</span> page_size;    <span class="comment">/* flash page size we assume */</span></span><br><span class="line">    <span class="type">unsigned</span> dt_size;      <span class="comment">/* device_tree in bytes */</span></span><br><span class="line">    <span class="type">unsigned</span> unused;    <span class="comment">/* future expansion: should be 0 */</span></span><br><span class="line">    <span class="type">unsigned</span> <span class="type">char</span> name[BOOT_NAME_SIZE]; <span class="comment">/* asciiz product name */</span></span><br><span class="line"></span><br><span class="line">    <span class="type">unsigned</span> <span class="type">char</span> cmdline[BOOT_ARGS_SIZE];</span><br><span class="line">    <span class="type">unsigned</span> id[<span class="number">8</span>]; <span class="comment">/* timestamp / checksum / sha1 / etc */</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="010editor-模板"><a href="#010editor-模板" class="headerlink" title="010editor 模板"></a>010editor 模板</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">define</span> BOOT_MAGIC_SIZE 8</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> BOOT_NAME_SIZE 16</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> BOOT_ARGS_SIZE 512</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">boot_img_hdr</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="type">char</span> magic[BOOT_MAGIC_SIZE];</span><br><span class="line">    uint kernel_size;  <span class="comment">/* size in bytes */</span></span><br><span class="line">    uint kernel_addr;  <span class="comment">/* physical load addr */</span></span><br><span class="line">    uint ramdisk_size; <span class="comment">/* size in bytes */</span></span><br><span class="line">    uint ramdisk_addr; <span class="comment">/* physical load addr */</span></span><br><span class="line">    uint second_size;  <span class="comment">/* size in bytes */</span></span><br><span class="line">    uint second_addr;  <span class="comment">/* physical load addr */</span></span><br><span class="line">    uint tags_addr;    <span class="comment">/* physical addr for kernel tags */</span></span><br><span class="line">    uint page_size;    <span class="comment">/* flash page size we assume */</span></span><br><span class="line">    uint dt_size;      <span class="comment">/* device_tree in bytes */</span></span><br><span class="line">    uint unused;    <span class="comment">/* future expansion: should be 0 */</span></span><br><span class="line">    ubyte name[BOOT_NAME_SIZE]; <span class="comment">/* asciiz product name */</span></span><br><span class="line">    </span><br><span class="line">    ubyte cmdline[BOOT_ARGS_SIZE];</span><br><span class="line">    uint id[<span class="number">8</span>]; <span class="comment">/* timestamp / checksum / sha1 / etc */</span></span><br><span class="line">&#125;BOOT_IMG_HDR;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">boot_hdr</span> &#123;</span></span><br><span class="line">    BOOT_IMG_HDR header;</span><br><span class="line">    ubyte unused[header.page_size - <span class="keyword">sizeof</span>(header)];</span><br><span class="line">&#125;HEADER;</span><br><span class="line"></span><br><span class="line">LittleEndian();</span><br><span class="line">HEADER header_section;</span><br><span class="line"></span><br><span class="line">local uint page_size = header_section.header.page_size;</span><br><span class="line">local uint kernel_size = header_section.header.kernel_size;</span><br><span class="line">local uint ramdisk_size = header_section.header.ramdisk_size;</span><br><span class="line">local uint second_size = header_section.header.second_size;</span><br><span class="line"></span><br><span class="line">Printf(<span class="string">&quot;page_size: %x\nkernel_size: %x\nramdisk_size: %x\nsecond_size: %x\n&quot;</span>, page_size, kernel_size, ramdisk_size, second_size);</span><br><span class="line"></span><br><span class="line">local uint n = (kernel_size + page_size - <span class="number">1</span>) / page_size;</span><br><span class="line">local uint m = (ramdisk_size + page_size - <span class="number">1</span>) / page_size; </span><br><span class="line">local uint o = (second_size + page_size - <span class="number">1</span>) / page_size;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">kernel</span> &#123;</span></span><br><span class="line">    ubyte kernel_data[kernel_size];</span><br><span class="line">    ubyte unused[n * page_size - kernel_size];</span><br><span class="line">&#125;KERNEL;</span><br><span class="line"></span><br><span class="line">KERNEL kernel_section;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">ramdisk</span> &#123;</span></span><br><span class="line">    ubyte ramdisk_data[ramdisk_size];</span><br><span class="line">    ubyte unused[m * page_size - ramdisk_size];</span><br><span class="line">&#125;RAMDISK;</span><br><span class="line"></span><br><span class="line">RAMDISK ramdisk_section;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">second</span> &#123;</span></span><br><span class="line">    ubyte second_data[second_size];</span><br><span class="line">    ubyte unused[o * page_size - second_size];</span><br><span class="line"></span><br><span class="line">&#125;SECOND;</span><br><span class="line"></span><br><span class="line">SECOND second_section;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
     <link itemprop="mainEntityOfPage" href="http://usmacd.com/2015/03/24/ubuntu_cuda_hashcat/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1031,75 +1121,6 @@
           <figure class="highlight vbs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">Dim</span> daytime</span><br><span class="line">daytime = <span class="built_in">formatdatetime</span>(<span class="built_in">now</span>(), <span class="number">2</span>)</span><br><span class="line">wscript.echo <span class="string">&quot;Now is: &quot;</span> &amp; daytime</span><br><span class="line">wscript.echo <span class="string">&quot;Change system data to 2010/12/18...&quot;</span></span><br><span class="line"><span class="keyword">Set</span> os =WScript.<span class="built_in">CreateObject</span>(<span class="string">&quot;WScript.Shell&quot;</span>)</span><br><span class="line">os.run <span class="string">&quot;cmd /c date 2010/12/18&quot;</span>, <span class="number">0</span>, <span class="literal">True</span></span><br><span class="line">wscript.sleep <span class="number">3000</span></span><br><span class="line">wscript.echo <span class="string">&quot;Call some.exe&quot;</span></span><br><span class="line">os.run <span class="string">&quot;.\some.exe&quot;</span>, <span class="number">1</span>, <span class="literal">True</span></span><br><span class="line">wscript.echo <span class="string">&quot;Restore system data to &quot;</span> &amp; daytime</span><br><span class="line">os.run <span class="string">&quot;cmd /c date &quot;</span> &amp; daytime, <span class="number">0</span>, <span class="literal">True</span></span><br></pre></td></tr></table></figure>
 
 
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://usmacd.com/2010/01/28/get_system_shell_windows/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="henices">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="安全代码">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 安全代码">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2010/01/28/get_system_shell_windows/" class="post-title-link" itemprop="url">获取system权限的cmdshell</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2010-01-28 00:00:00" itemprop="dateCreated datePublished" datetime="2010-01-28T00:00:00+08:00">2010-01-28</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sc</span> Create SuperCMD binPath=<span class="string">&quot;cmd /K start&quot;</span> <span class="built_in">type</span>=own <span class="built_in">type</span>=interact</span><br><span class="line"><span class="built_in">sc</span> <span class="built_in">start</span> SuperCMD</span><br></pre></td></tr></table></figure>
 
       
     </div>
