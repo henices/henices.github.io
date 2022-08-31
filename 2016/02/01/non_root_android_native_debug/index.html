@@ -253,7 +253,7 @@
 
 <p>Android 系统提供了一个run-as 命令来暂时切换用户，但是这个命令有限制，必须是app 打开了debuggable才行，否则会报 Package xx is not debuggable 的错误。<br>从 <a target="_blank" rel="noopener" href="http://android.googlesource.com/platform/system/core.git/+/master/run-as/run-as.c">http://android.googlesource.com/platform/system/core.git/+/master/run-as/run-as.c</a> 的注释来看，主要的作用有两个：</p>
 <ul>
-<li>可以查看开发这自己应用的数据</li>
+<li>可以查看自己开发的应用的数据</li>
 <li>可以使用gdb_server 进行native 的debug</li>
 </ul>
 <p>我们的需求是第2个，我们希望可以使用gdb_server 来调试 app</p>
