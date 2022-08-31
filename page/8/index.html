@@ -126,7 +126,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">79</span>
+          <span class="site-state-item-count">80</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -191,6 +191,97 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://usmacd.com/2013/07/04/oracle_statement_trace/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="henices">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="安全代码">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 安全代码">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2013/07/04/oracle_statement_trace/" class="post-title-link" itemprop="url">Oracle 数据库如何trace 执行的SQL statement</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2013-07-04 00:00:00" itemprop="dateCreated datePublished" datetime="2013-07-04T00:00:00+08:00">2013-07-04</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>Q.  Oracle 数据库如何trace执行的SQL statement</p>
+<h2 id="1-开启trace"><a href="#1-开启trace" class="headerlink" title="1. 开启trace"></a>1. 开启trace</h2><p>方法(1) : 执行SQL语句</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SQL</span><span class="operator">&gt;</span> <span class="keyword">alter</span> <span class="keyword">system</span> <span class="keyword">set</span> sql_trace <span class="operator">=</span> <span class="literal">true</span>;</span><br><span class="line"><span class="keyword">SQL</span><span class="operator">&gt;</span> <span class="keyword">alter</span> <span class="keyword">system</span> <span class="keyword">SET</span> EVENTS <span class="string">&#x27;10046 trace name context forever, level 12&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+<p>方法(2) : 修改init.ora 配置文件</p>
+<p>还可以修改init.ora 文件添加 event&#x3D;”10046 trace name context forever,level 12”  来达到目的，<br>修改以后需要重新启动数据库。</p>
+<h2 id="2-关闭-trace"><a href="#2-关闭-trace" class="headerlink" title="2. 关闭 trace"></a>2. 关闭 trace</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SQL</span><span class="operator">&gt;</span> <span class="keyword">alter</span> <span class="keyword">system</span> <span class="keyword">set</span> EVENTS <span class="string">&#x27;10046 trace name context off&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-trace相关的几个参数"><a href="#3-trace相关的几个参数" class="headerlink" title="3. trace相关的几个参数"></a>3. trace相关的几个参数</h2><ul>
+<li>MAX_DUMP_FILE_SIZE    dump 文件大小</li>
+<li>USER_DUMP_DEST           dump 文件路径</li>
+</ul>
+<p>可以使用下面语句参看：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SQL</span><span class="operator">&gt;</span> <span class="keyword">show</span> <span class="keyword">parameter</span> user_dump_dest;</span><br><span class="line"></span><br><span class="line">NAME				     TYPE	 <span class="keyword">VALUE</span></span><br><span class="line"><span class="comment">------------------------------------ ----------- ------------------------------</span></span><br><span class="line">user_dump_dest			     string	 <span class="operator">/</span>u01<span class="operator">/</span>app<span class="operator">/</span>diag<span class="operator">/</span>rdbms<span class="operator">/</span>orcl<span class="operator">/</span>orcl<span class="operator">/</span>trace</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">SQL</span><span class="operator">&gt;</span> <span class="keyword">show</span> <span class="keyword">parameter</span> max_dump_file_size;</span><br><span class="line"></span><br><span class="line">NAME				     TYPE	 <span class="keyword">VALUE</span></span><br><span class="line"><span class="comment">------------------------------------ ----------- ------------------------------</span></span><br><span class="line">max_dump_file_size		     string	 unlimited</span><br></pre></td></tr></table></figure>
+
+<h2 id="4-trc-文件分析"><a href="#4-trc-文件分析" class="headerlink" title="4.  trc 文件分析"></a>4.  trc 文件分析</h2><p>方法(1)</p>
+<p>可以使用trc2sql.pl 来提取trc文件中的SQL语句</p>
+<p>下载地址: <a target="_blank" rel="noopener" href="https://gist.github.com/henices/5097678">https://gist.github.com/henices/5097678</a></p>
+<p>方法(2)</p>
+<p>oracle提供tkprof 命令可以解析trc文件，使用方法为：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ tkprof tracefile outputfile</span><br></pre></td></tr></table></figure>
+
+<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><p>参考链接： <a target="_blank" rel="noopener" href="http://www.eygle.com/case/Use.sql_trace.to.Diagnose.database.htm">http://www.eygle.com/case/Use.sql_trace.to.Diagnose.database.htm</a></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
