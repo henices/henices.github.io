@@ -506,15 +506,6 @@
   </url>
   
   <url>
-    <loc>http://usmacd.com/2020/03/19/other/</loc>
-    
-    <lastmod>2020-03-19</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>http://usmacd.com/2020/03/19/pdfium-fuzz.public/</loc>
     
     <lastmod>2020-03-19</lastmod>
@@ -525,6 +516,15 @@
   
   <url>
     <loc>http://usmacd.com/2020/03/19/process_injection/</loc>
+    
+    <lastmod>2020-03-19</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://usmacd.com/2020/03/19/other/</loc>
     
     <lastmod>2020-03-19</lastmod>
     
