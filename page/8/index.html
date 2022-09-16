@@ -127,13 +127,13 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">81</span>
+          <span class="site-state-item-count">82</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-count">13</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -192,6 +192,132 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://usmacd.com/2014/10/08/fedora_pptp_vpn/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="henices">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="安全代码">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 安全代码">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2014/10/08/fedora_pptp_vpn/" class="post-title-link" itemprop="url">Fedora 安装pptp vpn</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2014-10-08 00:00:00" itemprop="dateCreated datePublished" datetime="2014-10-08T00:00:00+08:00">2014-10-08</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>  使用NetWorkManger图形界面，可以简单地配置pptp vpn，但是有几个地方不是特别满意</p>
+<ul>
+<li>操作繁琐，需要多次点击鼠标</li>
+<li>拨号后全局生效，要设置路由</li>
+<li>可以配置的参数不是特别多</li>
+<li>不是通用的方法，在终端中使用不方便</li>
+<li>还是比较习惯命令行操作</li>
+</ul>
+<p>基于上面几个原因折腾了一下pppd，用了一段时间非常不错，很稳定，在这里记录配置的方法。使用pppd的方法应该可以在其他Linux的发行版上正常使用，配置文件的路径或许有稍许差别。</p>
+<p>pppd是Point-to-Point Protocol Daemon的缩写，pppd 的源代码托管在GitHub上 <a target="_blank" rel="noopener" href="https://github.com/paulusmack/ppp">https://github.com/paulusmack/ppp</a> 可以访问 pppd 的官方网站获取更多信息 <a target="_blank" rel="noopener" href="https://ppp.samba.org/pppd.html">https://ppp.samba.org/pppd.html</a></p>
+<h2 id="安装所需要的软件"><a href="#安装所需要的软件" class="headerlink" title="安装所需要的软件"></a>安装所需要的软件</h2><p>首先需要看看哪个包提供了pppd，执行下面的命令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># yum whatprovides pppd</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">ppp-2.4.5-33.fc20.x86_64 : The Point-to-Point Protocol daemon</span><br><span class="line">源    ：fedora</span><br><span class="line">匹配来源：</span><br><span class="line">文件名    ：/usr/sbin/pppd</span><br><span class="line"></span><br><span class="line">ppp-2.4.5-33.fc20.x86_64 : The Point-to-Point Protocol daemon</span><br><span class="line">源    ：@koji-override-0/$releasever</span><br><span class="line">匹配来源：</span><br><span class="line">文件名    ：/usr/sbin/pppd</span><br></pre></td></tr></table></figure>
+
+<h2 id="安装pppd"><a href="#安装pppd" class="headerlink" title="安装pppd"></a>安装pppd</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># yum install ppp-2.4.5-33.fc20.x86_64</span><br></pre></td></tr></table></figure>
+
+<p>保证pppd版本高于2.4.2,然后开始修改配置文件。</p>
+<h2 id="设置用户名密码"><a href="#设置用户名密码" class="headerlink" title="设置用户名密码"></a>设置用户名密码</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt;  vi /etc/ppp/chap-secrets</span><br><span class="line"></span><br><span class="line"><span class="comment"># Secrets for authentication using CHAP</span></span><br><span class="line"><span class="comment"># client server secret IP addresses</span></span><br><span class="line">user1 PPTP password123 *</span><br></pre></td></tr></table></figure>
+
+<p>user1        vpn用户名<br>PPTP         后面的文件需要用到，和用户名密码相对应<br>password123  vpn密码</p>
+<h2 id="创建vpn-profile"><a href="#创建vpn-profile" class="headerlink" title="创建vpn profile"></a>创建vpn profile</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&gt; vi /etc/ppp/peers/vpn</span><br><span class="line"></span><br><span class="line">pty <span class="string">&quot;pptp serverip --nolaunchpppd&quot;</span></span><br><span class="line">name user1</span><br><span class="line">remotename PPTP</span><br><span class="line">require-mppe-128</span><br><span class="line">file /etc/ppp/options.pptp</span><br><span class="line">ipparam vpn</span><br></pre></td></tr></table></figure>
+
+<h2 id="连接vpn"><a href="#连接vpn" class="headerlink" title="连接vpn"></a>连接vpn</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; sudo pppd call vpn</span><br></pre></td></tr></table></figure>
+
+<h2 id="断开vpn"><a href="#断开vpn" class="headerlink" title="断开vpn"></a>断开vpn</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; sudo killall pppd</span><br></pre></td></tr></table></figure>
+
+<h2 id="设置路由"><a href="#设置路由" class="headerlink" title="设置路由"></a>设置路由</h2><p>成功连接vpn后，发现访问不了需要访问的10.6网段，使用route命令查看路由情况</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&gt; route -n</span><br><span class="line"></span><br><span class="line">Kernel IP routing table</span><br><span class="line">Destination     Gateway         Genmask         Flags Metric Ref    Use Iface</span><br><span class="line">0.0.0.0         10.51.255.*   0.0.0.0         UG    1024   0        0 em1</span><br><span class="line">10.51.0.0       0.0.0.0         255.255.0.0     U     0      0        0 em1</span><br><span class="line">172.16.58.1     0.0.0.0         255.255.255.255 UH    0      0        0 ppp0</span><br><span class="line">*.99.*27.1*0  10.51.255.254   255.255.255.255 UGH   0      0        0 em1</span><br></pre></td></tr></table></figure>
+
+<p>因为需要访问10.6网段,需要添加下面的路由</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; sudo route add -net 10.6.0.0/16 gw 10.58.*.* dev ppp0</span><br></pre></td></tr></table></figure>
+
+<p>其中10.58.*.*为拨vpn后分配给你的IP地址，这里就有一个问题，每次连接后都需要重新设置路由，比较麻烦，摸索了一翻发现ip-up.local和ip-down.local可以解决这个问题，每次连接成功后会执行ip-up.local脚本，每次断开连接时会执行ip-down.local脚本。我们只要编写这两个脚本就可以自动设置路由，完全自动化，Cool !</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&gt; sudo vi /etc/ppp/ip-up.local</span><br><span class="line"></span><br><span class="line"><span class="comment">#!/bin/bash</span></span><br><span class="line"></span><br><span class="line">NET=<span class="string">&quot;10.6.0.0/16&quot;</span></span><br><span class="line">IFACE=<span class="string">&quot;ppp0&quot;</span></span><br><span class="line">IP=`ip addr show dev <span class="variable">$&#123;IFACE&#125;</span> | grep <span class="string">&#x27;inet&#x27;</span> | awk <span class="string">&#x27;&#123;print $2&#125;&#x27;</span>`</span><br><span class="line"></span><br><span class="line">route add -net <span class="variable">$&#123;NET&#125;</span> gw <span class="variable">$&#123;IP&#125;</span> dev <span class="variable">$&#123;IFACE&#125;</span></span><br><span class="line"></span><br><span class="line">&gt; sudo vi /etc/ppp/ip-down.local</span><br><span class="line"></span><br><span class="line"><span class="comment">#!/bin/bash</span></span><br><span class="line"></span><br><span class="line">route del *.99.*27.1*0 dev em1</span><br><span class="line"></span><br><span class="line">&gt; sudo <span class="built_in">chmod</span> +x /etc/ppp/ip-up.local</span><br><span class="line">&gt; sudo <span class="built_in">chmod</span> +x /etc/ppp/ip-down.local</span><br></pre></td></tr></table></figure>
+
+<p>重新连接vpn，查看路由情况：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; sudo pppd call vpn</span><br><span class="line">&gt; route -n</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Kernel IP routing table</span><br><span class="line">Destination     Gateway         Genmask         Flags Metric Ref    Use Iface</span><br><span class="line">0.0.0.0         10.51.255.*   0.0.0.0         UG    1024   0        0 em1</span><br><span class="line">10.6.0.0        172.16.58.89    255.255.0.0     UG    0      0        0 ppp0</span><br><span class="line">10.51.0.0       0.0.0.0         255.255.0.0     U     0      0        0 em1</span><br><span class="line">172.16.58.1     0.0.0.0         255.255.255.255 UH    0      0        0 ppp0</span><br><span class="line">*.99.*27.1*0  10.51.255.254   255.255.255.255 UGH   0      0        0 em1</span><br></pre></td></tr></table></figure>
+
+<p>已经自动添加10.6.0.0的路由了。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&gt; sudo killall pppd</span><br><span class="line">&gt; route -n</span><br><span class="line">Kernel IP routing table</span><br><span class="line">Destination     Gateway         Genmask         Flags Metric Ref    Use Iface</span><br><span class="line">0.0.0.0         10.51.255.*   0.0.0.0         UG    1024   0        0 em1</span><br><span class="line">10.51.0.0       0.0.0.0         255.255.0.0     U     0      0        0 em1</span><br></pre></td></tr></table></figure>
+
+<h2 id="提升速度"><a href="#提升速度" class="headerlink" title="提升速度"></a>提升速度</h2><p>连接上vpn后发现速度很慢，经过研究 novj 选项可以大幅提高速度。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">novj Disable Van Jacobson style TCP/IP header compression in both the transmit and the receive direction.</span><br></pre></td></tr></table></figure>
+
+<p>编辑 &#x2F;etc&#x2F;ppp&#x2F;options.pptp 添加以下行</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">novj</span><br></pre></td></tr></table></figure>
+
+<h2 id="保持长时间在线"><a href="#保持长时间在线" class="headerlink" title="保持长时间在线"></a>保持长时间在线</h2><p>后面还发现一个问题，一段时间不用就自动断开连接了，发现lcp-echo-interval 可以缓解这个问题。</p>
+<p>编辑 &#x2F;etc&#x2F;ppp&#x2F;options.pptp 添加以下行</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lcp-echo-interval 30</span><br></pre></td></tr></table></figure>
+
+<h2 id="Example-Config-file"><a href="#Example-Config-file" class="headerlink" title="Example Config file"></a>Example Config file</h2><p>最终使用的配置如下：&#x2F;etc&#x2F;ppp&#x2F;options.pptp</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">lock</span><br><span class="line">noauth</span><br><span class="line">refuse-pap</span><br><span class="line">refuse-eap</span><br><span class="line">refuse-chap</span><br><span class="line">refuse-mschap</span><br><span class="line">usepeerdns</span><br><span class="line">noipdefault</span><br><span class="line">nodefaultroute</span><br><span class="line">novj</span><br><span class="line">require-mppe</span><br><span class="line">nobsdcomp</span><br><span class="line">nodeflate</span><br><span class="line">lcp-echo-failure 5</span><br><span class="line">lcp-echo-interval 30</span><br><span class="line">mppe-stateful</span><br><span class="line"></span><br><span class="line">/etc/ppp/peers/vpn</span><br><span class="line"></span><br><span class="line">pty &quot;pptp *.99.*27.1*0 --nolaunchpppd&quot;</span><br><span class="line">name xxx</span><br><span class="line">remotename PPTP</span><br><span class="line">file /etc/ppp/options.pptp</span><br><span class="line">ipparam vpn</span><br><span class="line"></span><br><span class="line">/etc/ppp/chap-secrets</span><br><span class="line"></span><br><span class="line">user PPTP password *.99.*27.1*0</span><br></pre></td></tr></table></figure>
+
+<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><p><a target="_blank" rel="noopener" href="http://shyju.wordpress.com/2013/08/13/linux-as-a-pptp-vpn-client-configuration-centosfedora/">http://shyju.wordpress.com/2013/08/13/linux-as-a-pptp-vpn-client-configuration-centosfedora/</a><br><a target="_blank" rel="noopener" href="http://www.cyberciti.biz/tips/howto-configure-ubuntu-fedora-linux-pptp-client.html">http://www.cyberciti.biz/tips/howto-configure-ubuntu-fedora-linux-pptp-client.html</a><br><a target="_blank" rel="noopener" href="http://pptpclient.sourceforge.net/">http://pptpclient.sourceforge.net/</a><br><a target="_blank" rel="noopener" href="https://ppp.samba.org/index.html">https://ppp.samba.org/index.html</a></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -973,89 +1099,6 @@
 <p><a target="_blank" rel="noopener" href="http://www.irxon.com/download/ir2003.zip">http://www.irxon.com/download/ir2003.zip</a><br><a target="_blank" rel="noopener" href="http://www.divshare.com/download/4167497-cb3">http://www.divshare.com/download/4167497-cb3</a></p>
 <p>说明：Windows server 2003 （企业版）是一款面向企业用户的高端服务器操作系统，为了安全起见，它没有集成支持IrDA红外通讯的协议软件，所以目前所有的IrDA红外设备都不能在这个操作系统里使用。但是我们可以利用XP系统里的IrDA红外通讯协议软件来解决这个问题,安装时使用红外适配器在XP系统里的驱动程序，缺协议软件就到这个软件包里去找，安装完成后红外适配器就可以在Windows2003里正常工作了。</p>
 <p>PS: T60 装了2003 后一个驱动老是找不到，最后终于找到了正确答案。。：） share it</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://usmacd.com/2007/11/12/ring3_undelete/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="henices">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="安全代码">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 安全代码">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2007/11/12/ring3_undelete/" class="post-title-link" itemprop="url">ring3 下挂钩Native API 简单实现文件防删除</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2007-11-12 00:00:00" itemprop="dateCreated datePublished" datetime="2007-11-12T00:00:00+08:00">2007-11-12</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>简单实现文件防删除，说简单是因为没有用很底层的技术，例如文件驱动之类。我只用最简单的方法实现了, 使用 ring3 的API hook 技术。随着技术的发展这种技术已经过不了很多的主动防御技术了。主要是思路和方法和分析过程。(高手飘过)</p>
-<p>ring3 下挂钩 API 基本上也就是修改导入表，和Inline hook 修改前5个字节这几种方法。挂钩Native API 没有什么区别，也就是多声明几个结构和变量类型。</p>
-<p>关于挂钩API 请参见：<a target="_blank" rel="noopener" href="http://www.xfocus.net/articles/200403/681.html">www.xfocus.net/articles/200403/681.html</a></p>
-<p>文件删除的ring3 API 是DeleteFile, 此API 存在于kernel32.dll 中，用OD分析一下。(哪个都可以，IDA更不用说)</p>
-<p>DeleteFileA 的反汇编代码：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">7C80D2FB &gt;/$ 8BFF mov edi, edi</span><br><span class="line">7C80D2FD |. 55 push ebp</span><br><span class="line">7C80D2FE |. 8BEC mov ebp, esp</span><br><span class="line">7C80D300 |. FF75 08 push dword ptr [ebp+8]</span><br><span class="line">7C80D303 |. E8 17790100 call 7C824C1F</span><br><span class="line">7C80D308 |. 85C0 test eax, eax</span><br><span class="line">7C80D30A |. 74 08 je short 7C80D314</span><br><span class="line">7C80D30C |. FF70 04 push dword ptr [eax+4] ; /FileName</span><br><span class="line">7C80D30F |. E8 3D170000 call DeleteFileW ; \DeleteFileW</span><br><span class="line">7C80D314 |&gt; 5D pop ebp</span><br><span class="line">7C80D315 \. C2 0400 retn 4</span><br></pre></td></tr></table></figure>
-
-<p>可以得到一个流程 DeleteFileA –&gt; DeleteFileW</p>
-<p>DeleteFileW 的反汇编代码：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br></pre></td><td class="code"><pre><span class="line">7C80EA51 &gt; $ 8BFF mov edi, edi</span><br><span class="line">7C80EA53 . 55 push ebp</span><br><span class="line">7C80EA54 . 8BEC mov ebp, esp</span><br><span class="line">7C80EA56 . 83EC 50 sub esp, 50</span><br><span class="line">7C80EA59 . 56 push esi</span><br><span class="line">7C80EA5A . 8D45 C8 lea eax, dword ptr [ebp-38]</span><br><span class="line">7C80EA5D . 50 push eax</span><br><span class="line">7C80EA5E . 33F6 xor esi, esi</span><br><span class="line">7C80EA60 . 56 push esi</span><br><span class="line">7C80EA61 . 8D45 E0 lea eax, dword ptr [ebp-20]</span><br><span class="line">7C80EA64 . 50 push eax</span><br><span class="line">7C80EA65 . FF75 08 push dword ptr [ebp+8]</span><br><span class="line">7C80EA68 . C645 FF 00 mov byte ptr [ebp-1], 0</span><br><span class="line">7C80EA6C . FF15 5411807C call dword ptr [&lt;&amp;ntdll.RtlDosPathNam&gt;; ntdll.RtlDosPathNameToRelativeNtPathName_U</span><br><span class="line">7C80EA72 . 84C0 test al, al</span><br><span class="line">7C80EA74 . 0F84 FBCC0200 je 7C83B775</span><br><span class="line">7C80EA7A . 8B45 E4 mov eax, dword ptr [ebp-1C]</span><br><span class="line">7C80EA7D . 8945 F4 mov dword ptr [ebp-C], eax</span><br><span class="line">7C80EA80 . 8B45 C8 mov eax, dword ptr [ebp-38]</span><br><span class="line">7C80EA83 . 66:3BC6 cmp ax, si</span><br><span class="line">7C80EA86 . 0F85 E9660200 jnz 7C835175</span><br><span class="line">7C80EA8C . 8975 D0 mov dword ptr [ebp-30], esi</span><br><span class="line">7C80EA8F &gt; 8B45 D0 mov eax, dword ptr [ebp-30]</span><br><span class="line">7C80EA92 . 53 push ebx</span><br><span class="line">7C80EA93 . 57 push edi</span><br><span class="line">7C80EA94 . 8945 B4 mov dword ptr [ebp-4C], eax</span><br><span class="line">7C80EA97 . 8D45 E0 lea eax, dword ptr [ebp-20]</span><br><span class="line">7C80EA9A . 8945 B8 mov dword ptr [ebp-48], eax</span><br><span class="line">7C80EA9D . BF 40402000 mov edi, 204040</span><br><span class="line">7C80EAA2 . 57 push edi</span><br><span class="line">7C80EAA3 . 6A 07 push 7</span><br><span class="line">7C80EAA5 . 8D45 E8 lea eax, dword ptr [ebp-18]</span><br><span class="line">7C80EAA8 . 50 push eax</span><br><span class="line">7C80EAA9 . 8D45 B0 lea eax, dword ptr [ebp-50]</span><br><span class="line">7C80EAAC . 50 push eax</span><br><span class="line">7C80EAAD . 68 80000100 push 10080 ; UNICODE &quot;ocuments and</span><br><span class="line">7C80EAB2 . 8D45 F8 lea eax, dword ptr [ebp-8]</span><br><span class="line">7C80EAB5 . 8975 C0 mov dword ptr [ebp-40], esi</span><br><span class="line">7C80EAB8 . 8975 C4 mov dword ptr [ebp-3C], esi</span><br><span class="line">7C80EABB . 8B35 1410807C mov esi, dword ptr [&lt;&amp;ntdll.NtOpenFi&gt;; ntdll.ZwOpenFile</span><br><span class="line">7C80EAC1 . 50 push eax</span><br><span class="line">7C80EAC2 . C745 B0 18000&gt;mov dword ptr [ebp-50], 18</span><br><span class="line">7C80EAC9 . C745 BC 40000&gt;mov dword ptr [ebp-44], 40</span><br><span class="line">7C80EAD0 . FFD6 call esi ; &lt;&amp;ntdll.NtOpenFile&gt;</span><br><span class="line">7C80EAD2 . 8BD8 mov ebx, eax</span><br><span class="line">7C80EAD4 . 85DB test ebx, ebx</span><br><span class="line">7C80EAD6 .^ 0F8C F5F4FFFF jl 7C80DFD1</span><br><span class="line">7C80EADC . 6A 23 push 23 ; /InfoClass = FileAttributeTagInformation</span><br><span class="line">7C80EADE . 6A 08 push 8 ; |Bufsize = 8</span><br><span class="line">7C80EAE0 . 8D45 D8 lea eax, dword ptr [ebp-28] ; |</span><br><span class="line">7C80EAE3 . 50 push eax ; |Buffer</span><br><span class="line">7C80EAE4 . 8D45 E8 lea eax, dword ptr [ebp-18] ; |</span><br><span class="line">7C80EAE7 . 50 push eax ; |pStatusBlock</span><br><span class="line">7C80EAE8 . FF75 F8 push dword ptr [ebp-8] ; |hFile</span><br><span class="line">7C80EAEB . FF15 1810807C call dword ptr [&lt;&amp;ntdll.NtQueryInform&gt;; \ZwQueryInformationFile</span><br><span class="line">7C80EAF1 . 8BD8 mov ebx, eax</span><br><span class="line">7C80EAF3 . 85DB test ebx, ebx</span><br><span class="line">7C80EAF5 . 0F8C D5CC0200 jl 7C83B7D0</span><br><span class="line">7C80EAFB . 8B45 D8 mov eax, dword ptr [ebp-28]</span><br><span class="line">7C80EAFE . 25 00040000 and eax, 400</span><br><span class="line">7C80EB03 . 0F85 0ECD0200 jnz 7C83B817</span><br><span class="line">7C80EB09 &gt; 85C0 test eax, eax</span><br><span class="line">7C80EB0B . 0F85 1CCD0200 jnz 7C83B82D</span><br><span class="line">7C80EB11 &gt; 8D45 C8 lea eax, dword ptr [ebp-38]</span><br><span class="line">7C80EB14 . 50 push eax</span><br><span class="line">7C80EB15 . FF15 5011807C call dword ptr [&lt;&amp;ntdll.RtlReleaseRel&gt;; ntdll.RtlReleaseRelativeName</span><br><span class="line">7C80EB1B . FF75 F4 push dword ptr [ebp-C]</span><br><span class="line">7C80EB1E . 64:A1 1800000&gt;mov eax, dword ptr fs:[18]</span><br><span class="line">7C80EB24 . 8B40 30 mov eax, dword ptr [eax+30]</span><br><span class="line">7C80EB27 . 6A 00 push 0</span><br><span class="line">7C80EB29 . FF70 18 push dword ptr [eax+18]</span><br><span class="line">7C80EB2C . FF15 1010807C call dword ptr [&lt;&amp;ntdll.RtlFreeHeap&gt;] ; ntdll.RtlFreeHeap</span><br><span class="line">7C80EB32 . 6A 0D push 0D ; /InfoClass = FileDispositionInformation</span><br><span class="line">7C80EB34 . 6A 01 push 1 ; |Bufsize = 1</span><br><span class="line">7C80EB36 . 8D45 0B lea eax, dword ptr [ebp+B] ; |</span><br><span class="line">7C80EB39 . 50 push eax ; |Buffer</span><br><span class="line">7C80EB3A . 8D45 E8 lea eax, dword ptr [ebp-18] ; |</span><br><span class="line">7C80EB3D . 50 push eax ; |pStatusBlock</span><br><span class="line">7C80EB3E . FF75 F8 push dword ptr [ebp-8] ; |hFile</span><br><span class="line">7C80EB41 . C645 0B 01 mov byte ptr [ebp+B], 1 ; |</span><br><span class="line">7C80EB45 . FF15 3010807C call dword ptr [&lt;&amp;ntdll.NtSetInformat&gt;; \ntdll.ZwSetInformationFile</span><br><span class="line">7C80EB4B . FF75 F8 push dword ptr [ebp-8] ; /Handle</span><br><span class="line">7C80EB4E . 8BF0 mov esi, eax ; |</span><br><span class="line">7C80EB50 . FF15 3810807C call dword ptr [&lt;&amp;ntdll.NtClose&gt;] ; \ZwClose</span><br><span class="line">7C80EB56 . 85F6 test esi, esi</span><br><span class="line">7C80EB58 .^ 0F8C 1F91FFFF jl 7C807C7D</span><br><span class="line">7C80EB5E . 33C0 xor eax, eax</span><br><span class="line">7C80EB60 . 40 inc eax</span><br><span class="line">7C80EB61 &gt; 5F pop edi</span><br><span class="line">7C80EB62 . 5B pop ebx</span><br><span class="line">7C80EB63 &gt; 5E pop esi</span><br><span class="line">7C80EB64 . C9 leave</span><br><span class="line">7C80EB65 . C2 0400 retn 4</span><br></pre></td></tr></table></figure>
-
-<p>得到一个流程 DeleteFileA –&gt; DeleteFileW –&gt; ntdll.ZwSetInformationFile，因此我们只要挂钩了ZwSetInformationFile 就可以简单实现目标了。这里写出了新的 ZwSetInformationFile 函数。</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> LONG NTSTATUS;</span><br><span class="line"><span class="meta">#<span class="keyword">define</span> STATUS_SUCCESS ((NTSTATUS)0x00000000L)</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> STATUS_ACCESS_DENIED ((NTSTATUS)0xC0000022L)</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> STATUS_INFO_LENGTH_MISMATCH ((NTSTATUS)0xC0000004L)</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> _<span class="title">IO_STATUS_BLOCK</span> &#123;</span></span><br><span class="line">DWORD Status;</span><br><span class="line">ULONG Information;</span><br><span class="line">&#125; IO_STATUS_BLOCK, *PIO_STATUS_BLOCK;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">enum</span> _<span class="title">FILE_INFORMATION_CLASS</span> &#123;</span></span><br><span class="line"><span class="comment">// end_wdm</span></span><br><span class="line">FileDirectoryInformation = <span class="number">1</span>,</span><br><span class="line">FileFullDirectoryInformation, <span class="comment">// 2</span></span><br><span class="line">FileBothDirectoryInformation, <span class="comment">// 3</span></span><br><span class="line">FileBasicInformation, <span class="comment">// 4 wdm</span></span><br><span class="line">FileStandardInformation, <span class="comment">// 5 wdm</span></span><br><span class="line">FileInternalInformation, <span class="comment">// 6</span></span><br><span class="line">FileEaInformation, <span class="comment">// 7</span></span><br><span class="line">FileAccessInformation, <span class="comment">// 8</span></span><br><span class="line">FileNameInformation, <span class="comment">// 9</span></span><br><span class="line">FileRenameInformation, <span class="comment">// 10</span></span><br><span class="line">FileLinkInformation, <span class="comment">// 11</span></span><br><span class="line">FileNamesInformation, <span class="comment">// 12</span></span><br><span class="line">FileDispositionInformation, <span class="comment">// 13</span></span><br><span class="line">FilePositionInformation, <span class="comment">// 14 wdm</span></span><br><span class="line">FileFullEaInformation, <span class="comment">// 15</span></span><br><span class="line">FileModeInformation, <span class="comment">// 16</span></span><br><span class="line">FileAlignmentInformation, <span class="comment">// 17</span></span><br><span class="line">FileAllInformation, <span class="comment">// 18</span></span><br><span class="line">FileAllocationInformation, <span class="comment">// 19</span></span><br><span class="line">FileEndOfFileInformation, <span class="comment">// 20 wdm</span></span><br><span class="line">FileAlternateNameInformation, <span class="comment">// 21</span></span><br><span class="line">FileStreamInformation, <span class="comment">// 22</span></span><br><span class="line">FilePipeInformation, <span class="comment">// 23</span></span><br><span class="line">FilePipeLocalInformation, <span class="comment">// 24</span></span><br><span class="line">FilePipeRemoteInformation, <span class="comment">// 25</span></span><br><span class="line">FileMailslotQueryInformation, <span class="comment">// 26</span></span><br><span class="line">FileMailslotSetInformation, <span class="comment">// 27</span></span><br><span class="line">FileCompressionInformation, <span class="comment">// 28</span></span><br><span class="line">FileObjectIdInformation, <span class="comment">// 29</span></span><br><span class="line">FileCompletionInformation, <span class="comment">// 30</span></span><br><span class="line">FileMoveClusterInformation, <span class="comment">// 31</span></span><br><span class="line">FileQuotaInformation, <span class="comment">// 32</span></span><br><span class="line">FileReparsePointInformation, <span class="comment">// 33</span></span><br><span class="line">FileNetworkOpenInformation, <span class="comment">// 34</span></span><br><span class="line">FileAttributeTagInformation, <span class="comment">// 35</span></span><br><span class="line">FileTrackingInformation, <span class="comment">// 36</span></span><br><span class="line">FileMaximumInformation</span><br><span class="line"><span class="comment">// begin_wdm</span></span><br><span class="line">&#125; FILE_INFORMATION_CLASS, *PFILE_INFORMATION_CLASS;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> _<span class="title">FILE_NAME_INFORMATION</span> &#123;</span></span><br><span class="line">ULONG FileNameLength;</span><br><span class="line">WCHAR FileName[<span class="number">1</span>];</span><br><span class="line">&#125; FILE_NAME_INFORMATION, *PFILE_NAME_INFORMATION;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="title function_">NTSTATUS</span> <span class="params">(__stdcall *ZWQUERYINFORMATIONFILE)</span><span class="params">(</span></span><br><span class="line"><span class="params">IN HANDLE FileHandle,</span></span><br><span class="line"><span class="params">OUT PIO_STATUS_BLOCK IoStatusBlock,</span></span><br><span class="line"><span class="params">OUT PVOID FileInformation,</span></span><br><span class="line"><span class="params">IN ULONG FileInformationLength,</span></span><br><span class="line"><span class="params">IN FILE_INFORMATION_CLASS FileInformationClass</span></span><br><span class="line"><span class="params">)</span>;</span><br><span class="line"></span><br><span class="line">ZWQUERYINFORMATIONFILE ZwQueryInformationFile;</span><br><span class="line"></span><br><span class="line">NTSTATUS __stdcall <span class="title function_">Hook_ZwSetInformationFile</span><span class="params">(IN HANDLE FileHandle,</span></span><br><span class="line"><span class="params">OUT PIO_STATUS_BLOCK IoStatusBlock,</span></span><br><span class="line"><span class="params">IN PVOID FileInformation,</span></span><br><span class="line"><span class="params">IN ULONG FileInformationLength,</span></span><br><span class="line"><span class="params">IN FILE_INFORMATION_CLASS FileInformationClass)</span></span><br><span class="line">&#123;</span><br><span class="line">NTSTATUS ntstatus = STATUS_ACCESS_DENIED;</span><br><span class="line"></span><br><span class="line">HMODULE hNtdll = GetModuleHandle(<span class="string">&quot;ntdll.dll&quot;</span>);</span><br><span class="line">ZwQueryInformationFile = (ZWQUERYINFORMATIONFILE)GetProcAddress(hNtdll, <span class="string">&quot;ZwQueryInformationFile&quot;</span>);</span><br><span class="line"></span><br><span class="line">IO_STATUS_BLOCK ioStatus;</span><br><span class="line">FILE_NAME_INFORMATION * psi = &#123;<span class="number">0</span>&#125;;</span><br><span class="line"></span><br><span class="line">psi = (FILE_NAME_INFORMATION*)new WCHAR[<span class="keyword">sizeof</span>(FILE_NAME_INFORMATION) + <span class="number">1024</span>];</span><br><span class="line"><span class="built_in">memset</span>(psi, <span class="number">0</span>, (<span class="keyword">sizeof</span>(FILE_NAME_INFORMATION) + <span class="number">1024</span>)*<span class="number">2</span>);</span><br><span class="line">psi-&gt;FileNameLength = <span class="number">1024</span>;</span><br><span class="line"></span><br><span class="line">ntstatus = ZwQueryInformationFile(FileHandle, &amp;ioStatus, psi, <span class="keyword">sizeof</span>(FILE_NAME_INFORMATION) + <span class="number">1024</span> * <span class="keyword">sizeof</span>(WCHAR),</span><br><span class="line"></span><br><span class="line">FileNameInformation);</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (ntstatus != STATUS_SUCCESS)</span><br><span class="line">PrintZwError(<span class="string">&quot;ZwQueryInformationFile&quot;</span>, ntstatus);</span><br><span class="line"></span><br><span class="line">ntstatus = STATUS_ACCESS_DENIED;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>( wcsstr(psi-&gt;FileName, <span class="string">L&quot;b.txt&quot;</span>) == <span class="literal">NULL</span>)</span><br><span class="line">ntstatus = ((PFZWSETINFORMATIONFILE)(PROC)g_ZwSetInformationFile)</span><br><span class="line"></span><br><span class="line">(FileHandle,IoStatusBlock,FileInformation,FileInformationLength,FileInformationClass);</span><br><span class="line"></span><br><span class="line">delete psi;</span><br><span class="line"><span class="keyword">return</span> ntstatus;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>这只是一个证明性代码，要实战的兄弟自己动点手吧。</p>
 
       
     </div>

@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha256-AbA177XfpSnFEvgpYu1jMygiLabzPCJCRIBtR5jGc0k=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"usmacd.com","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.13.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="Random Notes (漫游笔记) 的技术原理是用新视角去审视旧想法，和自己以前的想法不期而遇的感觉非常奇妙。总体来说人是会不断进步的，经过一段时间后再去重温自己某个时刻的想法，可能以前的一些疑惑现在已经没有了，也可能对某个问题有了更进一步的思路，这是促使想法迭代的一种方法。  想要做到想法的自然迭代，必要的条件是可以马上回到过去的某个时刻，而且那个时刻的上下文没有丢失，如果上下文丢失意味着">
+<meta property="og:type" content="article">
+<meta property="og:title" content="卡片盒笔记法发言整理">
+<meta property="og:url" content="http://usmacd.com/2022/09/16/note/index.html">
+<meta property="og:site_name" content="安全代码">
+<meta property="og:description" content="Random Notes (漫游笔记) 的技术原理是用新视角去审视旧想法，和自己以前的想法不期而遇的感觉非常奇妙。总体来说人是会不断进步的，经过一段时间后再去重温自己某个时刻的想法，可能以前的一些疑惑现在已经没有了，也可能对某个问题有了更进一步的思路，这是促使想法迭代的一种方法。  想要做到想法的自然迭代，必要的条件是可以马上回到过去的某个时刻，而且那个时刻的上下文没有丢失，如果上下文丢失意味着">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-09-15T16:00:00.000Z">
+<meta property="article:modified_time" content="2022-09-15T16:00:00.000Z">
+<meta property="article:author" content="henices">
+<meta property="article:tag" content="PKM">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://usmacd.com/2022/09/16/note/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://usmacd.com/2022/09/16/note/","path":"2022/09/16/note/","title":"卡片盒笔记法发言整理"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>卡片盒笔记法发言整理 | 安全代码</title>
+  
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="安全代码" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">安全代码</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a></li><li class="menu-item menu-item-sitemap"><a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>Sitemap</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-overview-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="henices"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">henices</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">82</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/henices" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;henices" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/henices" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;henices" rel="noopener" target="_blank"><i class="fab fa-twitter fa-fw"></i>Twitter</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="rss fa-fw"></i>RSS</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll site-overview-item animated">
+    <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="http://scz.617.cn:8/" title="http:&#x2F;&#x2F;scz.617.cn:8&#x2F;" rel="noopener" target="_blank">飞花堂</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.v2ex.com/" title="https:&#x2F;&#x2F;www.v2ex.com&#x2F;" rel="noopener" target="_blank">V2EX</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://blog.forecho.com/" title="https:&#x2F;&#x2F;blog.forecho.com&#x2F;" rel="noopener" target="_blank">forecho</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://chensenlin.cn/" title="https:&#x2F;&#x2F;chensenlin.cn&#x2F;" rel="noopener" target="_blank">你好我是森林</a>
+        </li>
+    </ul>
+  </div>
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://usmacd.com/2022/09/16/note/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="henices">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="安全代码">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="卡片盒笔记法发言整理 | 安全代码">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          卡片盒笔记法发言整理
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2022-09-16 00:00:00" itemprop="dateCreated datePublished" datetime="2022-09-16T00:00:00+08:00">2022-09-16</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <ul>
+<li><p>Random Notes (漫游笔记) 的技术原理是用新视角去审视旧想法，和自己以前的想法不期而遇的感觉非常奇妙。总体来说人是会不断进步的，经过一段时间后再去重温自己某个时刻的想法，可能以前的一些疑惑现在已经没有了，也可能对某个问题有了更进一步的思路，这是促使想法迭代的一种方法。</p>
+</li>
+<li><p>想要做到想法的自然迭代，必要的条件是可以马上回到过去的某个时刻，而且那个时刻的上下文没有丢失，如果上下文丢失意味着已经看不懂以前的笔记了，自然也就没有了迭代的可能性。</p>
+</li>
+<li><p>卡片盒笔记法要求用完整的句子精要简述想法，笔记之间的连接则补充了上下文，为想法迭代创造了有利条件。</p>
+</li>
+<li><p>在实践卡片笔记法的过程中，会遇上一整天都没写一张卡片的时候，而有的时候则一天写十多张卡片。限制每天写笔记的数量可以让写卡片盒笔记的过程更加轻松，避免了过于放松的状态，也避免了过于紧绷的状态，有利于我们保持良好的状态。另一个好处则是让你选择笔记内容时更加挑剔，有利于提高笔记的质量。</p>
+</li>
+<li><p>你可以将目标设置为每天写3条笔记，或者每年出一本书，仍然可以在合理的时间内积累大量的想法。</p>
+</li>
+<li><p>关于笔记管理存在几个误区，1. 笔记软件&#x2F;博客系统，我先后使用过 EverNote，WizNote，VNote，CSDN blog，Google blogspot, WordPress 2. 笔记格式，我先后使用过 txt, orgmode, markdown 其实这些都不是关键，除了折腾还是折腾。以前我常说一个段子，你以为你在写博客，其实你在折腾 Wordpress 插件。</p>
+</li>
+<li><p>我以前思考这个问题认为是笔记缺乏组织结构，实践结果表明良好的分类确实有一定帮助，但是不是最重要的。最重要的是在同一个地方，用同样的格式和一致的标准记录你的洞见。</p>
+</li>
+<li><p>各种笔记软件，博客系统，笔记格式的切换都会带来信息丢失。信息丢失容易造成心理负担，我从 2005 年开始写文章到现在已经丢失了 50%以上，这些文章散落在互联网的各个角落，非常令人痛心。</p>
+</li>
+<li><p>卡片笔记法属于自下而上的发散思维，发散思维有个问题，就是无法把握发散的度。为了应对这个问题，卢曼提出的办法是仔细思考笔记之间的联系，写笔记时参考文献笔记和自己以前写的笔记，定期自上而下制作索引卡片，这些做法的目的是避免想法过于太发散。</p>
+</li>
+<li><p>思维需要发散，但是领域需要聚焦，我们在自己的专业，财务等领域是需要不断精进的，这两个方面似乎是矛盾的。有人建议使用分类法，把关注的领域分类，在日常工作学习中不断完善，但这种方法很容易回到资料归档的老路。</p>
+</li>
+<li><p>最近的研究发现可以使用 P.A.R.A. 来组织顶层结构，统领需要精进的领域，在具体想法的记录上则继续使用卡片笔记法。这种方法使用 P.A.R.A. 不断推动自己在关注领域的取得进展，又能在关键的思考上使用卡片笔记法，自用一段时间感觉不错。</p>
+</li>
+</ul>
+<p>未完，待续 …</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/PKM/" rel="tag"># PKM</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/09/08/trader_vic/" rel="prev" title="专业投机原理中的技术分析法则摘要">
+                  <i class="fa fa-chevron-left"></i> 专业投机原理中的技术分析法则摘要
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">henices</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>
