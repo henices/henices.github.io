@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha256-AbA177XfpSnFEvgpYu1jMygiLabzPCJCRIBtR5jGc0k=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"usmacd.com","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.13.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="关于%5c的暴库利用想已经不是什么新技术了，原因我只找到含糊的说法：的UNICODE是%5c当提交时,IIS无法正常解析,导致暴库。但我对 http:&#x2F;&#x2F;www.hoky.org 测试成功后（现在已经补上）问过hoky.pro，得知%5c与IIS的设置是有关系的。而在默认设置下是可以暴库的。还有很多人说不成功，我要说的三点：  一般的错误返回页面是本地IE提供的,所以我们先得关了本地的错误页面,具">
+<meta property="og:type" content="article">
+<meta property="og:title" content="N 谈 %5C 暴库">
+<meta property="og:url" content="http://usmacd.com/2006/07/13/5cAcessPath/index.html">
+<meta property="og:site_name" content="安全代码">
+<meta property="og:description" content="关于%5c的暴库利用想已经不是什么新技术了，原因我只找到含糊的说法：的UNICODE是%5c当提交时,IIS无法正常解析,导致暴库。但我对 http:&#x2F;&#x2F;www.hoky.org 测试成功后（现在已经补上）问过hoky.pro，得知%5c与IIS的设置是有关系的。而在默认设置下是可以暴库的。还有很多人说不成功，我要说的三点：  一般的错误返回页面是本地IE提供的,所以我们先得关了本地的错误页面,具">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2006-07-12T16:00:00.000Z">
+<meta property="article:modified_time" content="2006-07-12T16:00:00.000Z">
+<meta property="article:author" content="henices">
+<meta property="article:tag" content="Security">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://usmacd.com/2006/07/13/5cAcessPath/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://usmacd.com/2006/07/13/5cAcessPath/","path":"2006/07/13/5cAcessPath/","title":"N 谈 %5C 暴库"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>N 谈 %5C 暴库 | 安全代码</title>
+  
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="安全代码" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">安全代码</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a></li><li class="menu-item menu-item-sitemap"><a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>Sitemap</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-overview-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="henices"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">henices</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">83</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/henices" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;henices" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/henices" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;henices" rel="noopener" target="_blank"><i class="fab fa-twitter fa-fw"></i>Twitter</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="rss fa-fw"></i>RSS</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll site-overview-item animated">
+    <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="http://scz.617.cn:8/" title="http:&#x2F;&#x2F;scz.617.cn:8&#x2F;" rel="noopener" target="_blank">飞花堂</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.v2ex.com/" title="https:&#x2F;&#x2F;www.v2ex.com&#x2F;" rel="noopener" target="_blank">V2EX</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://blog.forecho.com/" title="https:&#x2F;&#x2F;blog.forecho.com&#x2F;" rel="noopener" target="_blank">forecho</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://chensenlin.cn/" title="https:&#x2F;&#x2F;chensenlin.cn&#x2F;" rel="noopener" target="_blank">你好我是森林</a>
+        </li>
+    </ul>
+  </div>
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://usmacd.com/2006/07/13/5cAcessPath/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="henices">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="安全代码">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="N 谈 %5C 暴库 | 安全代码">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          N 谈 %5C 暴库
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2006-07-13 00:00:00" itemprop="dateCreated datePublished" datetime="2006-07-13T00:00:00+08:00">2006-07-13</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>关于%5c的暴库利用想已经不是什么新技术了，原因我只找到含糊的说法：的UNICODE是%5c当提交时,IIS无法正常解析,导致暴库。但我对 <a target="_blank" rel="noopener" href="http://www.hoky.org/">http://www.hoky.org</a> 测试成功后（现在已经补上）问过hoky.pro，得知%5c与IIS的设置是有关系的。而在默认设置下是可以暴库的。还有很多人说不成功，我要说的三点：</p>
+<ol>
+<li>一般的错误返回页面是本地IE提供的,所以我们先得关了本地的错误页面,具体在菜单项的‘工具-&gt;internet选项-&gt;高级-&gt;显示友好信息’。</li>
+<li>对方数据库要是Access型。</li>
+<li>%5c的暴库需要的是二级目录，一级目录无法成功。如：</li>
+</ol>
+<p><a href="http://www.sometips.com%5c1.asp?id=1">http://www.sometips.com%5c1.asp?id=1</a> 不成功<br><a target="_blank" rel="noopener" href="http://www.sometips.com/other%5c1.asp?id=1">http://www.sometips.com/other%5c1.asp?id=1</a> 成功</p>
+<p>好了，上面说的大家都知道，当是废话。在暴库这么好用的东西下，如果一个网站只有一级目录的话，难道就没有办法了吗？说到重点，其实一级目录我们也同样可以成功的，我们可以通过构造一个多级目录来达到暴库的目的。</p>
+<p><a target="_blank" rel="noopener" href="http://www.target.com/noexists/..%5clist.asp?id=1">http://www.target.com/noexists/..%5clist.asp?id=1</a></p>
+<p>这样大家就会有新的惊喜了，呵呵。</p>
+<p>补救方法也很简单，在conn.asp里 加入数据库文件的位置后面加上这句：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">On Error Resume Next</span><br></pre></td></tr></table></figure>
+
+<p>就可以了。</p>
+<hr>
+<p>今天在黑基又看到了关于％5c暴库的文章。呵呵，这招真的很管用，大概10个网站里会有一个会暴库吧。关于这个漏洞。绿盟有相关的资料。</p>
+<p><a target="_blank" rel="noopener" href="http://www.nsfocus.net/index.php?act=magazine&amp;do=view&amp;mid=952">http://www.nsfocus.net/index.php?act=magazine&amp;do=view&amp;mid=952</a></p>
+<p>呵呵。虽然这个我们这个漏洞呵暴库关系不是很大， 但是明眼人还是看的出相关的地方，IIS 二次解码。大家知道在 url中 “&quot; 和 “&#x2F;“ 是一样的，也就是说 <a target="_blank" rel="noopener" href="http://www.example.com/abc/123.asp?id=5">http://www.example.com/abc/123.asp?id=5</a> 和 <a target="_blank" rel="noopener" href="http://www.example.com/abc/123.asp?id=5">http://www.example.com/abc\123.asp?id=5</a> 是一样的。</p>
+<p>而 <a target="_blank" rel="noopener" href="http://www.example.com/abc%5c123.asp?id=5">http://www.example.com/abc%5c123.asp?id=5</a> 经过一次解码后变成 <a target="_blank" rel="noopener" href="http://www.example.com/abc/123.asp?id=5">http://www.example.com/abc\123.asp?id=5</a> 这里是不会出错的。</p>
+<p>而经过 IIS 二次解码后就变成 <a target="_blank" rel="noopener" href="http://www.example.com/abc%5c123.asp?id=5">http://www.example.com/abc%5c123.asp?id=5</a>, 如果数据库连接文件用的相对路径的话。HOO, 找不到数据库文件，当然就出错了。还很老实呢，连物理路径都出来了。大家看。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Microsoft JET Database Engine 错误 &#x27;80004005&#x27;</span><br><span class="line"></span><br><span class="line">&#x27;D:\wwwroot\hell\wwwroot\data\abc.asp&#x27;不是一个有效的路径。 确定路径名称拼写是否正确，以及是否连接到文件存放的服务器。</span><br><span class="line"></span><br><span class="line">/blog/conn.asp，行29</span><br></pre></td></tr></table></figure>
+
+<p>这个是我暴 Oblog 暴出来的，这个月的黑防大家都有看吧。(晕倒，早知道我也去投稿了。我发现的比他早多了，郁闷。)</p>
+<p>很多人都在分析成功的条件，就象itbbs里的人讨论的一样。(itbbs最近我怎么上不去啊，知道告诉偶.)</p>
+<p>sykkk 认为：</p>
+<ol>
+<li>是数据库连接中没有加入容错代码 所以导致错误不能跳过而活生生的把数据文件连接暴出来</li>
+<li>对方的IIS没有关闭错误提示 只要关了错误提示就算你怎么暴也没有用</li>
+<li>不一定要2级目录 但是肯定的是一级目录是绝对不成功的 要是你成功了欢迎拿出来给大家分享 他文章说的自己够造个noexists&#x2F;..%C的2级目录 个人认为应该是错误的 至少我没有成功过 有成功的欢迎留下网站测试</li>
+<li>还有就是 要成功一定要调用到数据库 不一定是5c1.asp?id&#x3D;1 这种类别的 只要是提交或者检测数据的基本都可以 非常多的六合采网站都是采用&#x2F;XXX&#x2F;CHECK.ASP来认证 找到认证位置 直接&#x2F;XXX%5CCHECK。ASP同样可以达到 暴库的目的</li>
+</ol>
+<p>其实还有一个必要条件他忘了，数据库要相对路径，绝对路径是暴不出来的。还有我补充一点应该是 IIS 4.0 或者 IIS 5.0 ，IIS 6 应该是不行了。</p>
+<p>关于二级目录，我同意sykkk的看法，有的人说一定是二级目录，呵呵，我可以告诉大家那是错误的。应该是最靠近的asp文件的那个 “&#x2F;“ 改成 “%5c”, 只有有调用数据库都有可能暴库。哈哈，还有当然对方要没有屏蔽错误信息，要不然你是肯定看不到di</p>
+<p>总结：％5c暴库成功条件</p>
+<ol>
+<li>对方服务器用的是 IIS 4.0 或 IIS 5.0， 并且没有屏蔽错误信息。</li>
+<li>是数据库连接中没有加入容错代码 所以导致错误不能跳过而活生生的把数据文件连接暴出来 (On Error Resume Next)</li>
+<li>应该是Microsoft JET Database Engine 方式</li>
+<li>数据库文件调用用的是相对路径！！</li>
+</ol>
+<p>不一定要求是二级目录。三级也是可以的(我有成功过), 二级目录反倒没成功，呵呵。还有构造二级目录，我是没成功过，嘿嘿，应该是错误的。：）</p>
+<p>随便也告诉大家，aspx %5c 也有文章的，运用也很巧妙，想知道就 google吧。^_^</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Security/" rel="tag"># Security</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2004/10/13/search_sql_injection/" rel="prev" title="站内搜索写法的一个 SQL inject 漏洞">
+                  <i class="fa fa-chevron-left"></i> 站内搜索写法的一个 SQL inject 漏洞
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2007/11/12/ring3_undelete/" rel="next" title="ring3 下挂钩Native API 简单实现文件防删除">
+                  ring3 下挂钩Native API 简单实现文件防删除 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">henices</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>
