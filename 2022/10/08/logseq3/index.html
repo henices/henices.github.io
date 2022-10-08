@@ -27,11 +27,17 @@
 <meta property="og:site_name" content="安全代码">
 <meta property="og:description" content="使用 Logseq 写笔记已经大半年了，Logseq 是这么多年来除了 vim 之外，唯一可以在使用上螺旋上升的软件。我把 Logseq 推荐给媳妇，她用来写会议纪要，写备忘录，管理待办事项，也用得挺好。 Logseq 的成功之处在于它降低了记录的成本，不需要大段大段的文字，也不需要太多的文章结构，随时都可以记录。Logseq 比较严重的问题是，它的使用太灵活了，时间一拉长，前后记录的标准、格式、">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://github.com/henices/pictures/raw/master/logseq3_1.png">
+<meta property="og:image" content="https://github.com/henices/pictures/raw/master/logseq3_2.png">
+<meta property="og:image" content="https://github.com/henices/pictures/raw/master/logseq3_3.png">
+<meta property="og:image" content="https://github.com/henices/pictures/raw/master/logseq3_4.png">
+<meta property="og:image" content="https://github.com/henices/pictures/raw/master/logseq3_5.png">
 <meta property="article:published_time" content="2022-10-07T16:00:00.000Z">
 <meta property="article:modified_time" content="2022-10-07T16:00:00.000Z">
 <meta property="article:author" content="henices">
 <meta property="article:tag" content="Software">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://github.com/henices/pictures/raw/master/logseq3_1.png">
 
 
 <link rel="canonical" href="http://usmacd.com/2022/10/08/logseq3/">
@@ -263,20 +269,25 @@
 </ul>
 <p>在使用 block properties 时，需要输入 <code>shift + Enter</code> 来进行换行，换行后输入 <code>::</code> Logseq 会自动提示已经使用过的 property。理解 properties 可以简单的把 block 看成数据库的一条记录， properties 就是不同的字段，可以通过 Logseq 的 query 来查询相关记录。在使用 properties 时可以引用 page 或者 tag，可以通过这种方法来索引这条记录。</p>
 <p>例如，我将书籍的 block 都添加了 <code>category:: Books</code> 的属性，后续可以使用 <code>&#123;&#123;query (property category Books) &#125;&#125;</code> 来查询所有书籍了，感觉上有点类似 notion 的表格。</p>
+<p><img src="https://github.com/henices/pictures/raw/master/logseq3_1.png"></p>
 <h2 id="☆-使用-x2F-Scheduled-制定计划"><a href="#☆-使用-x2F-Scheduled-制定计划" class="headerlink" title="☆ 使用 &#x2F;Scheduled 制定计划"></a>☆ 使用 &#x2F;Scheduled 制定计划</h2><p>使用 Schedule 的功能的方法比较简单，在写完一条 block 后，输入 <code>shift + enter </code> 换行后，输入 <code>/Schedule</code> 在弹出的界面中选择时间周期即可。</p>
+<p><img src="https://github.com/henices/pictures/raw/master/logseq3_2.png"></p>
 <p>在 Schedule 规定的时间内，Logseq 的 Journals 页面可以看到相关的内容。</p>
+<p><img src="https://github.com/henices/pictures/raw/master/logseq3_3.png"></p>
 <h2 id="☆-一些好用的插件"><a href="#☆-一些好用的插件" class="headerlink" title="☆ 一些好用的插件"></a>☆ 一些好用的插件</h2><p>插件可以拓展 Logseq 的功能，使用了插件的方法在 <a target="_blank" rel="noopener" href="https://www.usmacd.com/2022/03/07/logseq2/">Logseq 使用小结 （二）</a> 中有详细介绍，这里就不细说。</p>
 <h3 id="Logseq-Plugin-Tabs"><a href="#Logseq-Plugin-Tabs" class="headerlink" title="Logseq Plugin Tabs"></a>Logseq Plugin Tabs</h3><p><a target="_blank" rel="noopener" href="https://github.com/pengx17/logseq-plugin-tabs">https://github.com/pengx17/logseq-plugin-tabs</a></p>
 <p>Plugin Tabs 像打开浏览器一样打开 pages 或者 blocks，对于内容比较多的 page，这个插件非常实用。</p>
+<p><img src="https://github.com/henices/pictures/raw/master/logseq3_4.png"></p>
 <h3 id="logseq-plugin-mark-map"><a href="#logseq-plugin-mark-map" class="headerlink" title="logseq-plugin-mark-map"></a>logseq-plugin-mark-map</h3><p><a target="_blank" rel="noopener" href="https://github.com/vipzhicheng/logseq-plugin-mark-map">https://github.com/vipzhicheng/logseq-plugin-mark-map</a></p>
 <p>Mark map 可以自动化地把你的笔记用导图的形式输出，方面展示和记忆。</p>
+<p><img src="https://github.com/henices/pictures/raw/master/logseq3_5.png"></p>
 <h2 id="☆-一些使用上的小技巧"><a href="#☆-一些使用上的小技巧" class="headerlink" title="☆ 一些使用上的小技巧"></a>☆ 一些使用上的小技巧</h2><ul>
 <li>Logseq content wide mode  可以使用快捷键切换 <code>t w</code>  </li>
 <li>Logseq 的 property 可以通过输入 <code>::</code> 来触发自动补全操作，非常方便。  </li>
 <li>Logseq 使用快捷键 <code>Cmd + Shift + i</code> 可以打开 devtools  </li>
 <li>Logseq v0.68，自动补全提供两个快捷键 <code>mod+p</code> 和 <code>mod+n</code> 比较方便了  </li>
 <li>Logseq 可以使用 <code>command + </code> 和 <code>command -</code> 来放大或者缩小 Logseq 的字体大小  </li>
-<li>Logseq 0.7.1 新功能：Copy &amp; Paste with rich-text formats，如果粘贴时不像保留格式 <code>mod + shift + v</code>  </li>
+<li>Logseq 0.7.1 新功能：Copy &amp; Paste with rich-text formats，如果粘贴时不想保留格式 <code>mod + shift + v</code>  </li>
 <li>Logseq 移动光标的快捷键：<code>mod + p</code> 向上移动光标，<code>mod + n</code> 向下移动光标  </li>
 <li>Logseq Markdown 语法支持 <code> Horizontal Rules</code>，可以使用 <code>---</code>分隔卡片笔记。</li>
 </ul>
