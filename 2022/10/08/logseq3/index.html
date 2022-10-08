@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha256-AbA177XfpSnFEvgpYu1jMygiLabzPCJCRIBtR5jGc0k=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"usmacd.com","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.13.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="使用 Logseq 写笔记已经大半年了，Logseq 是这么多年来除了 vim 之外，唯一可以在使用上螺旋上升的软件。我把 Logseq 推荐给媳妇，她用来写会议纪要，写备忘录，管理待办事项，也用得挺好。 Logseq 的成功之处在于它降低了记录的成本，不需要大段大段的文字，也不需要太多的文章结构，随时都可以记录。Logseq 比较严重的问题是，它的使用太灵活了，时间一拉长，前后记录的标准、格式、">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Logseq 使用小结 （三）">
+<meta property="og:url" content="http://usmacd.com/2022/10/08/logseq3/index.html">
+<meta property="og:site_name" content="安全代码">
+<meta property="og:description" content="使用 Logseq 写笔记已经大半年了，Logseq 是这么多年来除了 vim 之外，唯一可以在使用上螺旋上升的软件。我把 Logseq 推荐给媳妇，她用来写会议纪要，写备忘录，管理待办事项，也用得挺好。 Logseq 的成功之处在于它降低了记录的成本，不需要大段大段的文字，也不需要太多的文章结构，随时都可以记录。Logseq 比较严重的问题是，它的使用太灵活了，时间一拉长，前后记录的标准、格式、">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-10-07T16:00:00.000Z">
+<meta property="article:modified_time" content="2022-10-07T16:00:00.000Z">
+<meta property="article:author" content="henices">
+<meta property="article:tag" content="Software">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://usmacd.com/2022/10/08/logseq3/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://usmacd.com/2022/10/08/logseq3/","path":"2022/10/08/logseq3/","title":"Logseq 使用小结 （三）"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Logseq 使用小结 （三） | 安全代码</title>
+  
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="安全代码" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">安全代码</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a></li><li class="menu-item menu-item-sitemap"><a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>Sitemap</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E2%98%86-%E4%BD%BF%E7%94%A8-properties"><span class="nav-number">1.</span> <span class="nav-text">☆ 使用 properties</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E2%98%86-%E4%BD%BF%E7%94%A8-x2F-Scheduled-%E5%88%B6%E5%AE%9A%E8%AE%A1%E5%88%92"><span class="nav-number">2.</span> <span class="nav-text">☆ 使用 &#x2F;Scheduled 制定计划</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E2%98%86-%E4%B8%80%E4%BA%9B%E5%A5%BD%E7%94%A8%E7%9A%84%E6%8F%92%E4%BB%B6"><span class="nav-number">3.</span> <span class="nav-text">☆ 一些好用的插件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Logseq-Plugin-Tabs"><span class="nav-number">3.1.</span> <span class="nav-text">Logseq Plugin Tabs</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#logseq-plugin-mark-map"><span class="nav-number">3.2.</span> <span class="nav-text">logseq-plugin-mark-map</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E2%98%86-%E4%B8%80%E4%BA%9B%E4%BD%BF%E7%94%A8%E4%B8%8A%E7%9A%84%E5%B0%8F%E6%8A%80%E5%B7%A7"><span class="nav-number">4.</span> <span class="nav-text">☆ 一些使用上的小技巧</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="henices"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">henices</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">84</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/henices" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;henices" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/henices" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;henices" rel="noopener" target="_blank"><i class="fab fa-twitter fa-fw"></i>Twitter</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="rss fa-fw"></i>RSS</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll site-overview-item animated">
+    <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="http://scz.617.cn:8/" title="http:&#x2F;&#x2F;scz.617.cn:8&#x2F;" rel="noopener" target="_blank">飞花堂</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.v2ex.com/" title="https:&#x2F;&#x2F;www.v2ex.com&#x2F;" rel="noopener" target="_blank">V2EX</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://blog.forecho.com/" title="https:&#x2F;&#x2F;blog.forecho.com&#x2F;" rel="noopener" target="_blank">forecho</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://chensenlin.cn/" title="https:&#x2F;&#x2F;chensenlin.cn&#x2F;" rel="noopener" target="_blank">你好我是森林</a>
+        </li>
+    </ul>
+  </div>
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://usmacd.com/2022/10/08/logseq3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="henices">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="安全代码">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Logseq 使用小结 （三） | 安全代码">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Logseq 使用小结 （三）
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2022-10-08 00:00:00" itemprop="dateCreated datePublished" datetime="2022-10-08T00:00:00+08:00">2022-10-08</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>使用 Logseq 写笔记已经大半年了，Logseq 是这么多年来除了 vim 之外，唯一可以在使用上螺旋上升的软件。我把 Logseq 推荐给媳妇，她用来写会议纪要，写备忘录，管理待办事项，也用得挺好。</p>
+<p>Logseq 的成功之处在于它降低了记录的成本，不需要大段大段的文字，也不需要太多的文章结构，随时都可以记录。Logseq 比较严重的问题是，它的使用太灵活了，时间一拉长，前后记录的标准、格式、标签等要素可能不一致，容易造成笔记凌乱。笔记一凌乱就没法有效的聚合，笔记的有效聚合形成一个有意义的想法群是 Logseq 等双链软件和其他笔记软件相比最有价值的地方。</p>
+<p>我这半年来总结出笔记系统成功的关键是： 在同一个地方，用同样的格式和一致的标准记录你的洞见。但是由于 Logseq 缺乏有效的工作流，没法自动化提示必要的步骤，只能通过不断的练习来强化学习。另外 Logseq 中 page 和 tag 只是起到过滤笔记的作用，最关键的笔记之间的链接却很容易被忽视，tag 的数量一多又会开始笔记凌乱了。</p>
+<p>总而言之，如果只是把 Logseq 作为备忘，或者简单作为信息记录，挺好用也不需要学习太多的东西，但是如果需要使用 Logseq 来实践卡片笔记法等 PKM 理论，恐怕还是需要花费一些功夫仔细琢磨一番。PKM 方面的书籍我强力推荐 《卡片笔记写作法》一书，中文翻译很不错，虽然书名是谈写作，里面的内容却涉及很广，我自己阅读后收益良多。</p>
+<p>上面说的是一些「道」层面的东西， Logseq 在「术」方面的东西也不少，下面将介绍一些前两篇尚未涉及的功能和使用技巧。</p>
+<h2 id="☆-使用-properties"><a href="#☆-使用-properties" class="headerlink" title="☆ 使用 properties"></a>☆ 使用 properties</h2><p><a target="_blank" rel="noopener" href="https://docs.logseq.com/#/page/term%2Fproperties">https://docs.logseq.com/#/page/term%2Fproperties</a></p>
+<p>在 Logseq 中有两种 properties， page properties 和 block properties。</p>
+<ul>
+<li>Page properties 在第一个 block 写 <code>property:: value</code>  </li>
+<li>Block properties 在每个 block 内使用 <code>property:: value</code></li>
+</ul>
+<p>在使用 block properties 时，需要输入 <code>shift + Enter</code> 来进行换行，换行后输入 <code>::</code> Logseq 会自动提示已经使用过的 property。理解 properties 可以简单的把 block 看成数据库的一条记录， properties 就是不同的字段，可以通过 Logseq 的 query 来查询相关记录。在使用 properties 时可以引用 page 或者 tag，可以通过这种方法来索引这条记录。</p>
+<p>例如，我将书籍的 block 都添加了 <code>category:: Books</code> 的属性，后续可以使用 <code>&#123;&#123;query (property category Books) &#125;&#125;</code> 来查询所有书籍了，感觉上有点类似 notion 的表格。</p>
+<h2 id="☆-使用-x2F-Scheduled-制定计划"><a href="#☆-使用-x2F-Scheduled-制定计划" class="headerlink" title="☆ 使用 &#x2F;Scheduled 制定计划"></a>☆ 使用 &#x2F;Scheduled 制定计划</h2><p>使用 Schedule 的功能的方法比较简单，在写完一条 block 后，输入 <code>shift + enter </code> 换行后，输入 <code>/Schedule</code> 在弹出的界面中选择时间周期即可。</p>
+<p>在 Schedule 规定的时间内，Logseq 的 Journals 页面可以看到相关的内容。</p>
+<h2 id="☆-一些好用的插件"><a href="#☆-一些好用的插件" class="headerlink" title="☆ 一些好用的插件"></a>☆ 一些好用的插件</h2><p>插件可以拓展 Logseq 的功能，使用了插件的方法在 <a target="_blank" rel="noopener" href="https://www.usmacd.com/2022/03/07/logseq2/">Logseq 使用小结 （二）</a> 中有详细介绍，这里就不细说。</p>
+<h3 id="Logseq-Plugin-Tabs"><a href="#Logseq-Plugin-Tabs" class="headerlink" title="Logseq Plugin Tabs"></a>Logseq Plugin Tabs</h3><p><a target="_blank" rel="noopener" href="https://github.com/pengx17/logseq-plugin-tabs">https://github.com/pengx17/logseq-plugin-tabs</a></p>
+<p>Plugin Tabs 像打开浏览器一样打开 pages 或者 blocks，对于内容比较多的 page，这个插件非常实用。</p>
+<h3 id="logseq-plugin-mark-map"><a href="#logseq-plugin-mark-map" class="headerlink" title="logseq-plugin-mark-map"></a>logseq-plugin-mark-map</h3><p><a target="_blank" rel="noopener" href="https://github.com/vipzhicheng/logseq-plugin-mark-map">https://github.com/vipzhicheng/logseq-plugin-mark-map</a></p>
+<p>Mark map 可以自动化地把你的笔记用导图的形式输出，方面展示和记忆。</p>
+<h2 id="☆-一些使用上的小技巧"><a href="#☆-一些使用上的小技巧" class="headerlink" title="☆ 一些使用上的小技巧"></a>☆ 一些使用上的小技巧</h2><ul>
+<li>Logseq content wide mode  可以使用快捷键切换 <code>t w</code>  </li>
+<li>Logseq 的 property 可以通过输入 <code>::</code> 来触发自动补全操作，非常方便。  </li>
+<li>Logseq 使用快捷键 <code>Cmd + Shift + i</code> 可以打开 devtools  </li>
+<li>Logseq v0.68，自动补全提供两个快捷键 <code>mod+p</code> 和 <code>mod+n</code> 比较方便了  </li>
+<li>Logseq 可以使用 <code>command + </code> 和 <code>command -</code> 来放大或者缩小 Logseq 的字体大小  </li>
+<li>Logseq 0.7.1 新功能：Copy &amp; Paste with rich-text formats，如果粘贴时不像保留格式 <code>mod + shift + v</code>  </li>
+<li>Logseq 移动光标的快捷键：<code>mod + p</code> 向上移动光标，<code>mod + n</code> 向下移动光标  </li>
+<li>Logseq Markdown 语法支持 <code> Horizontal Rules</code>，可以使用 <code>---</code>分隔卡片笔记。</li>
+</ul>
+<p>mod 在 windows 和 linux 系统中是 <code>ctrl</code>， 在 macOS 系统中是 <code>command</code></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Software/" rel="tag"># Software</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/09/16/note/" rel="prev" title="关于笔记的一些思考">
+                  <i class="fa fa-chevron-left"></i> 关于笔记的一些思考
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">henices</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

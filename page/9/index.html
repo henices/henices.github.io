@@ -127,7 +127,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">83</span>
+          <span class="site-state-item-count">84</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -192,6 +192,86 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://usmacd.com/2008/04/07/T60_device/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="henices">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="安全代码">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 安全代码">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2008/04/07/T60_device/" class="post-title-link" itemprop="url">联想 IBM THINKPAD T60装windows 2003/2008红外线设备驱动解决</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2008-04-07 00:00:00" itemprop="dateCreated datePublished" datetime="2008-04-07T00:00:00+08:00">2008-04-07</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>Intel(R) 82801GBM (ICH7-M) LPC Interface Controller - 27B9（ACPI\IBM0071\4&amp;61F3B4B&amp;0）是Intel的红外线设备连接。</p>
+<p>win2003&#x2F;2008等服务器版本没有自带这个驱动。IBM T60等机器可以在主板里设置关闭INTERFACE，或者下载XP的红外线补丁（IBM Thinkpad Fast Infrared Port）就可以解决</p>
+<p>相关链接：<br><a target="_blank" rel="noopener" href="http://www-307.ibm.com/pc/support/site.wss/document.do?sitestyle=lenovo&amp;lndocid=MIGR-4KUR6S">http://www-307.ibm.com/pc/support/site.wss/document.do?sitestyle=lenovo&amp;lndocid=MIGR-4KUR6S</a><br><a target="_blank" rel="noopener" href="http://www.versiontracker.com/dyn/moreinfo/win/36353">http://www.versiontracker.com/dyn/moreinfo/win/36353</a><br><a target="_blank" rel="noopener" href="http://www.soft32.com/download_181790.html">http://www.soft32.com/download_181790.html</a><br><a target="_blank" rel="noopener" href="http://forum.thinkpads.com/viewtopic.php?t=22787&amp;sid=3a24f025ddb4d19d3e2d00e122c84957">http://forum.thinkpads.com/viewtopic.php?t=22787&amp;sid=3a24f025ddb4d19d3e2d00e122c84957</a></p>
+<p>具体解决办法：</p>
+<p>第一方法：BIOS设置：</p>
+<p>Config(设置)选项—Infrared(红外线接口)选项,设为禁用(Disable)<br>Config(设置)选项—Infrared Device(红外线设备)选项,设为禁用(Hidden)</p>
+<p>第二方法：下载红外补丁后按下列方法安装：<br>1、解压压缩包，并执行instirda.bat，然后重新启动计算机；<br>2、插入USB红外线设备（笔记本自带红外的看第3步）；<br>3、察看设备管理器，会发现网络适配器处多出一项带叹号的USB Device的项目；<br>4、选择此项目，更新驱动（可用WinXP下的驱动程序）；<br>5、运行reg\Infrared，导入注册表；<br>6、设备管理器中找到那个设备，更新驱动——不要搜索，我要自己选择安装的驱动——IBM thinkpad fast infrared port，然后下一步；<br>7、提示所需文件——找到sys里面的nscirda；<br>8、成功。</p>
+<p>已知问题：<br>1、安装过程中可能，系统提示个别文件无法找到，请手动定位到前面已解压的SYS文件夹处，确认继续。<br>2、使用红外设备后，提示缺文件也是要定位到SYS文件夹进行安装。<br>3、要是提示不能识别，可以重新更新驱动</p>
+<p>Windows server 2003（企业版）红外通讯支持程序（Fro 2003 红外驱动） 下载地址：</p>
+<p><a target="_blank" rel="noopener" href="http://www.irxon.com/download/ir2003.zip">http://www.irxon.com/download/ir2003.zip</a><br><a target="_blank" rel="noopener" href="http://www.divshare.com/download/4167497-cb3">http://www.divshare.com/download/4167497-cb3</a></p>
+<p>说明：Windows server 2003 （企业版）是一款面向企业用户的高端服务器操作系统，为了安全起见，它没有集成支持IrDA红外通讯的协议软件，所以目前所有的IrDA红外设备都不能在这个操作系统里使用。但是我们可以利用XP系统里的IrDA红外通讯协议软件来解决这个问题,安装时使用红外适配器在XP系统里的驱动程序，缺协议软件就到这个软件包里去找，安装完成后红外适配器就可以在Windows2003里正常工作了。</p>
+<p>PS: T60 装了2003 后一个驱动老是找不到，最后终于找到了正确答案。。：） share it</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 

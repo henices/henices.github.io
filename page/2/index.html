@@ -127,7 +127,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">83</span>
+          <span class="site-state-item-count">84</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -192,6 +192,96 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://usmacd.com/2022/04/13/gogs/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="henices">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="安全代码">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 安全代码">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/04/13/gogs/" class="post-title-link" itemprop="url">gogs 皮肤和源码升级</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2022-04-13 11:21:39" itemprop="dateCreated datePublished" datetime="2022-04-13T11:21:39+08:00">2022-04-13</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>gogs 使用了也有一年多了，小团队使用基本还行。有几个问题，第一界面代码 merge 有问题，第二不支持代码 review，<br>如果能解决上面两个问题就好用很多了。下面两段是年前折腾 gogs 的记录，没有啥技术含量，只是做个备份。</p>
+<h2 id="切换皮肤"><a href="#切换皮肤" class="headerlink" title="切换皮肤"></a>切换皮肤</h2><p><a target="_blank" rel="noopener" href="https://github.com/Kos-M/GogsThemes">https://github.com/Kos-M/GogsThemes</a> 提供了两款皮肤，文中给出的方法要修改 gogs 配置，直接使用 TamperMonkey 就可以了。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ==UserScript==</span></span><br><span class="line"><span class="comment">// @name         Gogs Theme</span></span><br><span class="line"><span class="comment">// @resource     IMPORTED_CSS https://raw.githubusercontent.com/Kos-M/GogsThemes/master/themes/dark_theme.css</span></span><br><span class="line"><span class="comment">// @namespace    http://tampermonkey.net/</span></span><br><span class="line"><span class="comment">// @version      0.1</span></span><br><span class="line"><span class="comment">// @description  try to take over the world!</span></span><br><span class="line"><span class="comment">// @author       You</span></span><br><span class="line"><span class="comment">// @match        http://website:8000/*</span></span><br><span class="line"><span class="comment">// @grant        GM_getResourceText</span></span><br><span class="line"><span class="comment">// @grant        GM_addStyle</span></span><br><span class="line"><span class="comment">// ==/UserScript==</span></span><br><span class="line"></span><br><span class="line">(<span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="string">&#x27;use strict&#x27;</span>;</span><br><span class="line">    <span class="keyword">const</span> my_css = <span class="title function_">GM_getResourceText</span>(<span class="string">&quot;IMPORTED_CSS&quot;</span>);</span><br><span class="line">    <span class="title function_">GM_addStyle</span>(my_css);</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure>
+
+<p>使用后效果图</p>
+<p><img src="https://github.com/henices/pictures/raw/master/gogs0.png"></p>
+<h2 id="源码升级"><a href="#源码升级" class="headerlink" title="源码升级"></a>源码升级</h2><p>gogs 已经有一年多没有提供二进制的安装包了，看了改进不少，就尝试了源码升级。<br>参考 <a target="_blank" rel="noopener" href="https://gogs.io/docs/installation/install_from_source#%E6%B5%8B%E8%AF%95%E5%AE%89%E8%A3%85">https://gogs.io/docs/installation/install_from_source#%E6%B5%8B%E8%AF%95%E5%AE%89%E8%A3%85</a></p>
+<h3 id="安装-golang"><a href="#安装-golang" class="headerlink" title="安装 golang"></a>安装 golang</h3><p>参考 Google 官方文档，执行下面命令就可以了。 <a target="_blank" rel="noopener" href="https://go.dev/doc/install">https://go.dev/doc/install</a></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">wget https://go.dev/dl/go1.17.6.linux-amd64.tar.gz</span><br><span class="line"><span class="built_in">rm</span> -rf /usr/local/go &amp;&amp; tar -C /usr/local -xzf go1.17.6.linux-amd64.tar.gz</span><br><span class="line"><span class="built_in">export</span> PATH=<span class="variable">$PATH</span>:/usr/local/go/bin</span><br></pre></td></tr></table></figure>
+<h3 id="编译"><a href="#编译" class="headerlink" title="编译"></a>编译</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 克隆仓库到 &quot;gogs&quot; 子目录</span></span><br><span class="line">git <span class="built_in">clone</span> --depth 1 https://github.com/gogs/gogs.git gogs</span><br><span class="line"><span class="comment"># 修改工作目录</span></span><br><span class="line"><span class="built_in">cd</span> gogs</span><br><span class="line"><span class="comment"># 编译主程序，这个步骤会下载所有依赖</span></span><br><span class="line">go build -o gogs</span><br></pre></td></tr></table></figure>
+
+<p>编译过程会下载文件（需要自备梯子），编译完成后将在 gogs 工作目下生成 gogs 可执行文件</p>
+<h3 id="打包"><a href="#打包" class="headerlink" title="打包"></a>打包</h3><p>gogs 源码的 Makefile 提供了打包命令，执行 <code>make pack</code> 即可，将在 release 目生成 <code>gogs.20220112095054.zip</code></p>
+<h3 id="迁移配置"><a href="#迁移配置" class="headerlink" title="迁移配置"></a>迁移配置</h3><p>将 gogs.20220112095054.zip 解压，这就类似 gogs 的二进制升级了 <a target="_blank" rel="noopener" href="https://gogs.io/docs/upgrade/upgrade_from_binary">https://gogs.io/docs/upgrade/upgrade_from_binary</a></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">mv</span> gogs gogs_old</span><br><span class="line"><span class="built_in">cp</span> -R gogs_old/custom gogs</span><br><span class="line"><span class="built_in">cp</span> -R gogs_old/data gogs</span><br><span class="line"><span class="built_in">cp</span> -R gogs_old/log gogs</span><br></pre></td></tr></table></figure>
+
+<p>gogs 0.13 的配置已经发生了变化，如果不修改配置执行 <code>./gogs web</code>会出现错误</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">2022/01/12 09:40:06 [ INFO] Gogs 0.13.0+dev</span><br><span class="line">2022/01/12 09:40:06 [FATAL] [...github/internal/route/install.go:75 GlobalInit()] Failed to initialize ORM engine:</span><br><span class="line">open database: failed to connect to `host=127.0.0.1 user=root database=gogs`: dial error (dial tcp 127.0.0.1:3306: connect: connection refused)</span><br></pre></td></tr></table></figure>
+
+<p>看错误像是在连接 mysql 的 3306 端口，可是配置文件设置的是使用 sqlite，非常困惑。上网搜索后证实是 gogs 0.13 的配置文件的字段修改了。</p>
+<p><img src="https://github.com/henices/pictures/raw/master/gogs1.png"></p>
+<p>最关键的两个字段是数据库相关的 <code>DB_TYPE</code> 改为 <code>TYPE</code>， <code>PASSWD</code> 改为 <code>PASSWORD</code> 修改后 <code>custom/conf/app.ini</code> 后，执行 <code>./gogs web</code> 一切正常。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1246,100 +1336,6 @@
 <ul>
 <li>EOF</li>
 </ul>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://usmacd.com/2021/09/23/iPhone_white_apple/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="henices">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="安全代码">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 安全代码">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/09/23/iPhone_white_apple/" class="post-title-link" itemprop="url">iPhone 内存满了, 白苹果问题解决方法</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2021-09-23 10:58:52" itemprop="dateCreated datePublished" datetime="2021-09-23T10:58:52+08:00">2021-09-23</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>上周媳妇的 iPhone 提示内存满了，重启后就进入白苹果状态。安装 itunes 以更新的方式重刷系统后恢复正常 （如果选择恢复模式则会丢失数据）。<br>刷系统的时候一度遇上 14 错误，重新使用更新系统的方式再刷了一遍后，顺利通过 （运气不错）。顺利登录 iPhone 后马上删除各种 App，清理后台驻留的程序，在此也提示大家 iPhone 手机也是要定期维护啊。</p>
-<p>说起来就上面几句话，实际操作起来比较麻烦，大概弄了一个早上，把几个要点总结一下。</p>
-<h2 id="强制重新启动-iPhone"><a href="#强制重新启动-iPhone" class="headerlink" title="强制重新启动 iPhone"></a>强制重新启动 iPhone</h2><p>其实在刷机前我尝试了强制重启 iPhone，强制重启 iPhone 的方法可以参考下面链接：<br><a target="_blank" rel="noopener" href="https://support.apple.com/zh-cn/guide/iphone/iph8903c3ee6/ios">https://support.apple.com/zh-cn/guide/iphone/iph8903c3ee6/ios</a></p>
-<p>新版 iPhone 可以使用下面的方法</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">强制重新启动配备面容 ID 的 iPhone</span><br><span class="line"></span><br><span class="line">若要强制重新启动 iPhone X、iPhone XS、iPhone XR、iPhone 11、iPhone 12 或 iPhone 13，请执行以下操作：</span><br><span class="line"></span><br><span class="line">按下并快速松开调高音量按钮，按下并快速松开调低音量按钮，然后按住侧边按钮。当 Apple 标志出现时，松开按钮。</span><br></pre></td></tr></table></figure>
-
-<p>但是强制重启 iPhone 并没有成功，手机依然处于白苹果状态没有响应。</p>
-<h2 id="进入-DFU-模式"><a href="#进入-DFU-模式" class="headerlink" title="进入 DFU 模式"></a>进入 DFU 模式</h2><p>不进入 DFU 模式无法刷机，iPhone 不同机型进入 DFU 模式的方法不相同，具体的可以参考下面链接：<br><a target="_blank" rel="noopener" href="https://support.apple.com/en-us/HT201263">https://support.apple.com/en-us/HT201263</a></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">iPhone 8 or later: Press and quickly release the Volume Up button. </span><br><span class="line">Press and quickly release the Volume Down button. </span><br><span class="line">Then, press and hold the Side button until you see the recovery mode screen.</span><br></pre></td></tr></table></figure>
-
-<h2 id="安装-itunes-刷机"><a href="#安装-itunes-刷机" class="headerlink" title="安装 itunes 刷机"></a>安装 itunes 刷机</h2><p>安装 itunes 的过程就不在细说了，正常安装即可。更新过程需要注意中间某个步骤可能耗时很长，不要着急得慢慢等，Apple 还专门有链接说明这个问题。<br><a target="_blank" rel="noopener" href="https://support.apple.com/zh-cn/HT203435">https://support.apple.com/zh-cn/HT203435</a></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">出现这种情况后，进度条可能移动非常缓慢或似乎不移动。</span><br><span class="line"></span><br><span class="line">请等待设备完成更新、恢复或抹掉过程。</span><br><span class="line"></span><br><span class="line">进度条会显示安装进度。所用时间取决于设备上的文件数量，以及您是要抹掉、更新还是升级 iOS 或 iPadOS。</span><br><span class="line">如果设备上只有很少数据或没有数据，或者如果您要抹掉设备上的数据，这个过程可能只需一分钟时间。</span><br><span class="line">如果设备包含大量文件，则这个过程可能需要数分钟至一小时不等。</span><br></pre></td></tr></table></figure>
-
-<p>刷机过程中大概率会遇上 14 错误，网络上说法很多大概就两点。</p>
-<ul>
-<li>（1）挑线，要保证 USB 数据线有效，优先使用 USB 2.0</li>
-<li>（2）多刷几次，反复刷</li>
-</ul>
-<p>我这次运气不错，遇上 14 错误后，换了个 USB 2.0 的口重刷一次就过了，祝大家好运。</p>
-<p>重启后需要输入密码，提示尝试恢复数据，进度跑完就大功告成了。</p>
-<h2 id="事后的清理工作"><a href="#事后的清理工作" class="headerlink" title="事后的清理工作"></a>事后的清理工作</h2><p>恢复完数据，登录媳妇的手机发现以下几点问题：</p>
-<ul>
-<li>（1） 手机存储空间紧张</li>
-<li>（2） 后台驻留的程序比较多</li>
-</ul>
-<p>导致白苹果的原因未知，将这些问题解决了一下，希望能正常使用了。</p>
 
       
     </div>

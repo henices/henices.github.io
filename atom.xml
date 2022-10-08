@@ -6,7 +6,7 @@
   <link href="http://usmacd.com/atom.xml" rel="self"/>
   
   <link href="http://usmacd.com/"/>
-  <updated>2022-09-22T16:00:00.000Z</updated>
+  <updated>2022-10-07T16:00:00.000Z</updated>
   <id>http://usmacd.com/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Logseq 使用小结 （三）</title>
+    <link href="http://usmacd.com/2022/10/08/logseq3/"/>
+    <id>http://usmacd.com/2022/10/08/logseq3/</id>
+    <published>2022-10-07T16:00:00.000Z</published>
+    <updated>2022-10-07T16:00:00.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>使用 Logseq 写笔记已经大半年了，Logseq 是这么多年来除了 vim 之外，唯一可以在使用上螺旋上升的软件。我把 Logseq 推荐给媳妇，她用来写会议纪要，写备忘录，管理待办事项，也用得挺好。</p><p>Logseq 的成功之处在于它降低了记录的成本，不需要大段大段的文字，也不需要太多的文章结构，随时都可以记录。Logseq 比较严重的问题是，它的使用太灵活了，时间一拉长，前后记录的标准、格式、标签等要素可能不一致，容易造成笔记凌乱。笔记一凌乱就没法有效的聚合，笔记的有效聚合形成一个有意义的想法群是 Logseq 等双链软件和其他笔记软件相比最有价值的地方。</p><p>我这半年来总结出笔记系统成功的关键是： 在同一个地方，用同样的格式和一致的标准记录你的洞见。但是由于 Logseq 缺乏有效的工作流，没法自动化提示必要的步骤，只能通过不断的练习来强化学习。另外 Logseq 中 page 和 tag 只是起到过滤笔记的作用，最关键的笔记之间的链接却很容易被忽视，tag 的数量一多又会开始笔记凌乱了。</p><p>总而言之，如果只是把 Logseq 作为备忘，或者简单作为信息记录，挺好用也不需要学习太多的东西，但是如果需要使用 Logseq 来实践卡片笔记法等 PKM 理论，恐怕还是需要花费一些功夫仔细琢磨一番。PKM 方面的书籍我强力推荐 《卡片笔记写作法》一书，中文翻译很不错，虽然书名是谈写作，里面的内容却涉及很广，我自己阅读后收益良多。</p><p>上面说的是一些「道」层面的东西， Logseq 在「术」方面的东西也不少，下面将介绍一些前两篇尚未涉及的功能和使用技巧。</p><h2 id="☆-使用-properties"><a href="#☆-使用-properties" class="headerlink" title="☆ 使用 properties"></a>☆ 使用 properties</h2><p><a href="https://docs.logseq.com/#/page/term%2Fproperties">https://docs.logseq.com/#/page/term%2Fproperties</a></p><p>在 Logseq 中有两种 properties， page properties 和 block properties。</p><ul><li>Page properties 在第一个 block 写 <code>property:: value</code>  </li><li>Block properties 在每个 block 内使用 <code>property:: value</code></li></ul><p>在使用 block properties 时，需要输入 <code>shift + Enter</code> 来进行换行，换行后输入 <code>::</code> Logseq 会自动提示已经使用过的 property。理解 properties 可以简单的把 block 看成数据库的一条记录， properties 就是不同的字段，可以通过 Logseq 的 query 来查询相关记录。在使用 properties 时可以引用 page 或者 tag，可以通过这种方法来索引这条记录。</p><p>例如，我将书籍的 block 都添加了 <code>category:: Books</code> 的属性，后续可以使用 <code>&#123;&#123;query (property category Books) &#125;&#125;</code> 来查询所有书籍了，感觉上有点类似 notion 的表格。</p><h2 id="☆-使用-x2F-Scheduled-制定计划"><a href="#☆-使用-x2F-Scheduled-制定计划" class="headerlink" title="☆ 使用 &#x2F;Scheduled 制定计划"></a>☆ 使用 &#x2F;Scheduled 制定计划</h2><p>使用 Schedule 的功能的方法比较简单，在写完一条 block 后，输入 <code>shift + enter </code> 换行后，输入 <code>/Schedule</code> 在弹出的界面中选择时间周期即可。</p><p>在 Schedule 规定的时间内，Logseq 的 Journals 页面可以看到相关的内容。</p><h2 id="☆-一些好用的插件"><a href="#☆-一些好用的插件" class="headerlink" title="☆ 一些好用的插件"></a>☆ 一些好用的插件</h2><p>插件可以拓展 Logseq 的功能，使用了插件的方法在 <a href="https://www.usmacd.com/2022/03/07/logseq2/">Logseq 使用小结 （二）</a> 中有详细介绍，这里就不细说。</p><h3 id="Logseq-Plugin-Tabs"><a href="#Logseq-Plugin-Tabs" class="headerlink" title="Logseq Plugin Tabs"></a>Logseq Plugin Tabs</h3><p><a href="https://github.com/pengx17/logseq-plugin-tabs">https://github.com/pengx17/logseq-plugin-tabs</a></p><p>Plugin Tabs 像打开浏览器一样打开 pages 或者 blocks，对于内容比较多的 page，这个插件非常实用。</p><h3 id="logseq-plugin-mark-map"><a href="#logseq-plugin-mark-map" class="headerlink" title="logseq-plugin-mark-map"></a>logseq-plugin-mark-map</h3><p><a href="https://github.com/vipzhicheng/logseq-plugin-mark-map">https://github.com/vipzhicheng/logseq-plugin-mark-map</a></p><p>Mark map 可以自动化地把你的笔记用导图的形式输出，方面展示和记忆。</p><h2 id="☆-一些使用上的小技巧"><a href="#☆-一些使用上的小技巧" class="headerlink" title="☆ 一些使用上的小技巧"></a>☆ 一些使用上的小技巧</h2><ul><li>Logseq content wide mode  可以使用快捷键切换 <code>t w</code>  </li><li>Logseq 的 property 可以通过输入 <code>::</code> 来触发自动补全操作，非常方便。  </li><li>Logseq 使用快捷键 <code>Cmd + Shift + i</code> 可以打开 devtools  </li><li>Logseq v0.68，自动补全提供两个快捷键 <code>mod+p</code> 和 <code>mod+n</code> 比较方便了  </li><li>Logseq 可以使用 <code>command + </code> 和 <code>command -</code> 来放大或者缩小 Logseq 的字体大小  </li><li>Logseq 0.7.1 新功能：Copy &amp; Paste with rich-text formats，如果粘贴时不像保留格式 <code>mod + shift + v</code>  </li><li>Logseq 移动光标的快捷键：<code>mod + p</code> 向上移动光标，<code>mod + n</code> 向下移动光标  </li><li>Logseq Markdown 语法支持 <code> Horizontal Rules</code>，可以使用 <code>---</code>分隔卡片笔记。</li></ul><p>mod 在 windows 和 linux 系统中是 <code>ctrl</code>， 在 macOS 系统中是 <code>command</code></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;使用 Logseq 写笔记已经大半年了，Logseq 是这么多年来除了 vim 之外，唯一可以在使用上螺旋上升的软件。我把 Logseq 推荐给媳妇，她用来写会议纪要，写备忘录，管理待办事项，也用得挺好。&lt;/p&gt;
+&lt;p&gt;Logseq 的成功之处在于它降低了记录的成本，不需要</summary>
+      
+    
+    
+    
+    
+    <category term="Software" scheme="http://usmacd.com/tags/Software/"/>
+    
+  </entry>
   
   <entry>
     <title>关于笔记的一些思考</title>
@@ -458,28 +481,6 @@
     
     
     <category term="linux" scheme="http://usmacd.com/tags/linux/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>iPhone 内存满了, 白苹果问题解决方法</title>
-    <link href="http://usmacd.com/2021/09/23/iPhone_white_apple/"/>
-    <id>http://usmacd.com/2021/09/23/iPhone_white_apple/</id>
-    <published>2021-09-23T02:58:52.352Z</published>
-    <updated>2021-09-23T02:58:52.352Z</updated>
-    
-    <content type="html"><![CDATA[<p>上周媳妇的 iPhone 提示内存满了，重启后就进入白苹果状态。安装 itunes 以更新的方式重刷系统后恢复正常 （如果选择恢复模式则会丢失数据）。<br>刷系统的时候一度遇上 14 错误，重新使用更新系统的方式再刷了一遍后，顺利通过 （运气不错）。顺利登录 iPhone 后马上删除各种 App，清理后台驻留的程序，在此也提示大家 iPhone 手机也是要定期维护啊。</p><p>说起来就上面几句话，实际操作起来比较麻烦，大概弄了一个早上，把几个要点总结一下。</p><h2 id="强制重新启动-iPhone"><a href="#强制重新启动-iPhone" class="headerlink" title="强制重新启动 iPhone"></a>强制重新启动 iPhone</h2><p>其实在刷机前我尝试了强制重启 iPhone，强制重启 iPhone 的方法可以参考下面链接：<br><a href="https://support.apple.com/zh-cn/guide/iphone/iph8903c3ee6/ios">https://support.apple.com/zh-cn/guide/iphone/iph8903c3ee6/ios</a></p><p>新版 iPhone 可以使用下面的方法</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">强制重新启动配备面容 ID 的 iPhone</span><br><span class="line"></span><br><span class="line">若要强制重新启动 iPhone X、iPhone XS、iPhone XR、iPhone 11、iPhone 12 或 iPhone 13，请执行以下操作：</span><br><span class="line"></span><br><span class="line">按下并快速松开调高音量按钮，按下并快速松开调低音量按钮，然后按住侧边按钮。当 Apple 标志出现时，松开按钮。</span><br></pre></td></tr></table></figure><p>但是强制重启 iPhone 并没有成功，手机依然处于白苹果状态没有响应。</p><h2 id="进入-DFU-模式"><a href="#进入-DFU-模式" class="headerlink" title="进入 DFU 模式"></a>进入 DFU 模式</h2><p>不进入 DFU 模式无法刷机，iPhone 不同机型进入 DFU 模式的方法不相同，具体的可以参考下面链接：<br><a href="https://support.apple.com/en-us/HT201263">https://support.apple.com/en-us/HT201263</a></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">iPhone 8 or later: Press and quickly release the Volume Up button. </span><br><span class="line">Press and quickly release the Volume Down button. </span><br><span class="line">Then, press and hold the Side button until you see the recovery mode screen.</span><br></pre></td></tr></table></figure><h2 id="安装-itunes-刷机"><a href="#安装-itunes-刷机" class="headerlink" title="安装 itunes 刷机"></a>安装 itunes 刷机</h2><p>安装 itunes 的过程就不在细说了，正常安装即可。更新过程需要注意中间某个步骤可能耗时很长，不要着急得慢慢等，Apple 还专门有链接说明这个问题。<br><a href="https://support.apple.com/zh-cn/HT203435">https://support.apple.com/zh-cn/HT203435</a></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">出现这种情况后，进度条可能移动非常缓慢或似乎不移动。</span><br><span class="line"></span><br><span class="line">请等待设备完成更新、恢复或抹掉过程。</span><br><span class="line"></span><br><span class="line">进度条会显示安装进度。所用时间取决于设备上的文件数量，以及您是要抹掉、更新还是升级 iOS 或 iPadOS。</span><br><span class="line">如果设备上只有很少数据或没有数据，或者如果您要抹掉设备上的数据，这个过程可能只需一分钟时间。</span><br><span class="line">如果设备包含大量文件，则这个过程可能需要数分钟至一小时不等。</span><br></pre></td></tr></table></figure><p>刷机过程中大概率会遇上 14 错误，网络上说法很多大概就两点。</p><ul><li>（1）挑线，要保证 USB 数据线有效，优先使用 USB 2.0</li><li>（2）多刷几次，反复刷</li></ul><p>我这次运气不错，遇上 14 错误后，换了个 USB 2.0 的口重刷一次就过了，祝大家好运。</p><p>重启后需要输入密码，提示尝试恢复数据，进度跑完就大功告成了。</p><h2 id="事后的清理工作"><a href="#事后的清理工作" class="headerlink" title="事后的清理工作"></a>事后的清理工作</h2><p>恢复完数据，登录媳妇的手机发现以下几点问题：</p><ul><li>（1） 手机存储空间紧张</li><li>（2） 后台驻留的程序比较多</li></ul><p>导致白苹果的原因未知，将这些问题解决了一下，希望能正常使用了。</p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;上周媳妇的 iPhone 提示内存满了，重启后就进入白苹果状态。安装 itunes 以更新的方式重刷系统后恢复正常 （如果选择恢复模式则会丢失数据）。&lt;br&gt;刷系统的时候一度遇上 14 错误，重新使用更新系统的方式再刷了一遍后，顺利通过 （运气不错）。顺利登录 iPhone</summary>
-      
-    
-    
-    
-    
-    <category term="Life" scheme="http://usmacd.com/tags/Life/"/>
     
   </entry>
   

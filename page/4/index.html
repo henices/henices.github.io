@@ -127,7 +127,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">83</span>
+          <span class="site-state-item-count">84</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -192,6 +192,106 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://usmacd.com/2021/06/18/debug_aosp_java_code/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="henices">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="安全代码">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 安全代码">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2021/06/18/debug_aosp_java_code/" class="post-title-link" itemprop="url">调试AOSP Java 代码</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2021-06-18 09:56:42" itemprop="dateCreated datePublished" datetime="2021-06-18T09:56:42+08:00">2021-06-18</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>下载 Android 源代码，编译</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">source</span> build/envsetup.sh</span><br><span class="line">$ lunch</span><br><span class="line">$ make</span><br><span class="line">$ mmm development/tools/idegen/</span><br><span class="line">$ ./development/tools/idegen/idegen.sh</span><br></pre></td></tr></table></figure>
+
+<p>运行后将生成下面几个文件</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">android.ipr (IntelliJ / Android Studio)</span><br><span class="line">android.iml (IntelliJ / Android Studio)</span><br><span class="line">.classpath  (Eclipse)</span><br></pre></td></tr></table></figure>
+
+
+<ol>
+<li>在Android Studio 中导入 android.ipr</li>
+</ol>
+<p>File -&gt; Open 选择 android.ipr, 导入后可以Android Studio 中浏览AOSP 源码</p>
+<ol start="2">
+<li>设置远程调试配置文件</li>
+</ol>
+<p>Run -&gt; Edit Configuration 点击左上角的 + 类型选择 Remote</p>
+<ol start="3">
+<li>Attack 到需要调试的进程</li>
+</ol>
+<p>这里有两种方法，一是使用SDK 提供的 Monitor 二是使用 Android Studio 自带的<br>Attach debugger to Android Process 按钮。 </p>
+<p>连接成功后将看到 Connected to the target VM</p>
+<ol start="4">
+<li>设置断点</li>
+</ol>
+<p>设置断点很简单，用鼠标点击源码文件的左边栏，看见红色圆点说明就已经设置成功了。也<br>可以使用Ctrl + F8 的快捷键。</p>
+<ol start="5">
+<li>运行程序，触发断点</li>
+</ol>
+<p>需要注意的是在调试过程中会出现源码对不上的情况，需要自己选择正确的源码。关于哪些<br>进程可以调试的问题，上篇已经有记录，这里就不在说了。</p>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ol>
+<li>AOSP Sources in the IDE<br><a target="_blank" rel="noopener" href="https://newcircle.com/s/post/1720/aosp_sources_in_the_ide">https://newcircle.com/s/post/1720/aosp_sources_in_the_ide</a></li>
+<li>Debugging AOSP Platform code with Android Studio - Part I - Java Debugger<br><a target="_blank" rel="noopener" href="http://ronubo.blogspot.sg/2016/01/debugging-aosp-platform-code-with.html">http://ronubo.blogspot.sg/2016/01/debugging-aosp-platform-code-with.html</a></li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -604,7 +704,7 @@
 <h2 id="CVE-官方分配-CVE-ID"><a href="#CVE-官方分配-CVE-ID" class="headerlink" title="CVE 官方分配 CVE ID"></a>CVE 官方分配 CVE ID</h2><p>CVE 官方收到 RESERVED CVE 请求后，会给分配一个 CVE ID，但是状态为 ** RESERVED ** ，不会有公开细节。</p>
 <h2 id="RESERVED-CVE-申请公开"><a href="#RESERVED-CVE-申请公开" class="headerlink" title="RESERVED CVE 申请公开"></a>RESERVED CVE 申请公开</h2><p>当软件官方确认已经修复漏洞，并且发布新版后，可以通知 CVE 官方更新 CVE 的状态。还是通过填写 <a target="_blank" rel="noopener" href="https://cveform.mitre.org/">https://cveform.mitre.org/</a> 表格，选择 Notify CVE about a publication，填写相关信息。</p>
 <h2 id="一些注意事项"><a href="#一些注意事项" class="headerlink" title="一些注意事项"></a>一些注意事项</h2><ol>
-<li>将 <a href="mailto:&#99;&#118;&#101;&#x2d;&#114;&#x65;&#113;&#117;&#101;&#x73;&#116;&#x40;&#x6d;&#105;&#x74;&#114;&#x65;&#46;&#111;&#x72;&#103;">&#99;&#118;&#101;&#x2d;&#114;&#x65;&#113;&#117;&#101;&#x73;&#116;&#x40;&#x6d;&#105;&#x74;&#114;&#x65;&#46;&#111;&#x72;&#103;</a> 和  <a href="mailto:&#99;&#x76;&#101;&#x40;&#109;&#105;&#116;&#114;&#x65;&#x2e;&#x6f;&#114;&#x67;">&#99;&#x76;&#101;&#x40;&#109;&#105;&#116;&#114;&#x65;&#x2e;&#x6f;&#114;&#x67;</a> 加入邮件白名单 （有可能邮件会被截拦）</li>
+<li>将 <a href="mailto:&#99;&#x76;&#x65;&#45;&#114;&#x65;&#113;&#x75;&#101;&#115;&#116;&#x40;&#109;&#105;&#x74;&#114;&#x65;&#46;&#x6f;&#114;&#x67;">&#99;&#x76;&#x65;&#45;&#114;&#x65;&#113;&#x75;&#101;&#115;&#116;&#x40;&#109;&#105;&#x74;&#114;&#x65;&#46;&#x6f;&#114;&#x67;</a> 和  <a href="mailto:&#x63;&#118;&#x65;&#64;&#x6d;&#105;&#x74;&#x72;&#101;&#x2e;&#x6f;&#x72;&#103;">&#x63;&#118;&#x65;&#64;&#x6d;&#105;&#x74;&#x72;&#101;&#x2e;&#x6f;&#x72;&#103;</a> 加入邮件白名单 （有可能邮件会被截拦）</li>
 <li>在申请公开步骤中，CVE 官方有可能和你要公开披露的链接，如果软件官方不给写，可以自己写一个</li>
 </ol>
 <p>披露要求的信息：</p>
@@ -993,75 +1093,6 @@
 <p>另外，《Dynamic-Link Library Search Order》中指出使用manifest可以指定加载DLL的路径，但实际的情况是有可能加载多个DLL导致进程崩溃。</p>
 <p>Desktop applications can control the location from which a DLL is loaded by specifying a full path, using DLL redirection, or by using a manifest. If none of these methods are used, the system searches for the DLL at load time as described in this section.</p>
 <h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p>[1]《Windows via C&#x2F;C++ Fifth Edition》<br>[2] Side-by-side Assemblies <a target="_blank" rel="noopener" href="http://msdn.microsoft.com/en-us/library/aa376307.aspx">http://msdn.microsoft.com/en-us/library/aa376307.aspx</a><br>[3] DLL Hell <a target="_blank" rel="noopener" href="http://en.wikipedia.org/wiki/Dll_hell">http://en.wikipedia.org/wiki/Dll_hell</a><br>[4] C Run-Time Error R6034 <a target="_blank" rel="noopener" href="http://msdn.microsoft.com/en-us/library/ms235560(v=vs.90).aspx">http://msdn.microsoft.com/en-us/library/ms235560(v=vs.90).aspx</a><br>[5] Understanding Manifest Generation for C&#x2F;C++ Programs <a target="_blank" rel="noopener" href="http://msdn.microsoft.com/en-us/library/ms235542.aspx">http://msdn.microsoft.com/en-us/library/ms235542.aspx</a><br>[6] Search Path Used by Windows to Locate a DLL <a target="_blank" rel="noopener" href="http://msdn.microsoft.com/en-us/library/7d83bc18.aspx">http://msdn.microsoft.com/en-us/library/7d83bc18.aspx</a><br>[7] Dynamic-Link Library Search Order <a target="_blank" rel="noopener" href="http://msdn.microsoft.com/en-us/library/windows/desktop/ms682586(v=vs.85).aspx">http://msdn.microsoft.com/en-us/library/windows/desktop/ms682586(v=vs.85).aspx</a><br>[8] <a target="_blank" rel="noopener" href="https://bitbucket.org/Haroogan/vim-youcompleteme-for-windows/src/7dca764c2ee0?at=master">https://bitbucket.org/Haroogan/vim-youcompleteme-for-windows/src/7dca764c2ee0?at=master</a><br>[9] <a target="_blank" rel="noopener" href="https://github.com/Valloric/YouCompleteMe/wiki/Windows-Installation-Guide">https://github.com/Valloric/YouCompleteMe/wiki/Windows-Installation-Guide</a><br>[10] <a target="_blank" rel="noopener" href="http://www.davidlenihan.com/2007/07/winsxs.html">http://www.davidlenihan.com/2007/07/winsxs.html</a></p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://usmacd.com/2020/03/23/oneplus3T_p3/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="henices">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="安全代码">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 安全代码">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2020/03/23/oneplus3T_p3/" class="post-title-link" itemprop="url">一加 (oneplus ) 3T 非root 开启 P3 色域</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2020-03-23 10:56:06" itemprop="dateCreated datePublished" datetime="2020-03-23T10:56:06+08:00">2020-03-23</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>一加3T其实和一加5用的是同一块屏幕，网上流传的方法多需要root权限。非root 开启 p3 色域的方法，<br>连接 adb 输入下面的命令 <code>settings put system screen_color_mode_settings_value 4</code> 实测有效，重启后不失效。</p>
 
       
     </div>
