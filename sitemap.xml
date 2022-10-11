@@ -605,6 +605,15 @@
   </url>
   
   <url>
+    <loc>http://usmacd.com/2016/06/08/PowerPoint_egg/</loc>
+    
+    <lastmod>2016-06-07</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>http://usmacd.com/2016/02/01/non_root_android_native_debug/</loc>
     
     <lastmod>2016-01-31</lastmod>
@@ -787,7 +796,7 @@
 
   <url>
     <loc>http://usmacd.com/</loc>
-    <lastmod>2022-10-09</lastmod>
+    <lastmod>2022-10-11</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -795,91 +804,91 @@
   
   <url>
     <loc>http://usmacd.com/tags/linux/</loc>
-    <lastmod>2022-10-09</lastmod>
+    <lastmod>2022-10-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://usmacd.com/tags/Crack/</loc>
-    <lastmod>2022-10-09</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>http://usmacd.com/tags/Life/</loc>
-    <lastmod>2022-10-09</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>http://usmacd.com/tags/Security/</loc>
-    <lastmod>2022-10-09</lastmod>
+    <lastmod>2022-10-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://usmacd.com/tags/Archives/</loc>
-    <lastmod>2022-10-09</lastmod>
+    <lastmod>2022-10-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://usmacd.com/tags/Life/</loc>
+    <lastmod>2022-10-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://usmacd.com/tags/Security/</loc>
+    <lastmod>2022-10-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://usmacd.com/tags/Android/</loc>
-    <lastmod>2022-10-09</lastmod>
+    <lastmod>2022-10-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://usmacd.com/tags/investment/</loc>
-    <lastmod>2022-10-09</lastmod>
+    <lastmod>2022-10-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://usmacd.com/tags/Malware/</loc>
-    <lastmod>2022-10-09</lastmod>
+    <lastmod>2022-10-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://usmacd.com/tags/windows/</loc>
-    <lastmod>2022-10-09</lastmod>
+    <lastmod>2022-10-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://usmacd.com/tags/Programming/</loc>
-    <lastmod>2022-10-09</lastmod>
+    <lastmod>2022-10-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://usmacd.com/tags/Software/</loc>
-    <lastmod>2022-10-09</lastmod>
+    <lastmod>2022-10-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://usmacd.com/tags/PKM/</loc>
-    <lastmod>2022-10-09</lastmod>
+    <lastmod>2022-10-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://usmacd.com/tags/vim/</loc>
-    <lastmod>2022-10-09</lastmod>
+    <lastmod>2022-10-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
