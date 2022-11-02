@@ -127,7 +127,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">86</span>
+          <span class="site-state-item-count">87</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -192,6 +192,83 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://usmacd.com/2009/09/18/sqlserver2005_xpcmdshell/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="henices">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="安全代码">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 安全代码">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2009/09/18/sqlserver2005_xpcmdshell/" class="post-title-link" itemprop="url">SQL Server 2005 xp_cmdshell</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2009-09-18 00:00:00" itemprop="dateCreated datePublished" datetime="2009-09-18T00:00:00+08:00">2009-09-18</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>SQL Server 2005 中引入的 xp_cmdshell 选项是服务器配置选项，<br>使系统管理员能够控制是否可以在系统上执行 xp_cmdshell 扩展存储过程。</p>
+<h2 id="1-如何在sql-server-2005-中开启xp-cmdshell"><a href="#1-如何在sql-server-2005-中开启xp-cmdshell" class="headerlink" title="1.  如何在sql server 2005 中开启xp_cmdshell"></a>1.  如何在sql server 2005 中开启xp_cmdshell</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- To allow advanced options to be changed.</span></span><br><span class="line"><span class="keyword">EXEC</span> sp_configure <span class="string">&#x27;show advanced options&#x27;</span>, <span class="number">1</span></span><br><span class="line">GO</span><br><span class="line"><span class="comment">-- To update the currently configured value for advanced options.</span></span><br><span class="line">RECONFIGURE</span><br><span class="line">GO</span><br><span class="line"><span class="comment">-- To enable the feature.</span></span><br><span class="line"><span class="keyword">EXEC</span> sp_configure <span class="string">&#x27;xp_cmdshell&#x27;</span>, <span class="number">1</span></span><br><span class="line">GO</span><br><span class="line"><span class="comment">-- To update the currently configured value for this feature.</span></span><br><span class="line">RECONFIGURE</span><br><span class="line">GO</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-如何查询sql-server-2005-拓展存储过程xp-cmdshell-状态"><a href="#2-如何查询sql-server-2005-拓展存储过程xp-cmdshell-状态" class="headerlink" title="2. 如何查询sql server 2005 拓展存储过程xp_cmdshell 状态"></a>2. 如何查询sql server 2005 拓展存储过程xp_cmdshell 状态</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> sys.configurations <span class="keyword">where</span> name<span class="operator">=</span><span class="string">&#x27;xp_cmdshell&#x27;</span></span><br><span class="line">GO</span><br></pre></td></tr></table></figure>
+
+<p>查看value的值， 1 为开启， 0 为关闭</p>
+<h2 id="3-如何查看public角色对哪些拓展存储过程有执行权限"><a href="#3-如何查看public角色对哪些拓展存储过程有执行权限" class="headerlink" title="3. 如何查看public角色对哪些拓展存储过程有执行权限"></a>3. 如何查看public角色对哪些拓展存储过程有执行权限</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> sysusers.name, sysobjects.name, sysprotects.action <span class="keyword">from</span> sysobjects, sysusers, sysprotects</span><br><span class="line"><span class="keyword">where</span> sysobjects.id<span class="operator">=</span>sysprotects.id <span class="keyword">and</span> sysprotects.uid <span class="operator">=</span> sysusers.uid <span class="keyword">and</span> </span><br><span class="line">sysprotects.protecttype<span class="operator">=</span><span class="number">205</span> <span class="keyword">and</span> sysprotects.action<span class="operator">=</span> <span class="number">224</span> <span class="keyword">and</span> (sysusers.name<span class="operator">=</span><span class="string">&#x27;public&#x27;</span> <span class="keyword">or</span></span><br><span class="line">sysusers.name<span class="operator">=</span><span class="string">&#x27;guest&#x27;</span> ) <span class="keyword">and</span> sysobjects.type<span class="operator">=</span><span class="string">&#x27;X&#x27;</span></span><br><span class="line"></span><br><span class="line">GO</span><br></pre></td></tr></table></figure>
+
+<h2 id="4-如何去掉public角色对拓展存储过程的执行权限"><a href="#4-如何去掉public角色对拓展存储过程的执行权限" class="headerlink" title="4. 如何去掉public角色对拓展存储过程的执行权限"></a>4. 如何去掉public角色对拓展存储过程的执行权限</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">deny <span class="keyword">execute</span> <span class="keyword">on</span> xp_dirtree <span class="keyword">to</span> public</span><br><span class="line">GO</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 

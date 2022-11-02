@@ -6,7 +6,7 @@
   <link href="http://usmacd.com/atom.xml" rel="self"/>
   
   <link href="http://usmacd.com/"/>
-  <updated>2022-10-08T16:00:00.000Z</updated>
+  <updated>2022-11-02T05:37:35.650Z</updated>
   <id>http://usmacd.com/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Learn In Public 摘要</title>
+    <link href="http://usmacd.com/2022/11/02/learn_in_public/"/>
+    <id>http://usmacd.com/2022/11/02/learn_in_public/</id>
+    <published>2022-11-02T05:37:35.650Z</published>
+    <updated>2022-11-02T05:37:35.650Z</updated>
+    
+    <content type="html"><![CDATA[<p>source: <a href="https://www.swyx.io/learn-in-public/">https://www.swyx.io/learn-in-public/</a></p><ul><li>a habit of creating <strong>learning exhaust</strong>  <ul><li>Write blogs and tutorials and cheatsheets.  </li><li>Speak at meetups and conferences.  </li><li>Ask and answer things on Stackoverflow or Reddit.  <ul><li>Avoid the walled gardens like Slack and Discord, they’re not public.</li></ul></li><li>Make Youtube videos or Twitch streams.  </li><li>Start a newsletter.  </li><li>Draw cartoons (people loooove cartoons!)</li></ul></li><li>Whatever your thing is, make the thing you wish you had found when you were learning.  </li><li><strong>Don’t judge your results by “claps” or retweets or stars or upvotes</strong>  </li><li>Oh you think you’re done? Don’t stop there:  <ul><li>Enjoyed a coding video? Reach out to the speaker&#x2F;instructor and thank them, and ask questions.  </li><li>Make PR’s to libraries you use.  </li><li>Make your own libraries no one will ever use.  </li><li>Clone stuff you like, from scratch, to see how they work.  </li><li>Teach workshops.  </li><li>Go to conferences and summarize what you learned.</li></ul></li><li>The subheading under this rule would be: <strong>Try your best to be right, but don’t worry when you’re wrong.</strong>  <ul><li>People think you suck? Good. You agree. Ask them to explain, in detail, why you suck  </li><li>You want to just feel good or you want to <strong>be</strong> good?  <ul><li>Then go away and prove them wrong. Of course, if they get abusive block them.</li></ul></li></ul></li><li>At some point you’ll get some support behind you. People notice genuine learners. They’ll want to help you.  <ul><li>Don’t tell them, but they just became your mentors.  </li><li>This is very important: Pick up what they put down  </li><li>Because you learn in public. By teaching you, they teach many.</li></ul></li></ul>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;source: &lt;a href=&quot;https://www.swyx.io/learn-in-public/&quot;&gt;https://www.swyx.io/learn-in-public/&lt;/a&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;a habit of creating &lt;strong&gt;</summary>
+      
+    
+    
+    
+    
+    <category term="PKM" scheme="http://usmacd.com/tags/PKM/"/>
+    
+  </entry>
   
   <entry>
     <title>Logseq 使用小结 （三）</title>
@@ -458,29 +482,6 @@
     
     
     <category term="Android" scheme="http://usmacd.com/tags/Android/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>SSD 迁移记</title>
-    <link href="http://usmacd.com/2021/11/03/ssd/"/>
-    <id>http://usmacd.com/2021/11/03/ssd/</id>
-    <published>2021-11-03T01:46:03.591Z</published>
-    <updated>2021-11-03T01:46:03.591Z</updated>
-    
-    <content type="html"><![CDATA[<p>由于某些需求，决定上SSD，提高一下硬盘读写速度。上二手东买了三星(SAMSUNG) 860 EVO<br>最初的想法是作为数据盘使用，即操作系统还是跑在机械硬盘上，仔细一思考，还是折腾<br>一下，要不实在是有些浪费，事实证明，折腾是值得的，感觉就想飞一样。</p><p>首先查看一下原始的情况：</p><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ mount</span><br><span class="line"></span><br><span class="line">/dev/sda1 on /boot <span class="built_in">type</span> ext4 (rw,relatime,seclabel,stripe=4)</span><br><span class="line">/dev/mapper/fedora-root on / <span class="built_in">type</span> ext4 (rw,relatime,seclabel)</span><br></pre></td></tr></table></figure><p>当然首先要把SSD处理一下，安装一下 gparted 图形化界面很好用。建个分区表，选择<br>gpt，分个区，&#x2F;dev&#x2F;mapper&#x2F;fedora-root 大小为50G，先分个50G的分区，剩下的全部给<br>另外一个分区，格式化为 ext4。操作完成后，用fdisk 查看一下：</p><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">$ fdisk -l</span><br><span class="line"></span><br><span class="line">Disk /dev/sdb：232.9 GiB，250059350016 字节，488397168 个扇区</span><br><span class="line">单元：扇区 / 1 * 512 = 512 字节</span><br><span class="line">扇区大小(逻辑/物理)：512 字节 / 512 字节</span><br><span class="line">I/O 大小(最小/最佳)：512 字节 / 512 字节</span><br><span class="line">磁盘标签类型：gpt</span><br><span class="line">磁盘标识符：</span><br><span class="line"></span><br><span class="line">设备            起点      末尾      扇区   大小 类型</span><br><span class="line">/dev/sdb1       2048 104859647 104857600    50G Linux 文件系统</span><br><span class="line">/dev/sdb2  104859648 488396799 383537152 182.9G Linux 文件系统</span><br></pre></td></tr></table></figure><p>将原来系统的 &#x2F; dd 到新的SSD，</p><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">dd</span> <span class="keyword">if</span>=/dev/mapper/fedora-root of=/dev/sdb1 bs=1M</span><br></pre></td></tr></table></figure><p>用新的root 把系统启动起来，reboot 后进入引导界面，按e 编译，找到<br>root&#x3D;&#x2F;dev&#x2F;fedora&#x2F;root 改为 root&#x3D;&#x2F;dev&#x2F;sdb1 按 ctrl+x 启动，一会儿就进系统了，速度<br>提升很大。现在需要把 grub.cfg 更新一下，因为我们是手动修改进入了新的根，如果重启<br>的话，还是会使用老的根，因为grub.cfg 里就是这么写的。</p><p>要生成新的grub.cfg 需要使用grub2-mkconfig, 命令很简单</p><p><code>$ grub2-mkconfig -o /boot/grub2/grub.cfg</code></p><p>执行后重启，md 怎么又进到老根去了。这里折腾了好久，第一个问题fedora 的内核出bug<br>了，每次重启都要等待非常久的时间，所以需要升级，所以正确的顺序应该是先升级系统再<br>dd，没办法升级系统重新 dd</p><p>解决了fedora 内核的问题后，发现还是进不到新根。只要认真地看 grub.cfg, grub2 改动<br>挺大，不太熟悉了。</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">#                                      </span><br><span class="line"># DO NOT EDIT THIS FILE                                                                                                                                                                       #                                                   </span><br><span class="line"># It is automatically generated by grub2-mkconfig using templates                                                                                                                             </span><br><span class="line"># from /etc/grub.d and settings from /etc/default/grub</span><br></pre></td></tr></table></figure><p>启动有两个信息，确实是使用 grub2-mkconfig 生成，&#x2F;etc&#x2F;default&#x2F;grub 里有配置</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">$ cat /etc/default/grub</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">GRUB_TIMEOUT=5</span><br><span class="line">GRUB_DISTRIBUTOR=&quot;$(sed &#x27;s, release .*$,,g&#x27; /etc/system-release)&quot;</span><br><span class="line">GRUB_DEFAULT=saved</span><br><span class="line">GRUB_DISABLE_SUBMENU=true</span><br><span class="line">GRUB_TERMINAL_OUTPUT=&quot;console&quot;</span><br><span class="line">GRUB_CMDLINE_LINUX=&quot;rd.driver.blacklist=nouveau modprobe.blacklist=nouveau nvidia-drm.modeset=1 rd.lvm.lv=fedora/root rd.lvm.lv=fedora/swap rhgb quiet&quot;                                      </span><br><span class="line">GRUB_DISABLE_RECOVERY=&quot;true&quot;</span><br></pre></td></tr></table></figure><p>grub2-mkconfig 里用这句</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GRUB_DEVICE=&quot;`$&#123;grub_probe&#125; --target=device /`&quot;  </span><br></pre></td></tr></table></figure><p>执行查看结果， 发现正确</p><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ grub2-probe --target=device /</span><br><span class="line"></span><br><span class="line">/dev/sdb1</span><br></pre></td></tr></table></figure><p>可是为什么不能正确启动呢，看看生成的 grub.cfg 文件</p><p>linux16 &#x2F;vmlinuz-4.17.2-200.fc28.x86_64 root&#x3D;UUID&#x3D;290a98e3-7937-49db-a971-4d0e49567cf0</p><p>使用的是 UUID，并不是 &#x2F;dev, 查看一下各分区的 uuid</p><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># blkid</span></span><br><span class="line"></span><br><span class="line">/dev/sdb1: UUID=<span class="string">&quot;290a98e3-7937-49db-a971-4d0e49567cf0&quot;</span> TYPE=<span class="string">&quot;ext4&quot;</span> PARTUUID=<span class="string">&quot;fe64f395-7520-42c3-939b-b17eb7064cec&quot;</span></span><br><span class="line">/dev/mapper/fedora-root: UUID=<span class="string">&quot;290a98e3-7937-49db-a971-4d0e49567cf0&quot;</span> TYPE=<span class="string">&quot;ext4&quot;</span></span><br></pre></td></tr></table></figure><p>由于dd 的原因，&#x2F;dev&#x2F;sdb1 和 &#x2F;dev&#x2F;mapper&#x2F;fedora-root 的 UUID 居然是相同的。第一个<br>想法是把&#x2F;dev&#x2F;sdb1 的 UUID 给改了。放狗搜发现有下面的方法</p><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ uuidgen </span><br><span class="line">8e4c27b2-c63e-4d1d-8ac4-5ddd90669eb0</span><br><span class="line"></span><br><span class="line">tune2fs /dev/&#123;device&#125; -U &#123;uuid&#125;</span><br></pre></td></tr></table></figure><p>可是tune2fs 时报错，死活改不过来。lzx 提示可以看看如何是grub.cfg 不使用uuid，<br>发现有个参数 GRUB_DISABLE_UUID&#x3D;true， 在 &#x2F;etc&#x2F;default&#x2F;grub 加上这行，重新生成<br>grub.cfg 重启，一切 OK 进入到SSD 的新root</p><p>有的系统上的参数可能不太一样，ubuntu 系统里这个参数好像的是 GRUB_DISABLE_LINUX_UUID&#x3D;true<br>可能需要确认一下。</p><ul><li>EOF</li></ul>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;由于某些需求，决定上SSD，提高一下硬盘读写速度。上二手东买了三星(SAMSUNG) 860 EVO&lt;br&gt;最初的想法是作为数据盘使用，即操作系统还是跑在机械硬盘上，仔细一思考，还是折腾&lt;br&gt;一下，要不实在是有些浪费，事实证明，折腾是值得的，感觉就想飞一样。&lt;/p&gt;
-&lt;p</summary>
-      
-    
-    
-    
-    
-    <category term="linux" scheme="http://usmacd.com/tags/linux/"/>
     
   </entry>
   

@@ -127,7 +127,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">86</span>
+          <span class="site-state-item-count">87</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -192,6 +192,209 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://usmacd.com/2022/05/05/How_do_you_actually_find_bugs/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="henices">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="安全代码">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 安全代码">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/05/05/How_do_you_actually_find_bugs/" class="post-title-link" itemprop="url">Keynote - How Do You Actually Find Bugs?</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2022-05-05 16:43:43" itemprop="dateCreated datePublished" datetime="2022-05-05T16:43:43+08:00">2022-05-05</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=7Ysy6iA2sqA&amp;ab_channel=OffensiveCon">https://www.youtube.com/watch?v=7Ysy6iA2sqA&amp;ab_channel=OffensiveCon</a></p>
+<ul>
+<li>Temperament<ul>
+<li>Curiosity</li>
+<li>Detail-oriented</li>
+<li>Ability to deal with failure and continual evidence that you’re wrong</li>
+</ul>
+</li>
+<li>Learn how to deal with failure<ul>
+<li>Two projects (can be unrealeted, or different parts of the same)<ul>
+<li>Learn to recognize whe you have hit a wall and have become unproductive</li>
+<li>Switch to your secondary project</li>
+</ul>
+</li>
+<li>Consider having a development project as your seconary project<ul>
+<li>Do an achiveable, measurable task</li>
+<li>Regain a sense of achievement</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Moving on - Knowning when to quit<ul>
+<li>You will return it in the future</li>
+</ul>
+</li>
+<li>Motivation - Remaining Enager<ul>
+<li>The more you’re curious about how a technology works or how an algorithm achives its goal, the less monotonous code review is</li>
+</ul>
+</li>
+<li>Motivation - bug patching<ul>
+<li>bugs being patched is frustrating<ul>
+<li>… but they are evidence that you were on the right track!</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Confidence<ul>
+<li>Research is a daunting filed to enter</li>
+<li>Some security reseacher you respect had the same self-doubt coming in, and have recurrences from time to time</li>
+<li>Growth mindset: “I can’t do that … Yet”</li>
+</ul>
+</li>
+<li>Bias and assumptions<ul>
+<li>Common code reviewer biases<ul>
+<li>Everyone has looked at the already (many eyes make all bugs shallow)</li>
+<li>Even if I found something, it will be unexploitable (Server side)</li>
+<li>The X attack surface is not interesting now (eg, media parsing in browsers)</li>
+<li>There are no more bugs in this</li>
+<li>The protocol doesn’t allow you to do X</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Auditing Process<ul>
+<li>Understanding the code</li>
+<li>Documenting your findings</li>
+<li>Identifying bias</li>
+<li>Tooling</li>
+<li>Revisit the code base</li>
+<li>Analyze failures</li>
+</ul>
+</li>
+<li>Attampt to understand the code<ul>
+<li>A lot of people try to short-circuit this process<ul>
+<li>Reliance on tools</li>
+<li>Fuzzers&#x2F;static analyzers are a guide, not the whole process</li>
+</ul>
+</li>
+<li>Many of today’s vulnerabilities are complex, and require in-depth understanding of the codebase</li>
+<li>The more you understand about how the program works, the better equipped you are to find bugs ( and exploit them)</li>
+<li>The best way to understand how something works is to explain to someone else</li>
+</ul>
+</li>
+<li>What I’m looking for<ul>
+<li>software risk &#x3D; available attack surface * complexity</li>
+<li>attack surface can be indirect<ul>
+<li>even mitigations are attack surface</li>
+</ul>
+</li>
+<li>often you initial perception of attack surface is naive<ul>
+<li>Hidden&#x2F;non-obvious attack surfaces are the best</li>
+</ul>
+</li>
+<li>Complexity is plentiful<ul>
+<li>Feature driven (thanks w3c)</li>
+<li>Legacy support</li>
+<li>Often avoidable: the anomaly of cheap complexity</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Borrwoing ideas<ul>
+<li>Bugtracker &#x2F; Diffs<ul>
+<li>Can show where a bug is</li>
+<li>Can inspire new ideas: variants, same bugs in other codebase</li>
+<li>Mean but viable: track commits by error-prone developers</li>
+</ul>
+</li>
+<li>Comments in the codebase<ul>
+<li>Descripbe things I’d never thought of</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Document your findings<ul>
+<li>Get into the habit of documenting<ul>
+<li>ideas, bugs candidates, idiosyncrasies, data structure, algorithms</li>
+</ul>
+</li>
+<li>Documenting failed ideas is as important as documenting successful ones<ul>
+<li>avoids repeating thie idea sometime later</li>
+</ul>
+</li>
+<li>Long term view: I’m going to revisit this later</li>
+</ul>
+</li>
+<li>Revisit code bases and failed bugs<ul>
+<li>code bases are not static<ul>
+<li>coee rewritten</li>
+<li>Features added&#x2F;changed</li>
+</ul>
+</li>
+<li>Environment is not static</li>
+</ul>
+</li>
+<li>Analyze your failures<ul>
+<li>if someone succeeds where you didn’t, have a look at what they found</li>
+<li>Try to figure out: why did I miss it?</li>
+<li>Is this a one-off or teachable trick&#x2F;blind spot</li>
+<li>Can you improve on that?</li>
+<li>Is there a pattern in those falures?</li>
+<li>Failures is an oppotunity to learn</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1229,113 +1432,6 @@
 
 <p>执行后显示类似下面的结果</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">root@shamu:/data/local/tmp # ./CallStack</span><br><span class="line">#00 pc 000006d1  /data/local/tmp/CallStack</span><br><span class="line">#01 pc 00017359  /system/lib/libc.so (__libc_init+44)</span><br><span class="line">#02 pc 0000074c  /data/local/tmp/CallStack</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://usmacd.com/2021/11/03/ssd/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="henices">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="安全代码">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 安全代码">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/11/03/ssd/" class="post-title-link" itemprop="url">SSD 迁移记</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2021-11-03 09:46:03" itemprop="dateCreated datePublished" datetime="2021-11-03T09:46:03+08:00">2021-11-03</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>由于某些需求，决定上SSD，提高一下硬盘读写速度。上二手东买了三星(SAMSUNG) 860 EVO<br>最初的想法是作为数据盘使用，即操作系统还是跑在机械硬盘上，仔细一思考，还是折腾<br>一下，要不实在是有些浪费，事实证明，折腾是值得的，感觉就想飞一样。</p>
-<p>首先查看一下原始的情况：</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ mount</span><br><span class="line"></span><br><span class="line">/dev/sda1 on /boot <span class="built_in">type</span> ext4 (rw,relatime,seclabel,stripe=4)</span><br><span class="line">/dev/mapper/fedora-root on / <span class="built_in">type</span> ext4 (rw,relatime,seclabel)</span><br></pre></td></tr></table></figure>
-
-<p>当然首先要把SSD处理一下，安装一下 gparted 图形化界面很好用。建个分区表，选择<br>gpt，分个区，&#x2F;dev&#x2F;mapper&#x2F;fedora-root 大小为50G，先分个50G的分区，剩下的全部给<br>另外一个分区，格式化为 ext4。操作完成后，用fdisk 查看一下：</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">$ fdisk -l</span><br><span class="line"></span><br><span class="line">Disk /dev/sdb：232.9 GiB，250059350016 字节，488397168 个扇区</span><br><span class="line">单元：扇区 / 1 * 512 = 512 字节</span><br><span class="line">扇区大小(逻辑/物理)：512 字节 / 512 字节</span><br><span class="line">I/O 大小(最小/最佳)：512 字节 / 512 字节</span><br><span class="line">磁盘标签类型：gpt</span><br><span class="line">磁盘标识符：</span><br><span class="line"></span><br><span class="line">设备            起点      末尾      扇区   大小 类型</span><br><span class="line">/dev/sdb1       2048 104859647 104857600    50G Linux 文件系统</span><br><span class="line">/dev/sdb2  104859648 488396799 383537152 182.9G Linux 文件系统</span><br></pre></td></tr></table></figure>
-
-<p>将原来系统的 &#x2F; dd 到新的SSD，</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">dd</span> <span class="keyword">if</span>=/dev/mapper/fedora-root of=/dev/sdb1 bs=1M</span><br></pre></td></tr></table></figure>
-
-<p>用新的root 把系统启动起来，reboot 后进入引导界面，按e 编译，找到<br>root&#x3D;&#x2F;dev&#x2F;fedora&#x2F;root 改为 root&#x3D;&#x2F;dev&#x2F;sdb1 按 ctrl+x 启动，一会儿就进系统了，速度<br>提升很大。现在需要把 grub.cfg 更新一下，因为我们是手动修改进入了新的根，如果重启<br>的话，还是会使用老的根，因为grub.cfg 里就是这么写的。</p>
-<p>要生成新的grub.cfg 需要使用grub2-mkconfig, 命令很简单</p>
-<p><code>$ grub2-mkconfig -o /boot/grub2/grub.cfg</code></p>
-<p>执行后重启，md 怎么又进到老根去了。这里折腾了好久，第一个问题fedora 的内核出bug<br>了，每次重启都要等待非常久的时间，所以需要升级，所以正确的顺序应该是先升级系统再<br>dd，没办法升级系统重新 dd</p>
-<p>解决了fedora 内核的问题后，发现还是进不到新根。只要认真地看 grub.cfg, grub2 改动<br>挺大，不太熟悉了。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">#                                      </span><br><span class="line"># DO NOT EDIT THIS FILE                                                                                                                                                                       #                                                   </span><br><span class="line"># It is automatically generated by grub2-mkconfig using templates                                                                                                                             </span><br><span class="line"># from /etc/grub.d and settings from /etc/default/grub</span><br></pre></td></tr></table></figure>
-
-<p>启动有两个信息，确实是使用 grub2-mkconfig 生成，&#x2F;etc&#x2F;default&#x2F;grub 里有配置</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">$ cat /etc/default/grub</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">GRUB_TIMEOUT=5</span><br><span class="line">GRUB_DISTRIBUTOR=&quot;$(sed &#x27;s, release .*$,,g&#x27; /etc/system-release)&quot;</span><br><span class="line">GRUB_DEFAULT=saved</span><br><span class="line">GRUB_DISABLE_SUBMENU=true</span><br><span class="line">GRUB_TERMINAL_OUTPUT=&quot;console&quot;</span><br><span class="line">GRUB_CMDLINE_LINUX=&quot;rd.driver.blacklist=nouveau modprobe.blacklist=nouveau nvidia-drm.modeset=1 rd.lvm.lv=fedora/root rd.lvm.lv=fedora/swap rhgb quiet&quot;                                      </span><br><span class="line">GRUB_DISABLE_RECOVERY=&quot;true&quot;</span><br></pre></td></tr></table></figure>
-
-<p>grub2-mkconfig 里用这句</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GRUB_DEVICE=&quot;`$&#123;grub_probe&#125; --target=device /`&quot;  </span><br></pre></td></tr></table></figure>
-
-<p>执行查看结果， 发现正确</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ grub2-probe --target=device /</span><br><span class="line"></span><br><span class="line">/dev/sdb1</span><br></pre></td></tr></table></figure>
-
-<p>可是为什么不能正确启动呢，看看生成的 grub.cfg 文件</p>
-<p>linux16 &#x2F;vmlinuz-4.17.2-200.fc28.x86_64 root&#x3D;UUID&#x3D;290a98e3-7937-49db-a971-4d0e49567cf0</p>
-<p>使用的是 UUID，并不是 &#x2F;dev, 查看一下各分区的 uuid</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># blkid</span></span><br><span class="line"></span><br><span class="line">/dev/sdb1: UUID=<span class="string">&quot;290a98e3-7937-49db-a971-4d0e49567cf0&quot;</span> TYPE=<span class="string">&quot;ext4&quot;</span> PARTUUID=<span class="string">&quot;fe64f395-7520-42c3-939b-b17eb7064cec&quot;</span></span><br><span class="line">/dev/mapper/fedora-root: UUID=<span class="string">&quot;290a98e3-7937-49db-a971-4d0e49567cf0&quot;</span> TYPE=<span class="string">&quot;ext4&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>由于dd 的原因，&#x2F;dev&#x2F;sdb1 和 &#x2F;dev&#x2F;mapper&#x2F;fedora-root 的 UUID 居然是相同的。第一个<br>想法是把&#x2F;dev&#x2F;sdb1 的 UUID 给改了。放狗搜发现有下面的方法</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ uuidgen </span><br><span class="line">8e4c27b2-c63e-4d1d-8ac4-5ddd90669eb0</span><br><span class="line"></span><br><span class="line">tune2fs /dev/&#123;device&#125; -U &#123;uuid&#125;</span><br></pre></td></tr></table></figure>
-
-<p>可是tune2fs 时报错，死活改不过来。lzx 提示可以看看如何是grub.cfg 不使用uuid，<br>发现有个参数 GRUB_DISABLE_UUID&#x3D;true， 在 &#x2F;etc&#x2F;default&#x2F;grub 加上这行，重新生成<br>grub.cfg 重启，一切 OK 进入到SSD 的新root</p>
-<p>有的系统上的参数可能不太一样，ubuntu 系统里这个参数好像的是 GRUB_DISABLE_LINUX_UUID&#x3D;true<br>可能需要确认一下。</p>
-<ul>
-<li>EOF</li>
-</ul>
 
       
     </div>

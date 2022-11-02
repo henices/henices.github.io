@@ -127,7 +127,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">86</span>
+          <span class="site-state-item-count">87</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -192,6 +192,108 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://usmacd.com/2020/03/19/apk_debug/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="henices">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="安全代码">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 安全代码">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2020/03/19/apk_debug/" class="post-title-link" itemprop="url">使用Android Studio 调试无源码apk程序</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2020-03-19 16:34:31" itemprop="dateCreated datePublished" datetime="2020-03-19T16:34:31+08:00">2020-03-19</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>Apk无源码调试的方法有很多，现在发现使用Android Studio 结合 JEB　感觉良好，<br>主要是参考　<a target="_blank" rel="noopener" href="http://www.jianshu.com/p/c7899e5ea182">http://www.jianshu.com/p/c7899e5ea182</a>　这篇记录下了具体步骤。</p>
+<h2 id="1-下载-smalidea"><a href="#1-下载-smalidea" class="headerlink" title="1. 下载 smalidea"></a>1. 下载 smalidea</h2><p><a target="_blank" rel="noopener" href="https://bitbucket.org/JesusFreke/smali/downloads/smalidea-0.03.zip">https://bitbucket.org/JesusFreke/smali/downloads/smalidea-0.03.zip</a></p>
+<p>在Android studio的插件仓库中没有找到这个插件，需要下载本地安装<br>File -&gt; Settings -&gt; Plugins -&gt; Install plugin from disk  选择下载的插件，重启后生效。</p>
+<h2 id="2-apktool-输出源码文件"><a href="#2-apktool-输出源码文件" class="headerlink" title="2. apktool 输出源码文件"></a>2. apktool 输出源码文件</h2><p><a target="_blank" rel="noopener" href="https://github.com/iBotPeaches/Apktool/releases/download/2.2.0/apktool_2.2.0.jar">https://github.com/iBotPeaches/Apktool/releases/download/2.2.0/apktool_2.2.0.jar</a></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java -jar apktool_2.2.0.jar d -f xx.apk -o xx</span><br></pre></td></tr></table></figure>
+
+<p>如果正常的将输出 smali 源码文件</p>
+<h2 id="3-Android-Studio-导入源码"><a href="#3-Android-Studio-导入源码" class="headerlink" title="3. Android Studio 导入源码"></a>3. Android Studio 导入源码</h2><p>File -&gt; New -&gt; import project  选择刚才导出的xx文件夹</p>
+<h2 id="4-增加Android-Stuido的调试选项"><a href="#4-增加Android-Stuido的调试选项" class="headerlink" title="4. 增加Android Stuido的调试选项"></a>4. 增加Android Stuido的调试选项</h2><p>Android Studio 界面上选择 Run-&gt; Edit Configurations，点击+号，新建remote类型调试<br>器，默认的监听端口为5005，如果默认端口被占用则需要修改端口号。</p>
+<h2 id="5-以调试模式启动应用"><a href="#5-以调试模式启动应用" class="headerlink" title="5. 以调试模式启动应用"></a>5. 以调试模式启动应用</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell am start -D -n aa.bb/.activity</span><br></pre></td></tr></table></figure>
+
+<p>进程将挂起，aa.bb是package name，.activity 是要启动的activity 一般指定MainAcvitiy即可</p>
+<h2 id="6-建立调试通道"><a href="#6-建立调试通道" class="headerlink" title="6. 建立调试通道"></a>6. 建立调试通道</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell ps | grep aa.bb</span><br></pre></td></tr></table></figure>
+
+<p>获得调试进程的pid</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb forward tcp:5005 jdwp:debug_process_pid</span><br></pre></td></tr></table></figure>
+
+<p>执行命令后，可以看到adb监听本地5005 端口。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; netstat -antp | grep 5005</span><br><span class="line"> tcp        0      0 127.0.0.1:5005          0.0.0.0:*               LISTEN      4728/adb  </span><br></pre></td></tr></table></figure>
+
+<h2 id="7-设置断点，调试"><a href="#7-设置断点，调试" class="headerlink" title="7. 设置断点，调试"></a>7. 设置断点，调试</h2><p>点击源码左侧栏可以设置断点，点击工具栏上的debug （一个小虫的按钮），开始调试。在<br>这个步骤上我遇上了一个错误。</p>
+<p>java.io.IOException “handshake failed - connection prematurally closed”</p>
+<p>这个错误是因为adb版本问题，取消Android内部的adb集成就可以了。具体方法是<br>Tools -&gt; Android -&gt; Enable adb integration 取消掉前面的勾就可以了。</p>
+<p>如果看到Connected to the target VM, address: ‘localhost:5005’, transport: ‘socket’ 就大功告成了。</p>
+<h2 id="8-其他一些说明事项"><a href="#8-其他一些说明事项" class="headerlink" title="8. 其他一些说明事项"></a>8. 其他一些说明事项</h2><p>要调试apk程序是有一些要求的，下面几种情况可以调试apk程序。</p>
+<ul>
+<li>&#x2F;default.prop ro.debuggable&#x3D;1</li>
+</ul>
+<p>我的手机就属于这种情况</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">getprop  | grep ro.debug</span><br><span class="line">[ro.debuggable]: [1]</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>APK 中AndroidManifest.xml 有这句 android:debuggable&#x3D;true</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1223,92 +1325,6 @@
 <li><a target="_blank" rel="noopener" href="http://blog.w4kfu.com/tag/duqu">New method of injection</a></li>
 <li><a target="_blank" rel="noopener" href="http://www.i7s3curi7y.com/win32-code-injection-techniques">The Ultimate Win32 code injection Reference</a></li>
 </ul>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://usmacd.com/2020/03/19/svn_vim/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="henices">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="安全代码">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 安全代码">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2020/03/19/svn_vim/" class="post-title-link" itemprop="url">VIM + SVN 管理</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2020-03-19 16:34:31" itemprop="dateCreated datePublished" datetime="2020-03-19T16:34:31+08:00">2020-03-19</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>公司使用svn管理源代码，避免不了要和svn打交道，有几个比较好的解决方案。</p>
-<h2 id="1-vcscommand-vim"><a href="#1-vcscommand-vim" class="headerlink" title="1. vcscommand.vim"></a>1. vcscommand.vim</h2><p><a target="_blank" rel="noopener" href="http://www.vim.org/scripts/script.php?script_id=90">http://www.vim.org/scripts/script.php?script_id=90</a></p>
-<p>这个插件的特点是支持的版本管理工具多,支持git，svn等常见版本管理工具。<br>vcscommand.vim插件默认绑定了无差别的快捷键，使用起来非常方便。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">|&lt;Leader&gt;|ca VCSAdd</span><br><span class="line">|&lt;Leader&gt;|cn VCSAnnotate</span><br><span class="line">|&lt;Leader&gt;|cN VCSAnnotate!</span><br><span class="line">|&lt;Leader&gt;|cc VCSCommit</span><br><span class="line">|&lt;Leader&gt;|cD VCSDelete</span><br><span class="line">|&lt;Leader&gt;|cd VCSDiff</span><br><span class="line">|&lt;Leader&gt;|cg VCSGotoOriginal</span><br><span class="line">|&lt;Leader&gt;|cG VCSGotoOriginal!</span><br><span class="line">|&lt;Leader&gt;|ci VCSInfo</span><br><span class="line">|&lt;Leader&gt;|cl VCSLog</span><br><span class="line">|&lt;Leader&gt;|cL VCSLock</span><br><span class="line">|&lt;Leader&gt;|cr VCSReview</span><br><span class="line">|&lt;Leader&gt;|cs VCSStatus</span><br><span class="line">|&lt;Leader&gt;|cu VCSUpdate</span><br><span class="line">|&lt;Leader&gt;|cU VCSUnlock</span><br><span class="line">|&lt;Leader&gt;|cv VCSVimDiff</span><br></pre></td></tr></table></figure>
-
-<p>这个 <code>&lt;Leader&gt;</code> 得看你定义了什么快捷键，vim 默认的是 <code>\</code></p>
-<h2 id="2-vim-unite-svn"><a href="#2-vim-unite-svn" class="headerlink" title="2.  vim-unite-svn"></a>2.  vim-unite-svn</h2><p>小日本写的unite.vim的svn插件，unite.vim 是一个非常不错的vim插件，<br>它的作用是 为vim 写简单界面，要使用vim-unite-svn首先需要安装unite.vim 插件，<br>折腾这个插件的原因是vcscommand.vim有些不太好的地方。</p>
-<ul>
-<li>buffer管理的不太好</li>
-<li>status 比较弱</li>
-<li>羡慕emacs的vc mode的体验</li>
-</ul>
-<p><a target="_blank" rel="noopener" href="https://github.com/Shougo/unite.vim">https://github.com/Shougo/unite.vim</a></p>
-<p>小日本写的 <code>vim-unite-svn</code> 插件太久没有更新了，有一些bug，我修改了一下，用了<br>一段时间暂时没有发现什么问题。</p>
-<p><a target="_blank" rel="noopener" href="https://github.com/henices/vim-unite-svn">https://github.com/henices/vim-unite-svn</a></p>
-<p>支持基本的svn命令， svn status, svn info, svn diff, svn commit, svn up</p>
-<p>使用示例</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">:Unite svn/status</span><br><span class="line">:Unite svn/diff</span><br><span class="line">:Unite svn/blame</span><br></pre></td></tr></table></figure>
 
       
     </div>

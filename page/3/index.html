@@ -127,7 +127,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">86</span>
+          <span class="site-state-item-count">87</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -192,6 +192,113 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://usmacd.com/2021/11/03/ssd/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="henices">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="安全代码">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 安全代码">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2021/11/03/ssd/" class="post-title-link" itemprop="url">SSD 迁移记</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2021-11-03 09:46:03" itemprop="dateCreated datePublished" datetime="2021-11-03T09:46:03+08:00">2021-11-03</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>由于某些需求，决定上SSD，提高一下硬盘读写速度。上二手东买了三星(SAMSUNG) 860 EVO<br>最初的想法是作为数据盘使用，即操作系统还是跑在机械硬盘上，仔细一思考，还是折腾<br>一下，要不实在是有些浪费，事实证明，折腾是值得的，感觉就想飞一样。</p>
+<p>首先查看一下原始的情况：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ mount</span><br><span class="line"></span><br><span class="line">/dev/sda1 on /boot <span class="built_in">type</span> ext4 (rw,relatime,seclabel,stripe=4)</span><br><span class="line">/dev/mapper/fedora-root on / <span class="built_in">type</span> ext4 (rw,relatime,seclabel)</span><br></pre></td></tr></table></figure>
+
+<p>当然首先要把SSD处理一下，安装一下 gparted 图形化界面很好用。建个分区表，选择<br>gpt，分个区，&#x2F;dev&#x2F;mapper&#x2F;fedora-root 大小为50G，先分个50G的分区，剩下的全部给<br>另外一个分区，格式化为 ext4。操作完成后，用fdisk 查看一下：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">$ fdisk -l</span><br><span class="line"></span><br><span class="line">Disk /dev/sdb：232.9 GiB，250059350016 字节，488397168 个扇区</span><br><span class="line">单元：扇区 / 1 * 512 = 512 字节</span><br><span class="line">扇区大小(逻辑/物理)：512 字节 / 512 字节</span><br><span class="line">I/O 大小(最小/最佳)：512 字节 / 512 字节</span><br><span class="line">磁盘标签类型：gpt</span><br><span class="line">磁盘标识符：</span><br><span class="line"></span><br><span class="line">设备            起点      末尾      扇区   大小 类型</span><br><span class="line">/dev/sdb1       2048 104859647 104857600    50G Linux 文件系统</span><br><span class="line">/dev/sdb2  104859648 488396799 383537152 182.9G Linux 文件系统</span><br></pre></td></tr></table></figure>
+
+<p>将原来系统的 &#x2F; dd 到新的SSD，</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">dd</span> <span class="keyword">if</span>=/dev/mapper/fedora-root of=/dev/sdb1 bs=1M</span><br></pre></td></tr></table></figure>
+
+<p>用新的root 把系统启动起来，reboot 后进入引导界面，按e 编译，找到<br>root&#x3D;&#x2F;dev&#x2F;fedora&#x2F;root 改为 root&#x3D;&#x2F;dev&#x2F;sdb1 按 ctrl+x 启动，一会儿就进系统了，速度<br>提升很大。现在需要把 grub.cfg 更新一下，因为我们是手动修改进入了新的根，如果重启<br>的话，还是会使用老的根，因为grub.cfg 里就是这么写的。</p>
+<p>要生成新的grub.cfg 需要使用grub2-mkconfig, 命令很简单</p>
+<p><code>$ grub2-mkconfig -o /boot/grub2/grub.cfg</code></p>
+<p>执行后重启，md 怎么又进到老根去了。这里折腾了好久，第一个问题fedora 的内核出bug<br>了，每次重启都要等待非常久的时间，所以需要升级，所以正确的顺序应该是先升级系统再<br>dd，没办法升级系统重新 dd</p>
+<p>解决了fedora 内核的问题后，发现还是进不到新根。只要认真地看 grub.cfg, grub2 改动<br>挺大，不太熟悉了。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">#                                      </span><br><span class="line"># DO NOT EDIT THIS FILE                                                                                                                                                                       #                                                   </span><br><span class="line"># It is automatically generated by grub2-mkconfig using templates                                                                                                                             </span><br><span class="line"># from /etc/grub.d and settings from /etc/default/grub</span><br></pre></td></tr></table></figure>
+
+<p>启动有两个信息，确实是使用 grub2-mkconfig 生成，&#x2F;etc&#x2F;default&#x2F;grub 里有配置</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">$ cat /etc/default/grub</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">GRUB_TIMEOUT=5</span><br><span class="line">GRUB_DISTRIBUTOR=&quot;$(sed &#x27;s, release .*$,,g&#x27; /etc/system-release)&quot;</span><br><span class="line">GRUB_DEFAULT=saved</span><br><span class="line">GRUB_DISABLE_SUBMENU=true</span><br><span class="line">GRUB_TERMINAL_OUTPUT=&quot;console&quot;</span><br><span class="line">GRUB_CMDLINE_LINUX=&quot;rd.driver.blacklist=nouveau modprobe.blacklist=nouveau nvidia-drm.modeset=1 rd.lvm.lv=fedora/root rd.lvm.lv=fedora/swap rhgb quiet&quot;                                      </span><br><span class="line">GRUB_DISABLE_RECOVERY=&quot;true&quot;</span><br></pre></td></tr></table></figure>
+
+<p>grub2-mkconfig 里用这句</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GRUB_DEVICE=&quot;`$&#123;grub_probe&#125; --target=device /`&quot;  </span><br></pre></td></tr></table></figure>
+
+<p>执行查看结果， 发现正确</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ grub2-probe --target=device /</span><br><span class="line"></span><br><span class="line">/dev/sdb1</span><br></pre></td></tr></table></figure>
+
+<p>可是为什么不能正确启动呢，看看生成的 grub.cfg 文件</p>
+<p>linux16 &#x2F;vmlinuz-4.17.2-200.fc28.x86_64 root&#x3D;UUID&#x3D;290a98e3-7937-49db-a971-4d0e49567cf0</p>
+<p>使用的是 UUID，并不是 &#x2F;dev, 查看一下各分区的 uuid</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># blkid</span></span><br><span class="line"></span><br><span class="line">/dev/sdb1: UUID=<span class="string">&quot;290a98e3-7937-49db-a971-4d0e49567cf0&quot;</span> TYPE=<span class="string">&quot;ext4&quot;</span> PARTUUID=<span class="string">&quot;fe64f395-7520-42c3-939b-b17eb7064cec&quot;</span></span><br><span class="line">/dev/mapper/fedora-root: UUID=<span class="string">&quot;290a98e3-7937-49db-a971-4d0e49567cf0&quot;</span> TYPE=<span class="string">&quot;ext4&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>由于dd 的原因，&#x2F;dev&#x2F;sdb1 和 &#x2F;dev&#x2F;mapper&#x2F;fedora-root 的 UUID 居然是相同的。第一个<br>想法是把&#x2F;dev&#x2F;sdb1 的 UUID 给改了。放狗搜发现有下面的方法</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ uuidgen </span><br><span class="line">8e4c27b2-c63e-4d1d-8ac4-5ddd90669eb0</span><br><span class="line"></span><br><span class="line">tune2fs /dev/&#123;device&#125; -U &#123;uuid&#125;</span><br></pre></td></tr></table></figure>
+
+<p>可是tune2fs 时报错，死活改不过来。lzx 提示可以看看如何是grub.cfg 不使用uuid，<br>发现有个参数 GRUB_DISABLE_UUID&#x3D;true， 在 &#x2F;etc&#x2F;default&#x2F;grub 加上这行，重新生成<br>grub.cfg 重启，一切 OK 进入到SSD 的新root</p>
+<p>有的系统上的参数可能不太一样，ubuntu 系统里这个参数好像的是 GRUB_DISABLE_LINUX_UUID&#x3D;true<br>可能需要确认一下。</p>
+<ul>
+<li>EOF</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -981,84 +1088,6 @@
 <p>缺点：挂号有点难，人多，儿科水平一般。<br>优点：三甲，皮肤科北京有名，各科室水平比较均衡。信息化程度高，看病挺方便。</p>
 <p>海总：</p>
 <p>这个医院我没有去过，距离稍远。</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://usmacd.com/2021/06/28/fengliu/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="henices">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="安全代码">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 安全代码">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/06/28/fengliu/" class="post-title-link" itemprop="url">【转】冯柳投资十大金句</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2021-06-28 12:24:01" itemprop="dateCreated datePublished" datetime="2021-06-28T12:24:01+08:00">2021-06-28</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>（一）经济的波动就像是剪羊毛，长好了就剪、剪完了再长。拿剪子的一般就是赢家，当然赢家之间也有互相剪的，所以就有大小赢家、长短赢家之分。</p>
-<p>（二）技术分析主要是找出趋势和预期同向运动并强化的机会，价值分析则可以在反向运动但最终会被预期改变的机会上下注。</p>
-<p>（三）各方面都完美的系统是不可能长期存在的，放弃效率和短期安全的系统往往才会是长期安全和可重复的。这不太符合人性，也就保证了系统的独特和有效性，也有利于将精力放在长期要素和战略点的思考上。</p>
-<p>（四）涨跌都能令人坚定的才是好标的，跌令实的更实，因为价钱便宜了。涨令虚处显得确定，因为得到市场的确认和佐证了。这就是虚实结合带来的效果，如果涨几十个点就让人有想卖的感觉，那就说明虚处不足，就不太可能是好选择，最后也许连那几十个点也不容易挣到。反过来也是一样，跌了不敢重仓加的就说明实处不够，要多检讨下自己对确定性的把握能力。</p>
-<p>（五）资产就是金钱在不同时间下的不同属性，本质就是现在的钱和未来的钱之间进行交换，买入是用现在换未来，卖出则是把未来换现在，关键要想明白未来和现在谁更值钱就好了。牛熊市就是这样的一个判断依据，当然，对极少数的优异公司来说，未来总是会强过现在的，这就是比牛熊大势更大的大势。</p>
-<p>（六）市场在不断变化，企业也在不断变化，变化是常态，所以任何时候都要多方向的反复审视，对世界有敬畏心。这个敬畏就是要认识到事物总是在不断变化和出现意外的，所以要尽量让自己处于有保护的状态，尽量多的假设极端情况下的可靠性。</p>
-<p>（七）当全世界都想通过股市来对抗通货膨胀的时候，也许拿着现金让其自然贬值会是更好的选择。除非你能找到明确的新增预期，否则凭什么指望别人以更高的价钱来购买已经给他人提供过保值机会的资产呢（房地产）。</p>
-<p>（八）每个阶段的侧重点是不一样的。在高位的时候，我们要做计算题，要定量。因为一只股票涨了这么多、这么长时间，它的方向一定是没有问题的，这个时候你再去做定性研究意义不大。在低位的时候，如果你再去算账，就很容易吃大亏。它跌了这么久，那一定是方向上出了问题，你要把方向给想明白。如果能把方向证伪掉，是不需要考虑定量的问题，因为低位天然带有弹性和赔率。</p>
-<p>（九）真正的投机应该是在价值的基础上进行的，是通过充分的价值理解后，将其在不同人群或环境下进行切换来获益。它认识到价值有主观倾向性和个性化的特点，价值不是个稳定具体的东西，也不存在用什么方法推算的公允值，因为资本以及资本后面的人是丰富不同的，他们有着不同的成本和收益预期，在各种市场环境下也会有着不同的预期因子和贴现率，而这些在乘数和复利计算的基础下就会有着巨大的差异。这也说明了为什么理性且信息充分对称的人之间也可以产生交易并实现双赢，其原因就在于他们有着不同的价值观、需求特点和满足感。</p>
-<p>（十）长线投资很多人认为这是最容易做的，只要买进不动就可以了，其实这完全是误解。在所有的操作策略中，长线的要求最高。他需要对企业有着极为深刻的认识，对自己有着更为坚强的控制。他清楚把握企业未来数年的发展趋势，以投资的心态分享企业的成长。他的标的物是千里挑一，在这样的机会面前它不会惧怕任何亏损，不会设置除基本面外的任何止损指标。自信、尊重客观价值、不理会乃至勇于对抗市场是必备的投资品质，日常的波动在这样的前景面前是不应去考虑的。只有这样，股票才能够真正成为改变一生的东西。</p>
 
       
     </div>
