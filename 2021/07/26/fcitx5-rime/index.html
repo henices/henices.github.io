@@ -27,8 +27,8 @@
 <meta property="og:site_name" content="安全代码">
 <meta property="og:description" content="现在 fcitx 已经升级到了 fcitx5, 本来用着 fcitx4 挺好，也没有想着升级，在折腾 fcitx.vim 的时候发现 fcitx 居然升级了，使得我的 vim 插件无法正常工作了，一顿折腾，本来以为很简单没想到进了个大坑 。主要是不愿意放弃我的一万多行的 rime 用户词库，多年的积累了，不过 Linux 用户不就是老折腾吗， 唉。 fcitx5-rime 的默认的配置目录已经变为">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2021-07-26T02:11:58.423Z">
-<meta property="article:modified_time" content="2021-07-26T02:11:58.423Z">
+<meta property="article:published_time" content="2021-07-25T16:00:00.000Z">
+<meta property="article:modified_time" content="2023-01-03T16:00:00.000Z">
 <meta property="article:author" content="henices">
 <meta property="article:tag" content="linux">
 <meta name="twitter:card" content="summary">
@@ -237,7 +237,14 @@
       </span>
       <span class="post-meta-item-text">Posted on</span>
 
-      <time title="Created: 2021-07-26 10:11:58" itemprop="dateCreated datePublished" datetime="2021-07-26T10:11:58+08:00">2021-07-26</time>
+      <time title="Created: 2021-07-26 00:00:00" itemprop="dateCreated datePublished" datetime="2021-07-26T00:00:00+08:00">2021-07-26</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2023-01-04 00:00:00" itemprop="dateModified" datetime="2023-01-04T00:00:00+08:00">2023-01-04</time>
     </span>
 
   
@@ -258,7 +265,8 @@
 <h2 id="设置正确的环境变量"><a href="#设置正确的环境变量" class="headerlink" title="设置正确的环境变量"></a>设置正确的环境变量</h2><p>修改  <code>~/.xprofile</code>， <code>~/.zshrc</code> ， <code>/etc/profile</code> 等文件</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">export GTK_IM_MODULE=fcitx5</span><br><span class="line">export QT_IM_MODULE=fcitx5</span><br><span class="line">export XMODIFIERS=&quot;@im=fcitx5&quot;</span><br></pre></td></tr></table></figure>
 
-<h2 id="编译-fcitx5-qt5"><a href="#编译-fcitx5-qt5" class="headerlink" title="编译 fcitx5-qt5"></a>编译 fcitx5-qt5</h2><p>为了使我们自己编译的 vnote 可以正常使用 fcitx5， 需要编译 fcitx5-qt</p>
+<h2 id="编译-fcitx5-qt5"><a href="#编译-fcitx5-qt5" class="headerlink" title="编译 fcitx5-qt5"></a>编译 fcitx5-qt5</h2><p>为了使我们自己编译的 vnote 可以正常使用 fcitx5， 需要编译 fcitx5-qt，新版的代码需要安装依赖 qt5-qtbase-private-devel 要不会出现 Parse error at “IID” 的错误。</p>
+<p><code>sudo dnf install qt5-qtbase-private-devel.x86_64</code></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> git@github.com:fcitx/fcitx5-qt.git</span><br><span class="line"></span><br><span class="line"><span class="built_in">cat</span> &lt;&lt; <span class="string">EOF &gt; build_linux.sh</span></span><br><span class="line"><span class="string">QTDIR=&quot;/home/henices/Qt5.12.9/5.12.9/gcc_64/&quot;</span></span><br><span class="line"><span class="string">PATH=&quot;$QTDIR/bin:$PATH&quot;</span></span><br><span class="line"><span class="string">LDFLAGS=-L$QTDIR/lib</span></span><br><span class="line"><span class="string">CPPFLAGS=-I$QTDIR/include</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">rm -rf build</span></span><br><span class="line"><span class="string">mkdir -p build</span></span><br><span class="line"><span class="string">cd build</span></span><br><span class="line"><span class="string">cmake ..</span></span><br><span class="line"><span class="string">make -j8</span></span><br><span class="line"><span class="string">EOF</span></span><br><span class="line"></span><br><span class="line">bash build_linux.sh</span><br></pre></td></tr></table></figure>
 
 <p>编译完成后将生成的 so 文件 copy 到 qt 的插件目录： </p>
@@ -350,7 +358,7 @@
 
 <div class="copyright">
   &copy; 
-  <span itemprop="copyrightYear">2022</span>
+  <span itemprop="copyrightYear">2023</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
