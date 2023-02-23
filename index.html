@@ -122,7 +122,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">89</span>
+          <span class="site-state-item-count">90</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -177,6 +177,92 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://usmacd.com/2023/02/23/dns_via_socks_proxy_in_chrome/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="henices">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="安全代码">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 安全代码">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2023/02/23/dns_via_socks_proxy_in_chrome/" class="post-title-link" itemprop="url">Chrome 浏览器中的远程 DNS 解析</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2023-02-23 00:00:00" itemprop="dateCreated datePublished" datetime="2023-02-23T00:00:00+08:00">2023-02-23</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>由于伟大的防火长城的存在，在境内进行 DNS 解析请求返回的报文不一定是靠谱的，有必要使用远程的服务器进行DNS 解析来缓解这个问题。根据 Google 的文档如果设置了 socks5 代理，URL 中的 hostname 将由代理服务器解析。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">The --proxy-server=&quot;socks5://myproxy:8080&quot; flag tells Chrome to send all http:// and https:// URL requests through the SOCKS proxy server &quot;myproxy:8080&quot;,</span><br><span class="line">using version 5 of the SOCKS protocol. The hostname for these URLs will be resolved by the proxy server, and not locally by Chrome.</span><br></pre></td></tr></table></figure>
+
+<p>但是由于 chrome 浏览器的 DNS prefetching  特性，即使设置了 socks5 代理 DNS prefetching 特性也会使用本地网络进行 DNS 解析。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">The --proxy-server flag applies to URL loads only. </span><br><span class="line">There are other components of Chrome which may issue DNS resolves directly and hence bypass this proxy server. </span><br><span class="line">The most notable such component is the &quot;DNS prefetcher&quot;. </span><br><span class="line">Hence if DNS prefetching is not disabled in Chrome then you will still see local DNS requests being issued by Chrome despite having specified a SOCKS v5 proxy server.</span><br></pre></td></tr></table></figure>
+
+<p>下面是禁用 DNS prefetching 的方法，新版本的 chrome 已经取消了直接针对 DNS prefetching 设置的选项，有一个预加载网页的选项，需要把这个选项关闭，具体设置方法为：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">设置 -&gt; 隐私设置和安全性 -&gt; Cookie 及其他网站数据 -&gt; 预加载网页，以便实现更快速的浏览和搜索</span><br></pre></td></tr></table></figure>
+
+<p>禁用 DNS prefetching 的方案是脆弱的，Chrome 可能在其他的地方使用 raw dns requsts （ Chrome 发送 DNS 请求报文)， 绕过代理服务器直接使用本地网络进行 DNS 解析。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Disabling DNS prefetching would solve this problem, </span><br><span class="line">however it is a fragile solution since once needs to be aware of all the areas in Chrome which issue raw DNS requests.</span><br></pre></td></tr></table></figure>
+
+<p>所以最终的解决方案是使用 Google 文档中的命令行参数 <code>--host-resolver-rules=</code> ，经过测试可以使用下面的命令行来解决 DNS 远程解析</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">google-chrome --proxy-server=&quot;socks5://127.0.0.1:9999&quot; --host-resolver-rules=&quot;MAP * 0.0.0.0, EXClUDE 127.0.0.1&quot;</span><br></pre></td></tr></table></figure>
+
+<p>–host-resolver-rules 将阻止Chrome 使用本地网络发起 DNS 请求，具体的方式是将 DNS 请求转向一个不存在的地址，注意需要排除 sock5 代理的地址。</p>
+<p>在实际使用过程中发现，如果不指定 –host-resolver-rules 命令行参数，有少量 DNS 请求会使用本地网络，比如 safebrowsing.googleapis.com</p>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p><a target="_blank" rel="noopener" href="https://www.chromium.org/developers/design-documents/network-stack/socks-proxy/">https://www.chromium.org/developers/design-documents/network-stack/socks-proxy/</a></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1251,90 +1337,6 @@
 <p>总的来说定投属于策略型的投资方法，其实并不知道底和顶在哪里，通过拉长时间来降低持仓成本，因此定投成功的关键在于你的成本是否可以随着时间而降下来。从这点也可以分析出在底部区域定投比在顶部区域定投要好得多，这也就是第一条。</p>
 <p>定投策略对历史的估值情况有很强的依赖，属于基于历史数据的统计分析，但是每一次的情况都不同，没有人可以保证历史一定会重演。定投也不是价值投资，没有护城河，只是相信均值回归，这是第二条。</p>
 <p>巴菲特非常推荐标普500指数 (S&amp;P 500) 定投，指数基金最牛的地方是股票会定期调整，把好的股票加入进来，差的淘汰出去，相当于有人帮你选股了，另外足够分散，发生系统性风险的概率大幅降低。周期性行业则是爆发性很强，三年不开张，开张吃三年，容易在底部积累大量筹码，作为一个长期投资策略非常合适。</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://usmacd.com/2022/05/16/Fedora36-Nvidia/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="henices">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="安全代码">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 安全代码">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/05/16/Fedora36-Nvidia/" class="post-title-link" itemprop="url">升级 Fedora 36，遇上 Nvidia 驱动问题</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2022-05-16 16:58:37" itemprop="dateCreated datePublished" datetime="2022-05-16T16:58:37+08:00">2022-05-16</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>Fedora 36 正式版已经释出一段时间了，根据我的经验开始的一周都会有 bug，一般等一段时间再升级会更平滑一些。然而，老革命又遇上了新问题，显示出问题了启动不起来。我已经很久没有遇上显示驱动问题了，我在很久以前就禁用了开源驱动 <code>nouveau</code>，一直都用得很好。</p>
-<p>修改 &#x2F;etc&#x2F;default&#x2F;grub 文件，在 <code>GRUB_CMDLINE_LINUX</code> 添加下面参数</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GRUB_CMDLINE_LINUX=&quot;... rd.driver.blacklist=nouveau modprobe.blacklist=nouveau nvidia-drm.modeset=1&quot;</span><br></pre></td></tr></table></figure>
-
-<p>重新生成 grub 文件， <code>sudo grub2-mkconfig -o /boot/grub2/grub.cfg</code>，但是在升级 Fedora 36 后似乎没有起作用。诡异的是 Fedora 35 的内核却可以正常工作，首先怀疑的是 nvidia 驱动可能没有安装对。执行下面命令行</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo dnf reinstall xorg-x11-drv-nvidia akmod-nvidia kmod-nvidia.x86_64</span><br><span class="line">sudo reboot</span><br></pre></td></tr></table></figure>
-
-<p>可惜没有解决问题，上网找资料看看 Fedora 36 有没什么特殊的地方。安装 Nvidia 驱动网上有这篇文章说的详细<br><a target="_blank" rel="noopener" href="https://www.linuxcapable.com/how-to-install-nvidia-drivers-on-fedora-36-linux/">https://www.linuxcapable.com/how-to-install-nvidia-drivers-on-fedora-36-linux/</a><br>仔细拜读了一下，还是没有发现啥问题，驱动也重新安装了啊，开始怀疑是新版 Nvidia 驱动的问题</p>
-<p><code>sudo dnf search xorg-x11-drv-nvidia</code> 可以查看所有的驱动，<code>xorg-x11-drv-nvidia-340xx</code> <code>xorg-x11-drv-nvidia-340xx</code> <code>xorg-x11-drv-nvidia-340xx</code> 不知道到底需要安装哪个版本的驱动。😭</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">xorg-x11-drv-nvidia.x86_64 : NVIDIA&#x27;s proprietary display driver for NVIDIA graphic cards</span><br><span class="line">=========================================================================== 名称 和 概况 匹配：xorg-x11-drv-nvidia</span><br><span class="line">xorg-x11-drv-nvidia-340xx-cuda.x86_64 : CUDA libraries for xorg-x11-drv-nvidia-340xx</span><br><span class="line">xorg-x11-drv-nvidia-340xx-devel.i686 : Development files for xorg-x11-drv-nvidia-340xx</span><br><span class="line">xorg-x11-drv-nvidia-340xx-devel.x86_64 : Development files for xorg-x11-drv-nvidia-340xx</span><br><span class="line">xorg-x11-drv-nvidia-340xx-kmodsrc.x86_64 : xorg-x11-drv-nvidia-340xx kernel module source code</span><br><span class="line">xorg-x11-drv-nvidia-340xx-libs.i686 : Libraries for xorg-x11-drv-nvidia-340xx</span><br><span class="line">xorg-x11-drv-nvidia-340xx-libs.x86_64 : Libraries for xorg-x11-drv-nvidia-340xx</span><br><span class="line">xorg-x11-drv-nvidia-390xx-cuda.x86_64 : CUDA driver for xorg-x11-drv-nvidia-390xx</span><br><span class="line">xorg-x11-drv-nvidia-390xx-cuda-libs.i686 : CUDA libraries for xorg-x11-drv-nvidia-390xx</span><br><span class="line">xorg-x11-drv-nvidia-390xx-cuda-libs.x86_64 : CUDA libraries for xorg-x11-drv-nvidia-390xx</span><br><span class="line">xorg-x11-drv-nvidia-390xx-devel.i686 : Development files for xorg-x11-drv-nvidia-390xx</span><br><span class="line">xorg-x11-drv-nvidia-390xx-devel.x86_64 : Development files for xorg-x11-drv-nvidia-390xx</span><br><span class="line">xorg-x11-drv-nvidia-390xx-kmodsrc.x86_64 : xorg-x11-drv-nvidia-390xx kernel module source code</span><br><span class="line">xorg-x11-drv-nvidia-390xx-libs.i686 : Libraries for xorg-x11-drv-nvidia-390xx</span><br><span class="line">xorg-x11-drv-nvidia-390xx-libs.x86_64 : Libraries for xorg-x11-drv-nvidia-390xx</span><br><span class="line">xorg-x11-drv-nvidia-470xx-cuda.x86_64 : CUDA driver for xorg-x11-drv-nvidia-470xx</span><br><span class="line">xorg-x11-drv-nvidia-470xx-cuda-libs.i686 : CUDA libraries for xorg-x11-drv-nvidia-470xx</span><br><span class="line">xorg-x11-drv-nvidia-470xx-cuda-libs.x86_64 : CUDA libraries for xorg-x11-drv-nvidia-470xx</span><br><span class="line">xorg-x11-drv-nvidia-470xx-devel.i686 : Development files for xorg-x11-drv-nvidia-470xx</span><br><span class="line">xorg-x11-drv-nvidia-470xx-devel.x86_64 : Development files for xorg-x11-drv-nvidia-470xx</span><br><span class="line">xorg-x11-drv-nvidia-470xx-kmodsrc.x86_64 : xorg-x11-drv-nvidia-470xx kernel module source code</span><br><span class="line">xorg-x11-drv-nvidia-470xx-libs.i686 : Libraries for xorg-x11-drv-nvidia-470xx</span><br><span class="line">xorg-x11-drv-nvidia-470xx-libs.x86_64 : Libraries for xorg-x11-drv-nvidia-470xx</span><br></pre></td></tr></table></figure>
-
-<p>可是仔细一琢磨， Fedora 35 Nvidia 驱动不是工作正常吗，可以上去看看用的是哪个版本的驱动，执行命令 <code>nvidia-settings</code>,在 System Information 中发现使用的就是最新版本的驱动 <strong>510.68.02</strong>，看样子最新版本的驱动也没有问题，一下陷入了困境。😰</p>
-<p>没啥好办法，还是 Google 搜索一下，结果发现了一个链接在讨论这个问题，和我遇上的现象一样，作者最终解决了问题<br><a target="_blank" rel="noopener" href="https://ask.fedoraproject.org/t/fedora-linux-kernel-update-breaks-nvidia-driver/21954/11">Fedora Linux kernel update breaks NVIDIA driver</a></p>
-<p>原来是旧版的驱动没有卸载干净，参考 <a target="_blank" rel="noopener" href="https://rpmfusion.org/Howto/NVIDIA#Uninstall_the_NVIDIA_driver">https://rpmfusion.org/Howto/NVIDIA#Uninstall_the_NVIDIA_driver</a><br>驱动卸载 Nvidia 驱动需要使用命令 <code>dnf remove xorg-x11-drv-nvidia\*</code></p>
-<p>按照下面的命令操作了一遍，重启系统，熟悉的登录界面终于又出现了。😄</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sudo dnf remove xorg-x11-drv-nouveau</span><br><span class="line">sudo dnf remove xorg-x11-drv-nvidia\*</span><br><span class="line">sudo dnf install xorg-x11-drv-nvidia akmod-nvidia kmod-nvidia.x86_64</span><br><span class="line">sudo reboot</span><br></pre></td></tr></table></figure>
 
       
     </div>
