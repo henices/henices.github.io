@@ -186,7 +186,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://usmacd.com/2020/03/19/pdfium-fuzz.public/">
+    <link itemprop="mainEntityOfPage" href="http://usmacd.com/2020/03/19/other/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -204,7 +204,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2020/03/19/pdfium-fuzz.public/" class="post-title-link" itemprop="url">使用 afl-fuzz fuzz pdfium</a>
+          <a href="/2020/03/19/other/" class="post-title-link" itemprop="url">一些杂谈</a>
         </h2>
 
         <div class="post-meta-container">
@@ -228,57 +228,12 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h2 id="下载源码"><a href="#下载源码" class="headerlink" title="下载源码"></a>下载源码</h2><p>先在 <a target="_blank" rel="noopener" href="https://pdfium.googlesource.com/pdfium/">https://pdfium.googlesource.com/pdfium/</a> 下载源码.</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">mkdir</span> repo</span><br><span class="line"><span class="built_in">cd</span> repo</span><br><span class="line">gclient config --unmanaged https://pdfium.googlesource.com/pdfium.git</span><br><span class="line">gclient <span class="built_in">sync</span></span><br><span class="line"><span class="built_in">cd</span> pdfium</span><br></pre></td></tr></table></figure>
-
-<p>gclient 命令在 depot_tools 中, 需要安装 参考下面的文章</p>
-<p><a target="_blank" rel="noopener" href="http://www.chromium.org/developers/how-tos/install-depot-tools">http://www.chromium.org/developers/how-tos/install-depot-tools</a></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git clone https://chromium.googlesource.com/chromium/tools/depot_tools.git</span><br><span class="line">export PATH=`pwd`/depot_tools:&quot;$PATH&quot;</span><br></pre></td></tr></table></figure>
-
-<p>主要gclient sync 同步时需要翻墙，可以简单的使用环境变量的方法。</p>
-<p><code>https_proxy=http://localhost:8118 gclient sync</code> 下载 download google storage过<br>程中还会遇到一个网络问题，需要编写配置文件 ~&#x2F;.boto</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[Boto]</span><br><span class="line">proxy = 127.0.0.1  # 不带 http://</span><br><span class="line">proxy_port= 8118</span><br></pre></td></tr></table></figure>
-
-<p><code>export NO_AUTH_BOTO_CONFIG=~/.boto</code></p>
-<p>源码包非常大，大概有1G多，需要耐心等待。</p>
-<h2 id="编译"><a href="#编译" class="headerlink" title="编译"></a>编译</h2><p>编译需要使用 ubuntu 或者 Debian 系统，其他系统的依赖问题解决起来比较麻烦，<br>如果是上面两种操作系统的话，有脚本自动安装依赖。</p>
-<p><code>./build/install-build-deps.sh</code></p>
-<p>安装完所以依赖后就可以开始编译了，首先要先生成 gn 文件 (2016 年google 放弃使用原来的 gyp 编译方式)</p>
-<p><code>gn args out/afl</code> 会调用vim 编译器， 输入下面的内容</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"># Build arguments go here.</span><br><span class="line"># See &quot;gn args &lt;out_dir&gt; --list&quot; for available build arguments.</span><br><span class="line">use_goma = false # Googlers only. Make sure goma is installed and running first.</span><br><span class="line">is_debug = false  # Enable debugging features.</span><br><span class="line"></span><br><span class="line">pdf_use_skia = true # Set true to enable experimental skia backend.</span><br><span class="line">pdf_use_skia_paths = false  # Set true to enable experimental skia backend (paths only).</span><br><span class="line"></span><br><span class="line">pdf_enable_xfa = true  # Set false to remove XFA support (implies JS support).</span><br><span class="line">pdf_enable_v8 = true  # Set false to remove Javascript support.</span><br><span class="line">pdf_is_standalone = true  # Set for a non-embedded build.</span><br><span class="line">is_component_build = false # Disable component build (must be false)</span><br><span class="line">v8_static_library = true</span><br><span class="line"></span><br><span class="line">clang_use_chrome_plugins = false  # Currently must be false.</span><br><span class="line">use_sysroot = false  # Currently must be false on Linux, but entirely omitted on windows.</span><br><span class="line"></span><br><span class="line">use_afl = true</span><br><span class="line">#is_asan = true</span><br><span class="line">enable_nacl = true</span><br><span class="line">optimize_for_fuzzing = true</span><br><span class="line">symbol_level=1</span><br></pre></td></tr></table></figure>
-
-<p>使用 ASAN 编译会报错，暂时不开启，接下来要解决 afl 的问题了， pdfium 的 third_party<br>中不包含 afl-fuzz 的源代码，需要到 chromium.googlesource.com 项目下载。<br>chromium 项目支持 libfuzzer 和 afl-fuzz，只要使用开关， <code>use_libfuzzer = true</code><br>或者 <code>use_afl = true</code> 即可打开。</p>
-<p>要编译生成 pdfium_test, 必须指定 pdf_is_standalone &#x3D; true, pdfium 源码仓库中没有<br>afl-fuzz 的代码，需要自己下载。</p>
-<p><a target="_blank" rel="noopener" href="https://chromium.googlesource.com/chromium/src/third_party/+/master/afl/">https://chromium.googlesource.com/chromium/src/third_party/+/master/afl/</a></p>
-<p>可以直接下载 .tgz 文件<br><a target="_blank" rel="noopener" href="https://chromium.googlesource.com/chromium/src/third_party/+archive/master/afl.tar.gz">https://chromium.googlesource.com/chromium/src/third_party/+archive/master/afl.tar.gz</a></p>
-<p>下载后将源码 copy 到 ~&#x2F;repo&#x2F;pdfium&#x2F;third_party&#x2F;afl 中, 使用 <code>ninja -C out/afl</code> 编译整个项目。</p>
-<p>使用 <code>is_debug=false</code> 可以明显提高fuzzing 速度，应该开启。另外一个比较有用的是<br><code>symbol_level</code>, 设置 symbol_level&#x3D;1 可以添加必要的调试符号，便于gdb调试。</p>
-<p>在编译 skia backend 支持时，需要额外处理， 使用 C++14</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">use_cxx11 = false </span><br></pre></td></tr></table></figure>
-
-<h2 id="afl-fuzz"><a href="#afl-fuzz" class="headerlink" title="afl-fuzz"></a>afl-fuzz</h2><p>随着 chromium 代码的更新， afl 源码编译出现了一些小问题，需要处理。</p>
-<p>src&#x2F;third_party&#x2F;afl&#x2F;patches&#x2F;0001-fix-build-with-std-c11.patch</p>
-<figure class="highlight diff"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">diff --git a/afl-fuzz.c b/afl-fuzz.c</span></span><br><span class="line"><span class="comment">index 01b4afef0ecc..f0d564a33037 100644</span></span><br><span class="line"><span class="comment">--- a/afl-fuzz.c</span></span><br><span class="line"><span class="comment">+++ b/afl-fuzz.c</span></span><br><span class="line"><span class="meta">@@ -23,7 +23,9 @@</span></span><br><span class="line"> #define AFL_MAIN</span><br><span class="line"> #define MESSAGES_TO_STDOUT</span><br><span class="line"> </span><br><span class="line"><span class="addition">+#ifndef _GNU_SOURCE</span></span><br><span class="line"> #define _GNU_SOURCE</span><br><span class="line"><span class="addition">+#endif</span></span><br><span class="line"> #define _FILE_OFFSET_BITS 64</span><br><span class="line"> </span><br><span class="line"> #include &quot;config.h&quot;</span><br><span class="line"><span class="comment">diff --git a/types.h b/types.h</span></span><br><span class="line"><span class="comment">index 784d3a7a286d..d24d1fdd97e8 100644</span></span><br><span class="line"><span class="comment">--- a/types.h</span></span><br><span class="line"><span class="comment">+++ b/types.h</span></span><br><span class="line"><span class="meta">@@ -78,7 +78,7 @@</span> typedef int64_t  s64;</span><br><span class="line"> #define STRINGIFY(x) STRINGIFY_INTERNAL(x)</span><br><span class="line"> </span><br><span class="line"> #define MEM_BARRIER() \</span><br><span class="line"><span class="deletion">-  asm volatile(&quot;&quot; ::: &quot;memory&quot;)</span></span><br><span class="line"><span class="addition">+  __asm__ volatile(&quot;&quot; ::: &quot;memory&quot;)</span></span><br><span class="line"> </span><br><span class="line"> #define likely(_x)   __builtin_expect(!!(_x), 1)</span><br><span class="line"> #define unlikely(_x)  __builtin_expect(!!(_x), 0)</span><br></pre></td></tr></table></figure>
-
-<p>afl-fuzz 的使用和其他项目一样。初始的种子文件有几个地方可以获取：</p>
-<ul>
-<li><a target="_blank" rel="noopener" href="https://pdfium.googlesource.com/pdfium/+/refs/heads/master/testing/resources/">https://pdfium.googlesource.com/pdfium/+/refs/heads/master/testing/resources/</a></li>
-<li><a target="_blank" rel="noopener" href="https://github.com/mozilla/pdf.js/tree/master/test/pdfs">https://github.com/mozilla/pdf.js/tree/master/test/pdfs</a></li>
-</ul>
-<p><code>./afl-fuzz -M 01 -m 1024 -i /home/henices/input -o /home/henices/out -x /tmp/pdf.dict -- ./pdfium_test @@</code></p>
-<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
-<li><a target="_blank" rel="noopener" href="https://mariomalwareanalysis.blogspot.com/2012/02/how-to-embed-javascript-into-pdf.html">https://mariomalwareanalysis.blogspot.com/2012/02/how-to-embed-javascript-into-pdf.html</a></li>
-<li><a target="_blank" rel="noopener" href="https://www.blackhat.com/docs/asia-17/materials/asia-17-Liu-Dig-Into-The-Attack-Surface-Of-PDF-And-Gain-100-CVEs-In-1-Year.pdf">https://www.blackhat.com/docs/asia-17/materials/asia-17-Liu-Dig-Into-The-Attack-Surface-Of-PDF-And-Gain-100-CVEs-In-1-Year.pdf</a></li>
-<li><a target="_blank" rel="noopener" href="https://chromium.googlesource.com/chromium/src/+/master/testing/libfuzzer/getting_started.md">https://chromium.googlesource.com/chromium/src/+/master/testing/libfuzzer/getting_started.md</a></li>
-<li><a target="_blank" rel="noopener" href="https://chromium.googlesource.com/chromium/src/+/master/testing/libfuzzer/efficient_fuzzer.md">https://chromium.googlesource.com/chromium/src/+/master/testing/libfuzzer/efficient_fuzzer.md</a></li>
-<li><a target="_blank" rel="noopener" href="https://chromium.googlesource.com/chromium/src/+/master/testing/libfuzzer/reproducing.md">https://chromium.googlesource.com/chromium/src/+/master/testing/libfuzzer/reproducing.md</a></li>
-<li><a target="_blank" rel="noopener" href="https://fuzzing-project.org/tutorial2.html">https://fuzzing-project.org/tutorial2.html</a></li>
-<li><a target="_blank" rel="noopener" href="https://blog.chromium.org/2012/04/fuzzing-for-security.html">https://blog.chromium.org/2012/04/fuzzing-for-security.html</a></li>
-<li><a target="_blank" rel="noopener" href="https://chromium.googlesource.com/chromium/src/+/lkcr/docs/linux_debugging.md">https://chromium.googlesource.com/chromium/src/+/lkcr/docs/linux_debugging.md</a></li>
-<li><a target="_blank" rel="noopener" href="https://web.archive.org/web/20141010035745/http://gnupdf.org/Introduction_to_PDF">https://web.archive.org/web/20141010035745/http://gnupdf.org/Introduction_to_PDF</a></li>
-<li><a target="_blank" rel="noopener" href="https://mariomalwareanalysis.blogspot.com/2012/02/how-to-manually-create-pdf.html">https://mariomalwareanalysis.blogspot.com/2012/02/how-to-manually-create-pdf.html</a></li>
-<li><a target="_blank" rel="noopener" href="https://mariomalwareanalysis.blogspot.com/2012/02/how-to-embed-javascript-into-pdf.html">https://mariomalwareanalysis.blogspot.com/2012/02/how-to-embed-javascript-into-pdf.html</a></li>
-</ul>
+          <p>整个春节被武汉的新型冠状病毒肺炎搞得人心惶惶，2020 注定是我们这辈人难忘的一年，非典的时候比较小感觉没那么恐怖，现在的感觉就完全不一样了，整天都在洗手中度过。</p>
+<p>在病情扩散期间，大量消息满天飞，给政府提意见的更是比比皆是，但是大家都忽视了 一点，就是要相信专业。很多人不太明白专业和非专业之间的差距，可以想象一下你和一 个围棋九段的人下围棋，怎么换到医学领域大家就都是专家了？</p>
+<p>我看到一个建议轻征不隔离，把资源让给重症者。</p>
+<p>大家觉得这个建议如何？提这个建议的人说，主要依据是死亡人不多。这个犯了几个错误， 第一，要看死亡率，而不是死亡人数，患病的人多了，自然死人的就多了。第二，根据我 有限的常识，病毒是会自适应性的进化的，感染的人多了，可能就会产生更nb 的变种了。</p>
+<p>这个事情主要还是相信国家，相信我们的祖国。我觉得这个事情一定会解决了，只是时间 和损失程度问题，一季度的gdp 肯定是受影响了，希望疫情快点过去，天佑中华！</p>
+<p>最后希望所有看到此文的，新年幸福安康！</p>
 
       
     </div>
