@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha256-Z1K5uhUaJXA7Ll0XrZ/0JhX4lAtZFpT6jkKrEDT0drU=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"usmacd.com","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.14.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="☆ 使用kill 发送 SIGNAL_QUIT这种方法只能用于zygote 的子进程 (比如所有的 app 进程, 都是由zygote fork 而来). 1234567891011121314151617181920212223242526272829303132333435363738# kill -3 pid# cat &#x2F;data&#x2F;anr&#x2F;traces.txt...suspend all h">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android 获取进程的 backtrace 信息">
+<meta property="og:url" content="http://usmacd.com/2021/11/03/backtrace_in_android/index.html">
+<meta property="og:site_name" content="安全代码">
+<meta property="og:description" content="☆ 使用kill 发送 SIGNAL_QUIT这种方法只能用于zygote 的子进程 (比如所有的 app 进程, 都是由zygote fork 而来). 1234567891011121314151617181920212223242526272829303132333435363738# kill -3 pid# cat &#x2F;data&#x2F;anr&#x2F;traces.txt...suspend all h">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2021-11-03T01:56:19.871Z">
+<meta property="article:modified_time" content="2021-11-03T01:56:19.871Z">
+<meta property="article:author" content="henices">
+<meta property="article:tag" content="Android">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://usmacd.com/2021/11/03/backtrace_in_android/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://usmacd.com/2021/11/03/backtrace_in_android/","path":"2021/11/03/backtrace_in_android/","title":"Android 获取进程的 backtrace 信息"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Android 获取进程的 backtrace 信息 | 安全代码</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="安全代码" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">安全代码</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a></li><li class="menu-item menu-item-sitemap"><a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>Sitemap</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E2%98%86-%E4%BD%BF%E7%94%A8kill-%E5%8F%91%E9%80%81-SIGNAL-QUIT"><span class="nav-number">1.</span> <span class="nav-text">☆ 使用kill 发送 SIGNAL_QUIT</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E2%98%86-%E4%BD%BF%E7%94%A8-debugged-%E5%91%BD%E4%BB%A4%E8%A1%8C"><span class="nav-number">2.</span> <span class="nav-text">☆ 使用 debugged 命令行</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E2%98%86-java-%E4%BB%A3%E7%A0%81%E4%B8%AD%E6%89%93%E5%8D%B0%E8%B0%83%E7%94%A8%E6%A0%88"><span class="nav-number">3.</span> <span class="nav-text">☆ java 代码中打印调用栈</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E2%98%86-C-%E4%BB%A3%E7%A0%81%E4%B8%AD%E6%89%93%E5%8D%B0%E8%B0%83%E7%94%A8%E6%A0%88"><span class="nav-number">4.</span> <span class="nav-text">☆ C++代码中打印调用栈</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="henices"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">henices</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">90</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/henices" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;henices" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/henices" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;henices" rel="noopener me" target="_blank"><i class="fab fa-twitter fa-fw"></i>Twitter</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml" rel="noopener me"><i class="rss fa-fw"></i>RSS</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+    <div class="sidebar-inner sidebar-blogroll">
+      <div class="links-of-blogroll animated">
+        <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+          Links
+        </div>
+        <ul class="links-of-blogroll-list">
+            <li class="links-of-blogroll-item">
+              <a href="http://scz.617.cn:8/" title="http:&#x2F;&#x2F;scz.617.cn:8&#x2F;" rel="noopener" target="_blank">飞花堂</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://www.v2ex.com/" title="https:&#x2F;&#x2F;www.v2ex.com&#x2F;" rel="noopener" target="_blank">V2EX</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://blog.forecho.com/" title="https:&#x2F;&#x2F;blog.forecho.com&#x2F;" rel="noopener" target="_blank">forecho</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://chensenlin.cn/" title="https:&#x2F;&#x2F;chensenlin.cn&#x2F;" rel="noopener" target="_blank">你好我是森林</a>
+            </li>
+        </ul>
+      </div>
+    </div>
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://usmacd.com/2021/11/03/backtrace_in_android/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="henices">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="安全代码">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Android 获取进程的 backtrace 信息 | 安全代码">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Android 获取进程的 backtrace 信息
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2021-11-03 09:56:19" itemprop="dateCreated datePublished" datetime="2021-11-03T09:56:19+08:00">2021-11-03</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h2 id="☆-使用kill-发送-SIGNAL-QUIT"><a href="#☆-使用kill-发送-SIGNAL-QUIT" class="headerlink" title="☆ 使用kill 发送 SIGNAL_QUIT"></a>☆ 使用kill 发送 SIGNAL_QUIT</h2><p>这种方法只能用于zygote 的子进程 (比如所有的 app 进程, 都是由zygote fork 而来).</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"># kill -3 pid</span><br><span class="line"></span><br><span class="line"># cat /data/anr/traces.txt</span><br><span class="line"></span><br><span class="line">...</span><br><span class="line"></span><br><span class="line">suspend all histogram:  Sum: 290us 99% C.I. 2us-40us Avg: 14.500us Max: 40us</span><br><span class="line">DALVIK THREADS (12):</span><br><span class="line">&quot;Signal Catcher&quot; daemon prio=5 tid=2 Runnable</span><br><span class="line">  | group=&quot;system&quot; sCount=0 dsCount=0 obj=0x32c070a0 self=0xaecca000</span><br><span class="line">  | sysTid=1918 nice=0 cgrp=bg_non_interactive sched=0/0 handle=0xb4406930</span><br><span class="line">  | state=R schedstat=( 228351607 17443703 83 ) utm=12 stm=9 core=0 HZ=100</span><br><span class="line">  | stack=0xb430a000-0xb430c000 stackSize=1014KB</span><br><span class="line">  | held mutexes= &quot;mutator lock&quot;(shared held)</span><br><span class="line">  native: #00 pc 00370e01  /system/lib/libart.so (_ZN3art15DumpNativeStackERNSt3__113basic_ostreamIcNS0_11char_traitsIcEEEEiPKcPNS_9ArtMethodEPv+160)</span><br><span class="line">  native: #01 pc 0035046f  /system/lib/libart.so (_ZNK3art6Thread4DumpERNSt3__113basic_ostreamIcNS1_11char_traitsIcEEEE+150)</span><br><span class="line">  native: #02 pc 0035a373  /system/lib/libart.so (_ZN3art14DumpCheckpoint3RunEPNS_6ThreadE+442)</span><br><span class="line">  native: #03 pc 0035af31  /system/lib/libart.so (_ZN3art10ThreadList13RunCheckpointEPNS_7ClosureE+212)</span><br><span class="line">  native: #04 pc 0035b45f  /system/lib/libart.so (_ZN3art10ThreadList4DumpERNSt3__113basic_ostreamIcNS1_11char_traitsIcEEEE+142)</span><br><span class="line">  native: #05 pc 0035bb6f  /system/lib/libart.so (_ZN3art10ThreadList14DumpForSigQuitERNSt3__113basic_ostreamIcNS1_11char_traitsIcEEEE+334)</span><br><span class="line">  native: #06 pc 00333cb7  /system/lib/libart.so (_ZN3art7Runtime14DumpForSigQuitERNSt3__113basic_ostreamIcNS1_11char_traitsIcEEEE+74)</span><br><span class="line">  native: #07 pc 0033b01d  /system/lib/libart.so (_ZN3art13SignalCatcher13HandleSigQuitEv+928)</span><br><span class="line">  native: #08 pc 0033b901  /system/lib/libart.so (_ZN3art13SignalCatcher3RunEPv+340)</span><br><span class="line">  native: #09 pc 0003f45f  /system/lib/libc.so (_ZL15__pthread_startPv+30)</span><br><span class="line">  native: #10 pc 00019b43  /system/lib/libc.so (__start_thread+6)</span><br><span class="line">  (no managed stack frames)</span><br><span class="line"></span><br><span class="line">&quot;main&quot; prio=5 tid=1 Native</span><br><span class="line">  | group=&quot;main&quot; sCount=1 dsCount=0 obj=0x74abb2a0 self=0xb4d76500</span><br><span class="line">  | sysTid=1914 nice=0 cgrp=bg_non_interactive sched=0/0 handle=0xb6f3fb34</span><br><span class="line">  | state=S schedstat=( 76934470 21396828 203 ) utm=3 stm=3 core=0 HZ=100</span><br><span class="line">  | stack=0xbe55e000-0xbe560000 stackSize=8MB</span><br><span class="line">  | held mutexes=</span><br><span class="line">  native: #00 pc 00040894  /system/lib/libc.so (__epoll_pwait+20)</span><br><span class="line">  native: #01 pc 00019e6f  /system/lib/libc.so (epoll_pwait+26)</span><br><span class="line"></span><br><span class="line">  ...</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>结果写在 &#x2F;data&#x2F;anr&#x2F;traces.txt 文件中, anr 是 ANR(Application Not Response)的意思.</p>
+<p><a target="_blank" rel="noopener" href="https://android.googlesource.com/platform/art/+/android-7.1.1_r13/runtime/runtime.cc">https://android.googlesource.com/platform/art/+/android-7.1.1_r13/runtime/runtime.cc</a></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">Runtime::InitNonZygoteOrPostFork</span><span class="params">(</span></span></span><br><span class="line"><span class="params"><span class="function">    JNIEnv* env, <span class="type">bool</span> is_system_server, NativeBridgeAction action, <span class="type">const</span> <span class="type">char</span>* isa)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">...</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Create the thread pools.</span></span><br><span class="line">  heap_-&gt;<span class="built_in">CreateThreadPool</span>();</span><br><span class="line">  <span class="comment">// Reset the gc performance data at zygote fork so that the GCs</span></span><br><span class="line">  <span class="comment">// before fork aren&#x27;t attributed to an app.</span></span><br><span class="line">  heap_-&gt;<span class="built_in">ResetGcPerformanceInfo</span>();</span><br><span class="line">  <span class="keyword">if</span> (!is_system_server &amp;&amp;</span><br><span class="line">      !safe_mode_ &amp;&amp;</span><br><span class="line">      (jit_options_-&gt;<span class="built_in">UseJitCompilation</span>() || jit_options_-&gt;<span class="built_in">GetSaveProfilingInfo</span>()) &amp;&amp;</span><br><span class="line">      jit_.<span class="built_in">get</span>() == <span class="literal">nullptr</span>) &#123;</span><br><span class="line">    <span class="comment">// Note that when running ART standalone (not zygote, nor zygote fork),</span></span><br><span class="line">    <span class="comment">// the jit may have already been created.</span></span><br><span class="line">    <span class="built_in">CreateJit</span>();</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="built_in">StartSignalCatcher</span>();</span><br><span class="line">  <span class="comment">// Start the JDWP thread. If the command-line debugger flags specified &quot;suspend=y&quot;,</span></span><br><span class="line">  <span class="comment">// this will pause the runtime, so we probably want this to come last.</span></span><br><span class="line">  Dbg::<span class="built_in">StartJdwp</span>();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>可以看出非zygote的进程都会启动 Signal Catcher的 线程.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">root@shamu:/ # ps -t 2089</span><br><span class="line">USER      PID   PPID  VSIZE  RSS   WCHAN            PC  NAME</span><br><span class="line">u0_a58    2089  386   1565280 53732 SyS_epoll_ b6cb0894 S com.hujiang.dict:pushservice</span><br><span class="line">u0_a58    2092  2089  1565280 53732 do_sigtime b6cb0b68 S Signal Catcher</span><br><span class="line">u0_a58    2095  2089  1565280 53732 unix_strea b6cb194c S JDWP</span><br><span class="line">u0_a58    2096  2089  1565280 53732 futex_wait b6c875e8 S ReferenceQueueD</span><br><span class="line">u0_a58    2097  2089  1565280 53732 futex_wait b6c875e8 S FinalizerDaemon</span><br><span class="line">u0_a58    2099  2089  1565280 53732 futex_wait b6c875e8 S FinalizerWatchd</span><br><span class="line">u0_a58    2100  2089  1565280 53732 futex_wait b6c875e8 S HeapTaskDaemon</span><br><span class="line">u0_a58    2101  2089  1565280 53732 binder_thr b6cb09c0 S Binder_1</span><br><span class="line">u0_a58    2102  2089  1565280 53732 binder_thr b6cb09c0 S Binder_2</span><br><span class="line">u0_a58    2107  2089  1565280 53732 SyS_epoll_ b6cb0894 S Thread-123</span><br><span class="line">u0_a58    2108  2089  1565280 53732 futex_wait b6c875e8 S taskService-pro</span><br><span class="line"></span><br><span class="line">zygote 自己没有该线程.</span><br><span class="line"></span><br><span class="line">root@shamu:/ # ps | grep -i zy</span><br><span class="line">root      386   1     1528448 67416 poll_sched b6cb0a5c S zygote</span><br><span class="line"></span><br><span class="line">127|root@shamu:/ # ps -t 386</span><br><span class="line">USER      PID   PPID  VSIZE  RSS   WCHAN            PC  NAME</span><br><span class="line">root      386   1     1528448 67416 poll_sched b6cb0a5c S zygote</span><br><span class="line">root      2203  386   1528448 67416 futex_wait b6c875e8 S ReferenceQueueD</span><br><span class="line">root      2204  386   1528448 67416 futex_wait b6c875e8 S FinalizerDaemon</span><br><span class="line">root      2205  386   1528448 67416 futex_wait b6c875e8 S FinalizerWatchd</span><br><span class="line">root      2206  386   1528448 67416 futex_wait b6c875e8 S HeapTaskDaemon</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><a target="_blank" rel="noopener" href="https://android.googlesource.com/platform/art/+/android-7.1.1_r13/runtime/signal_catcher.cc">https://android.googlesource.com/platform/art/+/android-7.1.1_r13/runtime/signal_catcher.cc</a></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">SignalCatcher::Output</span><span class="params">(<span class="type">const</span> std::string&amp; s)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (stack_trace_file_.<span class="built_in">empty</span>()) &#123;</span><br><span class="line">    <span class="built_in">LOG</span>(INFO) &lt;&lt; s;</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">  &#125;</span><br><span class="line">...</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">SignalCatcher::HandleSigQuit</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  Runtime* runtime = Runtime::<span class="built_in">Current</span>();</span><br><span class="line">  std::ostringstream os;</span><br><span class="line">  os &lt;&lt; <span class="string">&quot;\n&quot;</span></span><br><span class="line">      &lt;&lt; <span class="string">&quot;----- pid &quot;</span> &lt;&lt; <span class="built_in">getpid</span>() &lt;&lt; <span class="string">&quot; at &quot;</span> &lt;&lt; <span class="built_in">GetIsoDate</span>() &lt;&lt; <span class="string">&quot; -----\n&quot;</span>;</span><br><span class="line">  <span class="built_in">DumpCmdLine</span>(os);</span><br><span class="line">  <span class="comment">// Note: The strings &quot;Build fingerprint:&quot; and &quot;ABI:&quot; are chosen to match the format used by</span></span><br><span class="line">  <span class="comment">// debuggerd. This allows, for example, the stack tool to work.</span></span><br><span class="line">  std::string fingerprint = runtime-&gt;<span class="built_in">GetFingerprint</span>();</span><br><span class="line">  os &lt;&lt; <span class="string">&quot;Build fingerprint: &#x27;&quot;</span> &lt;&lt; (fingerprint.<span class="built_in">empty</span>() ? <span class="string">&quot;unknown&quot;</span> : fingerprint) &lt;&lt; <span class="string">&quot;&#x27;\n&quot;</span>;</span><br><span class="line">  os &lt;&lt; <span class="string">&quot;ABI: &#x27;&quot;</span> &lt;&lt; <span class="built_in">GetInstructionSetString</span>(runtime-&gt;<span class="built_in">GetInstructionSet</span>()) &lt;&lt; <span class="string">&quot;&#x27;\n&quot;</span>;</span><br><span class="line">  os &lt;&lt; <span class="string">&quot;Build type: &quot;</span> &lt;&lt; (kIsDebugBuild ? <span class="string">&quot;debug&quot;</span> : <span class="string">&quot;optimized&quot;</span>) &lt;&lt; <span class="string">&quot;\n&quot;</span>;</span><br><span class="line">  runtime-&gt;<span class="built_in">DumpForSigQuit</span>(os);</span><br><span class="line">  <span class="keyword">if</span> ((<span class="literal">false</span>)) &#123;</span><br><span class="line">    std::string maps;</span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">ReadFileToString</span>(<span class="string">&quot;/proc/self/maps&quot;</span>, &amp;maps)) &#123;</span><br><span class="line">      os &lt;&lt; <span class="string">&quot;/proc/self/maps:\n&quot;</span> &lt;&lt; maps;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  os &lt;&lt; <span class="string">&quot;----- end &quot;</span> &lt;&lt; <span class="built_in">getpid</span>() &lt;&lt; <span class="string">&quot; -----\n&quot;</span>;</span><br><span class="line">  <span class="built_in">Output</span>(os.<span class="built_in">str</span>());</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">...</span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">    <span class="type">int</span> signal_number = signal_catcher-&gt;<span class="built_in">WaitForSignal</span>(self, signals);</span><br><span class="line">    <span class="keyword">if</span> (signal_catcher-&gt;<span class="built_in">ShouldHalt</span>()) &#123;</span><br><span class="line">      runtime-&gt;<span class="built_in">DetachCurrentThread</span>();</span><br><span class="line">      <span class="keyword">return</span> <span class="literal">nullptr</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">switch</span> (signal_number) &#123;</span><br><span class="line">    <span class="keyword">case</span> SIGQUIT:</span><br><span class="line">      signal_catcher-&gt;<span class="built_in">HandleSigQuit</span>();</span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> SIGUSR1:</span><br><span class="line">      signal_catcher-&gt;<span class="built_in">HandleSigUsr1</span>();</span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">default</span>:</span><br><span class="line">      <span class="built_in">LOG</span>(ERROR) &lt;&lt; <span class="string">&quot;Unexpected signal %d&quot;</span> &lt;&lt; signal_number;</span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">...</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>从源码中发现除了SIGQUIT 还可以发送 SIGUSR1 , 这个信号可以使进程java 虚拟机执行GC<br>操作 <code>kill -10 pid</code></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">SignalCatcher::HandleSigUsr1</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  <span class="built_in">LOG</span>(INFO) &lt;&lt; <span class="string">&quot;SIGUSR1 forcing GC (no HPROF)&quot;</span>;</span><br><span class="line">  Runtime::<span class="built_in">Current</span>()-&gt;<span class="built_in">GetHeap</span>()-&gt;<span class="built_in">CollectGarbage</span>(<span class="literal">false</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="☆-使用-debugged-命令行"><a href="#☆-使用-debugged-命令行" class="headerlink" title="☆ 使用 debugged 命令行"></a>☆ 使用 debugged 命令行</h2><p>这种方法是全系统通用的, 可以用于非zygote的进程.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Usage: -b [&lt;tid&gt;]</span><br><span class="line">  -b dump backtrace to console, otherwise dump full tombstone file</span><br></pre></td></tr></table></figure>
+
+<p>通过 -b 参数指定进程pid, 即可.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"># debuggerd -b 23850</span><br><span class="line"></span><br><span class="line">Sending request to dump task 23850.</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">----- pid 23850 at 1970-01-27 03:57:11 -----</span><br><span class="line">Cmd line: /sbin/adbd</span><br><span class="line">ABI: &#x27;arm&#x27;</span><br><span class="line"></span><br><span class="line">&quot;adbd&quot; sysTid=23850</span><br><span class="line">  #00 pc 0002b158  /sbin/adbd</span><br><span class="line">  #01 pc 0002467f  /sbin/adbd</span><br><span class="line">  #02 pc 00020854  [stack]</span><br><span class="line"></span><br><span class="line">&quot;adbd&quot; sysTid=23851</span><br><span class="line">  #00 pc 0002fd38  /sbin/adbd</span><br><span class="line">  #01 pc 0002a501  /sbin/adbd</span><br><span class="line">  #02 pc 0000000b  &lt;unknown&gt;</span><br><span class="line"></span><br><span class="line">&quot;adbd&quot; sysTid=23852</span><br><span class="line">  #00 pc 0002b624  /sbin/adbd</span><br><span class="line">  #01 pc 000106cf  /sbin/adbd</span><br><span class="line">  #02 pc 00010301  /sbin/adbd</span><br><span class="line">  #03 pc 0002a613  /sbin/adbd</span><br><span class="line">  #04 pc 00030283  /sbin/adbd</span><br><span class="line"></span><br><span class="line">&quot;adbd&quot; sysTid=23853</span><br><span class="line">  #00 pc 0002b628  /sbin/adbd</span><br><span class="line">  #01 pc 00013999  /sbin/adbd</span><br><span class="line">  #02 pc 000112ed  /sbin/adbd</span><br><span class="line">  #03 pc 000104e1  /sbin/adbd</span><br><span class="line">  #04 pc 0002a613  /sbin/adbd</span><br><span class="line">  #05 pc 00030283  /sbin/adbd</span><br><span class="line"></span><br><span class="line">&quot;adbd&quot; sysTid=23862</span><br><span class="line">  #00 pc 0002b888  /sbin/adbd</span><br><span class="line">  #01 pc 0000a503  /sbin/adbd</span><br><span class="line">  #02 pc 00009527  /sbin/adbd</span><br><span class="line">  #03 pc 0002a613  /sbin/adbd</span><br><span class="line">  #04 pc 00030283  /sbin/adbd</span><br><span class="line"></span><br><span class="line">----- end 23850 -----</span><br><span class="line">  ...</span><br></pre></td></tr></table></figure>
+
+<h2 id="☆-java-代码中打印调用栈"><a href="#☆-java-代码中打印调用栈" class="headerlink" title="☆ java 代码中打印调用栈"></a>☆ java 代码中打印调用栈</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span> &#123;  </span><br><span class="line"> ...  </span><br><span class="line">&#125; <span class="keyword">catch</span> (RemoteException e) &#123;  </span><br><span class="line">  e.printStackTrace();  </span><br><span class="line">  ...  </span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure>
+
+<h2 id="☆-C-代码中打印调用栈"><a href="#☆-C-代码中打印调用栈" class="headerlink" title="☆ C++代码中打印调用栈"></a>☆ C++代码中打印调用栈</h2><p>CallStack.cpp</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;utils/CallStack.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    android::CallStack stack;</span><br><span class="line">    stack.<span class="built_in">update</span>(); </span><br><span class="line">    stack.<span class="built_in">dump</span>(<span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Android.mk</p>
+<figure class="highlight make"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">LOCAL_PATH:= <span class="variable">$(<span class="built_in">call</span> my-<span class="built_in">dir</span>)</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">include</span> <span class="variable">$(CLEAR_VARS)</span></span><br><span class="line">LOCAL_SRC_FILES:= CallStack.cpp</span><br><span class="line">LOCAL_SHARED_LIBRARIES += libutils</span><br><span class="line">LOCAL_LDLIBS += -ldl -lutils</span><br><span class="line"></span><br><span class="line">LOCAL_CFLAGS := <span class="variable">$(common_CFLAGS)</span></span><br><span class="line">LOCAL_MODULE := CallStack</span><br><span class="line"><span class="keyword">include</span> <span class="variable">$(BUILD_EXECUTABLE)</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>执行后显示类似下面的结果</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">root@shamu:/data/local/tmp # ./CallStack</span><br><span class="line">#00 pc 000006d1  /data/local/tmp/CallStack</span><br><span class="line">#01 pc 00017359  /system/lib/libc.so (__libc_init+44)</span><br><span class="line">#02 pc 0000074c  /data/local/tmp/CallStack</span><br></pre></td></tr></table></figure>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Android/" rel="tag"># Android</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/11/03/ssd/" rel="prev" title="SSD 迁移记">
+                  <i class="fa fa-chevron-left"></i> SSD 迁移记
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2021/11/05/webview_java/" rel="next" title="Android WebView 漏洞">
+                  Android WebView 漏洞 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">henices</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>
