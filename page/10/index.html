@@ -122,7 +122,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">91</span>
+          <span class="site-state-item-count">92</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -174,6 +174,115 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://usmacd.com/2006/07/13/5cAcessPath/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="henices">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="安全代码">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 安全代码">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2006/07/13/5cAcessPath/" class="post-title-link" itemprop="url">N 谈 \ 暴库</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2006-07-13 00:00:00" itemprop="dateCreated datePublished" datetime="2006-07-13T00:00:00+08:00">2006-07-13</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>关于%5c的暴库利用想已经不是什么新技术了，原因我只找到含糊的说法：的UNICODE是%5c当提交时,IIS无法正常解析,导致暴库。但我对 <a target="_blank" rel="noopener" href="http://www.hoky.org/">http://www.hoky.org</a> 测试成功后（现在已经补上）问过hoky.pro，得知%5c与IIS的设置是有关系的。而在默认设置下是可以暴库的。还有很多人说不成功，我要说的三点：</p>
+<ol>
+<li>一般的错误返回页面是本地IE提供的,所以我们先得关了本地的错误页面,具体在菜单项的‘工具-&gt;internet选项-&gt;高级-&gt;显示友好信息’。</li>
+<li>对方数据库要是Access型。</li>
+<li>%5c的暴库需要的是二级目录，一级目录无法成功。如：</li>
+</ol>
+<p><a href="http://www.sometips.com%5c1.asp?id=1">http://www.sometips.com%5c1.asp?id=1</a> 不成功<br><a target="_blank" rel="noopener" href="http://www.sometips.com/other%5c1.asp?id=1">http://www.sometips.com/other%5c1.asp?id=1</a> 成功</p>
+<p>好了，上面说的大家都知道，当是废话。在暴库这么好用的东西下，如果一个网站只有一级目录的话，难道就没有办法了吗？说到重点，其实一级目录我们也同样可以成功的，我们可以通过构造一个多级目录来达到暴库的目的。</p>
+<p><a target="_blank" rel="noopener" href="http://www.target.com/noexists/..%5clist.asp?id=1">http://www.target.com/noexists/..%5clist.asp?id=1</a></p>
+<p>这样大家就会有新的惊喜了，呵呵。</p>
+<p>补救方法也很简单，在conn.asp里 加入数据库文件的位置后面加上这句：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">On Error Resume Next</span><br></pre></td></tr></table></figure>
+
+<p>就可以了。</p>
+<hr>
+<p>今天在黑基又看到了关于％5c暴库的文章，这招真的很管用，大概10个网站里会有一个会暴库吧。</p>
+<p>关于这个漏洞。绿盟有相关的资料：<br><a target="_blank" rel="noopener" href="http://www.nsfocus.net/index.php?act=magazine&do=view&mid=952">http://www.nsfocus.net/index.php?act=magazine&amp;do=view&amp;mid=952</a></p>
+<p>呵呵。虽然这个我们这个漏洞呵暴库关系不是很大， 但是明眼人还是看的出相关的地方，IIS 二次解码。大家知道在 url中 <code>\</code> 和 <code>/</code> 是一样的，也就是说 <a target="_blank" rel="noopener" href="http://www.example.com/abc/123.asp?id=5">http://www.example.com/abc/123.asp?id=5</a> 和 <a target="_blank" rel="noopener" href="http://www.example.com/abc/123.asp?id=5">http://www.example.com/abc\123.asp?id=5</a> 是一样的。</p>
+<p>而 <a target="_blank" rel="noopener" href="http://www.example.com/abc%5c123.asp?id=5">http://www.example.com/abc%5c123.asp?id=5</a> 经过一次解码后变成 <a target="_blank" rel="noopener" href="http://www.example.com/abc/123.asp?id=5">http://www.example.com/abc\123.asp?id=5</a> 这里是不会出错的。</p>
+<p>而经过 IIS 二次解码后就变成 <a target="_blank" rel="noopener" href="http://www.example.com/abc%5c123.asp?id=5">http://www.example.com/abc%5c123.asp?id=5</a>, 如果数据库连接文件用的相对路径的话。HOO, 找不到数据库文件，当然就出错了。还很老实呢，连物理路径都出来了。大家看。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Microsoft JET Database Engine 错误 &#x27;80004005&#x27;</span><br><span class="line"></span><br><span class="line">&#x27;D:\wwwroot\hell\wwwroot\data\abc.asp&#x27;不是一个有效的路径。 确定路径名称拼写是否正确，以及是否连接到文件存放的服务器。</span><br><span class="line"></span><br><span class="line">/blog/conn.asp，行29</span><br></pre></td></tr></table></figure>
+
+<p>这个是我暴 Oblog 暴出来的，这个月的黑防大家都有看吧。(早知道我也去投稿了，我发现的比他早多了，郁闷)<br>很多人都在分析成功的条件，就象itbbs里的人讨论的一样。(itbbs最近我怎么上不去啊，知道告诉我)</p>
+<p>sykkk 认为：</p>
+<ol>
+<li>是数据库连接中没有加入容错代码 所以导致错误不能跳过而活生生的把数据文件连接暴出来</li>
+<li>对方的IIS没有关闭错误提示 只要关了错误提示就算你怎么暴也没有用</li>
+<li>不一定要2级目录 可以自己够造个noexists&#x2F;..%5C的2级目录</li>
+<li>还有就是 要成功一定要调用到数据库 不一定是5c1.asp?id&#x3D;1 这种类别的</li>
+</ol>
+<p>其实还有一个必要条件他忘了，数据库要相对路径，绝对路径是暴不出来的。还有我补充一点应该是 IIS 4.0 或者 IIS 5.0 ，IIS 6 应该是不行了。</p>
+<p>关于二级目录，我同意sykkk的看法，有的人说一定是二级目录，呵呵，我可以告诉大家那是错误的。应该是最靠近的asp文件的那个 “&#x2F;“ 改成 “%5c”, 只有有调用数据库都有可能暴库。哈哈，还有当然对方要没有屏蔽错误信息，要不然你是肯定看不到的。</p>
+<p>总结：％5c暴库成功条件</p>
+<ol>
+<li>对方服务器用的是 IIS 4.0 或 IIS 5.0， 并且没有屏蔽错误信息。</li>
+<li>是数据库连接中没有加入容错代码 所以导致错误不能跳过而活生生的把数据文件连接暴出来 (On Error Resume Next)</li>
+<li>应该是Microsoft JET Database Engine 方式</li>
+<li>数据库文件调用用的是相对路径！！</li>
+</ol>
+<p>不一定要求是二级目录。三级也是可以的(我有成功过), 二级目录有时候反倒没成功。至于还有构造二级目录，我是没成功过，嘿嘿，应该是错误的。：）</p>
+<p>随便也告诉大家，aspx %5c 也有文章的，运用也很巧妙，想知道就 google吧。^_^</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
