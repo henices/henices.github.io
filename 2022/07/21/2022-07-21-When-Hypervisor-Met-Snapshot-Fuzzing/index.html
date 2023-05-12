@@ -14,10 +14,10 @@
 
 
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha256-/4UQcSmErDzPCMAiuOiWPVVsNN2s3ZY/NsmXNcj0IFc=" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha256-HtsXJanqjKTc8vVQjO4YMhiqFoXkfBsjBWcX91T1jr8=" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
-<script class="next-config" data-name="main" type="application/json">{"hostname":"usmacd.com","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.15.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
+<script class="next-config" data-name="main" type="application/json">{"hostname":"usmacd.com","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.15.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
 
     <meta name="description" content="source: https:&#x2F;&#x2F;null2root.github.io&#x2F;blog&#x2F;2022&#x2F;07&#x2F;21&#x2F;When-Hypervisor-Met-Snapshot-Fuzzing.html 1. IntroductionHypervisor was known as hard target to fuzz over several years. Even though, lots of prior">
 <meta property="og:type" content="article">
@@ -132,7 +132,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">92</span>
+          <span class="site-state-item-count">93</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -235,8 +235,7 @@
     
     
     
-    <div class="post-body" itemprop="articleBody">
-        <p>source: <a target="_blank" rel="noopener" href="https://null2root.github.io/blog/2022/07/21/When-Hypervisor-Met-Snapshot-Fuzzing.html">https://null2root.github.io/blog/2022/07/21/When-Hypervisor-Met-Snapshot-Fuzzing.html</a></p>
+    <div class="post-body" itemprop="articleBody"><p>source: <a target="_blank" rel="noopener" href="https://null2root.github.io/blog/2022/07/21/When-Hypervisor-Met-Snapshot-Fuzzing.html">https://null2root.github.io/blog/2022/07/21/When-Hypervisor-Met-Snapshot-Fuzzing.html</a></p>
 <h1 id="1-Introduction"><a href="#1-Introduction" class="headerlink" title="1. Introduction"></a>1. Introduction</h1><p>Hypervisor was known as hard target to fuzz over several years. Even though, lots of prior pioneers( <a target="_blank" rel="noopener" href="https://rezer0dai.github.io/biug-bounties/">Peter Hlavaty</a>, <a target="_blank" rel="noopener" href="https://conference.hitb.org/hitbsecconf2021ams/materials/D2T2%20-%20Discovering%2010+%20Vulnerabilities%20in%20Virtualbox%20-%20Chen%20Nan.pdf">Chaitin Tech</a>, <a target="_blank" rel="noopener" href="https://starlabs.sg/blog/2020/04-adventures-in-hypervisor-oracle-virtualbox-research/#coverage-guided-fuzzing">StarLabs</a>, <a target="_blank" rel="noopener" href="https://github.com/SafeBreach-Labs/hAFL2">Peleg Hadar and Ophir Harpaz</a> and many others ) doing amazing work to overcome this limit and found interesting bugs.</p>
 <p>But it is not an easy topic for some fresh newbie like me to starts from the bottom. I think manual code( or binary ) auditing and static analysis could be only considerable options if I start my research a few years ago without <strong>What The Fuzz</strong>.</p>
 <p><a target="_blank" rel="noopener" href="https://github.com/0vercl0k/wtf">What The Fuzz</a>( a.k.a WTF ) is a snapshot-based fuzzer targeting Windows Ring-3 and Ring-0 component. WTF’s snapshot is based on memory dump both kernel and user-land. Because of that, WTF can not emulate any functionality which requires anything not within in-memory and can not create new process or thread because memory dump limited on single process. But WTF support <a target="_blank" rel="noopener" href="https://github.com/0vercl0k/wtf/blob/4a9bf55/src/wtf/bochscpu_backend.cc#L265">breakpoint Handler</a> which you can set breakpoint on <strong>any</strong> address within memory dump and if fuzz execution reaches that address, pre-defined breakpoint handler will be executed. Based on this, we can trying to overcome some limitation on WTF such as <a target="_blank" rel="noopener" href="https://github.com/0vercl0k/wtf/blob/main/src/wtf/fshooks.cc">file access</a>.</p>
@@ -358,6 +357,7 @@
 <script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
 
   
+
 
 
 

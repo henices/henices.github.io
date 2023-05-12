@@ -19,28 +19,28 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"usmacd.com","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.15.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="1. 默认启用 Cgroups V2nozuonodie， 升级到 Fedora 31 后， CgroupsV2 已经默认开启，理由是原来不是默认开启没人用，现在让 Fedora 用户先当当小白鼠，于是 Docker 就倒下了。http:&#x2F;&#x2F;t.cn&#x2F;Ai1sI5LH   grub2 配置文件 &#x2F;etc&#x2F;default&#x2F;grub， 内核参数添加 systemd.uni">
+    <meta name="description" content="看了一个2012年采访林园的视频，每个成功的人士对投资都有自己的看法。   投资最重要的要少犯错 虽然没法预测股票走势，但是股票价格的高低还是需要清楚的，虽然价格低的可能继续走低，价格高的可能继续走高 投机和投资没有本质区别，投机的「机」是择时，价值投资也是择时，市场上的股票供需关系会影响价格 需要知道市场周期，牛熊轮回，不同的市场时期，选择的投资策略也不同 做3到5年的长线投资，关注市场的主线，">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Fedora31 的几个变化">
-<meta property="og:url" content="http://usmacd.com/2020/03/19/Fedora31/index.html">
+<meta property="og:title" content="林园谈投资">
+<meta property="og:url" content="http://usmacd.com/2023/02/02/linyuan_interview/index.html">
 <meta property="og:site_name" content="安全代码">
-<meta property="og:description" content="1. 默认启用 Cgroups V2nozuonodie， 升级到 Fedora 31 后， CgroupsV2 已经默认开启，理由是原来不是默认开启没人用，现在让 Fedora 用户先当当小白鼠，于是 Docker 就倒下了。http:&#x2F;&#x2F;t.cn&#x2F;Ai1sI5LH   grub2 配置文件 &#x2F;etc&#x2F;default&#x2F;grub， 内核参数添加 systemd.uni">
+<meta property="og:description" content="看了一个2012年采访林园的视频，每个成功的人士对投资都有自己的看法。   投资最重要的要少犯错 虽然没法预测股票走势，但是股票价格的高低还是需要清楚的，虽然价格低的可能继续走低，价格高的可能继续走高 投机和投资没有本质区别，投机的「机」是择时，价值投资也是择时，市场上的股票供需关系会影响价格 需要知道市场周期，牛熊轮回，不同的市场时期，选择的投资策略也不同 做3到5年的长线投资，关注市场的主线，">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2020-03-19T08:34:31.917Z">
-<meta property="article:modified_time" content="2020-03-19T08:34:31.917Z">
+<meta property="article:published_time" content="2023-02-01T16:00:00.000Z">
+<meta property="article:modified_time" content="2023-02-01T16:00:00.000Z">
 <meta property="article:author" content="henices">
-<meta property="article:tag" content="linux">
+<meta property="article:tag" content="investment">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="http://usmacd.com/2020/03/19/Fedora31/">
+<link rel="canonical" href="http://usmacd.com/2023/02/02/linyuan_interview/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://usmacd.com/2020/03/19/Fedora31/","path":"2020/03/19/Fedora31/","title":"Fedora31 的几个变化"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://usmacd.com/2023/02/02/linyuan_interview/","path":"2023/02/02/linyuan_interview/","title":"林园谈投资"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>Fedora31 的几个变化 | 安全代码</title>
+<title>林园谈投资 | 安全代码</title>
   
 
 
@@ -100,7 +100,7 @@
   
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+    <div class="sidebar-inner sidebar-overview-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           Table of Contents
@@ -113,7 +113,6 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E9%BB%98%E8%AE%A4%E5%90%AF%E7%94%A8-Cgroups-V2"><span class="nav-number">1.</span> <span class="nav-text">1. 默认启用 Cgroups V2</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E9%BB%98%E8%AE%A4%E7%9A%84-Python-%E4%B8%BA-Python3"><span class="nav-number">2.</span> <span class="nav-text">2. 默认的 Python 为 Python3</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -190,7 +189,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://usmacd.com/2020/03/19/Fedora31/">
+    <link itemprop="mainEntityOfPage" href="http://usmacd.com/2023/02/02/linyuan_interview/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -203,12 +202,12 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="Fedora31 的几个变化 | 安全代码">
+      <meta itemprop="name" content="林园谈投资 | 安全代码">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Fedora31 的几个变化
+          林园谈投资
         </h1>
 
         <div class="post-meta-container">
@@ -219,7 +218,7 @@
       </span>
       <span class="post-meta-item-text">Posted on</span>
 
-      <time title="Created: 2020-03-19 16:34:31" itemprop="dateCreated datePublished" datetime="2020-03-19T16:34:31+08:00">2020-03-19</time>
+      <time title="Created: 2023-02-02 00:00:00" itemprop="dateCreated datePublished" datetime="2023-02-02T00:00:00+08:00">2023-02-02</time>
     </span>
 
   
@@ -231,10 +230,18 @@
     
     
     
-    <div class="post-body" itemprop="articleBody"><h2 id="1-默认启用-Cgroups-V2"><a href="#1-默认启用-Cgroups-V2" class="headerlink" title="1. 默认启用 Cgroups V2"></a>1. 默认启用 Cgroups V2</h2><p>nozuonodie， 升级到 Fedora 31 后， CgroupsV2 已经默认开启，理由是原来不是默认开启没人用，现在让 Fedora 用户先当当小白鼠，<br>于是 Docker 就倒下了。<a target="_blank" rel="noopener" href="http://t.cn/Ai1sI5LH">http://t.cn/Ai1sI5LH</a>   grub2 配置文件 &#x2F;etc&#x2F;default&#x2F;grub， 内核参数添加 systemd.unified_cgroup_hierarchy&#x3D;0<br>可以重新开启  CgroupsV1 ​​​​</p>
-<h2 id="2-默认的-Python-为-Python3"><a href="#2-默认的-Python-为-Python3" class="headerlink" title="2. 默认的 Python 为 Python3"></a>2. 默认的 Python 为 Python3</h2><p><a target="_blank" rel="noopener" href="https://fedoraproject.org/wiki/Changes/Python_means_Python3">https://fedoraproject.org/wiki/Changes/Python_means_Python3</a></p>
-<p>唉，不得不说 Fedora 这次有点太激进了， 搞得我编译 chromium 又出问题了。 要换回去有个歪招</p>
-<p><code>ln -s /usr/bin/python2 /usr/local/bin/python</code></p>
+    <div class="post-body" itemprop="articleBody"><p>看了一个2012年采访林园的视频，每个成功的人士对投资都有自己的看法。 </p>
+<ul>
+<li>投资最重要的要少犯错</li>
+<li>虽然没法预测股票走势，但是股票价格的高低还是需要清楚的，虽然价格低的可能继续走低，价格高的可能继续走高</li>
+<li>投机和投资没有本质区别，投机的「机」是择时，价值投资也是择时，市场上的股票供需关系会影响价格</li>
+<li>需要知道市场周期，牛熊轮回，不同的市场时期，选择的投资策略也不同</li>
+<li>做3到5年的长线投资，关注市场的主线，在龙头股上赚大钱</li>
+<li>注重风险管理，投资前测算最差情况，只在有把握时下注，平时不太看盘</li>
+<li>使用资产配置来分摊风险，房地产、债券、股票等均有涉猎</li>
+<li>每个人都有自己擅长的标的(能力圈)，林园的投资主线是和吃的有关系的消费股</li>
+</ul>
+<p>这篇采访出了个彩蛋🎉，主持人问林园平日都有啥爱好。林园说他有两个爱好：1. 逛夜总会 2. 走长路<br>林园逛夜总会的段子已经广泛流传，主持人也接不住这话茬 ：）认真分析 逛夜总会是看高端消费，走长路是看日常消费。<br>一般成功的投资人都有自己独特的指标。</p>
 
     </div>
 
@@ -244,20 +251,20 @@
 
     <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/linux/" rel="tag"># linux</a>
+              <a href="/tags/investment/" rel="tag"># investment</a>
           </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2020/03/19/android_intent_base_attack/" rel="prev" title="Intent Spoofing 攻击">
-                  <i class="fa fa-chevron-left"></i> Intent Spoofing 攻击
+                <a href="/2022/11/02/learn_in_public/" rel="prev" title="Learn In Public 摘要">
+                  <i class="fa fa-chevron-left"></i> Learn In Public 摘要
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2020/03/19/BaiduNetdisk/" rel="next" title="Linux 下使用百度网盘">
-                  Linux 下使用百度网盘 <i class="fa fa-chevron-right"></i>
+                <a href="/2023/02/09/How%20to%20be%20successful/" rel="next" title="How to be successful">
+                  How to be successful <i class="fa fa-chevron-right"></i>
                 </a>
             </div>
           </div>

@@ -14,10 +14,10 @@
 
 
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha256-/4UQcSmErDzPCMAiuOiWPVVsNN2s3ZY/NsmXNcj0IFc=" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha256-HtsXJanqjKTc8vVQjO4YMhiqFoXkfBsjBWcX91T1jr8=" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
-<script class="next-config" data-name="main" type="application/json">{"hostname":"usmacd.com","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.15.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
+<script class="next-config" data-name="main" type="application/json">{"hostname":"usmacd.com","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.15.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
 
     <meta name="description" content="gogs 使用了也有一年多了，小团队使用基本还行。有几个问题，第一界面代码 merge 有问题，第二不支持代码 review，如果能解决上面两个问题就好用很多了。下面两段是年前折腾 gogs 的记录，没有啥技术含量，只是做个备份。 切换皮肤https:&#x2F;&#x2F;github.com&#x2F;Kos-M&#x2F;GogsThemes 提供了两款皮肤，文中给出的方法要修改 gogs 配置，直接使用 TamperMonkey">
 <meta property="og:type" content="article">
@@ -131,7 +131,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">92</span>
+          <span class="site-state-item-count">93</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -234,8 +234,7 @@
     
     
     
-    <div class="post-body" itemprop="articleBody">
-        <p>gogs 使用了也有一年多了，小团队使用基本还行。有几个问题，第一界面代码 merge 有问题，第二不支持代码 review，<br>如果能解决上面两个问题就好用很多了。下面两段是年前折腾 gogs 的记录，没有啥技术含量，只是做个备份。</p>
+    <div class="post-body" itemprop="articleBody"><p>gogs 使用了也有一年多了，小团队使用基本还行。有几个问题，第一界面代码 merge 有问题，第二不支持代码 review，<br>如果能解决上面两个问题就好用很多了。下面两段是年前折腾 gogs 的记录，没有啥技术含量，只是做个备份。</p>
 <h2 id="切换皮肤"><a href="#切换皮肤" class="headerlink" title="切换皮肤"></a>切换皮肤</h2><p><a target="_blank" rel="noopener" href="https://github.com/Kos-M/GogsThemes">https://github.com/Kos-M/GogsThemes</a> 提供了两款皮肤，文中给出的方法要修改 gogs 配置，直接使用 TamperMonkey 就可以了。</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ==UserScript==</span></span><br><span class="line"><span class="comment">// @name         Gogs Theme</span></span><br><span class="line"><span class="comment">// @resource     IMPORTED_CSS https://raw.githubusercontent.com/Kos-M/GogsThemes/master/themes/dark_theme.css</span></span><br><span class="line"><span class="comment">// @namespace    http://tampermonkey.net/</span></span><br><span class="line"><span class="comment">// @version      0.1</span></span><br><span class="line"><span class="comment">// @description  try to take over the world!</span></span><br><span class="line"><span class="comment">// @author       You</span></span><br><span class="line"><span class="comment">// @match        http://website:8000/*</span></span><br><span class="line"><span class="comment">// @grant        GM_getResourceText</span></span><br><span class="line"><span class="comment">// @grant        GM_addStyle</span></span><br><span class="line"><span class="comment">// ==/UserScript==</span></span><br><span class="line"></span><br><span class="line">(<span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="string">&#x27;use strict&#x27;</span>;</span><br><span class="line">    <span class="keyword">const</span> my_css = <span class="title function_">GM_getResourceText</span>(<span class="string">&quot;IMPORTED_CSS&quot;</span>);</span><br><span class="line">    <span class="title function_">GM_addStyle</span>(my_css);</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure>
 
@@ -335,6 +334,7 @@
 <script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
 
   
+
 
 
 
