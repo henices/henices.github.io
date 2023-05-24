@@ -122,13 +122,13 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">93</span>
+          <span class="site-state-item-count">94</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-count">14</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -174,6 +174,81 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://usmacd.com/2015/03/10/root_android_emulator/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="henices">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="安全代码">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 安全代码">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2015/03/10/root_android_emulator/" class="post-title-link" itemprop="url">root Android emulator</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2015-03-10 00:00:00" itemprop="dateCreated datePublished" datetime="2015-03-10T00:00:00+08:00">2015-03-10</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>一个的简单的脚本就可以实现自动化root，以下代码在 Android 4.4.2 的 emulator上实验成功。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">sudo ./adb start-server</span><br><span class="line">./adb shell mount -o rw,remount -t yaffs2 /dev/block/mtdblock0 /system</span><br><span class="line">./adb push su /system/xbin/su</span><br><span class="line">./adb install Superuser.apk</span><br><span class="line">./adb shell <span class="built_in">chmod</span> 06755 /system/xbin/su</span><br><span class="line">./adb shell /system/xbin/su -d</span><br></pre></td></tr></table></figure>
+
+<p>其中涉及的二进制文件都可以从 [2] 下载，最关键的步骤是执行su -d，不执行的话SuperSu会报找不到su的二进制文件。</p>
+<p>关于android 的emulator有个特性，&#x2F;system 下的所有更改在下次重启时会丢失。解决这个问题的方法有很多种，最简单的方法是从tmp目录下拷贝emulator-xxx 文件到avd目录。avd目录默认在 ~&#x2F;.android&#x2F;avd </p>
+<p>&#x2F;tmp&#x2F;android-user&#x2F;emulator-xxxx, 将这个文件重命名为system.img，这样重启后，&#x2F;system下的修改不会丢失。</p>
+<p>[1] <a target="_blank" rel="noopener" href="http://www.claudxiao.net/2013/10/persistent-change-emulator-system-partition/">http://www.claudxiao.net/2013/10/persistent-change-emulator-system-partition/</a><br>[2] <a target="_blank" rel="noopener" href="http://download.chainfire.eu/589/SuperSU/UPDATE-SuperSU-v2.16.zip">http://download.chainfire.eu/589/SuperSU/UPDATE-SuperSU-v2.16.zip</a><br>[3] <a target="_blank" rel="noopener" href="http://stackoverflow.com/questions/15417105/forcing-the-android-emulator-to-store-changes-to-system">http://stackoverflow.com/questions/15417105/forcing-the-android-emulator-to-store-changes-to-system</a></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1001,86 +1076,6 @@
     <div class="post-body" itemprop="articleBody">
           <p>小技巧。但是用的人好像不多。例子：  Windows 2000 下</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">NtQuerySystemInformationNo = <span class="number">0x97</span>;</span><br><span class="line"></span><br><span class="line">_declspec(naked)</span><br><span class="line">NTSTATUS __stdcall <span class="title function_">PrivateNtQuerySystemInformation</span></span><br><span class="line">    <span class="params">(IN     SYSTEM_INFORMATION_CLASS,</span></span><br><span class="line"><span class="params">    IN OUT PVOID,</span></span><br><span class="line"><span class="params">    IN     ULONG,</span></span><br><span class="line"><span class="params">    OUT    PULONG OPTIONAL)</span></span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">    _asm &#123;</span><br><span class="line">        mov eax, NtQuerySystemInformationNo</span><br><span class="line">        lea edx, [esp+<span class="number">4</span>]</span><br><span class="line">        <span class="type">int</span> <span class="number">2</span>Eh</span><br><span class="line">        ret <span class="number">10</span>h</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://usmacd.com/2008/04/07/T60_device/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="henices">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="安全代码">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 安全代码">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2008/04/07/T60_device/" class="post-title-link" itemprop="url">联想 IBM THINKPAD T60装windows 2003/2008红外线设备驱动解决</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2008-04-07 00:00:00" itemprop="dateCreated datePublished" datetime="2008-04-07T00:00:00+08:00">2008-04-07</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>Intel(R) 82801GBM (ICH7-M) LPC Interface Controller - 27B9（ACPI\IBM0071\4&amp;61F3B4B&amp;0）是Intel的红外线设备连接。</p>
-<p>win2003&#x2F;2008等服务器版本没有自带这个驱动。IBM T60等机器可以在主板里设置关闭INTERFACE，或者下载XP的红外线补丁（IBM Thinkpad Fast Infrared Port）就可以解决</p>
-<p>相关链接：<br><a target="_blank" rel="noopener" href="http://www-307.ibm.com/pc/support/site.wss/document.do?sitestyle=lenovo&lndocid=MIGR-4KUR6S">http://www-307.ibm.com/pc/support/site.wss/document.do?sitestyle=lenovo&amp;lndocid=MIGR-4KUR6S</a><br><a target="_blank" rel="noopener" href="http://www.versiontracker.com/dyn/moreinfo/win/36353">http://www.versiontracker.com/dyn/moreinfo/win/36353</a><br><a target="_blank" rel="noopener" href="http://www.soft32.com/download_181790.html">http://www.soft32.com/download_181790.html</a><br><a target="_blank" rel="noopener" href="http://forum.thinkpads.com/viewtopic.php?t=22787&sid=3a24f025ddb4d19d3e2d00e122c84957">http://forum.thinkpads.com/viewtopic.php?t=22787&amp;sid=3a24f025ddb4d19d3e2d00e122c84957</a></p>
-<p>具体解决办法：</p>
-<p>第一方法：BIOS设置：</p>
-<p>Config(设置)选项—Infrared(红外线接口)选项,设为禁用(Disable)<br>Config(设置)选项—Infrared Device(红外线设备)选项,设为禁用(Hidden)</p>
-<p>第二方法：下载红外补丁后按下列方法安装：<br>1、解压压缩包，并执行instirda.bat，然后重新启动计算机；<br>2、插入USB红外线设备（笔记本自带红外的看第3步）；<br>3、察看设备管理器，会发现网络适配器处多出一项带叹号的USB Device的项目；<br>4、选择此项目，更新驱动（可用WinXP下的驱动程序）；<br>5、运行reg\Infrared，导入注册表；<br>6、设备管理器中找到那个设备，更新驱动——不要搜索，我要自己选择安装的驱动——IBM thinkpad fast infrared port，然后下一步；<br>7、提示所需文件——找到sys里面的nscirda；<br>8、成功。</p>
-<p>已知问题：<br>1、安装过程中可能，系统提示个别文件无法找到，请手动定位到前面已解压的SYS文件夹处，确认继续。<br>2、使用红外设备后，提示缺文件也是要定位到SYS文件夹进行安装。<br>3、要是提示不能识别，可以重新更新驱动</p>
-<p>Windows server 2003（企业版）红外通讯支持程序（Fro 2003 红外驱动） 下载地址：</p>
-<p><a target="_blank" rel="noopener" href="http://www.irxon.com/download/ir2003.zip">http://www.irxon.com/download/ir2003.zip</a><br><a target="_blank" rel="noopener" href="http://www.divshare.com/download/4167497-cb3">http://www.divshare.com/download/4167497-cb3</a></p>
-<p>说明：Windows server 2003 （企业版）是一款面向企业用户的高端服务器操作系统，为了安全起见，它没有集成支持IrDA红外通讯的协议软件，所以目前所有的IrDA红外设备都不能在这个操作系统里使用。但是我们可以利用XP系统里的IrDA红外通讯协议软件来解决这个问题,安装时使用红外适配器在XP系统里的驱动程序，缺协议软件就到这个软件包里去找，安装完成后红外适配器就可以在Windows2003里正常工作了。</p>
-<p>PS: T60 装了2003 后一个驱动老是找不到，最后终于找到了正确答案。。：） share it</p>
 
       
     </div>
