@@ -122,7 +122,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">94</span>
+          <span class="site-state-item-count">95</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -174,6 +174,113 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://usmacd.com/2022/03/04/afl-fuzz1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="henices">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="安全代码">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 安全代码">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/03/04/afl-fuzz1/" class="post-title-link" itemprop="url">Dissecting American Fuzzy Lop A FuzzBench Evaluation 要点</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2022-03-04 10:14:45" itemprop="dateCreated datePublished" datetime="2022-03-04T10:14:45+08:00">2022-03-04</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>paper: <a target="_blank" rel="noopener" href="https://www.s3.eurecom.fr/docs/fuzzing22_fioraldi_report.pdf">https://www.s3.eurecom.fr/docs/fuzzing22_fioraldi_report.pdf</a></p>
+<h2 id="两个实验的结论-主要基于-FuzzBench"><a href="#两个实验的结论-主要基于-FuzzBench" class="headerlink" title="两个实验的结论 (主要基于 FuzzBench)"></a>两个实验的结论 (主要基于 FuzzBench)</h2><ul>
+<li>Our conclusion after this experiment is that AFL, and follow-ups fuzzers like AFL++, should provide an optionto disable hitcounts. AFL++ provides many different op-tions, and the users are suggested to run an instance of each variant when doing parallel fuzzing, a common use-case in real-world setups. The fact that in our experiments,hitcounts have shown a highly variadic behavior suggests that users should include a variant without hitcounts when doing parallel or ensemble fuzzing like OSS-Fuzz.</li>
+<li>The conclusion we can draw from this experiment is that it would be a mistake to underestimate the impact of the novelty search. In particular, researchers proposing new approaches that also modify this aspect should care-fully evaluate – in isolation – the benefit of a different mechanism to decide if an input is interesting, as AFL’s novelty search provides a strong baseline.</li>
+</ul>
+<h2 id="论文中计划要评估的-afl-fuzz-的一些技术"><a href="#论文中计划要评估的-afl-fuzz-的一些技术" class="headerlink" title="论文中计划要评估的 afl-fuzz 的一些技术"></a>论文中计划要评估的 afl-fuzz 的一些技术</h2><ul>
+<li><strong>Hitcounts</strong>: Hitcounts are adopted by other fuzzers to-day, but AFL was the first to introduce this concept.Despite its wide adoption, the impact of this optimization (overplain edge coverage) has never been measured in isolation on a large set of targets.</li>
+<li><strong>Novelty search vs. maximization of a fitness</strong>: While AFL considers every new discovered hitcount as interesting, both other early fuzzing solutions and more recent tools instead only consider testcases that maximize a given metricas interesting. For instance, VUZZER uses the sum of all the weights of the executed basic blocks.<ul>
+<li>In this experiment, we benchmark the AFL approach versusa fitness maximization and the combination of the two ap-proaches, as proposed by VUZZER</li>
+<li>We expect the novelty search to outperforms both of the competing algorithms,</li>
+</ul>
+</li>
+<li><strong>Corpus culling</strong>: The prioritization of the small and fast testcases in the AFL corpus selection algorithm trades speed with the fuzzing of more complex testcases that often corresponds to complex program states<ul>
+<li>In this experiment, we want to assess the difference in using the AFL corpus culling mechanism versus using the entire corpus.</li>
+<li>We expect faster growth in coverage over time and,potentially, more bugs triggered in the same time window</li>
+</ul>
+</li>
+<li><strong>Score calculation</strong>: The performance score used to cal-culate how many times to mutate and execute the input in the havoc, and splice stages are derived from many variables,mainly testcase size and execution time<ul>
+<li>In this experiment, we want to measure the delta between the AFL solution and the baseline, represented by a constantand a random score</li>
+</ul>
+</li>
+<li><strong>Corpus scheduling</strong>: The FIFO policy used by AFL is only one of the possible policies that a fuzzer can adopt to select the next testcase<ul>
+<li>Thus, we evaluate AFL versus a modified version that implements the baseline, random selection, and the opposite approach, a LIFO scheduler.</li>
+</ul>
+</li>
+<li><strong>Splicing as stage vs. splicing as mutation</strong>: Splicing refers to the operation that merges two different testcases into a new one<ul>
+<li>We modified the AFL codebase to implement splicing as a mutation operator to compare the two.</li>
+</ul>
+</li>
+<li><strong>Trimming</strong>: Trimming the testcases allows the fuzzer to reduce the size of the input files and consequently give priority to small inputs, under the assumptions that large inputs introduce a slowdown in the execution and the mutations would be less likely to modify an important portion of the binary structure<ul>
+<li>Despite the fact that this algorithm can bring the two important benefits described above, we argue that reducing the size of the testcases could lead to lose state coverage.Additionally, the trimming phase could become a bottleneck for slow targets</li>
+<li>Therefore, in our evaluation we plan tocompare the default version of AFL against a modified one,where we disabled trimming</li>
+</ul>
+</li>
+<li><strong>Collisions</strong>: As explained in section III-F the AFL ap-proach to instrument the source code of the target programs consists of assigning an identifier for each basic block at compile-time.<ul>
+<li>We want to benchmark this feature as the collision-free variant is simpler than the original implementation with pc-guard, raising the question why random identifiers are used in AFL</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1233,84 +1340,6 @@
 <p>其中 <code>-F</code> 参数 attach to frontmost application 不用指定 pid 或者包名，非常方便。</p>
 <h3 id="使用-mitmweb-查看报文"><a href="#使用-mitmweb-查看报文" class="headerlink" title="使用 mitmweb 查看报文"></a>使用 mitmweb 查看报文</h3><p>执行 <code>mitmweb -p 8080</code> 后可以用浏览器访问 <a target="_blank" rel="noopener" href="http://127.0.0.1:8081/">http://127.0.0.1:8081/</a> 查看报文，如果需要共享报文数据可以使用<br>mitmweb 界面提供的 save 功能，会保存成一个 flow 文件，后面使用 mitmweb 界面提供的 open 打开报文文件即可展示报文详细信息。</p>
 <h3 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h3><p><a target="_blank" rel="noopener" href="https://shunix.com/ssl-pinning/">https://shunix.com/ssl-pinning/</a></p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://usmacd.com/2021/08/23/a_change/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="henices">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="安全代码">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 安全代码">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/08/23/a_change/" class="post-title-link" itemprop="url">关于A股变盘的假期效应思考</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2021-08-23 11:47:40" itemprop="dateCreated datePublished" datetime="2021-08-23T11:47:40+08:00">2021-08-23</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>沉浮 A股多年，发现一个比较重要的规律，A 股变盘的时间节点大多发生在重大节假日期间，分别举例如下：</p>
-<ul>
-<li>「1」重大节日 （包括阳历和农历： 劳动节，国庆节，中秋节，端午节，过年 等）</li>
-<li>「2」周一&#x2F;周五</li>
-<li>「3」月初&#x2F;月末</li>
-</ul>
-<p>有人总结出 A 股变盘时间节点和农历的 24 节气相关，每个节气的时间间隔大致在 15 到 16 天左右，这条规律<br>其实和上面的 「1」 说法是一致的。</p>
-<p>思考其背后的原因，平时交易日都是连续的中间无间断，大家的交易思路和看法也比较容易连续一致。<br>每逢重大节日，或者月初月末，往往都是放假休息的时间，外加期间各种信息的输入量比平时大很多，这样容易有思维波动。重大节日后，主力一带节奏，容易对大家的思维进行强化，分歧转一致后，就真的变盘了。</p>
-<p>A股还有个月初，月末效应，月初赚钱，月末亏钱，比较奇怪，可能和基金经理的月初建仓和月末考核相关，这条规律几乎是对称的，如果月末没有大跌，月初基本就没有大赚效应。</p>
-<p>后面发现居然有一个股票技术分析流派叫季节派。（季节理论 Season Theory）</p>
 
       
     </div>

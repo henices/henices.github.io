@@ -122,7 +122,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">94</span>
+          <span class="site-state-item-count">95</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -174,6 +174,85 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://usmacd.com/2018/06/05/android_malware/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="henices">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="安全代码">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 安全代码">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2018/06/05/android_malware/" class="post-title-link" itemprop="url">关于恶意 Android 软件的那些事</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2018-06-05 00:00:00" itemprop="dateCreated datePublished" datetime="2018-06-05T00:00:00+08:00">2018-06-05</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>  近年来，Android手机平台上的恶意App呈不断上升的趋势，根据G DATA的数据仅2015年 第一季度发现了440267 种新的安卓恶意软件，也就是说，全球范围内每18秒就有一个新的恶意软件被发现。而天朝由于Google被封的原因，更是使恶意软件的传播更加猖獗。Google Play store 为了保证Android用户的安全做了大量的努力，和国内的一些第三方应用市场相比安全一些的。</p>
+<p>   重打包是Android App主流的传播方式之一，和以前单独的恶意App不同，重打包的软件 在合法正常的App中插入恶意代码，迷惑性极强，一般用户觉察不出什么不同。而重打包选取 的App也大多是非常流行的App，如愤怒的小鸟之类,这些都在地下市场隐秘的进行着。重打包 App然后上传第三方App应用市场，第三方市场把关不严格的话，这些插入了恶意代码的App 就可以下载安装了。</p>
+<p>  除了重打包短信，彩信也是Android 恶意App传播的主要方式，和以前QQ的消息尾巴类似发一些奇怪的话，后面加上短链接。短链接就是经过压缩的链接，没法一些看出原始的链接，点击后会自动下载恶意App。臭名昭著的“相册”就是通过这种方式传播，短信的内容是：小明，你还记得这些照片吗?  t.cn&#x2F;xyz1 注意这里的名字小明是正确的，相册偷取了大量的手机通讯录，按照通讯录的名字来发送，迷惑性大大增强了。</p>
+<p>   还有值得大家注意的是，一定要警惕申请设备管理员权限的App，设备管理员可以做很多高权限的事，比如修改设备密码，擦掉数据等操作，Android手机的勒索软件就是修改了设备的密码，禁止手机主人进入手机，而进行勒索的，最近这类软件的数目增加很快，大家一定要注意。</p>
+<p>  上面说了很多Android恶意软件相关的内容，也给大家一些安全建议,提高了安全意识也就不容易中招了。</p>
+<ol>
+<li>尽量在Google play 或者官方网站下载APP，不要第三方应用市场随意下载</li>
+<li>不要随意点击不明链接</li>
+<li>对于申请设备管理员的App，保持高度警惕</li>
+</ol>
+<p>  最后教大家一招急救，许多Android手机也有安全模式，安全模式只加载出厂应用，进入了安全模式，删除恶意软件，可能可以挽救你的手机 :)</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1168,94 +1247,6 @@
 </code></pre>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">boot_img_hdr</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="type">unsigned</span> <span class="type">char</span> magic[BOOT_MAGIC_SIZE];</span><br><span class="line">    <span class="type">unsigned</span> kernel_size;  <span class="comment">/* size in bytes */</span></span><br><span class="line">    <span class="type">unsigned</span> kernel_addr;  <span class="comment">/* physical load addr */</span></span><br><span class="line">    <span class="type">unsigned</span> ramdisk_size; <span class="comment">/* size in bytes */</span></span><br><span class="line">    <span class="type">unsigned</span> ramdisk_addr; <span class="comment">/* physical load addr */</span></span><br><span class="line">    <span class="type">unsigned</span> second_size;  <span class="comment">/* size in bytes */</span></span><br><span class="line">    <span class="type">unsigned</span> second_addr;  <span class="comment">/* physical load addr */</span></span><br><span class="line">    <span class="type">unsigned</span> tags_addr;    <span class="comment">/* physical addr for kernel tags */</span></span><br><span class="line">    <span class="type">unsigned</span> page_size;    <span class="comment">/* flash page size we assume */</span></span><br><span class="line">    <span class="type">unsigned</span> dt_size;      <span class="comment">/* device_tree in bytes */</span></span><br><span class="line">    <span class="type">unsigned</span> unused;    <span class="comment">/* future expansion: should be 0 */</span></span><br><span class="line">    <span class="type">unsigned</span> <span class="type">char</span> name[BOOT_NAME_SIZE]; <span class="comment">/* asciiz product name */</span></span><br><span class="line"></span><br><span class="line">    <span class="type">unsigned</span> <span class="type">char</span> cmdline[BOOT_ARGS_SIZE];</span><br><span class="line">    <span class="type">unsigned</span> id[<span class="number">8</span>]; <span class="comment">/* timestamp / checksum / sha1 / etc */</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 <h2 id="010editor-模板"><a href="#010editor-模板" class="headerlink" title="010editor 模板"></a>010editor 模板</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">define</span> BOOT_MAGIC_SIZE 8</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> BOOT_NAME_SIZE 16</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> BOOT_ARGS_SIZE 512</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">boot_img_hdr</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="type">char</span> magic[BOOT_MAGIC_SIZE];</span><br><span class="line">    uint kernel_size;  <span class="comment">/* size in bytes */</span></span><br><span class="line">    uint kernel_addr;  <span class="comment">/* physical load addr */</span></span><br><span class="line">    uint ramdisk_size; <span class="comment">/* size in bytes */</span></span><br><span class="line">    uint ramdisk_addr; <span class="comment">/* physical load addr */</span></span><br><span class="line">    uint second_size;  <span class="comment">/* size in bytes */</span></span><br><span class="line">    uint second_addr;  <span class="comment">/* physical load addr */</span></span><br><span class="line">    uint tags_addr;    <span class="comment">/* physical addr for kernel tags */</span></span><br><span class="line">    uint page_size;    <span class="comment">/* flash page size we assume */</span></span><br><span class="line">    uint dt_size;      <span class="comment">/* device_tree in bytes */</span></span><br><span class="line">    uint unused;    <span class="comment">/* future expansion: should be 0 */</span></span><br><span class="line">    ubyte name[BOOT_NAME_SIZE]; <span class="comment">/* asciiz product name */</span></span><br><span class="line">    </span><br><span class="line">    ubyte cmdline[BOOT_ARGS_SIZE];</span><br><span class="line">    uint id[<span class="number">8</span>]; <span class="comment">/* timestamp / checksum / sha1 / etc */</span></span><br><span class="line">&#125;BOOT_IMG_HDR;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">boot_hdr</span> &#123;</span></span><br><span class="line">    BOOT_IMG_HDR header;</span><br><span class="line">    ubyte unused[header.page_size - <span class="keyword">sizeof</span>(header)];</span><br><span class="line">&#125;HEADER;</span><br><span class="line"></span><br><span class="line">LittleEndian();</span><br><span class="line">HEADER header_section;</span><br><span class="line"></span><br><span class="line">local uint page_size = header_section.header.page_size;</span><br><span class="line">local uint kernel_size = header_section.header.kernel_size;</span><br><span class="line">local uint ramdisk_size = header_section.header.ramdisk_size;</span><br><span class="line">local uint second_size = header_section.header.second_size;</span><br><span class="line"></span><br><span class="line">Printf(<span class="string">&quot;page_size: %x\nkernel_size: %x\nramdisk_size: %x\nsecond_size: %x\n&quot;</span>, page_size, kernel_size, ramdisk_size, second_size);</span><br><span class="line"></span><br><span class="line">local uint n = (kernel_size + page_size - <span class="number">1</span>) / page_size;</span><br><span class="line">local uint m = (ramdisk_size + page_size - <span class="number">1</span>) / page_size; </span><br><span class="line">local uint o = (second_size + page_size - <span class="number">1</span>) / page_size;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">kernel</span> &#123;</span></span><br><span class="line">    ubyte kernel_data[kernel_size];</span><br><span class="line">    ubyte unused[n * page_size - kernel_size];</span><br><span class="line">&#125;KERNEL;</span><br><span class="line"></span><br><span class="line">KERNEL kernel_section;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">ramdisk</span> &#123;</span></span><br><span class="line">    ubyte ramdisk_data[ramdisk_size];</span><br><span class="line">    ubyte unused[m * page_size - ramdisk_size];</span><br><span class="line">&#125;RAMDISK;</span><br><span class="line"></span><br><span class="line">RAMDISK ramdisk_section;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">second</span> &#123;</span></span><br><span class="line">    ubyte second_data[second_size];</span><br><span class="line">    ubyte unused[o * page_size - second_size];</span><br><span class="line"></span><br><span class="line">&#125;SECOND;</span><br><span class="line"></span><br><span class="line">SECOND second_section;</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://usmacd.com/2015/03/24/ubuntu_cuda_hashcat/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="henices">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="安全代码">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 安全代码">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2015/03/24/ubuntu_cuda_hashcat/" class="post-title-link" itemprop="url">在Ubuntu 14.04 上安装 oclHashcat 的方法 (cuda)</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2015-03-24 00:00:00" itemprop="dateCreated datePublished" datetime="2015-03-24T00:00:00+08:00">2015-03-24</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>首先需要下载正确的驱动和软件，下载的软件版本一定要正确。下面的两个链接地址是我实验成功的版本。</p>
-<p>N卡驱动 ：<a target="_blank" rel="noopener" href="http://us.download.nvidia.com/XFree86/Linux-x86_64/346.47/NVIDIA-Linux-x86_64-346.47.run">http://us.download.nvidia.com/XFree86/Linux-x86_64/346.47/NVIDIA-Linux-x86_64-346.47.run</a><br>oclHashcat: <a target="_blank" rel="noopener" href="https://hashcat.net/files/cudaHashcat-1.35.7z">https://hashcat.net/files/cudaHashcat-1.35.7z</a></p>
-<p>关键是需要ForceWare 346.x或者更新的版本，ForceWare驱动是nVIDIA 系列显卡最新官方版本名称, 估计和AMD的催化剂类似。如果安装驱动的版本不对运行oclhashcat的时候会报 ERROR: cuModuleLoad() 209 错误，排查了较长时间发现是驱动版本不对，340.x的驱动无法正常工作，一定需要 346.x 的驱动。</p>
-<h2 id="基本要求"><a href="#基本要求" class="headerlink" title="基本要求"></a>基本要求</h2><p><a target="_blank" rel="noopener" href="http://us.download.nvidia.com/XFree86/Linux-x86_64/346.47/README/index.html">http://us.download.nvidia.com/XFree86/Linux-x86_64/346.47/README/index.html</a></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">binutils                  2.9.5</span><br><span class="line">GNU make                  3.77</span><br><span class="line">gcc                       2.91.66</span><br><span class="line">kernel                    2.6.18* and newer</span><br><span class="line">XFree86                   4.0.1 and newer</span><br><span class="line">X.Org                     1.0, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9, 1.10, 1.11, 1.12, 1.13, 1.14, 1.15, 1.16, 1.17</span><br><span class="line">Kernel modutils           2.1.121 and newer</span><br><span class="line">glibc                     2.0</span><br></pre></td></tr></table></figure>
-
-<h2 id="一些准备工作"><a href="#一些准备工作" class="headerlink" title="一些准备工作"></a>一些准备工作</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install build-essential</span><br><span class="line">sudo apt-get install linux-image-extra-virtual</span><br></pre></td></tr></table></figure>
-
-<p>卸载原有的nvidia的驱动，不然会发生冲突：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ sudo apt-get remove nvidia* &amp;&amp; sudo apt-get autoremove</span><br><span class="line">$ sudo apt-get --purge remove xserver-xorg-video-nouveau</span><br></pre></td></tr></table></figure>
-
-<p>禁用nouveau  (这个是开源的N卡驱动)</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">$ sudo vi /etc/modprobe.d/blacklist-nouveau.conf</span><br><span class="line"></span><br><span class="line">blacklist nouveau</span><br><span class="line">blacklist lbm-nouveau</span><br><span class="line">options nouveau modeset=0</span><br><span class="line"><span class="built_in">alias</span> nouveau off</span><br><span class="line"><span class="built_in">alias</span> lbm-nouveau off</span><br><span class="line"></span><br><span class="line">$ <span class="built_in">echo</span> options nouveau modeset=0 | sudo <span class="built_in">tee</span> -a /etc/modprobe.d/nouveau-kms.conf</span><br><span class="line">$ sudo update-initramfs -u</span><br><span class="line">$ sudo reboot</span><br></pre></td></tr></table></figure>
-
-<p>停用X，不然安装过程会出错。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo service lightdm stop</span><br></pre></td></tr></table></figure>
-
-<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">chmod</span> +x ./NVIDIA-Linux-x86_64-346.47.run</span><br><span class="line">$ sudo ./NVIDIA-Linux-x86_64-346.47.run</span><br><span class="line">$ sudo reboot</span><br></pre></td></tr></table></figure>
-
-<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><p><a target="_blank" rel="noopener" href="https://hashcat.net/oclhashcat/">https://hashcat.net/oclhashcat/</a><br><a target="_blank" rel="noopener" href="http://www.nvidia.com/object/unix.html">http://www.nvidia.com/object/unix.html</a><br><a target="_blank" rel="noopener" href="http://ubuntuhandbook.org/index.php/2015/01/install-nvidia-346-35-ubuntu-1404/">http://ubuntuhandbook.org/index.php/2015/01/install-nvidia-346-35-ubuntu-1404/</a><br><a target="_blank" rel="noopener" href="http://tleyden.github.io/blog/2014/10/25/cuda-6-dot-5-on-aws-gpu-instance-running-ubuntu-14-dot-04/">http://tleyden.github.io/blog/2014/10/25/cuda-6-dot-5-on-aws-gpu-instance-running-ubuntu-14-dot-04/</a></p>
 
       
     </div>

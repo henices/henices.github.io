@@ -6,7 +6,7 @@
   <link href="http://usmacd.com/atom.xml" rel="self"/>
   
   <link href="http://usmacd.com/"/>
-  <updated>2023-05-22T16:00:00.000Z</updated>
+  <updated>2023-06-19T16:00:00.000Z</updated>
   <id>http://usmacd.com/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>对话logseq联合创始人，看硅谷大佬的传奇投资 总结</title>
+    <link href="http://usmacd.com/2023/06/20/logseq_interview/"/>
+    <id>http://usmacd.com/2023/06/20/logseq_interview/</id>
+    <published>2023-06-19T16:00:00.000Z</published>
+    <updated>2023-06-19T16:00:00.000Z</updated>
+    
+    <content type="html"><![CDATA[<p><a href="https://pca.st/x398eeq0">https://pca.st/x398eeq0</a>  </p><ol><li>技术招聘时，有 side project 的优先，认为有 side project 的技术人员大多有自己独特的想法，自驱力也较强。</li><li>强调技术热情和学习能力，小众语言会的人不多，但是语言不是主要问题。对于对新技术充满热情和好奇心的技术人来说学习就可以了。</li><li>自由开放的团队文化，大都是技术人员，相互之间比较平等，和社区沟通交流紧密。没有明确的 deadline，但大家都比较努力，工作任务分配以兴趣自领为主指派为辅。</li><li>没有太多的营销，产品定位和路线也是逐渐明确，最开始是从秦天生的一个 side project 慢慢发展起来。也没有定量分析过产品用户爆炸性增长的原因，只有模糊的感觉，Logseq 内置 PDF 阅读和标注感觉是一个突破点。</li><li>Logseq 的投资人非常豪华,我查了一下有 Stripe 首席执行官 Patrick Collison、GitHub 前首席执行官 Nat Friedman、Shopify 创始人 Tobias Lütke、A16Z 总经理 Sriram Krishnan等人，更神奇的是他们大多也是 Logseq 的用户。</li><li>Logseq 团队关于远程工作的一些实践，志远认为在一个国际团队中远程工作需要克服时差问题，需要讨论问题的时候比较麻烦。解决的方式是写比较详细的 issue 复现文档，基本是 step by step 的。讨论想法多录制一些演示视频，有问题就直接给对方发消息不能马上回复也问题不大，很多事情没有想象中的重要。</li><li>Logseq 团队协作的主要工具，代码问题和 issue 管理使用 Github，问题讨论使用 Discord + 论坛 （Discord 处理即时反馈，论坛主要用来较长时间的讨论）， 团队内部的通讯工具使用 Slack。</li></ol><p>听完这期博客，我感觉陈志远是非常纯粹的技术人员，谦逊内敛，对技术充满热爱，喜欢用技术解决现实生活中的问题。坚持自己的产品定位，不浮躁不傲娇，长期认真地完善产品功能，不为短期的生存而感到焦虑，这或许就是小而美的团队的优势吧。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;&lt;a href=&quot;https://pca.st/x398eeq0&quot;&gt;https://pca.st/x398eeq0&lt;/a&gt;  &lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;技术招聘时，有 side project 的优先，认为有 side project 的技术人员大多有自己独特的想法，自驱</summary>
+      
+    
+    
+    
+    
+    <category term="Programming" scheme="http://usmacd.com/tags/Programming/"/>
+    
+  </entry>
   
   <entry>
     <title>认知被 AI 暴击的瞬间</title>
@@ -457,28 +481,6 @@
     
     
     <category term="Software" scheme="http://usmacd.com/tags/Software/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Dissecting American Fuzzy Lop A FuzzBench Evaluation 要点</title>
-    <link href="http://usmacd.com/2022/03/04/afl-fuzz1/"/>
-    <id>http://usmacd.com/2022/03/04/afl-fuzz1/</id>
-    <published>2022-03-04T02:14:45.775Z</published>
-    <updated>2022-03-04T02:14:45.775Z</updated>
-    
-    <content type="html"><![CDATA[<p>paper: <a href="https://www.s3.eurecom.fr/docs/fuzzing22_fioraldi_report.pdf">https://www.s3.eurecom.fr/docs/fuzzing22_fioraldi_report.pdf</a></p><h2 id="两个实验的结论-主要基于-FuzzBench"><a href="#两个实验的结论-主要基于-FuzzBench" class="headerlink" title="两个实验的结论 (主要基于 FuzzBench)"></a>两个实验的结论 (主要基于 FuzzBench)</h2><ul><li>Our conclusion after this experiment is that AFL, and follow-ups fuzzers like AFL++, should provide an optionto disable hitcounts. AFL++ provides many different op-tions, and the users are suggested to run an instance of each variant when doing parallel fuzzing, a common use-case in real-world setups. The fact that in our experiments,hitcounts have shown a highly variadic behavior suggests that users should include a variant without hitcounts when doing parallel or ensemble fuzzing like OSS-Fuzz.</li><li>The conclusion we can draw from this experiment is that it would be a mistake to underestimate the impact of the novelty search. In particular, researchers proposing new approaches that also modify this aspect should care-fully evaluate – in isolation – the benefit of a different mechanism to decide if an input is interesting, as AFL’s novelty search provides a strong baseline.</li></ul><h2 id="论文中计划要评估的-afl-fuzz-的一些技术"><a href="#论文中计划要评估的-afl-fuzz-的一些技术" class="headerlink" title="论文中计划要评估的 afl-fuzz 的一些技术"></a>论文中计划要评估的 afl-fuzz 的一些技术</h2><ul><li><strong>Hitcounts</strong>: Hitcounts are adopted by other fuzzers to-day, but AFL was the first to introduce this concept.Despite its wide adoption, the impact of this optimization (overplain edge coverage) has never been measured in isolation on a large set of targets.</li><li><strong>Novelty search vs. maximization of a fitness</strong>: While AFL considers every new discovered hitcount as interesting, both other early fuzzing solutions and more recent tools instead only consider testcases that maximize a given metricas interesting. For instance, VUZZER uses the sum of all the weights of the executed basic blocks.<ul><li>In this experiment, we benchmark the AFL approach versusa fitness maximization and the combination of the two ap-proaches, as proposed by VUZZER</li><li>We expect the novelty search to outperforms both of the competing algorithms,</li></ul></li><li><strong>Corpus culling</strong>: The prioritization of the small and fast testcases in the AFL corpus selection algorithm trades speed with the fuzzing of more complex testcases that often corresponds to complex program states<ul><li>In this experiment, we want to assess the difference in using the AFL corpus culling mechanism versus using the entire corpus.</li><li>We expect faster growth in coverage over time and,potentially, more bugs triggered in the same time window</li></ul></li><li><strong>Score calculation</strong>: The performance score used to cal-culate how many times to mutate and execute the input in the havoc, and splice stages are derived from many variables,mainly testcase size and execution time<ul><li>In this experiment, we want to measure the delta between the AFL solution and the baseline, represented by a constantand a random score</li></ul></li><li><strong>Corpus scheduling</strong>: The FIFO policy used by AFL is only one of the possible policies that a fuzzer can adopt to select the next testcase<ul><li>Thus, we evaluate AFL versus a modified version that implements the baseline, random selection, and the opposite approach, a LIFO scheduler.</li></ul></li><li><strong>Splicing as stage vs. splicing as mutation</strong>: Splicing refers to the operation that merges two different testcases into a new one<ul><li>We modified the AFL codebase to implement splicing as a mutation operator to compare the two.</li></ul></li><li><strong>Trimming</strong>: Trimming the testcases allows the fuzzer to reduce the size of the input files and consequently give priority to small inputs, under the assumptions that large inputs introduce a slowdown in the execution and the mutations would be less likely to modify an important portion of the binary structure<ul><li>Despite the fact that this algorithm can bring the two important benefits described above, we argue that reducing the size of the testcases could lead to lose state coverage.Additionally, the trimming phase could become a bottleneck for slow targets</li><li>Therefore, in our evaluation we plan tocompare the default version of AFL against a modified one,where we disabled trimming</li></ul></li><li><strong>Collisions</strong>: As explained in section III-F the AFL ap-proach to instrument the source code of the target programs consists of assigning an identifier for each basic block at compile-time.<ul><li>We want to benchmark this feature as the collision-free variant is simpler than the original implementation with pc-guard, raising the question why random identifiers are used in AFL</li></ul></li></ul>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;paper: &lt;a href=&quot;https://www.s3.eurecom.fr/docs/fuzzing22_fioraldi_report.pdf&quot;&gt;https://www.s3.eurecom.fr/docs/fuzzing22_fioraldi_report.pd</summary>
-      
-    
-    
-    
-    
-    <category term="Security" scheme="http://usmacd.com/tags/Security/"/>
     
   </entry>
   
