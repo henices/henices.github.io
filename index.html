@@ -495,14 +495,14 @@
 <p><a target="_blank" rel="noopener" href="https://www.gnu.org/software/global/download.html">https://www.gnu.org/software/global/download.html</a> 中说明了源码编译方法：</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">% sh reconf.sh </span><br><span class="line">% ./configure</span><br><span class="line">% make</span><br></pre></td></tr></table></figure>
 
-<p>Fedora&#x2F;Debian 等系统可以使用仓库直接安装</p>
+<p>Fedora&#x2F;Debian 等系统可以使用仓库直接安装，下面以 Fedora Linux 为例</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo dnf install global-ctags global cscope</span><br></pre></td></tr></table></figure>
 
 <p>如果不安装 <code>global-ctags</code> 在 Fedora 下可能会报 <code>Cannot enable custom plug-in parser for GNU GLOBAL</code> 的错误。</p>
 <p>gtags-cscope 由 global 安装包提供不用另外安装了。</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">sudo dnf whatprovides gtags-cscope</span><br><span class="line"></span><br><span class="line">global-6.6.5-7.fc37.x86_64 : Source code tag system</span><br><span class="line">仓库        ：@System</span><br><span class="line">匹配来源：</span><br><span class="line">文件名    ：/usr/bin/gtags-cscope</span><br><span class="line"></span><br><span class="line">global-6.6.5-7.fc37.x86_64 : Source code tag system</span><br><span class="line">仓库        ：fedora</span><br><span class="line">匹配来源：</span><br><span class="line">文件名    ：/usr/bin/gtags-cscope</span><br></pre></td></tr></table></figure>
 
-
+<p>macOS 下可以使用 <code>brew install global</code> 安装，参见 <a target="_blank" rel="noopener" href="https://www.gnu.org/software/global/download.html">https://www.gnu.org/software/global/download.html</a></p>
 <h2 id="☆-3-GNU-global-和-cscope-vim-集成"><a href="#☆-3-GNU-global-和-cscope-vim-集成" class="headerlink" title="☆ 3.  GNU global 和 cscope, vim 集成"></a>☆ 3.  GNU global 和 cscope, vim 集成</h2><p>vim 的 cscope 支持可能需要重新编译 vim，可以通过下面的命令查询。</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">vim --version | grep cscope</span><br><span class="line">+cscope            +localmap          +ruby/dyn          +wildignore</span><br></pre></td></tr></table></figure>
 
