@@ -122,7 +122,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">95</span>
+          <span class="site-state-item-count">96</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -174,6 +174,154 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://usmacd.com/2023/07/20/vim_gtags_leaderf/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="henices">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="安全代码">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 安全代码">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2023/07/20/vim_gtags_leaderf/" class="post-title-link" itemprop="url">在 vim 中使用 LeaderF 和 gtags</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2023-07-20 00:00:00" itemprop="dateCreated datePublished" datetime="2023-07-20T00:00:00+08:00">2023-07-20</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="☆-缘由和一些-vim-历史"><a href="#☆-缘由和一些-vim-历史" class="headerlink" title="☆ 缘由和一些 vim 历史"></a>☆ 缘由和一些 vim 历史</h2><p>前些年 vim 没有子窗口的概念，日本的一个 vim 插件作者为了解决这个问题生撸了一套流程，当时 unite.vim 横空出世惊艳了我一把。后面随着技术发展，neovim 和 vim 先后引入了 floating window ，这才使得情况变得好了一点。</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/vim/vim/blob/master/runtime/doc/popup.txt">https://github.com/vim/vim/blob/master/runtime/doc/popup.txt</a><br><a target="_blank" rel="noopener" href="https://neovim.io/doc/user/api.html#api-floatwin">https://neovim.io/doc/user/api.html#api-floatwin</a></p>
+<p>得益于新技术，在 vim 中使用 LeaderF 插件的交互体验上了一个台阶。</p>
+<p><img src="https://raw.githubusercontent.com/Yggdroot/Images/master/leaderf/leaderf_popup.gif" alt="Demo"></p>
+<p>neovim 从 0.9 版本开始放弃对 cscope 的支持 <a target="_blank" rel="noopener" href="https://twitter.com/Neovim/status/1580933880579641344">https://twitter.com/Neovim/status/1580933880579641344</a></p>
+<p>这给我阅读源码造成了一些问题，虽然 vim 仍然可以使用 cscope，但 vim 的启动速度不如 nvim 快，所以我开始寻找替代方案。同时，我发现 denite.nvim，unite.vim，作者也不怎么维护了，一想似乎是很多年没有维护 vim 配置了。</p>
+<p>在网络上搜索在 neovim 上阅读源码的方法，无意发现有人提到用 LeaderF 替代 tagbar，于是有了现在的这篇文章。</p>
+<h2 id="☆-安装vim-插件-LeaderF"><a href="#☆-安装vim-插件-LeaderF" class="headerlink" title="☆ 安装vim 插件 LeaderF"></a>☆ 安装vim 插件 LeaderF</h2><p>插件的仓库地址：<a target="_blank" rel="noopener" href="https://github.com/Yggdroot/LeaderF/tree/master">https://github.com/Yggdroot/LeaderF/tree/master</a></p>
+<p>使用 Vundle 安装，在 .vimrc 中添加下面一行</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Plug &#x27;Yggdroot/LeaderF&#x27;, &#123; &#x27;do&#x27;: &#x27;:LeaderfInstallCExtension&#x27; &#125;</span><br></pre></td></tr></table></figure>
+
+<p>在 vim 中执行下面命令，即可成功安装，如果遇到网络问题，自己挂上线路即可。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">：so %</span><br><span class="line">:PlugInstall</span><br></pre></td></tr></table></figure>
+
+<h2 id="☆-LeaderF-配置"><a href="#☆-LeaderF-配置" class="headerlink" title="☆ LeaderF 配置"></a>☆ LeaderF 配置</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">let g:Lf_WorkingDirectoryMode = <span class="string">&#x27;Ac&#x27;</span></span><br><span class="line">let g:Lf_RootMarkers = [<span class="string">&#x27;.git&#x27;</span>, <span class="string">&#x27;.svn&#x27;</span>, <span class="string">&#x27;.hg&#x27;</span>, <span class="string">&#x27;.project&#x27;</span>, <span class="string">&#x27;.root&#x27;</span>]</span><br><span class="line">let g:Lf_DefaultExternalTool=<span class="string">&#x27;rg&#x27;</span></span><br><span class="line">let g:Lf_WindowPosition = <span class="string">&#x27;popup&#x27;</span></span><br><span class="line"></span><br><span class="line">let g:Lf_UseCache = <span class="number">0</span></span><br><span class="line">let g:Lf_PreviewInPopup = <span class="number">1</span></span><br><span class="line"><span class="string">&quot;let g:Lf_CacheDirectory = s:cachedir</span></span><br><span class="line"><span class="string">let g:Lf_ShowHidden = 1  &quot;</span>show hidden files</span><br><span class="line"></span><br><span class="line"><span class="string">&quot; preview or not</span></span><br><span class="line"><span class="string">let g:Lf_PreviewResult = &#123;&#x27;Function&#x27;: 0, &#x27;BufTag&#x27;: 0 &#125;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>g:Lf_WorkingDirectoryMode &#x3D; ‘AF’ 设置工作目录，如果没有找到 RootMarker 以当前文件所在目录作为工作目录</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">g:Lf_WorkingDirectoryMode                       *g:Lf_WorkingDirectoryMode*</span><br><span class="line">    This option customizes LeaderF&#x27;s working directory.</span><br><span class="line">    e.g., &gt;</span><br><span class="line">    let g:Lf_WorkingDirectoryMode = &#x27;Ac&#x27;</span><br><span class="line">&lt;</span><br><span class="line">    c - the directory of the current working directory.(default)</span><br><span class="line">    a - the nearest ancestor of current working directory that contains one of</span><br><span class="line">        directories or files defined in |g:Lf_RootMarkers|. Fall back to &#x27;c&#x27; if</span><br><span class="line">        no such ancestor directory found.</span><br><span class="line">    A - the nearest ancestor of current file that contains one of directories</span><br><span class="line">        or files defined in |g:Lf_RootMarkers|. Fall back to &#x27;c&#x27; if no such</span><br><span class="line">        ancestor directory found.</span><br><span class="line">    f - the directory of the current file.</span><br><span class="line">    F - if the current working directory is not the direct ancestor of current</span><br><span class="line">        file, use the directory of the current file as LeaderF&#x27;s working</span><br><span class="line">        directory, otherwise, same as &#x27;c&#x27;.</span><br><span class="line">    Note: if &quot;f&quot;, &quot;F&quot; is included with &quot;a&quot; or &quot;A&quot;, use the behavior of &quot;f&quot; or</span><br><span class="line">    &quot;F&quot;(as a fallback) when a root can&#x27;t be found.</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>g:Lf_DefaultExternalTool  索引文件使用的外部工具，可选值为 ‘rg’, ‘pt’, ‘ag’, ‘find’，作者推荐使用 <a target="_blank" rel="noopener" href="https://github.com/BurntSushi/ripgrep">rg</a></li>
+<li>g:Lf_UseCache 列文件时是否使用缓存，默认值为 1，设置为 0 不使用缓存</li>
+<li>g:Lf_WindowPosition，LeaderF 窗口的位置，可选值有 top, bottom, left, right, popup,fullscreen，默认值为 bottom</li>
+<li>g:Lf_PreviewInPopup 设置是否在 LeaderF 的 popup 窗口显示预览, 默认值为 0</li>
+<li>g:Lf_ShowHidden 是否显示隐藏文件和目录，默认值为 0 不显示隐藏文件</li>
+<li>g:Lf_PreviewResult 设置需要显示预览的内容，默认值为全 1<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> <span class="variable">g:Lf_PreviewResult</span> = &#123;</span><br><span class="line">        \ <span class="string">&#x27;File&#x27;</span>: <span class="number">1</span>,</span><br><span class="line">        \ <span class="string">&#x27;Buffer&#x27;</span>: <span class="number">1</span>,</span><br><span class="line">        \ <span class="string">&#x27;Mru&#x27;</span>: <span class="number">1</span>,</span><br><span class="line">        \ <span class="string">&#x27;Tag&#x27;</span>: <span class="number">1</span>,</span><br><span class="line">        \ <span class="string">&#x27;BufTag&#x27;</span>: <span class="number">1</span>,</span><br><span class="line">        \ <span class="string">&#x27;Function&#x27;</span>: <span class="number">1</span>,</span><br><span class="line">        \ <span class="string">&#x27;Line&#x27;</span>: <span class="number">1</span>,</span><br><span class="line">        \ <span class="string">&#x27;Colorscheme&#x27;</span>: <span class="number">1</span>,</span><br><span class="line">        \ <span class="string">&#x27;Rg&#x27;</span>: <span class="number">1</span>,</span><br><span class="line">        \ <span class="string">&#x27;Gtags&#x27;</span>: <span class="number">1</span></span><br><span class="line">        \&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<p>配置好了 LeaderF，在 vim&#x2F;neovim 的命令行输入  <code>:Leaderf</code>  tab 就可以看到相关的命令了，如果忘记了具体的命令也没有关系，使用 <code>LeaderfSelf</code> 即可列出所有的 Leaderf 命令。如何想查看具体命令的使用方法，在命令窗口输入 <code>:Leaderf -h</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">subcommands:</span><br><span class="line"></span><br><span class="line">  &#123;file,tag,function,mru,searchHistory,cmdHistory,help,line,colorscheme,gtags,</span><br><span class="line">      self,bufTag,buffer,rg,filetype,command,window,quickfix,loclist,jumps&#125;</span><br><span class="line">    file                search files</span><br><span class="line">    tag                 navigate tags using the tags file</span><br><span class="line">    function            navigate functions or methods in the buffer</span><br><span class="line">    mru                 search most recently used files</span><br><span class="line">    searchHistory       execute the search command in the history</span><br><span class="line">    cmdHistory          execute the command in the history</span><br><span class="line">    help                navigate the help tags</span><br><span class="line">    line                search a line in the buffer</span><br><span class="line">    colorscheme         switch between colorschemes</span><br><span class="line">    gtags               navigate tags using the gtags</span><br><span class="line">    self                execute the commands of itself</span><br><span class="line">    bufTag              navigate tags in the buffer</span><br><span class="line">    buffer              search buffers</span><br><span class="line">    rg                  grep using rg</span><br><span class="line">    filetype            navigate the filetype</span><br><span class="line">    command             execute built-in/user-defined Ex commands.</span><br><span class="line">    window              search windows.</span><br><span class="line">    quickfix            navigate the quickfix.</span><br><span class="line">    loclist             navigate the location list.</span><br></pre></td></tr></table></figure>
+
+<p>好了，我可以放弃 fzf.vim, ctrp.vim, tagbar, unite.vim, denite.vim 等一系列 vim 插件了。 在日常使用中，每次都输入那么长的命令不太方便，我们可以配置以下容易记忆的快捷键。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">noremap &lt;leader&gt;fs :LeaderfSelf&lt;cr&gt;</span><br><span class="line">noremap &lt;leader&gt;fm :LeaderfMru&lt;cr&gt;</span><br><span class="line">noremap &lt;leader&gt;ff :LeaderfFunction&lt;cr&gt;</span><br><span class="line">noremap &lt;leader&gt;fb :LeaderfBuffer&lt;cr&gt;</span><br><span class="line">noremap &lt;leader&gt;ft :LeaderfBufTag&lt;cr&gt;</span><br><span class="line">noremap &lt;leader&gt;fl :LeaderfLine&lt;cr&gt;</span><br><span class="line">noremap &lt;leader&gt;fw :LeaderfWindow&lt;cr&gt;</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="运行-LeaderF-之后的操作"><a href="#运行-LeaderF-之后的操作" class="headerlink" title="运行 LeaderF 之后的操作"></a>运行 LeaderF 之后的操作</h3><p>在执行 Leaderf 命令弹出的界面后，需要使用特定的快捷键进行操作，这些快捷键可以使用 <code>help leaderf-prompt</code> 进行查看。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">Once LeaderF is launched:                       *prompt* *leaderf-prompt*</span><br><span class="line">    &lt;C-C&gt;, &lt;ESC&gt; : quit from LeaderF.</span><br><span class="line">    &lt;C-R&gt; : switch between fuzzy search mode and regex mode.</span><br><span class="line">    &lt;C-F&gt; : switch between full path search mode and name only search mode.</span><br><span class="line">    &lt;Tab&gt; : switch to normal mode.</span><br><span class="line">    &lt;C-V&gt;, &lt;S-Insert&gt; : paste from clipboard.</span><br><span class="line">    &lt;C-U&gt; : clear the prompt.</span><br><span class="line">    &lt;C-W&gt; : delete the word before the cursor in the prompt.</span><br><span class="line">    &lt;C-J&gt;, &lt;C-K&gt; : navigate the result list.</span><br><span class="line">    &lt;Up&gt;, &lt;Down&gt; : recall last/next input pattern from history.</span><br><span class="line">    &lt;2-LeftMouse&gt; or &lt;CR&gt; : open the file under cursor or selected(when</span><br><span class="line">                            multiple files are selected).</span><br><span class="line">    &lt;C-X&gt; : open in horizontal split window.</span><br><span class="line">    &lt;C-]&gt; : open in vertical split window.</span><br><span class="line">    &lt;C-T&gt; : open in new tabpage.</span><br><span class="line">    &lt;F5&gt;  : refresh the cache.</span><br><span class="line">    &lt;C-LeftMouse&gt; or &lt;C-S&gt; : select multiple files.</span><br><span class="line">    &lt;S-LeftMouse&gt; : select consecutive multiple files.</span><br><span class="line">    &lt;C-A&gt; : select all files.</span><br><span class="line">    &lt;C-L&gt; : clear all selections.</span><br><span class="line">    &lt;BS&gt;  : delete the preceding character in the prompt.</span><br><span class="line">    &lt;Del&gt; : delete the current character in the prompt.</span><br><span class="line">    &lt;Home&gt;: move the cursor to the begin of the prompt.</span><br><span class="line">    &lt;End&gt; : move the cursor to the end of the prompt.</span><br><span class="line">    &lt;Left&gt;: move the cursor one character to the left.</span><br><span class="line">    &lt;Right&gt; : move the cursor one character to the right.</span><br><span class="line">    &lt;C-P&gt; : preview the result.</span><br><span class="line">    &lt;C-Up&gt; : scroll up in the popup preview window.</span><br><span class="line">    &lt;C-Down&gt; : scroll down in the popup preview window.</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>tab，切换输入模式和 normal 模式，进入 normal 模式后可以使用 <code>j</code> 和 <code>k</code> 上下移动光标来查看文件。 </li>
+<li>q  normal 模式中，退出 LeaderF</li>
+</ul>
+<p>在输入模式下，可以使用下面的快捷键进行分屏显示。</p>
+<ul>
+<li>ctrl + x  横向分割</li>
+<li>ctrl + ]   竖向分割</li>
+<li>ctrl + T  tab 分割</li>
+</ul>
+<h2 id="☆-LeaderF-gtags-的配置"><a href="#☆-LeaderF-gtags-的配置" class="headerlink" title="☆ LeaderF + gtags 的配置"></a>☆ LeaderF + gtags 的配置</h2><p>gtags 和 LeaderF 配置起来使用，实在是很不错。首先要配置好 gtags，关于 global 的安装详见 <a target="_blank" rel="noopener" href="https://www.usmacd.com/2023/03/02/gtags-cscope/">GNU Global 的使用</a>，这里就不再详细说了，gtags 的配置添加下面两行即可。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">let $GTAGSLABEL=<span class="string">&#x27;native-pygments&#x27;</span></span><br><span class="line">let $GTAGSCONF=<span class="string">&#x27;/usr/local/share/gtags/gtags.conf&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>配置好系统 gtags，global ，gtags.conf 的正确路径。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">let g:Lf_Global = <span class="string">&#x27;/usr/local/bin/global&#x27;</span></span><br><span class="line">let g:Lf_Gtags = <span class="string">&#x27;/usr/local/bin/gtags&#x27;</span></span><br><span class="line">let g:Lf_Gtagsconf = <span class="string">&#x27;/usr/local/share/gtags/gtags.conf&#x27;</span></span><br><span class="line">let g:Lf_Gtagslabel = <span class="string">&#x27;native-pygments&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>下面两行是配置gtags 自动生成 tags 文件，主要是三个文件 <code>GPATH</code> , <code>GRTAGS</code>  <code>GTAGS</code></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">let g:Lf_GtagsAutoGenerate = <span class="number">1</span></span><br><span class="line">let g:Lf_GtagsAutoUpdate = <span class="number">1</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>g:Lf_GtagsAutoGenerate  设置成 1 并且在 g:Lf_RootMarkers 定义的目录中，gtags 会自动生成</li>
+<li>g:Lf_GtagsAutoUpdate 是否自动更新 gtags，如果设置成 0 ，需要先执行 <code>Leaderf gtags --update</code> 更新 gtags 文件</li>
+</ul>
+<p>tags 文件生成的目录和 <code>g:Lf_CacheDirectory</code> 的配置相关， g:Lf_CacheDirectory 用于设置缓存文件目录，默认的目录是 $HOME (Windows 上会有变化)使用 <code>_</code> 替换了 <code>/</code> 。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">ls</span> ~/.LfCache/gtags/_home_henices_.vim </span><br><span class="line">GPATH  GRTAGS  GTAGS</span><br></pre></td></tr></table></figure>
+
+<p>完成了上面的配置后，我们就可以正常使用 LeaderF 来对 gtags 生成的 tags 文件进行浏览了，在命令行使用 <code>:Leaderf gtags -h</code> 可以看到详细的命令。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">:Leaderf gtags -h</span><br><span class="line">usage:</span><br><span class="line">Leaderf[!] gtags [-h] [--remove] [--recall]</span><br><span class="line">Leaderf[!] gtags --update [--gtagsconf &lt;FILE&gt;] [--gtagslabel &lt;LABEL&gt;] [--accept-dotfiles]</span><br><span class="line">                 [--skip-unreadable] [--skip-symlink [&lt;TYPE&gt;]] [--gtagslibpath &lt;PATH&gt; [&lt;PATH&gt; ...]]</span><br><span class="line">Leaderf[!] gtags [--current-buffer | --all-buffers | --all] [--result &lt;FORMAT&gt;] [COMMON_OPTIONS]</span><br><span class="line">Leaderf[!] gtags -d &lt;PATTERN&gt; [--auto-jump [&lt;TYPE&gt;]] [-i] [--literal] [--path-style &lt;FORMAT&gt;] [-S &lt;DIR&gt;]</span><br><span class="line">                 [--append] [--match-path] [--gtagsconf &lt;FILE&gt;] [--gtagslabel &lt;LABEL&gt;] [COMMON_OPTIONS]</span><br><span class="line">Leaderf[!] gtags -r &lt;PATTERN&gt; [--auto-jump [&lt;TYPE&gt;]] [-i] [--literal] [--path-style &lt;FORMAT&gt;] [-S &lt;DIR&gt;]</span><br><span class="line">                 [--append] [--match-path] [--gtagsconf &lt;FILE&gt;] [--gtagslabel &lt;LABEL&gt;] [COMMON_OPTIONS]</span><br><span class="line">Leaderf[!] gtags -s &lt;PATTERN&gt; [-i] [--literal] [--path-style &lt;FORMAT&gt;] [-S &lt;DIR&gt;] [--append]</span><br><span class="line">                 [--match-path] [--gtagsconf &lt;FILE&gt;] [--gtagslabel &lt;LABEL&gt;] [COMMON_OPTIONS]</span><br><span class="line">Leaderf[!] gtags -g &lt;PATTERN&gt; [-i] [--literal] [--path-style &lt;FORMAT&gt;] [-S &lt;DIR&gt;] [--append]</span><br><span class="line">                 [--match-path] [--gtagsconf &lt;FILE&gt;] [--gtagslabel &lt;LABEL&gt;] [COMMON_OPTIONS]</span><br><span class="line">Leaderf[!] gtags --by-context [--auto-jump [&lt;TYPE&gt;]] [-i] [--literal] [--path-style &lt;FORMAT&gt;] [-S &lt;DIR&gt;]</span><br><span class="line">                 [--append] [--match-path] [--gtagsconf &lt;FILE&gt;] [--gtagslabel &lt;LABEL&gt;] [COMMON_OPTIONS]</span><br><span class="line">[COMMON_OPTIONS]: [--reverse] [--stayOpen] [--input &lt;INPUT&gt; | --cword]</span><br><span class="line">                  [--top | --bottom | --left | --right | --belowright | --aboveleft | --fullScreen]</span><br><span class="line">                  [--nameOnly | --fullPath | --fuzzy | --regexMode] [--nowrap] [--next | --previous]</span><br><span class="line"></span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+
+<p>LeaderF gtags 最常用的 <code>:Leaderf[!] gtags -d/-r/-s/-g</code>， 具体的作用如下所示，<code>!</code> 表示直接进入 normal 模式。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">--gtagslibpath &lt;PATH&gt; [&lt;PATH&gt; ...]</span><br><span class="line">                      Specify the paths to search for library functions.</span><br><span class="line">-d &lt;PATTERN&gt;, --definition &lt;PATTERN&gt;</span><br><span class="line">                      Show locations of definitions.</span><br><span class="line">-r &lt;PATTERN&gt;, --reference &lt;PATTERN&gt;</span><br><span class="line">                      Show reference to a symbol which has definitions.</span><br><span class="line">-s &lt;PATTERN&gt;, --symbol &lt;PATTERN&gt;</span><br><span class="line">                      Show reference to a symbol which has no definition.</span><br><span class="line">-g &lt;PATTERN&gt;, --grep &lt;PATTERN&gt;</span><br></pre></td></tr></table></figure>
+
+<p>日常使用中，同样可以配置快捷键方便使用，下面的快捷键将对光标所在单词进行 tag 查找。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">nmap &lt;leader&gt;fgd &lt;Plug&gt;LeaderfGtagsDefinition</span><br><span class="line">nmap &lt;leader&gt;fgr &lt;Plug&gt;LeaderfGtagsReference</span><br><span class="line">nmap &lt;leader&gt;fgs &lt;Plug&gt;LeaderfGtagsSymbol</span><br><span class="line">nmap &lt;leader&gt;fgg &lt;Plug&gt;LeaderfGtagsGrep</span><br></pre></td></tr></table></figure>
+
+<h3 id="运行-LeaderF-gtags-之后"><a href="#运行-LeaderF-gtags-之后" class="headerlink" title="运行 LeaderF gtags 之后"></a>运行 LeaderF gtags 之后</h3><p>使用 LeaderF + gtags 跳转到源码后，如果想继续跳转到下一个或者上一个 tag 可以使用 <code>Leaderf gtags --next</code> 和 <code>Leaderf gtags --previous</code></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">noremap &lt;leader&gt;fgn :&lt;C-U&gt;&lt;C-R&gt;=<span class="built_in">printf</span>(<span class="string">&quot;Leaderf gtags --next %s&quot;</span>, <span class="string">&quot;&quot;</span>)&lt;CR&gt;&lt;CR&gt;</span><br><span class="line">noremap &lt;leader&gt;fgp :&lt;C-U&gt;&lt;C-R&gt;=<span class="built_in">printf</span>(<span class="string">&quot;Leaderf gtags --previous %s&quot;</span>, <span class="string">&quot;&quot;</span>)&lt;CR&gt;&lt;CR&gt;</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="LeaderF-的其他用法"><a href="#LeaderF-的其他用法" class="headerlink" title="LeaderF 的其他用法"></a>LeaderF 的其他用法</h2><p>LeaderF 还可以和 <a target="_blank" rel="noopener" href="https://github.com/ludovicchabant/vim-gutentags">Gutentags</a> 配合使用进行源码浏览，但已经超出本文内容，有兴趣者可以查阅网络上的其他资料。</p>
+<h2 id="☆-参考资料"><a href="#☆-参考资料" class="headerlink" title="☆ 参考资料"></a>☆ 参考资料</h2><p><a target="_blank" rel="noopener" href="https://github.com/Yggdroot/LeaderF/blob/master/doc/leaderf.txt">https://github.com/Yggdroot/LeaderF/blob/master/doc/leaderf.txt</a><br><a target="_blank" rel="noopener" href="https://retzzz.github.io/dc9af5aa/">https://retzzz.github.io/dc9af5aa/</a><br><a target="_blank" rel="noopener" href="https://github.com/Yggdroot/LeaderF/blob/master/README.md">https://github.com/Yggdroot/LeaderF/blob/master/README.md</a><br><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/36279445">https://zhuanlan.zhihu.com/p/36279445</a><br><a target="_blank" rel="noopener" href="https://github.com/vim/vim/blob/master/runtime/doc/popup.txt">https://github.com/vim/vim/blob/master/runtime/doc/popup.txt</a><br><a target="_blank" rel="noopener" href="https://neovim.io/doc/user/api.html#api-floatwin">https://neovim.io/doc/user/api.html#api-floatwin</a></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1153,120 +1301,6 @@
 </ul>
 <p>mod 在 windows 和 linux 系统中是 <code>ctrl</code>， 在 macOS 系统中是 <code>command</code></p>
 <h2 id="☆-参考链接"><a href="#☆-参考链接" class="headerlink" title="☆  参考链接"></a>☆  参考链接</h2><p><a target="_blank" rel="noopener" href="https://www.usmacd.com/2022/02/21/logseq/">https://www.usmacd.com/2022/02/21/logseq/</a><br><a target="_blank" rel="noopener" href="https://www.usmacd.com/2022/03/07/logseq2/">https://www.usmacd.com/2022/03/07/logseq2/</a></p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://usmacd.com/2022/09/16/note/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="henices">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="安全代码">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 安全代码">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/09/16/note/" class="post-title-link" itemprop="url">关于笔记的一些思考</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2022-09-16 00:00:00" itemprop="dateCreated datePublished" datetime="2022-09-16T00:00:00+08:00">2022-09-16</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2023-07-10 00:00:00" itemprop="dateModified" datetime="2023-07-10T00:00:00+08:00">2023-07-10</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <ul>
-<li><p>Random Notes (漫游笔记) 的技术原理是用新视角去审视旧想法，和自己以前的想法不期而遇的感觉非常奇妙。总体来说人是会不断进步的，经过一段时间后再去重温自己某个时刻的想法，可能以前的一些疑惑现在已经没有了，也可能对某个问题有了更进一步的思路，这是促使想法迭代的一种方法。</p>
-</li>
-<li><p>想要做到想法的自然迭代，必要的条件是可以马上回到过去的某个时刻，而且那个时刻的上下文没有丢失，如果上下文丢失意味着已经看不懂以前的笔记了，自然也就没有了迭代的可能性。</p>
-</li>
-<li><p>卡片盒笔记法要求用完整的句子精要简述想法，笔记之间的连接则补充了上下文，为想法迭代创造了有利条件。</p>
-</li>
-<li><p>写永久笔记时，应该假设读者对文本背后的思想，原文背景一无所知，只具备相关的领域知识。这里的读者其实也包括未来的自己，我们写下永久笔记后，很快就会将其的上下文遗忘，就想从没有见过该笔记的其他读者一样。</p>
-</li>
-<li><p>我们应该寻找与我们观点相反的论点或者事实来挑战我们的既有思维，但是受「确认偏差」的影响，我们会不经意的忽略这些信息，那些和我们观点一致的信息有很大吸引力，因为这些信息可以证明自己很博学。解决 「确认偏差」的方法：把寻找证实性信息变为收集所有信息，不需要关注这些信息支持的具体观点。</p>
-</li>
-<li><p>我们使用卡片盒笔记法，对习惯最重要的转变是将注意力从个别项目的预设立场变成思考笔记之间的开放性联系。通过一段时间的训练，在阅读过程中我们可以轻松找出与预设观点相悖的信息。当这些信息改变我们对某些问题的看法时，我们会感到相当兴奋，从而慢慢喜欢上这种感觉。</p>
-</li>
-<li><p>在实践卡片笔记法的过程中，会遇上一整天都没写一张卡片的时候，而有的时候则一天写十多张卡片。限制每天写笔记的数量可以让写卡片盒笔记的过程更加轻松，避免了过于放松的状态，也避免了过于紧绷的状态，有利于我们保持良好的状态。另一个好处则是让你选择笔记内容时更加挑剔，有利于提高笔记的质量。</p>
-</li>
-<li><p>你可以将目标设置为每天写3条笔记，或者每年出一本书，仍然可以在合理的时间内积累大量的想法。</p>
-</li>
-<li><p>卡片笔记法属于自下而上的发散思维，发散思维有个问题，就是无法把握发散的度。为了应对这个问题，卢曼提出的办法是仔细思考笔记之间的联系，写笔记时参考文献笔记和自己以前写的笔记，定期自上而下制作索引卡片，这些做法的目的是避免想法过于太发散。</p>
-</li>
-<li><p>思维需要发散，但是领域需要聚焦，我们在自己的专业，财务等领域是需要不断精进的，这两个方面似乎是矛盾的。有人建议使用分类法，把关注的领域分类，在日常工作学习中不断完善，但这种方法很容易回到资料归档的老路。</p>
-</li>
-<li><p>最近的研究发现可以使用 P.A.R.A. 来组织顶层结构，统领需要精进的领域，在具体想法的记录上则继续使用卡片笔记法。这种方法使用 P.A.R.A. 不断推动自己在关注领域的取得进展，又能在关键的思考上使用卡片笔记法，自用一段时间感觉不错。</p>
-</li>
-<li><p>关于笔记管理存在几个误区<br>a) 笔记软件&#x2F;博客系统，我先后使用过 EverNote，WizNote，VNote，CSDN blog，Google blogspot, WordPress<br>b) 笔记格式，我先后使用过 txt, orgmode, markdown 其实这些都不是关键，除了折腾还是折腾。以前我常说一个段子，你以为你在写博客，其实你在折腾 Wordpress 插件<br>c) 各种笔记软件，博客系统，笔记格式的切换都会带来信息丢失。信息丢失容易造成心理负担</p>
-</li>
-<li><p>我以前认为笔记杂乱的原因是是笔记缺乏组织结构，实践结果表明良好的分类确实有一定帮助，但是不是最重要的。最重要的是在同一个地方，用同样的格式和一致的标准记录你的洞见。</p>
-</li>
-<li><p>把笔记保存在同一个地方避免了笔记分散，迁移也比较方便。同样的格式和一致的标准则为笔记之间的联系与聚合创造了有利条件。如果笔记之间格式不一致，粒度不一致，不容易产生新的想法。另外，当我们以一致的标准写笔记时阻力是最小的，关注的是笔记的内容，形式等外在的东西则变得不再重要。</p>
-</li>
-<li><p>新的观点、新的洞见、新的想法，是笔记系统中最有价值的东西。笔记系统应该侧重于知识的积累而不是信息的积累。</p>
-</li>
-<li><p>闪念笔记的处理细节<br>a) 造成不理想笔记系统的原因是各种不同类型的笔记 「混杂」，真正有想法有见解的笔记被淹没在一大堆无用的闪念笔记中。<br>b) 闪念笔记只有你在一两天内回顾它把它转化为可以使用的笔记才能有价值。<br>c) 我们每天大多数的想法没有太大意义应该被丢弃，而那些可以成为重大有意义的想法我们必须将他们识别出来。<br>d) 卢曼的卡片盒里只有文献笔记和永久笔记，就是说大部分的闪念笔记实际上被丢弃了</p>
-</li>
-<li><p>传统笔记系统的三种典型错误<br>a) 把每条笔记都当成“永久笔记”，将导致好的笔记和特定项目笔记或者不那么好的笔记混杂，无法形成群聚效应<br>b) 只记录特定项目相关的笔记，将导致项目期间有趣的观点或者想法信息丢失。如果使用新建项目的方法来记录，则会导致大量未完成的项目，影响我们的信心。<br>c) 把所有的笔记当作闪念笔记，将导致自己陷入大量堆积的杂乱笔记中并且总是产生清理笔记的冲动<br>d) 闪念笔记用于快速捕捉一瞬间的灵感，但只有你在一两天内回顾它并把它变成可以使用的(和其他笔记链接)合适的笔记才有意义</p>
-</li>
-<li><p>现在发现没有记录基本就等于没有学习，不论记性多好都会随着年龄的增大而逐渐忘记，所以不断记录，不断总结，不断分析，才能螺旋前进。在得到听了很多课程，基本上能记住的不多，最终能用上的可能还是记录下来的一些东西。某位技术大佬说：「若自己写的技术文档三个月之后乃至更长时间跨度，不能指导自己的相关工作，该文档严重不合格。该标准很靠谱，诸君可自行检验。」</p>
-</li>
-</ul>
-<p>未完，待续 …</p>
 
       
     </div>

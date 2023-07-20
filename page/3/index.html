@@ -122,7 +122,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">95</span>
+          <span class="site-state-item-count">96</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -174,6 +174,107 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://usmacd.com/2022/03/07/logseq2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="henices">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="安全代码">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 安全代码">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/03/07/logseq2/" class="post-title-link" itemprop="url">Logseq 使用小结 （二）</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2022-03-07 12:20:11" itemprop="dateCreated datePublished" datetime="2022-03-07T12:20:11+08:00">2022-03-07</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>用了 Logseq 一段时间了，做个简单的总结，国内的很多文章，在我看来还是不够简单明了, 本文大致介绍了 Logseq 比较常用的一些功能的使用。</p>
+<h2 id="Flashcards"><a href="#Flashcards" class="headerlink" title="Flashcards"></a>Flashcards</h2><p>可以把记录的知识点当作卡片来记忆，用过 Anki 的同学，应该都比较熟悉了，使用的记忆算法为 <a target="_blank" rel="noopener" href="https://www.supermemo.com/en/archives1990-2015/english/ol/sm5">SM-5</a><br>要将一个 block 记为卡片非常简单，使用 <code>#card</code> 标签就可以了。</p>
+<p><img src="https://github.com/henices/pictures/raw/master/logseq5.png"></p>
+<h3 id="卡片组"><a href="#卡片组" class="headerlink" title="卡片组"></a>卡片组</h3><p>有些卡片可能是归属同一个大类，这时候就可以使用卡片组了。像我上面这个例子中，要记忆的单词都在 <code>英语单词积累</code>下，就可以使用语法 <code>&#123;&#123;cards 英语单词积累&#125;&#125;</code> 效果如下图，<br>可以看出我已经积累了7张卡片了。</p>
+<p><img src="https://github.com/henices/pictures/raw/master/logseq6.png"></p>
+<p>要背诵需要记忆的卡片时，单击左侧的 Flashcards 就可以了，使用方面没有什么特别的地方，有三个选项可以选择。</p>
+<p><img src="https://github.com/henices/pictures/raw/master/logseq7.png"></p>
+<h2 id="theme-（皮肤）"><a href="#theme-（皮肤）" class="headerlink" title="theme （皮肤）"></a>theme （皮肤）</h2><p>皮肤就是青菜萝卜各有所爱了，推荐两款我自己比较喜欢的的皮肤。</p>
+<p><img src="https://github.com/pengx17/logseq-laurel-theme/raw/master/white.png"><br><img src="https://raw.githubusercontent.com/tobealive/logseq-allday-theme/main/preview.png"></p>
+<p>Github 仓库地址如下：</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/pengx17/logseq-laurel-theme">https://github.com/pengx17/logseq-laurel-theme</a><br><a target="_blank" rel="noopener" href="https://github.com/tobealive/logseq-allday-theme">https://github.com/tobealive/logseq-allday-theme</a></p>
+<p>有两种方法可以设置皮肤：</p>
+<ul>
+<li>custom.css</li>
+<li>plugin system</li>
+</ul>
+<p>使用 custom.css，打开 Settings -&gt;     General -&gt;  Custom theme  点击 <code>custom.css</code> 复制 css 内容，保存退出即可。<br>使用插件系统，则需要先把插件系统打开，Settings  -&gt;  Advanced -&gt; Plug-in system 。打开插件系统后，可以直接使用<br>Plugins -&gt; Marketplace -&gt; themes 选择你喜欢的 theme 点击 <code>Install</code> 就可以了</p>
+<p>不过还是推荐使用 Logseq 自带的插件管理系统来安装，可以自动升级比较方便，切换皮肤可以点击右上角 三个点 -&gt; Themes 选择皮肤。 </p>
+<h2 id="plugin-（插件）"><a href="#plugin-（插件）" class="headerlink" title="plugin （插件）"></a>plugin （插件）</h2><p>使用 Logseq 插件同样是两种方法：</p>
+<ul>
+<li>plugin system</li>
+<li>Load unpacked plugin</li>
+</ul>
+<p>使用插件系统的方法和上面安装皮肤的步骤大致相同，依次点击 Plugins -&gt; Marketplace -&gt; Plugins ，选择插件点击 <code>Install</code> 即可。要加载 <code>unpacked plugin</code> 首先要打开开发者模式 Settings  -&gt;  Advanced -&gt; Developer mode ,  设置为打开。打开后使用插件管理系统 Plugins -&gt; Installed -&gt; Load unpacked plugin 选择相关目录就可以了。</p>
+<p>具体的插件可以参考 <a target="_blank" rel="noopener" href="https://github.com/logseq/awesome-logseq#Plugins">https://github.com/logseq/awesome-logseq#Plugins</a> 记录的插件都挺不错的。</p>
+<p>值得一提的是，插件系统的网络不太稳定（总所周知的原因），使用代理会方便一些。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https_proxy=127.0.0.1:3128 ./Logseq --proxy-server=http://127.0.0.1:3128</span><br></pre></td></tr></table></figure>
+
+<p>安装插件可能会出现 timeout 错误，多重试几次就应该可以安装上了。</p>
+<h2 id="query"><a href="#query" class="headerlink" title="query"></a>query</h2><p>query 算是 Logseq 的高级功能了，我用的也不多，输入 <code>/query</code> 回车就可以自动进入 query 了，具体的语法很灵活可以参考：<br><a target="_blank" rel="noopener" href="https://logseq.github.io/#/page/queries">https://logseq.github.io/#/page/queries</a></p>
+<p>油管上有相关 video，大家可以参考一下：<br><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=GDauxjx_bdA&ab_channel=OneStutteringMind">https://www.youtube.com/watch?v=GDauxjx_bdA&amp;ab_channel=OneStutteringMind</a><br><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=qQ8DzumRZkM&ab_channel=OneStutteringMind">https://www.youtube.com/watch?v=qQ8DzumRZkM&amp;ab_channel=OneStutteringMind</a></p>
+<h2 id="写在后面的话"><a href="#写在后面的话" class="headerlink" title="写在后面的话"></a>写在后面的话</h2><p>Logseq 的功能还是挺多的，两篇文章也不可能全部介绍完，官方文档总是最好的资料：<a target="_blank" rel="noopener" href="https://logseq.github.io/#/page/Contents">https://logseq.github.io/#/page/Contents</a></p>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p><a target="_blank" rel="noopener" href="https://logseq.github.io/">https://logseq.github.io</a><br><a target="_blank" rel="noopener" href="https://www.usmacd.com/2022/02/21/logseq/">https://www.usmacd.com/2022/02/21/logseq/</a></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1221,125 +1322,6 @@
 <li>（2） 后台驻留的程序比较多</li>
 </ul>
 <p>导致白苹果的原因未知，将这些问题解决了一下，希望能正常使用了。</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://usmacd.com/2021/09/01/Android_SSL_Pinning/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="henices">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="安全代码">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 安全代码">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/09/01/Android_SSL_Pinning/" class="post-title-link" itemprop="url">Andorid 绕过 SSL Pinning 抓 https 报文</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2021-09-01 12:16:16" itemprop="dateCreated datePublished" datetime="2021-09-01T12:16:16+08:00">2021-09-01</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h3 id="SSL-pinning"><a href="#SSL-pinning" class="headerlink" title="SSL pinning"></a>SSL pinning</h3><p>SSL Pinning是一种防止中间人攻击的技术，主要机制是在客户端发起请求–&gt;收到服务器发来的证书进行校验，如果收到的证书不被客户端信任，就直接断开连接不继续请求。可以发现中间人攻击的要点是伪造了一个假的服务端证书给了客户端，客户端误以为真。解决思路就是，客户端也预置一份服务端的证书，比较一下就知道真假了。</p>
-<p>SSL-pinning有两种方式：证书锁定（Certificate Pinning） 和公钥锁定（ Public Key Pinning）。</p>
-<h4 id="证书锁定"><a href="#证书锁定" class="headerlink" title="证书锁定"></a>证书锁定</h4><p>需要在客户端代码内置仅接受指定域名的证书，而不接受操作系统或浏览器内置的CA根证书对应的任何证书，通过这种授权方式，保障了APP与服务端通信的唯一性和安全性，因此客户端与服务端（例如API网关）之间的通信是可以保证绝对安全。但是CA签发证书都存在有效期问题，缺点是在证书续期后需要将证书重新内置到APP中。</p>
-<h4 id="公钥锁定"><a href="#公钥锁定" class="headerlink" title="公钥锁定"></a>公钥锁定</h4><p>提取证书中的公钥并内置到客户端中，通过与服务器对比公钥值来验证连接的正确性。制作证书密钥时，公钥在证书的续期前后都可以保持不变（即密钥对不变），所以可以避免证书有效期问题，一般推荐这种做法。</p>
-<p>（此小节内容摘抄自互联网）</p>
-<h3 id="总体思路"><a href="#总体思路" class="headerlink" title="总体思路"></a>总体思路</h3><p>使用 mitmproxy <a target="_blank" rel="noopener" href="https://github.com/mitmproxy/mitmproxy">https://github.com/mitmproxy/mitmproxy</a>  进行抓包，使用 frida 绕过 SSL pinning， frida 的安装和使用这里就不再详述了，可以参考其他资料。</p>
-<h3 id="安装-mitmproxy"><a href="#安装-mitmproxy" class="headerlink" title="安装 mitmproxy"></a>安装 mitmproxy</h3><p>参考 <a target="_blank" rel="noopener" href="https://docs.mitmproxy.org/stable/overview-installation/">https://docs.mitmproxy.org/stable/overview-installation/</a> 文档</p>
-<p>可以直接下载 Linux binary： <a target="_blank" rel="noopener" href="https://snapshots.mitmproxy.org/7.0.2/mitmproxy-7.0.2-linux.tar.gz%EF%BC%8C">https://snapshots.mitmproxy.org/7.0.2/mitmproxy-7.0.2-linux.tar.gz，</a> 或者使用 pip 进行安装 <code>https://pypi.org/project/mitmproxy/</code><br>执行命令 <code>~/.local/bin/pip3 install mitmproxy --user</code></p>
-<p>安装成功之后，有三个程序可以使用： <code>mitmproxy</code>，<code>mitmdump</code>， <code>mitmweb</code></p>
-<h3 id="设置代理"><a href="#设置代理" class="headerlink" title="设置代理"></a>设置代理</h3><p>在主机上执行下面几行命令设置代理</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mitmweb -p 8080</span><br><span class="line">adb shell settings put global http_proxy 127.0.0.1:8888</span><br><span class="line">adb reverse tcp:8888 tcp:8080</span><br></pre></td></tr></table></figure>
-
-<p>mitmweb -p 8080 在本机起 8080 代理，在 Android 上设置 http 全局代理 127.0.0.1:8888， 最后将 Android 的 8888 端口转发到本机 8080 端口</p>
-<h3 id="设置-CA"><a href="#设置-CA" class="headerlink" title="设置 CA"></a>设置 CA</h3><p><a target="_blank" rel="noopener" href="https://docs.mitmproxy.org/stable/concepts-certificates/">https://docs.mitmproxy.org/stable/concepts-certificates/</a></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">The first time mitmproxy is run, it creates the keys for a certificate authority (CA) in the config directory (~/.mitmproxy by default).</span><br></pre></td></tr></table></figure>
-
-<table>
-<thead>
-<tr>
-<th>Filename</th>
-<th>Contents</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>mitmproxy-ca.pem</td>
-<td>The certificate and the private key in PEM format.</td>
-</tr>
-<tr>
-<td>mitmproxy-ca-cert.pem</td>
-<td>The certificate in PEM format. Use this to distribute on most non-Windows platforms.</td>
-</tr>
-<tr>
-<td>mitmproxy-ca-cert.p12</td>
-<td>The certificate in PKCS12 format. For use on Windows.</td>
-</tr>
-<tr>
-<td>mitmproxy-ca-cert.cer</td>
-<td>Same file as .pem, but with an extension expected by some Android devices.</td>
-</tr>
-</tbody></table>
-<p>我们是 Android 应该使用 <code>mitmproxy-ca-cert.cer</code>，在 Android 系统安装的话，需要点击 设置 -〉安全 -〉 加密与凭证 -〉安装证书 -〉CA 证书</p>
-<h3 id="使用-frida-绕过-SSL-pinning"><a href="#使用-frida-绕过-SSL-pinning" class="headerlink" title="使用 frida 绕过 SSL pinning"></a>使用 frida 绕过 SSL pinning</h3><p>使用 frida 脚本首先需要将 <code>mitmproxy-ca-cert.cer</code> 上传到 <code>/data/local/tmp/cert-der.crt</code></p>
-<p>使用脚本 <a target="_blank" rel="noopener" href="https://codeshare.frida.re/@pcipolloni/universal-android-ssl-pinning-bypass-with-frida/">https://codeshare.frida.re/@pcipolloni/universal-android-ssl-pinning-bypass-with-frida/</a></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">   Android SSL Re-pinning frida script v0.2 030417-pier</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">   $ adb push burpca-cert-der.crt /data/local/tmp/cert-der.crt</span></span><br><span class="line"><span class="comment">   $ frida -U -f it.app.mobile -l frida-android-repinning.js --no-pause</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">   https://techblog.mediaservice.net/2017/07/universal-android-ssl-pinning-bypass-with-frida/</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">   UPDATE 20191605: Fixed undeclared var. Thanks to @oleavr and @ehsanpc9999 !</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">setTimeout</span>(<span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">  <span class="title class_">Java</span>.<span class="title function_">perform</span>(<span class="keyword">function</span> (<span class="params"></span>)&#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;&quot;</span>);</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;[.] Cert Pinning Bypass/Re-Pinning&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> <span class="title class_">CertificateFactory</span> = <span class="title class_">Java</span>.<span class="title function_">use</span>(<span class="string">&quot;java.security.cert.CertificateFactory&quot;</span>);</span><br><span class="line">    <span class="keyword">var</span> <span class="title class_">FileInputStream</span> = <span class="title class_">Java</span>.<span class="title function_">use</span>(<span class="string">&quot;java.io.FileInputStream&quot;</span>);</span><br><span class="line">    <span class="keyword">var</span> <span class="title class_">BufferedInputStream</span> = <span class="title class_">Java</span>.<span class="title function_">use</span>(<span class="string">&quot;java.io.BufferedInputStream&quot;</span>);</span><br><span class="line">    <span class="keyword">var</span> X509Certificate = <span class="title class_">Java</span>.<span class="title function_">use</span>(<span class="string">&quot;java.security.cert.X509Certificate&quot;</span>);</span><br><span class="line">    <span class="keyword">var</span> <span class="title class_">KeyStore</span> = <span class="title class_">Java</span>.<span class="title function_">use</span>(<span class="string">&quot;java.security.KeyStore&quot;</span>);</span><br><span class="line">    <span class="keyword">var</span> <span class="title class_">TrustManagerFactory</span> = <span class="title class_">Java</span>.<span class="title function_">use</span>(<span class="string">&quot;javax.net.ssl.TrustManagerFactory&quot;</span>);</span><br><span class="line">    <span class="keyword">var</span> <span class="title class_">SSLContext</span> = <span class="title class_">Java</span>.<span class="title function_">use</span>(<span class="string">&quot;javax.net.ssl.SSLContext&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Load CAs from an InputStream</span></span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;[+] Loading our CA...&quot;</span>)</span><br><span class="line">    <span class="keyword">var</span> cf = <span class="title class_">CertificateFactory</span>.<span class="title function_">getInstance</span>(<span class="string">&quot;X.509&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">      <span class="keyword">var</span> fileInputStream = <span class="title class_">FileInputStream</span>.$new(<span class="string">&quot;/data/local/tmp/cert-der.crt&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">catch</span>(err) &#123;</span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;[o] &quot;</span> + err);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> bufferedInputStream = <span class="title class_">BufferedInputStream</span>.$new(fileInputStream);</span><br><span class="line">    <span class="keyword">var</span> ca = cf.<span class="title function_">generateCertificate</span>(bufferedInputStream);</span><br><span class="line">    bufferedInputStream.<span class="title function_">close</span>();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> certInfo = <span class="title class_">Java</span>.<span class="title function_">cast</span>(ca, X509Certificate);</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;[o] Our CA Info: &quot;</span> + certInfo.<span class="title function_">getSubjectDN</span>());</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Create a KeyStore containing our trusted CAs</span></span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;[+] Creating a KeyStore for our CA...&quot;</span>);</span><br><span class="line">    <span class="keyword">var</span> keyStoreType = <span class="title class_">KeyStore</span>.<span class="title function_">getDefaultType</span>();</span><br><span class="line">    <span class="keyword">var</span> keyStore = <span class="title class_">KeyStore</span>.<span class="title function_">getInstance</span>(keyStoreType);</span><br><span class="line">    keyStore.<span class="title function_">load</span>(<span class="literal">null</span>, <span class="literal">null</span>);</span><br><span class="line">    keyStore.<span class="title function_">setCertificateEntry</span>(<span class="string">&quot;ca&quot;</span>, ca);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Create a TrustManager that trusts the CAs in our KeyStore</span></span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;[+] Creating a TrustManager that trusts the CA in our KeyStore...&quot;</span>);</span><br><span class="line">    <span class="keyword">var</span> tmfAlgorithm = <span class="title class_">TrustManagerFactory</span>.<span class="title function_">getDefaultAlgorithm</span>();</span><br><span class="line">    <span class="keyword">var</span> tmf = <span class="title class_">TrustManagerFactory</span>.<span class="title function_">getInstance</span>(tmfAlgorithm);</span><br><span class="line">    tmf.<span class="title function_">init</span>(keyStore);</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;[+] Our TrustManager is ready...&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;[+] Hijacking SSLContext methods now...&quot;</span>)</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;[-] Waiting for the app to invoke SSLContext.init()...&quot;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="title class_">SSLContext</span>.<span class="property">init</span>.<span class="title function_">overload</span>(<span class="string">&quot;[Ljavax.net.ssl.KeyManager;&quot;</span>, <span class="string">&quot;[Ljavax.net.ssl.TrustManager;&quot;</span>, <span class="string">&quot;java.security.SecureRandom&quot;</span>).<span class="property">implementation</span> = <span class="keyword">function</span>(<span class="params">a,b,c</span>) &#123;</span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;[o] App invoked javax.net.ssl.SSLContext.init...&quot;</span>);</span><br><span class="line">      <span class="title class_">SSLContext</span>.<span class="property">init</span>.<span class="title function_">overload</span>(<span class="string">&quot;[Ljavax.net.ssl.KeyManager;&quot;</span>, <span class="string">&quot;[Ljavax.net.ssl.TrustManager;&quot;</span>, <span class="string">&quot;java.security.SecureRandom&quot;</span>).<span class="title function_">call</span>(<span class="variable language_">this</span>, a, tmf.<span class="title function_">getTrustManagers</span>(), c);</span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;[+] SSLContext initialized with our custom TrustManager!&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;,<span class="number">0</span>);</span><br></pre></td></tr></table></figure>
-
-<p>执行下面命令，绕过 SSL pinning</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">frida -U --codeshare pcipolloni/universal-android-ssl-pinning-bypass-with-frida -F</span><br><span class="line"></span><br><span class="line">     ____</span><br><span class="line">    / _  |   Frida 14.2.18 - A world-class dynamic instrumentation toolkit</span><br><span class="line">   | (_| |</span><br><span class="line">    &gt; _  |   Commands:</span><br><span class="line">   /_/ |_|       help      -&gt; Displays the help system</span><br><span class="line">   . . . .       object?   -&gt; Display information about &#x27;object&#x27;</span><br><span class="line">   . . . .       exit/quit -&gt; Exit</span><br><span class="line">   . . . .</span><br><span class="line">   . . . .   More info at https://frida.re/docs/home/</span><br><span class="line"></span><br><span class="line">[.] Cert Pinning Bypass/Re-Pinning</span><br><span class="line">[+] Loading our CA...</span><br><span class="line">[o] Our CA Info: O=mitmproxy, CN=mitmproxy</span><br><span class="line">[+] Creating a KeyStore for our CA...</span><br><span class="line">[+] Creating a TrustManager that trusts the CA in our KeyStore...</span><br><span class="line">[+] Our TrustManager is ready...</span><br><span class="line">[+] Hijacking SSLContext methods now...</span><br><span class="line">[-] Waiting for the app to invoke SSLContext.init()...</span><br><span class="line">[Pixel 2::智能生活]-&gt; exit</span><br></pre></td></tr></table></figure>
-
-<p>其中 <code>-F</code> 参数 attach to frontmost application 不用指定 pid 或者包名，非常方便。</p>
-<h3 id="使用-mitmweb-查看报文"><a href="#使用-mitmweb-查看报文" class="headerlink" title="使用 mitmweb 查看报文"></a>使用 mitmweb 查看报文</h3><p>执行 <code>mitmweb -p 8080</code> 后可以用浏览器访问 <a target="_blank" rel="noopener" href="http://127.0.0.1:8081/">http://127.0.0.1:8081/</a> 查看报文，如果需要共享报文数据可以使用<br>mitmweb 界面提供的 save 功能，会保存成一个 flow 文件，后面使用 mitmweb 界面提供的 open 打开报文文件即可展示报文详细信息。</p>
-<h3 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h3><p><a target="_blank" rel="noopener" href="https://shunix.com/ssl-pinning/">https://shunix.com/ssl-pinning/</a></p>
 
       
     </div>
