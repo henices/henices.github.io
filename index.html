@@ -183,6 +183,108 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://usmacd.com/2023/07/21/logseq2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="henices">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="安全代码">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 安全代码">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2023/07/21/logseq2/" class="post-title-link" itemprop="url">Logseq 使用小结 （二）</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2023-07-21 15:15:41" itemprop="dateCreated datePublished" datetime="2023-07-21T15:15:41+08:00">2023-07-21</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>用了 Logseq 一段时间了，做个简单的总结，国内的很多文章，在我看来还是不够简单明了, 本文大致介绍了 Logseq 比较常用的一些功能的使用。</p>
+<h2 id="Flashcards"><a href="#Flashcards" class="headerlink" title="Flashcards"></a>Flashcards</h2><p>可以把记录的知识点当作卡片来记忆，用过 Anki 的同学，应该都比较熟悉了，使用的记忆算法为 <a target="_blank" rel="noopener" href="https://www.supermemo.com/en/archives1990-2015/english/ol/sm5">SM-5</a><br>要将一个 block 记为卡片非常简单，使用 <code>#card</code> 标签就可以了。</p>
+<p><img src="https://github.com/henices/pictures/raw/master/logseq5.png"></p>
+<h3 id="卡片组"><a href="#卡片组" class="headerlink" title="卡片组"></a>卡片组</h3><p>有些卡片可能是归属同一个大类，这时候就可以使用卡片组了。像我上面这个例子中，要记忆的单词都在 <code>英语单词积累</code>下，就可以使用语法 <code>&#123;&#123;cards 英语单词积累&#125;&#125;</code> 效果如下图，<br>可以看出我已经积累了7张卡片了。</p>
+<p><img src="https://github.com/henices/pictures/raw/master/logseq6.png"></p>
+<p>要背诵需要记忆的卡片时，单击左侧的 Flashcards 就可以了，使用方面没有什么特别的地方，有三个选项可以选择。</p>
+<p><img src="https://github.com/henices/pictures/raw/master/logseq7.png"></p>
+<h2 id="theme-（皮肤）"><a href="#theme-（皮肤）" class="headerlink" title="theme （皮肤）"></a>theme （皮肤）</h2><p>皮肤就是青菜萝卜各有所爱了，推荐两款我自己比较喜欢的的皮肤。</p>
+<p><img src="https://github.com/pengx17/logseq-laurel-theme/raw/master/white.png"><br><img src="https://raw.githubusercontent.com/tobealive/logseq-allday-theme/main/preview.png"></p>
+<p>Github 仓库地址如下：</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/pengx17/logseq-laurel-theme">https://github.com/pengx17/logseq-laurel-theme</a><br><a target="_blank" rel="noopener" href="https://github.com/tobealive/logseq-allday-theme">https://github.com/tobealive/logseq-allday-theme</a></p>
+<p>有两种方法可以设置皮肤：</p>
+<ul>
+<li>custom.css</li>
+<li>plugin system</li>
+</ul>
+<p>使用 custom.css，打开 Settings -&gt;     General -&gt;  Custom theme  点击 <code>custom.css</code> 复制 css 内容，保存退出即可。<br>使用插件系统，则需要先把插件系统打开，Settings  -&gt;  Advanced -&gt; Plug-in system 。打开插件系统后，可以直接使用<br>Plugins -&gt; Marketplace -&gt; themes 选择你喜欢的 theme 点击 <code>Install</code> 就可以了</p>
+<p>不过还是推荐使用 Logseq 自带的插件管理系统来安装，可以自动升级比较方便，切换皮肤可以点击右上角 三个点 -&gt; Themes 选择皮肤。 </p>
+<h2 id="plugin-（插件）"><a href="#plugin-（插件）" class="headerlink" title="plugin （插件）"></a>plugin （插件）</h2><p>使用 Logseq 插件同样是两种方法：</p>
+<ul>
+<li>plugin system</li>
+<li>Load unpacked plugin</li>
+</ul>
+<p>使用插件系统的方法和上面安装皮肤的步骤大致相同，依次点击 Plugins -&gt; Marketplace -&gt; Plugins ，选择插件点击 <code>Install</code> 即可。要加载 <code>unpacked plugin</code> 首先要打开开发者模式 Settings  -&gt;  Advanced -&gt; Developer mode ,  设置为打开。打开后使用插件管理系统 Plugins -&gt; Installed -&gt; Load unpacked plugin 选择相关目录就可以了。</p>
+<p>具体的插件可以参考 <a target="_blank" rel="noopener" href="https://github.com/logseq/awesome-logseq#Plugins">https://github.com/logseq/awesome-logseq#Plugins</a> 记录的插件都挺不错的。</p>
+<p>值得一提的是，插件系统的网络不太稳定（总所周知的原因），使用代理会方便一些。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https_proxy=127.0.0.1:3128 ./Logseq --proxy-server=http://127.0.0.1:3128</span><br></pre></td></tr></table></figure>
+
+<p>安装插件可能会出现 timeout 错误，多重试几次就应该可以安装上了。</p>
+<h2 id="query"><a href="#query" class="headerlink" title="query"></a>query</h2><p>query 算是 Logseq 的高级功能了，我用的也不多，输入 <code>/query</code> 回车就可以自动进入 query 了，具体的语法很灵活可以参考：<br><a target="_blank" rel="noopener" href="https://logseq.github.io/#/page/queries">https://logseq.github.io/#/page/queries</a></p>
+<p>油管上有相关 video，大家可以参考一下：<br><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=GDauxjx_bdA&ab_channel=OneStutteringMind">https://www.youtube.com/watch?v=GDauxjx_bdA&amp;ab_channel=OneStutteringMind</a><br><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=qQ8DzumRZkM&ab_channel=OneStutteringMind">https://www.youtube.com/watch?v=qQ8DzumRZkM&amp;ab_channel=OneStutteringMind</a></p>
+<h2 id="写在后面的话"><a href="#写在后面的话" class="headerlink" title="写在后面的话"></a>写在后面的话</h2><p>Logseq 的功能还是挺多的，两篇文章也不可能全部介绍完，官方文档总是最好的资料：<a target="_blank" rel="noopener" href="https://logseq.github.io/#/page/Contents">https://logseq.github.io/#/page/Contents</a></p>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p><a target="_blank" rel="noopener" href="https://logseq.github.io/">https://logseq.github.io</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.usmacd.com/2022/02/21/logseq/">https://www.usmacd.com/2022/02/21/logseq/</a><br><a target="_blank" rel="noopener" href="https://www.usmacd.com/2022/10/08/logseq3/">https://www.usmacd.com/2022/10/08/logseq3/</a></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
     <link itemprop="mainEntityOfPage" href="http://usmacd.com/2023/07/20/vim_gtags_leaderf/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1186,121 +1288,6 @@
 </ul>
 </li>
 </ul>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://usmacd.com/2022/10/08/logseq3/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="henices">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="安全代码">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 安全代码">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/10/08/logseq3/" class="post-title-link" itemprop="url">Logseq 使用小结 （三）</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2022-10-08 00:00:00" itemprop="dateCreated datePublished" datetime="2022-10-08T00:00:00+08:00">2022-10-08</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2022-10-09 00:00:00" itemprop="dateModified" datetime="2022-10-09T00:00:00+08:00">2022-10-09</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>使用 Logseq 写笔记已经大半年了，Logseq 是这么多年来除了 vim 之外，唯一可以在使用上螺旋上升的软件。我把 Logseq 推荐给媳妇，她用来写会议纪要，写备忘录，管理待办事项，也用得挺好。</p>
-<p>Logseq 的成功之处在于它降低了记录的成本，不需要大段大段的文字，也不需要太多的文章结构，随时都可以记录。Logseq 比较严重的问题是它的使用太灵活了，前后记录的标准、格式、标签等要素可能不一致，容易造成笔记凌乱。笔记一凌乱就没法有效的聚合，笔记的有效聚合形成一个有意义的想法群是 Logseq 等双链软件和其他笔记软件相比最有价值的地方。</p>
-<p>我这半年来总结出笔记系统成功的关键是： 在同一个地方，用同样的格式和一致的标准记录你的洞见。但是由于 Logseq 缺乏有效的工作流，没法自动化提示必要的步骤，只能通过不断的练习来强化学习。另外 Logseq 中 page 和 tag 只是起到过滤笔记的作用，最关键的笔记之间的链接却很容易被忽视，tag 的数量一多又会开始笔记凌乱了。</p>
-<p>总而言之，如果只是把 Logseq 作为备忘，或者简单作为信息记录，挺好用也不需要学习太多的东西，但是如果需要使用 Logseq 来实践卡片笔记法等 PKM 理论，恐怕还是需要花费一些功夫仔细琢磨一番。PKM 方面的书籍我强力推荐 《卡片笔记写作法》一书，中文翻译很不错，虽然书名是谈写作，里面的内容却涉及很广，我自己阅读后收益良多。</p>
-<p>就实践卡片笔记法来说，浮墨是一个比较理想的工具，「少即是多，多则惑」，去掉一切不需要的功能，重点才能突出。Logseq 的野心挺大，不想只做一个双链笔记本，还想做得更多，这就要求我们想清楚使用其的主要目的是什么。现实中并不存在一个 all in one 的理想工具，什么工具合适就可以使用什么工具，各位施主不能 「着相」了。</p>
-<p>上面说的是一些「道」层面的东西， Logseq 在「术」方面的东西也不少，下面将介绍一些前两篇尚未涉及的功能和使用技巧。</p>
-<h2 id="☆-使用-properties"><a href="#☆-使用-properties" class="headerlink" title="☆ 使用 properties"></a>☆ 使用 properties</h2><p><a target="_blank" rel="noopener" href="https://docs.logseq.com/#/page/term%2Fproperties">https://docs.logseq.com/#/page/term%2Fproperties</a></p>
-<p>在 Logseq 中有两种 properties， page properties 和 block properties。</p>
-<ul>
-<li>Page properties 在第一个 block 写 <code>property:: value</code>  </li>
-<li>Block properties 在每个 block 内使用 <code>property:: value</code></li>
-</ul>
-<p>在使用 block properties 时，需要输入 <code>shift + Enter</code> 来进行换行，换行后输入 <code>::</code> Logseq 会自动提示已经使用过的 property。理解 properties 可以简单的把 block 看成数据库的一条记录， properties 就是不同的字段，可以通过 Logseq 的 query 来查询相关记录。在使用 properties 时可以引用 page 或者 tag，可以通过这种方法来索引这条记录。</p>
-<p>例如，我将书籍的 block 都添加了 <code>category:: Books</code> 的属性，后续可以使用 <code>&#123;&#123;query (property category Books) &#125;&#125;</code> 来查询所有书籍了，感觉上有点类似 notion 的表格。</p>
-<p><img src="https://github.com/henices/pictures/raw/master/logseq3_1.png"></p>
-<h2 id="☆-使用-x2F-Scheduled-制定计划"><a href="#☆-使用-x2F-Scheduled-制定计划" class="headerlink" title="☆ 使用 &#x2F;Scheduled 制定计划"></a>☆ 使用 &#x2F;Scheduled 制定计划</h2><p>使用 Schedule 的功能的方法比较简单，在写完一条 block 后，输入 <code>shift + enter </code> 换行后，输入 <code>/Scheduled</code> 在弹出的界面中选择时间周期即可。</p>
-<p><img src="https://github.com/henices/pictures/raw/master/logseq3_2.png"></p>
-<p>在 Schedule 规定的时间内，Logseq 的 Journals 页面可以看到相关的内容。</p>
-<h2 id="☆-使用模板-（Template）"><a href="#☆-使用模板-（Template）" class="headerlink" title="☆ 使用模板 （Template）"></a>☆ 使用模板 （Template）</h2><p><a target="_blank" rel="noopener" href="https://docs.logseq.com/#/page/templates">https://docs.logseq.com/#/page/templates</a></p>
-<p>使用模板的好处是可以避免重复性的劳动，比如你希望在 Journals 页面里按照 [[每日工作]] [[每日心得]] 的固定格式来记录，那么你需要在每天重复输入一次。但如果你制作一个固定模板，就可以使用 <code>/Template</code> 命令来完成自动化的输入。</p>
-<p>制作模板的过程可以参考 Logseq 官方的动画，简单说就是写一个 block，这个 block 包含了必要的结构，在 block 前面的圆点点击鼠标右键 -&gt; Make template，再输入模板的名字就完成了。在后续的使用过程中，输入 <code>/Template</code> 后在弹出的界面选择对应的模板名就可以完成自动化的输入。</p>
-<h2 id="☆-一些好用的插件"><a href="#☆-一些好用的插件" class="headerlink" title="☆ 一些好用的插件"></a>☆ 一些好用的插件</h2><p>插件可以拓展 Logseq 的功能，使用插件的方法在 <a target="_blank" rel="noopener" href="https://www.usmacd.com/2022/03/07/logseq2/">Logseq 使用小结 （二）</a> 中有详细介绍，这里就不再细说。</p>
-<h3 id="Logseq-Plugin-Tabs"><a href="#Logseq-Plugin-Tabs" class="headerlink" title="Logseq Plugin Tabs"></a>Logseq Plugin Tabs</h3><p><a target="_blank" rel="noopener" href="https://github.com/pengx17/logseq-plugin-tabs">https://github.com/pengx17/logseq-plugin-tabs</a></p>
-<p>Plugin Tabs 像打开浏览器一样打开 pages 或者 blocks，对于内容比较多的 page，这个插件非常实用。</p>
-<p><img src="https://github.com/henices/pictures/raw/master/logseq3_4.png"></p>
-<h3 id="logseq-plugin-mark-map"><a href="#logseq-plugin-mark-map" class="headerlink" title="logseq-plugin-mark-map"></a>logseq-plugin-mark-map</h3><p><a target="_blank" rel="noopener" href="https://github.com/vipzhicheng/logseq-plugin-mark-map">https://github.com/vipzhicheng/logseq-plugin-mark-map</a></p>
-<p>Mark map 可以自动化地把你的笔记用导图的形式输出，方便展示和记忆。</p>
-<p><img src="https://github.com/henices/pictures/raw/master/logseq3_5.png"></p>
-<h2 id="☆-一些使用上的小技巧"><a href="#☆-一些使用上的小技巧" class="headerlink" title="☆ 一些使用上的小技巧"></a>☆ 一些使用上的小技巧</h2><ul>
-<li>Logseq content wide mode  可以使用快捷键切换 <code>t w</code>  </li>
-<li>Logseq 的 property 可以通过输入 <code>::</code> 来触发自动补全操作，非常方便。  </li>
-<li>Logseq 使用快捷键 <code>Cmd + Shift + i</code> 可以打开 devtools  </li>
-<li>Logseq v0.68，自动补全提供两个快捷键 <code>mod+p</code> 和 <code>mod+n</code> 比较方便了  </li>
-<li>Logseq 可以使用 <code>command + </code> 和 <code>command -</code> 来放大或者缩小 Logseq 的字体大小  </li>
-<li>Logseq 0.7.1 新功能：Copy &amp; Paste with rich-text formats，如果粘贴时不想保留格式 <code>mod + shift + v</code>  </li>
-<li>Logseq 移动光标的快捷键：<code>mod + p</code> 向上移动光标，<code>mod + n</code> 向下移动光标  </li>
-<li>Logseq Markdown 语法支持 <code> Horizontal Rules</code>，可以使用 <code>---</code>分隔卡片笔记。</li>
-</ul>
-<p>mod 在 windows 和 linux 系统中是 <code>ctrl</code>， 在 macOS 系统中是 <code>command</code></p>
-<h2 id="☆-参考链接"><a href="#☆-参考链接" class="headerlink" title="☆  参考链接"></a>☆  参考链接</h2><p><a target="_blank" rel="noopener" href="https://www.usmacd.com/2022/02/21/logseq/">https://www.usmacd.com/2022/02/21/logseq/</a><br><a target="_blank" rel="noopener" href="https://www.usmacd.com/2022/03/07/logseq2/">https://www.usmacd.com/2022/03/07/logseq2/</a></p>
 
       
     </div>
