@@ -183,121 +183,6 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://usmacd.com/2022/10/08/logseq3/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="henices">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="安全代码">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 安全代码">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/10/08/logseq3/" class="post-title-link" itemprop="url">Logseq 使用小结 （三）</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2022-10-08 00:00:00" itemprop="dateCreated datePublished" datetime="2022-10-08T00:00:00+08:00">2022-10-08</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2022-10-09 00:00:00" itemprop="dateModified" datetime="2022-10-09T00:00:00+08:00">2022-10-09</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>使用 Logseq 写笔记已经大半年了，Logseq 是这么多年来除了 vim 之外，唯一可以在使用上螺旋上升的软件。我把 Logseq 推荐给媳妇，她用来写会议纪要，写备忘录，管理待办事项，也用得挺好。</p>
-<p>Logseq 的成功之处在于它降低了记录的成本，不需要大段大段的文字，也不需要太多的文章结构，随时都可以记录。Logseq 比较严重的问题是它的使用太灵活了，前后记录的标准、格式、标签等要素可能不一致，容易造成笔记凌乱。笔记一凌乱就没法有效的聚合，笔记的有效聚合形成一个有意义的想法群是 Logseq 等双链软件和其他笔记软件相比最有价值的地方。</p>
-<p>我这半年来总结出笔记系统成功的关键是： 在同一个地方，用同样的格式和一致的标准记录你的洞见。但是由于 Logseq 缺乏有效的工作流，没法自动化提示必要的步骤，只能通过不断的练习来强化学习。另外 Logseq 中 page 和 tag 只是起到过滤笔记的作用，最关键的笔记之间的链接却很容易被忽视，tag 的数量一多又会开始笔记凌乱了。</p>
-<p>总而言之，如果只是把 Logseq 作为备忘，或者简单作为信息记录，挺好用也不需要学习太多的东西，但是如果需要使用 Logseq 来实践卡片笔记法等 PKM 理论，恐怕还是需要花费一些功夫仔细琢磨一番。PKM 方面的书籍我强力推荐 《卡片笔记写作法》一书，中文翻译很不错，虽然书名是谈写作，里面的内容却涉及很广，我自己阅读后收益良多。</p>
-<p>就实践卡片笔记法来说，浮墨是一个比较理想的工具，「少即是多，多则惑」，去掉一切不需要的功能，重点才能突出。Logseq 的野心挺大，不想只做一个双链笔记本，还想做得更多，这就要求我们想清楚使用其的主要目的是什么。现实中并不存在一个 all in one 的理想工具，什么工具合适就可以使用什么工具，各位施主不能 「着相」了。</p>
-<p>上面说的是一些「道」层面的东西， Logseq 在「术」方面的东西也不少，下面将介绍一些前两篇尚未涉及的功能和使用技巧。</p>
-<h2 id="☆-使用-properties"><a href="#☆-使用-properties" class="headerlink" title="☆ 使用 properties"></a>☆ 使用 properties</h2><p><a target="_blank" rel="noopener" href="https://docs.logseq.com/#/page/term%2Fproperties">https://docs.logseq.com/#/page/term%2Fproperties</a></p>
-<p>在 Logseq 中有两种 properties， page properties 和 block properties。</p>
-<ul>
-<li>Page properties 在第一个 block 写 <code>property:: value</code>  </li>
-<li>Block properties 在每个 block 内使用 <code>property:: value</code></li>
-</ul>
-<p>在使用 block properties 时，需要输入 <code>shift + Enter</code> 来进行换行，换行后输入 <code>::</code> Logseq 会自动提示已经使用过的 property。理解 properties 可以简单的把 block 看成数据库的一条记录， properties 就是不同的字段，可以通过 Logseq 的 query 来查询相关记录。在使用 properties 时可以引用 page 或者 tag，可以通过这种方法来索引这条记录。</p>
-<p>例如，我将书籍的 block 都添加了 <code>category:: Books</code> 的属性，后续可以使用 <code>&#123;&#123;query (property category Books) &#125;&#125;</code> 来查询所有书籍了，感觉上有点类似 notion 的表格。</p>
-<p><img src="https://github.com/henices/pictures/raw/master/logseq3_1.png"></p>
-<h2 id="☆-使用-x2F-Scheduled-制定计划"><a href="#☆-使用-x2F-Scheduled-制定计划" class="headerlink" title="☆ 使用 &#x2F;Scheduled 制定计划"></a>☆ 使用 &#x2F;Scheduled 制定计划</h2><p>使用 Schedule 的功能的方法比较简单，在写完一条 block 后，输入 <code>shift + enter </code> 换行后，输入 <code>/Scheduled</code> 在弹出的界面中选择时间周期即可。</p>
-<p><img src="https://github.com/henices/pictures/raw/master/logseq3_2.png"></p>
-<p>在 Schedule 规定的时间内，Logseq 的 Journals 页面可以看到相关的内容。</p>
-<h2 id="☆-使用模板-（Template）"><a href="#☆-使用模板-（Template）" class="headerlink" title="☆ 使用模板 （Template）"></a>☆ 使用模板 （Template）</h2><p><a target="_blank" rel="noopener" href="https://docs.logseq.com/#/page/templates">https://docs.logseq.com/#/page/templates</a></p>
-<p>使用模板的好处是可以避免重复性的劳动，比如你希望在 Journals 页面里按照 [[每日工作]] [[每日心得]] 的固定格式来记录，那么你需要在每天重复输入一次。但如果你制作一个固定模板，就可以使用 <code>/Template</code> 命令来完成自动化的输入。</p>
-<p>制作模板的过程可以参考 Logseq 官方的动画，简单说就是写一个 block，这个 block 包含了必要的结构，在 block 前面的圆点点击鼠标右键 -&gt; Make template，再输入模板的名字就完成了。在后续的使用过程中，输入 <code>/Template</code> 后在弹出的界面选择对应的模板名就可以完成自动化的输入。</p>
-<h2 id="☆-一些好用的插件"><a href="#☆-一些好用的插件" class="headerlink" title="☆ 一些好用的插件"></a>☆ 一些好用的插件</h2><p>插件可以拓展 Logseq 的功能，使用插件的方法在 <a target="_blank" rel="noopener" href="https://www.usmacd.com/2022/03/07/logseq2/">Logseq 使用小结 （二）</a> 中有详细介绍，这里就不再细说。</p>
-<h3 id="Logseq-Plugin-Tabs"><a href="#Logseq-Plugin-Tabs" class="headerlink" title="Logseq Plugin Tabs"></a>Logseq Plugin Tabs</h3><p><a target="_blank" rel="noopener" href="https://github.com/pengx17/logseq-plugin-tabs">https://github.com/pengx17/logseq-plugin-tabs</a></p>
-<p>Plugin Tabs 像打开浏览器一样打开 pages 或者 blocks，对于内容比较多的 page，这个插件非常实用。</p>
-<p><img src="https://github.com/henices/pictures/raw/master/logseq3_4.png"></p>
-<h3 id="logseq-plugin-mark-map"><a href="#logseq-plugin-mark-map" class="headerlink" title="logseq-plugin-mark-map"></a>logseq-plugin-mark-map</h3><p><a target="_blank" rel="noopener" href="https://github.com/vipzhicheng/logseq-plugin-mark-map">https://github.com/vipzhicheng/logseq-plugin-mark-map</a></p>
-<p>Mark map 可以自动化地把你的笔记用导图的形式输出，方便展示和记忆。</p>
-<p><img src="https://github.com/henices/pictures/raw/master/logseq3_5.png"></p>
-<h2 id="☆-一些使用上的小技巧"><a href="#☆-一些使用上的小技巧" class="headerlink" title="☆ 一些使用上的小技巧"></a>☆ 一些使用上的小技巧</h2><ul>
-<li>Logseq content wide mode  可以使用快捷键切换 <code>t w</code>  </li>
-<li>Logseq 的 property 可以通过输入 <code>::</code> 来触发自动补全操作，非常方便。  </li>
-<li>Logseq 使用快捷键 <code>Cmd + Shift + i</code> 可以打开 devtools  </li>
-<li>Logseq v0.68，自动补全提供两个快捷键 <code>mod+p</code> 和 <code>mod+n</code> 比较方便了  </li>
-<li>Logseq 可以使用 <code>command + </code> 和 <code>command -</code> 来放大或者缩小 Logseq 的字体大小  </li>
-<li>Logseq 0.7.1 新功能：Copy &amp; Paste with rich-text formats，如果粘贴时不想保留格式 <code>mod + shift + v</code>  </li>
-<li>Logseq 移动光标的快捷键：<code>mod + p</code> 向上移动光标，<code>mod + n</code> 向下移动光标  </li>
-<li>Logseq Markdown 语法支持 <code> Horizontal Rules</code>，可以使用 <code>---</code>分隔卡片笔记。</li>
-</ul>
-<p>mod 在 windows 和 linux 系统中是 <code>ctrl</code>， 在 macOS 系统中是 <code>command</code></p>
-<h2 id="☆-参考链接"><a href="#☆-参考链接" class="headerlink" title="☆  参考链接"></a>☆  参考链接</h2><p><a target="_blank" rel="noopener" href="https://www.usmacd.com/2022/02/21/logseq/">https://www.usmacd.com/2022/02/21/logseq/</a><br><a target="_blank" rel="noopener" href="https://www.usmacd.com/2022/03/07/logseq2/">https://www.usmacd.com/2022/03/07/logseq2/</a></p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
     <link itemprop="mainEntityOfPage" href="http://usmacd.com/2022/09/16/note/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1348,6 +1233,96 @@
 </ul>
 </li>
 </ul>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://usmacd.com/2022/04/13/gogs/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="henices">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="安全代码">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 安全代码">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/04/13/gogs/" class="post-title-link" itemprop="url">gogs 皮肤和源码升级</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2022-04-13 11:21:39" itemprop="dateCreated datePublished" datetime="2022-04-13T11:21:39+08:00">2022-04-13</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>gogs 使用了也有一年多了，小团队使用基本还行。有几个问题，第一界面代码 merge 有问题，第二不支持代码 review，<br>如果能解决上面两个问题就好用很多了。下面两段是年前折腾 gogs 的记录，没有啥技术含量，只是做个备份。</p>
+<h2 id="切换皮肤"><a href="#切换皮肤" class="headerlink" title="切换皮肤"></a>切换皮肤</h2><p><a target="_blank" rel="noopener" href="https://github.com/Kos-M/GogsThemes">https://github.com/Kos-M/GogsThemes</a> 提供了两款皮肤，文中给出的方法要修改 gogs 配置，直接使用 TamperMonkey 就可以了。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ==UserScript==</span></span><br><span class="line"><span class="comment">// @name         Gogs Theme</span></span><br><span class="line"><span class="comment">// @resource     IMPORTED_CSS https://raw.githubusercontent.com/Kos-M/GogsThemes/master/themes/dark_theme.css</span></span><br><span class="line"><span class="comment">// @namespace    http://tampermonkey.net/</span></span><br><span class="line"><span class="comment">// @version      0.1</span></span><br><span class="line"><span class="comment">// @description  try to take over the world!</span></span><br><span class="line"><span class="comment">// @author       You</span></span><br><span class="line"><span class="comment">// @match        http://website:8000/*</span></span><br><span class="line"><span class="comment">// @grant        GM_getResourceText</span></span><br><span class="line"><span class="comment">// @grant        GM_addStyle</span></span><br><span class="line"><span class="comment">// ==/UserScript==</span></span><br><span class="line"></span><br><span class="line">(<span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="string">&#x27;use strict&#x27;</span>;</span><br><span class="line">    <span class="keyword">const</span> my_css = <span class="title function_">GM_getResourceText</span>(<span class="string">&quot;IMPORTED_CSS&quot;</span>);</span><br><span class="line">    <span class="title function_">GM_addStyle</span>(my_css);</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure>
+
+<p>使用后效果图</p>
+<p><img src="https://github.com/henices/pictures/raw/master/gogs0.png"></p>
+<h2 id="源码升级"><a href="#源码升级" class="headerlink" title="源码升级"></a>源码升级</h2><p>gogs 已经有一年多没有提供二进制的安装包了，看了改进不少，就尝试了源码升级。<br>参考 <a target="_blank" rel="noopener" href="https://gogs.io/docs/installation/install_from_source#%E6%B5%8B%E8%AF%95%E5%AE%89%E8%A3%85">https://gogs.io/docs/installation/install_from_source#%E6%B5%8B%E8%AF%95%E5%AE%89%E8%A3%85</a></p>
+<h3 id="安装-golang"><a href="#安装-golang" class="headerlink" title="安装 golang"></a>安装 golang</h3><p>参考 Google 官方文档，执行下面命令就可以了。 <a target="_blank" rel="noopener" href="https://go.dev/doc/install">https://go.dev/doc/install</a></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">wget https://go.dev/dl/go1.17.6.linux-amd64.tar.gz</span><br><span class="line"><span class="built_in">rm</span> -rf /usr/local/go &amp;&amp; tar -C /usr/local -xzf go1.17.6.linux-amd64.tar.gz</span><br><span class="line"><span class="built_in">export</span> PATH=<span class="variable">$PATH</span>:/usr/local/go/bin</span><br></pre></td></tr></table></figure>
+<h3 id="编译"><a href="#编译" class="headerlink" title="编译"></a>编译</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 克隆仓库到 &quot;gogs&quot; 子目录</span></span><br><span class="line">git <span class="built_in">clone</span> --depth 1 https://github.com/gogs/gogs.git gogs</span><br><span class="line"><span class="comment"># 修改工作目录</span></span><br><span class="line"><span class="built_in">cd</span> gogs</span><br><span class="line"><span class="comment"># 编译主程序，这个步骤会下载所有依赖</span></span><br><span class="line">go build -o gogs</span><br></pre></td></tr></table></figure>
+
+<p>编译过程会下载文件（需要自备梯子），编译完成后将在 gogs 工作目下生成 gogs 可执行文件</p>
+<h3 id="打包"><a href="#打包" class="headerlink" title="打包"></a>打包</h3><p>gogs 源码的 Makefile 提供了打包命令，执行 <code>make pack</code> 即可，将在 release 目生成 <code>gogs.20220112095054.zip</code></p>
+<h3 id="迁移配置"><a href="#迁移配置" class="headerlink" title="迁移配置"></a>迁移配置</h3><p>将 gogs.20220112095054.zip 解压，这就类似 gogs 的二进制升级了 <a target="_blank" rel="noopener" href="https://gogs.io/docs/upgrade/upgrade_from_binary">https://gogs.io/docs/upgrade/upgrade_from_binary</a></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">mv</span> gogs gogs_old</span><br><span class="line"><span class="built_in">cp</span> -R gogs_old/custom gogs</span><br><span class="line"><span class="built_in">cp</span> -R gogs_old/data gogs</span><br><span class="line"><span class="built_in">cp</span> -R gogs_old/log gogs</span><br></pre></td></tr></table></figure>
+
+<p>gogs 0.13 的配置已经发生了变化，如果不修改配置执行 <code>./gogs web</code>会出现错误</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">2022/01/12 09:40:06 [ INFO] Gogs 0.13.0+dev</span><br><span class="line">2022/01/12 09:40:06 [FATAL] [...github/internal/route/install.go:75 GlobalInit()] Failed to initialize ORM engine:</span><br><span class="line">open database: failed to connect to `host=127.0.0.1 user=root database=gogs`: dial error (dial tcp 127.0.0.1:3306: connect: connection refused)</span><br></pre></td></tr></table></figure>
+
+<p>看错误像是在连接 mysql 的 3306 端口，可是配置文件设置的是使用 sqlite，非常困惑。上网搜索后证实是 gogs 0.13 的配置文件的字段修改了。</p>
+<p><img src="https://github.com/henices/pictures/raw/master/gogs1.png"></p>
+<p>最关键的两个字段是数据库相关的 <code>DB_TYPE</code> 改为 <code>TYPE</code>， <code>PASSWD</code> 改为 <code>PASSWORD</code> 修改后 <code>custom/conf/app.ini</code> 后，执行 <code>./gogs web</code> 一切正常。</p>
 
       
     </div>

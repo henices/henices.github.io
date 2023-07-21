@@ -2,15 +2,6 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://usmacd.com/2023/07/21/logseq2/</loc>
-    
-    <lastmod>2023-07-21</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>http://usmacd.com/2023/07/20/vim_gtags_leaderf/</loc>
     
     <lastmod>2023-07-19</lastmod>
@@ -212,6 +203,15 @@
     <loc>http://usmacd.com/2022/04/13/gogs/</loc>
     
     <lastmod>2022-04-13</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://usmacd.com/2022/03/07/logseq2/</loc>
+    
+    <lastmod>2022-03-06</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
