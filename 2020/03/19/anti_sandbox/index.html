@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha256-HtsXJanqjKTc8vVQjO4YMhiqFoXkfBsjBWcX91T1jr8=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"usmacd.com","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.18.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="Upatre 使用了一些新的逃逸技术来逃逸动态沙盒引擎的检查，这些技巧都非常的简单，但是非常的有效果。事实上，VirusTotal上Upatre的检出率并不高，新变种出来基本都检测不出来，说明现在的恶意软件对付杀毒软件是越来越有办法了。 目前在恶意软件上加壳倒是越来越少了，因为加壳容易引起杀软引擎的注意，相反地目前的恶意软件大量使用边执行边修改自身代码的方法来躲避杀软，不执行的话看起来就像是一个正">
+<meta property="og:type" content="article">
+<meta property="og:title" content="一些反沙盒的新技术">
+<meta property="og:url" content="http://usmacd.com/2020/03/19/anti_sandbox/index.html">
+<meta property="og:site_name" content="安全代码">
+<meta property="og:description" content="Upatre 使用了一些新的逃逸技术来逃逸动态沙盒引擎的检查，这些技巧都非常的简单，但是非常的有效果。事实上，VirusTotal上Upatre的检出率并不高，新变种出来基本都检测不出来，说明现在的恶意软件对付杀毒软件是越来越有办法了。 目前在恶意软件上加壳倒是越来越少了，因为加壳容易引起杀软引擎的注意，相反地目前的恶意软件大量使用边执行边修改自身代码的方法来躲避杀软，不执行的话看起来就像是一个正">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-03-19T08:34:31.917Z">
+<meta property="article:modified_time" content="2020-03-19T08:34:31.917Z">
+<meta property="article:author" content="henices">
+<meta property="article:tag" content="Malware">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://usmacd.com/2020/03/19/anti_sandbox/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://usmacd.com/2020/03/19/anti_sandbox/","path":"2020/03/19/anti_sandbox/","title":"一些反沙盒的新技术"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>一些反沙盒的新技术 | 安全代码</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="安全代码" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">安全代码</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a></li><li class="menu-item menu-item-sitemap"><a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>Sitemap</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A3%80%E6%9F%A5%E5%BC%80%E6%9C%BA%E6%97%B6%E9%97%B4"><span class="nav-number">1.</span> <span class="nav-text">检查开机时间</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A3%80%E6%9F%A5%E9%BC%A0%E6%A0%87%E4%BD%8D%E7%BD%AE"><span class="nav-number">2.</span> <span class="nav-text">检查鼠标位置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">3.</span> <span class="nav-text">总结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%87%B4%E8%B0%A2"><span class="nav-number">4.</span> <span class="nav-text">致谢</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="henices"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">henices</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">97</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/henices" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;henices" rel="noopener me" target="_blank"><i class="fab fa-twitter fa-fw"></i>Twitter</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml" rel="noopener me"><i class="rss fa-fw"></i>RSS</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+    <div class="sidebar-inner sidebar-blogroll">
+      <div class="links-of-blogroll animated">
+        <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+          Links
+        </div>
+        <ul class="links-of-blogroll-list">
+            <li class="links-of-blogroll-item">
+              <a href="http://scz.617.cn:8/" title="http:&#x2F;&#x2F;scz.617.cn:8&#x2F;" rel="noopener" target="_blank">飞花堂</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://www.v2ex.com/" title="https:&#x2F;&#x2F;www.v2ex.com&#x2F;" rel="noopener" target="_blank">V2EX</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://blog.forecho.com/" title="https:&#x2F;&#x2F;blog.forecho.com&#x2F;" rel="noopener" target="_blank">forecho</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://chensenlin.cn/" title="https:&#x2F;&#x2F;chensenlin.cn&#x2F;" rel="noopener" target="_blank">你好我是森林</a>
+            </li>
+        </ul>
+      </div>
+    </div>
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://usmacd.com/2020/03/19/anti_sandbox/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="henices">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="安全代码">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="一些反沙盒的新技术 | 安全代码">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          一些反沙盒的新技术
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2020-03-19 16:34:31" itemprop="dateCreated datePublished" datetime="2020-03-19T16:34:31+08:00">2020-03-19</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>Upatre 使用了一些新的逃逸技术来逃逸动态沙盒引擎的检查，这些技巧都非常的简单，但<br>是非常的有效果。事实上，VirusTotal上Upatre的检出率并不高，新变种出来基本都检测不<br>出来，说明现在的恶意软件对付杀毒软件是越来越有办法了。</p>
+<p>目前在恶意软件上加壳倒是越来越少了，因为加壳容易引起杀软引擎的注意，相反地目前的<br>恶意软件大量使用边执行边修改自身代码的方法来躲避杀软，不执行的话看起来就像是一个<br>正常的软件，而真正执行起来代码却全变了，这也算是一种进化。</p>
+<p>下面说说两种最近遇到的沙盒逃逸的办法，样本md5: ac3558b973402ef6a27e03c391f20533</p>
+<h2 id="检查开机时间"><a href="#检查开机时间" class="headerlink" title="检查开机时间"></a>检查开机时间</h2><p>一般使用沙盒的分析引擎的做法都是安装一个全新的系统，做系统镜像。然后在检查的时候<br>加载镜像，执行样本。而开机的时间往往都被忽略了，基本都不会超过10分钟。</p>
+<p>Upatre 样本所采取的方法是利用GetTickCount 获取开机的毫秒数，当开机时间小于12分钟<br>是就不执行恶意的行为。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">004013B3    BB D8FE0A00         MOV EBX,0AFED8</span><br><span class="line">004013B8    FF55 DC             CALL DWORD PTR SS:[EBP-24]   ; kernel32.GetTickCount</span><br><span class="line">004013BB    3BC3                CMP EAX,EBX</span><br><span class="line">004013BD    0F82 6F020000       JB 00401632</span><br><span class="line"></span><br><span class="line">00401632    6A 00               PUSH 0</span><br><span class="line">00401634    FF55 F4             CALL DWORD PTR SS:[EBP-C]    ; kernel32.ExitProcess</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>0xAFED8 是 720600毫秒 12分钟多一点，不到进程退出了。</p>
+<h2 id="检查鼠标位置"><a href="#检查鼠标位置" class="headerlink" title="检查鼠标位置"></a>检查鼠标位置</h2><p>Upatre样本使用的第二种沙盒逃逸的方法是检查鼠标位置的变化，动态沙盒分析系统大多是<br>自动化的系统，也就是不使用鼠标，如果Upatre样本检查到鼠标的位置没有发生变化，同样<br>不会执行恶意行为。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">0040197C   8D85 04FFFFFF       lea eax,dword ptr ss:[ebp-0xFC]</span><br><span class="line">00401982   50                  push eax</span><br><span class="line">00401983   FF95 20FFFFFF       call dword ptr ss:[ebp-0xE0]      ;  user32.GetCursorPos</span><br><span class="line">00401989   8D85 0CFFFFFF       lea eax,dword ptr ss:[ebp-0xF4]</span><br><span class="line">0040198F   50                  push eax</span><br><span class="line">00401990   FF95 20FFFFFF       call dword ptr ss:[ebp-0xE0]      ;  user32.GetCursorPos</span><br><span class="line">00401996   8B85 04FFFFFF       mov eax,dword ptr ss:[ebp-0xFC]</span><br><span class="line">0040199C   8B9D 0CFFFFFF       mov ebx,dword ptr ss:[ebp-0xF4]</span><br><span class="line">004019A2   39D8                cmp eax,ebx</span><br><span class="line">004019A4   74 D6               je short 62.0040197C</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>只要鼠标一动就退出循环，继续往下执行。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>最近出现的样本在反动态沙盒检测方面明显地进化了，针对性极强，不再局限于古老的<br>IsDebuggerPresent，而是利用PEB检查CPU核数等技术办法来检测，沙盒对抗估技术在后面<br>的日子里一定会更加迅速的进化。</p>
+<h2 id="致谢"><a href="#致谢" class="headerlink" title="致谢"></a>致谢</h2><p>非常感谢西安研究中心的同事提供的样本，同时感谢同事lzx在样本分析时给予的大力支持。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Malware/" rel="tag"># Malware</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2020/03/19/apk_debug/" rel="prev" title="使用Android Studio 调试无源码apk程序">
+                  <i class="fa fa-angle-left"></i> 使用Android Studio 调试无源码apk程序
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2020/03/19/android_intent_base_attack/" rel="next" title="Intent Spoofing 攻击">
+                  Intent Spoofing 攻击 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2023</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">henices</span>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

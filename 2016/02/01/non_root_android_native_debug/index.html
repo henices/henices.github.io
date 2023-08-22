@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha256-HtsXJanqjKTc8vVQjO4YMhiqFoXkfBsjBWcX91T1jr8=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"usmacd.com","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.18.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="没有root的设备，要使用gdbserver 调试app 会遇到权限问题。(emulator 没有问题) 1231|shell@mako:&#x2F;data&#x2F;local&#x2F;tmp $ .&#x2F;gdbserver :1234 --attach 16907Cannot attach to lwp 16907: Operation not permitted (1)Exiting  Android 系统提供了一个ru">
+<meta property="og:type" content="article">
+<meta property="og:title" content="非root Android 设备用gdbserver进行native 调试的方法">
+<meta property="og:url" content="http://usmacd.com/2016/02/01/non_root_android_native_debug/index.html">
+<meta property="og:site_name" content="安全代码">
+<meta property="og:description" content="没有root的设备，要使用gdbserver 调试app 会遇到权限问题。(emulator 没有问题) 1231|shell@mako:&#x2F;data&#x2F;local&#x2F;tmp $ .&#x2F;gdbserver :1234 --attach 16907Cannot attach to lwp 16907: Operation not permitted (1)Exiting  Android 系统提供了一个ru">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2016-01-31T16:00:00.000Z">
+<meta property="article:modified_time" content="2016-01-31T16:00:00.000Z">
+<meta property="article:author" content="henices">
+<meta property="article:tag" content="Android">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://usmacd.com/2016/02/01/non_root_android_native_debug/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://usmacd.com/2016/02/01/non_root_android_native_debug/","path":"2016/02/01/non_root_android_native_debug/","title":"非root Android 设备用gdbserver进行native 调试的方法"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>非root Android 设备用gdbserver进行native 调试的方法 | 安全代码</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="安全代码" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">安全代码</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a></li><li class="menu-item menu-item-sitemap"><a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>Sitemap</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-overview-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="henices"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">henices</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">97</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/henices" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;henices" rel="noopener me" target="_blank"><i class="fab fa-twitter fa-fw"></i>Twitter</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml" rel="noopener me"><i class="rss fa-fw"></i>RSS</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+    <div class="sidebar-inner sidebar-blogroll">
+      <div class="links-of-blogroll animated">
+        <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+          Links
+        </div>
+        <ul class="links-of-blogroll-list">
+            <li class="links-of-blogroll-item">
+              <a href="http://scz.617.cn:8/" title="http:&#x2F;&#x2F;scz.617.cn:8&#x2F;" rel="noopener" target="_blank">飞花堂</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://www.v2ex.com/" title="https:&#x2F;&#x2F;www.v2ex.com&#x2F;" rel="noopener" target="_blank">V2EX</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://blog.forecho.com/" title="https:&#x2F;&#x2F;blog.forecho.com&#x2F;" rel="noopener" target="_blank">forecho</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://chensenlin.cn/" title="https:&#x2F;&#x2F;chensenlin.cn&#x2F;" rel="noopener" target="_blank">你好我是森林</a>
+            </li>
+        </ul>
+      </div>
+    </div>
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://usmacd.com/2016/02/01/non_root_android_native_debug/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="henices">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="安全代码">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="非root Android 设备用gdbserver进行native 调试的方法 | 安全代码">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          非root Android 设备用gdbserver进行native 调试的方法
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2016-02-01 00:00:00" itemprop="dateCreated datePublished" datetime="2016-02-01T00:00:00+08:00">2016-02-01</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>没有root的设备，要使用gdbserver 调试app 会遇到权限问题。(emulator 没有问题)</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1|shell@mako:/data/local/tmp $ ./gdbserver :1234 --attach 16907</span><br><span class="line">Cannot attach to lwp 16907: Operation not permitted (1)</span><br><span class="line">Exiting</span><br></pre></td></tr></table></figure>
+
+<p>Android 系统提供了一个run-as 命令来暂时切换用户，但是这个命令有限制，必须是app 打开了debuggable才行，否则会报 Package xx is not debuggable 的错误。<br>从 <a target="_blank" rel="noopener" href="http://android.googlesource.com/platform/system/core.git/+/master/run-as/run-as.c">http://android.googlesource.com/platform/system/core.git/+/master/run-as/run-as.c</a> 的注释来看，主要的作用有两个：</p>
+<ul>
+<li>可以查看自己开发的应用的数据</li>
+<li>可以使用gdb_server 进行native 的debug</li>
+</ul>
+<p>我们的需求是第2个，我们希望可以使用gdb_server 来调试 app</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">shell@mako:/ $ run-as</span><br><span class="line">Usage: run-as   []</span><br><span class="line"></span><br><span class="line">shell@mako:/ $ </span><br><span class="line">shell@mako:/ $ run-as system_server /data/tmp/gdbserver --attach 596 :1234</span><br><span class="line">run-as: Package &#x27;system_server&#x27; is unknown</span><br></pre></td></tr></table></figure>
+
+<p>翻看源码，发现有下面 代码：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* reject system packages */</span></span><br><span class="line"><span class="keyword">if</span> (userAppId &lt; AID_APP) &#123;</span><br><span class="line">    panic(<span class="string">&quot;Package &#x27;%s&#x27; is not an application\n&quot;</span>, pkgname);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/* reject any non-debuggable package */</span></span><br><span class="line"><span class="keyword">if</span> (!info.isDebuggable) &#123;</span><br><span class="line">    panic(<span class="string">&quot;Package &#x27;%s&#x27; is not debuggable\n&quot;</span>, pkgname);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>限制比较严格，调试系统app估计是没什么戏，root了应该就没有问题了。但是调试一般的app 还是没有问题的，用apktool 将 AndroidManifest.xml 的 debuggable 设置为true，重新 打包就可以进行native 的 debug 了。下面以CVE-2014-7911的POC为例：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=<span class="string">&quot;1.0&quot;</span> encoding=<span class="string">&quot;utf-8&quot;</span>?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">manifest</span> <span class="attr">xmlns:android</span>=<span class="string">&quot;http://schemas.android.com/apk/res/android&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">package</span>=<span class="string">&quot;com.heen.CVE_2014_7911&quot;</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">application</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:allowBackup</span>=<span class="string">&quot;true&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:debuggable</span>=<span class="string">&quot;true&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:icon</span>=<span class="string">&quot;@mipmap/ic_launcher&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:label</span>=<span class="string">&quot;@string/app_name&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:theme</span>=<span class="string">&quot;@style/AppTheme&quot;</span> &gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">activity</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:name</span>=<span class="string">&quot;.MainActivity&quot;</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:label</span>=<span class="string">&quot;@string/app_name&quot;</span> &gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">intent-filter</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">action</span> <span class="attr">android:name</span>=<span class="string">&quot;android.intent.action.MAIN&quot;</span> /&gt;</span></span><br><span class="line"></span><br><span class="line">                <span class="tag">&lt;<span class="name">category</span> <span class="attr">android:name</span>=<span class="string">&quot;android.intent.category.LAUNCHER&quot;</span> /&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">intent-filter</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">activity</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">application</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">manifest</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>这个app 正好 android:debuggable&#x3D;”true” 不用修改了，在模拟器上安装这个app。搭建 gdb调试环境, 分下面几个步骤走：</p>
+<p>(1) 创建几个目录</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">mkdir</span> ~/Android</span><br><span class="line">mkidr ~/Android/system_lib</span><br><span class="line">mkidr ~/Android/vendor_lib</span><br></pre></td></tr></table></figure>
+
+<p>(2) 将Android 设置上的lib下载到本地</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~/Android/system_lib/</span><br><span class="line">adb pull /system/lib</span><br><span class="line"></span><br><span class="line"><span class="built_in">cd</span> ~/Android/vendor_lib/</span><br><span class="line">adb pull /vendor/lib</span><br><span class="line"></span><br><span class="line"><span class="built_in">cd</span> ~/Android</span><br><span class="line"></span><br><span class="line"><span class="comment"># 在64位系统 /system/bin/app_process32 和 /system/bin/app_process64</span></span><br><span class="line">adb pull /system/bin/app_process</span><br><span class="line"></span><br><span class="line"><span class="built_in">cd</span> ~/Android</span><br><span class="line">adb pull /system/bin/linker</span><br></pre></td></tr></table></figure>
+
+<p>(3) 上传gdbserver</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb push $NDK_PATH/prebuilt/android-arm/gdbserver/gdbserver /data/local/tmp/gdbserver</span><br></pre></td></tr></table></figure>
+
+<p>环境基本搭建好了，测试一下 run-as 命令</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt; adb shell ps</span><br><span class="line"></span><br><span class="line">...</span><br><span class="line">u0_a86    16907 174   900568 38564 ffffffff 00000000 S com.heen.CVE_2014_7911</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; adb shell run-as com.heen.CVE_2014_7911 id</span><br><span class="line">uid=10086(u0_a86) gid=10086(u0_a86) groups=1003(graphics),1004(input),1007(log),1011(adb),1015(sdcard_rw),1028(sdcard_r),3001(net_bt_admin),3002(net_bt),3003(inet),3006(net_bw_stats) context=u:r:untrusted_app:s</span><br></pre></td></tr></table></figure>
+
+<p>已经切换过来了，uid 变了，挂上gdbserver</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt; adb shell run-as com.heen.CVE_2014_7911 /data/local/tmp/gdbserver :123 --attach 16907</span><br><span class="line"></span><br><span class="line">Can&#x27;t open socket: Permission denied.</span><br><span class="line">Exiting</span><br></pre></td></tr></table></figure>
+
+<p>报了另外一个错误，还是不行，google 一翻发现有debug-pipe 参数，尝试了一下</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt; adb shell run-as com.heen.CVE_2014_7911 /data/local/tmp/gdbserver +debug-pipe --attach 16907</span><br><span class="line">Attached; pid = 16907</span><br><span class="line">Listening on Unix socket debug-pipe</span><br></pre></td></tr></table></figure>
+
+<p>恩，现在没有报错了,执行一下端口转发。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">adb forward tcp:5039 localfilesystem:/data/data/com.heen.CVE_2014_7911/debug-pipe</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>OK, 已经可以调试了。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">&gt; $NDK_PATH/toolchains/arm-linux-androideabi-4.9/prebuilt/linux-x86_64/bin/arm-linux-androideabi-gdb ~/Android/app_process </span><br><span class="line">GNU gdb (GDB) 7.6</span><br><span class="line">Copyright (C) 2013 Free Software Foundation, Inc.</span><br><span class="line">License GPLv3+: GNU GPL version 3 or later </span><br><span class="line">This is free software: you are free to change and redistribute it.</span><br><span class="line">There is NO WARRANTY, to the extent permitted by law.  Type &quot;show copying&quot;</span><br><span class="line">and &quot;show warranty&quot; for details.</span><br><span class="line">This GDB was configured as &quot;--host=x86_64-linux-gnu --target=arm-linux-android&quot;.</span><br><span class="line">For bug reporting instructions, please see:</span><br><span class="line">...</span><br><span class="line">Reading symbols from /home/henices/Android/app_process...(no debugging symbols found)...done.</span><br><span class="line">(gdb) target remote :5039</span><br><span class="line">Remote debugging using :5039</span><br><span class="line">warning: Could not load shared library symbols for 100 libraries, e.g. /system/bin/linker.</span><br><span class="line">Use the &quot;info sharedlibrary&quot; command to see the complete listing.</span><br><span class="line">Do you need &quot;set solib-search-path&quot; or &quot;set sysroot&quot;?</span><br><span class="line">warning: Unable to find dynamic linker breakpoint function.</span><br><span class="line">GDB will be unable to debug shared library initializers</span><br><span class="line">and track explicitly loaded dynamic code.</span><br><span class="line">0x4013a73c in ?? ()</span><br><span class="line"></span><br><span class="line">(gdb) info proc</span><br><span class="line">process 16907</span><br><span class="line">cmdline = &#x27;com.heen.CVE_2014_7911&#x27;</span><br><span class="line">cwd = &#x27;/&#x27;</span><br><span class="line">exe = &#x27;/system/bin/app_process&#x27;</span><br><span class="line"></span><br><span class="line">(gdb) set solib-search-path ~/Android:~/Android/system_lib/:~/Android/vendor_lib/</span><br><span class="line">(gdb) info sharedlibrary</span><br><span class="line">0x400f3a60  0x400fe79c  Yes (*)     /home/henices/Android/linker</span><br><span class="line">0x40126070  0x401566ec  Yes (*)     /home/henices/Android/system_lib/libc.so</span><br><span class="line">0x40174828  0x401749c8  Yes (*)     /home/henices/Android/system_lib/libstdc++.so</span><br><span class="line">0x401798f0  0x4018c478  Yes (*)     /home/henices/Android/system_lib/libm.so</span><br><span class="line">0x40114f50  0x40116490  Yes (*)     /home/henices/Android/system_lib/liblog.so</span><br><span class="line">0x4010c38c  0x40110988  Yes (*)     /home/henices/Android/system_lib/libcutils.so</span><br><span class="line">0x401acb1c  0x401af20c  Yes (*)     /home/henices/Android/system_lib/libgccdemangle.so</span><br><span class="line">0x401a81d0  0x401a94ac  Yes (*)     /home/henices/Android/system_lib/libcorkscrew.so</span><br><span class="line">0x4019b780  0x401a1f24  Yes (*)     /home/henices/Android/system_lib/libutils.so</span><br><span class="line">0x401cbc50  0x401d5ba4  Yes (*)     /home/henices/Android/system_lib/libbinder.so</span><br><span class="line">0x402955f0  0x4029585c  Yes (*)     /home/henices/Android/system_lib/libhardware.so</span><br><span class="line">0x402925d0  0x40292834  Yes (*)     /home/henices/Android/system_lib/libmemtrack.so</span><br><span class="line">0x402bbbf0  0x402cb80c  Yes (*)     /home/henices/Android/system_lib/libz.so</span><br><span class="line">0x402a4240  0x402b23fc  Yes (*)     /home/henices/Android/system_lib/libandroidfw.so</span><br><span class="line">0x402d6774  0x402e53a0  Yes (*)     /home/henices/Android/system_lib/libexpat.so</span><br><span class="line">0x403083a8  0x4031e684  Yes (*)     /home/henices/Android/system_lib/libstlport.so</span><br></pre></td></tr></table></figure>
+
+
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Android/" rel="tag"># Android</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2015/12/03/malware_time_delay_escape/" rel="prev" title="通过延迟执行的方法来逃逸杀软">
+                  <i class="fa fa-angle-left"></i> 通过延迟执行的方法来逃逸杀软
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2016/06/08/PowerPoint_egg/" rel="next" title="PowerPoint 彩蛋和加密">
+                  PowerPoint 彩蛋和加密 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2023</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">henices</span>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

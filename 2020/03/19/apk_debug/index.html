@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha256-HtsXJanqjKTc8vVQjO4YMhiqFoXkfBsjBWcX91T1jr8=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"usmacd.com","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.18.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="Apk无源码调试的方法有很多，现在发现使用Android Studio 结合 JEB　感觉良好，主要是参考　http:&#x2F;&#x2F;www.jianshu.com&#x2F;p&#x2F;c7899e5ea182　这篇记录下了具体步骤。 1. 下载 smalideahttps:&#x2F;&#x2F;bitbucket.org&#x2F;JesusFreke&#x2F;smali&#x2F;downloads&#x2F;smalidea-0.03.zip 在Android studio">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用Android Studio 调试无源码apk程序">
+<meta property="og:url" content="http://usmacd.com/2020/03/19/apk_debug/index.html">
+<meta property="og:site_name" content="安全代码">
+<meta property="og:description" content="Apk无源码调试的方法有很多，现在发现使用Android Studio 结合 JEB　感觉良好，主要是参考　http:&#x2F;&#x2F;www.jianshu.com&#x2F;p&#x2F;c7899e5ea182　这篇记录下了具体步骤。 1. 下载 smalideahttps:&#x2F;&#x2F;bitbucket.org&#x2F;JesusFreke&#x2F;smali&#x2F;downloads&#x2F;smalidea-0.03.zip 在Android studio">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-03-19T08:34:31.917Z">
+<meta property="article:modified_time" content="2020-03-19T08:34:31.917Z">
+<meta property="article:author" content="henices">
+<meta property="article:tag" content="Android">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://usmacd.com/2020/03/19/apk_debug/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://usmacd.com/2020/03/19/apk_debug/","path":"2020/03/19/apk_debug/","title":"使用Android Studio 调试无源码apk程序"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>使用Android Studio 调试无源码apk程序 | 安全代码</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="安全代码" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">安全代码</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a></li><li class="menu-item menu-item-sitemap"><a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>Sitemap</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E4%B8%8B%E8%BD%BD-smalidea"><span class="nav-number">1.</span> <span class="nav-text">1. 下载 smalidea</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-apktool-%E8%BE%93%E5%87%BA%E6%BA%90%E7%A0%81%E6%96%87%E4%BB%B6"><span class="nav-number">2.</span> <span class="nav-text">2. apktool 输出源码文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-Android-Studio-%E5%AF%BC%E5%85%A5%E6%BA%90%E7%A0%81"><span class="nav-number">3.</span> <span class="nav-text">3. Android Studio 导入源码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-%E5%A2%9E%E5%8A%A0Android-Stuido%E7%9A%84%E8%B0%83%E8%AF%95%E9%80%89%E9%A1%B9"><span class="nav-number">4.</span> <span class="nav-text">4. 增加Android Stuido的调试选项</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-%E4%BB%A5%E8%B0%83%E8%AF%95%E6%A8%A1%E5%BC%8F%E5%90%AF%E5%8A%A8%E5%BA%94%E7%94%A8"><span class="nav-number">5.</span> <span class="nav-text">5. 以调试模式启动应用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-%E5%BB%BA%E7%AB%8B%E8%B0%83%E8%AF%95%E9%80%9A%E9%81%93"><span class="nav-number">6.</span> <span class="nav-text">6. 建立调试通道</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-%E8%AE%BE%E7%BD%AE%E6%96%AD%E7%82%B9%EF%BC%8C%E8%B0%83%E8%AF%95"><span class="nav-number">7.</span> <span class="nav-text">7. 设置断点，调试</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-%E5%85%B6%E4%BB%96%E4%B8%80%E4%BA%9B%E8%AF%B4%E6%98%8E%E4%BA%8B%E9%A1%B9"><span class="nav-number">8.</span> <span class="nav-text">8. 其他一些说明事项</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="henices"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">henices</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">97</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/henices" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;henices" rel="noopener me" target="_blank"><i class="fab fa-twitter fa-fw"></i>Twitter</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml" rel="noopener me"><i class="rss fa-fw"></i>RSS</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+    <div class="sidebar-inner sidebar-blogroll">
+      <div class="links-of-blogroll animated">
+        <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+          Links
+        </div>
+        <ul class="links-of-blogroll-list">
+            <li class="links-of-blogroll-item">
+              <a href="http://scz.617.cn:8/" title="http:&#x2F;&#x2F;scz.617.cn:8&#x2F;" rel="noopener" target="_blank">飞花堂</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://www.v2ex.com/" title="https:&#x2F;&#x2F;www.v2ex.com&#x2F;" rel="noopener" target="_blank">V2EX</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://blog.forecho.com/" title="https:&#x2F;&#x2F;blog.forecho.com&#x2F;" rel="noopener" target="_blank">forecho</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://chensenlin.cn/" title="https:&#x2F;&#x2F;chensenlin.cn&#x2F;" rel="noopener" target="_blank">你好我是森林</a>
+            </li>
+        </ul>
+      </div>
+    </div>
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://usmacd.com/2020/03/19/apk_debug/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="henices">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="安全代码">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="使用Android Studio 调试无源码apk程序 | 安全代码">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          使用Android Studio 调试无源码apk程序
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2020-03-19 16:34:31" itemprop="dateCreated datePublished" datetime="2020-03-19T16:34:31+08:00">2020-03-19</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>Apk无源码调试的方法有很多，现在发现使用Android Studio 结合 JEB　感觉良好，<br>主要是参考　<a target="_blank" rel="noopener" href="http://www.jianshu.com/p/c7899e5ea182">http://www.jianshu.com/p/c7899e5ea182</a>　这篇记录下了具体步骤。</p>
+<h2 id="1-下载-smalidea"><a href="#1-下载-smalidea" class="headerlink" title="1. 下载 smalidea"></a>1. 下载 smalidea</h2><p><a target="_blank" rel="noopener" href="https://bitbucket.org/JesusFreke/smali/downloads/smalidea-0.03.zip">https://bitbucket.org/JesusFreke/smali/downloads/smalidea-0.03.zip</a></p>
+<p>在Android studio的插件仓库中没有找到这个插件，需要下载本地安装<br>File -&gt; Settings -&gt; Plugins -&gt; Install plugin from disk  选择下载的插件，重启后生效。</p>
+<h2 id="2-apktool-输出源码文件"><a href="#2-apktool-输出源码文件" class="headerlink" title="2. apktool 输出源码文件"></a>2. apktool 输出源码文件</h2><p><a target="_blank" rel="noopener" href="https://github.com/iBotPeaches/Apktool/releases/download/2.2.0/apktool_2.2.0.jar">https://github.com/iBotPeaches/Apktool/releases/download/2.2.0/apktool_2.2.0.jar</a></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java -jar apktool_2.2.0.jar d -f xx.apk -o xx</span><br></pre></td></tr></table></figure>
+
+<p>如果正常的将输出 smali 源码文件</p>
+<h2 id="3-Android-Studio-导入源码"><a href="#3-Android-Studio-导入源码" class="headerlink" title="3. Android Studio 导入源码"></a>3. Android Studio 导入源码</h2><p>File -&gt; New -&gt; import project  选择刚才导出的xx文件夹</p>
+<h2 id="4-增加Android-Stuido的调试选项"><a href="#4-增加Android-Stuido的调试选项" class="headerlink" title="4. 增加Android Stuido的调试选项"></a>4. 增加Android Stuido的调试选项</h2><p>Android Studio 界面上选择 Run-&gt; Edit Configurations，点击+号，新建remote类型调试<br>器，默认的监听端口为5005，如果默认端口被占用则需要修改端口号。</p>
+<h2 id="5-以调试模式启动应用"><a href="#5-以调试模式启动应用" class="headerlink" title="5. 以调试模式启动应用"></a>5. 以调试模式启动应用</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell am start -D -n aa.bb/.activity</span><br></pre></td></tr></table></figure>
+
+<p>进程将挂起，aa.bb是package name，.activity 是要启动的activity 一般指定MainAcvitiy即可</p>
+<h2 id="6-建立调试通道"><a href="#6-建立调试通道" class="headerlink" title="6. 建立调试通道"></a>6. 建立调试通道</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell ps | grep aa.bb</span><br></pre></td></tr></table></figure>
+
+<p>获得调试进程的pid</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb forward tcp:5005 jdwp:debug_process_pid</span><br></pre></td></tr></table></figure>
+
+<p>执行命令后，可以看到adb监听本地5005 端口。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; netstat -antp | grep 5005</span><br><span class="line"> tcp        0      0 127.0.0.1:5005          0.0.0.0:*               LISTEN      4728/adb  </span><br></pre></td></tr></table></figure>
+
+<h2 id="7-设置断点，调试"><a href="#7-设置断点，调试" class="headerlink" title="7. 设置断点，调试"></a>7. 设置断点，调试</h2><p>点击源码左侧栏可以设置断点，点击工具栏上的debug （一个小虫的按钮），开始调试。在<br>这个步骤上我遇上了一个错误。</p>
+<p>java.io.IOException “handshake failed - connection prematurally closed”</p>
+<p>这个错误是因为adb版本问题，取消Android内部的adb集成就可以了。具体方法是<br>Tools -&gt; Android -&gt; Enable adb integration 取消掉前面的勾就可以了。</p>
+<p>如果看到Connected to the target VM, address: ‘localhost:5005’, transport: ‘socket’ 就大功告成了。</p>
+<h2 id="8-其他一些说明事项"><a href="#8-其他一些说明事项" class="headerlink" title="8. 其他一些说明事项"></a>8. 其他一些说明事项</h2><p>要调试apk程序是有一些要求的，下面几种情况可以调试apk程序。</p>
+<ul>
+<li>&#x2F;default.prop ro.debuggable&#x3D;1</li>
+</ul>
+<p>我的手机就属于这种情况</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">getprop  | grep ro.debug</span><br><span class="line">[ro.debuggable]: [1]</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>APK 中AndroidManifest.xml 有这句 android:debuggable&#x3D;true</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Android/" rel="tag"># Android</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2020/03/19/compile_android_source_code/" rel="prev" title="编译 Android 系统源码  （AOSP）">
+                  <i class="fa fa-angle-left"></i> 编译 Android 系统源码  （AOSP）
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2020/03/19/anti_sandbox/" rel="next" title="一些反沙盒的新技术">
+                  一些反沙盒的新技术 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2023</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">henices</span>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>
