@@ -49,8 +49,6 @@
 
 
 
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8793345906937947"
-     crossorigin="anonymous"></script>
 
   <noscript>
     <link rel="stylesheet" href="/css/noscript.css">
@@ -233,7 +231,19 @@
     
     
     
-    <div class="post-body" itemprop="articleBody"><p>SQL Server 2005 中引入的 xp_cmdshell 选项是服务器配置选项，<br>使系统管理员能够控制是否可以在系统上执行 xp_cmdshell 扩展存储过程。</p>
+    <div class="post-body" itemprop="articleBody"><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8793345906937947"
+     crossorigin="anonymous"></script>
+<!-- column -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-8793345906937947"
+     data-ad-slot="9350670660"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+<p>SQL Server 2005 中引入的 xp_cmdshell 选项是服务器配置选项，<br>使系统管理员能够控制是否可以在系统上执行 xp_cmdshell 扩展存储过程。</p>
 <h2 id="1-如何在sql-server-2005-中开启xp-cmdshell"><a href="#1-如何在sql-server-2005-中开启xp-cmdshell" class="headerlink" title="1.  如何在sql server 2005 中开启xp_cmdshell"></a>1.  如何在sql server 2005 中开启xp_cmdshell</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- To allow advanced options to be changed.</span></span><br><span class="line"><span class="keyword">EXEC</span> sp_configure <span class="string">&#x27;show advanced options&#x27;</span>, <span class="number">1</span></span><br><span class="line">GO</span><br><span class="line"><span class="comment">-- To update the currently configured value for advanced options.</span></span><br><span class="line">RECONFIGURE</span><br><span class="line">GO</span><br><span class="line"><span class="comment">-- To enable the feature.</span></span><br><span class="line"><span class="keyword">EXEC</span> sp_configure <span class="string">&#x27;xp_cmdshell&#x27;</span>, <span class="number">1</span></span><br><span class="line">GO</span><br><span class="line"><span class="comment">-- To update the currently configured value for this feature.</span></span><br><span class="line">RECONFIGURE</span><br><span class="line">GO</span><br></pre></td></tr></table></figure>
 
 <h2 id="2-如何查询sql-server-2005-拓展存储过程xp-cmdshell-状态"><a href="#2-如何查询sql-server-2005-拓展存储过程xp-cmdshell-状态" class="headerlink" title="2. 如何查询sql server 2005 拓展存储过程xp_cmdshell 状态"></a>2. 如何查询sql server 2005 拓展存储过程xp_cmdshell 状态</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> sys.configurations <span class="keyword">where</span> name<span class="operator">=</span><span class="string">&#x27;xp_cmdshell&#x27;</span></span><br><span class="line">GO</span><br></pre></td></tr></table></figure>

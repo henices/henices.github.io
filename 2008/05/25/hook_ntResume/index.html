@@ -49,8 +49,6 @@
 
 
 
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8793345906937947"
-     crossorigin="anonymous"></script>
 
   <noscript>
     <link rel="stylesheet" href="/css/noscript.css">
@@ -233,7 +231,19 @@
     
     
     
-    <div class="post-body" itemprop="articleBody"><p>挂钩一直是Hack 编程中永恒的主题，基本高级的Rootkit 程序多多少少都会使用Hook 技术。<br>似乎Hook 都被讲烂了，不论是Ring3 的还是Ring0 的网上都有例子。Ring0 的毋庸置疑当然<br>是全局的了，这里说说ring3 的全局hook。Ring 3 有Ring 3 的优势，稳定是压倒一切的，<br>因此Mcafee 和其他一些商业的安全软件都还是使用了Ring3 的Hook 技术，无论如何用户是<br>无法接受蓝屏和死机的。</p>
+    <div class="post-body" itemprop="articleBody"><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8793345906937947"
+     crossorigin="anonymous"></script>
+<!-- column -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-8793345906937947"
+     data-ad-slot="9350670660"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+<p>挂钩一直是Hack 编程中永恒的主题，基本高级的Rootkit 程序多多少少都会使用Hook 技术。<br>似乎Hook 都被讲烂了，不论是Ring3 的还是Ring0 的网上都有例子。Ring0 的毋庸置疑当然<br>是全局的了，这里说说ring3 的全局hook。Ring 3 有Ring 3 的优势，稳定是压倒一切的，<br>因此Mcafee 和其他一些商业的安全软件都还是使用了Ring3 的Hook 技术，无论如何用户是<br>无法接受蓝屏和死机的。</p>
 <p>感兴趣的可以装个Rootkit unhooker 自己看看。 :)</p>
 <h2 id="1-以往的Ring-3全局Hook"><a href="#1-以往的Ring-3全局Hook" class="headerlink" title="1. 以往的Ring 3全局Hook"></a>1. 以往的Ring 3全局Hook</h2><p>纵观网上流行的全局Hook 程序都只用了一个Windows API， SetWindowsHookEx，此函数原型：</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">HHOOK <span class="title function_">SetWindowsHookEx</span><span class="params">(      </span></span><br><span class="line"><span class="params">    <span class="type">int</span> idHook,</span></span><br><span class="line"><span class="params">    HOOKPROC lpfn,</span></span><br><span class="line"><span class="params">    HINSTANCE hMod,</span></span><br><span class="line"><span class="params">    DWORD dwThreadId</span></span><br><span class="line"><span class="params">)</span>;</span><br></pre></td></tr></table></figure>

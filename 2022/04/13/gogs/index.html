@@ -52,8 +52,6 @@
 
 
 
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8793345906937947"
-     crossorigin="anonymous"></script>
 
   <noscript>
     <link rel="stylesheet" href="/css/noscript.css">
@@ -236,7 +234,19 @@
     
     
     
-    <div class="post-body" itemprop="articleBody"><p>gogs 使用了也有一年多了，小团队使用基本还行。有几个问题，第一界面代码 merge 有问题，第二不支持代码 review，<br>如果能解决上面两个问题就好用很多了。下面两段是年前折腾 gogs 的记录，没有啥技术含量，只是做个备份。</p>
+    <div class="post-body" itemprop="articleBody"><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8793345906937947"
+     crossorigin="anonymous"></script>
+<!-- column -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-8793345906937947"
+     data-ad-slot="9350670660"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+<p>gogs 使用了也有一年多了，小团队使用基本还行。有几个问题，第一界面代码 merge 有问题，第二不支持代码 review，<br>如果能解决上面两个问题就好用很多了。下面两段是年前折腾 gogs 的记录，没有啥技术含量，只是做个备份。</p>
 <h2 id="切换皮肤"><a href="#切换皮肤" class="headerlink" title="切换皮肤"></a>切换皮肤</h2><p><a target="_blank" rel="noopener" href="https://github.com/Kos-M/GogsThemes">https://github.com/Kos-M/GogsThemes</a> 提供了两款皮肤，文中给出的方法要修改 gogs 配置，直接使用 TamperMonkey 就可以了。</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ==UserScript==</span></span><br><span class="line"><span class="comment">// @name         Gogs Theme</span></span><br><span class="line"><span class="comment">// @resource     IMPORTED_CSS https://raw.githubusercontent.com/Kos-M/GogsThemes/master/themes/dark_theme.css</span></span><br><span class="line"><span class="comment">// @namespace    http://tampermonkey.net/</span></span><br><span class="line"><span class="comment">// @version      0.1</span></span><br><span class="line"><span class="comment">// @description  try to take over the world!</span></span><br><span class="line"><span class="comment">// @author       You</span></span><br><span class="line"><span class="comment">// @match        http://website:8000/*</span></span><br><span class="line"><span class="comment">// @grant        GM_getResourceText</span></span><br><span class="line"><span class="comment">// @grant        GM_addStyle</span></span><br><span class="line"><span class="comment">// ==/UserScript==</span></span><br><span class="line"></span><br><span class="line">(<span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="string">&#x27;use strict&#x27;</span>;</span><br><span class="line">    <span class="keyword">const</span> my_css = <span class="title function_">GM_getResourceText</span>(<span class="string">&quot;IMPORTED_CSS&quot;</span>);</span><br><span class="line">    <span class="title function_">GM_addStyle</span>(my_css);</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure>
 

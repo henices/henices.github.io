@@ -49,8 +49,6 @@
 
 
 
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8793345906937947"
-     crossorigin="anonymous"></script>
 
   <noscript>
     <link rel="stylesheet" href="/css/noscript.css">
@@ -232,7 +230,19 @@
     
     
     
-    <div class="post-body" itemprop="articleBody"><p>简单实现文件防删除，说简单是因为没有用很底层的技术，例如文件驱动之类。我只用最简单的方法实现了, 使用 ring3 的API hook 技术。随着技术的发展这种技术已经过不了很多的主动防御技术了。主要是思路和方法和分析过程。(高手飘过)</p>
+    <div class="post-body" itemprop="articleBody"><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8793345906937947"
+     crossorigin="anonymous"></script>
+<!-- column -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-8793345906937947"
+     data-ad-slot="9350670660"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+<p>简单实现文件防删除，说简单是因为没有用很底层的技术，例如文件驱动之类。我只用最简单的方法实现了, 使用 ring3 的API hook 技术。随着技术的发展这种技术已经过不了很多的主动防御技术了。主要是思路和方法和分析过程。(高手飘过)</p>
 <p>ring3 下挂钩 API 基本上也就是修改导入表，和Inline hook 修改前5个字节这几种方法。挂钩Native API 没有什么区别，也就是多声明几个结构和变量类型。</p>
 <p>关于挂钩API 请参见：<a target="_blank" rel="noopener" href="http://www.xfocus.net/articles/200403/681.html">www.xfocus.net/articles/200403/681.html</a></p>
 <p>文件删除的ring3 API 是DeleteFile, 此API 存在于kernel32.dll 中，用OD分析一下。(哪个都可以，IDA更不用说)</p>
