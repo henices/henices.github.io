@@ -347,12 +347,18 @@
 </code></pre>
 <h2 id="☆-3-导入mitmproxy的-CA"><a href="#☆-3-导入mitmproxy的-CA" class="headerlink" title="☆ 3. 导入mitmproxy的 CA"></a>☆ 3. 导入mitmproxy的 CA</h2><p>使用mitmproxy 最大的原因就是因为它可以对付https报文。<br>参考 <a target="_blank" rel="noopener" href="https://docs.mitmproxy.org/stable/concepts-certificates/">https://docs.mitmproxy.org/stable/concepts-certificates/</a></p>
 <p>mitmproxy 的 CA 证书放在 ~&#x2F;.mitmproxy 目录， 可以在不同设备中添加。</p>
-<h3 id="3-1-目标设备为Linux"><a href="#3-1-目标设备为Linux" class="headerlink" title="3.1 目标设备为Linux"></a>3.1 目标设备为Linux</h3><h4 id="Google-Chrome"><a href="#Google-Chrome" class="headerlink" title="Google Chrome"></a>Google Chrome</h4><p>设置 -&gt; HTTPS&#x2F;SSL -&gt; 证书管理 -&gt; 授权中心</p>
-<h4 id="Firefox"><a href="#Firefox" class="headerlink" title="Firefox"></a>Firefox</h4><p>没用Firefox，估计也类似。</p>
-<p>设置好CA后，设置浏览器使用mitmproxy代理即可。</p>
-<h3 id="3-2-目标设备为-Android"><a href="#3-2-目标设备为-Android" class="headerlink" title="3.2 目标设备为 Android"></a>3.2 目标设备为 Android</h3><h4 id="导入证书"><a href="#导入证书" class="headerlink" title="导入证书"></a>导入证书</h4><p>adb push ~&#x2F;.mitmproxy&#x2F;mitmproxy-ca-cert.cer &#x2F;sdcard&#x2F;Download</p>
+<h3 id="3-1-目标设备为Linux"><a href="#3-1-目标设备为Linux" class="headerlink" title="3.1 目标设备为Linux"></a>3.1 目标设备为Linux</h3><h4 id="导入证书"><a href="#导入证书" class="headerlink" title="导入证书"></a>导入证书</h4><ul>
+<li>Google Chrome</li>
+</ul>
+<p>设置 -&gt; HTTPS&#x2F;SSL -&gt; 证书管理 -&gt; 授权中心</p>
+<ul>
+<li>Firefox</li>
+</ul>
+<p>没用Firefox，估计也类似。</p>
+<h4 id="设置代理"><a href="#设置代理" class="headerlink" title="设置代理"></a>设置代理</h4><p>设置好CA后，设置浏览器使用mitmproxy代理即可，可以考虑使用浏览器代理插件。</p>
+<h3 id="3-2-目标设备为-Android"><a href="#3-2-目标设备为-Android" class="headerlink" title="3.2 目标设备为 Android"></a>3.2 目标设备为 Android</h3><h4 id="导入证书-1"><a href="#导入证书-1" class="headerlink" title="导入证书"></a>导入证书</h4><p>adb push ~&#x2F;.mitmproxy&#x2F;mitmproxy-ca-cert.cer &#x2F;sdcard&#x2F;Download</p>
 <p>设置 -&gt;  安全 -&gt; 证书存储 -&gt; 从手机存储安装， 选择上传的CA证书。</p>
-<h4 id="设置代理"><a href="#设置代理" class="headerlink" title="设置代理"></a>设置代理</h4><p>emulator 上可以通过下面的命令行，设置代理。</p>
+<h4 id="设置代理-1"><a href="#设置代理-1" class="headerlink" title="设置代理"></a>设置代理</h4><p>emulator 上可以通过下面的命令行，设置代理。</p>
 <p>.&#x2F;emulator -avd 7.0_x86 -http-proxy <a target="_blank" rel="noopener" href="http://127.0.0.1:8080/">http://127.0.0.1:8080</a></p>
 <p>真实的设备上，可以通过设置 wifi 代理，或者使用下面的命令行。</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">adb shell settings put global http_proxy 127.0.0.1:8888</span><br><span class="line">adb reverse tcp:8888 tcp:8080</span><br></pre></td></tr></table></figure>
