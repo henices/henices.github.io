@@ -232,19 +232,7 @@
     
     
     
-    <div class="post-body" itemprop="articleBody"><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8793345906937947"
-     crossorigin="anonymous"></script>
-<!-- column -->
-<ins class="adsbygoogle"
-     style="display:block"
-     data-ad-client="ca-pub-8793345906937947"
-     data-ad-slot="9350670660"
-     data-ad-format="auto"
-     data-full-width-responsive="true"></ins>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
-<h2 id="1-Process-Injection-方法总结"><a href="#1-Process-Injection-方法总结" class="headerlink" title="1. Process Injection 方法总结"></a>1. Process Injection 方法总结</h2><p>  进程注入是windows病毒和恶意软件最常用的手法之一，Windows下进程注入的方法比较<br>多，这里介绍常见的一些方法，以及相应的检查手段。</p>
+    <div class="post-body" itemprop="articleBody"><h2 id="1-Process-Injection-方法总结"><a href="#1-Process-Injection-方法总结" class="headerlink" title="1. Process Injection 方法总结"></a>1. Process Injection 方法总结</h2><p>  进程注入是windows病毒和恶意软件最常用的手法之一，Windows下进程注入的方法比较<br>多，这里介绍常见的一些方法，以及相应的检查手段。</p>
 <h3 id="1-1-SetWindowsHookEx"><a href="#1-1-SetWindowsHookEx" class="headerlink" title="1.1 SetWindowsHookEx"></a>1.1 SetWindowsHookEx</h3><p> SetWindowsHookEx估计是大家最熟悉的方法了，这个是微软提供给我们使用正规用法。<br>往Windows的hook chain中安装hook 例程，监控系统某种类型的event, 使用这种方法需要<br>实现一个dll。</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">HHOOK WINAPI <span class="title function_">SetWindowsHookEx</span><span class="params">(</span></span><br><span class="line"><span class="params">  _In_  <span class="type">int</span> idHook,</span></span><br><span class="line"><span class="params">  _In_  HOOKPROC lpfn,</span></span><br><span class="line"><span class="params">  _In_  HINSTANCE hMod,</span></span><br><span class="line"><span class="params">  _In_  DWORD dwThreadId</span></span><br><span class="line"><span class="params">)</span>;</span><br></pre></td></tr></table></figure>
 
@@ -351,7 +339,19 @@
     
     
 
-    <footer class="post-footer">
+    <footer class="post-footer"><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8793345906937947"
+     crossorigin="anonymous"></script>
+<!-- column -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-8793345906937947"
+     data-ad-slot="9350670660"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
           <div class="post-tags">
               <a href="/tags/Security/" rel="tag"># Security</a>
               <a href="/tags/windows/" rel="tag"># windows</a>
