@@ -359,7 +359,6 @@
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">adb shell settings put global http_proxy 127.0.0.1:8888</span><br><span class="line">adb reverse tcp:8888 tcp:8080</span><br></pre></td></tr></table></figure>
 
 <p>在 Android 上设置 http 全局代理 127.0.0.1:8888， 最后将 Android 的 8888 端口转发到本机 8080 端口。</p>
-<h4 id="3-3-3-启动-mitmproxy"><a href="#3-3-3-启动-mitmproxy" class="headerlink" title="3.3.3 启动 mitmproxy"></a>3.3.3 启动 mitmproxy</h4><p>mitmproxy -b a.b.c.d -p 8080</p>
 <h2 id="☆-4-透明模式"><a href="#☆-4-透明模式" class="headerlink" title="☆ 4. 透明模式"></a>☆ 4. 透明模式</h2><p>mitmproxy 支持透明部署，具体的方法可以参考下面的文章。</p>
 <p><a target="_blank" rel="noopener" href="https://docs.mitmproxy.org/stable/howto-transparent/">https://docs.mitmproxy.org/stable/howto-transparent/</a></p>
 <h2 id="☆-5-修改报文内容"><a href="#☆-5-修改报文内容" class="headerlink" title="☆ 5. 修改报文内容"></a>☆ 5. 修改报文内容</h2><p>github 上有很多例子，这次没有需求，可以参考</p>
@@ -368,7 +367,7 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">response</span>(<span class="params">flow</span>):</span><br><span class="line">    flow.response.headers[<span class="string">&quot;newheader&quot;</span>] = <span class="string">&quot;foo&quot;</span></span><br></pre></td></tr></table></figure>
 
 <p>给http响应报文的头部添加一个 newheader 的字段。</p>
-<h2 id="☆-6-socks-模式"><a href="#☆-6-socks-模式" class="headerlink" title="☆ 6. socks 模式"></a>☆ 6. socks 模式</h2><p>.&#x2F;mitmproxy -m socks5</p>
+<h2 id="☆-6-socks-模式"><a href="#☆-6-socks-模式" class="headerlink" title="☆ 6. socks 模式"></a>☆ 6. socks 模式</h2><p>mitmproxy -m socks5</p>
 <p>作为 SOCKS5 proxy server 使用</p>
 <h2 id="☆-7-总结"><a href="#☆-7-总结" class="headerlink" title="☆ 7. 总结"></a>☆ 7. 总结</h2><p>这里说到的内容非常少，mitmproxy这个工具还是很强大的。</p>
 <h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p><a target="_blank" rel="noopener" href="https://www.usmacd.com/2021/09/01/Android_SSL_Pinning/">https://www.usmacd.com/2021/09/01/Android_SSL_Pinning/</a></p>
