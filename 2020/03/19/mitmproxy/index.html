@@ -19,15 +19,15 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"usmacd.com","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.18.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="主要特色：Intercept HTTP &amp; HTTPS requests and responses and modify them on the fly 使用python编写，可以在windows，Linux， Mac 下运行，这点比 fiddler 有优势。可以修改报文内容，这点很不错。  官方网站： http:&#x2F;&#x2F;www.mitmproxy.org 文档：http:&#x2F;&#x2F;docs.mi">
+    <meta name="description" content="主要特色：Intercept HTTP &amp; HTTPS requests and responses and modify them on the fly 使用python编写，可以在windows，Linux， Mac 下运行，这点比 fiddler 有优势。可以修改报文内容，这点很不错。  官方网站： https:&#x2F;&#x2F;www.mitmproxy.org&#x2F; 文档：https:&#x2F;&#x2F;docs">
 <meta property="og:type" content="article">
 <meta property="og:title" content="mitmproxy 简介">
 <meta property="og:url" content="http://usmacd.com/2020/03/19/mitmproxy/index.html">
 <meta property="og:site_name" content="安全代码">
-<meta property="og:description" content="主要特色：Intercept HTTP &amp; HTTPS requests and responses and modify them on the fly 使用python编写，可以在windows，Linux， Mac 下运行，这点比 fiddler 有优势。可以修改报文内容，这点很不错。  官方网站： http:&#x2F;&#x2F;www.mitmproxy.org 文档：http:&#x2F;&#x2F;docs.mi">
+<meta property="og:description" content="主要特色：Intercept HTTP &amp; HTTPS requests and responses and modify them on the fly 使用python编写，可以在windows，Linux， Mac 下运行，这点比 fiddler 有优势。可以修改报文内容，这点很不错。  官方网站： https:&#x2F;&#x2F;www.mitmproxy.org&#x2F; 文档：https:&#x2F;&#x2F;docs">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2020-03-19T08:34:31.917Z">
-<meta property="article:modified_time" content="2020-03-19T08:34:31.917Z">
+<meta property="article:published_time" content="2020-03-18T16:00:00.000Z">
+<meta property="article:modified_time" content="2023-08-28T16:00:00.000Z">
 <meta property="article:author" content="henices">
 <meta property="article:tag" content="Security">
 <meta name="twitter:card" content="summary">
@@ -113,7 +113,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E5%AE%89%E8%A3%85"><span class="nav-number">1.</span> <span class="nav-text">1. 安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8"><span class="nav-number">2.</span> <span class="nav-text">2. 基本使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-mitmproxy-%E7%95%8C%E9%9D%A2%E6%93%8D%E4%BD%9C"><span class="nav-number">2.1.</span> <span class="nav-text">2.1 mitmproxy 界面操作</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-HTTPS"><span class="nav-number">3.</span> <span class="nav-text">3. HTTPS</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-%E5%AF%BC%E5%85%A5mitmproxy%E7%9A%84-CA"><span class="nav-number">3.1.</span> <span class="nav-text">3.1 导入mitmproxy的 CA</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-%E7%9B%AE%E6%A0%87%E8%AE%BE%E5%A4%87%E4%B8%BALinux"><span class="nav-number">3.2.</span> <span class="nav-text">3.2 目标设备为Linux</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E2%98%86-Google-Chrome"><span class="nav-number">3.2.1.</span> <span class="nav-text">☆ Google Chrome</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E2%98%86-Firefox"><span class="nav-number">3.2.2.</span> <span class="nav-text">☆ Firefox</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-%E7%9B%AE%E6%A0%87%E8%AE%BE%E5%A4%87%E4%B8%BA-Android"><span class="nav-number">3.3.</span> <span class="nav-text">3.3 目标设备为 Android</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#3-3-1-%E5%AF%BC%E5%85%A5%E8%AF%81%E4%B9%A6"><span class="nav-number">3.3.1.</span> <span class="nav-text">3.3.1 导入证书</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-3-2-%E8%AE%BE%E7%BD%AE%E4%BB%A3%E7%90%86"><span class="nav-number">3.3.2.</span> <span class="nav-text">3.3.2 设置代理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-3-3-%E5%90%AF%E5%8A%A8-mitmproxy"><span class="nav-number">3.3.3.</span> <span class="nav-text">3.3.3 启动 mitmproxy</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-%E9%80%8F%E6%98%8E%E6%A8%A1%E5%BC%8F"><span class="nav-number">4.</span> <span class="nav-text">4. 透明模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-%E4%BF%AE%E6%94%B9%E6%8A%A5%E6%96%87%E5%86%85%E5%AE%B9"><span class="nav-number">5.</span> <span class="nav-text">5. 修改报文内容</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-socks-%E6%A8%A1%E5%BC%8F"><span class="nav-number">6.</span> <span class="nav-text">6. socks 模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-%E6%80%BB%E7%BB%93"><span class="nav-number">7.</span> <span class="nav-text">7. 总结</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E2%98%86-1-%E5%AE%89%E8%A3%85"><span class="nav-number">1.</span> <span class="nav-text">☆ 1. 安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E2%98%86-2-%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8"><span class="nav-number">2.</span> <span class="nav-text">☆ 2. 基本使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-mitmproxy-%E7%95%8C%E9%9D%A2%E6%93%8D%E4%BD%9C"><span class="nav-number">2.1.</span> <span class="nav-text">2.1 mitmproxy 界面操作</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E2%98%86-3-HTTPS"><span class="nav-number">3.</span> <span class="nav-text">☆ 3. HTTPS</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-%E5%AF%BC%E5%85%A5mitmproxy%E7%9A%84-CA"><span class="nav-number">3.1.</span> <span class="nav-text">3.1 导入mitmproxy的 CA</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-%E7%9B%AE%E6%A0%87%E8%AE%BE%E5%A4%87%E4%B8%BALinux"><span class="nav-number">3.2.</span> <span class="nav-text">3.2 目标设备为Linux</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Google-Chrome"><span class="nav-number">3.2.1.</span> <span class="nav-text">Google Chrome</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Firefox"><span class="nav-number">3.2.2.</span> <span class="nav-text">Firefox</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-%E7%9B%AE%E6%A0%87%E8%AE%BE%E5%A4%87%E4%B8%BA-Android"><span class="nav-number">3.3.</span> <span class="nav-text">3.3 目标设备为 Android</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#3-3-1-%E5%AF%BC%E5%85%A5%E8%AF%81%E4%B9%A6"><span class="nav-number">3.3.1.</span> <span class="nav-text">3.3.1 导入证书</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-3-2-%E8%AE%BE%E7%BD%AE%E4%BB%A3%E7%90%86"><span class="nav-number">3.3.2.</span> <span class="nav-text">3.3.2 设置代理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-3-3-%E5%90%AF%E5%8A%A8-mitmproxy"><span class="nav-number">3.3.3.</span> <span class="nav-text">3.3.3 启动 mitmproxy</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E2%98%86-4-%E9%80%8F%E6%98%8E%E6%A8%A1%E5%BC%8F"><span class="nav-number">4.</span> <span class="nav-text">☆ 4. 透明模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E2%98%86-5-%E4%BF%AE%E6%94%B9%E6%8A%A5%E6%96%87%E5%86%85%E5%AE%B9"><span class="nav-number">5.</span> <span class="nav-text">☆ 5. 修改报文内容</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E2%98%86-6-socks-%E6%A8%A1%E5%BC%8F"><span class="nav-number">6.</span> <span class="nav-text">☆ 6. socks 模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E2%98%86-7-%E6%80%BB%E7%BB%93"><span class="nav-number">7.</span> <span class="nav-text">☆ 7. 总结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="nav-number">8.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -219,7 +219,14 @@
       </span>
       <span class="post-meta-item-text">Posted on</span>
 
-      <time title="Created: 2020-03-19 16:34:31" itemprop="dateCreated datePublished" datetime="2020-03-19T16:34:31+08:00">2020-03-19</time>
+      <time title="Created: 2020-03-19 00:00:00" itemprop="dateCreated datePublished" datetime="2020-03-19T00:00:00+08:00">2020-03-19</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2023-08-29 00:00:00" itemprop="dateModified" datetime="2023-08-29T00:00:00+08:00">2023-08-29</time>
     </span>
 
   
@@ -232,14 +239,14 @@
     
     
     <div class="post-body" itemprop="articleBody"><p>主要特色：Intercept HTTP &amp; HTTPS requests and responses and modify them on the fly</p>
-<p>使用python编写，可以在windows，Linux， Mac 下运行，这点比 fiddler 有优势。可以修改<br>报文内容，这点很不错。</p>
+<p>使用python编写，可以在windows，Linux， Mac 下运行，这点比 fiddler 有优势。可以修改报文内容，这点很不错。</p>
 <ul>
-<li>官方网站： <a target="_blank" rel="noopener" href="http://www.mitmproxy.org/">http://www.mitmproxy.org</a></li>
-<li>文档：<a target="_blank" rel="noopener" href="http://docs.mitmproxy.org/en/stable/">http://docs.mitmproxy.org/en/stable/</a></li>
+<li>官方网站： <a target="_blank" rel="noopener" href="https://www.mitmproxy.org/">https://www.mitmproxy.org/</a></li>
+<li>文档：<a target="_blank" rel="noopener" href="https://docs.mitmproxy.org/stable/">https://docs.mitmproxy.org/stable/</a></li>
 </ul>
-<h2 id="1-安装"><a href="#1-安装" class="headerlink" title="1. 安装"></a>1. 安装</h2><p>参考 <a target="_blank" rel="noopener" href="http://docs.mitmproxy.org/en/stable/install.html">http://docs.mitmproxy.org/en/stable/install.html</a></p>
+<h2 id="☆-1-安装"><a href="#☆-1-安装" class="headerlink" title="☆ 1. 安装"></a>☆ 1. 安装</h2><p>参考 <a target="_blank" rel="noopener" href="https://docs.mitmproxy.org/stable/overview-installation/">https://docs.mitmproxy.org/stable/overview-installation/</a></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo dnf install -y python-pip python-devel libffi-devel openssl-devel libxml2-devel libxslt-devel libpng-devel libjpeg-devel</span><br><span class="line">sudo pip install mitmproxy  <span class="comment"># or pip install --user mitmproxy</span></span><br></pre></td></tr></table></figure>
-<h2 id="2-基本使用"><a href="#2-基本使用" class="headerlink" title="2. 基本使用"></a>2. 基本使用</h2><p>mitmproxy -b a.b.c.d -p 8080</p>
+<h2 id="☆-2-基本使用"><a href="#☆-2-基本使用" class="headerlink" title="☆ 2. 基本使用"></a>☆ 2. 基本使用</h2><p>mitmproxy -b a.b.c.d -p 8080</p>
 <ul>
 <li>-b bind address</li>
 <li>-p bind port</li>
@@ -248,33 +255,39 @@
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">-b ADDR, --bind-address ADDR</span><br><span class="line">-p PORT, --port PORT  Proxy service port.</span><br><span class="line">-s mitmproxy 脚本</span><br></pre></td></tr></table></figure>
 
 <h3 id="2-1-mitmproxy-界面操作"><a href="#2-1-mitmproxy-界面操作" class="headerlink" title="2.1 mitmproxy 界面操作"></a>2.1 mitmproxy 界面操作</h3><pre><code>- ？            显示帮助信息
-- i, j, k, l    上下左右，同 vi
+- h, j, k, l    上下左右，同 vi
 - enter         进入具体报文
-- tab           详细报文内容页面，显示标签调整
+- q             退出界面
+- tab           详细报文内容页面
 - E             导出报文内容
 </code></pre>
-<h2 id="3-HTTPS"><a href="#3-HTTPS" class="headerlink" title="3. HTTPS"></a>3. HTTPS</h2><p>使用mitmproxy 最大的原因就是因为它可以对付https报文。</p>
-<h3 id="3-1-导入mitmproxy的-CA"><a href="#3-1-导入mitmproxy的-CA" class="headerlink" title="3.1 导入mitmproxy的 CA"></a>3.1 导入mitmproxy的 CA</h3><p>参考 <a target="_blank" rel="noopener" href="http://docs.mitmproxy.org/en/stable/certinstall.html">http://docs.mitmproxy.org/en/stable/certinstall.html</a></p>
+<h2 id="☆-3-HTTPS"><a href="#☆-3-HTTPS" class="headerlink" title="☆ 3. HTTPS"></a>☆ 3. HTTPS</h2><p>使用mitmproxy 最大的原因就是因为它可以对付https报文。</p>
+<h3 id="3-1-导入mitmproxy的-CA"><a href="#3-1-导入mitmproxy的-CA" class="headerlink" title="3.1 导入mitmproxy的 CA"></a>3.1 导入mitmproxy的 CA</h3><p>参考 <a target="_blank" rel="noopener" href="https://docs.mitmproxy.org/stable/concepts-certificates/">https://docs.mitmproxy.org/stable/concepts-certificates/</a></p>
 <p>mitmproxy 的 CA 证书放在 ~&#x2F;.mitmproxy 目录， 可以在不同设备中添加。</p>
-<h3 id="3-2-目标设备为Linux"><a href="#3-2-目标设备为Linux" class="headerlink" title="3.2 目标设备为Linux"></a>3.2 目标设备为Linux</h3><h4 id="☆-Google-Chrome"><a href="#☆-Google-Chrome" class="headerlink" title="☆ Google Chrome"></a>☆ Google Chrome</h4><p>设置 -&gt; HTTPS&#x2F;SSL -&gt; 证书管理 -&gt; 授权中心</p>
-<h4 id="☆-Firefox"><a href="#☆-Firefox" class="headerlink" title="☆ Firefox"></a>☆ Firefox</h4><p>没用Firefox，估计也类似。</p>
-<p>然后设置浏览器使用mitmproxy代理即可。</p>
+<h3 id="3-2-目标设备为Linux"><a href="#3-2-目标设备为Linux" class="headerlink" title="3.2 目标设备为Linux"></a>3.2 目标设备为Linux</h3><h4 id="Google-Chrome"><a href="#Google-Chrome" class="headerlink" title="Google Chrome"></a>Google Chrome</h4><p>设置 -&gt; HTTPS&#x2F;SSL -&gt; 证书管理 -&gt; 授权中心</p>
+<h4 id="Firefox"><a href="#Firefox" class="headerlink" title="Firefox"></a>Firefox</h4><p>没用Firefox，估计也类似。</p>
+<p>设置好CA后，设置浏览器使用mitmproxy代理即可。</p>
 <h3 id="3-3-目标设备为-Android"><a href="#3-3-目标设备为-Android" class="headerlink" title="3.3 目标设备为 Android"></a>3.3 目标设备为 Android</h3><h4 id="3-3-1-导入证书"><a href="#3-3-1-导入证书" class="headerlink" title="3.3.1 导入证书"></a>3.3.1 导入证书</h4><p>adb push ~&#x2F;.mitmproxy&#x2F;mitmproxy-ca-cert.cer &#x2F;sdcard&#x2F;Download</p>
 <p>设置 -&gt;  安全 -&gt; 证书存储 -&gt; 从手机存储安装， 选择上传的CA证书。</p>
 <h4 id="3-3-2-设置代理"><a href="#3-3-2-设置代理" class="headerlink" title="3.3.2 设置代理"></a>3.3.2 设置代理</h4><p>emulator 上可以通过下面的命令行，设置代理。</p>
 <p>.&#x2F;emulator -avd 7.0_x86 -http-proxy <a target="_blank" rel="noopener" href="http://a.b.c.d:8080/">http://a.b.c.d:8080</a></p>
-<p>真实的设备上，据网络上的文章说，可以通过设置 APN来实现，没有测试。</p>
+<p>真实的设备上，可以通过设置 wifi 代理，或者使用下面的命令行。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">adb shell settings put global http_proxy 127.0.0.1:8888</span><br><span class="line">adb reverse tcp:8888 tcp:8080</span><br></pre></td></tr></table></figure>
+
+<p>在 Android 上设置 http 全局代理 127.0.0.1:8888， 最后将 Android 的 8888 端口转发到本机 8080 端口。</p>
 <h4 id="3-3-3-启动-mitmproxy"><a href="#3-3-3-启动-mitmproxy" class="headerlink" title="3.3.3 启动 mitmproxy"></a>3.3.3 启动 mitmproxy</h4><p>mitmproxy -b a.b.c.d -p 8080</p>
-<h2 id="4-透明模式"><a href="#4-透明模式" class="headerlink" title="4. 透明模式"></a>4. 透明模式</h2><p>mitmproxy 支持透明部署，具体的方法可以参考下面的文章。</p>
-<p><a target="_blank" rel="noopener" href="http://docs.mitmproxy.org/en/stable/transparent/linux.html">http://docs.mitmproxy.org/en/stable/transparent/linux.html</a></p>
-<h2 id="5-修改报文内容"><a href="#5-修改报文内容" class="headerlink" title="5. 修改报文内容"></a>5. 修改报文内容</h2><p>github 上有很多例子，这次没有需求，可以参考</p>
-<p><a target="_blank" rel="noopener" href="https://github.com/mitmproxy/mitmproxy/tree/v0.18.2/examples">https://github.com/mitmproxy/mitmproxy/tree/v0.18.2/examples</a></p>
+<h2 id="☆-4-透明模式"><a href="#☆-4-透明模式" class="headerlink" title="☆ 4. 透明模式"></a>☆ 4. 透明模式</h2><p>mitmproxy 支持透明部署，具体的方法可以参考下面的文章。</p>
+<p><a target="_blank" rel="noopener" href="https://docs.mitmproxy.org/stable/howto-transparent/">https://docs.mitmproxy.org/stable/howto-transparent/</a></p>
+<h2 id="☆-5-修改报文内容"><a href="#☆-5-修改报文内容" class="headerlink" title="☆ 5. 修改报文内容"></a>☆ 5. 修改报文内容</h2><p>github 上有很多例子，这次没有需求，可以参考</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/mitmproxy/mitmproxy/tree/main/examples/addons">https://github.com/mitmproxy/mitmproxy/tree/main/examples/addons</a><br><a target="_blank" rel="noopener" href="https://github.com/mitmproxy/mitmproxy/tree/main/examples/contrib">https://github.com/mitmproxy/mitmproxy/tree/main/examples/contrib</a></p>
 <p>官方文档上给了个简单例子</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">response</span>(<span class="params">flow</span>):</span><br><span class="line">    flow.response.headers[<span class="string">&quot;newheader&quot;</span>] = <span class="string">&quot;foo&quot;</span></span><br></pre></td></tr></table></figure>
 
 <p>给http响应报文的头部添加一个 newheader 的字段。</p>
-<h2 id="6-socks-模式"><a href="#6-socks-模式" class="headerlink" title="6. socks 模式"></a>6. socks 模式</h2><p>–socks 作为 SOCKS5 proxy server</p>
-<h2 id="7-总结"><a href="#7-总结" class="headerlink" title="7. 总结"></a>7. 总结</h2><p>这里说到的内容非常少，mitmproxy这个工具还是很强大的。</p>
+<h2 id="☆-6-socks-模式"><a href="#☆-6-socks-模式" class="headerlink" title="☆ 6. socks 模式"></a>☆ 6. socks 模式</h2><p>.&#x2F;mitmproxy -m socks5</p>
+<p>作为 SOCKS5 proxy server 使用</p>
+<h2 id="☆-7-总结"><a href="#☆-7-总结" class="headerlink" title="☆ 7. 总结"></a>☆ 7. 总结</h2><p>这里说到的内容非常少，mitmproxy这个工具还是很强大的。</p>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p><a target="_blank" rel="noopener" href="https://www.usmacd.com/2021/09/01/Android_SSL_Pinning/">https://www.usmacd.com/2021/09/01/Android_SSL_Pinning/</a></p>
 
     </div>
 
@@ -291,13 +304,13 @@
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2020/03/19/oracle_run_os_cmd/" rel="prev" title="Execute os command in Oracle Database">
-                  <i class="fa fa-angle-left"></i> Execute os command in Oracle Database
+                <a href="/2018/06/05/android_malware/" rel="prev" title="关于恶意 Android 软件的那些事">
+                  <i class="fa fa-angle-left"></i> 关于恶意 Android 软件的那些事
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2020/03/19/llvm_coverage/" rel="next" title="llvm Coverage 可视化">
-                  llvm Coverage 可视化 <i class="fa fa-angle-right"></i>
+                <a href="/2020/03/19/vnc/" rel="next" title="Fedora 安装 vnc server">
+                  Fedora 安装 vnc server <i class="fa fa-angle-right"></i>
                 </a>
             </div>
           </div>

@@ -183,81 +183,6 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://usmacd.com/2020/03/19/vim_special_char/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="henices">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="安全代码">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 安全代码">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2020/03/19/vim_special_char/" class="post-title-link" itemprop="url">vim 输入特殊字符</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2020-03-19 16:34:31" itemprop="dateCreated datePublished" datetime="2020-03-19T16:34:31+08:00">2020-03-19</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>vim 的编辑能力确实很强，今天说一下如何在vim中输入特殊字符，比如音标、unicode 字符。</p>
-<p><a target="_blank" rel="noopener" href="http://vimhelp.appspot.com/digraph.txt.html">http://vimhelp.appspot.com/digraph.txt.html</a><br><a target="_blank" rel="noopener" href="http://vimhelp.appspot.com/insert.txt.html#i_CTRL-V_digit">http://vimhelp.appspot.com/insert.txt.html#i_CTRL-V_digit</a></p>
-<p>关键就在上面两篇，可能许多人不喜欢看复杂的文章，我这里简单介绍一下用法。</p>
-<p>输入音标 ə</p>
-<p>i 进入编辑模式    CTRL-vu0259<br>那如何知道 ə 的 unicode hex number 是 0259呢，在vim的normal 模式下，将光标移动到ə输入ga</p>
-<p>输入 ⇒</p>
-<p>i 进入编辑模式   CTRL-k&#x3D;&gt;<br>:dig 可以看到支持这种方法输入的unicode 字符</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
     <link itemprop="mainEntityOfPage" href="http://usmacd.com/2020/03/19/vnc/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -324,6 +249,131 @@
 
 <p>必须改变默认桌面，要不可能登录不进去。</p>
 <h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><p>个人觉得从安全角度看，使用命令启用 vncserver 是比较合理的，要用了就打开，用完就关。另外vncserver 连接加了一层 tunnel，安全无小事。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://usmacd.com/2020/03/19/mitmproxy/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="henices">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="安全代码">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 安全代码">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2020/03/19/mitmproxy/" class="post-title-link" itemprop="url">mitmproxy 简介</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2020-03-19 00:00:00" itemprop="dateCreated datePublished" datetime="2020-03-19T00:00:00+08:00">2020-03-19</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2023-08-29 00:00:00" itemprop="dateModified" datetime="2023-08-29T00:00:00+08:00">2023-08-29</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>主要特色：Intercept HTTP &amp; HTTPS requests and responses and modify them on the fly</p>
+<p>使用python编写，可以在windows，Linux， Mac 下运行，这点比 fiddler 有优势。可以修改报文内容，这点很不错。</p>
+<ul>
+<li>官方网站： <a target="_blank" rel="noopener" href="https://www.mitmproxy.org/">https://www.mitmproxy.org/</a></li>
+<li>文档：<a target="_blank" rel="noopener" href="https://docs.mitmproxy.org/stable/">https://docs.mitmproxy.org/stable/</a></li>
+</ul>
+<h2 id="☆-1-安装"><a href="#☆-1-安装" class="headerlink" title="☆ 1. 安装"></a>☆ 1. 安装</h2><p>参考 <a target="_blank" rel="noopener" href="https://docs.mitmproxy.org/stable/overview-installation/">https://docs.mitmproxy.org/stable/overview-installation/</a></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo dnf install -y python-pip python-devel libffi-devel openssl-devel libxml2-devel libxslt-devel libpng-devel libjpeg-devel</span><br><span class="line">sudo pip install mitmproxy  <span class="comment"># or pip install --user mitmproxy</span></span><br></pre></td></tr></table></figure>
+<h2 id="☆-2-基本使用"><a href="#☆-2-基本使用" class="headerlink" title="☆ 2. 基本使用"></a>☆ 2. 基本使用</h2><p>mitmproxy -b a.b.c.d -p 8080</p>
+<ul>
+<li>-b bind address</li>
+<li>-p bind port</li>
+<li>-s “script.py –bar”, –script “script.py –bar”  Run a script. Surround with quotes to pass script</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">-b ADDR, --bind-address ADDR</span><br><span class="line">-p PORT, --port PORT  Proxy service port.</span><br><span class="line">-s mitmproxy 脚本</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-1-mitmproxy-界面操作"><a href="#2-1-mitmproxy-界面操作" class="headerlink" title="2.1 mitmproxy 界面操作"></a>2.1 mitmproxy 界面操作</h3><pre><code>- ？            显示帮助信息
+- h, j, k, l    上下左右，同 vi
+- enter         进入具体报文
+- q             退出界面
+- tab           详细报文内容页面
+- E             导出报文内容
+</code></pre>
+<h2 id="☆-3-HTTPS"><a href="#☆-3-HTTPS" class="headerlink" title="☆ 3. HTTPS"></a>☆ 3. HTTPS</h2><p>使用mitmproxy 最大的原因就是因为它可以对付https报文。</p>
+<h3 id="3-1-导入mitmproxy的-CA"><a href="#3-1-导入mitmproxy的-CA" class="headerlink" title="3.1 导入mitmproxy的 CA"></a>3.1 导入mitmproxy的 CA</h3><p>参考 <a target="_blank" rel="noopener" href="https://docs.mitmproxy.org/stable/concepts-certificates/">https://docs.mitmproxy.org/stable/concepts-certificates/</a></p>
+<p>mitmproxy 的 CA 证书放在 ~&#x2F;.mitmproxy 目录， 可以在不同设备中添加。</p>
+<h3 id="3-2-目标设备为Linux"><a href="#3-2-目标设备为Linux" class="headerlink" title="3.2 目标设备为Linux"></a>3.2 目标设备为Linux</h3><h4 id="Google-Chrome"><a href="#Google-Chrome" class="headerlink" title="Google Chrome"></a>Google Chrome</h4><p>设置 -&gt; HTTPS&#x2F;SSL -&gt; 证书管理 -&gt; 授权中心</p>
+<h4 id="Firefox"><a href="#Firefox" class="headerlink" title="Firefox"></a>Firefox</h4><p>没用Firefox，估计也类似。</p>
+<p>设置好CA后，设置浏览器使用mitmproxy代理即可。</p>
+<h3 id="3-3-目标设备为-Android"><a href="#3-3-目标设备为-Android" class="headerlink" title="3.3 目标设备为 Android"></a>3.3 目标设备为 Android</h3><h4 id="3-3-1-导入证书"><a href="#3-3-1-导入证书" class="headerlink" title="3.3.1 导入证书"></a>3.3.1 导入证书</h4><p>adb push ~&#x2F;.mitmproxy&#x2F;mitmproxy-ca-cert.cer &#x2F;sdcard&#x2F;Download</p>
+<p>设置 -&gt;  安全 -&gt; 证书存储 -&gt; 从手机存储安装， 选择上传的CA证书。</p>
+<h4 id="3-3-2-设置代理"><a href="#3-3-2-设置代理" class="headerlink" title="3.3.2 设置代理"></a>3.3.2 设置代理</h4><p>emulator 上可以通过下面的命令行，设置代理。</p>
+<p>.&#x2F;emulator -avd 7.0_x86 -http-proxy <a target="_blank" rel="noopener" href="http://a.b.c.d:8080/">http://a.b.c.d:8080</a></p>
+<p>真实的设备上，可以通过设置 wifi 代理，或者使用下面的命令行。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">adb shell settings put global http_proxy 127.0.0.1:8888</span><br><span class="line">adb reverse tcp:8888 tcp:8080</span><br></pre></td></tr></table></figure>
+
+<p>在 Android 上设置 http 全局代理 127.0.0.1:8888， 最后将 Android 的 8888 端口转发到本机 8080 端口。</p>
+<h4 id="3-3-3-启动-mitmproxy"><a href="#3-3-3-启动-mitmproxy" class="headerlink" title="3.3.3 启动 mitmproxy"></a>3.3.3 启动 mitmproxy</h4><p>mitmproxy -b a.b.c.d -p 8080</p>
+<h2 id="☆-4-透明模式"><a href="#☆-4-透明模式" class="headerlink" title="☆ 4. 透明模式"></a>☆ 4. 透明模式</h2><p>mitmproxy 支持透明部署，具体的方法可以参考下面的文章。</p>
+<p><a target="_blank" rel="noopener" href="https://docs.mitmproxy.org/stable/howto-transparent/">https://docs.mitmproxy.org/stable/howto-transparent/</a></p>
+<h2 id="☆-5-修改报文内容"><a href="#☆-5-修改报文内容" class="headerlink" title="☆ 5. 修改报文内容"></a>☆ 5. 修改报文内容</h2><p>github 上有很多例子，这次没有需求，可以参考</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/mitmproxy/mitmproxy/tree/main/examples/addons">https://github.com/mitmproxy/mitmproxy/tree/main/examples/addons</a><br><a target="_blank" rel="noopener" href="https://github.com/mitmproxy/mitmproxy/tree/main/examples/contrib">https://github.com/mitmproxy/mitmproxy/tree/main/examples/contrib</a></p>
+<p>官方文档上给了个简单例子</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">response</span>(<span class="params">flow</span>):</span><br><span class="line">    flow.response.headers[<span class="string">&quot;newheader&quot;</span>] = <span class="string">&quot;foo&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>给http响应报文的头部添加一个 newheader 的字段。</p>
+<h2 id="☆-6-socks-模式"><a href="#☆-6-socks-模式" class="headerlink" title="☆ 6. socks 模式"></a>☆ 6. socks 模式</h2><p>.&#x2F;mitmproxy -m socks5</p>
+<p>作为 SOCKS5 proxy server 使用</p>
+<h2 id="☆-7-总结"><a href="#☆-7-总结" class="headerlink" title="☆ 7. 总结"></a>☆ 7. 总结</h2><p>这里说到的内容非常少，mitmproxy这个工具还是很强大的。</p>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p><a target="_blank" rel="noopener" href="https://www.usmacd.com/2021/09/01/Android_SSL_Pinning/">https://www.usmacd.com/2021/09/01/Android_SSL_Pinning/</a></p>
 
       
     </div>
