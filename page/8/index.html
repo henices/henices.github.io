@@ -332,14 +332,12 @@
 </ul>
 <h2 id="☆-1-安装"><a href="#☆-1-安装" class="headerlink" title="☆ 1. 安装"></a>☆ 1. 安装</h2><p>参考 <a target="_blank" rel="noopener" href="https://docs.mitmproxy.org/stable/overview-installation/">https://docs.mitmproxy.org/stable/overview-installation/</a></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo dnf install -y python-pip python-devel libffi-devel openssl-devel libxml2-devel libxslt-devel libpng-devel libjpeg-devel</span><br><span class="line">sudo pip install mitmproxy  <span class="comment"># or pip install --user mitmproxy</span></span><br></pre></td></tr></table></figure>
-<h2 id="☆-2-基本使用"><a href="#☆-2-基本使用" class="headerlink" title="☆ 2. 基本使用"></a>☆ 2. 基本使用</h2><p>mitmproxy -b a.b.c.d -p 8080</p>
+<h2 id="☆-2-基本使用"><a href="#☆-2-基本使用" class="headerlink" title="☆ 2. 基本使用"></a>☆ 2. 基本使用</h2><p>mitmproxy –listen-host 127.0.0.1 -p 8080</p>
 <ul>
-<li>-b bind address</li>
+<li>–listen-host address to bind address</li>
 <li>-p bind port</li>
 <li>-s “script.py –bar”, –script “script.py –bar”  Run a script. Surround with quotes to pass script</li>
 </ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">--listen-host Address to bind proxy server</span><br><span class="line">-p PORT, --port PORT  Proxy service port.</span><br><span class="line">-s mitmproxy script</span><br></pre></td></tr></table></figure>
-
 <h3 id="2-1-mitmproxy-界面操作"><a href="#2-1-mitmproxy-界面操作" class="headerlink" title="2.1 mitmproxy 界面操作"></a>2.1 mitmproxy 界面操作</h3><pre><code>- ？            显示帮助信息
 - h, j, k, l    上下左右，同 vi
 - enter         进入具体报文
