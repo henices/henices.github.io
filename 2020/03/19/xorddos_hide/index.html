@@ -231,19 +231,7 @@
     
     
     
-    <div class="post-body" itemprop="articleBody"><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8793345906937947"
-     crossorigin="anonymous"></script>
-<!-- column -->
-<ins class="adsbygoogle"
-     style="display:block"
-     data-ad-client="ca-pub-8793345906937947"
-     data-ad-slot="9350670660"
-     data-ad-format="auto"
-     data-full-width-responsive="true"></ins>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
-<h2 id="进程隐藏"><a href="#进程隐藏" class="headerlink" title="进程隐藏"></a>进程隐藏</h2><p>上周由于工作原因接触到xorddos的样本，这个样本在过去一年的时间里非常常见，<br>变种也很多，拿到的样本比较有趣的是 ps 无法发现进程。</p>
+    <div class="post-body" itemprop="articleBody"><h2 id="进程隐藏"><a href="#进程隐藏" class="headerlink" title="进程隐藏"></a>进程隐藏</h2><p>上周由于工作原因接触到xorddos的样本，这个样本在过去一年的时间里非常常见，<br>变种也很多，拿到的样本比较有趣的是 ps 无法发现进程。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]<span class="comment"># ps -ef  | grep /usr/bin</span></span><br><span class="line"></span><br><span class="line">...</span><br><span class="line"></span><br><span class="line">root      4597  4594  0 00:37 ?        00:00:00 gnome-pty-helper</span><br><span class="line">root      4598  4594  0 00:37 pts/1    00:00:00 bash</span><br><span class="line">oracle    5359     1  0 00:41 ?        00:00:00 ora_smco_orcl</span><br><span class="line">oracle    5378     1  0 00:41 ?        00:00:00 ora_w000_orcl</span><br><span class="line">oracle    5586     1  0 00:42 ?        00:00:00 ora_j000_orcl</span><br><span class="line">oracle    5588     1  0 00:42 ?        00:00:00 ora_j001_orcl</span><br><span class="line">root      5666     1  0 00:43 ?        00:00:00 sh</span><br><span class="line">root      5669     1  0 00:43 ?        00:00:00 <span class="built_in">echo</span> <span class="string">&quot;find&quot;</span></span><br><span class="line">root      5672     1  0 00:43 ?        00:00:00 <span class="built_in">ls</span> -la</span><br><span class="line">root      5675     1  0 00:43 ?        00:00:00 bash</span><br><span class="line">root      5678     1  0 00:43 ?        00:00:00 gnome-terminal</span><br><span class="line">root      5683     1  0 00:43 ?        00:00:00 <span class="built_in">cd</span> /etc</span><br><span class="line">root      5686     1  0 00:43 ?        00:00:00 top</span><br><span class="line">root      5689     1  0 00:43 ?        00:00:00 sh</span><br><span class="line">root      5692     1  0 00:43 ?        00:00:00 gnome-terminal</span><br><span class="line">root      5695     1  0 00:43 ?        00:00:00 ifconfig</span><br><span class="line">root      5696  4598  0 00:43 pts/1    00:00:00 ps -ef</span><br></pre></td></tr></table></figure>
 
 <p>而使用lsof却可以清除地看见样本正在努力地干活。</p>
@@ -419,6 +407,18 @@
 
 
 
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8793345906937947"
+     crossorigin="anonymous"></script>
+<!-- column -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-8793345906937947"
+     data-ad-slot="9350670660"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
 
 </body>
 </html>

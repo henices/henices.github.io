@@ -230,19 +230,7 @@
     
     
     
-    <div class="post-body" itemprop="articleBody"><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8793345906937947"
-     crossorigin="anonymous"></script>
-<!-- column -->
-<ins class="adsbygoogle"
-     style="display:block"
-     data-ad-client="ca-pub-8793345906937947"
-     data-ad-slot="9350670660"
-     data-ad-format="auto"
-     data-full-width-responsive="true"></ins>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
-<p>没有root的设备，要使用gdbserver 调试app 会遇到权限问题。(emulator 没有问题)</p>
+    <div class="post-body" itemprop="articleBody"><p>没有root的设备，要使用gdbserver 调试app 会遇到权限问题。(emulator 没有问题)</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1|shell@mako:/data/local/tmp $ ./gdbserver :1234 --attach 16907</span><br><span class="line">Cannot attach to lwp 16907: Operation not permitted (1)</span><br><span class="line">Exiting</span><br></pre></td></tr></table></figure>
 
 <p>Android 系统提供了一个run-as 命令来暂时切换用户，但是这个命令有限制，必须是app 打开了debuggable才行，否则会报 Package xx is not debuggable 的错误。<br>从 <a target="_blank" rel="noopener" href="http://android.googlesource.com/platform/system/core.git/+/master/run-as/run-as.c">http://android.googlesource.com/platform/system/core.git/+/master/run-as/run-as.c</a> 的注释来看，主要的作用有两个：</p>
@@ -373,6 +361,18 @@
 
 
 
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8793345906937947"
+     crossorigin="anonymous"></script>
+<!-- column -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-8793345906937947"
+     data-ad-slot="9350670660"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
 
 </body>
 </html>
