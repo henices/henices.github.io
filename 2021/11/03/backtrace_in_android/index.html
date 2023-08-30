@@ -231,7 +231,19 @@
     
     
     
-    <div class="post-body" itemprop="articleBody"><h2 id="☆-使用kill-发送-SIGNAL-QUIT"><a href="#☆-使用kill-发送-SIGNAL-QUIT" class="headerlink" title="☆ 使用kill 发送 SIGNAL_QUIT"></a>☆ 使用kill 发送 SIGNAL_QUIT</h2><p>这种方法只能用于zygote 的子进程 (比如所有的 app 进程, 都是由zygote fork 而来).</p>
+    <div class="post-body" itemprop="articleBody"><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8793345906937947"
+     crossorigin="anonymous"></script>
+<!-- column -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-8793345906937947"
+     data-ad-slot="9350670660"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+<h2 id="☆-使用kill-发送-SIGNAL-QUIT"><a href="#☆-使用kill-发送-SIGNAL-QUIT" class="headerlink" title="☆ 使用kill 发送 SIGNAL_QUIT"></a>☆ 使用kill 发送 SIGNAL_QUIT</h2><p>这种方法只能用于zygote 的子进程 (比如所有的 app 进程, 都是由zygote fork 而来).</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"># kill -3 pid</span><br><span class="line"></span><br><span class="line"># cat /data/anr/traces.txt</span><br><span class="line"></span><br><span class="line">...</span><br><span class="line"></span><br><span class="line">suspend all histogram:  Sum: 290us 99% C.I. 2us-40us Avg: 14.500us Max: 40us</span><br><span class="line">DALVIK THREADS (12):</span><br><span class="line">&quot;Signal Catcher&quot; daemon prio=5 tid=2 Runnable</span><br><span class="line">  | group=&quot;system&quot; sCount=0 dsCount=0 obj=0x32c070a0 self=0xaecca000</span><br><span class="line">  | sysTid=1918 nice=0 cgrp=bg_non_interactive sched=0/0 handle=0xb4406930</span><br><span class="line">  | state=R schedstat=( 228351607 17443703 83 ) utm=12 stm=9 core=0 HZ=100</span><br><span class="line">  | stack=0xb430a000-0xb430c000 stackSize=1014KB</span><br><span class="line">  | held mutexes= &quot;mutator lock&quot;(shared held)</span><br><span class="line">  native: #00 pc 00370e01  /system/lib/libart.so (_ZN3art15DumpNativeStackERNSt3__113basic_ostreamIcNS0_11char_traitsIcEEEEiPKcPNS_9ArtMethodEPv+160)</span><br><span class="line">  native: #01 pc 0035046f  /system/lib/libart.so (_ZNK3art6Thread4DumpERNSt3__113basic_ostreamIcNS1_11char_traitsIcEEEE+150)</span><br><span class="line">  native: #02 pc 0035a373  /system/lib/libart.so (_ZN3art14DumpCheckpoint3RunEPNS_6ThreadE+442)</span><br><span class="line">  native: #03 pc 0035af31  /system/lib/libart.so (_ZN3art10ThreadList13RunCheckpointEPNS_7ClosureE+212)</span><br><span class="line">  native: #04 pc 0035b45f  /system/lib/libart.so (_ZN3art10ThreadList4DumpERNSt3__113basic_ostreamIcNS1_11char_traitsIcEEEE+142)</span><br><span class="line">  native: #05 pc 0035bb6f  /system/lib/libart.so (_ZN3art10ThreadList14DumpForSigQuitERNSt3__113basic_ostreamIcNS1_11char_traitsIcEEEE+334)</span><br><span class="line">  native: #06 pc 00333cb7  /system/lib/libart.so (_ZN3art7Runtime14DumpForSigQuitERNSt3__113basic_ostreamIcNS1_11char_traitsIcEEEE+74)</span><br><span class="line">  native: #07 pc 0033b01d  /system/lib/libart.so (_ZN3art13SignalCatcher13HandleSigQuitEv+928)</span><br><span class="line">  native: #08 pc 0033b901  /system/lib/libart.so (_ZN3art13SignalCatcher3RunEPv+340)</span><br><span class="line">  native: #09 pc 0003f45f  /system/lib/libc.so (_ZL15__pthread_startPv+30)</span><br><span class="line">  native: #10 pc 00019b43  /system/lib/libc.so (__start_thread+6)</span><br><span class="line">  (no managed stack frames)</span><br><span class="line"></span><br><span class="line">&quot;main&quot; prio=5 tid=1 Native</span><br><span class="line">  | group=&quot;main&quot; sCount=1 dsCount=0 obj=0x74abb2a0 self=0xb4d76500</span><br><span class="line">  | sysTid=1914 nice=0 cgrp=bg_non_interactive sched=0/0 handle=0xb6f3fb34</span><br><span class="line">  | state=S schedstat=( 76934470 21396828 203 ) utm=3 stm=3 core=0 HZ=100</span><br><span class="line">  | stack=0xbe55e000-0xbe560000 stackSize=8MB</span><br><span class="line">  | held mutexes=</span><br><span class="line">  native: #00 pc 00040894  /system/lib/libc.so (__epoll_pwait+20)</span><br><span class="line">  native: #01 pc 00019e6f  /system/lib/libc.so (epoll_pwait+26)</span><br><span class="line"></span><br><span class="line">  ...</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 <p>结果写在 &#x2F;data&#x2F;anr&#x2F;traces.txt 文件中, anr 是 ANR(Application Not Response)的意思.</p>
@@ -271,19 +283,7 @@
     
     
 
-    <footer class="post-footer"><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8793345906937947"
-     crossorigin="anonymous"></script>
-<!-- column -->
-<ins class="adsbygoogle"
-     style="display:block"
-     data-ad-client="ca-pub-8793345906937947"
-     data-ad-slot="9350670660"
-     data-ad-format="auto"
-     data-full-width-responsive="true"></ins>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
-
+    <footer class="post-footer">
           <div class="post-tags">
               <a href="/tags/Android/" rel="tag"># Android</a>
           </div>

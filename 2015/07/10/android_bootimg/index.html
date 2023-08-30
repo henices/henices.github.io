@@ -231,7 +231,19 @@
     
     
     
-    <div class="post-body" itemprop="articleBody"><p>首先需要搞到boot.img，网络上流传的方法是通过&#x2F;proc&#x2F;mtd 在获取需要的信息</p>
+    <div class="post-body" itemprop="articleBody"><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8793345906937947"
+     crossorigin="anonymous"></script>
+<!-- column -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-8793345906937947"
+     data-ad-slot="9350670660"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+<p>首先需要搞到boot.img，网络上流传的方法是通过&#x2F;proc&#x2F;mtd 在获取需要的信息</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&gt; ./adb shell</span><br><span class="line">&gt; su</span><br><span class="line">&gt; cat /proc/mtd</span><br><span class="line"></span><br><span class="line">dev:    size   erasesize  name</span><br><span class="line">mtd0: 00700000 00020000 &quot;boot&quot;</span><br><span class="line">mtd1: 07c20000 00020000 &quot;cache&quot;</span><br><span class="line">mtd2: 00700000 00020000 &quot;recovery&quot;</span><br><span class="line">mtd3: 00140000 00020000 &quot;splash&quot;</span><br><span class="line">mtd4: 00700000 00020000 &quot;FOTA_STO&quot;</span><br><span class="line">mtd5: 09e80000 00020000 &quot;system&quot;</span><br><span class="line">mtd6: 0a4e0000 00020000 &quot;userdata&quot;</span><br><span class="line">mtd7: 00080000 00020000 &quot;misc&quot;</span><br><span class="line">mtd8: 00180000 00020000 &quot;persist&quot;</span><br></pre></td></tr></table></figure>
 
 <p>但是在Nexus4, Android 4.4.4 已经找不到这个文件了</p>
@@ -260,19 +272,7 @@
     
     
 
-    <footer class="post-footer"><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8793345906937947"
-     crossorigin="anonymous"></script>
-<!-- column -->
-<ins class="adsbygoogle"
-     style="display:block"
-     data-ad-client="ca-pub-8793345906937947"
-     data-ad-slot="9350670660"
-     data-ad-format="auto"
-     data-full-width-responsive="true"></ins>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
-
+    <footer class="post-footer">
           <div class="post-tags">
               <a href="/tags/Android/" rel="tag"># Android</a>
           </div>

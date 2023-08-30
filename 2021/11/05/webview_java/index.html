@@ -232,7 +232,19 @@
     
     
     
-    <div class="post-body" itemprop="articleBody"><h2 id="☆-来自-developer-android-com-的信息"><a href="#☆-来自-developer-android-com-的信息" class="headerlink" title="☆ 来自 developer.android.com 的信息"></a>☆ 来自 developer.android.com 的信息</h2><p>Android 官方网站对addJavascriptInterface的介绍如下：</p>
+    <div class="post-body" itemprop="articleBody"><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8793345906937947"
+     crossorigin="anonymous"></script>
+<!-- column -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-8793345906937947"
+     data-ad-slot="9350670660"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+<h2 id="☆-来自-developer-android-com-的信息"><a href="#☆-来自-developer-android-com-的信息" class="headerlink" title="☆ 来自 developer.android.com 的信息"></a>☆ 来自 developer.android.com 的信息</h2><p>Android 官方网站对addJavascriptInterface的介绍如下：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">public void addJavascriptInterface (Object object, String name)  Added in API level 1</span><br><span class="line"></span><br><span class="line">Injects the supplied Java object into this WebView. The object is injected into</span><br><span class="line">the JavaScript context of the main frame, using the supplied name. This allows </span><br><span class="line">the Java object&#x27;s methods to be accessed from JavaScript. For applications</span><br><span class="line">targeted to API level JELLY_BEAN_MR1 and above, only public methods that are </span><br><span class="line">annotated with JavascriptInterface can be accessed from JavaScript. For applications</span><br><span class="line">targeted to API level JELLY_BEAN or below, all public methods (including the inherited ones)</span><br><span class="line">can be accessed, see the important security note below for implications.</span><br><span class="line"></span><br><span class="line">Note that injected objects will not appear in JavaScript until the page is next</span><br><span class="line">(re)loaded. For example:</span><br></pre></td></tr></table></figure>
 
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">JsObject</span> &#123;</span><br><span class="line">   <span class="meta">@JavascriptInterface</span></span><br><span class="line">   <span class="keyword">public</span> String <span class="title function_">toString</span><span class="params">()</span> &#123; <span class="keyword">return</span> <span class="string">&quot;injectedObject&quot;</span>; &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">webView.addJavascriptInterface(<span class="keyword">new</span> <span class="title class_">JsObject</span>(), <span class="string">&quot;injectedObject&quot;</span>);</span><br><span class="line">webView.loadData(<span class="string">&quot;&quot;</span>, <span class="string">&quot;text/html&quot;</span>, <span class="literal">null</span>);</span><br><span class="line">webView.loadUrl(<span class="string">&quot;javascript:alert(injectedObject.toString())&quot;</span>);</span><br></pre></td></tr></table></figure>
@@ -307,19 +319,7 @@
     
     
 
-    <footer class="post-footer"><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8793345906937947"
-     crossorigin="anonymous"></script>
-<!-- column -->
-<ins class="adsbygoogle"
-     style="display:block"
-     data-ad-client="ca-pub-8793345906937947"
-     data-ad-slot="9350670660"
-     data-ad-format="auto"
-     data-full-width-responsive="true"></ins>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
-
+    <footer class="post-footer">
           <div class="post-tags">
               <a href="/tags/Security/" rel="tag"># Security</a>
               <a href="/tags/Android/" rel="tag"># Android</a>
