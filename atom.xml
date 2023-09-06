@@ -6,7 +6,7 @@
   <link href="http://usmacd.com/atom.xml" rel="self"/>
   
   <link href="http://usmacd.com/"/>
-  <updated>2023-09-06T03:00:51.915Z</updated>
+  <updated>2023-09-06T03:49:12.921Z</updated>
   <id>http://usmacd.com/</id>
   
   <author>
@@ -17,9 +17,33 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>Learn In Public 摘要</title>
+    <link href="http://usmacd.com/en/learn_in_public/"/>
+    <id>http://usmacd.com/en/learn_in_public/</id>
+    <published>2023-09-06T03:49:12.921Z</published>
+    <updated>2023-09-06T03:49:12.921Z</updated>
+    
+    <content type="html"><![CDATA[<p>source: <a href="https://www.swyx.io/learn-in-public/">https://www.swyx.io/learn-in-public/</a></p><ul><li>a habit of creating <strong>learning exhaust</strong>  <ul><li>Write blogs and tutorials and cheatsheets.  </li><li>Speak at meetups and conferences.  </li><li>Ask and answer things on Stackoverflow or Reddit.  <ul><li>Avoid the walled gardens like Slack and Discord, they’re not public.</li></ul></li><li>Make Youtube videos or Twitch streams.  </li><li>Start a newsletter.  </li><li>Draw cartoons (people loooove cartoons!)</li></ul></li><li>Whatever your thing is, make the thing you wish you had found when you were learning.  </li><li><strong>Don’t judge your results by “claps” or retweets or stars or upvotes</strong>  </li><li>Oh you think you’re done? Don’t stop there:  <ul><li>Enjoyed a coding video? Reach out to the speaker&#x2F;instructor and thank them, and ask questions.  </li><li>Make PR’s to libraries you use.  </li><li>Make your own libraries no one will ever use.  </li><li>Clone stuff you like, from scratch, to see how they work.  </li><li>Teach workshops.  </li><li>Go to conferences and summarize what you learned.</li></ul></li><li>The subheading under this rule would be: <strong>Try your best to be right, but don’t worry when you’re wrong.</strong>  <ul><li>People think you suck? Good. You agree. Ask them to explain, in detail, why you suck  </li><li>You want to just feel good or you want to <strong>be</strong> good?  <ul><li>Then go away and prove them wrong. Of course, if they get abusive block them.</li></ul></li></ul></li><li>At some point you’ll get some support behind you. People notice genuine learners. They’ll want to help you.  <ul><li>Don’t tell them, but they just became your mentors.  </li><li>This is very important: Pick up what they put down  </li><li>Because you learn in public. By teaching you, they teach many.</li></ul></li></ul>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;source: &lt;a href=&quot;https://www.swyx.io/learn-in-public/&quot;&gt;https://www.swyx.io/learn-in-public/&lt;/a&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;a habit of creating &lt;strong&gt;</summary>
+      
+    
+    
+    
+    
+    <category term="PKM" scheme="http://usmacd.com/tags/PKM/"/>
+    
+  </entry>
+  
+  <entry>
     <title>xorddos 样本进程隐藏的小伎俩</title>
-    <link href="http://usmacd.com/2023/09/06/xorddos_hide/"/>
-    <id>http://usmacd.com/2023/09/06/xorddos_hide/</id>
+    <link href="http://usmacd.com/cn/xorddos_hide/"/>
+    <id>http://usmacd.com/cn/xorddos_hide/</id>
     <published>2023-09-06T03:00:51.915Z</published>
     <updated>2023-09-06T03:00:51.915Z</updated>
     
@@ -40,8 +64,8 @@
   
   <entry>
     <title>解决 Windows Rx034</title>
-    <link href="http://usmacd.com/2023/09/06/Windows_Rx034/"/>
-    <id>http://usmacd.com/2023/09/06/Windows_Rx034/</id>
+    <link href="http://usmacd.com/cn/Windows_Rx034/"/>
+    <id>http://usmacd.com/cn/Windows_Rx034/</id>
     <published>2023-09-06T03:00:51.914Z</published>
     <updated>2023-09-06T03:00:51.914Z</updated>
     
@@ -63,8 +87,8 @@
   
   <entry>
     <title>Android WebView 漏洞</title>
-    <link href="http://usmacd.com/2023/09/06/webview_java/"/>
-    <id>http://usmacd.com/2023/09/06/webview_java/</id>
+    <link href="http://usmacd.com/cn/webview_java/"/>
+    <id>http://usmacd.com/cn/webview_java/</id>
     <published>2023-09-06T03:00:51.896Z</published>
     <updated>2023-09-06T03:00:51.896Z</updated>
     
@@ -87,8 +111,8 @@
   
   <entry>
     <title>Fedora 安装 vnc server</title>
-    <link href="http://usmacd.com/2023/09/06/vnc/"/>
-    <id>http://usmacd.com/2023/09/06/vnc/</id>
+    <link href="http://usmacd.com/cn/vnc/"/>
+    <id>http://usmacd.com/cn/vnc/</id>
     <published>2023-09-06T03:00:51.882Z</published>
     <updated>2023-09-06T03:00:51.882Z</updated>
     
@@ -110,8 +134,8 @@
   
   <entry>
     <title>vim 输入特殊字符</title>
-    <link href="http://usmacd.com/2023/09/06/vim_special_char/"/>
-    <id>http://usmacd.com/2023/09/06/vim_special_char/</id>
+    <link href="http://usmacd.com/cn/vim_special_char/"/>
+    <id>http://usmacd.com/cn/vim_special_char/</id>
     <published>2023-09-06T03:00:51.880Z</published>
     <updated>2023-09-06T03:00:51.880Z</updated>
     
@@ -133,8 +157,8 @@
   
   <entry>
     <title>ThunerBird 78.8.1 连接 TLS 1.0 失败问题和 Linux 乱谈</title>
-    <link href="http://usmacd.com/2023/09/06/thunderbird.tls.1.0/"/>
-    <id>http://usmacd.com/2023/09/06/thunderbird.tls.1.0/</id>
+    <link href="http://usmacd.com/cn/thunderbird.tls.1.0/"/>
+    <id>http://usmacd.com/cn/thunderbird.tls.1.0/</id>
     <published>2023-09-06T03:00:51.814Z</published>
     <updated>2023-09-06T03:00:51.814Z</updated>
     
@@ -155,8 +179,8 @@
   
   <entry>
     <title>VIM + SVN 管理</title>
-    <link href="http://usmacd.com/2023/09/06/svn_vim/"/>
-    <id>http://usmacd.com/2023/09/06/svn_vim/</id>
+    <link href="http://usmacd.com/cn/svn_vim/"/>
+    <id>http://usmacd.com/cn/svn_vim/</id>
     <published>2023-09-06T03:00:51.812Z</published>
     <updated>2023-09-06T03:00:51.812Z</updated>
     
@@ -180,8 +204,8 @@
   
   <entry>
     <title>个人炒股经历</title>
-    <link href="http://usmacd.com/2023/09/06/stock_experience/"/>
-    <id>http://usmacd.com/2023/09/06/stock_experience/</id>
+    <link href="http://usmacd.com/cn/stock_experience/"/>
+    <id>http://usmacd.com/cn/stock_experience/</id>
     <published>2023-09-06T03:00:51.811Z</published>
     <updated>2023-09-06T03:00:51.811Z</updated>
     
@@ -202,8 +226,8 @@
   
   <entry>
     <title>市场情绪指标</title>
-    <link href="http://usmacd.com/2023/09/06/stock_emotion/"/>
-    <id>http://usmacd.com/2023/09/06/stock_emotion/</id>
+    <link href="http://usmacd.com/cn/stock_emotion/"/>
+    <id>http://usmacd.com/cn/stock_emotion/</id>
     <published>2023-09-06T03:00:51.809Z</published>
     <updated>2023-09-06T03:00:51.809Z</updated>
     
@@ -232,8 +256,8 @@
   
   <entry>
     <title>SSD 迁移记</title>
-    <link href="http://usmacd.com/2023/09/06/ssd/"/>
-    <id>http://usmacd.com/2023/09/06/ssd/</id>
+    <link href="http://usmacd.com/cn/ssd/"/>
+    <id>http://usmacd.com/cn/ssd/</id>
     <published>2023-09-06T03:00:51.808Z</published>
     <updated>2023-09-06T03:00:51.808Z</updated>
     
@@ -255,8 +279,8 @@
   
   <entry>
     <title>root Pixel2 Android 11 的方法</title>
-    <link href="http://usmacd.com/2023/09/06/root_android11_pixel2/"/>
-    <id>http://usmacd.com/2023/09/06/root_android11_pixel2/</id>
+    <link href="http://usmacd.com/cn/root_android11_pixel2/"/>
+    <id>http://usmacd.com/cn/root_android11_pixel2/</id>
     <published>2023-09-06T03:00:51.770Z</published>
     <updated>2023-09-06T03:00:51.770Z</updated>
     
@@ -278,12 +302,12 @@
   
   <entry>
     <title>How to request a RESERVED CVE</title>
-    <link href="http://usmacd.com/2023/09/06/request_RESERVED_CVE/"/>
-    <id>http://usmacd.com/2023/09/06/request_RESERVED_CVE/</id>
+    <link href="http://usmacd.com/cn/request_RESERVED_CVE/"/>
+    <id>http://usmacd.com/cn/request_RESERVED_CVE/</id>
     <published>2023-09-06T03:00:51.767Z</published>
     <updated>2023-09-06T03:00:51.767Z</updated>
     
-    <content type="html"><![CDATA[<p>在申请 CVE 过程中会遇到一个问题，向软件官方提交漏洞修复后，由于软件官方不是CNA 无法直接分配CVE，而申请CVE 通常需要一个软件官方确认的链接，而有些比较正规的软件在漏洞修复之前是不会有公开链接的，这就无法申请CVE了。</p><p>有点鸡生蛋，蛋生鸡的感觉。解决这个问题的办法是申请一个 RESERVED CVE。</p><h2 id="申请-RESERVED-CVE-方法"><a href="#申请-RESERVED-CVE-方法" class="headerlink" title="申请 RESERVED CVE 方法"></a>申请 RESERVED CVE 方法</h2><p>申请 RESERVED CVE，也是需要填写的CVE 申请表格的 <a href="https://cveform.mitre.org/%EF%BC%8C%E9%80%89%E6%8B%A9">https://cveform.mitre.org/，选择</a> Request CVE ID</p><p>根据提示的重要信息：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">IMPORTANT: Once a CVE ID is assigned to your vulnerability, it will not be published </span><br><span class="line">in the CVE List until you have submitted a URL pointing to public information about </span><br><span class="line">the vulnerability. Without a public reference, the CVE ID will display as &quot;RESERVED&quot; </span><br><span class="line">in the CVE List. Please update CVE with a reference to the vulnerability&#x27;s </span><br><span class="line">details as soon as possible. See this FAQ for more information.</span><br></pre></td></tr></table></figure><p>只要将 public reference 留空，就可以申请 RESERVED CVE 了。CVE 官方收到请求后会有确认的邮件。</p><h2 id="CVE-官方分配-CVE-ID"><a href="#CVE-官方分配-CVE-ID" class="headerlink" title="CVE 官方分配 CVE ID"></a>CVE 官方分配 CVE ID</h2><p>CVE 官方收到 RESERVED CVE 请求后，会给分配一个 CVE ID，但是状态为 ** RESERVED ** ，不会有公开细节。</p><h2 id="RESERVED-CVE-申请公开"><a href="#RESERVED-CVE-申请公开" class="headerlink" title="RESERVED CVE 申请公开"></a>RESERVED CVE 申请公开</h2><p>当软件官方确认已经修复漏洞，并且发布新版后，可以通知 CVE 官方更新 CVE 的状态。还是通过填写 <a href="https://cveform.mitre.org/">https://cveform.mitre.org/</a> 表格，选择 Notify CVE about a publication，填写相关信息。</p><h2 id="一些注意事项"><a href="#一些注意事项" class="headerlink" title="一些注意事项"></a>一些注意事项</h2><ol><li>将 <a href="mailto:&#x63;&#x76;&#x65;&#x2d;&#x72;&#x65;&#x71;&#117;&#x65;&#x73;&#x74;&#64;&#109;&#x69;&#x74;&#x72;&#101;&#46;&#x6f;&#114;&#103;">&#x63;&#x76;&#x65;&#x2d;&#x72;&#x65;&#x71;&#117;&#x65;&#x73;&#x74;&#64;&#109;&#x69;&#x74;&#x72;&#101;&#46;&#x6f;&#114;&#103;</a> 和  <a href="mailto:&#99;&#118;&#101;&#x40;&#x6d;&#x69;&#x74;&#114;&#101;&#46;&#x6f;&#x72;&#x67;">&#99;&#118;&#101;&#x40;&#x6d;&#x69;&#x74;&#114;&#101;&#46;&#x6f;&#x72;&#x67;</a> 加入邮件白名单 （有可能邮件会被截拦）</li><li>在申请公开步骤中，CVE 官方有可能和你要公开披露的链接，如果软件官方不给写，可以自己写一个</li></ol><p>披露要求的信息：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[CVE ID]</span><br><span class="line">[PRODUCT]</span><br><span class="line">[VERSION]</span><br><span class="line">[PROBLEM TYPE]</span><br><span class="line">[DESCRIPTION]</span><br></pre></td></tr></table></figure>]]></content>
+    <content type="html"><![CDATA[<p>在申请 CVE 过程中会遇到一个问题，向软件官方提交漏洞修复后，由于软件官方不是CNA 无法直接分配CVE，而申请CVE 通常需要一个软件官方确认的链接，而有些比较正规的软件在漏洞修复之前是不会有公开链接的，这就无法申请CVE了。</p><p>有点鸡生蛋，蛋生鸡的感觉。解决这个问题的办法是申请一个 RESERVED CVE。</p><h2 id="申请-RESERVED-CVE-方法"><a href="#申请-RESERVED-CVE-方法" class="headerlink" title="申请 RESERVED CVE 方法"></a>申请 RESERVED CVE 方法</h2><p>申请 RESERVED CVE，也是需要填写的CVE 申请表格的 <a href="https://cveform.mitre.org/%EF%BC%8C%E9%80%89%E6%8B%A9">https://cveform.mitre.org/，选择</a> Request CVE ID</p><p>根据提示的重要信息：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">IMPORTANT: Once a CVE ID is assigned to your vulnerability, it will not be published </span><br><span class="line">in the CVE List until you have submitted a URL pointing to public information about </span><br><span class="line">the vulnerability. Without a public reference, the CVE ID will display as &quot;RESERVED&quot; </span><br><span class="line">in the CVE List. Please update CVE with a reference to the vulnerability&#x27;s </span><br><span class="line">details as soon as possible. See this FAQ for more information.</span><br></pre></td></tr></table></figure><p>只要将 public reference 留空，就可以申请 RESERVED CVE 了。CVE 官方收到请求后会有确认的邮件。</p><h2 id="CVE-官方分配-CVE-ID"><a href="#CVE-官方分配-CVE-ID" class="headerlink" title="CVE 官方分配 CVE ID"></a>CVE 官方分配 CVE ID</h2><p>CVE 官方收到 RESERVED CVE 请求后，会给分配一个 CVE ID，但是状态为 ** RESERVED ** ，不会有公开细节。</p><h2 id="RESERVED-CVE-申请公开"><a href="#RESERVED-CVE-申请公开" class="headerlink" title="RESERVED CVE 申请公开"></a>RESERVED CVE 申请公开</h2><p>当软件官方确认已经修复漏洞，并且发布新版后，可以通知 CVE 官方更新 CVE 的状态。还是通过填写 <a href="https://cveform.mitre.org/">https://cveform.mitre.org/</a> 表格，选择 Notify CVE about a publication，填写相关信息。</p><h2 id="一些注意事项"><a href="#一些注意事项" class="headerlink" title="一些注意事项"></a>一些注意事项</h2><ol><li>将 <a href="mailto:&#x63;&#118;&#x65;&#45;&#114;&#x65;&#113;&#117;&#x65;&#115;&#x74;&#x40;&#109;&#x69;&#116;&#x72;&#101;&#x2e;&#x6f;&#114;&#x67;">&#x63;&#118;&#x65;&#45;&#114;&#x65;&#113;&#117;&#x65;&#115;&#x74;&#x40;&#109;&#x69;&#116;&#x72;&#101;&#x2e;&#x6f;&#114;&#x67;</a> 和  <a href="mailto:&#99;&#x76;&#101;&#x40;&#x6d;&#x69;&#x74;&#x72;&#x65;&#x2e;&#x6f;&#114;&#x67;">&#99;&#x76;&#101;&#x40;&#x6d;&#x69;&#x74;&#x72;&#x65;&#x2e;&#x6f;&#114;&#x67;</a> 加入邮件白名单 （有可能邮件会被截拦）</li><li>在申请公开步骤中，CVE 官方有可能和你要公开披露的链接，如果软件官方不给写，可以自己写一个</li></ol><p>披露要求的信息：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[CVE ID]</span><br><span class="line">[PRODUCT]</span><br><span class="line">[VERSION]</span><br><span class="line">[PROBLEM TYPE]</span><br><span class="line">[DESCRIPTION]</span><br></pre></td></tr></table></figure>]]></content>
     
     
       
@@ -301,8 +325,8 @@
   
   <entry>
     <title>Python 多版本使用 pip</title>
-    <link href="http://usmacd.com/2023/09/06/python_pip/"/>
-    <id>http://usmacd.com/2023/09/06/python_pip/</id>
+    <link href="http://usmacd.com/cn/python_pip/"/>
+    <id>http://usmacd.com/cn/python_pip/</id>
     <published>2023-09-06T03:00:51.766Z</published>
     <updated>2023-09-06T03:00:51.766Z</updated>
     
@@ -325,8 +349,8 @@
   
   <entry>
     <title>Windows 进程注入</title>
-    <link href="http://usmacd.com/2023/09/06/process_injection/"/>
-    <id>http://usmacd.com/2023/09/06/process_injection/</id>
+    <link href="http://usmacd.com/cn/process_injection/"/>
+    <id>http://usmacd.com/cn/process_injection/</id>
     <published>2023-09-06T03:00:51.765Z</published>
     <updated>2023-09-06T03:00:51.765Z</updated>
     
@@ -349,8 +373,8 @@
   
   <entry>
     <title>使用 afl-fuzz fuzz pdfium</title>
-    <link href="http://usmacd.com/2023/09/06/pdfium-fuzz.public/"/>
-    <id>http://usmacd.com/2023/09/06/pdfium-fuzz.public/</id>
+    <link href="http://usmacd.com/cn/pdfium-fuzz.public/"/>
+    <id>http://usmacd.com/cn/pdfium-fuzz.public/</id>
     <published>2023-09-06T03:00:51.732Z</published>
     <updated>2023-09-06T03:00:51.732Z</updated>
     
@@ -371,8 +395,8 @@
   
   <entry>
     <title>一些杂谈</title>
-    <link href="http://usmacd.com/2023/09/06/other/"/>
-    <id>http://usmacd.com/2023/09/06/other/</id>
+    <link href="http://usmacd.com/cn/other/"/>
+    <id>http://usmacd.com/cn/other/</id>
     <published>2023-09-06T03:00:51.729Z</published>
     <updated>2023-09-06T03:00:51.729Z</updated>
     
@@ -394,8 +418,8 @@
   
   <entry>
     <title>Execute os command in Oracle Database</title>
-    <link href="http://usmacd.com/2023/09/06/oracle_run_os_cmd/"/>
-    <id>http://usmacd.com/2023/09/06/oracle_run_os_cmd/</id>
+    <link href="http://usmacd.com/cn/oracle_run_os_cmd/"/>
+    <id>http://usmacd.com/cn/oracle_run_os_cmd/</id>
     <published>2023-09-06T03:00:51.727Z</published>
     <updated>2023-09-06T03:00:51.727Z</updated>
     
@@ -416,8 +440,8 @@
   
   <entry>
     <title>一加 (oneplus ) 3T 非root 开启 P3 色域</title>
-    <link href="http://usmacd.com/2023/09/06/oneplus3T_p3/"/>
-    <id>http://usmacd.com/2023/09/06/oneplus3T_p3/</id>
+    <link href="http://usmacd.com/cn/oneplus3T_p3/"/>
+    <id>http://usmacd.com/cn/oneplus3T_p3/</id>
     <published>2023-09-06T03:00:51.725Z</published>
     <updated>2023-09-06T03:00:51.725Z</updated>
     
@@ -438,8 +462,8 @@
   
   <entry>
     <title>onefuzz 简单分析</title>
-    <link href="http://usmacd.com/2023/09/06/onefuzz/"/>
-    <id>http://usmacd.com/2023/09/06/onefuzz/</id>
+    <link href="http://usmacd.com/cn/onefuzz/"/>
+    <id>http://usmacd.com/cn/onefuzz/</id>
     <published>2023-09-06T03:00:51.724Z</published>
     <updated>2023-09-06T03:00:51.724Z</updated>
     
@@ -455,29 +479,6 @@
     
     
     <category term="Security" scheme="http://usmacd.com/tags/Security/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>lpr 和房贷的那些事</title>
-    <link href="http://usmacd.com/2023/09/06/lpr/"/>
-    <id>http://usmacd.com/2023/09/06/lpr/</id>
-    <published>2023-09-06T03:00:51.680Z</published>
-    <updated>2023-09-06T03:00:51.680Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="原来的机制"><a href="#原来的机制" class="headerlink" title="原来的机制"></a>原来的机制</h2><p>在 LPR 之前，我国贷款利率锚定 中国人民银行发布的 “贷款基准利率”。</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">房贷利率 = 贷款基准利率 x （1 + 浮动）</span><br></pre></td></tr></table></figure><p>浮动可以上浮，也可以下浮， 上浮意味着贷款利率大于贷款基准利率，反之下浮则是小于。</p><h2 id="LPR-新机制"><a href="#LPR-新机制" class="headerlink" title="LPR 新机制"></a>LPR 新机制</h2><p>MLF 是我国央行向商业银行放贷的一种方式 （中期借款便利），商业银行将一些抵押物质押给央行，换取一定期限，数额的贷款，同时向央行支付利息。央行通过控制 MLF 的数量总额和利率，从而影响市场。</p><p>商业银行可以选择从央行贷款，也可以使用从其他银行贷款，所以 MLF 不能偏离市场太多，也是一种市场化的利率调控手段。</p><p>商业银行拿到资金后，需要放贷给个人和企业，放贷需要参考央行的基准利率。所以这种市场上就有两种利率，如果贷款的基准利率过高，钱就会滞留银行，这样就引入了 LPR。</p><p>锚定 LPR，也就是浮动利率，会随着市场上资金的充盈程度变化。</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">LPR = MLF 利率 + 风险利润加点</span><br></pre></td></tr></table></figure><p>风险利润加点由 18家银行决定，这18家银行是 中国工商银行，中国农业银行，中国建设银行，交通银行，中信银行，招商银行，兴业银行，浦东发展银行，中国民生银行，西安银行，台州银行，上海农村商业银行， 广东顺德农村商业银行，渣打银行（中国），花旗银行（中国），微众银行，网商银行。</p><p>LPR 利率有18家报价，去掉一个最高值，去掉一个最低值，剩下16家取算术平均取得。</p><p>个人或者企业向银行贷款时的利率，通过 LPR 计算。</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">房贷利率 = LPR 利率 + 加点</span><br></pre></td></tr></table></figure><p>同样加点可以上浮，也可以下浮，这个是你和银行之间的协议加点。最终的利率还和政策加点有关，比如有的城市规定，二套房上浮 60个基点 （一个基点为 0.01 %），即上浮 0.6%</p><p>所以最终的公式为：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">房贷利率 = LPR 利率 + 政策加点 + 协议加点</span><br></pre></td></tr></table></figure>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h2 id=&quot;原来的机制&quot;&gt;&lt;a href=&quot;#原来的机制&quot; class=&quot;headerlink&quot; title=&quot;原来的机制&quot;&gt;&lt;/a&gt;原来的机制&lt;/h2&gt;&lt;p&gt;在 LPR 之前，我国贷款利率锚定 中国人民银行发布的 “贷款基准利率”。&lt;/p&gt;
-&lt;figure class=&quot;h</summary>
-      
-    
-    
-    
-    
-    <category term="Life" scheme="http://usmacd.com/tags/Life/"/>
     
   </entry>
   
