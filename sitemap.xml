@@ -2,6 +2,483 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://usmacd.com/2023/09/06/xorddos_hide/</loc>
+    
+    <lastmod>2023-09-06</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://usmacd.com/2023/09/06/Windows_Rx034/</loc>
+    
+    <lastmod>2023-09-06</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://usmacd.com/2023/09/06/webview_java/</loc>
+    
+    <lastmod>2023-09-06</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://usmacd.com/2023/09/06/vnc/</loc>
+    
+    <lastmod>2023-09-06</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://usmacd.com/2023/09/06/vim_special_char/</loc>
+    
+    <lastmod>2023-09-06</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://usmacd.com/2023/09/06/thunderbird.tls.1.0/</loc>
+    
+    <lastmod>2023-09-06</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://usmacd.com/2023/09/06/svn_vim/</loc>
+    
+    <lastmod>2023-09-06</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://usmacd.com/2023/09/06/stock_experience/</loc>
+    
+    <lastmod>2023-09-06</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://usmacd.com/2023/09/06/stock_emotion/</loc>
+    
+    <lastmod>2023-09-06</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://usmacd.com/2023/09/06/ssd/</loc>
+    
+    <lastmod>2023-09-06</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://usmacd.com/2023/09/06/root_android11_pixel2/</loc>
+    
+    <lastmod>2023-09-06</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://usmacd.com/2023/09/06/request_RESERVED_CVE/</loc>
+    
+    <lastmod>2023-09-06</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://usmacd.com/2023/09/06/python_pip/</loc>
+    
+    <lastmod>2023-09-06</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://usmacd.com/2023/09/06/process_injection/</loc>
+    
+    <lastmod>2023-09-06</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://usmacd.com/2023/09/06/pdfium-fuzz.public/</loc>
+    
+    <lastmod>2023-09-06</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://usmacd.com/2023/09/06/other/</loc>
+    
+    <lastmod>2023-09-06</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://usmacd.com/2023/09/06/oracle_run_os_cmd/</loc>
+    
+    <lastmod>2023-09-06</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://usmacd.com/2023/09/06/oneplus3T_p3/</loc>
+    
+    <lastmod>2023-09-06</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://usmacd.com/2023/09/06/onefuzz/</loc>
+    
+    <lastmod>2023-09-06</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://usmacd.com/2023/09/06/lpr/</loc>
+    
+    <lastmod>2023-09-06</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://usmacd.com/2023/09/06/llvm_coverage/</loc>
+    
+    <lastmod>2023-09-06</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://usmacd.com/2023/09/06/libprotobuf-mutator/</loc>
+    
+    <lastmod>2023-09-06</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://usmacd.com/2023/09/06/learn_in_public/</loc>
+    
+    <lastmod>2023-09-06</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://usmacd.com/2023/09/06/iPhone_white_apple/</loc>
+    
+    <lastmod>2023-09-06</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://usmacd.com/2023/09/06/How_do_you_actually_find_bugs/</loc>
+    
+    <lastmod>2023-09-06</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://usmacd.com/2023/09/06/halfempty/</loc>
+    
+    <lastmod>2023-09-06</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://usmacd.com/2023/09/06/gtags-cscope/</loc>
+    
+    <lastmod>2023-09-06</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://usmacd.com/2023/09/06/gogs/</loc>
+    
+    <lastmod>2023-09-06</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://usmacd.com/2023/09/06/github_speed_up/</loc>
+    
+    <lastmod>2023-09-06</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://usmacd.com/2023/09/06/fupangjiqiao/</loc>
+    
+    <lastmod>2023-09-06</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://usmacd.com/2023/09/06/fundamental/</loc>
+    
+    <lastmod>2023-09-06</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://usmacd.com/2023/09/06/fengliu/</loc>
+    
+    <lastmod>2023-09-06</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://usmacd.com/2023/09/06/Fedora36-Nvidia/</loc>
+    
+    <lastmod>2023-09-06</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://usmacd.com/2023/09/06/Fedora31/</loc>
+    
+    <lastmod>2023-09-06</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://usmacd.com/2023/09/06/disable_security_flags/</loc>
+    
+    <lastmod>2023-09-06</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://usmacd.com/2023/09/06/debug_aosp_java_code/</loc>
+    
+    <lastmod>2023-09-06</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://usmacd.com/2023/09/06/cve-2012-3137/</loc>
+    
+    <lastmod>2023-09-06</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://usmacd.com/2023/09/06/compile_android_source_code/</loc>
+    
+    <lastmod>2023-09-06</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://usmacd.com/2023/09/06/BankBot/</loc>
+    
+    <lastmod>2023-09-06</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://usmacd.com/2023/09/06/BaiduNetdisk/</loc>
+    
+    <lastmod>2023-09-06</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://usmacd.com/2023/09/06/backtrace_in_android/</loc>
+    
+    <lastmod>2023-09-06</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://usmacd.com/2023/09/06/Automatic_Investment_Plan/</loc>
+    
+    <lastmod>2023-09-06</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://usmacd.com/2023/09/06/AS3_Sorcerer_crack/</loc>
+    
+    <lastmod>2023-09-06</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://usmacd.com/2023/09/06/apk_debug/</loc>
+    
+    <lastmod>2023-09-06</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://usmacd.com/2023/09/06/anti_sandbox/</loc>
+    
+    <lastmod>2023-09-06</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://usmacd.com/2023/09/06/Android_SSL_Pinning/</loc>
+    
+    <lastmod>2023-09-06</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://usmacd.com/2023/09/06/android_intent_base_attack/</loc>
+    
+    <lastmod>2023-09-06</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://usmacd.com/2023/09/06/Android_binder_fuzzing/</loc>
+    
+    <lastmod>2023-09-06</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://usmacd.com/2023/09/06/afl/</loc>
+    
+    <lastmod>2023-09-06</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://usmacd.com/2023/09/06/afl-fuzz1/</loc>
+    
+    <lastmod>2023-09-06</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://usmacd.com/2023/09/06/a_change/</loc>
+    
+    <lastmod>2023-09-06</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://usmacd.com/2023/09/06/304/</loc>
+    
+    <lastmod>2023-09-06</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://usmacd.com/2023/09/06/010editor/</loc>
+    
+    <lastmod>2023-09-06</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>http://usmacd.com/2020/03/19/mitmproxy/</loc>
     
     <lastmod>2023-08-28</lastmod>
@@ -32,15 +509,6 @@
     <loc>http://usmacd.com/2023/07/20/vim_gtags_leaderf/</loc>
     
     <lastmod>2023-07-23</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://usmacd.com/2023/03/02/gtags-cscope/</loc>
-    
-    <lastmod>2023-07-16</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -137,15 +605,6 @@
   </url>
   
   <url>
-    <loc>http://usmacd.com/2022/11/02/learn_in_public/</loc>
-    
-    <lastmod>2022-11-02</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>http://usmacd.com/2022/10/08/logseq3/</loc>
     
     <lastmod>2022-10-08</lastmod>
@@ -182,81 +641,9 @@
   </url>
   
   <url>
-    <loc>http://usmacd.com/2022/06/30/stock_emotion/</loc>
-    
-    <lastmod>2022-06-30</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://usmacd.com/2022/06/17/Automatic_Investment_Plan/</loc>
-    
-    <lastmod>2022-06-17</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://usmacd.com/2022/05/16/Fedora36-Nvidia/</loc>
-    
-    <lastmod>2022-05-16</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://usmacd.com/2022/05/11/libprotobuf-mutator/</loc>
-    
-    <lastmod>2022-05-11</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://usmacd.com/2022/05/05/How_do_you_actually_find_bugs/</loc>
-    
-    <lastmod>2022-05-05</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://usmacd.com/2022/04/13/gogs/</loc>
-    
-    <lastmod>2022-04-13</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>http://usmacd.com/2022/03/07/logseq2/</loc>
     
     <lastmod>2022-03-06</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://usmacd.com/2022/03/04/afl-fuzz1/</loc>
-    
-    <lastmod>2022-03-04</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://usmacd.com/2022/02/22/BankBot/</loc>
-    
-    <lastmod>2022-02-22</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -272,177 +659,6 @@
   </url>
   
   <url>
-    <loc>http://usmacd.com/2021/12/24/stock_experience/</loc>
-    
-    <lastmod>2021-12-24</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://usmacd.com/2021/11/05/webview_java/</loc>
-    
-    <lastmod>2021-11-05</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://usmacd.com/2021/11/03/backtrace_in_android/</loc>
-    
-    <lastmod>2021-11-03</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://usmacd.com/2021/11/03/ssd/</loc>
-    
-    <lastmod>2021-11-03</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://usmacd.com/2021/09/23/iPhone_white_apple/</loc>
-    
-    <lastmod>2021-09-23</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://usmacd.com/2021/09/01/Android_SSL_Pinning/</loc>
-    
-    <lastmod>2021-09-01</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://usmacd.com/2021/08/23/a_change/</loc>
-    
-    <lastmod>2021-08-23</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://usmacd.com/2021/08/17/afl/</loc>
-    
-    <lastmod>2021-08-17</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://usmacd.com/2021/07/26/root_android11_pixel2/</loc>
-    
-    <lastmod>2021-07-26</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://usmacd.com/2021/07/20/disable_security_flags/</loc>
-    
-    <lastmod>2021-07-20</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://usmacd.com/2021/06/28/fupangjiqiao/</loc>
-    
-    <lastmod>2021-06-28</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://usmacd.com/2021/06/28/304/</loc>
-    
-    <lastmod>2021-06-28</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://usmacd.com/2021/06/28/fengliu/</loc>
-    
-    <lastmod>2021-06-28</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://usmacd.com/2021/06/18/debug_aosp_java_code/</loc>
-    
-    <lastmod>2021-06-18</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://usmacd.com/2021/06/17/github_speed_up/</loc>
-    
-    <lastmod>2021-06-17</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://usmacd.com/2021/05/24/010editor/</loc>
-    
-    <lastmod>2021-05-24</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://usmacd.com/2021/04/30/thunderbird.tls.1.0/</loc>
-    
-    <lastmod>2021-04-30</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://usmacd.com/2021/01/20/request_RESERVED_CVE/</loc>
-    
-    <lastmod>2021-01-20</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://usmacd.com/2020/09/28/onefuzz/</loc>
-    
-    <lastmod>2020-09-28</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>http://usmacd.com/about/index.html</loc>
     
     <lastmod>2020-07-21</lastmod>
@@ -452,232 +668,7 @@
   </url>
   
   <url>
-    <loc>http://usmacd.com/2020/05/21/halfempty/</loc>
-    
-    <lastmod>2020-05-21</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://usmacd.com/2020/03/31/lpr/</loc>
-    
-    <lastmod>2020-03-31</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://usmacd.com/2020/03/25/Windows_Rx034/</loc>
-    
-    <lastmod>2020-03-25</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://usmacd.com/2020/03/23/oneplus3T_p3/</loc>
-    
-    <lastmod>2020-03-23</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://usmacd.com/2020/03/20/python_pip/</loc>
-    
-    <lastmod>2020-03-20</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://usmacd.com/categories/index.html</loc>
-    
-    <lastmod>2020-03-19</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>http://usmacd.com/tags/index.html</loc>
-    
-    <lastmod>2020-03-19</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://usmacd.com/2020/03/19/xorddos_hide/</loc>
-    
-    <lastmod>2020-03-19</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://usmacd.com/2020/03/19/AS3_Sorcerer_crack/</loc>
-    
-    <lastmod>2020-03-19</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://usmacd.com/2020/03/19/Android_binder_fuzzing/</loc>
-    
-    <lastmod>2020-03-19</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://usmacd.com/2020/03/19/BaiduNetdisk/</loc>
-    
-    <lastmod>2020-03-19</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://usmacd.com/2020/03/19/Fedora31/</loc>
-    
-    <lastmod>2020-03-19</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://usmacd.com/2020/03/19/android_intent_base_attack/</loc>
-    
-    <lastmod>2020-03-19</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://usmacd.com/2020/03/19/anti_sandbox/</loc>
-    
-    <lastmod>2020-03-19</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://usmacd.com/2020/03/19/apk_debug/</loc>
-    
-    <lastmod>2020-03-19</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://usmacd.com/2020/03/19/compile_android_source_code/</loc>
-    
-    <lastmod>2020-03-19</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://usmacd.com/2020/03/19/cve-2012-3137/</loc>
-    
-    <lastmod>2020-03-19</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://usmacd.com/2020/03/19/fundamental/</loc>
-    
-    <lastmod>2020-03-19</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://usmacd.com/2020/03/19/llvm_coverage/</loc>
-    
-    <lastmod>2020-03-19</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://usmacd.com/2020/03/19/oracle_run_os_cmd/</loc>
-    
-    <lastmod>2020-03-19</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://usmacd.com/2020/03/19/other/</loc>
-    
-    <lastmod>2020-03-19</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://usmacd.com/2020/03/19/pdfium-fuzz.public/</loc>
-    
-    <lastmod>2020-03-19</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://usmacd.com/2020/03/19/process_injection/</loc>
-    
-    <lastmod>2020-03-19</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://usmacd.com/2020/03/19/svn_vim/</loc>
-    
-    <lastmod>2020-03-19</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://usmacd.com/2020/03/19/vim_special_char/</loc>
-    
-    <lastmod>2020-03-19</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://usmacd.com/2020/03/19/vnc/</loc>
     
     <lastmod>2020-03-19</lastmod>
     
@@ -913,7 +904,7 @@
 
   <url>
     <loc>http://usmacd.com/</loc>
-    <lastmod>2023-08-30</lastmod>
+    <lastmod>2023-09-06</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -921,98 +912,98 @@
   
   <url>
     <loc>http://usmacd.com/tags/linux/</loc>
-    <lastmod>2023-08-30</lastmod>
+    <lastmod>2023-09-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://usmacd.com/tags/Crack/</loc>
-    <lastmod>2023-08-30</lastmod>
+    <lastmod>2023-09-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://usmacd.com/tags/Archives/</loc>
-    <lastmod>2023-08-30</lastmod>
+    <lastmod>2023-09-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://usmacd.com/tags/Life/</loc>
-    <lastmod>2023-08-30</lastmod>
+    <lastmod>2023-09-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://usmacd.com/tags/Security/</loc>
-    <lastmod>2023-08-30</lastmod>
+    <lastmod>2023-09-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://usmacd.com/tags/Android/</loc>
-    <lastmod>2023-08-30</lastmod>
+    <lastmod>2023-09-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://usmacd.com/tags/investment/</loc>
-    <lastmod>2023-08-30</lastmod>
+    <lastmod>2023-09-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://usmacd.com/tags/Malware/</loc>
-    <lastmod>2023-08-30</lastmod>
+    <lastmod>2023-09-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://usmacd.com/tags/PKM/</loc>
-    <lastmod>2023-08-30</lastmod>
+    <lastmod>2023-09-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://usmacd.com/tags/windows/</loc>
-    <lastmod>2023-08-30</lastmod>
+    <lastmod>2023-09-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://usmacd.com/tags/ai/</loc>
-    <lastmod>2023-08-30</lastmod>
+    <lastmod>2023-09-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://usmacd.com/tags/Software/</loc>
-    <lastmod>2023-08-30</lastmod>
+    <lastmod>2023-09-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://usmacd.com/tags/Programming/</loc>
-    <lastmod>2023-08-30</lastmod>
+    <lastmod>2023-09-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://usmacd.com/tags/vim/</loc>
-    <lastmod>2023-08-30</lastmod>
+    <lastmod>2023-09-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
