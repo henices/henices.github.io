@@ -122,13 +122,13 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">101</span>
+          <span class="site-state-item-count">102</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-count">15</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -177,6 +177,144 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://usmacd.com/cn/vim_python/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="henices">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="安全代码">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 安全代码">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/cn/vim_python/" class="post-title-link" itemprop="url">vim中的python</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2013-09-06 00:00:00" itemprop="dateCreated datePublished" datetime="2013-09-06T00:00:00+08:00">2013-09-06</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="1-判断vim支持python"><a href="#1-判断vim支持python" class="headerlink" title="1. 判断vim支持python"></a>1. 判断vim支持python</h2><p>要判断你的vim是否支持python，可以执行下面命令：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ vim --version | grep python</span><br></pre></td></tr></table></figure>
+
+
+<p>如果显示的结果中有 +python 的话，你的vim已经支持python，<br>如果没有的话，你需要重新编译vim，在windows中可以使用下面的命令行，</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmake -f Make_mvc.mak FEATURES=huge PYTHON=D:\Python27 PYTHON_VER=27 GUI=yes IME=yes</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-为什么需要编译支持python的vim"><a href="#2-为什么需要编译支持python的vim" class="headerlink" title="2. 为什么需要编译支持python的vim"></a>2. 为什么需要编译支持python的vim</h2><p>主要的理由有两个，</p>
+<ol>
+<li>可以使用python写的vim插件。</li>
+<li>vim 7.4 以后对python的支持进行了增强。</li>
+</ol>
+<p>有很多不错的vim 插件，这里给大家推荐一个python-mode, 非常不错。<a target="_blank" rel="noopener" href="https://github.com/klen/python-mode">https://github.com/klen/python-mode</a></p>
+<p>vim 7.4 以后对python的支持进行了增强，这个是广大vim注册用户（捐钱的用户）呼声最<br>高的需求，原话为，</p>
+<blockquote>
+<p>add integration with Python instead of inventing more Vim script</p>
+</blockquote>
+<p>确实现在已经有太多的vim脚本了。vim的主页上的完整需求列表; <a target="_blank" rel="noopener" href="http://www.vim.org/sponsor/vote_results.php">http://www.vim.org/sponsor/vote_results.php</a></p>
+<blockquote>
+<p>add IDE features (debugger integration, shell window)</p>
+</blockquote>
+<p>这个是排行老二的需求，不知道什么时侯能实现，期待中…</p>
+<h2 id="3-一些应用举例"><a href="#3-一些应用举例" class="headerlink" title="3. 一些应用举例"></a>3. 一些应用举例</h2><h3 id="3-1-python-commands"><a href="#3-1-python-commands" class="headerlink" title="3.1 python commands"></a>3.1 python commands</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">:[range]py[thon] &#123;stmt&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这个命令比较简单，详细解释如下:</p>
+<p>range 是标准的vim的range 熟悉vim替换命令的同学应该都不会陌生。range的作用的是指<br>定python命令影响哪些行，写法为 [行号，行号]，比如 1,2  影响第一行和第二行，1,$<br>影响整个文件。[] 的意思是这个range是可选的默认将影响整个文件。</p>
+<p>py[thon]的意思为，python 是命令的全写，可以简写为py。</p>
+<p>{stmt} python 语句</p>
+<p>可以写上下面命令，输出 Hello</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">:python print &quot;Hello python&quot;</span><br></pre></td></tr></table></figure>
+
+<p>数学不好的同学可以像我一样使用</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">:py print 1+1</span><br></pre></td></tr></table></figure>
+
+<p>将显示结果2  :)</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">:[range]py[thon] &lt;&lt; &#123;endmarker&#125;</span><br><span class="line">&#123;script&#125;</span><br><span class="line">&#123;endmarker&#125;</span><br></pre></td></tr></table></figure>
+
+<p>上面是这个命令是第二种用法，可以直接写python，相当爽，写法很象cat 命令</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cat</span> &gt; /tmp/xx &lt;&lt; <span class="string">EOF</span></span><br><span class="line"><span class="string">....</span></span><br><span class="line"><span class="string">EOF</span></span><br></pre></td></tr></table></figure>
+
+<p>想用vim查询天气的同学可以参考一下，github上的这个脚本 <a target="_blank" rel="noopener" href="https://raw.github.com/liqunli/vim-plugin-dev/master/dairy.vim">https://raw.github.com/liqunli/vim-plugin-dev/master/dairy.vim</a></p>
+<h3 id="3-2-pydo"><a href="#3-2-pydo" class="headerlink" title="3.2 pydo"></a>3.2 pydo</h3><p>这个命令的格式为， :[range]pydo {body}</p>
+<p>vim 中有一个定义好的函数，这个命令将利用这个函数做一些事情</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">_vim_pydo</span>(<span class="params">line, linenr</span>):</span><br><span class="line">    &#123;body&#125;</span><br></pre></td></tr></table></figure>
+
+<p>pydo 这个命令同样是以行为单位的，range的用法和上面说的一样。 line 是原始的行，<br>linenr 是 line number (行号）。大家可以猜一下下面命令的意思，</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">:pydo if line: return &quot;%4d: %s&quot; % (linenr, line)</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+<p>显示结果大致是这样， 直接用这个文件测试了一下，</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">55: 将显示结果2  :)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">58: :[range]py[thon] &lt;&lt; &#123;endmarker&#125;</span><br><span class="line">59: &#123;script&#125;</span><br><span class="line">60: &#123;endmarker&#125;</span><br></pre></td></tr></table></figure>
+
+<p>没有指定range，默认为整个文件，”%4d: %s” % (linenr, line)  这句的意思是，<br>在每行前加行号，不足4位的数字的用空格补齐</p>
+<p>在早些时侯，vim命令要实现这个的效果，需要写一行诡异的命令，</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">:%s/^/\=printf(&#x27;%4d: &#x27;, line(&#x27;.&#x27;))</span><br></pre></td></tr></table></figure>
+
+<p>挑战太大，vim 还专门写了一篇wiki <a target="_blank" rel="noopener" href="http://vim.wikia.com/wiki/Insert_line_numbers">http://vim.wikia.com/wiki/Insert_line_numbers</a></p>
+<h3 id="3-3-pyfile"><a href="#3-3-pyfile" class="headerlink" title="3.3 pyfile"></a>3.3 pyfile</h3><p>这条命令的格式为，:[range]pyf[ile] {file}</p>
+<p>可以直接使用python 文件，不需要一句一句的输入python 语句了。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">:python from vim import *</span><br><span class="line">:python from string import upper</span><br><span class="line">:python current.line = upper(current.line)</span><br><span class="line">:python print &quot;Hello&quot;</span><br><span class="line">:python str = current.buffer[42]</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-4-python3"><a href="#3-4-python3" class="headerlink" title="3.4  python3"></a>3.4  python3</h3><p>命令的格式和python是一样的，不过需要开启 +python3</p>
+<h3 id="3-5-vim的python-接口"><a href="#3-5-vim的python-接口" class="headerlink" title="3.5  vim的python 接口"></a>3.5  vim的python 接口</h3><p>这个不属于这个小文章的想说的了，写了这成vim的manual了，可以直接参看:<br><a target="_blank" rel="noopener" href="http://vimhelp.appspot.com/if_pyth.txt.html#python-vim">http://vimhelp.appspot.com/if_pyth.txt.html#python-vim</a></p>
+<h2 id="4-最后"><a href="#4-最后" class="headerlink" title="4. 最后"></a>4. 最后</h2><p>为了避免vim和emacs的圣战，hx 和 lzx等emacs党，可以直接忽视此文 ：）</p>
+<h2 id="5-参考资料"><a href="#5-参考资料" class="headerlink" title="5. 参考资料"></a>5. 参考资料</h2><p><a target="_blank" rel="noopener" href="http://vimhelp.appspot.com/if_pyth.txt.html">http://vimhelp.appspot.com/if_pyth.txt.html</a></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -903,115 +1041,6 @@
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> LONG NTSTATUS;</span><br><span class="line"><span class="meta">#<span class="keyword">define</span> STATUS_SUCCESS ((NTSTATUS)0x00000000L)</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> STATUS_ACCESS_DENIED ((NTSTATUS)0xC0000022L)</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> STATUS_INFO_LENGTH_MISMATCH ((NTSTATUS)0xC0000004L)</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> _<span class="title">IO_STATUS_BLOCK</span> &#123;</span></span><br><span class="line">DWORD Status;</span><br><span class="line">ULONG Information;</span><br><span class="line">&#125; IO_STATUS_BLOCK, *PIO_STATUS_BLOCK;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">enum</span> _<span class="title">FILE_INFORMATION_CLASS</span> &#123;</span></span><br><span class="line"><span class="comment">// end_wdm</span></span><br><span class="line">FileDirectoryInformation = <span class="number">1</span>,</span><br><span class="line">FileFullDirectoryInformation, <span class="comment">// 2</span></span><br><span class="line">FileBothDirectoryInformation, <span class="comment">// 3</span></span><br><span class="line">FileBasicInformation, <span class="comment">// 4 wdm</span></span><br><span class="line">FileStandardInformation, <span class="comment">// 5 wdm</span></span><br><span class="line">FileInternalInformation, <span class="comment">// 6</span></span><br><span class="line">FileEaInformation, <span class="comment">// 7</span></span><br><span class="line">FileAccessInformation, <span class="comment">// 8</span></span><br><span class="line">FileNameInformation, <span class="comment">// 9</span></span><br><span class="line">FileRenameInformation, <span class="comment">// 10</span></span><br><span class="line">FileLinkInformation, <span class="comment">// 11</span></span><br><span class="line">FileNamesInformation, <span class="comment">// 12</span></span><br><span class="line">FileDispositionInformation, <span class="comment">// 13</span></span><br><span class="line">FilePositionInformation, <span class="comment">// 14 wdm</span></span><br><span class="line">FileFullEaInformation, <span class="comment">// 15</span></span><br><span class="line">FileModeInformation, <span class="comment">// 16</span></span><br><span class="line">FileAlignmentInformation, <span class="comment">// 17</span></span><br><span class="line">FileAllInformation, <span class="comment">// 18</span></span><br><span class="line">FileAllocationInformation, <span class="comment">// 19</span></span><br><span class="line">FileEndOfFileInformation, <span class="comment">// 20 wdm</span></span><br><span class="line">FileAlternateNameInformation, <span class="comment">// 21</span></span><br><span class="line">FileStreamInformation, <span class="comment">// 22</span></span><br><span class="line">FilePipeInformation, <span class="comment">// 23</span></span><br><span class="line">FilePipeLocalInformation, <span class="comment">// 24</span></span><br><span class="line">FilePipeRemoteInformation, <span class="comment">// 25</span></span><br><span class="line">FileMailslotQueryInformation, <span class="comment">// 26</span></span><br><span class="line">FileMailslotSetInformation, <span class="comment">// 27</span></span><br><span class="line">FileCompressionInformation, <span class="comment">// 28</span></span><br><span class="line">FileObjectIdInformation, <span class="comment">// 29</span></span><br><span class="line">FileCompletionInformation, <span class="comment">// 30</span></span><br><span class="line">FileMoveClusterInformation, <span class="comment">// 31</span></span><br><span class="line">FileQuotaInformation, <span class="comment">// 32</span></span><br><span class="line">FileReparsePointInformation, <span class="comment">// 33</span></span><br><span class="line">FileNetworkOpenInformation, <span class="comment">// 34</span></span><br><span class="line">FileAttributeTagInformation, <span class="comment">// 35</span></span><br><span class="line">FileTrackingInformation, <span class="comment">// 36</span></span><br><span class="line">FileMaximumInformation</span><br><span class="line"><span class="comment">// begin_wdm</span></span><br><span class="line">&#125; FILE_INFORMATION_CLASS, *PFILE_INFORMATION_CLASS;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> _<span class="title">FILE_NAME_INFORMATION</span> &#123;</span></span><br><span class="line">ULONG FileNameLength;</span><br><span class="line">WCHAR FileName[<span class="number">1</span>];</span><br><span class="line">&#125; FILE_NAME_INFORMATION, *PFILE_NAME_INFORMATION;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="title function_">NTSTATUS</span> <span class="params">(__stdcall *ZWQUERYINFORMATIONFILE)</span><span class="params">(</span></span><br><span class="line"><span class="params">IN HANDLE FileHandle,</span></span><br><span class="line"><span class="params">OUT PIO_STATUS_BLOCK IoStatusBlock,</span></span><br><span class="line"><span class="params">OUT PVOID FileInformation,</span></span><br><span class="line"><span class="params">IN ULONG FileInformationLength,</span></span><br><span class="line"><span class="params">IN FILE_INFORMATION_CLASS FileInformationClass</span></span><br><span class="line"><span class="params">)</span>;</span><br><span class="line"></span><br><span class="line">ZWQUERYINFORMATIONFILE ZwQueryInformationFile;</span><br><span class="line"></span><br><span class="line">NTSTATUS __stdcall <span class="title function_">Hook_ZwSetInformationFile</span><span class="params">(IN HANDLE FileHandle,</span></span><br><span class="line"><span class="params">OUT PIO_STATUS_BLOCK IoStatusBlock,</span></span><br><span class="line"><span class="params">IN PVOID FileInformation,</span></span><br><span class="line"><span class="params">IN ULONG FileInformationLength,</span></span><br><span class="line"><span class="params">IN FILE_INFORMATION_CLASS FileInformationClass)</span></span><br><span class="line">&#123;</span><br><span class="line">NTSTATUS ntstatus = STATUS_ACCESS_DENIED;</span><br><span class="line"></span><br><span class="line">HMODULE hNtdll = GetModuleHandle(<span class="string">&quot;ntdll.dll&quot;</span>);</span><br><span class="line">ZwQueryInformationFile = (ZWQUERYINFORMATIONFILE)GetProcAddress(hNtdll, <span class="string">&quot;ZwQueryInformationFile&quot;</span>);</span><br><span class="line"></span><br><span class="line">IO_STATUS_BLOCK ioStatus;</span><br><span class="line">FILE_NAME_INFORMATION * psi = &#123;<span class="number">0</span>&#125;;</span><br><span class="line"></span><br><span class="line">psi = (FILE_NAME_INFORMATION*)new WCHAR[<span class="keyword">sizeof</span>(FILE_NAME_INFORMATION) + <span class="number">1024</span>];</span><br><span class="line"><span class="built_in">memset</span>(psi, <span class="number">0</span>, (<span class="keyword">sizeof</span>(FILE_NAME_INFORMATION) + <span class="number">1024</span>)*<span class="number">2</span>);</span><br><span class="line">psi-&gt;FileNameLength = <span class="number">1024</span>;</span><br><span class="line"></span><br><span class="line">ntstatus = ZwQueryInformationFile(FileHandle, &amp;ioStatus, psi, <span class="keyword">sizeof</span>(FILE_NAME_INFORMATION) + <span class="number">1024</span> * <span class="keyword">sizeof</span>(WCHAR),</span><br><span class="line"></span><br><span class="line">FileNameInformation);</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (ntstatus != STATUS_SUCCESS)</span><br><span class="line">PrintZwError(<span class="string">&quot;ZwQueryInformationFile&quot;</span>, ntstatus);</span><br><span class="line"></span><br><span class="line">ntstatus = STATUS_ACCESS_DENIED;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>( wcsstr(psi-&gt;FileName, <span class="string">L&quot;b.txt&quot;</span>) == <span class="literal">NULL</span>)</span><br><span class="line">ntstatus = ((PFZWSETINFORMATIONFILE)(PROC)g_ZwSetInformationFile)</span><br><span class="line"></span><br><span class="line">(FileHandle,IoStatusBlock,FileInformation,FileInformationLength,FileInformationClass);</span><br><span class="line"></span><br><span class="line">delete psi;</span><br><span class="line"><span class="keyword">return</span> ntstatus;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>这只是一个证明性代码，要实战的兄弟自己动点手吧。</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://usmacd.com/cn/5cAcessPath/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="henices">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="安全代码">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 安全代码">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/cn/5cAcessPath/" class="post-title-link" itemprop="url">N 谈 %5C 暴库</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2006-07-13 00:00:00" itemprop="dateCreated datePublished" datetime="2006-07-13T00:00:00+08:00">2006-07-13</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>关于%5c的暴库利用想已经不是什么新技术了，原因我只找到含糊的说法：的UNICODE是%5c当提交时,IIS无法正常解析,导致暴库。但我对 <a target="_blank" rel="noopener" href="http://www.hoky.org/">http://www.hoky.org</a> 测试成功后（现在已经补上）问过hoky.pro，得知%5c与IIS的设置是有关系的。而在默认设置下是可以暴库的。还有很多人说不成功，我要说的三点：</p>
-<ol>
-<li>一般的错误返回页面是本地IE提供的,所以我们先得关了本地的错误页面,具体在菜单项的‘工具-&gt;internet选项-&gt;高级-&gt;显示友好信息’。</li>
-<li>对方数据库要是Access型。</li>
-<li>%5c的暴库需要的是二级目录，一级目录无法成功。如：</li>
-</ol>
-<p><a href="http://www.sometips.com%5c1.asp?id=1">http://www.sometips.com%5c1.asp?id=1</a> 不成功<br><a target="_blank" rel="noopener" href="http://www.sometips.com/other%5c1.asp?id=1">http://www.sometips.com/other%5c1.asp?id=1</a> 成功</p>
-<p>好了，上面说的大家都知道，当是废话。在暴库这么好用的东西下，如果一个网站只有一级目录的话，难道就没有办法了吗？说到重点，其实一级目录我们也同样可以成功的，我们可以通过构造一个多级目录来达到暴库的目的。</p>
-<p><a target="_blank" rel="noopener" href="http://www.target.com/noexists/..%5clist.asp?id=1">http://www.target.com/noexists/..%5clist.asp?id=1</a></p>
-<p>这样大家就会有新的惊喜了，呵呵。</p>
-<p>补救方法也很简单，在conn.asp里 加入数据库文件的位置后面加上这句：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">On Error Resume Next</span><br></pre></td></tr></table></figure>
-
-<p>就可以了。</p>
-<hr>
-<p>今天在黑基又看到了关于％5c暴库的文章，这招真的很管用，大概10个网站里会有一个会暴库吧。</p>
-<p>关于这个漏洞。绿盟有相关的资料：<br><a target="_blank" rel="noopener" href="http://www.nsfocus.net/index.php?act=magazine&do=view&mid=952">http://www.nsfocus.net/index.php?act=magazine&amp;do=view&amp;mid=952</a></p>
-<p>呵呵。虽然这个我们这个漏洞呵暴库关系不是很大， 但是明眼人还是看的出相关的地方，IIS 二次解码。大家知道在 url中 <code>\</code> 和 <code>/</code> 是一样的，也就是说 <a target="_blank" rel="noopener" href="http://www.example.com/abc/123.asp?id=5">http://www.example.com/abc/123.asp?id=5</a> 和 <a target="_blank" rel="noopener" href="http://www.example.com/abc/123.asp?id=5">http://www.example.com/abc\123.asp?id=5</a> 是一样的。</p>
-<p>而 <a target="_blank" rel="noopener" href="http://www.example.com/abc%5c123.asp?id=5">http://www.example.com/abc%5c123.asp?id=5</a> 经过一次解码后变成 <a target="_blank" rel="noopener" href="http://www.example.com/abc/123.asp?id=5">http://www.example.com/abc\123.asp?id=5</a> 这里是不会出错的。</p>
-<p>而经过 IIS 二次解码后就变成 <a target="_blank" rel="noopener" href="http://www.example.com/abc%5c123.asp?id=5">http://www.example.com/abc%5c123.asp?id=5</a>, 如果数据库连接文件用的相对路径的话。HOO, 找不到数据库文件，当然就出错了。还很老实呢，连物理路径都出来了。大家看。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Microsoft JET Database Engine 错误 &#x27;80004005&#x27;</span><br><span class="line"></span><br><span class="line">&#x27;D:\wwwroot\hell\wwwroot\data\abc.asp&#x27;不是一个有效的路径。 确定路径名称拼写是否正确，以及是否连接到文件存放的服务器。</span><br><span class="line"></span><br><span class="line">/blog/conn.asp，行29</span><br></pre></td></tr></table></figure>
-
-<p>这个是我暴 Oblog 暴出来的，这个月的黑防大家都有看吧。(早知道我也去投稿了，我发现的比他早多了，郁闷)<br>很多人都在分析成功的条件，就象itbbs里的人讨论的一样。(itbbs最近我怎么上不去啊，知道告诉我)</p>
-<p>sykkk 认为：</p>
-<ol>
-<li>是数据库连接中没有加入容错代码 所以导致错误不能跳过而活生生的把数据文件连接暴出来</li>
-<li>对方的IIS没有关闭错误提示 只要关了错误提示就算你怎么暴也没有用</li>
-<li>不一定要2级目录 可以自己够造个noexists&#x2F;..%5C的2级目录</li>
-<li>还有就是 要成功一定要调用到数据库 不一定是5c1.asp?id&#x3D;1 这种类别的</li>
-</ol>
-<p>其实还有一个必要条件他忘了，数据库要相对路径，绝对路径是暴不出来的。还有我补充一点应该是 IIS 4.0 或者 IIS 5.0 ，IIS 6 应该是不行了。</p>
-<p>关于二级目录，我同意sykkk的看法，有的人说一定是二级目录，呵呵，我可以告诉大家那是错误的。应该是最靠近的asp文件的那个 “&#x2F;“ 改成 “%5c”, 只有有调用数据库都有可能暴库。哈哈，还有当然对方要没有屏蔽错误信息，要不然你是肯定看不到的。</p>
-<p>总结：％5c暴库成功条件</p>
-<ol>
-<li>对方服务器用的是 IIS 4.0 或 IIS 5.0， 并且没有屏蔽错误信息。</li>
-<li>是数据库连接中没有加入容错代码 所以导致错误不能跳过而活生生的把数据文件连接暴出来 (On Error Resume Next)</li>
-<li>应该是Microsoft JET Database Engine 方式</li>
-<li>数据库文件调用用的是相对路径！！</li>
-</ol>
-<p>不一定要求是二级目录。三级也是可以的(我有成功过), 二级目录有时候反倒没成功。至于还有构造二级目录，我是没成功过，嘿嘿，应该是错误的。：）</p>
-<p>随便也告诉大家，aspx %5c 也有文章的，运用也很巧妙，想知道就 google吧。^_^</p>
 
       
     </div>

@@ -122,13 +122,13 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">101</span>
+          <span class="site-state-item-count">102</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-count">15</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -177,6 +177,99 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://usmacd.com/cn/android_emulator_debug/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="henices">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="安全代码">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 安全代码">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/cn/android_emulator_debug/" class="post-title-link" itemprop="url">在虚拟机中调试android 手机的方法</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2017-03-24 00:00:00" itemprop="dateCreated datePublished" datetime="2017-03-24T00:00:00+08:00">2017-03-24</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>由于Google的源码是在ubuntu下编译的，Google官方提供了较为详细的编译说明，所以使用 了ubuntu 14.04 进行编译，编译完成后有一个问题，如何进行源码调试。（源代码在虚拟机中）</p>
+<h2 id="使用-virutalbox-Extension-Pack"><a href="#使用-virutalbox-Extension-Pack" class="headerlink" title="使用 virutalbox Extension Pack"></a>使用 virutalbox Extension Pack</h2><p>首先的想法是直接使用中virutalBox 的USB 把手机给连到guest，折腾了一下比较麻烦， 首先需要安装virutalbox 的 Extension Pack，下载地址</p>
+<p><a target="_blank" rel="noopener" href="http://download.virtualbox.org/virtualbox/5.1.18/Oracle_VM_VirtualBox_Extension_Pack-5.1.18-114002.vbox-extpack">http://download.virtualbox.org/virtualbox/5.1.18/Oracle_VM_VirtualBox_Extension_Pack-5.1.18-114002.vbox-extpack</a></p>
+<p>管理-&gt;全局设定-&gt;扩展，选择下载的扩展包，安装。接下来这步很关键，上次就是这里没有搞定。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo usermod -a -G vboxusers &lt;username&gt;</span><br></pre></td></tr></table></figure>
+
+<p>执行命令后需要注销，重新登录。</p>
+<p>VirtualBox 虚拟机设置 -&gt; usb 添加需要接入 guest 的 usb 设备。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt; lsudo lsusb  </span><br><span class="line">Bus 001 Device 002: ID 18d1:4ee7 Google Inc.</span><br><span class="line">Bus 001 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub</span><br><span class="line">Bus 002 Device 002: ID 80ee:0021 VirtualBox USB Tablet</span><br><span class="line">Bus 002 Device 001: ID 1d6b:0001 Linux Foundation 1.1 root hub</span><br></pre></td></tr></table></figure>
+
+<h2 id="使用端口映射"><a href="#使用端口映射" class="headerlink" title="使用端口映射"></a>使用端口映射</h2><p>后面想到adb 其实是通过tcp 和Android设备通讯， 所以只要做端口映射打个通道，就可以解决在virutalBox的虚拟机里调试手机的问题。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tcp        0      0 127.0.0.1:5037          0.0.0.0:*               LISTEN      26706/adb </span><br></pre></td></tr></table></figure>
+
+<p>在guest里执行下面两条命令</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">autossh -nNL1234:localhost:1234  10.0.2.2 </span><br><span class="line">autossh -nNL5037:localhost:5037  10.0.2.2 </span><br></pre></td></tr></table></figure>
+
+<p>其中 10.0.2.2 是host的ip，5037 是adb 默认监听的端口，1234 是gdbserver 监听的端 口，利用ssh在host和guest 打个通道。</p>
+<p>在host执行adb forward 命令</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb forward tcp:1234 tcp:1234 </span><br></pre></td></tr></table></figure>
+
+<p>这条命令在host和手机上建立了一条通道。</p>
+<p>这样就搞定了adb的连接问题。执行这三行命令后在ubuntu下， adb devices 可以看到下面的输出, 问题得到解决。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt; adb devices  </span><br><span class="line">List of devices attached  01b00af93dc59e163        device </span><br><span class="line"></span><br><span class="line">gdbclient system_server :1234 4475</span><br></pre></td></tr></table></figure>
+
+<p>输出正常，可以开始调试了。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1044,144 +1137,6 @@
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">lock</span><br><span class="line">noauth</span><br><span class="line">refuse-pap</span><br><span class="line">refuse-eap</span><br><span class="line">refuse-chap</span><br><span class="line">refuse-mschap</span><br><span class="line">usepeerdns</span><br><span class="line">noipdefault</span><br><span class="line">nodefaultroute</span><br><span class="line">novj</span><br><span class="line">require-mppe</span><br><span class="line">nobsdcomp</span><br><span class="line">nodeflate</span><br><span class="line">lcp-echo-failure 5</span><br><span class="line">lcp-echo-interval 30</span><br><span class="line">mppe-stateful</span><br><span class="line"></span><br><span class="line">/etc/ppp/peers/vpn</span><br><span class="line"></span><br><span class="line">pty &quot;pptp *.99.*27.1*0 --nolaunchpppd&quot;</span><br><span class="line">name xxx</span><br><span class="line">remotename PPTP</span><br><span class="line">file /etc/ppp/options.pptp</span><br><span class="line">ipparam vpn</span><br><span class="line"></span><br><span class="line">/etc/ppp/chap-secrets</span><br><span class="line"></span><br><span class="line">user PPTP password *.99.*27.1*0</span><br></pre></td></tr></table></figure>
 
 <h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><p><a target="_blank" rel="noopener" href="http://shyju.wordpress.com/2013/08/13/linux-as-a-pptp-vpn-client-configuration-centosfedora/">http://shyju.wordpress.com/2013/08/13/linux-as-a-pptp-vpn-client-configuration-centosfedora/</a><br><a target="_blank" rel="noopener" href="http://www.cyberciti.biz/tips/howto-configure-ubuntu-fedora-linux-pptp-client.html">http://www.cyberciti.biz/tips/howto-configure-ubuntu-fedora-linux-pptp-client.html</a><br><a target="_blank" rel="noopener" href="http://pptpclient.sourceforge.net/">http://pptpclient.sourceforge.net/</a><br><a target="_blank" rel="noopener" href="https://ppp.samba.org/index.html">https://ppp.samba.org/index.html</a></p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://usmacd.com/cn/vim_python/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="henices">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="安全代码">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 安全代码">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/cn/vim_python/" class="post-title-link" itemprop="url">vim中的python</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2013-09-06 00:00:00" itemprop="dateCreated datePublished" datetime="2013-09-06T00:00:00+08:00">2013-09-06</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="1-判断vim支持python"><a href="#1-判断vim支持python" class="headerlink" title="1. 判断vim支持python"></a>1. 判断vim支持python</h2><p>要判断你的vim是否支持python，可以执行下面命令：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ vim --version | grep python</span><br></pre></td></tr></table></figure>
-
-
-<p>如果显示的结果中有 +python 的话，你的vim已经支持python，<br>如果没有的话，你需要重新编译vim，在windows中可以使用下面的命令行，</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmake -f Make_mvc.mak FEATURES=huge PYTHON=D:\Python27 PYTHON_VER=27 GUI=yes IME=yes</span><br></pre></td></tr></table></figure>
-
-<h2 id="2-为什么需要编译支持python的vim"><a href="#2-为什么需要编译支持python的vim" class="headerlink" title="2. 为什么需要编译支持python的vim"></a>2. 为什么需要编译支持python的vim</h2><p>主要的理由有两个，</p>
-<ol>
-<li>可以使用python写的vim插件。</li>
-<li>vim 7.4 以后对python的支持进行了增强。</li>
-</ol>
-<p>有很多不错的vim 插件，这里给大家推荐一个python-mode, 非常不错。<a target="_blank" rel="noopener" href="https://github.com/klen/python-mode">https://github.com/klen/python-mode</a></p>
-<p>vim 7.4 以后对python的支持进行了增强，这个是广大vim注册用户（捐钱的用户）呼声最<br>高的需求，原话为，</p>
-<blockquote>
-<p>add integration with Python instead of inventing more Vim script</p>
-</blockquote>
-<p>确实现在已经有太多的vim脚本了。vim的主页上的完整需求列表; <a target="_blank" rel="noopener" href="http://www.vim.org/sponsor/vote_results.php">http://www.vim.org/sponsor/vote_results.php</a></p>
-<blockquote>
-<p>add IDE features (debugger integration, shell window)</p>
-</blockquote>
-<p>这个是排行老二的需求，不知道什么时侯能实现，期待中…</p>
-<h2 id="3-一些应用举例"><a href="#3-一些应用举例" class="headerlink" title="3. 一些应用举例"></a>3. 一些应用举例</h2><h3 id="3-1-python-commands"><a href="#3-1-python-commands" class="headerlink" title="3.1 python commands"></a>3.1 python commands</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">:[range]py[thon] &#123;stmt&#125;</span><br></pre></td></tr></table></figure>
-
-<p>这个命令比较简单，详细解释如下:</p>
-<p>range 是标准的vim的range 熟悉vim替换命令的同学应该都不会陌生。range的作用的是指<br>定python命令影响哪些行，写法为 [行号，行号]，比如 1,2  影响第一行和第二行，1,$<br>影响整个文件。[] 的意思是这个range是可选的默认将影响整个文件。</p>
-<p>py[thon]的意思为，python 是命令的全写，可以简写为py。</p>
-<p>{stmt} python 语句</p>
-<p>可以写上下面命令，输出 Hello</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">:python print &quot;Hello python&quot;</span><br></pre></td></tr></table></figure>
-
-<p>数学不好的同学可以像我一样使用</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">:py print 1+1</span><br></pre></td></tr></table></figure>
-
-<p>将显示结果2  :)</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">:[range]py[thon] &lt;&lt; &#123;endmarker&#125;</span><br><span class="line">&#123;script&#125;</span><br><span class="line">&#123;endmarker&#125;</span><br></pre></td></tr></table></figure>
-
-<p>上面是这个命令是第二种用法，可以直接写python，相当爽，写法很象cat 命令</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cat</span> &gt; /tmp/xx &lt;&lt; <span class="string">EOF</span></span><br><span class="line"><span class="string">....</span></span><br><span class="line"><span class="string">EOF</span></span><br></pre></td></tr></table></figure>
-
-<p>想用vim查询天气的同学可以参考一下，github上的这个脚本 <a target="_blank" rel="noopener" href="https://raw.github.com/liqunli/vim-plugin-dev/master/dairy.vim">https://raw.github.com/liqunli/vim-plugin-dev/master/dairy.vim</a></p>
-<h3 id="3-2-pydo"><a href="#3-2-pydo" class="headerlink" title="3.2 pydo"></a>3.2 pydo</h3><p>这个命令的格式为， :[range]pydo {body}</p>
-<p>vim 中有一个定义好的函数，这个命令将利用这个函数做一些事情</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">_vim_pydo</span>(<span class="params">line, linenr</span>):</span><br><span class="line">    &#123;body&#125;</span><br></pre></td></tr></table></figure>
-
-<p>pydo 这个命令同样是以行为单位的，range的用法和上面说的一样。 line 是原始的行，<br>linenr 是 line number (行号）。大家可以猜一下下面命令的意思，</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">:pydo if line: return &quot;%4d: %s&quot; % (linenr, line)</span><br></pre></td></tr></table></figure>
-
-
-
-
-
-
-
-<p>显示结果大致是这样， 直接用这个文件测试了一下，</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">55: 将显示结果2  :)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">58: :[range]py[thon] &lt;&lt; &#123;endmarker&#125;</span><br><span class="line">59: &#123;script&#125;</span><br><span class="line">60: &#123;endmarker&#125;</span><br></pre></td></tr></table></figure>
-
-<p>没有指定range，默认为整个文件，”%4d: %s” % (linenr, line)  这句的意思是，<br>在每行前加行号，不足4位的数字的用空格补齐</p>
-<p>在早些时侯，vim命令要实现这个的效果，需要写一行诡异的命令，</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">:%s/^/\=printf(&#x27;%4d: &#x27;, line(&#x27;.&#x27;))</span><br></pre></td></tr></table></figure>
-
-<p>挑战太大，vim 还专门写了一篇wiki <a target="_blank" rel="noopener" href="http://vim.wikia.com/wiki/Insert_line_numbers">http://vim.wikia.com/wiki/Insert_line_numbers</a></p>
-<h3 id="3-3-pyfile"><a href="#3-3-pyfile" class="headerlink" title="3.3 pyfile"></a>3.3 pyfile</h3><p>这条命令的格式为，:[range]pyf[ile] {file}</p>
-<p>可以直接使用python 文件，不需要一句一句的输入python 语句了。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">:python from vim import *</span><br><span class="line">:python from string import upper</span><br><span class="line">:python current.line = upper(current.line)</span><br><span class="line">:python print &quot;Hello&quot;</span><br><span class="line">:python str = current.buffer[42]</span><br></pre></td></tr></table></figure>
-
-<h3 id="3-4-python3"><a href="#3-4-python3" class="headerlink" title="3.4  python3"></a>3.4  python3</h3><p>命令的格式和python是一样的，不过需要开启 +python3</p>
-<h3 id="3-5-vim的python-接口"><a href="#3-5-vim的python-接口" class="headerlink" title="3.5  vim的python 接口"></a>3.5  vim的python 接口</h3><p>这个不属于这个小文章的想说的了，写了这成vim的manual了，可以直接参看:<br><a target="_blank" rel="noopener" href="http://vimhelp.appspot.com/if_pyth.txt.html#python-vim">http://vimhelp.appspot.com/if_pyth.txt.html#python-vim</a></p>
-<h2 id="4-最后"><a href="#4-最后" class="headerlink" title="4. 最后"></a>4. 最后</h2><p>为了避免vim和emacs的圣战，hx 和 lzx等emacs党，可以直接忽视此文 ：）</p>
-<h2 id="5-参考资料"><a href="#5-参考资料" class="headerlink" title="5. 参考资料"></a>5. 参考资料</h2><p><a target="_blank" rel="noopener" href="http://vimhelp.appspot.com/if_pyth.txt.html">http://vimhelp.appspot.com/if_pyth.txt.html</a></p>
 
       
     </div>

