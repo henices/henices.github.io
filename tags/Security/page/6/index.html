@@ -1,165 +1,358 @@
-<!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta name="robots" content="noindex"><meta><title>Tag: Security - 安全代码</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="安全代码"><meta name="msapplication-TileImage" content="/img/favicon.png"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="安全代码"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta property="og:type" content="blog"><meta property="og:title" content="安全代码"><meta property="og:url" content="http://usmacd.com/"><meta property="og:site_name" content="安全代码"><meta property="og:locale" content="en_US"><meta property="og:image" content="http://usmacd.com/img/og_image.png"><meta property="article:author" content="henices"><meta property="twitter:card" content="summary"><meta property="twitter:image:src" content="http://usmacd.com/img/og_image.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://usmacd.com"},"headline":"安全代码","image":["http://usmacd.com/img/og_image.png"],"author":{"@type":"Person","name":"henices"},"publisher":{"@type":"Organization","name":"安全代码","logo":{"@type":"ImageObject","url":{"text":"安全代码"}}},"description":""}</script><link rel="icon" href="/img/favicon.png"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.7.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css"><!--!--><!--!--><style>.pace{-webkit-pointer-events:none;pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none}.pace-inactive{display:none}.pace .pace-progress{background:#3273dc;position:fixed;z-index:2000;top:0;right:100%;width:100%;height:2px}</style><script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><!--!--><!--!--><script data-ad-client="ca-pub-8793345906937947" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js" async></script><!-- hexo injector head_end start --><script>
-  (function () {
-      function switchTab() {
-          if (!location.hash) {
-            return;
-          }
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.0.0">
 
-          const id = '#' + CSS.escape(location.hash.substring(1));
-          const $tabMenu = document.querySelector(`.tabs a[href="${id}"]`);
-          if (!$tabMenu) {
-            return;
-          }
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
 
-          const $tabMenuContainer = $tabMenu.parentElement.parentElement;
-          Array.from($tabMenuContainer.children).forEach($menu => $menu.classList.remove('is-active'));
-          Array.from($tabMenuContainer.querySelectorAll('a'))
-              .map($menu => document.getElementById($menu.getAttribute("href").substring(1)))
-              .forEach($content => $content.classList.add('is-hidden'));
+<link rel="stylesheet" href="/css/main.css">
 
-          if ($tabMenu) {
-              $tabMenu.parentElement.classList.add('is-active');
-          }
-          const $activeTab = document.querySelector(id);
-          if ($activeTab) {
-              $activeTab.classList.remove('is-hidden');
-          }
-      }
-      switchTab();
-      window.addEventListener('hashchange', switchTab, false);
-  })();
-  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="安全代码" type="application/atom+xml">
-</head><body class="is-3-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/">安全代码</a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/tags">Tags</a><a class="navbar-item" href="/about">About</a></div><div class="navbar-end"><a class="navbar-item search" title="Search" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-6-widescreen"><div class="card"><div class="card-content"><nav class="breadcrumb" aria-label="breadcrumbs"><ul><li><a href="/tags">Tags</a></li><li class="is-active"><a href="#" aria-current="page">Security</a></li></ul></nav></div></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2013-06-18T16:00:00.000Z" title="2013/6/19 00:00:00">2013-06-19</time></span><span class="level-item">Updated&nbsp;<time dateTime="2014-09-07T16:00:00.000Z" title="2014/9/8 00:00:00">2014-09-08</time></span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/cn/linux_ida_pro/">Linux 下运行 IDA Pro</a></p><div class="content"><p>IDA Pro 6.2 + 的Linux 版本提供了Qt 界面，可以在各大平台正常运行。买不起也有办法 ，使用 wine 可以很好地运行IDA Pro，显示效果基本OK，爱折腾的同学可以自行调整字体。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ wine idag.exe</span><br></pre></td></tr></table></figure>
 
-<p>IDA Pro 6.1 成功运行.但是idapython 有些问题需要处理，引起idapython不能正常运行的原因主要有下面两个：</p>
-<h2 id="文件缺失"><a href="#文件缺失" class="headerlink" title="文件缺失"></a>文件缺失</h2><p>大概会报下面错误 </p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">err:module:import_dll Library python27.dll (which is needed by L&quot;C:\\ida61\\plugins\\python.plw&quot;) not found</span><br></pre></td></tr></table></figure>
 
-<p>要解决这个错误，需要从windows下拷贝两个文件过来，这两个文件是 msvcr90.dll，python27.dll</p>
-<h2 id="环境变量"><a href="#环境变量" class="headerlink" title="环境变量"></a>环境变量</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ wine idag.exe</span><br></pre></td></tr></table></figure>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha256-CTSx/A06dm1B063156EVh15m6Y67pAjZZaQc89LLSrU=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
-<p>会报下面类似错误， ImportError: No module named site，发生这个错误的原因是找不到python安装路径，可以使用unix下的python使用shell命令设置环境变量</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">export</span> PYTHONPATH=/usr/lib/python2.7/</span><br><span class="line">$ wine idag.exe</span><br></pre></td></tr></table></figure>
+<script class="next-config" data-name="main" type="application/json">{"hostname":"usmacd.com","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.18.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
 
-<h2 id="Python-问题"><a href="#Python-问题" class="headerlink" title="Python 问题"></a>Python 问题</h2><p>在使用过程中发现idapython还是有一些问题，使用wine安装Windows的python后问题得到解决，主要是C语言写的python模块的问题。</p>
-<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><p><a target="_blank" rel="noopener" href="http://www.openrce.org/forums/posts/463">http://www.openrce.org/forums/posts/463</a></p>
-</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2009-09-17T16:00:00.000Z" title="2009/9/18 00:00:00">2009-09-18</time></span><span class="level-item">Updated&nbsp;<time dateTime="2009-09-17T16:00:00.000Z" title="2009/9/18 00:00:00">2009-09-18</time></span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/cn/sqlserver2005_xpcmdshell/">SQL Server 2005 xp_cmdshell</a></p><div class="content"><p>SQL Server 2005 中引入的 xp_cmdshell 选项是服务器配置选项，<br>使系统管理员能够控制是否可以在系统上执行 xp_cmdshell 扩展存储过程。</p>
-<h2 id="1-如何在sql-server-2005-中开启xp-cmdshell"><a href="#1-如何在sql-server-2005-中开启xp-cmdshell" class="headerlink" title="1.  如何在sql server 2005 中开启xp_cmdshell"></a>1.  如何在sql server 2005 中开启xp_cmdshell</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- To allow advanced options to be changed.</span></span><br><span class="line"><span class="keyword">EXEC</span> sp_configure <span class="string">&#x27;show advanced options&#x27;</span>, <span class="number">1</span></span><br><span class="line">GO</span><br><span class="line"><span class="comment">-- To update the currently configured value for advanced options.</span></span><br><span class="line">RECONFIGURE</span><br><span class="line">GO</span><br><span class="line"><span class="comment">-- To enable the feature.</span></span><br><span class="line"><span class="keyword">EXEC</span> sp_configure <span class="string">&#x27;xp_cmdshell&#x27;</span>, <span class="number">1</span></span><br><span class="line">GO</span><br><span class="line"><span class="comment">-- To update the currently configured value for this feature.</span></span><br><span class="line">RECONFIGURE</span><br><span class="line">GO</span><br></pre></td></tr></table></figure>
+    <meta property="og:type" content="website">
+<meta property="og:title" content="安全代码">
+<meta property="og:url" content="http://usmacd.com/tags/Security/page/6/index.html">
+<meta property="og:site_name" content="安全代码">
+<meta property="og:locale" content="en_US">
+<meta property="article:author" content="henices">
+<meta name="twitter:card" content="summary">
 
-<h2 id="2-如何查询sql-server-2005-拓展存储过程xp-cmdshell-状态"><a href="#2-如何查询sql-server-2005-拓展存储过程xp-cmdshell-状态" class="headerlink" title="2. 如何查询sql server 2005 拓展存储过程xp_cmdshell 状态"></a>2. 如何查询sql server 2005 拓展存储过程xp_cmdshell 状态</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> sys.configurations <span class="keyword">where</span> name<span class="operator">=</span><span class="string">&#x27;xp_cmdshell&#x27;</span></span><br><span class="line">GO</span><br></pre></td></tr></table></figure>
 
-<p>查看value的值， 1 为开启， 0 为关闭</p>
-<h2 id="3-如何查看public角色对哪些拓展存储过程有执行权限"><a href="#3-如何查看public角色对哪些拓展存储过程有执行权限" class="headerlink" title="3. 如何查看public角色对哪些拓展存储过程有执行权限"></a>3. 如何查看public角色对哪些拓展存储过程有执行权限</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> sysusers.name, sysobjects.name, sysprotects.action <span class="keyword">from</span> sysobjects, sysusers, sysprotects</span><br><span class="line"><span class="keyword">where</span> sysobjects.id<span class="operator">=</span>sysprotects.id <span class="keyword">and</span> sysprotects.uid <span class="operator">=</span> sysusers.uid <span class="keyword">and</span> </span><br><span class="line">sysprotects.protecttype<span class="operator">=</span><span class="number">205</span> <span class="keyword">and</span> sysprotects.action<span class="operator">=</span> <span class="number">224</span> <span class="keyword">and</span> (sysusers.name<span class="operator">=</span><span class="string">&#x27;public&#x27;</span> <span class="keyword">or</span></span><br><span class="line">sysusers.name<span class="operator">=</span><span class="string">&#x27;guest&#x27;</span> ) <span class="keyword">and</span> sysobjects.type<span class="operator">=</span><span class="string">&#x27;X&#x27;</span></span><br><span class="line"></span><br><span class="line">GO</span><br></pre></td></tr></table></figure>
+<link rel="canonical" href="http://usmacd.com/tags/Security/page/6/">
 
-<h2 id="4-如何去掉public角色对拓展存储过程的执行权限"><a href="#4-如何去掉public角色对拓展存储过程的执行权限" class="headerlink" title="4. 如何去掉public角色对拓展存储过程的执行权限"></a>4. 如何去掉public角色对拓展存储过程的执行权限</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">deny <span class="keyword">execute</span> <span class="keyword">on</span> xp_dirtree <span class="keyword">to</span> public</span><br><span class="line">GO</span><br></pre></td></tr></table></figure>
-</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2006-07-12T16:00:00.000Z" title="2006/7/13 00:00:00">2006-07-13</time></span><span class="level-item">Updated&nbsp;<time dateTime="2006-07-12T16:00:00.000Z" title="2006/7/13 00:00:00">2006-07-13</time></span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/cn/5cAcessPath/">N 谈 %5C 暴库</a></p><div class="content"><p>关于%5c的暴库利用想已经不是什么新技术了，原因我只找到含糊的说法：的UNICODE是%5c当提交时,IIS无法正常解析,导致暴库。但我对 <a target="_blank" rel="noopener" href="http://www.hoky.org/">http://www.hoky.org</a> 测试成功后（现在已经补上）问过hoky.pro，得知%5c与IIS的设置是有关系的。而在默认设置下是可以暴库的。还有很多人说不成功，我要说的三点：</p>
-<ol>
-<li>一般的错误返回页面是本地IE提供的,所以我们先得关了本地的错误页面,具体在菜单项的‘工具-&gt;internet选项-&gt;高级-&gt;显示友好信息’。</li>
-<li>对方数据库要是Access型。</li>
-<li>%5c的暴库需要的是二级目录，一级目录无法成功。如：</li>
-</ol>
-<p><a href="http://www.sometips.com%5c1.asp?id=1">http://www.sometips.com%5c1.asp?id=1</a> 不成功<br><a target="_blank" rel="noopener" href="http://www.sometips.com/other%5c1.asp?id=1">http://www.sometips.com/other%5c1.asp?id=1</a> 成功</p>
-<p>好了，上面说的大家都知道，当是废话。在暴库这么好用的东西下，如果一个网站只有一级目录的话，难道就没有办法了吗？说到重点，其实一级目录我们也同样可以成功的，我们可以通过构造一个多级目录来达到暴库的目的。</p>
-<p><a target="_blank" rel="noopener" href="http://www.target.com/noexists/..%5clist.asp?id=1">http://www.target.com/noexists/..%5clist.asp?id=1</a></p>
-<p>这样大家就会有新的惊喜了，呵呵。</p>
-<p>补救方法也很简单，在conn.asp里 加入数据库文件的位置后面加上这句：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">On Error Resume Next</span><br></pre></td></tr></table></figure>
 
-<p>就可以了。</p>
-<hr>
-<p>今天在黑基又看到了关于％5c暴库的文章，这招真的很管用，大概10个网站里会有一个会暴库吧。</p>
-<p>关于这个漏洞。绿盟有相关的资料：<br><a target="_blank" rel="noopener" href="http://www.nsfocus.net/index.php?act=magazine&do=view&mid=952">http://www.nsfocus.net/index.php?act=magazine&amp;do=view&amp;mid=952</a></p>
-<p>呵呵。虽然这个我们这个漏洞呵暴库关系不是很大， 但是明眼人还是看的出相关的地方，IIS 二次解码。大家知道在 url中 <code>\</code> 和 <code>/</code> 是一样的，也就是说 <a target="_blank" rel="noopener" href="http://www.example.com/abc/123.asp?id=5">http://www.example.com/abc/123.asp?id=5</a> 和 <a target="_blank" rel="noopener" href="http://www.example.com/abc/123.asp?id=5">http://www.example.com/abc\123.asp?id=5</a> 是一样的。</p>
-<p>而 <a target="_blank" rel="noopener" href="http://www.example.com/abc%5c123.asp?id=5">http://www.example.com/abc%5c123.asp?id=5</a> 经过一次解码后变成 <a target="_blank" rel="noopener" href="http://www.example.com/abc/123.asp?id=5">http://www.example.com/abc\123.asp?id=5</a> 这里是不会出错的。</p>
-<p>而经过 IIS 二次解码后就变成 <a target="_blank" rel="noopener" href="http://www.example.com/abc%5c123.asp?id=5">http://www.example.com/abc%5c123.asp?id=5</a>, 如果数据库连接文件用的相对路径的话。HOO, 找不到数据库文件，当然就出错了。还很老实呢，连物理路径都出来了。大家看。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Microsoft JET Database Engine 错误 &#x27;80004005&#x27;</span><br><span class="line"></span><br><span class="line">&#x27;D:\wwwroot\hell\wwwroot\data\abc.asp&#x27;不是一个有效的路径。 确定路径名称拼写是否正确，以及是否连接到文件存放的服务器。</span><br><span class="line"></span><br><span class="line">/blog/conn.asp，行29</span><br></pre></td></tr></table></figure>
 
-<p>这个是我暴 Oblog 暴出来的，这个月的黑防大家都有看吧。(早知道我也去投稿了，我发现的比他早多了，郁闷)<br>很多人都在分析成功的条件，就象itbbs里的人讨论的一样。(itbbs最近我怎么上不去啊，知道告诉我)</p>
-<p>sykkk 认为：</p>
-<ol>
-<li>是数据库连接中没有加入容错代码 所以导致错误不能跳过而活生生的把数据文件连接暴出来</li>
-<li>对方的IIS没有关闭错误提示 只要关了错误提示就算你怎么暴也没有用</li>
-<li>不一定要2级目录 可以自己够造个noexists&#x2F;..%5C的2级目录</li>
-<li>还有就是 要成功一定要调用到数据库 不一定是5c1.asp?id&#x3D;1 这种类别的</li>
-</ol>
-<p>其实还有一个必要条件他忘了，数据库要相对路径，绝对路径是暴不出来的。还有我补充一点应该是 IIS 4.0 或者 IIS 5.0 ，IIS 6 应该是不行了。</p>
-<p>关于二级目录，我同意sykkk的看法，有的人说一定是二级目录，呵呵，我可以告诉大家那是错误的。应该是最靠近的asp文件的那个 “&#x2F;“ 改成 “%5c”, 只有有调用数据库都有可能暴库。哈哈，还有当然对方要没有屏蔽错误信息，要不然你是肯定看不到的。</p>
-<p>总结：％5c暴库成功条件</p>
-<ol>
-<li>对方服务器用的是 IIS 4.0 或 IIS 5.0， 并且没有屏蔽错误信息。</li>
-<li>是数据库连接中没有加入容错代码 所以导致错误不能跳过而活生生的把数据文件连接暴出来 (On Error Resume Next)</li>
-<li>应该是Microsoft JET Database Engine 方式</li>
-<li>数据库文件调用用的是相对路径！！</li>
-</ol>
-<p>不一定要求是二级目录。三级也是可以的(我有成功过), 二级目录有时候反倒没成功。至于还有构造二级目录，我是没成功过，嘿嘿，应该是错误的。：）</p>
-<p>随便也告诉大家，aspx %5c 也有文章的，运用也很巧妙，想知道就 google吧。^_^</p>
-</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2004-10-12T16:00:00.000Z" title="2004/10/13 00:00:00">2004-10-13</time></span><span class="level-item">Updated&nbsp;<time dateTime="2004-10-12T16:00:00.000Z" title="2004/10/13 00:00:00">2004-10-13</time></span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/cn/search_sql_injection/">站内搜索写法的一个 SQL inject 漏洞</a></p><div class="content"><p>最近sql inject 可是说是红遍了整个中国，不知道多少网站在sql inject 面前轰然倒下，其实 Sql inject 在国外技术已经很成熟了，而国内则是在近一两年内慢慢走向成熟。在一个个惨痛的实例面前，脚本工作者不得不重视起来，最好的例子就是动网了。然而今天脚本是不是就很安全的呢。请看我对几个安全站点的测试结果。结果是令人吃惊的， 影子鹰， 华夏， 黑客动画吧 都存在着这个站内搜索的漏洞。</p>
-<p>请看一段常见的站内搜索写法。</p>
-<p>例一：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">name</span>=<span class="string">&quot;form4&quot;</span> <span class="attr">method</span>=<span class="string">&quot;post&quot;</span> <span class="attr">action</span>=<span class="string">&quot;search.asp&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">td</span> <span class="attr">height</span>=<span class="string">&quot;25&quot;</span>&gt;</span> <span class="tag">&lt;<span class="name">div</span> <span class="attr">align</span>=<span class="string">center</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">name</span>=<span class="string">&quot;txtfind&quot;</span> <span class="attr">size</span>=<span class="string">&quot;18&quot;</span> <span class="attr">onMouseOver</span>=<span class="string">&quot;javascript:this.select();&quot;</span> <span class="attr">value</span>=<span class="string">&quot;请输入待查信息&quot;</span> <span class="attr">style</span>=<span class="string">&quot;border:#333333 1px solid;&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span><span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">td</span>&gt;</span> <span class="tag">&lt;<span class="name">div</span> <span class="attr">align</span>=<span class="string">center</span>&gt;</span><span class="tag">&lt;<span class="name">img</span> <span class="attr">height</span>=<span class="string">5</span> <span class="attr">src</span>=<span class="string">&quot;../images/left_2.gif&quot;</span> <span class="attr">width</span>=<span class="string">186</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span><span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">td</span> <span class="attr">height</span>=<span class="string">&quot;30&quot;</span>&gt;</span> <span class="tag">&lt;<span class="name">div</span> <span class="attr">align</span>=<span class="string">center</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">name</span>=<span class="string">&quot;s1&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">option</span> <span class="attr">selected</span> <span class="attr">value</span>=<span class="string">&#x27;0&#x27;</span>&gt;</span>所有类别<span class="tag">&lt;/<span class="name">option</span>&gt;</span><span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span>=<span class="string">&#x27;1&#x27;</span>&gt;</span>网站新闻<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span>=<span class="string">&#x27;2&#x27;</span>&gt;</span>进阶教程<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span>=<span class="string">&#x27;3&#x27;</span>&gt;</span>安全漏洞<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span>=<span class="string">&#x27;5&#x27;</span>&gt;</span>系统防范<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span>=<span class="string">&#x27;6&#x27;</span>&gt;</span>原创作品<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":false,"lang":"en","comments":"","permalink":"","path":"tags/Security/page/6/index.html","title":""}</script>
 
-<p>上面的这段来自影子鹰安全网, 也许看了人说没什么的啊，我也是这么写的，这和sql inject 有什么关系啊。<br>其实问题就出在这, 搜索类别的值是从客户端获得的，而且没有过滤。那么聪明的你是否想到了什么？</p>
-<p>我们可以构造一个url  <code>http://www.cnhacker.cn/search.asp?s1=1</code>  得到的结果是：</p>
-<p>页面返回正常，得到一大堆的搜索结果。</p>
-<p>提交 <code>http://www.cnhacker.cn/search.asp?s1=1 and 1＝1</code> 返回正常<br>提交 <code>http://www.cnhacker.cn/search.asp?s1=1 and 1＝2</code> 没有搜索到任何相关文章 ，请重新搜索</p>
-<p>哈哈，可以注入！像这些安全站点密码一定n变态，还是用nb跑跑吧。后面也证明了我的想法是正确的密码n变态，还好没手工猜。拿到了管理员的密码，就是找不到后台郁闷。</p>
-<p>例二：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&#x27;Soft_Class.asp?ClassID=11&#x27;</span>&gt;</span>安全扫描<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">br</span>&gt;</span><span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&#x27;Soft_Class.asp?ClassID=12&#x27;</span>&gt;</span>嗅探监听<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">br</span>&gt;</span><span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&#x27;Soft_Class.asp?ClassID=13&#x27;</span>&gt;</span>分析检测<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">br</span>&gt;</span><span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&#x27;Soft_Class.asp?ClassID=14&#x27;</span>&gt;</span>字典文档<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">br</span>&gt;</span><span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&#x27;Soft_Class.asp?ClassID=15&#x27;</span>&gt;</span>加密破解<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">br</span>&gt;</span><span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&#x27;Soft_Class.asp?ClassID=16&#x27;</span>&gt;</span>木马类<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">br</span>&gt;</span><span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&#x27;Soft_Class.asp?ClassID=17&#x27;</span>&gt;</span>QQ类<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">br</span>&gt;</span><span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&#x27;Soft_Class.asp?ClassID=18&#x27;</span>&gt;</span>综合工具<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Tag: Security | 安全代码</title>
+  
 
-<p>上面代码来自黑客动画吧，令人吃惊的直接就是<code>classID=</code> 根本就没有过滤。分析完上面的代码，和其他的一些代码综合起来, 我们又可以构造这样的url:</p>
-<p><a target="_blank" rel="noopener" href="http://www.hack58.com/Soft_Search.asp?Field=SoftName&ClassID=8">http://www.hack58.com/Soft_Search.asp?Field=SoftName&amp;ClassID=8</a></p>
-<p>结果返回也是一定堆的搜索结果。。。</p>
-<p>提交 <code>http://www.hack58.com/Soft_Search.asp?Field=SoftName&amp;ClassID=8 and 1＝1</code> 返回正常<br>提交 <code>http://www.hack58.com/Soft_Search.asp?Field=SoftName&amp;ClassID=8 and 1＝2</code> 产生错误的可能原因：</p>
-<p>HOO，漏洞又出来了！</p>
-<p>例三：</p>
-<p>来个大家都知道的华夏黑客联盟，前段时间还被黑了一次。还是看代码吧，听说华夏用的是动力的商业版。可以华夏今天又上不去，反正原理是相同的。我把我构造好的url 给大家看  </p>
-<p><code>http://www.77169.org/soft1/search.asp?ss_name=winrar&amp;sor=01</code></p>
-<p>接下来要怎么发挥就看你们的了。</p>
-<p>总结：这个漏洞应该有一定的普遍性，黑窝里安全站点都有这个问题，更别说是其他站点了。或许有些大虾早就发现了，<br>小弟就在这献丑一下了，第一次写文章，有所差错在所难免，欢迎和我联系。</p>
-</div></article></div><nav class="pagination" role="navigation" aria-label="pagination"><div class="pagination-previous"><a href="/tags/Security/page/5/">Previous</a></div><div class="pagination-next is-invisible is-hidden-mobile"><a href="/tags/Security/page/7/">Next</a></div><ul class="pagination-list is-hidden-mobile"><li><a class="pagination-link" href="/tags/Security/">1</a></li><li><span class="pagination-ellipsis">&hellip;</span></li><li><a class="pagination-link" href="/tags/Security/page/5/">5</a></li><li><a class="pagination-link is-current" href="/tags/Security/page/6/">6</a></li></ul></nav></div><div class="column column-left is-4-tablet is-4-desktop is-3-widescreen  order-1"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar" src="/img/avatar.jpg" alt="Henices"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">Henices</p><p class="is-size-6 is-block">安全研究员</p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">Posts</p><a href="/archives"><p class="title">98</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Tags</p><a href="/tags"><p class="title">14</p></a></div></div></nav><div class="level is-mobile is-multiline"><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Twitter" href="https://twitter.com/henices"><i class="fab fa-twitter"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="RSS" href="/atom.xml"><i class="fas fa-rss"></i></a></div></div></div><div class="card widget" data-type="recent-posts"><div class="card-content"><h3 class="menu-label">Recents</h3><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-09-12T16:00:00.000Z">2023-09-13</time></p><p class="title"><a href="/cn/living_younger_healthier_logger/">端粒效应</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-09-06T03:49:12.921Z">2023-09-06</time></p><p class="title"><a href="/en/learn_in_public/">Learn In Public 摘要</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-09-06T03:00:51.915Z">2023-09-06</time></p><p class="title"><a href="/cn/xorddos_hide/">xorddos 样本进程隐藏的小伎俩</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-09-06T03:00:51.914Z">2023-09-06</time></p><p class="title"><a href="/cn/Windows_Rx034/">解决 Windows Rx034</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-09-06T03:00:51.896Z">2023-09-06</time></p><p class="title"><a href="/cn/webview_java/">Android WebView 漏洞</a></p></div></article></div></div><div class="card widget" data-type="links"><div class="card-content"><div class="menu"><h3 class="menu-label">Links</h3><ul class="menu-list"><li><a class="level is-mobile" href="https://scz.617.cn/" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">飞花堂</span></span><span class="level-right"><span class="level-item tag">scz.617.cn</span></span></a></li><li><a class="level is-mobile" href="https://blog.forecho.com/" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">forecho</span></span><span class="level-right"><span class="level-item tag">blog.forecho.com</span></span></a></li><li><a class="level is-mobile" href="https://demochen.com/" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">特立独行的异类</span></span><span class="level-right"><span class="level-item tag">demochen.com</span></span></a></li><li><a class="level is-mobile" href="https://www.mrhuangtalk.com/" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Mr.Huang Talk</span></span><span class="level-right"><span class="level-item tag">www.mrhuangtalk.com</span></span></a></li></ul></div></div></div><div class="column-right-shadow is-hidden-widescreen is-sticky"></div></div><div class="column column-right is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only order-3 is-sticky"><!--!--><div class="card widget" data-type="tags"><div class="card-content"><div class="menu"><h3 class="menu-label">Tags</h3><div class="field is-grouped is-grouped-multiline"><div class="control"><a class="tags has-addons" href="/tags/Android/"><span class="tag">Android</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Archives/"><span class="tag">Archives</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Crack/"><span class="tag">Crack</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Life/"><span class="tag">Life</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Malware/"><span class="tag">Malware</span></a></div><div class="control"><a class="tags has-addons" href="/tags/PKM/"><span class="tag">PKM</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Programming/"><span class="tag">Programming</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Security/"><span class="tag">Security</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Software/"><span class="tag">Software</span></a></div><div class="control"><a class="tags has-addons" href="/tags/ai/"><span class="tag">ai</span></a></div><div class="control"><a class="tags has-addons" href="/tags/investment/"><span class="tag">investment</span></a></div><div class="control"><a class="tags has-addons" href="/tags/linux/"><span class="tag">linux</span></a></div><div class="control"><a class="tags has-addons" href="/tags/vim/"><span class="tag">vim</span></a></div><div class="control"><a class="tags has-addons" href="/tags/windows/"><span class="tag">windows</span></a></div></div></div></div></div><div class="card widget" data-type="adsense"><div class="card-content"><div class="menu"><h3 class="menu-label">Advertisement</h3><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-8793345906937947" data-ad-slot="9350670660" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script></div></div></div></div></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/">安全代码</a><p class="is-size-7"><span>&copy; 2023 henices</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("en");</script><script>var IcarusThemeSettings = {
-            article: {
-                highlight: {
-                    clipboard: true,
-                    fold: 'unfolded'
-                }
-            }
-        };</script><script src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="Back to top" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
-      window.cookieconsent.initialise({
-        type: "info",
-        theme: "edgeless",
-        static: false,
-        position: "bottom-left",
-        content: {
-          message: "This website uses cookies to improve your experience.",
-          dismiss: "Got it!",
-          allow: "Allow cookies",
-          deny: "Decline",
-          link: "Learn more",
-          policy: "Cookie Policy",
-          href: "https://www.cookiesandyou.com/",
-        },
-        palette: {
-          popup: {
-            background: "#edeff5",
-            text: "#838391"
-          },
-          button: {
-            background: "#4b81e8"
-          },
-        },
-      });
-    });</script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
-            if (typeof $.fn.lightGallery === 'function') {
-                $('.article').lightGallery({ selector: '.gallery-item' });
-            }
-            if (typeof $.fn.justifiedGallery === 'function') {
-                if ($('.justified-gallery > p > .gallery-item').length) {
-                    $('.justified-gallery > p > .gallery-item').unwrap();
-                }
-                $('.justified-gallery').justifiedGallery();
-            }
-        });</script><!--!--><!--!--><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="Type something..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
-            loadInsight({"contentUrl":"/content.json"}, {"hint":"Type something...","untitled":"(Untitled)","posts":"Posts","pages":"Pages","categories":"Categories","tags":"Tags"});
-        });</script></body></html>
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="安全代码" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">安全代码</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a></li><li class="menu-item menu-item-sitemap"><a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>Sitemap</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-overview-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="henices"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">henices</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">98</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/henices" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;henices" rel="noopener me" target="_blank"><i class="fab fa-twitter fa-fw"></i>Twitter</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml" rel="noopener me"><i class="rss fa-fw"></i>RSS</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+    <div class="sidebar-inner sidebar-blogroll">
+      <div class="links-of-blogroll animated">
+        <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+          Links
+        </div>
+        <ul class="links-of-blogroll-list">
+            <li class="links-of-blogroll-item">
+              <a href="http://scz.617.cn:8/" title="http:&#x2F;&#x2F;scz.617.cn:8&#x2F;" rel="noopener" target="_blank">飞花堂</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://www.v2ex.com/" title="https:&#x2F;&#x2F;www.v2ex.com&#x2F;" rel="noopener" target="_blank">V2EX</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://blog.forecho.com/" title="https:&#x2F;&#x2F;blog.forecho.com&#x2F;" rel="noopener" target="_blank">forecho</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://chensenlin.cn/" title="https:&#x2F;&#x2F;chensenlin.cn&#x2F;" rel="noopener" target="_blank">你好我是森林</a>
+            </li>
+        </ul>
+      </div>
+    </div>
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner tag posts-collapse">
+
+
+  
+  
+  
+  <div class="post-block">
+    <div class="post-content">
+      <div class="collection-title">
+        <h1 class="collection-header">Security
+          <small>Tag</small>
+        </h1>
+      </div>
+
+      
+    <div class="collection-year">
+      <span class="collection-header">2013</span>
+    </div>
+
+  <article itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+      <div class="post-meta-container">
+        <time itemprop="dateCreated"
+              datetime="2013-06-19T00:00:00+08:00"
+              content="2013-06-19">
+          06-19
+        </time>
+      </div>
+
+      <div class="post-title">
+        <a class="post-title-link" href="/cn/linux_ida_pro/" itemprop="url">
+          <span itemprop="name">Linux 下运行 IDA Pro</span>
+        </a>
+      </div>
+
+      
+    </header>
+  </article>
+    <div class="collection-year">
+      <span class="collection-header">2009</span>
+    </div>
+
+  <article itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+      <div class="post-meta-container">
+        <time itemprop="dateCreated"
+              datetime="2009-09-18T00:00:00+08:00"
+              content="2009-09-18">
+          09-18
+        </time>
+      </div>
+
+      <div class="post-title">
+        <a class="post-title-link" href="/cn/sqlserver2005_xpcmdshell/" itemprop="url">
+          <span itemprop="name">SQL Server 2005 xp_cmdshell</span>
+        </a>
+      </div>
+
+      
+    </header>
+  </article>
+    <div class="collection-year">
+      <span class="collection-header">2006</span>
+    </div>
+
+  <article itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+      <div class="post-meta-container">
+        <time itemprop="dateCreated"
+              datetime="2006-07-13T00:00:00+08:00"
+              content="2006-07-13">
+          07-13
+        </time>
+      </div>
+
+      <div class="post-title">
+        <a class="post-title-link" href="/cn/5cAcessPath/" itemprop="url">
+          <span itemprop="name">N 谈 %5C 暴库</span>
+        </a>
+      </div>
+
+      
+    </header>
+  </article>
+    <div class="collection-year">
+      <span class="collection-header">2004</span>
+    </div>
+
+  <article itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+      <div class="post-meta-container">
+        <time itemprop="dateCreated"
+              datetime="2004-10-13T00:00:00+08:00"
+              content="2004-10-13">
+          10-13
+        </time>
+      </div>
+
+      <div class="post-title">
+        <a class="post-title-link" href="/cn/search_sql_injection/" itemprop="url">
+          <span itemprop="name">站内搜索写法的一个 SQL inject 漏洞</span>
+        </a>
+      </div>
+
+      
+    </header>
+  </article>
+
+    </div>
+  </div>
+  
+  
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" title="Previous page" aria-label="Previous page" href="/tags/Security/page/5/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/tags/Security/">1</a><span class="space">&hellip;</span><a class="page-number" href="/tags/Security/page/5/">5</a><span class="page-number current">6</span>
+  </nav>
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2023</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">henices</span>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8793345906937947"
+     crossorigin="anonymous"></script>
+<!-- 展示广告 -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-8793345906937947"
+     data-ad-slot="9350670660"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+</body>
+</html>

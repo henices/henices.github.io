@@ -1,207 +1,369 @@
-<!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta name="robots" content="noindex"><meta><title>Tag: Programming - 安全代码</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="安全代码"><meta name="msapplication-TileImage" content="/img/favicon.png"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="安全代码"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta property="og:type" content="blog"><meta property="og:title" content="安全代码"><meta property="og:url" content="http://usmacd.com/"><meta property="og:site_name" content="安全代码"><meta property="og:locale" content="en_US"><meta property="og:image" content="http://usmacd.com/img/og_image.png"><meta property="article:author" content="henices"><meta property="twitter:card" content="summary"><meta property="twitter:image:src" content="http://usmacd.com/img/og_image.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://usmacd.com"},"headline":"安全代码","image":["http://usmacd.com/img/og_image.png"],"author":{"@type":"Person","name":"henices"},"publisher":{"@type":"Organization","name":"安全代码","logo":{"@type":"ImageObject","url":{"text":"安全代码"}}},"description":""}</script><link rel="icon" href="/img/favicon.png"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.7.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css"><!--!--><!--!--><style>.pace{-webkit-pointer-events:none;pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none}.pace-inactive{display:none}.pace .pace-progress{background:#3273dc;position:fixed;z-index:2000;top:0;right:100%;width:100%;height:2px}</style><script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><!--!--><!--!--><script data-ad-client="ca-pub-8793345906937947" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js" async></script><!-- hexo injector head_end start --><script>
-  (function () {
-      function switchTab() {
-          if (!location.hash) {
-            return;
-          }
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.0.0">
 
-          const id = '#' + CSS.escape(location.hash.substring(1));
-          const $tabMenu = document.querySelector(`.tabs a[href="${id}"]`);
-          if (!$tabMenu) {
-            return;
-          }
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
 
-          const $tabMenuContainer = $tabMenu.parentElement.parentElement;
-          Array.from($tabMenuContainer.children).forEach($menu => $menu.classList.remove('is-active'));
-          Array.from($tabMenuContainer.querySelectorAll('a'))
-              .map($menu => document.getElementById($menu.getAttribute("href").substring(1)))
-              .forEach($content => $content.classList.add('is-hidden'));
-
-          if ($tabMenu) {
-              $tabMenu.parentElement.classList.add('is-active');
-          }
-          const $activeTab = document.querySelector(id);
-          if ($activeTab) {
-              $activeTab.classList.remove('is-hidden');
-          }
-      }
-      switchTab();
-      window.addEventListener('hashchange', switchTab, false);
-  })();
-  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="安全代码" type="application/atom+xml">
-</head><body class="is-3-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/">安全代码</a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/tags">Tags</a><a class="navbar-item" href="/about">About</a></div><div class="navbar-end"><a class="navbar-item search" title="Search" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-6-widescreen"><div class="card"><div class="card-content"><nav class="breadcrumb" aria-label="breadcrumbs"><ul><li><a href="/tags">Tags</a></li><li class="is-active"><a href="#" aria-current="page">Programming</a></li></ul></nav></div></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2023-09-06T03:00:51.766Z" title="2023/9/6 11:00:51">2023-09-06</time></span><span class="level-item">Updated&nbsp;<time dateTime="2023-09-06T03:00:51.766Z" title="2023/9/6 11:00:51">2023-09-06</time></span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/cn/python_pip/">Python 多版本使用 pip</a></p><div class="content"><p>Q：Fedora 31 提供的 Python3.7， 想使用 Python3.8， 用系统的pip3 只会给 Python3.7 安装库，如何解决</p>
-<p>A:</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">curl -O https://bootstrap.pypa.io/get-pip.py</span><br><span class="line">python3.8 get-pip.py</span><br></pre></td></tr></table></figure>
-
-<p>执行上面命令后，会在 &#x2F;usr&#x2F;local&#x2F;bin&#x2F; 下生成和 pip 相关的脚本，把这些脚本删除，要不可能会和系统的 pip3 冲突。<br>接下来就可以使用下面的命令行安装 Python3.8 的库</p>
-<p><code>python3.8 -m pip install pyhash --user</code></p>
-<p>在安装过程中可能会因为众所周知的原因导致网络出错，备好梯子即可。</p>
-</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2023-09-06T03:00:51.558Z" title="2023/9/6 11:00:51">2023-09-06</time></span><span class="level-item">Updated&nbsp;<time dateTime="2023-09-06T03:00:51.558Z" title="2023/9/6 11:00:51">2023-09-06</time></span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/cn/gogs/">gogs 皮肤和源码升级</a></p><div class="content"><p>gogs 使用了也有一年多了，小团队使用基本还行。有几个问题，第一界面代码 merge 有问题，第二不支持代码 review，<br>如果能解决上面两个问题就好用很多了。下面两段是年前折腾 gogs 的记录，没有啥技术含量，只是做个备份。</p>
-<h2 id="切换皮肤"><a href="#切换皮肤" class="headerlink" title="切换皮肤"></a>切换皮肤</h2><p><a target="_blank" rel="noopener" href="https://github.com/Kos-M/GogsThemes">https://github.com/Kos-M/GogsThemes</a> 提供了两款皮肤，文中给出的方法要修改 gogs 配置，直接使用 TamperMonkey 就可以了。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ==UserScript==</span></span><br><span class="line"><span class="comment">// @name         Gogs Theme</span></span><br><span class="line"><span class="comment">// @resource     IMPORTED_CSS https://raw.githubusercontent.com/Kos-M/GogsThemes/master/themes/dark_theme.css</span></span><br><span class="line"><span class="comment">// @namespace    http://tampermonkey.net/</span></span><br><span class="line"><span class="comment">// @version      0.1</span></span><br><span class="line"><span class="comment">// @description  try to take over the world!</span></span><br><span class="line"><span class="comment">// @author       You</span></span><br><span class="line"><span class="comment">// @match        http://website:8000/*</span></span><br><span class="line"><span class="comment">// @grant        GM_getResourceText</span></span><br><span class="line"><span class="comment">// @grant        GM_addStyle</span></span><br><span class="line"><span class="comment">// ==/UserScript==</span></span><br><span class="line"></span><br><span class="line">(<span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="string">&#x27;use strict&#x27;</span>;</span><br><span class="line">    <span class="keyword">const</span> my_css = <span class="title function_">GM_getResourceText</span>(<span class="string">&quot;IMPORTED_CSS&quot;</span>);</span><br><span class="line">    <span class="title function_">GM_addStyle</span>(my_css);</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure>
-
-<p>使用后效果图</p>
-<p><img src="https://github.com/henices/pictures/raw/master/gogs0.png"></p>
-<h2 id="源码升级"><a href="#源码升级" class="headerlink" title="源码升级"></a>源码升级</h2><p>gogs 已经有一年多没有提供二进制的安装包了，看了改进不少，就尝试了源码升级。<br>参考 <a target="_blank" rel="noopener" href="https://gogs.io/docs/installation/install_from_source#%E6%B5%8B%E8%AF%95%E5%AE%89%E8%A3%85">https://gogs.io/docs/installation/install_from_source#%E6%B5%8B%E8%AF%95%E5%AE%89%E8%A3%85</a></p>
-<h3 id="安装-golang"><a href="#安装-golang" class="headerlink" title="安装 golang"></a>安装 golang</h3><p>参考 Google 官方文档，执行下面命令就可以了。 <a target="_blank" rel="noopener" href="https://go.dev/doc/install">https://go.dev/doc/install</a></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">wget https://go.dev/dl/go1.17.6.linux-amd64.tar.gz</span><br><span class="line"><span class="built_in">rm</span> -rf /usr/local/go &amp;&amp; tar -C /usr/local -xzf go1.17.6.linux-amd64.tar.gz</span><br><span class="line"><span class="built_in">export</span> PATH=<span class="variable">$PATH</span>:/usr/local/go/bin</span><br></pre></td></tr></table></figure>
-<h3 id="编译"><a href="#编译" class="headerlink" title="编译"></a>编译</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 克隆仓库到 &quot;gogs&quot; 子目录</span></span><br><span class="line">git <span class="built_in">clone</span> --depth 1 https://github.com/gogs/gogs.git gogs</span><br><span class="line"><span class="comment"># 修改工作目录</span></span><br><span class="line"><span class="built_in">cd</span> gogs</span><br><span class="line"><span class="comment"># 编译主程序，这个步骤会下载所有依赖</span></span><br><span class="line">go build -o gogs</span><br></pre></td></tr></table></figure>
-
-<p>编译过程会下载文件（需要自备梯子），编译完成后将在 gogs 工作目下生成 gogs 可执行文件</p>
-<h3 id="打包"><a href="#打包" class="headerlink" title="打包"></a>打包</h3><p>gogs 源码的 Makefile 提供了打包命令，执行 <code>make pack</code> 即可，将在 release 目生成 <code>gogs.20220112095054.zip</code></p>
-<h3 id="迁移配置"><a href="#迁移配置" class="headerlink" title="迁移配置"></a>迁移配置</h3><p>将 gogs.20220112095054.zip 解压，这就类似 gogs 的二进制升级了 <a target="_blank" rel="noopener" href="https://gogs.io/docs/upgrade/upgrade_from_binary">https://gogs.io/docs/upgrade/upgrade_from_binary</a></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">mv</span> gogs gogs_old</span><br><span class="line"><span class="built_in">cp</span> -R gogs_old/custom gogs</span><br><span class="line"><span class="built_in">cp</span> -R gogs_old/data gogs</span><br><span class="line"><span class="built_in">cp</span> -R gogs_old/log gogs</span><br></pre></td></tr></table></figure>
-
-<p>gogs 0.13 的配置已经发生了变化，如果不修改配置执行 <code>./gogs web</code>会出现错误</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">2022/01/12 09:40:06 [ INFO] Gogs 0.13.0+dev</span><br><span class="line">2022/01/12 09:40:06 [FATAL] [...github/internal/route/install.go:75 GlobalInit()] Failed to initialize ORM engine:</span><br><span class="line">open database: failed to connect to `host=127.0.0.1 user=root database=gogs`: dial error (dial tcp 127.0.0.1:3306: connect: connection refused)</span><br></pre></td></tr></table></figure>
-
-<p>看错误像是在连接 mysql 的 3306 端口，可是配置文件设置的是使用 sqlite，非常困惑。上网搜索后证实是 gogs 0.13 的配置文件的字段修改了。</p>
-<p><img src="https://github.com/henices/pictures/raw/master/gogs1.png"></p>
-<p>最关键的两个字段是数据库相关的 <code>DB_TYPE</code> 改为 <code>TYPE</code>， <code>PASSWD</code> 改为 <code>PASSWORD</code> 修改后 <code>custom/conf/app.ini</code> 后，执行 <code>./gogs web</code> 一切正常。</p>
-</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2023-09-06T03:00:51.526Z" title="2023/9/6 11:00:51">2023-09-06</time></span><span class="level-item">Updated&nbsp;<time dateTime="2023-09-06T03:00:51.526Z" title="2023/9/6 11:00:51">2023-09-06</time></span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/cn/github_speed_up/">github clone 加速</a></p><div class="content"><p>国内因为众所周知的原因，git clone 一直很慢，最近可能状况就更糟糕了。@TeleMan 提供了一个信息，可以<br>通过修改 host 文件达到加速效果。经过测试，只要修改两条记录即可</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">199.232.69.194                github.global.ssl.fastly.net</span><br><span class="line">140.82.113.4                  github.com</span><br></pre></td></tr></table></figure>
-
-<p>修改后，速度快多了，直连</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/googleprojectzero/winafl.git</span><br><span class="line">正克隆到 &#x27;winafl&#x27;...</span><br><span class="line">remote: Enumerating objects: 1538, done.</span><br><span class="line">remote: Counting objects: 100% (175/175), done.</span><br><span class="line">remote: Compressing objects: 100% (108/108), done.</span><br><span class="line">remote: Total 1538 (delta 90), reused 130 (delta 60), pack-reused 1363</span><br><span class="line">接收对象中: 100% (1538/1538), 5.29 MiB | 765.00 KiB/s, 完成.</span><br><span class="line">处理 delta 中: 100% (846/846), 完成.</span><br></pre></td></tr></table></figure>
-
-<p>使用一段时间后发现不是太稳定，终极大法还是需要一个长长的梯子，此方法记为备用方案。</p>
-</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2023-07-19T16:00:00.000Z" title="2023/7/20 00:00:00">2023-07-20</time></span><span class="level-item">Updated&nbsp;<time dateTime="2023-07-23T16:00:00.000Z" title="2023/7/24 00:00:00">2023-07-24</time></span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/cn/vim_gtags_leaderf/">在 vim 中使用 LeaderF 和 gtags</a></p><div class="content"><h2 id="☆-缘由和一些-vim-历史"><a href="#☆-缘由和一些-vim-历史" class="headerlink" title="☆ 缘由和一些 vim 历史"></a>☆ 缘由和一些 vim 历史</h2><p>前些年 vim 没有子窗口的概念，日本的一个 vim 插件作者为了解决这个问题生撸了一套流程，当时 unite.vim 横空出世惊艳了我一把。后面随着技术发展，neovim 和 vim 先后引入了 floating window ，这才使得情况变得好了一点。</p>
-<p><a target="_blank" rel="noopener" href="https://github.com/vim/vim/blob/master/runtime/doc/popup.txt">https://github.com/vim/vim/blob/master/runtime/doc/popup.txt</a><br><a target="_blank" rel="noopener" href="https://neovim.io/doc/user/api.html#api-floatwin">https://neovim.io/doc/user/api.html#api-floatwin</a></p>
-<p>得益于新技术，在 vim 中使用 LeaderF 插件的交互体验上了一个台阶。</p>
-<p><img src="https://raw.githubusercontent.com/Yggdroot/Images/master/leaderf/leaderf_popup.gif" alt="Demo"></p>
-<p>neovim 从 0.9 版本开始放弃对 cscope 的支持 <a target="_blank" rel="noopener" href="https://twitter.com/Neovim/status/1580933880579641344">https://twitter.com/Neovim/status/1580933880579641344</a></p>
-<p>这给我阅读源码造成了一些问题，虽然 vim 仍然可以使用 cscope，但 vim 的启动速度不如 nvim 快，所以我开始寻找替代方案。同时，我发现 denite.nvim，unite.vim，作者也不怎么维护了，一想似乎是很多年没有维护 vim 配置了。</p>
-<p>在网络上搜索在 neovim 上阅读源码的方法，无意发现有人提到用 LeaderF 替代 tagbar，于是有了现在的这篇文章。</p>
-<h2 id="☆-安装vim-插件-LeaderF"><a href="#☆-安装vim-插件-LeaderF" class="headerlink" title="☆ 安装vim 插件 LeaderF"></a>☆ 安装vim 插件 LeaderF</h2><p>插件的仓库地址：<a target="_blank" rel="noopener" href="https://github.com/Yggdroot/LeaderF/tree/master">https://github.com/Yggdroot/LeaderF/tree/master</a></p>
-<p>使用 <a target="_blank" rel="noopener" href="https://github.com/VundleVim/Vundle.vim">Vundle.vim</a> 安装，在 .vimrc 中添加下面一行</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Plug &#x27;Yggdroot/LeaderF&#x27;, &#123; &#x27;do&#x27;: &#x27;:LeaderfInstallCExtension&#x27; &#125;</span><br></pre></td></tr></table></figure>
-
-<p>在 vim 中执行下面命令，即可成功安装，如果遇到网络问题，自己挂上线路即可。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">：so %</span><br><span class="line">:PlugInstall</span><br></pre></td></tr></table></figure>
-
-<h2 id="☆-LeaderF-配置"><a href="#☆-LeaderF-配置" class="headerlink" title="☆ LeaderF 配置"></a>☆ LeaderF 配置</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">let g:Lf_WorkingDirectoryMode = <span class="string">&#x27;Ac&#x27;</span></span><br><span class="line">let g:Lf_RootMarkers = [<span class="string">&#x27;.git&#x27;</span>, <span class="string">&#x27;.svn&#x27;</span>, <span class="string">&#x27;.hg&#x27;</span>, <span class="string">&#x27;.project&#x27;</span>, <span class="string">&#x27;.root&#x27;</span>]</span><br><span class="line">let g:Lf_DefaultExternalTool=<span class="string">&#x27;rg&#x27;</span></span><br><span class="line">let g:Lf_WindowPosition = <span class="string">&#x27;popup&#x27;</span></span><br><span class="line"></span><br><span class="line">let g:Lf_UseCache = <span class="number">0</span></span><br><span class="line">let g:Lf_PreviewInPopup = <span class="number">1</span></span><br><span class="line"><span class="string">&quot;let g:Lf_CacheDirectory = s:cachedir</span></span><br><span class="line"><span class="string">let g:Lf_ShowHidden = 1  &quot;</span>show hidden files</span><br><span class="line"></span><br><span class="line"><span class="string">&quot; preview or not</span></span><br><span class="line"><span class="string">let g:Lf_PreviewResult = &#123;&#x27;Function&#x27;: 0, &#x27;BufTag&#x27;: 0 &#125;</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>g:Lf_WorkingDirectoryMode &#x3D; ‘AF’ 设置工作目录，如果没有找到 RootMarker 以当前文件所在目录作为工作目录</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">g:Lf_WorkingDirectoryMode                       *g:Lf_WorkingDirectoryMode*</span><br><span class="line">    This option customizes LeaderF&#x27;s working directory.</span><br><span class="line">    e.g., &gt;</span><br><span class="line">    let g:Lf_WorkingDirectoryMode = &#x27;Ac&#x27;</span><br><span class="line">&lt;</span><br><span class="line">    c - the directory of the current working directory.(default)</span><br><span class="line">    a - the nearest ancestor of current working directory that contains one of</span><br><span class="line">        directories or files defined in |g:Lf_RootMarkers|. Fall back to &#x27;c&#x27; if</span><br><span class="line">        no such ancestor directory found.</span><br><span class="line">    A - the nearest ancestor of current file that contains one of directories</span><br><span class="line">        or files defined in |g:Lf_RootMarkers|. Fall back to &#x27;c&#x27; if no such</span><br><span class="line">        ancestor directory found.</span><br><span class="line">    f - the directory of the current file.</span><br><span class="line">    F - if the current working directory is not the direct ancestor of current</span><br><span class="line">        file, use the directory of the current file as LeaderF&#x27;s working</span><br><span class="line">        directory, otherwise, same as &#x27;c&#x27;.</span><br><span class="line">    Note: if &quot;f&quot;, &quot;F&quot; is included with &quot;a&quot; or &quot;A&quot;, use the behavior of &quot;f&quot; or</span><br><span class="line">    &quot;F&quot;(as a fallback) when a root can&#x27;t be found.</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>g:Lf_DefaultExternalTool  索引文件使用的外部工具，可选值为 ‘rg’, ‘pt’, ‘ag’, ‘find’，作者推荐使用 <a target="_blank" rel="noopener" href="https://github.com/BurntSushi/ripgrep">rg</a></li>
-<li>g:Lf_UseCache 列文件时是否使用缓存，默认值为 1，设置为 0 不使用缓存</li>
-<li>g:Lf_WindowPosition，LeaderF 窗口的位置，可选值有 top, bottom, left, right, popup,fullscreen，默认值为 bottom</li>
-<li>g:Lf_PreviewInPopup 设置是否在 LeaderF 的 popup 窗口显示预览, 默认值为 0</li>
-<li>g:Lf_ShowHidden 是否显示隐藏文件和目录，默认值为 0 不显示隐藏文件</li>
-<li>g:Lf_PreviewResult 设置需要显示预览的内容，默认值为全 1<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> <span class="variable">g:Lf_PreviewResult</span> = &#123;</span><br><span class="line">        \ <span class="string">&#x27;File&#x27;</span>: <span class="number">1</span>,</span><br><span class="line">        \ <span class="string">&#x27;Buffer&#x27;</span>: <span class="number">1</span>,</span><br><span class="line">        \ <span class="string">&#x27;Mru&#x27;</span>: <span class="number">1</span>,</span><br><span class="line">        \ <span class="string">&#x27;Tag&#x27;</span>: <span class="number">1</span>,</span><br><span class="line">        \ <span class="string">&#x27;BufTag&#x27;</span>: <span class="number">1</span>,</span><br><span class="line">        \ <span class="string">&#x27;Function&#x27;</span>: <span class="number">1</span>,</span><br><span class="line">        \ <span class="string">&#x27;Line&#x27;</span>: <span class="number">1</span>,</span><br><span class="line">        \ <span class="string">&#x27;Colorscheme&#x27;</span>: <span class="number">1</span>,</span><br><span class="line">        \ <span class="string">&#x27;Rg&#x27;</span>: <span class="number">1</span>,</span><br><span class="line">        \ <span class="string">&#x27;Gtags&#x27;</span>: <span class="number">1</span></span><br><span class="line">        \&#125;</span><br></pre></td></tr></table></figure></li>
-</ul>
-<p>配置好了 LeaderF，在 vim&#x2F;neovim 的命令行输入  <code>:Leaderf</code>  tab 就可以看到相关的命令了，如果忘记了具体的命令也没有关系，使用 <code>LeaderfSelf</code> 即可列出所有的 Leaderf 命令。如何想查看具体命令的使用方法，在命令窗口输入 <code>:Leaderf -h</code></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">subcommands:</span><br><span class="line"></span><br><span class="line">  &#123;file,tag,function,mru,searchHistory,cmdHistory,help,line,colorscheme,gtags,</span><br><span class="line">      self,bufTag,buffer,rg,filetype,command,window,quickfix,loclist,jumps&#125;</span><br><span class="line">    file                search files</span><br><span class="line">    tag                 navigate tags using the tags file</span><br><span class="line">    function            navigate functions or methods in the buffer</span><br><span class="line">    mru                 search most recently used files</span><br><span class="line">    searchHistory       execute the search command in the history</span><br><span class="line">    cmdHistory          execute the command in the history</span><br><span class="line">    help                navigate the help tags</span><br><span class="line">    line                search a line in the buffer</span><br><span class="line">    colorscheme         switch between colorschemes</span><br><span class="line">    gtags               navigate tags using the gtags</span><br><span class="line">    self                execute the commands of itself</span><br><span class="line">    bufTag              navigate tags in the buffer</span><br><span class="line">    buffer              search buffers</span><br><span class="line">    rg                  grep using rg</span><br><span class="line">    filetype            navigate the filetype</span><br><span class="line">    command             execute built-in/user-defined Ex commands.</span><br><span class="line">    window              search windows.</span><br><span class="line">    quickfix            navigate the quickfix.</span><br><span class="line">    loclist             navigate the location list.</span><br></pre></td></tr></table></figure>
-
-<p>好了，我可以放弃 fzf.vim, ctrp.vim, tagbar, unite.vim, denite.vim 等一系列 vim 插件了。 在日常使用中，每次都输入那么长的命令不太方便，我们可以配置以下容易记忆的快捷键。</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">noremap &lt;leader&gt;fs :LeaderfSelf&lt;cr&gt;</span><br><span class="line">noremap &lt;leader&gt;fm :LeaderfMru&lt;cr&gt;</span><br><span class="line">noremap &lt;leader&gt;ff :LeaderfFunction&lt;cr&gt;</span><br><span class="line">noremap &lt;leader&gt;fb :LeaderfBuffer&lt;cr&gt;</span><br><span class="line">noremap &lt;leader&gt;ft :LeaderfBufTag&lt;cr&gt;</span><br><span class="line">noremap &lt;leader&gt;fl :LeaderfLine&lt;cr&gt;</span><br><span class="line">noremap &lt;leader&gt;fw :LeaderfWindow&lt;cr&gt;</span><br></pre></td></tr></table></figure>
-
-<p>值得一提的是 rg 命令，可以直接在目录文件内搜索字符串，ripgrep 的正则表达式比 vim 的正则要正常多了。vim 的正则表达式的用法可以参见：<a target="_blank" rel="noopener" href="https://vimdoc.sourceforge.net/htmldoc/pattern.html">https://vimdoc.sourceforge.net/htmldoc/pattern.html</a><br>以前我为了规避 vim 的正则使用了一个插件 <a target="_blank" rel="noopener" href="https://github.com/othree/eregex.vim">https://github.com/othree/eregex.vim</a> 现在这个插件也不需要了。</p>
-<p>要利用 LeaderF 调用 rg 命令，可以使用命令行 <code>:Leaderf! rg</code>, 为了方便使用使用下面的快捷键查询光标所在 word</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmap &lt;leader&gt;frb &lt;Plug&gt;LeaderfRgCwordLiteralBoundary</span><br></pre></td></tr></table></figure>
-
-<h3 id="运行-LeaderF-之后的操作"><a href="#运行-LeaderF-之后的操作" class="headerlink" title="运行 LeaderF 之后的操作"></a>运行 LeaderF 之后的操作</h3><p>在执行 Leaderf 命令弹出的界面后，需要使用特定的快捷键进行操作，这些快捷键可以使用 <code>help leaderf-prompt</code> 进行查看。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">Once LeaderF is launched:                       *prompt* *leaderf-prompt*</span><br><span class="line">    &lt;C-C&gt;, &lt;ESC&gt; : quit from LeaderF.</span><br><span class="line">    &lt;C-R&gt; : switch between fuzzy search mode and regex mode.</span><br><span class="line">    &lt;C-F&gt; : switch between full path search mode and name only search mode.</span><br><span class="line">    &lt;Tab&gt; : switch to normal mode.</span><br><span class="line">    &lt;C-V&gt;, &lt;S-Insert&gt; : paste from clipboard.</span><br><span class="line">    &lt;C-U&gt; : clear the prompt.</span><br><span class="line">    &lt;C-W&gt; : delete the word before the cursor in the prompt.</span><br><span class="line">    &lt;C-J&gt;, &lt;C-K&gt; : navigate the result list.</span><br><span class="line">    &lt;Up&gt;, &lt;Down&gt; : recall last/next input pattern from history.</span><br><span class="line">    &lt;2-LeftMouse&gt; or &lt;CR&gt; : open the file under cursor or selected(when</span><br><span class="line">                            multiple files are selected).</span><br><span class="line">    &lt;C-X&gt; : open in horizontal split window.</span><br><span class="line">    &lt;C-]&gt; : open in vertical split window.</span><br><span class="line">    &lt;C-T&gt; : open in new tabpage.</span><br><span class="line">    &lt;F5&gt;  : refresh the cache.</span><br><span class="line">    &lt;C-LeftMouse&gt; or &lt;C-S&gt; : select multiple files.</span><br><span class="line">    &lt;S-LeftMouse&gt; : select consecutive multiple files.</span><br><span class="line">    &lt;C-A&gt; : select all files.</span><br><span class="line">    &lt;C-L&gt; : clear all selections.</span><br><span class="line">    &lt;BS&gt;  : delete the preceding character in the prompt.</span><br><span class="line">    &lt;Del&gt; : delete the current character in the prompt.</span><br><span class="line">    &lt;Home&gt;: move the cursor to the begin of the prompt.</span><br><span class="line">    &lt;End&gt; : move the cursor to the end of the prompt.</span><br><span class="line">    &lt;Left&gt;: move the cursor one character to the left.</span><br><span class="line">    &lt;Right&gt; : move the cursor one character to the right.</span><br><span class="line">    &lt;C-P&gt; : preview the result.</span><br><span class="line">    &lt;C-Up&gt; : scroll up in the popup preview window.</span><br><span class="line">    &lt;C-Down&gt; : scroll down in the popup preview window.</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>tab : 切换输入模式和 normal 模式，进入 normal 模式后可以使用 <code>j</code> 和 <code>k</code> 上下移动光标来查看文件。 </li>
-<li>q :  normal 模式中，退出 LeaderF</li>
-</ul>
-<p>在输入模式下，可以使用下面的快捷键进行分屏显示。</p>
-<ul>
-<li>ctrl + x : 横向分割</li>
-<li>ctrl + ] : 竖向分割</li>
-<li>ctrl + T : tab 分割</li>
-</ul>
-<h2 id="☆-LeaderF-gtags-的配置"><a href="#☆-LeaderF-gtags-的配置" class="headerlink" title="☆ LeaderF + gtags 的配置"></a>☆ LeaderF + gtags 的配置</h2><p>gtags 和 LeaderF 配置起来使用，实在是很不错。首先要配置好 gtags，关于 global 的安装详见 <a target="_blank" rel="noopener" href="https://www.usmacd.com/2023/03/02/gtags-cscope/">GNU Global 的使用</a>，这里就不再详细说了，gtags 的配置添加下面两行即可。</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">let $GTAGSLABEL=<span class="string">&#x27;native-pygments&#x27;</span></span><br><span class="line">let $GTAGSCONF=<span class="string">&#x27;/usr/local/share/gtags/gtags.conf&#x27;</span></span><br></pre></td></tr></table></figure>
-
-<p>配置好系统 gtags，global ，gtags.conf 的正确路径。</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">let g:Lf_Global = <span class="string">&#x27;/usr/local/bin/global&#x27;</span></span><br><span class="line">let g:Lf_Gtags = <span class="string">&#x27;/usr/local/bin/gtags&#x27;</span></span><br><span class="line">let g:Lf_Gtagsconf = <span class="string">&#x27;/usr/local/share/gtags/gtags.conf&#x27;</span></span><br><span class="line">let g:Lf_Gtagslabel = <span class="string">&#x27;native-pygments&#x27;</span></span><br></pre></td></tr></table></figure>
-
-<p>下面两行是配置gtags 自动生成 tags 文件，主要是三个文件 <code>GPATH</code> , <code>GRTAGS</code>  <code>GTAGS</code></p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">let g:Lf_GtagsAutoGenerate = <span class="number">1</span></span><br><span class="line">let g:Lf_GtagsAutoUpdate = <span class="number">1</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>g:Lf_GtagsAutoGenerate  是否自动生成 tags 文件。设置成 1 并且在 g:Lf_RootMarkers 定义的目录中，tags 会自动生成</li>
-<li>g:Lf_GtagsAutoUpdate 是否自动更新 tags。如果设置成 0 ，需要先执行 <code>Leaderf gtags --update</code> 手动更新 tags 文件</li>
-</ul>
-<p>tags 文件生成的目录和 <code>g:Lf_CacheDirectory</code> 的配置相关， g:Lf_CacheDirectory 用于设置缓存文件目录，默认的目录是 $HOME (Windows 上会有变化)使用 <code>_</code> 替换了 <code>/</code> 。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">ls</span> ~/.LfCache/gtags/_home_henices_.vim </span><br><span class="line">GPATH  GRTAGS  GTAGS</span><br></pre></td></tr></table></figure>
-
-<p>完成了上面的配置后，我们就可以正常使用 LeaderF 来对 gtags 生成的 tags 文件进行浏览了，在命令行使用 <code>:Leaderf gtags -h</code> 可以看到详细的命令。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">:Leaderf gtags -h</span><br><span class="line">usage:</span><br><span class="line">Leaderf[!] gtags [-h] [--remove] [--recall]</span><br><span class="line">Leaderf[!] gtags --update [--gtagsconf &lt;FILE&gt;] [--gtagslabel &lt;LABEL&gt;] [--accept-dotfiles]</span><br><span class="line">                 [--skip-unreadable] [--skip-symlink [&lt;TYPE&gt;]] [--gtagslibpath &lt;PATH&gt; [&lt;PATH&gt; ...]]</span><br><span class="line">Leaderf[!] gtags [--current-buffer | --all-buffers | --all] [--result &lt;FORMAT&gt;] [COMMON_OPTIONS]</span><br><span class="line">Leaderf[!] gtags -d &lt;PATTERN&gt; [--auto-jump [&lt;TYPE&gt;]] [-i] [--literal] [--path-style &lt;FORMAT&gt;] [-S &lt;DIR&gt;]</span><br><span class="line">                 [--append] [--match-path] [--gtagsconf &lt;FILE&gt;] [--gtagslabel &lt;LABEL&gt;] [COMMON_OPTIONS]</span><br><span class="line">Leaderf[!] gtags -r &lt;PATTERN&gt; [--auto-jump [&lt;TYPE&gt;]] [-i] [--literal] [--path-style &lt;FORMAT&gt;] [-S &lt;DIR&gt;]</span><br><span class="line">                 [--append] [--match-path] [--gtagsconf &lt;FILE&gt;] [--gtagslabel &lt;LABEL&gt;] [COMMON_OPTIONS]</span><br><span class="line">Leaderf[!] gtags -s &lt;PATTERN&gt; [-i] [--literal] [--path-style &lt;FORMAT&gt;] [-S &lt;DIR&gt;] [--append]</span><br><span class="line">                 [--match-path] [--gtagsconf &lt;FILE&gt;] [--gtagslabel &lt;LABEL&gt;] [COMMON_OPTIONS]</span><br><span class="line">Leaderf[!] gtags -g &lt;PATTERN&gt; [-i] [--literal] [--path-style &lt;FORMAT&gt;] [-S &lt;DIR&gt;] [--append]</span><br><span class="line">                 [--match-path] [--gtagsconf &lt;FILE&gt;] [--gtagslabel &lt;LABEL&gt;] [COMMON_OPTIONS]</span><br><span class="line">Leaderf[!] gtags --by-context [--auto-jump [&lt;TYPE&gt;]] [-i] [--literal] [--path-style &lt;FORMAT&gt;] [-S &lt;DIR&gt;]</span><br><span class="line">                 [--append] [--match-path] [--gtagsconf &lt;FILE&gt;] [--gtagslabel &lt;LABEL&gt;] [COMMON_OPTIONS]</span><br><span class="line">[COMMON_OPTIONS]: [--reverse] [--stayOpen] [--input &lt;INPUT&gt; | --cword]</span><br><span class="line">                  [--top | --bottom | --left | --right | --belowright | --aboveleft | --fullScreen]</span><br><span class="line">                  [--nameOnly | --fullPath | --fuzzy | --regexMode] [--nowrap] [--next | --previous]</span><br><span class="line"></span><br><span class="line">...</span><br></pre></td></tr></table></figure>
-
-<p>LeaderF gtags 最常用的 <code>:Leaderf[!] gtags -d/-r/-s/-g</code>， 具体的作用如下所示，<code>!</code> 表示直接进入 normal 模式。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">--gtagslibpath &lt;PATH&gt; [&lt;PATH&gt; ...]</span><br><span class="line">                      Specify the paths to search for library functions.</span><br><span class="line">-d &lt;PATTERN&gt;, --definition &lt;PATTERN&gt;</span><br><span class="line">                      Show locations of definitions.</span><br><span class="line">-r &lt;PATTERN&gt;, --reference &lt;PATTERN&gt;</span><br><span class="line">                      Show reference to a symbol which has definitions.</span><br><span class="line">-s &lt;PATTERN&gt;, --symbol &lt;PATTERN&gt;</span><br><span class="line">                      Show reference to a symbol which has no definition.</span><br><span class="line">-g &lt;PATTERN&gt;, --grep &lt;PATTERN&gt;</span><br></pre></td></tr></table></figure>
-
-<p>日常使用中，同样可以配置快捷键方便使用，下面的快捷键将对光标所在单词进行 tag 查找。</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">nmap &lt;leader&gt;fgd &lt;Plug&gt;LeaderfGtagsDefinition</span><br><span class="line">nmap &lt;leader&gt;fgr &lt;Plug&gt;LeaderfGtagsReference</span><br><span class="line">nmap &lt;leader&gt;fgs &lt;Plug&gt;LeaderfGtagsSymbol</span><br><span class="line">nmap &lt;leader&gt;fgg &lt;Plug&gt;LeaderfGtagsGrep</span><br></pre></td></tr></table></figure>
-
-<h3 id="运行-LeaderF-gtags-之后"><a href="#运行-LeaderF-gtags-之后" class="headerlink" title="运行 LeaderF gtags 之后"></a>运行 LeaderF gtags 之后</h3><p>使用 LeaderF + gtags 跳转到源码后，如果想继续跳转到下一个或者上一个 tag 可以使用 <code>Leaderf gtags --next</code> 和 <code>Leaderf gtags --previous</code></p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">noremap &lt;leader&gt;fgn :&lt;C-U&gt;&lt;C-R&gt;=<span class="built_in">printf</span>(<span class="string">&quot;Leaderf gtags --next %s&quot;</span>, <span class="string">&quot;&quot;</span>)&lt;CR&gt;&lt;CR&gt;</span><br><span class="line">noremap &lt;leader&gt;fgp :&lt;C-U&gt;&lt;C-R&gt;=<span class="built_in">printf</span>(<span class="string">&quot;Leaderf gtags --previous %s&quot;</span>, <span class="string">&quot;&quot;</span>)&lt;CR&gt;&lt;CR&gt;</span><br></pre></td></tr></table></figure>
+<link rel="stylesheet" href="/css/main.css">
 
 
-<h2 id="☆-LeaderF-的其他用法"><a href="#☆-LeaderF-的其他用法" class="headerlink" title="☆ LeaderF 的其他用法"></a>☆ LeaderF 的其他用法</h2><p>LeaderF 还可以和 <a target="_blank" rel="noopener" href="https://github.com/ludovicchabant/vim-gutentags">Gutentags</a> 配合使用进行源码浏览，但已经超出本文内容，有兴趣者可以查阅网络上的其他资料。</p>
-<h2 id="☆-参考资料"><a href="#☆-参考资料" class="headerlink" title="☆ 参考资料"></a>☆ 参考资料</h2><p><a target="_blank" rel="noopener" href="https://github.com/Yggdroot/LeaderF/blob/master/doc/leaderf.txt">https://github.com/Yggdroot/LeaderF/blob/master/doc/leaderf.txt</a><br><a target="_blank" rel="noopener" href="https://retzzz.github.io/dc9af5aa/">https://retzzz.github.io/dc9af5aa/</a><br><a target="_blank" rel="noopener" href="https://github.com/Yggdroot/LeaderF/blob/master/README.md">https://github.com/Yggdroot/LeaderF/blob/master/README.md</a><br><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/36279445">https://zhuanlan.zhihu.com/p/36279445</a><br><a target="_blank" rel="noopener" href="https://github.com/vim/vim/blob/master/runtime/doc/popup.txt">https://github.com/vim/vim/blob/master/runtime/doc/popup.txt</a><br><a target="_blank" rel="noopener" href="https://neovim.io/doc/user/api.html#api-floatwin">https://neovim.io/doc/user/api.html#api-floatwin</a></p>
-</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2023-06-19T16:00:00.000Z" title="2023/6/20 00:00:00">2023-06-20</time></span><span class="level-item">Updated&nbsp;<time dateTime="2023-06-19T16:00:00.000Z" title="2023/6/20 00:00:00">2023-06-20</time></span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/cn/logseq_interview/">对话logseq联合创始人，看硅谷大佬的传奇投资 总结</a></p><div class="content"><p><a target="_blank" rel="noopener" href="https://pca.st/x398eeq0">https://pca.st/x398eeq0</a></p>
-<ol>
-<li>技术招聘时，有 side project 的优先，认为有 side project 的技术人员大多有自己独特的想法，自驱力也较强。</li>
-<li>强调技术热情和学习能力，小众语言会的人不多，但是语言不是主要问题。对于对新技术充满热情和好奇心的技术人来说学习就可以了。</li>
-<li>自由开放的团队文化，大都是技术人员，相互之间比较平等，和社区沟通交流紧密。没有明确的 deadline，但大家都比较努力，工作任务分配以兴趣自领为主指派为辅。</li>
-<li>没有太多的营销，产品定位和路线也是逐渐明确，最开始是从秦天生的一个 side project 慢慢发展起来。也没有定量分析过产品用户爆炸性增长的原因，只有模糊的感觉，Logseq 内置 PDF 阅读和标注感觉是一个突破点。</li>
-<li>Logseq 团队关于远程工作的一些实践，志远认为在一个国际团队中远程工作需要克服时差问题，需要讨论问题的时候比较麻烦。解决的方式是写比较详细的 issue 复现文档，基本是 step by step 的。讨论想法多录制一些演示视频，有问题就直接给对方发消息不能马上回复也问题不大，很多事情没有想象中的重要。</li>
-<li>Logseq 团队协作的主要工具，代码问题和 issue 管理使用 Github，问题讨论使用 Discord + 论坛 （Discord 处理即时反馈，论坛主要用来较长时间的讨论）， 团队内部的通讯工具使用 Slack。</li>
-</ol>
-<p>Logseq 的投资人非常豪华,我查了一下有 Stripe 首席执行官 Patrick Collison、GitHub 前首席执行官 Nat Friedman、Shopify 创始人 Tobias Lütke、A16Z 总经理 Sriram Krishnan等人，更神奇的是他们大多也是 Logseq 的用户。</p>
-<p>听完这期博客，我感觉陈志远是非常纯粹的技术人员，谦逊内敛，对技术充满热爱，喜欢用技术解决现实生活中的问题。坚持自己的产品定位，不浮躁不傲娇，长期认真地完善产品功能，不为短期的生存而感到焦虑，这或许就是小而美的团队的优势吧。</p>
-</div></article></div><nav class="pagination" role="navigation" aria-label="pagination"><div class="pagination-previous is-invisible is-hidden-mobile"><a href="/tags/Programming/page/0/">Previous</a></div><div class="pagination-next"><a href="/tags/Programming/page/2/">Next</a></div><ul class="pagination-list is-hidden-mobile"><li><a class="pagination-link is-current" href="/tags/Programming/">1</a></li><li><a class="pagination-link" href="/tags/Programming/page/2/">2</a></li></ul></nav></div><div class="column column-left is-4-tablet is-4-desktop is-3-widescreen  order-1"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar" src="/img/avatar.jpg" alt="Henices"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">Henices</p><p class="is-size-6 is-block">安全研究员</p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">Posts</p><a href="/archives"><p class="title">98</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Tags</p><a href="/tags"><p class="title">14</p></a></div></div></nav><div class="level is-mobile is-multiline"><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Twitter" href="https://twitter.com/henices"><i class="fab fa-twitter"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="RSS" href="/atom.xml"><i class="fas fa-rss"></i></a></div></div></div><div class="card widget" data-type="recent-posts"><div class="card-content"><h3 class="menu-label">Recents</h3><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-09-12T16:00:00.000Z">2023-09-13</time></p><p class="title"><a href="/cn/living_younger_healthier_logger/">端粒效应</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-09-06T03:49:12.921Z">2023-09-06</time></p><p class="title"><a href="/en/learn_in_public/">Learn In Public 摘要</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-09-06T03:00:51.915Z">2023-09-06</time></p><p class="title"><a href="/cn/xorddos_hide/">xorddos 样本进程隐藏的小伎俩</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-09-06T03:00:51.914Z">2023-09-06</time></p><p class="title"><a href="/cn/Windows_Rx034/">解决 Windows Rx034</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-09-06T03:00:51.896Z">2023-09-06</time></p><p class="title"><a href="/cn/webview_java/">Android WebView 漏洞</a></p></div></article></div></div><div class="card widget" data-type="links"><div class="card-content"><div class="menu"><h3 class="menu-label">Links</h3><ul class="menu-list"><li><a class="level is-mobile" href="https://scz.617.cn/" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">飞花堂</span></span><span class="level-right"><span class="level-item tag">scz.617.cn</span></span></a></li><li><a class="level is-mobile" href="https://blog.forecho.com/" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">forecho</span></span><span class="level-right"><span class="level-item tag">blog.forecho.com</span></span></a></li><li><a class="level is-mobile" href="https://demochen.com/" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">特立独行的异类</span></span><span class="level-right"><span class="level-item tag">demochen.com</span></span></a></li><li><a class="level is-mobile" href="https://www.mrhuangtalk.com/" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Mr.Huang Talk</span></span><span class="level-right"><span class="level-item tag">www.mrhuangtalk.com</span></span></a></li></ul></div></div></div><div class="column-right-shadow is-hidden-widescreen is-sticky"></div></div><div class="column column-right is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only order-3 is-sticky"><!--!--><div class="card widget" data-type="tags"><div class="card-content"><div class="menu"><h3 class="menu-label">Tags</h3><div class="field is-grouped is-grouped-multiline"><div class="control"><a class="tags has-addons" href="/tags/Android/"><span class="tag">Android</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Archives/"><span class="tag">Archives</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Crack/"><span class="tag">Crack</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Life/"><span class="tag">Life</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Malware/"><span class="tag">Malware</span></a></div><div class="control"><a class="tags has-addons" href="/tags/PKM/"><span class="tag">PKM</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Programming/"><span class="tag">Programming</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Security/"><span class="tag">Security</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Software/"><span class="tag">Software</span></a></div><div class="control"><a class="tags has-addons" href="/tags/ai/"><span class="tag">ai</span></a></div><div class="control"><a class="tags has-addons" href="/tags/investment/"><span class="tag">investment</span></a></div><div class="control"><a class="tags has-addons" href="/tags/linux/"><span class="tag">linux</span></a></div><div class="control"><a class="tags has-addons" href="/tags/vim/"><span class="tag">vim</span></a></div><div class="control"><a class="tags has-addons" href="/tags/windows/"><span class="tag">windows</span></a></div></div></div></div></div><div class="card widget" data-type="adsense"><div class="card-content"><div class="menu"><h3 class="menu-label">Advertisement</h3><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-8793345906937947" data-ad-slot="9350670660" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script></div></div></div></div></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/">安全代码</a><p class="is-size-7"><span>&copy; 2023 henices</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("en");</script><script>var IcarusThemeSettings = {
-            article: {
-                highlight: {
-                    clipboard: true,
-                    fold: 'unfolded'
-                }
-            }
-        };</script><script src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="Back to top" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
-      window.cookieconsent.initialise({
-        type: "info",
-        theme: "edgeless",
-        static: false,
-        position: "bottom-left",
-        content: {
-          message: "This website uses cookies to improve your experience.",
-          dismiss: "Got it!",
-          allow: "Allow cookies",
-          deny: "Decline",
-          link: "Learn more",
-          policy: "Cookie Policy",
-          href: "https://www.cookiesandyou.com/",
-        },
-        palette: {
-          popup: {
-            background: "#edeff5",
-            text: "#838391"
-          },
-          button: {
-            background: "#4b81e8"
-          },
-        },
-      });
-    });</script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
-            if (typeof $.fn.lightGallery === 'function') {
-                $('.article').lightGallery({ selector: '.gallery-item' });
-            }
-            if (typeof $.fn.justifiedGallery === 'function') {
-                if ($('.justified-gallery > p > .gallery-item').length) {
-                    $('.justified-gallery > p > .gallery-item').unwrap();
-                }
-                $('.justified-gallery').justifiedGallery();
-            }
-        });</script><!--!--><!--!--><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="Type something..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
-            loadInsight({"contentUrl":"/content.json"}, {"hint":"Type something...","untitled":"(Untitled)","posts":"Posts","pages":"Pages","categories":"Categories","tags":"Tags"});
-        });</script></body></html>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha256-CTSx/A06dm1B063156EVh15m6Y67pAjZZaQc89LLSrU=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"usmacd.com","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.18.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
+
+    <meta property="og:type" content="website">
+<meta property="og:title" content="安全代码">
+<meta property="og:url" content="http://usmacd.com/tags/Programming/index.html">
+<meta property="og:site_name" content="安全代码">
+<meta property="og:locale" content="en_US">
+<meta property="article:author" content="henices">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://usmacd.com/tags/Programming/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":false,"lang":"en","comments":"","permalink":"","path":"tags/Programming/index.html","title":""}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Tag: Programming | 安全代码</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="安全代码" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">安全代码</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a></li><li class="menu-item menu-item-sitemap"><a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>Sitemap</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-overview-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="henices"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">henices</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">98</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/henices" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;henices" rel="noopener me" target="_blank"><i class="fab fa-twitter fa-fw"></i>Twitter</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml" rel="noopener me"><i class="rss fa-fw"></i>RSS</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+    <div class="sidebar-inner sidebar-blogroll">
+      <div class="links-of-blogroll animated">
+        <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+          Links
+        </div>
+        <ul class="links-of-blogroll-list">
+            <li class="links-of-blogroll-item">
+              <a href="http://scz.617.cn:8/" title="http:&#x2F;&#x2F;scz.617.cn:8&#x2F;" rel="noopener" target="_blank">飞花堂</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://www.v2ex.com/" title="https:&#x2F;&#x2F;www.v2ex.com&#x2F;" rel="noopener" target="_blank">V2EX</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://blog.forecho.com/" title="https:&#x2F;&#x2F;blog.forecho.com&#x2F;" rel="noopener" target="_blank">forecho</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://chensenlin.cn/" title="https:&#x2F;&#x2F;chensenlin.cn&#x2F;" rel="noopener" target="_blank">你好我是森林</a>
+            </li>
+        </ul>
+      </div>
+    </div>
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner tag posts-collapse">
+
+
+  
+  
+  
+  <div class="post-block">
+    <div class="post-content">
+      <div class="collection-title">
+        <h1 class="collection-header">Programming
+          <small>Tag</small>
+        </h1>
+      </div>
+
+      
+    <div class="collection-year">
+      <span class="collection-header">2023</span>
+    </div>
+
+  <article itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+      <div class="post-meta-container">
+        <time itemprop="dateCreated"
+              datetime="2023-09-06T11:00:51+08:00"
+              content="2023-09-06">
+          09-06
+        </time>
+      </div>
+
+      <div class="post-title">
+        <a class="post-title-link" href="/cn/python_pip/" itemprop="url">
+          <span itemprop="name">Python 多版本使用 pip</span>
+        </a>
+      </div>
+
+      
+    </header>
+  </article>
+
+  <article itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+      <div class="post-meta-container">
+        <time itemprop="dateCreated"
+              datetime="2023-09-06T11:00:51+08:00"
+              content="2023-09-06">
+          09-06
+        </time>
+      </div>
+
+      <div class="post-title">
+        <a class="post-title-link" href="/cn/gogs/" itemprop="url">
+          <span itemprop="name">gogs 皮肤和源码升级</span>
+        </a>
+      </div>
+
+      
+    </header>
+  </article>
+
+  <article itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+      <div class="post-meta-container">
+        <time itemprop="dateCreated"
+              datetime="2023-09-06T11:00:51+08:00"
+              content="2023-09-06">
+          09-06
+        </time>
+      </div>
+
+      <div class="post-title">
+        <a class="post-title-link" href="/cn/github_speed_up/" itemprop="url">
+          <span itemprop="name">github clone 加速</span>
+        </a>
+      </div>
+
+      
+    </header>
+  </article>
+
+  <article itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+      <div class="post-meta-container">
+        <time itemprop="dateCreated"
+              datetime="2023-07-20T00:00:00+08:00"
+              content="2023-07-20">
+          07-20
+        </time>
+      </div>
+
+      <div class="post-title">
+        <a class="post-title-link" href="/cn/vim_gtags_leaderf/" itemprop="url">
+          <span itemprop="name">在 vim 中使用 LeaderF 和 gtags</span>
+        </a>
+      </div>
+
+      
+    </header>
+  </article>
+
+  <article itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+      <div class="post-meta-container">
+        <time itemprop="dateCreated"
+              datetime="2023-06-20T00:00:00+08:00"
+              content="2023-06-20">
+          06-20
+        </time>
+      </div>
+
+      <div class="post-title">
+        <a class="post-title-link" href="/cn/logseq_interview/" itemprop="url">
+          <span itemprop="name">对话logseq联合创始人，看硅谷大佬的传奇投资 总结</span>
+        </a>
+      </div>
+
+      
+    </header>
+  </article>
+
+    </div>
+  </div>
+  
+  
+  
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/tags/Programming/page/2/">2</a><a class="extend next" rel="next" title="Next page" aria-label="Next page" href="/tags/Programming/page/2/"><i class="fa fa-angle-right"></i></a>
+  </nav>
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2023</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">henices</span>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8793345906937947"
+     crossorigin="anonymous"></script>
+<!-- 展示广告 -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-8793345906937947"
+     data-ad-slot="9350670660"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+</body>
+</html>

@@ -1,283 +1,309 @@
-<!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta name="robots" content="noindex"><meta><title>Tag: Archives - 安全代码</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="安全代码"><meta name="msapplication-TileImage" content="/img/favicon.png"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="安全代码"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta property="og:type" content="blog"><meta property="og:title" content="安全代码"><meta property="og:url" content="http://usmacd.com/"><meta property="og:site_name" content="安全代码"><meta property="og:locale" content="en_US"><meta property="og:image" content="http://usmacd.com/img/og_image.png"><meta property="article:author" content="henices"><meta property="twitter:card" content="summary"><meta property="twitter:image:src" content="http://usmacd.com/img/og_image.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://usmacd.com"},"headline":"安全代码","image":["http://usmacd.com/img/og_image.png"],"author":{"@type":"Person","name":"henices"},"publisher":{"@type":"Organization","name":"安全代码","logo":{"@type":"ImageObject","url":{"text":"安全代码"}}},"description":""}</script><link rel="icon" href="/img/favicon.png"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.7.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css"><!--!--><!--!--><style>.pace{-webkit-pointer-events:none;pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none}.pace-inactive{display:none}.pace .pace-progress{background:#3273dc;position:fixed;z-index:2000;top:0;right:100%;width:100%;height:2px}</style><script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><!--!--><!--!--><script data-ad-client="ca-pub-8793345906937947" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js" async></script><!-- hexo injector head_end start --><script>
-  (function () {
-      function switchTab() {
-          if (!location.hash) {
-            return;
-          }
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.0.0">
 
-          const id = '#' + CSS.escape(location.hash.substring(1));
-          const $tabMenu = document.querySelector(`.tabs a[href="${id}"]`);
-          if (!$tabMenu) {
-            return;
-          }
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
 
-          const $tabMenuContainer = $tabMenu.parentElement.parentElement;
-          Array.from($tabMenuContainer.children).forEach($menu => $menu.classList.remove('is-active'));
-          Array.from($tabMenuContainer.querySelectorAll('a'))
-              .map($menu => document.getElementById($menu.getAttribute("href").substring(1)))
-              .forEach($content => $content.classList.add('is-hidden'));
+<link rel="stylesheet" href="/css/main.css">
 
-          if ($tabMenu) {
-              $tabMenu.parentElement.classList.add('is-active');
-          }
-          const $activeTab = document.querySelector(id);
-          if ($activeTab) {
-              $activeTab.classList.remove('is-hidden');
-          }
-      }
-      switchTab();
-      window.addEventListener('hashchange', switchTab, false);
-  })();
-  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="安全代码" type="application/atom+xml">
-</head><body class="is-3-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/">安全代码</a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/tags">Tags</a><a class="navbar-item" href="/about">About</a></div><div class="navbar-end"><a class="navbar-item search" title="Search" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-6-widescreen"><div class="card"><div class="card-content"><nav class="breadcrumb" aria-label="breadcrumbs"><ul><li><a href="/tags">Tags</a></li><li class="is-active"><a href="#" aria-current="page">Archives</a></li></ul></nav></div></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2023-02-08T16:00:00.000Z" title="2023/2/9 00:00:00">2023-02-09</time></span><span class="level-item">Updated&nbsp;<time dateTime="2023-02-08T16:00:00.000Z" title="2023/2/9 00:00:00">2023-02-09</time></span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/cn/How%20to%20be%20successful/">How to be successful</a></p><div class="content"><p>source: <a target="_blank" rel="noopener" href="https://blog.samaltman.com/how-to-be-successful">https://blog.samaltman.com/how-to-be-successful</a></p>
-<p>I’ve observed thousands of founders and thought a lot about what it takes to make a huge amount of money or to create something important. Usually, people start off wanting the former and end up wanting the latter.</p>
-<p>Here are 13 thoughts about how to achieve such outlier success. Everything here is easier to do once you’ve already reached a baseline degree of success (through privilege or effort) and want to put in the work to turn that into outlier success. [1] But much of it applies to anyone.</p>
-<h2 id="1-Compound-yourself"><a href="#1-Compound-yourself" class="headerlink" title="1. Compound yourself"></a>1. Compound yourself</h2><p>Compounding is magic. Look for it everywhere. Exponential curves are the key to wealth generation.</p>
-<p>A medium-sized business that grows 50% in value every year becomes huge in a very short amount of time. Few businesses in the world have true network effects and extreme scalability. But with technology, more and more will.  It’s worth a lot of effort to find them and create them.</p>
-<p>You also want to be an exponential curve yourself—you should aim for your life to follow an ever-increasing up-and-to-the-right trajectory. It’s important to move towards a career that has a compounding effect—most careers progress fairly linearly.</p>
-<p>You don’t want to be in a career where people who have been doing it for two years can be as effective as people who have been doing it for twenty—your rate of learning should always be high. As your career progresses, each unit of work you do should generate more and more results. There are many ways to get this leverage, such as capital, technology, brand, network effects, and managing people.</p>
-<p>It’s useful to focus on adding another zero to whatever you define as your success metric—money, status, impact on the world, or whatever. I am willing to take as much time as needed between projects to find my next thing. But I always want it to be a project that, if successful, will make the rest of my career look like a footnote.</p>
-<p>Most people get bogged down in linear opportunities. Be willing to let small opportunities go to focus on potential step changes.</p>
-<p>I think the biggest competitive advantage in business—either for a company or for an individual’s career—is long-term thinking with a broad view of how different systems in the world are going to come together. One of the notable aspects of compound growth is that the furthest out years are the most important. In a world where almost no one takes a truly long-term view, the market richly rewards those who do.</p>
-<p>Trust the exponential, be patient, and be pleasantly surprised.</p>
-<h2 id="2-Have-almost-too-much-self-belief"><a href="#2-Have-almost-too-much-self-belief" class="headerlink" title="2. Have almost too much self-belief"></a>2. Have almost too much self-belief</h2><p>Self-belief is immensely powerful. The most successful people I know believe in themselves almost to the point of delusion.</p>
-<p>Cultivate this early. As you get more data points that your judgment is good and you can consistently deliver results, trust yourself more.</p>
-<p>If you don’t believe in yourself, it’s hard to let yourself have contrarian ideas about the future. But this is where most value gets created.</p>
-<p>I remember when Elon Musk took me on a tour of the SpaceX factory many years ago. He talked in detail about manufacturing every part of the rocket, but the thing that sticks in memory was the look of absolute certainty on his face when he talked about sending large rockets to Mars. I left thinking “huh, so that’s the benchmark for what conviction looks like.”</p>
-<p>Managing your own morale—and your team’s morale—is one of the greatest challenges of most endeavors. It’s almost impossible without a lot of self-belief. And unfortunately, the more ambitious you are, the more the world will try to tear you down.  </p>
-<p>Most highly successful people have been really right about the future at least once at a time when people thought they were wrong. If not, they would have faced much more competition.</p>
-<p>Self-belief must be balanced with self-awareness. I used to hate criticism of any sort and actively avoided it. Now I try to always listen to it with the assumption that it’s true, and then decide if I want to act on it or not. Truth-seeking is hard and often painful, but it is what separates self-belief from self-delusion.</p>
-<p>This balance also helps you avoid coming across as entitled and out of touch.</p>
-<h2 id="3-Learn-to-think-independently"><a href="#3-Learn-to-think-independently" class="headerlink" title="3. Learn to think independently"></a>3. Learn to think independently</h2><p>Entrepreneurship is very difficult to teach because original thinking is very difficult to teach. School is not set up to teach this—in fact, it generally rewards the opposite. So you have to cultivate it on your own.</p>
-<p>Thinking from first principles and trying to generate new ideas is fun, and finding people to exchange them with is a great way to get better at this. The next step is to find easy, fast ways to test these ideas in the real world.</p>
-<p>“I will fail many times, and I will be really right once” is the entrepreneurs’ way. You have to give yourself a lot of chances to get lucky.</p>
-<p>One of the most powerful lessons to learn is that you can figure out what to do in situations that seem to have no solution. The more times you do this, the more you will believe it. Grit comes from learning you can get back up after you get knocked down.</p>
-<h2 id="4-Get-good-at-“sales”"><a href="#4-Get-good-at-“sales”" class="headerlink" title="4. Get good at “sales”"></a>4. Get good at “sales”</h2><p>Self-belief alone is not sufficient—you also have to be able to convince other people of what you believe.</p>
-<p>All great careers, to some degree, become sales jobs. You have to evangelize your plans to customers, prospective employees, the press, investors, etc. This requires an inspiring vision, strong communication skills, some degree of charisma, and evidence of execution ability.</p>
-<p>Getting good at communication—particularly written communication—is an investment worth making. My best advice for communicating clearly is to first make sure your thinking is clear and then use plain, concise language.</p>
-<p>The best way to be good at sales is to genuinely believe in what you’re selling. Selling what you truly believe in feels great, and trying to sell snake oil feels awful.</p>
-<p>Getting good at sales is like improving at any other skill—anyone can get better at it with deliberate practice. But for some reason, perhaps because it feels distasteful, many people treat it as something unlearnable.</p>
-<p>My other big sales tip is to show up in person whenever it’s important. When I was first starting out, I was always willing to get on a plane. It was frequently unnecessary, but three times it led to career-making turning points for me that otherwise would have gone the other way.</p>
-<h2 id="5-Make-it-easy-to-take-risks"><a href="#5-Make-it-easy-to-take-risks" class="headerlink" title="5. Make it easy to take risks"></a>5. Make it easy to take risks</h2><p>Most people overestimate risk and underestimate reward. Taking risks is important because it’s impossible to be right all the time—you have to try many things and adapt quickly as you learn more.</p>
-<p>It’s often easier to take risks early in your career; you don’t have much to lose, and you potentially have a lot to gain. Once you’ve gotten yourself to a point where you have your basic obligations covered you should try to make it easy to take risks. Look for small bets you can make where you lose 1x if you’re wrong but make 100x if it works. Then make a bigger bet in that direction.</p>
-<p>Don’t save up for too long, though. At YC, we’ve often noticed a problem with founders that have spent a lot of time working at Google or Facebook. When people get used to a comfortable life, a predictable job, and a reputation of succeeding at whatever they do, it gets very hard to leave that behind (and people have an incredible ability to always match their lifestyle to next year’s salary). Even if they do leave, the temptation to return is great. It’s easy—and human nature—to prioritize short-term gain and convenience over long-term fulfillment.  </p>
-<p>But when you aren’t on the treadmill, you can follow your hunches and spend time on things that might turn out to be really interesting. Keeping your life cheap and flexible for as long as you can is a powerful way to do this, but obviously comes with tradeoffs.</p>
-<h2 id="6-Focus"><a href="#6-Focus" class="headerlink" title="6. Focus"></a>6. Focus</h2><p>Focus is a force multiplier on work.</p>
-<p>Almost everyone I’ve ever met would be well-served by spending more time thinking about what to focus on. It is much more important to work on the right thing than it is to work many hours. Most people waste most of their time on stuff that doesn’t matter.</p>
-<p>Once you have figured out what to do, be unstoppable about getting your small handful of priorities accomplished quickly. I have yet to meet a slow-moving person who is very successful.</p>
-<h2 id="7-Work-hard"><a href="#7-Work-hard" class="headerlink" title="7. Work hard"></a>7. Work hard</h2><p>You can get to about the 90th percentile in your field by working either smart or hard, which is still a great accomplishment. But getting to the 99th percentile requires both—you will be competing with other very talented people who will have great ideas and be willing to work a lot.</p>
-<p>Extreme people get extreme results. Working a lot comes with huge life trade-offs, and it’s perfectly rational to decide not to do it. But it has a lot of advantages. As in most cases, momentum compounds, and success begets success.</p>
-<p>And it’s often really fun. One of the great joys in life is finding your purpose, excelling at it, and discovering that your impact matters to something larger than yourself. A YC founder recently expressed great surprise about how much happier and more fulfilled he was after leaving his job at a big company and working towards his maximum possible impact. Working hard at that should be celebrated.  </p>
-<p>It’s not entirely clear to me why working hard has become a Bad Thing in certain parts of the US, but this is certainly not the case in other parts of the world—the amount of energy and drive exhibited by entrepreneurs outside of the US is quickly becoming the new benchmark.</p>
-<p>You have to figure out how to work hard without burning out. People find their own strategies for this, but one that almost always works is to find work you like doing with people you enjoy spending a lot of time with.</p>
-<p>I think people who pretend you can be super successful professionally without working most of the time (for some period of your life) are doing a disservice. In fact, work stamina seems to be one of the biggest predictors of long-term success.</p>
-<p>One more thought about working hard: do it at the beginning of your career. Hard work compounds like interest, and the earlier you do it, the more time you have for the benefits to pay off. It’s also easier to work hard when you have fewer other responsibilities, which is frequently but not always the case when you’re young.</p>
-<h2 id="8-Be-bold"><a href="#8-Be-bold" class="headerlink" title="8. Be bold"></a>8. Be bold</h2><p>I believe that it’s easier to do a hard startup than an easy startup. People want to be part of something exciting and feel that their work matters.</p>
-<p>If you are making progress on an important problem, you will have a constant tailwind of people wanting to help you. Let yourself grow more ambitious, and don’t be afraid to work on what you really want to work on.</p>
-<p>If everyone else is starting meme companies, and you want to start a gene-editing company, then do that and don’t second guess it.</p>
-<p>Follow your curiosity. Things that seem exciting to you will often seem exciting to other people too.</p>
-<h2 id="9-Be-willful"><a href="#9-Be-willful" class="headerlink" title="9. Be willful"></a>9. Be willful</h2><p>A big secret is that you can bend the world to your will a surprising percentage of the time—most people don’t even try, and just accept that things are the way that they are.</p>
-<p>People have an enormous capacity to make things happen. A combination of self-doubt, giving up too early, and not pushing hard enough prevents most people from ever reaching anywhere near their potential.</p>
-<p>Ask for what you want. You usually won’t get it, and often the rejection will be painful. But when this works, it works surprisingly well.</p>
-<p>Almost always, the people who say “I am going to keep going until this works, and no matter what the challenges are I’m going to figure them out”, and mean it, go on to succeed. They are persistent long enough to give themselves a chance for luck to go their way.</p>
-<p>Airbnb is my benchmark for this. There are so many stories they tell that I wouldn’t recommend trying to reproduce (keeping maxed-out credit cards in those nine-slot three-ring binder pages kids use for baseball cards, eating dollar store cereal for every meal, battle after battle with powerful entrenched interest, and on and on) but they managed to survive long enough for luck to go their way.</p>
-<p>To be willful, you have to be optimistic—hopefully this is a personality trait that can be improved with practice. I have never met a very successful pessimistic person.</p>
-<h2 id="10-Be-hard-to-compete-with"><a href="#10-Be-hard-to-compete-with" class="headerlink" title="10. Be hard to compete with"></a>10. Be hard to compete with</h2><p>Most people understand that companies are more valuable if they are difficult to compete with. This is important, and obviously true.</p>
-<p>But this holds true for you as an individual as well. If what you do can be done by someone else, it eventually will be, and for less money.</p>
-<p>The best way to become difficult to compete with is to build up leverage. For example, you can do it with personal relationships, by building a strong personal brand, or by getting good at the intersection of multiple different fields. There are many other strategies, but you have to figure out some way to do it.</p>
-<p>Most people do whatever most people they hang out with do. This mimetic behavior is usually a mistake—if you’re doing the same thing everyone else is doing, you will not be hard to compete with.</p>
-<h2 id="11-Build-a-network"><a href="#11-Build-a-network" class="headerlink" title="11. Build a network"></a>11. Build a network</h2><p>Great work requires teams. Developing a network of talented people to work with—sometimes closely, sometimes loosely—is an essential part of a great career. The size of the network of really talented people you know often becomes the limiter for what you can accomplish.</p>
-<p>An effective way to build a network is to help people as much as you can. Doing this, over a long period of time, is what lead to most of my best career opportunities and three of my four best investments. I’m continually surprised how often something good happens to me because of something I did to help a founder ten years ago.</p>
-<p>One of the best ways to build a network is to develop a reputation for really taking care of the people who work with you. Be overly generous with sharing the upside; it will come back to you 10x. Also, learn how to evaluate what people are great at, and put them in those roles. (This is the most important thing I have learned about management, and I haven’t read much about it.) You want to have a reputation for pushing people hard enough that they accomplish more than they thought they could, but not so hard they burn out.</p>
-<p>Everyone is better at some things than others. Define yourself by your strengths, not your weaknesses. Acknowledge your weaknesses and figure out how to work around them, but don’t let them stop you from doing what you want to do. “I can’t do X because I’m not good at Y” is something I hear from entrepreneurs surprisingly often, and almost always reflects a lack of creativity. The best way to make up for your weaknesses is to hire complementary team members instead of just hiring people who are good at the same things you are.</p>
-<p>A particularly valuable part of building a network is to get good at discovering undiscovered talent. Quickly spotting intelligence, drive, and creativity gets much easier with practice. The easiest way to learn is just to meet a lot of people, and keep track of who goes on to impress you and who doesn’t. Remember that you are mostly looking for rate of improvement, and don’t overvalue experience or current accomplishment.</p>
-<p>I try to always ask myself when I meet someone new “is this person a force of nature?” It’s a pretty good heuristic for finding people who are likely to accomplish great things.</p>
-<p>A special case of developing a network is finding someone eminent to take a bet on you, ideally early in your career. The best way to do this, no surprise, is to go out of your way to be helpful. (And remember that you have to pay this forward at some point later!)</p>
-<p>Finally, remember to spend your time with positive people who support your ambitions.</p>
-<h2 id="12-You-get-rich-by-owning-things"><a href="#12-You-get-rich-by-owning-things" class="headerlink" title="12. You get rich by owning things"></a>12. You get rich by owning things</h2><p>The biggest economic misunderstanding of my childhood was that people got rich from high salaries. Though there are some exceptions—entertainers for example —almost no one in the history of the Forbes list has gotten there with a salary.</p>
-<p>You get truly rich by owning things that increase rapidly in value.</p>
-<p>This can be a piece of a business, real estate, natural resource, intellectual property, or other similar things. But somehow or other, you need to own equity in something, instead of just selling your time. Time only scales linearly.</p>
-<p>The best way to make things that increase rapidly in value is by making things people want at scale.</p>
-<h2 id="13-Be-internally-driven"><a href="#13-Be-internally-driven" class="headerlink" title="13. Be internally driven"></a>13. Be internally driven</h2><p>Most people are primarily externally driven; they do what they do because they want to impress other people. This is bad for many reasons, but here are two important ones.</p>
-<p>First, you will work on consensus ideas and on consensus career tracks.  You will care a lot—much more than you realize—if other people think you’re doing the right thing. This will probably prevent you from doing truly interesting work, and even if you do, someone else would have done it anyway.</p>
-<p>Second, you will usually get risk calculations wrong. You’ll be very focused on keeping up with other people and not falling behind in competitive games, even in the short term.</p>
-<p>Smart people seem to be especially at risk of such externally-driven behavior. Being aware of it helps, but only a little—you will likely have to work super-hard to not fall in the mimetic trap.</p>
-<p>The most successful people I know are primarily internally driven; they do what they do to impress themselves and because they feel compelled to make something happen in the world. After you’ve made enough money to buy whatever you want and gotten enough social status that it stops being fun to get more, this is the only force I know of that will continue to drive you to higher levels of performance.</p>
-<p>This is why the question of a person’s motivation is so important. It’s the first thing I try to understand about someone. The right motivations are hard to define a set of rules for, but you know it when you see it.</p>
-<p>Jessica Livingston and Paul Graham are my benchmarks for this. YC was widely mocked for the first few years, and almost no one thought it would be a big success when they first started. But they thought it would be great for the world if it worked, and they love helping people, and they were convinced their new model was better than the existing model.</p>
-<p>Eventually, you will define your success by performing excellent work in areas that are important to you. The sooner you can start off in that direction, the further you will be able to go. It is hard to be wildly successful at anything you aren’t obsessed with.</p>
-<h2 id="1-A-comment-response-I-wrote-on-HN"><a href="#1-A-comment-response-I-wrote-on-HN" class="headerlink" title="[1] A comment response I wrote on HN:"></a>[1] A comment response I wrote on HN:</h2><p>One of the biggest reasons I’m excited about basic income is the amount of human potential it will unleash by freeing more people to take risks.<br>Until then, if you aren’t born lucky, you have to claw your way up for awhile before you can take big swings. If you are born in extreme poverty, then this is super difficult :(</p>
-<p>It is obviously an incredible shame and waste that opportunity is so unevenly distributed. But I’ve witnessed enough people be born with the deck stacked badly against them and go on to incredible success to know it’s possible.</p>
-<p>I am deeply aware of the fact that I personally would not be where I am if I weren’t born incredibly lucky.</p>
-<p>Thanks to Brian Armstrong, Greg Brockman, Dalton Caldwell, Diane von Furstenberg, Maddie Hall, Drew Houston, Vinod Khosla, Jessica Livingston, Jon Levy, Luke Miles (6 drafts!), Michael Moritz, Ali Rowghani, Michael Seibel, Peter Thiel, Tracy Young and Shivon Zilis for reviewing drafts of this, and thanks especially to Lachy Groom for help writing it.</p>
-<h2 id="以下是-DeepL-的翻译"><a href="#以下是-DeepL-的翻译" class="headerlink" title="以下是 DeepL 的翻译"></a>以下是 DeepL 的翻译</h2><p>标题： 如何获得成功</p>
-<p>我观察了数以千计的创始人，并思考了很多关于赚取巨额金钱或创造重要事物所需的东西。通常情况下，人们一开始希望得到前者，最后却希望得到后者。</p>
-<p>这里有13个关于如何实现这种超常成功的想法。一旦你已经达到了成功的基本程度（通过特权或努力），并想投入工作将其转化为离群的成功，这里的一切就更容易做到。[1] 但其中大部分内容适用于任何人。</p>
-<h2 id="1-复利自己"><a href="#1-复利自己" class="headerlink" title="1. 复利自己"></a>1. 复利自己</h2><p>复利是一种魔法。到处寻找它。指数曲线是创造财富的关键。</p>
-<p>一个中等规模的企业，如果每年的价值增长50%，就会在很短的时间内变得巨大。世界上很少有企业拥有真正的网络效应和极端的可扩展性。但随着技术的发展，会有越来越多的企业。 值得花大力气去寻找它们，创造它们。</p>
-<p>你也想让自己成为一条指数曲线–你的目标应该是让你的生活遵循一条不断增加的向上和向右的轨迹。重要的是，要朝着具有复合效应的职业发展–大多数职业的发展是相当线性的。</p>
-<p>你不希望在一个职业中，做了两年的人可以和做了二十年的人一样有效–你的学习率应该一直很高。随着你事业的发展，你所做的每一个单位的工作应该产生越来越多的结果。有很多方法可以获得这种杠杆作用，如资本、技术、品牌、网络效应和管理人。</p>
-<p>不管你把什么定义为你的成功指标–金钱、地位、对世界的影响，或者其他什么，专注于再加一个零是很有用的。我愿意在项目之间花尽可能多的时间来寻找我的下一件事。但我总是希望它是一个项目，如果成功，将使我职业生涯的其余部分看起来像一个脚注。</p>
-<p>大多数人在线性机会中陷入困境。要愿意让小的机会消失，以专注于潜在的步骤变化。</p>
-<p>我认为商业上最大的竞争优势–无论是对公司还是对个人的职业生涯–是长期的思考，对世界上不同的系统如何结合起来有一个广泛的看法。复合增长的一个显著方面是，最远的年份是最重要的。在这个世界上，几乎没有人采取真正的长期观点，市场对那些这样做的人给予了丰厚的回报。</p>
-<p>相信指数，要有耐心，并获得惊喜。</p>
-<h2 id="2-拥有几乎太多的自信心"><a href="#2-拥有几乎太多的自信心" class="headerlink" title="2. 拥有几乎太多的自信心"></a>2. 拥有几乎太多的自信心</h2><p>自信的力量是巨大的。我认识的最成功的人对自己的信念几乎达到了妄想的程度。</p>
-<p>尽早培养这种信念。当你得到更多的数据，证明你的判断力是好的，而且你能持续提供结果时，就更加相信自己。</p>
-<p>如果你不相信自己，就很难让自己对未来有逆向的想法。但这是最能创造价值的地方。</p>
-<p>我记得很多年前，埃隆-马斯克带我参观了SpaceX的工厂。他详细谈论了火箭的每一个部分的制造，但让我记忆犹新的是，当他谈到将大型火箭送往火星时，他脸上露出了绝对肯定的表情。我离开时想：”啊，原来这就是信念的基准。”</p>
-<p>管理你自己的士气–以及你的团队的士气–是大多数工作的最大挑战之一。如果没有足够的自信心，这几乎是不可能的。不幸的是，你越有雄心壮志，世界就越想把你打倒。 </p>
-<p>大多数高度成功的人至少有一次在人们认为他们错了的时候，对未来的看法是真正正确的。如果不是这样，他们会面临更多的竞争。</p>
-<p>自信必须与自我意识相平衡。我曾经讨厌任何形式的批评，并主动回避它。现在，我试着总是在假设它是真实的情况下听取它，然后决定是否要采取行动。寻求真理是困难的，而且常常是痛苦的，但它是区分自信心和自欺欺人的原因。</p>
-<p>这种平衡也有助于你避免表现出有权和不合群的样子。</p>
-<h2 id="3-学会独立思考"><a href="#3-学会独立思考" class="headerlink" title="3. 学会独立思考"></a>3. 学会独立思考</h2><p>创业精神是很难教的，因为原创性思维是很难教的。学校的设置不是为了教这个–事实上，它通常奖励相反的东西。所以你必须自己培养它。</p>
-<p>从第一原则出发思考并试图产生新的想法是很有趣的，而找到与之交流的人是在这方面做得更好的一个好方法。下一步是找到简单、快速的方法，在现实世界中测试这些想法。</p>
-<p>“我会失败很多次，而我真的会对一次 “是企业家的方式。你必须给自己很多机会来获得幸运。</p>
-<p>要学习的最有力的课程之一是，你可以在似乎没有解决方案的情况下想出办法。你这样做的次数越多，你就会越相信它。勇气来自于学习你可以在被击倒后重新站起来。</p>
-<h2 id="4-善于-“销售”"><a href="#4-善于-“销售”" class="headerlink" title="4. 善于 “销售”"></a>4. 善于 “销售”</h2><p>光有自信心是不够的，你还必须能够说服其他人相信你的想法。</p>
-<p>所有伟大的事业，在某种程度上，都成为销售工作。你必须向客户、未来的员工、媒体、投资者等宣扬你的计划。这需要一个鼓舞人心的愿景，强大的沟通技巧，一定程度的魅力，以及执行能力的证明。</p>
-<p>善于沟通，特别是书面沟通，是一项值得投资的工作。我对清晰沟通的最佳建议是，首先确保你的思路清晰，然后使用平实、简明的语言。</p>
-<p>做好销售的最好方法是真正相信你所销售的东西。销售你真正相信的东西感觉很好，而试图销售蛇油的感觉很糟糕。</p>
-<p>擅长销售就像提高其他技能一样，任何人都可以通过刻意练习而变得更好。但出于某种原因，也许是因为它让人感到厌恶，许多人把它当作无法学习的东西。</p>
-<p>我的另一个重要的销售建议是在重要的时候亲自出面。当我刚开始工作时，我总是愿意坐飞机。这经常是不必要的，但有三次它导致了我的职业生涯的转折点，否则就会走到另一个方向。</p>
-<h2 id="5-让人容易承担风险"><a href="#5-让人容易承担风险" class="headerlink" title="5.让人容易承担风险"></a>5.让人容易承担风险</h2><p>大多数人高估了风险，低估了回报。承担风险是很重要的，因为你不可能一直都是正确的，你必须尝试很多东西，并在你学到更多东西时迅速适应。</p>
-<p>在你职业生涯的早期，往往更容易承担风险；你没有什么损失，而你有可能获得很多。一旦你让自己的基本义务得到保障，你就应该试着让自己容易承担风险。寻找你可以做的小赌注，如果你错了，你会损失1倍，但如果成功了，会赚100倍。然后朝着这个方向做一个更大的赌注。</p>
-<p>不过，不要积攒太久。在YC，我们经常注意到那些在谷歌或Facebook工作了很长时间的创始人的一个问题。当人们习惯了舒适的生活，可预测的工作，以及无论做什么都能成功的声誉时，就很难将其抛在脑后（人们有一种难以置信的能力，总是将自己的生活方式与明年的工资相匹配）。即使他们真的离开了，返回的诱惑也很大。将短期利益和便利性置于长期成就之上是很容易的，也是人类的天性。 </p>
-<p>但是，当你不在跑步机上时，你可以跟随你的直觉，把时间花在那些可能变成真正有趣的事情上。在尽可能长的时间内保持你的生活廉价和灵活是一个强大的方法，但显然是有代价的。</p>
-<h2 id="6-专注"><a href="#6-专注" class="headerlink" title="6. 专注"></a>6. 专注</h2><p>专注是工作中的一种力量倍增器。</p>
-<p>我见过的几乎每个人都会花更多的时间来思考该专注于什么。在正确的事情上工作比在许多时间上工作要重要得多。大多数人把大部分时间浪费在不重要的事情上。</p>
-<p>一旦你想清楚了要做什么，就要势不可挡地迅速完成你那一小撮优先事项。我还没有见过一个行动缓慢的人非常成功。</p>
-<h2 id="7-努力工作"><a href="#7-努力工作" class="headerlink" title="7. 努力工作"></a>7. 努力工作</h2><p>你可以通过聪明或努力工作达到你所在领域的第90个百分点，这仍然是一个伟大的成就。但是，要想达到第99百分位数，则需要两者兼备–你将与其他非常有才华的人竞争，他们会有很好的想法，并愿意付出很多努力。</p>
-<p>极端的人得到极端的结果。大量工作伴随着巨大的生活权衡，决定不这样做是完全理性的。但它也有很多优点。就像在大多数情况下一样，势头会越来越大，成功会带来成功。</p>
-<p>而且它往往非常有趣。生活中最大的乐趣之一是找到你的目的，在这方面表现出色，并发现你的影响比你自己更重要。一位YC的创始人最近表示非常惊讶，在离开大公司的工作后，他变得更加快乐和充实，并为自己的最大影响力而努力。在这一点上努力工作应该得到赞许。 </p>
-<p>我并不完全清楚为什么在美国的某些地方，努力工作已经成为一件坏事，但在世界其他地方肯定不是这样的–美国以外的企业家所表现出来的能量和动力正迅速成为新的基准。</p>
-<p>你必须弄清楚如何努力工作而不至于筋疲力尽。人们为此找到自己的策略，但有一个几乎总是有效的策略是找到你喜欢的工作，与你喜欢花很多时间的人一起工作。</p>
-<p>我认为那些假装你可以在职业上取得巨大成功而不需要大部分时间（在你生命中的某个时期）工作的人是在做一件坏事。事实上，工作耐力似乎是长期成功的最大预测因素之一。</p>
-<p>关于努力工作还有一个想法：在你的职业生涯开始时就努力工作。艰苦的工作就像利息一样复利，你越早做，你就有越多的时间来获得回报。当你有较少的其他责任时，也更容易努力工作，这在你年轻的时候经常发生，但并不总是这样。</p>
-<h2 id="8-大胆一点"><a href="#8-大胆一点" class="headerlink" title="8. 大胆一点"></a>8. 大胆一点</h2><p>我相信，做一个艰难的创业公司比做一个容易的创业公司更容易。人们希望成为令人兴奋的事情的一部分，并感到他们的工作很重要。</p>
-<p>如果你在一个重要的问题上取得了进展，你将会有一个持续的尾巴，人们想要帮助你。让自己变得更有野心，不要害怕从事你真正想做的工作。</p>
-<p>如果其他人都在创办备忘录公司，而你想创办一家基因编辑公司，那就去做，不要猜测。</p>
-<p>遵循你的好奇心。对你来说似乎很兴奋的事情，往往也会让其他人感到兴奋。</p>
-<h2 id="9-要有意志力"><a href="#9-要有意志力" class="headerlink" title="9.要有意志力"></a>9.要有意志力</h2><p>一个很大的秘密是，你可以在令人惊讶的时间内使世界屈服于你的意志，大多数人甚至没有尝试，而只是接受事情是他们的方式。</p>
-<p>人们有一种巨大的能力来使事情发生。自我怀疑、过早放弃和不够努力等因素结合在一起，使大多数人无法达到接近其潜力的程度。</p>
-<p>要求得到你想要的东西。你通常不会得到它，而且往往拒绝会很痛苦。但当这一方法奏效时，它的效果出奇地好。</p>
-<p>几乎总是这样，那些说 “我要一直走下去，直到成功为止，不管有什么挑战，我都要把它们解决掉 “的人，并且是认真的，会继续取得成功。他们坚持了足够长的时间，给自己一个机会，让幸运降临到他们身上。</p>
-<p>Airbnb是我在这方面的基准。他们有很多故事，我不建议尝试复制（把刷爆的信用卡放在孩子们用来装棒球卡的九槽三环夹子里，每顿都吃一元店的麦片，与强大的利益集团进行一场又一场的斗争，等等），但他们设法生存了足够长的时间，让运气顺着他们。</p>
-<p>要想成为有意志力的人，你必须要乐观–希望这是一个可以通过实践来改善的人格特质。我从未见过一个非常成功的悲观主义者。</p>
-<h2 id="10-很难与之竞争"><a href="#10-很难与之竞争" class="headerlink" title="10. 很难与之竞争"></a>10. 很难与之竞争</h2><p>大多数人都明白，如果公司难以与之竞争，就更有价值。这很重要，显然也是事实。</p>
-<p>但这对作为个人的你也是如此。如果你所做的事情可以由别人来做，那么最终就会由别人来做，而且花的钱更少。</p>
-<p>变得难以与之竞争的最好方法是建立杠杆。例如，你可以通过个人关系，通过建立一个强大的个人品牌，或者通过在多个不同领域的交叉点上获得优势来做到这一点。还有许多其他策略，但你必须想出一些办法来做。</p>
-<p>大多数人做他们所交往的大多数人做的事。这种模仿行为通常是个错误–如果你做的是别人都在做的事情，你将不难与之竞争。</p>
-<h2 id="11-建立一个网络"><a href="#11-建立一个网络" class="headerlink" title="11. 建立一个网络"></a>11. 建立一个网络</h2><p>伟大的工作需要团队。发展一个由有才华的人组成的工作网络–有时是紧密的，有时是松散的–是伟大事业的一个重要组成部分。你所认识的真正有才华的人的网络的大小往往成为你能取得成就的限制因素。</p>
-<p>建立网络的一个有效方法是尽可能地帮助别人。在很长一段时间内，这样做是导致我最好的职业机会和我四个最好的投资中的三个的原因。我不断感到惊讶，因为我十年前帮助一位创始人的事情，经常有好事发生在我身上。</p>
-<p>建立网络的最好方法之一是建立一个真正照顾到与你合作的人的声誉。要过分慷慨地分享好处；这将会给你带来10倍的回报。另外，学会如何评估人们的长处，并让他们担任这些职务。(这是我在管理方面学到的最重要的东西，而我并没有读过很多这方面的书）。你要有一个口碑，那就是把人逼得够狠，使他们的成就超过他们的想象，但又不至于让他们倦怠。</p>
-<p>每个人在某些方面都比其他人强。用你的优势来定义你自己，而不是你的弱点。承认你的弱点并想办法解决它们，但不要让它们阻止你做你想做的事。”我不能做X，因为我不擅长Y”，这是我经常从企业家那里听到的，而且几乎总是反映出缺乏创造力。弥补你的弱点的最好方法是雇用互补的团队成员，而不是仅仅雇用那些擅长你所做的同样事情的人。</p>
-<p>建立网络的一个特别有价值的部分是要善于发现未被发现的人才。通过练习，快速发现智慧、动力和创造力变得更加容易。最简单的学习方法就是认识很多人，并跟踪谁会给你留下深刻印象，谁不会。记住，你主要是在寻找改进的速度，不要高估经验或当前的成就。</p>
-<p>当我遇到新的人时，我试着总是问自己：”这个人是一个自然的力量吗？” 这是一个相当好的启发式方法，可以找到那些有可能完成伟大事业的人。</p>
-<p>发展网络的一个特殊情况是找到知名人士为你下注，最好是在你职业生涯的早期。要做到这一点，毫不奇怪，最好的办法是不遗余力地提供帮助。(请记住，你必须在以后的某个时间点上把这些钱交出来！）。</p>
-<p>最后，记得把你的时间花在支持你雄心壮志的积极人士身上。</p>
-<h2 id="12-你通过拥有东西而致富"><a href="#12-你通过拥有东西而致富" class="headerlink" title="12. 你通过拥有东西而致富"></a>12. 你通过拥有东西而致富</h2><p>我童年时最大的经济误区是人们通过高薪致富。虽然有一些例外–例如娱乐界人士–但在福布斯榜单的历史上，几乎没有人是靠工资获得的。</p>
-<p>你通过拥有快速增值的东西来获得真正的财富。</p>
-<p>这可以是一个企业的一部分，房地产，自然资源，知识产权，或其他类似的东西。但无论如何，你需要拥有某些东西的股权，而不是仅仅出售你的时间。时间只是线性扩展的。</p>
-<p>制造快速增值的东西的最好方法是大规模制造人们想要的东西。</p>
-<h2 id="13-要有内部驱动力"><a href="#13-要有内部驱动力" class="headerlink" title="13. 要有内部驱动力"></a>13. 要有内部驱动力</h2><p>大多数人主要是受外部驱动；他们做他们所做的事是因为他们想给其他人留下深刻印象。这有很多不好的原因，但这里有两个重要的原因。</p>
-<p>首先，你将在协商一致的想法和协商一致的职业轨道上工作。 你会非常关心–比你意识到的要多得多–其他人是否认为你在做正确的事情。这可能会阻止你做真正有趣的工作，即使你做了，别人也会做。</p>
-<p>第二，你通常会把风险计算弄错。你会非常专注于跟上别人的步伐，在竞争性游戏中不掉队，即使是在短期内。</p>
-<p>聪明人似乎特别容易出现这种外在驱动的行为。意识到这一点有帮助，但只是一点点–你很可能要付出超强的努力才不会落入模仿的陷阱。</p>
-<p>我所知道的最成功的人主要是由内部驱动的；他们所做的事情是为了给自己留下深刻印象，也是因为他们感到有必要在这个世界上有所作为。在你赚够了钱，可以买到你想要的任何东西，得到了足够的社会地位，不再以获得更多的东西为乐趣之后，这是我所知道的唯一的力量，会继续推动你达到更高的表现水平。</p>
-<p>这就是为什么一个人的动机问题是如此重要。这是我试图了解一个人的第一件事。正确的动机很难定义一套规则，但当你看到它时，你就会知道它。</p>
-<p>杰西卡-利文斯顿和保罗-格雷厄姆是我这方面的标杆。YC在最初几年被广泛嘲笑，在他们刚开始的时候几乎没有人认为它会大获成功。但他们认为，如果它能成功，对世界来说是件好事，而且他们喜欢帮助人，他们坚信他们的新模式比现有模式更好。</p>
-<p>最终，你将通过在对你很重要的领域进行出色的工作来定义你的成功。你越早朝这个方向起步，你就能走得越远。你很难在你不痴迷的事情上取得巨大的成功。</p>
-<h2 id="1-我在HN上写的一个评论回应。"><a href="#1-我在HN上写的一个评论回应。" class="headerlink" title="[1] 我在HN上写的一个评论回应。"></a>[1] 我在HN上写的一个评论回应。</h2><p>我对基本收入感到兴奋的最大原因之一是，它将通过释放更多的人去冒险而释放出大量的人类潜力。<br>在此之前，如果你不是天生的幸运儿，你必须在大摇大摆之前努力奋斗一阵子。如果你出生在极端贫困地区，那么这就超级困难了。</p>
-<p>机会分配如此不均，显然是一种难以置信的耻辱和浪费。但是，我已经目睹了足够多的人出生在对他们非常不利的环境中，并取得了令人难以置信的成功，所以我知道这是可能的。</p>
-<p>我深深地意识到，如果我不是生来就非常幸运，我个人就不会有现在的成就。</p>
-<p>感谢布莱恩-阿姆斯特朗、格雷格-布罗克曼、道尔顿-考德威尔、戴安-冯-弗斯滕伯格、麦迪-霍尔、德鲁-休斯顿、维诺德-科斯拉、杰西卡-利文斯顿、乔恩-利维、卢克-迈尔斯（6稿！）、迈克尔-莫里茨、阿里-罗格尼、迈克尔-塞贝尔、彼得-泰尔、特蕾西-杨和希文-齐利斯对本稿的审核，特别感谢拉奇-格罗姆帮助撰写。</p>
-</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2022-07-21T08:00:00.000Z" title="2022/7/21 16:00:00">2022-07-21</time></span><span class="level-item">Updated&nbsp;<time dateTime="2022-07-21T08:00:00.000Z" title="2022/7/21 16:00:00">2022-07-21</time></span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/cn/2022-07-21-When-Hypervisor-Met-Snapshot-Fuzzing/">When Hypervisor Met Snapshot Fuzzing</a></p><div class="content"><p>source: <a target="_blank" rel="noopener" href="https://null2root.github.io/blog/2022/07/21/When-Hypervisor-Met-Snapshot-Fuzzing.html">https://null2root.github.io/blog/2022/07/21/When-Hypervisor-Met-Snapshot-Fuzzing.html</a></p>
-<h1 id="1-Introduction"><a href="#1-Introduction" class="headerlink" title="1. Introduction"></a>1. Introduction</h1><p>Hypervisor was known as hard target to fuzz over several years. Even though, lots of prior pioneers( <a target="_blank" rel="noopener" href="https://rezer0dai.github.io/biug-bounties/">Peter Hlavaty</a>, <a target="_blank" rel="noopener" href="https://conference.hitb.org/hitbsecconf2021ams/materials/D2T2%20-%20Discovering%2010+%20Vulnerabilities%20in%20Virtualbox%20-%20Chen%20Nan.pdf">Chaitin Tech</a>, <a target="_blank" rel="noopener" href="https://starlabs.sg/blog/2020/04-adventures-in-hypervisor-oracle-virtualbox-research/#coverage-guided-fuzzing">StarLabs</a>, <a target="_blank" rel="noopener" href="https://github.com/SafeBreach-Labs/hAFL2">Peleg Hadar and Ophir Harpaz</a> and many others ) doing amazing work to overcome this limit and found interesting bugs.</p>
-<p>But it is not an easy topic for some fresh newbie like me to starts from the bottom. I think manual code( or binary ) auditing and static analysis could be only considerable options if I start my research a few years ago without <strong>What The Fuzz</strong>.</p>
-<p><a target="_blank" rel="noopener" href="https://github.com/0vercl0k/wtf">What The Fuzz</a>( a.k.a WTF ) is a snapshot-based fuzzer targeting Windows Ring-3 and Ring-0 component. WTF’s snapshot is based on memory dump both kernel and user-land. Because of that, WTF can not emulate any functionality which requires anything not within in-memory and can not create new process or thread because memory dump limited on single process. But WTF support <a target="_blank" rel="noopener" href="https://github.com/0vercl0k/wtf/blob/4a9bf55/src/wtf/bochscpu_backend.cc#L265">breakpoint Handler</a> which you can set breakpoint on <strong>any</strong> address within memory dump and if fuzz execution reaches that address, pre-defined breakpoint handler will be executed. Based on this, we can trying to overcome some limitation on WTF such as <a target="_blank" rel="noopener" href="https://github.com/0vercl0k/wtf/blob/main/src/wtf/fshooks.cc">file access</a>.</p>
-<p>I really love WTF’s flexibility and its potential, and I am going to show one of example usage of WTF on targeting Virtualbox to prove how awesome it is.</p>
-<h1 id="2-Developing-Fuzz-Module"><a href="#2-Developing-Fuzz-Module" class="headerlink" title="2. Developing Fuzz Module"></a>2. Developing Fuzz Module</h1><p>First, you should define your own fuzz module for your target. There are few examples on github( <a target="_blank" rel="noopener" href="https://github.com/0vercl0k/wtf/blob/main/src/wtf/fuzzer_hevd.cc">fuzzer_hevd.cc</a>, <a target="_blank" rel="noopener" href="https://github.com/0vercl0k/wtf/blob/main/src/wtf/fuzzer_tlv_server.cc">fuzzer_tlv_server.cc</a> ) and blog post( <a target="_blank" rel="noopener" href="https://blog.ret2.io/2021/07/21/wtf-snapshot-fuzzing/">ret2systems</a>, <a target="_blank" rel="noopener" href="https://doar-e.github.io/blog/2021/07/15/building-a-new-snapshot-fuzzer-fuzzing-ida/">Doar-e</a> ). </p>
-<p>My Target was Virtualbox’s <strong>SVGA</strong> component.</p>
-<p>SVGA is something like “<a target="_blank" rel="noopener" href="https://www.zerodayinitiative.com/blog/2021/1/6/mindshare-analysis-of-vmware-workstation-and-esxi-using-debug-symbols-from-flings">JavaScript of hypervisors</a>“. Because of its complex nature, many hypervisor bugs are oriented by SVGA. And that’s the reason why I choose it as a first target.</p>
-<p>VirtualBox have a function called <a target="_blank" rel="noopener" href="https://github.com/mdaniel/virtualbox-org-svn-vbox-trunk/blob/8fe9163/src/VBox/Devices/Graphics/DevVGA-SVGA.cpp#L4505">vmsvgaR3FifoLoop</a>. It <a target="_blank" rel="noopener" href="https://github.com/mdaniel/virtualbox-org-svn-vbox-trunk/blob/8fe9163/src/VBox/Devices/Graphics/DevVGA-SVGA.cpp#L4757">waits</a> until guest submit new command data through GPA. So this is a good spot( or should I call it <a target="_blank" rel="noopener" href="https://youtu.be/ZaOtY4i5w_U">source</a>? ) to take a snapshot.</p>
-<p>I set a breakpoint on <code>vmsvgaR3FifoLoop+4E2</code> to take snapshot. It is same position as <a target="_blank" rel="noopener" href="https://github.com/mdaniel/virtualbox-org-svn-vbox-trunk/blob/8fe9163/src/VBox/Devices/Graphics/DevVGA-SVGA.cpp#L4783">here</a>, start of switch-case routine for <a target="_blank" rel="noopener" href="https://github.com/mdaniel/virtualbox-org-svn-vbox-trunk/blob/8fe9163eabe8b7a7f14f29c88c13a458f38fe25e/src/VBox/Devices/Graphics/vmsvga_include/svga_reg.h#L152">SVGA</a> and <a target="_blank" rel="noopener" href="https://github.com/mdaniel/virtualbox-org-svn-vbox-trunk/blob/8fe9163eabe8b7a7f14f29c88c13a458f38fe25e/src/VBox/Additions/3D/mesa/mesa-17.3.9/src/gallium/drivers/svga/include/svga3d_cmd.h#L56">SVGA3D</a> command.</p>
-<p><img src="https://github.com/henices/pictures/raw/master/wtf-vbox-blahblah1.png" alt="blahblah1"></p>
-<p>After creating snapshot, I had to decide make it <a target="_blank" rel="noopener" href="https://github.com/0vercl0k/wtf/blob/main/src/wtf/fuzzer_tlv_server.cc">run multiple times in single execution</a> or <a target="_blank" rel="noopener" href="https://github.com/0vercl0k/wtf/blob/main/src/wtf/fuzzer_hevd.cc">not</a>. Because SVGA is consist of various commands like define, update, delete something…, I thought fuzz campaign must handle multiple SVGA commands during single round.</p>
-<p>First, I had to define structure to contains multiple testcases. Luckily, <a target="_blank" rel="noopener" href="https://twitter.com/0vercl0k">0vercl0k</a> already write <a target="_blank" rel="noopener" href="https://github.com/0vercl0k/wtf/blob/4a9bf55/src/wtf/fuzzer_tlv_server.cc#L24-L75">nice example</a> to doing that. So I did same thing as below.</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">define</span> SVGA_CMD_BODY_MAX 0xA000</span></span><br><span class="line"></span><br><span class="line"><span class="type">const</span> <span class="type">uint32_t</span> SvgaCmdList[] = &#123;<span class="number">1</span>, <span class="number">3</span>, <span class="number">19</span>, <span class="number">22</span>, <span class="number">25</span>, <span class="number">29</span>, <span class="number">30</span>, <span class="number">33</span>, <span class="number">34</span>, <span class="number">35</span>, <span class="number">36</span>, <span class="number">37</span>, <span class="number">38</span>, <span class="number">39</span>, <span class="number">40</span>, <span class="number">41</span>, <span class="number">42</span>, <span class="number">1040</span>, <span class="number">1041</span>, <span class="number">1042</span>, <span class="number">1043</span>, <span class="number">1044</span>, <span class="number">1046</span>, <span class="number">1047</span>, <span class="number">1048</span>, <span class="number">1049</span>, <span class="number">1050</span>, <span class="number">1051</span>, <span class="number">1052</span>, <span class="number">1053</span>, <span class="number">1054</span>, <span class="number">1055</span>, <span class="number">1056</span>, <span class="number">1057</span>, <span class="number">1058</span>, <span class="number">1059</span>, <span class="number">1060</span>, <span class="number">1061</span>, <span class="number">1062</span>, <span class="number">1063</span>, <span class="number">1064</span>, <span class="number">1065</span>, <span class="number">1066</span>, <span class="number">1067</span>, <span class="number">1068</span>, <span class="number">1069</span>, <span class="number">1070</span>, <span class="number">1071</span>, <span class="number">1072</span>, <span class="number">1073</span>, <span class="number">1074</span>, <span class="number">1075</span>, <span class="number">1076</span>, <span class="number">1077</span>, <span class="number">1078</span>, <span class="number">1079</span>, <span class="number">1080</span>, <span class="number">1081</span>&#125;;</span><br><span class="line"></span><br><span class="line"><span class="type">const</span> <span class="type">uint32_t</span> SvgaCmdListLen = <span class="number">58</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">SvgaCmd_t</span> &#123;</span><br><span class="line">  <span class="type">uint32_t</span> SvgaCmdCode;</span><br><span class="line">  std::vector&lt;<span class="type">uint8_t</span>&gt; SvgaBody;</span><br><span class="line">  <span class="built_in">NLOHMANN_DEFINE_TYPE_INTRUSIVE</span>(SvgaCmd_t, SvgaCmdCode, SvgaBody);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">SvgaCmds_t</span> &#123;</span><br><span class="line">  std::vector&lt;SvgaCmd_t&gt; SvgaCmds;</span><br><span class="line">  <span class="built_in">NLOHMANN_DEFINE_TYPE_INTRUSIVE</span>(SvgaCmds_t, SvgaCmds);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">struct</span> &#123;</span><br><span class="line">  std::deque&lt;SvgaCmd_t&gt; SvgaCmds;</span><br><span class="line">  CpuState_t Context;</span><br><span class="line">  <span class="type">uint8_t</span> SvgaCmdBody[SVGA_CMD_BODY_MAX];</span><br><span class="line">  <span class="type">uint32_t</span> SvgaCmdBodySize;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="type">void</span> <span class="title">RestoreGprs</span><span class="params">(Backend_t *B)</span> </span>&#123;</span><br><span class="line">    <span class="type">const</span> <span class="keyword">auto</span> &amp;C = Context;</span><br><span class="line">    B-&gt;<span class="built_in">Rsp</span>(C.Rsp);</span><br><span class="line">    B-&gt;<span class="built_in">Rip</span>(C.Rip);</span><br><span class="line">    B-&gt;<span class="built_in">Rax</span>(C.Rax);</span><br><span class="line">    B-&gt;<span class="built_in">Rbx</span>(C.Rbx);</span><br><span class="line">    B-&gt;<span class="built_in">Rcx</span>(C.Rcx);</span><br><span class="line">    B-&gt;<span class="built_in">Rdx</span>(C.Rdx);</span><br><span class="line">    B-&gt;<span class="built_in">Rsi</span>(C.Rsi);</span><br><span class="line">    B-&gt;<span class="built_in">Rdi</span>(C.Rdi);</span><br><span class="line">    B-&gt;<span class="built_in">R8</span>(C.R8);</span><br><span class="line">    B-&gt;<span class="built_in">R9</span>(C.R9);</span><br><span class="line">    B-&gt;<span class="built_in">R10</span>(C.R10);</span><br><span class="line">    B-&gt;<span class="built_in">R11</span>(C.R11);</span><br><span class="line">    B-&gt;<span class="built_in">R12</span>(C.R12);</span><br><span class="line">    B-&gt;<span class="built_in">R13</span>(C.R13);</span><br><span class="line">    B-&gt;<span class="built_in">R14</span>(C.R14);</span><br><span class="line">    B-&gt;<span class="built_in">R15</span>(C.R15);</span><br><span class="line">  &#125;</span><br><span class="line">&#125; GlobalState;</span><br><span class="line"></span><br><span class="line"><span class="function">SvgaCmds_t <span class="title">Deserialize</span><span class="params">(<span class="type">const</span> <span class="type">uint8_t</span> *Buffer, <span class="type">const</span> <span class="type">size_t</span> BufferSize)</span> </span>&#123;</span><br><span class="line">  <span class="type">const</span> <span class="keyword">auto</span> &amp;Root = json::json::<span class="built_in">parse</span>(Buffer, Buffer + BufferSize);</span><br><span class="line">  <span class="keyword">return</span> Root.<span class="built_in">get</span>&lt;SvgaCmds_t&gt;();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">bool</span> <span class="title">InsertTestcase</span><span class="params">(<span class="type">const</span> <span class="type">uint8_t</span> *Buffer, <span class="type">const</span> <span class="type">size_t</span> BufferSize)</span> </span>&#123;</span><br><span class="line">  GlobalState.SvgaCmds.<span class="built_in">clear</span>();</span><br><span class="line"></span><br><span class="line">  <span class="type">const</span> <span class="keyword">auto</span> &amp;Root = <span class="built_in">Deserialize</span>(Buffer, BufferSize);</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">auto</span> SvgaCmd : Root.SvgaCmds) &#123;</span><br><span class="line">    GlobalState.SvgaCmds.<span class="built_in">emplace_back</span>(std::<span class="built_in">move</span>(SvgaCmd));</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>It is almost identical as example.</p>
-<p>Next question was, how can I insert data into snapshot? I had to find a insertion point and proper memory address. Luckily( again ), VirtualBox using a function called <a target="_blank" rel="noopener" href="https://github.com/mdaniel/virtualbox-org-svn-vbox-trunk/blob/8fe9163/src/VBox/Devices/Graphics/DevVGA-SVGA.cpp#L4183">vmsvgaR3FifoGetCmdPayload</a> to receive command data from guest to host. I define a breakpoint handler in <code>Init()</code> callback function as below.</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="comment">// unsigned __int8 *__fastcall vmsvgaR3FifoGetCmdPayload(</span></span><br><span class="line"><span class="comment">//       unsigned int cbPayloadReq,</span></span><br><span class="line"><span class="comment">//       volatile unsigned int *pFIFO,</span></span><br><span class="line"><span class="comment">//       unsigned int offCurrentCmd,</span></span><br><span class="line"><span class="comment">//       unsigned int offFifoMin,</span></span><br><span class="line"><span class="comment">//       unsigned int offFifoMax,</span></span><br><span class="line"><span class="comment">//       unsigned __int8 *pbBounceBuf,</span></span><br><span class="line"><span class="comment">//       unsigned int *pcbAlreadyRead,</span></span><br><span class="line"><span class="comment">//       PDMTHREAD *pThread,</span></span><br><span class="line"><span class="comment">//       VGAState *pThis,</span></span><br><span class="line"><span class="comment">//       VMSVGAR3STATE *pSVGAState,</span></span><br><span class="line"><span class="comment">//       PDMDEVINSR3 *pDevIns)</span></span><br><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="keyword">if</span>(!g_Backend-&gt;<span class="built_in">Setbreakpoint</span>(<span class="string">&quot;VBoxDD!vmsvgaR3FifoGetCmdPayload&quot;</span>, [](Backend_t *Backend) &#123;</span><br><span class="line">  <span class="type">uint32_t</span> cbPayloadReq = Backend-&gt;<span class="built_in">GetArg</span>(<span class="number">0</span>);</span><br><span class="line">  Gva_t pbBounceBuf_gva = Backend-&gt;<span class="built_in">GetArgGva</span>(<span class="number">5</span>);</span><br><span class="line">  Gva_t pcbAlreadyRead_gva = Backend-&gt;<span class="built_in">GetArgGva</span>(<span class="number">6</span>);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span>(cbPayloadReq &gt; GlobalState.SvgaCmdBodySize) &#123;</span><br><span class="line">    <span class="built_in">DebugPrint</span>(<span class="string">&quot;cbpayloadReq(&#123;:#x&#125;) &gt; SvgaCmdBodySize(&#123;:#x&#125;), restore context and goto next round\n&quot;</span>, cbPayloadReq, GlobalState.SvgaCmdBodySize);</span><br><span class="line">    <span class="keyword">return</span> GlobalState.<span class="built_in">RestoreGprs</span>(Backend);</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">if</span>(cbPayloadReq &gt; u32PbBounceBufMaxSize) &#123;</span><br><span class="line">    <span class="type">const</span> <span class="type">uint64_t</span> RetAddr = Backend-&gt;<span class="built_in">VirtRead8</span>(<span class="built_in">Gva_t</span>(Backend-&gt;<span class="built_in">Rsp</span>()));</span><br><span class="line">    <span class="built_in">DebugPrint</span>(<span class="string">&quot;check this, RetAddr = &#123;:#x&#125;\n&quot;</span>, RetAddr);</span><br><span class="line">    std::<span class="built_in">abort</span>();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span>(!Backend-&gt;<span class="built_in">VirtWriteDirty</span>(pbBounceBuf_gva, GlobalState.SvgaCmdBody, cbPayloadReq)) &#123;</span><br><span class="line">    fmt::<span class="built_in">print</span>(<span class="string">&quot;Failed to write pbBounceBuf, pbBounceBuf = &#123;:#x&#125;, cbPayloadReq = &#123;:#x&#125;, SvgaCmdBodySize = &#123;:#x&#125;\n&quot;</span>,</span><br><span class="line">                pbBounceBuf_gva.<span class="built_in">U64</span>(), cbPayloadReq, GlobalState.SvgaCmdBodySize);</span><br><span class="line">    std::<span class="built_in">abort</span>();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span>(!Backend-&gt;<span class="built_in">VirtWriteStructDirty</span>(pcbAlreadyRead_gva, &amp;cbPayloadReq)) &#123;</span><br><span class="line">    fmt::<span class="built_in">print</span>(<span class="string">&quot;Faile to write pcbAlreadyRead, pcbAlreadyRead = &#123;:#x&#125;\n&quot;</span>, pcbAlreadyRead_gva.<span class="built_in">U64</span>());</span><br><span class="line">    std::<span class="built_in">abort</span>();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  Backend-&gt;<span class="built_in">SimulateReturnFromFunction</span>(pbBounceBuf_gva.<span class="built_in">U64</span>());</span><br><span class="line"></span><br><span class="line">&#125;)) &#123;</span><br><span class="line">  fmt::<span class="built_in">print</span>(<span class="string">&quot;Failed to Setbreakpoint on VBoxDD!vmsvgaR3FifoGetCmdPayload\n&quot;</span>);</span><br><span class="line">  <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>I also had to define end point of execution. After some reversing, I found two spots and using it as end point.</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">const</span> Gva_t SvgaLoopEnd = <span class="built_in">Gva_t</span>(g_Dbg.<span class="built_in">GetSymbol</span>(<span class="string">&quot;VBoxDD!vmsvgaR3FifoLoop&quot;</span>) + <span class="number">0x24AB</span>);</span><br><span class="line"><span class="keyword">if</span>(!g_Backend-&gt;<span class="built_in">Setbreakpoint</span>(SvgaLoopEnd, [](Backend_t *Backend) &#123;</span><br><span class="line">  <span class="built_in">DebugPrint</span>(<span class="string">&quot;loop end reached, restore context\n&quot;</span>);</span><br><span class="line">  GlobalState.<span class="built_in">RestoreGprs</span>(g_Backend);</span><br><span class="line">&#125;)) &#123;</span><br><span class="line">  fmt::<span class="built_in">print</span>(<span class="string">&quot;Failed to Setbreakpoint on SvgaLoopEnd\n&quot;</span>);</span><br><span class="line">  <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">const</span> Gva_t SvgLoopEnd2 = <span class="built_in">Gva_t</span>(g_Dbg.<span class="built_in">GetSymbol</span>(<span class="string">&quot;VBoxDD!vmsvgaR3FifoLoop&quot;</span>) + <span class="number">0x24B2</span>);</span><br><span class="line"><span class="keyword">if</span>(!g_Backend-&gt;<span class="built_in">Setbreakpoint</span>(SvgLoopEnd2, [](Backend_t *Backend) &#123;</span><br><span class="line">  <span class="built_in">DebugPrint</span>(<span class="string">&quot;loop end2 reached, restore context\n&quot;</span>);</span><br><span class="line">  GlobalState.<span class="built_in">RestoreGprs</span>(g_Backend);</span><br><span class="line">&#125;)) &#123;</span><br><span class="line">  fmt::<span class="built_in">print</span>(<span class="string">&quot;Failed to Setbreakpoint on SvgLoopEnd2\n&quot;</span>);</span><br><span class="line">  <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha256-CTSx/A06dm1B063156EVh15m6Y67pAjZZaQc89LLSrU=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
-<p>As I said above, I create a snapshot on <code>vmsvgaR3FifoLoop+4E2</code>. So if I restore register context, next execution flow starts from there. Because of that, I had to parse new testcase using breakpoint Handler.</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">const</span> Gva_t SvgaLoopStart = <span class="built_in">Gva_t</span>(g_Dbg.<span class="built_in">GetSymbol</span>(<span class="string">&quot;VBoxDD!vmsvgaR3FifoLoop&quot;</span>) + <span class="number">0x4e2</span>);</span><br><span class="line"><span class="keyword">if</span>(!g_Backend-&gt;<span class="built_in">Setbreakpoint</span>(SvgaLoopStart, [](Backend_t *Backend) &#123;</span><br><span class="line">  <span class="keyword">if</span>(GlobalState.SvgaCmds.<span class="built_in">size</span>() == <span class="number">0</span>) &#123;</span><br><span class="line">    <span class="built_in">DebugPrint</span>(<span class="string">&quot;testcase deque empty! goto next round...\n&quot;</span>);</span><br><span class="line">    <span class="keyword">return</span> Backend-&gt;<span class="built_in">Stop</span>(<span class="built_in">Ok_t</span>());</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">auto</span> &amp;Testcase = GlobalState.SvgaCmds.<span class="built_in">front</span>();</span><br><span class="line"></span><br><span class="line">  <span class="keyword">while</span> (Testcase.SvgaCmdCode == <span class="number">1045</span>) &#123;</span><br><span class="line">    GlobalState.SvgaCmds.<span class="built_in">pop_front</span>();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>(GlobalState.SvgaCmds.<span class="built_in">size</span>() == <span class="number">0</span>) &#123;</span><br><span class="line">      <span class="built_in">DebugPrint</span>(<span class="string">&quot;testcase deque empty during cmd filtering! goto next round...\n&quot;</span>);</span><br><span class="line">      <span class="keyword">return</span> Backend-&gt;<span class="built_in">Stop</span>(<span class="built_in">Ok_t</span>());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    Testcase = GlobalState.SvgaCmds.<span class="built_in">front</span>();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  Backend-&gt;<span class="built_in">Rbx</span>(Testcase.SvgaCmdCode);</span><br><span class="line"></span><br><span class="line">  <span class="built_in">DebugPrint</span>(<span class="string">&quot;SvgaCmdCode = &#123;:#x&#125;\n&quot;</span>, Testcase.SvgaCmdCode);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span>(Testcase.SvgaCmdCode &gt;= <span class="number">1040</span>) &#123;</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">DebugPrint</span>(<span class="string">&quot;Have to avoid AssertBreak(pHdr-&gt;size &lt; pThis-&gt;svga.cbFIFO), write &#123;:#x&#125; on first DWORD\n&quot;</span>, Testcase.SvgaBody.<span class="built_in">size</span>());</span><br><span class="line"></span><br><span class="line">    <span class="type">const</span> <span class="type">uint32_t</span> Svga3dCmdSize = Testcase.SvgaBody.<span class="built_in">size</span>();</span><br><span class="line">    <span class="keyword">if</span>(Svga3dCmdSize &gt;= <span class="number">0x200000</span>) &#123;</span><br><span class="line">      fmt::<span class="built_in">print</span>(<span class="string">&quot;Svga3dCmdSize(&#123;:#x&#125;) &gt; cbFIFO, abort\n&quot;</span>, Svga3dCmdSize);</span><br><span class="line">      std::<span class="built_in">abort</span>();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">memcpy</span>(&amp;GlobalState.SvgaCmdBody[<span class="number">0</span>], &amp;Svga3dCmdSize, <span class="number">4</span>);</span><br><span class="line">    <span class="built_in">memcpy</span>(&amp;GlobalState.SvgaCmdBody[<span class="number">4</span>], Testcase.SvgaBody.<span class="built_in">data</span>(), Testcase.SvgaBody.<span class="built_in">size</span>());</span><br><span class="line">    GlobalState.SvgaCmdBodySize = Testcase.SvgaBody.<span class="built_in">size</span>() + <span class="number">4</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="built_in">memcpy</span>(GlobalState.SvgaCmdBody, Testcase.SvgaBody.<span class="built_in">data</span>(), Testcase.SvgaBody.<span class="built_in">size</span>());</span><br><span class="line">    GlobalState.SvgaCmdBodySize = Testcase.SvgaBody.<span class="built_in">size</span>();</span><br><span class="line">  &#125;    </span><br><span class="line"></span><br><span class="line">  GlobalState.SvgaCmds.<span class="built_in">pop_front</span>();</span><br><span class="line">&#125;)) &#123;</span><br><span class="line">  fmt::<span class="built_in">print</span>(<span class="string">&quot;Failed to Setbreakpoint on SvgaLoopStart\n&quot;</span>);</span><br><span class="line">  <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<script class="next-config" data-name="main" type="application/json">{"hostname":"usmacd.com","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.18.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
 
-<p>After some investigation, I found <code>CreateDeviceEx</code> call in <code>vmsvga3dContextDefine</code> keep causing <strong>CR3 context switching</strong> and I didn’t found any way to handling it using breakpoint handler. So I just blacklisting it( <code>SVGA_3D_CMD_CONTEXT_DEFINE</code> &#x3D; <code>1045</code> ).</p>
-<p>I disclose almost every part of fuzz module except mutation part. I just use libfuzzer mutator to mutate body data of SVGA command and pick one of command in array randomly.</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">explicit</span> <span class="title">CustomMutator_t</span><span class="params">(std::mt19937_64 &amp;Rng, <span class="type">const</span> <span class="type">size_t</span> TestcaseMaxSize)</span></span></span><br><span class="line"><span class="function">  : Rng_(Rng), TestcaseMaxSize_(TestcaseMaxSize) &#123;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// set maximum size for multiple (mutated) testcase( Default = 1MB )</span></span><br><span class="line">    ScratchBuffer__ = std::<span class="built_in">make_unique</span>&lt;<span class="type">uint8_t</span>[]&gt;(_1MB);</span><br><span class="line">    ScratchBuffer_  = &#123;ScratchBuffer__.<span class="built_in">get</span>(), _1MB&#125;;</span><br><span class="line"></span><br><span class="line">    BodyMutator_ = <span class="built_in">make_unique</span>&lt;LibfuzzerMutator_t&gt;(Rng, TestcaseMaxSize);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// skip for brevity...</span></span><br><span class="line"></span><br><span class="line"><span class="function">std::string <span class="title">Mutate</span><span class="params">(<span class="type">uint8_t</span> *Data, <span class="type">const</span> <span class="type">size_t</span> DataLen, <span class="type">const</span> <span class="type">size_t</span> MaxSize)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">auto</span> Root = <span class="built_in">Deserialize</span>(Data, DataLen);</span><br><span class="line">  <span class="keyword">auto</span> &amp;SvgaCmds = Root.SvgaCmds;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">auto</span> &amp;SvgaCmd : SvgaCmds) &#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//</span></span><br><span class="line">    <span class="comment">// 50%</span></span><br><span class="line">    <span class="comment">//</span></span><br><span class="line">    <span class="keyword">if</span>(<span class="built_in">GetUint32</span>(<span class="number">0</span>, <span class="number">1</span>) == <span class="number">1</span>) &#123;  </span><br><span class="line">      <span class="type">uint32_t</span> SvgaCmdRandomIdx = <span class="built_in">GetUint32</span>(<span class="number">0</span>, SvgaCmdListLen);</span><br><span class="line">      SvgaCmd.SvgaCmdCode = SvgaCmdList[SvgaCmdRandomIdx];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">memcpy</span>(GlobalMutBuffer, SvgaCmd.SvgaBody.<span class="built_in">data</span>(), SvgaCmd.SvgaBody.<span class="built_in">size</span>());</span><br><span class="line">    <span class="type">size_t</span> NewTestcaseSize = BodyMutator_-&gt;Mut_.<span class="built_in">Mutate</span>(GlobalMutBuffer, SvgaCmd.SvgaBody.<span class="built_in">size</span>(), MaxSize);</span><br><span class="line">    SvgaCmd.SvgaBody.<span class="built_in">resize</span>(NewTestcaseSize);</span><br><span class="line">    <span class="built_in">memcpy</span>(SvgaCmd.SvgaBody.<span class="built_in">data</span>(), GlobalMutBuffer, NewTestcaseSize);</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  json::json Serialized;</span><br><span class="line">  <span class="built_in">to_json</span>(Serialized, Root);</span><br><span class="line">  <span class="keyword">return</span> Serialized.<span class="built_in">dump</span>();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+    <meta property="og:type" content="website">
+<meta property="og:title" content="安全代码">
+<meta property="og:url" content="http://usmacd.com/tags/Archives/index.html">
+<meta property="og:site_name" content="安全代码">
+<meta property="og:locale" content="en_US">
+<meta property="article:author" content="henices">
+<meta name="twitter:card" content="summary">
 
-<p>I also define generator function. It is very useful if you are too lazy to create random input like me ^~^.</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">std::string <span class="title">GenerateTestcase</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  SvgaCmds_t Root;</span><br><span class="line">  <span class="type">const</span> <span class="keyword">auto</span> N = <span class="built_in">GetUint32</span>(<span class="number">1</span>, <span class="number">10</span>);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> (<span class="type">size_t</span> Idx = <span class="number">0</span>; Idx &lt; N; Idx++) &#123;</span><br><span class="line">    SvgaCmd_t SvgaCmd;</span><br><span class="line">    </span><br><span class="line">    SvgaCmd.SvgaCmdCode = SvgaCmdList[<span class="built_in">GetUint32</span>(<span class="number">0</span>, SvgaCmdListLen)];</span><br><span class="line">    SvgaCmd.SvgaBody.<span class="built_in">resize</span>(<span class="built_in">GetUint32</span>(<span class="number">0x100</span>, <span class="number">0x400</span>));</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>(<span class="built_in">GetUint32</span>(<span class="number">0</span>, <span class="number">1</span>) == <span class="number">0</span>) &#123;</span><br><span class="line">      <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt; SvgaCmd.SvgaBody.<span class="built_in">size</span>(); i++) &#123;</span><br><span class="line">        SvgaCmd.SvgaBody[i] = <span class="number">0x41</span>;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt; SvgaCmd.SvgaBody.<span class="built_in">size</span>(); i++) &#123;</span><br><span class="line">        SvgaCmd.SvgaBody[i] = (<span class="type">uint8_t</span>)<span class="built_in">GetUint32</span>(<span class="number">0</span>, <span class="number">255</span>);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    Root.SvgaCmds.<span class="built_in">emplace_back</span>(SvgaCmd);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  json::json Serialized;</span><br><span class="line">  <span class="built_in">to_json</span>(Serialized, Root);</span><br><span class="line">  <span class="keyword">return</span> Serialized.<span class="built_in">dump</span>();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">std::string <span class="title">GetNewTestcase</span><span class="params">(<span class="type">const</span> Corpus_t &amp;Corpus)</span> <span class="keyword">override</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="comment">//</span></span><br><span class="line">  <span class="comment">// 20%</span></span><br><span class="line">  <span class="comment">//</span></span><br><span class="line">  <span class="keyword">if</span>(<span class="built_in">GetUint32</span>(<span class="number">1</span>, <span class="number">5</span>) == <span class="number">1</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">GenerateTestcase</span>();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="type">const</span> Testcase_t *Testcase = Corpus.<span class="built_in">PickTestcase</span>();</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (!Testcase) &#123;</span><br><span class="line">    fmt::<span class="built_in">print</span>(<span class="string">&quot;The corpus is empty, generate random one\n&quot;</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">GenerateTestcase</span>();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">//</span></span><br><span class="line">  <span class="comment">// Copy the input in a buffer we&#x27;re going to mutate.</span></span><br><span class="line">  <span class="comment">//</span></span><br><span class="line"></span><br><span class="line">  <span class="built_in">memcpy</span>(ScratchBuffer_.<span class="built_in">data</span>(), Testcase-&gt;Buffer_.<span class="built_in">get</span>(),</span><br><span class="line">         Testcase-&gt;BufferSize_);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// return Mutate(ScratchBuffer_.data(), Testcase-&gt;BufferSize_, TestcaseMaxSize_);</span></span><br><span class="line">  </span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">Mutate</span>(ScratchBuffer_.<span class="built_in">data</span>(), Testcase-&gt;BufferSize_, u32PbBounceBufMaxSize - <span class="built_in">sizeof</span>(<span class="type">uint32_t</span>));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>Aaaaannnd, this is everything you need to fuzz! I skip some formal code for brevity, but I think you can easily find what you need to define fully working fuzz module.</p>
-<p>…..Ooooh wait, I forgot something. After some hours of struggle, I define a blacklist which cause CR3 context switching. I just put it on the end of <code>Init()</code> function.</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">bool</span> <span class="title">SetupVBoxBlacklistHooks</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  <span class="keyword">if</span>(!g_Backend-&gt;<span class="built_in">SetBreakpoint</span>(<span class="string">&quot;VBoxRT!RTLogLoggerEx&quot;</span>, [](Backend_t *Backend) &#123;</span><br><span class="line">    Backend-&gt;<span class="built_in">SimulateReturnFromFunction</span>(<span class="number">0</span>);</span><br><span class="line">  &#125;)) &#123;</span><br><span class="line">    fmt::<span class="built_in">print</span>(<span class="string">&quot;Failed to SetBreakpoint on VBoxRT!RTLogLoggerEx\n&quot;</span>);</span><br><span class="line">    std::<span class="built_in">abort</span>();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span>(!g_Backend-&gt;<span class="built_in">SetBreakpoint</span>(<span class="string">&quot;VBoxVMM!PDMCritSectLeave&quot;</span>, [](Backend_t *Backend) &#123;</span><br><span class="line">    Backend-&gt;<span class="built_in">SimulateReturnFromFunction</span>(<span class="number">0</span>);</span><br><span class="line">  &#125;)) &#123;</span><br><span class="line">    fmt::<span class="built_in">print</span>(<span class="string">&quot;Failed to SetBreakpoint on VBoxVMM!PDMCritSectLeave\n&quot;</span>);</span><br><span class="line">    std::<span class="built_in">abort</span>();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span>(!g_Backend-&gt;<span class="built_in">SetBreakpoint</span>(<span class="string">&quot;VBoxC!util::AutoLockBase::release&quot;</span>, [](Backend_t *Backend) &#123;</span><br><span class="line">    Backend-&gt;<span class="built_in">SimulateReturnFromFunction</span>(<span class="number">0</span>);</span><br><span class="line">  &#125;)) &#123;</span><br><span class="line">    fmt::<span class="built_in">print</span>(<span class="string">&quot;Failed to SetBreakpoint on VBoxC!util::AutoLockBase::release\n&quot;</span>);</span><br><span class="line">    std::<span class="built_in">abort</span>();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span>(!g_Backend-&gt;<span class="built_in">SetBreakpoint</span>(<span class="string">&quot;VBoxC!util::AutoLockBase::acquire&quot;</span>, [](Backend_t *Backend) &#123;</span><br><span class="line">    Backend-&gt;<span class="built_in">SimulateReturnFromFunction</span>(<span class="number">0</span>);</span><br><span class="line">  &#125;)) &#123;</span><br><span class="line">    fmt::<span class="built_in">print</span>(<span class="string">&quot;Failed to SetBreakpoint on VBoxC!util::AutoLockBase::acquire\n&quot;</span>);</span><br><span class="line">    std::<span class="built_in">abort</span>();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span>(!g_Backend-&gt;<span class="built_in">SetBreakpoint</span>(<span class="string">&quot;VirtualBoxVM!UIFrameBufferPrivate::NotifyChange&quot;</span>, [](Backend_t *Backend) &#123;</span><br><span class="line">    Backend-&gt;<span class="built_in">SimulateReturnFromFunction</span>(<span class="number">0</span>);</span><br><span class="line">  &#125;)) &#123;</span><br><span class="line">    fmt::<span class="built_in">print</span>(<span class="string">&quot;Failed to SetBreakpoint on VirtualBoxVM!UIFrameBufferPrivate::NotifyChange\n&quot;</span>);</span><br><span class="line">    std::<span class="built_in">abort</span>();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span>(!g_Backend-&gt;<span class="built_in">SetBreakpoint</span>(<span class="string">&quot;VBoxRT!SUPSemEventWaitNoResume&quot;</span>, [](Backend_t *Backend) &#123;</span><br><span class="line">    Backend-&gt;<span class="built_in">SimulateReturnFromFunction</span>(<span class="number">0</span>);</span><br><span class="line">  &#125;)) &#123;</span><br><span class="line">    fmt::<span class="built_in">print</span>(<span class="string">&quot;Failed to SetBreakpoint on VBoxRT!SUPSemEventWaitNoResume\n&quot;</span>);</span><br><span class="line">    std::<span class="built_in">abort</span>();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span>(!g_Backend-&gt;<span class="built_in">SetBreakpoint</span>(<span class="string">&quot;d3d9!CBaseDevice::Release&quot;</span>, [](Backend_t *Backend) &#123;</span><br><span class="line">    Backend-&gt;<span class="built_in">SimulateReturnFromFunction</span>(<span class="number">0</span>);</span><br><span class="line">  &#125;)) &#123;</span><br><span class="line">    fmt::<span class="built_in">print</span>(<span class="string">&quot;Failed to SetBreakpoint on d3d9!CBaseDevice::Release\n&quot;</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">if</span>(!g_Backend-&gt;<span class="built_in">SetBreakpoint</span>(<span class="string">&quot;d3d9!CD3DBase::Clear&quot;</span>, [](Backend_t *Backend) &#123;</span><br><span class="line">    Backend-&gt;<span class="built_in">SimulateReturnFromFunction</span>(<span class="number">0</span>);</span><br><span class="line">  &#125;)) &#123;</span><br><span class="line">    fmt::<span class="built_in">print</span>(<span class="string">&quot;Failed to SetBreakpoint on d3d9!CD3DBase::Clear\n&quot;</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">if</span>(!g_Backend-&gt;<span class="built_in">SetBreakpoint</span>(<span class="string">&quot;d3d9!CMipMap::SetAutoGenFilterType&quot;</span>, [](Backend_t *Backend) &#123;</span><br><span class="line">    Backend-&gt;<span class="built_in">SimulateReturnFromFunction</span>(<span class="number">0</span>);</span><br><span class="line">  &#125;)) &#123;</span><br><span class="line">    fmt::<span class="built_in">print</span>(<span class="string">&quot;Failed to SetBreakpoint on d3d9!CMipMap::SetAutoGenFilterType\n&quot;</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">if</span>(!g_Backend-&gt;<span class="built_in">SetBreakpoint</span>(<span class="string">&quot;d3d9!CMipMap::GenerateMipSubLevels&quot;</span>, [](Backend_t *Backend) &#123;</span><br><span class="line">    Backend-&gt;<span class="built_in">SimulateReturnFromFunction</span>(<span class="number">0</span>);</span><br><span class="line">  &#125;)) &#123;</span><br><span class="line">    fmt::<span class="built_in">print</span>(<span class="string">&quot;Failed to SetBreakpoint on d3d9!CMipMap::GenerateMipSubLevels\n&quot;</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span>(!g_Backend-&gt;<span class="built_in">SetBreakpoint</span>(<span class="string">&quot;USER32!GetDC&quot;</span>, [](Backend_t *Backend) &#123;</span><br><span class="line">    Backend-&gt;<span class="built_in">SimulateReturnFromFunction</span>(<span class="number">0x1337</span>);</span><br><span class="line">  &#125;)) &#123;</span><br><span class="line">    fmt::<span class="built_in">print</span>(<span class="string">&quot;Failed to SetBreakpoint on USER32!GetDC\n&quot;</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<link rel="canonical" href="http://usmacd.com/tags/Archives/">
 
-<p>Yep. That’s really everything. I use this fuzz module several hours and it founds interesting crash.</p>
-<h1 id="3-Vulnerability-TL-DR"><a href="#3-Vulnerability-TL-DR" class="headerlink" title="3. Vulnerability( TL;DR )"></a>3. Vulnerability( TL;DR )</h1><p>Crash occurred in <code>vmsvga3dSurfaceCopy</code> function( <strong>PageHeap</strong> needed ).</p>
-<p><img src="https://github.com/henices/pictures/raw/master/wtf-vbox-blahblah2.png" alt="blahblah2"></p>
-<p>This function trying to copy surface data from one to another using surface id and there’s no boundary check between surface, so it become exploitable wildcopy vulnerability in heap memory.</p>
-<p><img src="https://github.com/henices/pictures/raw/master/wtf-vbox-blahblah3.png" alt="spot the bug"></p>
-<p>This vulnerability patched in <a target="_blank" rel="noopener" href="https://www.oracle.com/security-alerts/cpujul2022.html">6.1.36 release</a> at July, 2022.</p>
-<h1 id="4-Conclusion"><a href="#4-Conclusion" class="headerlink" title="4. Conclusion"></a>4. Conclusion</h1><p>I think importance of snapshot fuzzing is, it makes researcher to focus on target itself. </p>
-<p>Unlike other fuzzers based on runtime and DBI are often create (very) unreasonable side effect or need lots of time to create working harness. The concept of snapshot fuzzing makes it possible to reduce this waste of time.</p>
-</div></article></div></div><div class="column column-left is-4-tablet is-4-desktop is-3-widescreen  order-1"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar" src="/img/avatar.jpg" alt="Henices"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">Henices</p><p class="is-size-6 is-block">安全研究员</p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">Posts</p><a href="/archives"><p class="title">98</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Tags</p><a href="/tags"><p class="title">14</p></a></div></div></nav><div class="level is-mobile is-multiline"><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Twitter" href="https://twitter.com/henices"><i class="fab fa-twitter"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="RSS" href="/atom.xml"><i class="fas fa-rss"></i></a></div></div></div><div class="card widget" data-type="recent-posts"><div class="card-content"><h3 class="menu-label">Recents</h3><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-09-12T16:00:00.000Z">2023-09-13</time></p><p class="title"><a href="/cn/living_younger_healthier_logger/">端粒效应</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-09-06T03:49:12.921Z">2023-09-06</time></p><p class="title"><a href="/en/learn_in_public/">Learn In Public 摘要</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-09-06T03:00:51.915Z">2023-09-06</time></p><p class="title"><a href="/cn/xorddos_hide/">xorddos 样本进程隐藏的小伎俩</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-09-06T03:00:51.914Z">2023-09-06</time></p><p class="title"><a href="/cn/Windows_Rx034/">解决 Windows Rx034</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-09-06T03:00:51.896Z">2023-09-06</time></p><p class="title"><a href="/cn/webview_java/">Android WebView 漏洞</a></p></div></article></div></div><div class="card widget" data-type="links"><div class="card-content"><div class="menu"><h3 class="menu-label">Links</h3><ul class="menu-list"><li><a class="level is-mobile" href="https://scz.617.cn/" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">飞花堂</span></span><span class="level-right"><span class="level-item tag">scz.617.cn</span></span></a></li><li><a class="level is-mobile" href="https://blog.forecho.com/" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">forecho</span></span><span class="level-right"><span class="level-item tag">blog.forecho.com</span></span></a></li><li><a class="level is-mobile" href="https://demochen.com/" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">特立独行的异类</span></span><span class="level-right"><span class="level-item tag">demochen.com</span></span></a></li><li><a class="level is-mobile" href="https://www.mrhuangtalk.com/" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Mr.Huang Talk</span></span><span class="level-right"><span class="level-item tag">www.mrhuangtalk.com</span></span></a></li></ul></div></div></div><div class="column-right-shadow is-hidden-widescreen is-sticky"></div></div><div class="column column-right is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only order-3 is-sticky"><!--!--><div class="card widget" data-type="tags"><div class="card-content"><div class="menu"><h3 class="menu-label">Tags</h3><div class="field is-grouped is-grouped-multiline"><div class="control"><a class="tags has-addons" href="/tags/Android/"><span class="tag">Android</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Archives/"><span class="tag">Archives</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Crack/"><span class="tag">Crack</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Life/"><span class="tag">Life</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Malware/"><span class="tag">Malware</span></a></div><div class="control"><a class="tags has-addons" href="/tags/PKM/"><span class="tag">PKM</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Programming/"><span class="tag">Programming</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Security/"><span class="tag">Security</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Software/"><span class="tag">Software</span></a></div><div class="control"><a class="tags has-addons" href="/tags/ai/"><span class="tag">ai</span></a></div><div class="control"><a class="tags has-addons" href="/tags/investment/"><span class="tag">investment</span></a></div><div class="control"><a class="tags has-addons" href="/tags/linux/"><span class="tag">linux</span></a></div><div class="control"><a class="tags has-addons" href="/tags/vim/"><span class="tag">vim</span></a></div><div class="control"><a class="tags has-addons" href="/tags/windows/"><span class="tag">windows</span></a></div></div></div></div></div><div class="card widget" data-type="adsense"><div class="card-content"><div class="menu"><h3 class="menu-label">Advertisement</h3><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-8793345906937947" data-ad-slot="9350670660" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script></div></div></div></div></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/">安全代码</a><p class="is-size-7"><span>&copy; 2023 henices</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("en");</script><script>var IcarusThemeSettings = {
-            article: {
-                highlight: {
-                    clipboard: true,
-                    fold: 'unfolded'
-                }
-            }
-        };</script><script src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="Back to top" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
-      window.cookieconsent.initialise({
-        type: "info",
-        theme: "edgeless",
-        static: false,
-        position: "bottom-left",
-        content: {
-          message: "This website uses cookies to improve your experience.",
-          dismiss: "Got it!",
-          allow: "Allow cookies",
-          deny: "Decline",
-          link: "Learn more",
-          policy: "Cookie Policy",
-          href: "https://www.cookiesandyou.com/",
-        },
-        palette: {
-          popup: {
-            background: "#edeff5",
-            text: "#838391"
-          },
-          button: {
-            background: "#4b81e8"
-          },
-        },
-      });
-    });</script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
-            if (typeof $.fn.lightGallery === 'function') {
-                $('.article').lightGallery({ selector: '.gallery-item' });
-            }
-            if (typeof $.fn.justifiedGallery === 'function') {
-                if ($('.justified-gallery > p > .gallery-item').length) {
-                    $('.justified-gallery > p > .gallery-item').unwrap();
-                }
-                $('.justified-gallery').justifiedGallery();
-            }
-        });</script><!--!--><!--!--><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="Type something..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
-            loadInsight({"contentUrl":"/content.json"}, {"hint":"Type something...","untitled":"(Untitled)","posts":"Posts","pages":"Pages","categories":"Categories","tags":"Tags"});
-        });</script></body></html>
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":false,"lang":"en","comments":"","permalink":"","path":"tags/Archives/index.html","title":""}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Tag: Archives | 安全代码</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="安全代码" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">安全代码</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a></li><li class="menu-item menu-item-sitemap"><a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>Sitemap</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-overview-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="henices"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">henices</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">98</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/henices" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;henices" rel="noopener me" target="_blank"><i class="fab fa-twitter fa-fw"></i>Twitter</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml" rel="noopener me"><i class="rss fa-fw"></i>RSS</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+    <div class="sidebar-inner sidebar-blogroll">
+      <div class="links-of-blogroll animated">
+        <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+          Links
+        </div>
+        <ul class="links-of-blogroll-list">
+            <li class="links-of-blogroll-item">
+              <a href="http://scz.617.cn:8/" title="http:&#x2F;&#x2F;scz.617.cn:8&#x2F;" rel="noopener" target="_blank">飞花堂</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://www.v2ex.com/" title="https:&#x2F;&#x2F;www.v2ex.com&#x2F;" rel="noopener" target="_blank">V2EX</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://blog.forecho.com/" title="https:&#x2F;&#x2F;blog.forecho.com&#x2F;" rel="noopener" target="_blank">forecho</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://chensenlin.cn/" title="https:&#x2F;&#x2F;chensenlin.cn&#x2F;" rel="noopener" target="_blank">你好我是森林</a>
+            </li>
+        </ul>
+      </div>
+    </div>
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner tag posts-collapse">
+
+
+  
+  
+  
+  <div class="post-block">
+    <div class="post-content">
+      <div class="collection-title">
+        <h1 class="collection-header">Archives
+          <small>Tag</small>
+        </h1>
+      </div>
+
+      
+    <div class="collection-year">
+      <span class="collection-header">2023</span>
+    </div>
+
+  <article itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+      <div class="post-meta-container">
+        <time itemprop="dateCreated"
+              datetime="2023-02-09T00:00:00+08:00"
+              content="2023-02-09">
+          02-09
+        </time>
+      </div>
+
+      <div class="post-title">
+        <a class="post-title-link" href="/cn/How%20to%20be%20successful/" itemprop="url">
+          <span itemprop="name">How to be successful</span>
+        </a>
+      </div>
+
+      
+    </header>
+  </article>
+    <div class="collection-year">
+      <span class="collection-header">2022</span>
+    </div>
+
+  <article itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+      <div class="post-meta-container">
+        <time itemprop="dateCreated"
+              datetime="2022-07-21T16:00:00+08:00"
+              content="2022-07-21">
+          07-21
+        </time>
+      </div>
+
+      <div class="post-title">
+        <a class="post-title-link" href="/cn/2022-07-21-When-Hypervisor-Met-Snapshot-Fuzzing/" itemprop="url">
+          <span itemprop="name">When Hypervisor Met Snapshot Fuzzing</span>
+        </a>
+      </div>
+
+      
+    </header>
+  </article>
+
+    </div>
+  </div>
+  
+  
+  
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2023</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">henices</span>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8793345906937947"
+     crossorigin="anonymous"></script>
+<!-- 展示广告 -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-8793345906937947"
+     data-ad-slot="9350670660"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+</body>
+</html>

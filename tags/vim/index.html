@@ -1,243 +1,42 @@
-<!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta name="robots" content="noindex"><meta><title>Tag: vim - 安全代码</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="安全代码"><meta name="msapplication-TileImage" content="/img/favicon.png"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="安全代码"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta property="og:type" content="blog"><meta property="og:title" content="安全代码"><meta property="og:url" content="http://usmacd.com/"><meta property="og:site_name" content="安全代码"><meta property="og:locale" content="en_US"><meta property="og:image" content="http://usmacd.com/img/og_image.png"><meta property="article:author" content="henices"><meta property="twitter:card" content="summary"><meta property="twitter:image:src" content="http://usmacd.com/img/og_image.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://usmacd.com"},"headline":"安全代码","image":["http://usmacd.com/img/og_image.png"],"author":{"@type":"Person","name":"henices"},"publisher":{"@type":"Organization","name":"安全代码","logo":{"@type":"ImageObject","url":{"text":"安全代码"}}},"description":""}</script><link rel="icon" href="/img/favicon.png"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.7.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css"><!--!--><!--!--><style>.pace{-webkit-pointer-events:none;pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none}.pace-inactive{display:none}.pace .pace-progress{background:#3273dc;position:fixed;z-index:2000;top:0;right:100%;width:100%;height:2px}</style><script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><!--!--><!--!--><script data-ad-client="ca-pub-8793345906937947" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js" async></script><!-- hexo injector head_end start --><script>
-  (function () {
-      function switchTab() {
-          if (!location.hash) {
-            return;
-          }
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.0.0">
 
-          const id = '#' + CSS.escape(location.hash.substring(1));
-          const $tabMenu = document.querySelector(`.tabs a[href="${id}"]`);
-          if (!$tabMenu) {
-            return;
-          }
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
 
-          const $tabMenuContainer = $tabMenu.parentElement.parentElement;
-          Array.from($tabMenuContainer.children).forEach($menu => $menu.classList.remove('is-active'));
-          Array.from($tabMenuContainer.querySelectorAll('a'))
-              .map($menu => document.getElementById($menu.getAttribute("href").substring(1)))
-              .forEach($content => $content.classList.add('is-hidden'));
-
-          if ($tabMenu) {
-              $tabMenu.parentElement.classList.add('is-active');
-          }
-          const $activeTab = document.querySelector(id);
-          if ($activeTab) {
-              $activeTab.classList.remove('is-hidden');
-          }
-      }
-      switchTab();
-      window.addEventListener('hashchange', switchTab, false);
-  })();
-  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="安全代码" type="application/atom+xml">
-</head><body class="is-3-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/">安全代码</a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/tags">Tags</a><a class="navbar-item" href="/about">About</a></div><div class="navbar-end"><a class="navbar-item search" title="Search" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-6-widescreen"><div class="card"><div class="card-content"><nav class="breadcrumb" aria-label="breadcrumbs"><ul><li><a href="/tags">Tags</a></li><li class="is-active"><a href="#" aria-current="page">vim</a></li></ul></nav></div></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2023-09-06T03:00:51.880Z" title="2023/9/6 11:00:51">2023-09-06</time></span><span class="level-item">Updated&nbsp;<time dateTime="2023-09-06T03:00:51.880Z" title="2023/9/6 11:00:51">2023-09-06</time></span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/cn/vim_special_char/">vim 输入特殊字符</a></p><div class="content"><p>vim 的编辑能力确实很强，今天说一下如何在vim中输入特殊字符，比如音标、unicode 字符。</p>
-<p><a target="_blank" rel="noopener" href="http://vimhelp.appspot.com/digraph.txt.html">http://vimhelp.appspot.com/digraph.txt.html</a><br><a target="_blank" rel="noopener" href="http://vimhelp.appspot.com/insert.txt.html#i_CTRL-V_digit">http://vimhelp.appspot.com/insert.txt.html#i_CTRL-V_digit</a></p>
-<p>关键就在上面两篇，可能许多人不喜欢看复杂的文章，我这里简单介绍一下用法。</p>
-<p>输入音标 ə</p>
-<p>i 进入编辑模式    CTRL-vu0259<br>那如何知道 ə 的 unicode hex number 是 0259呢，在vim的normal 模式下，将光标移动到ə输入ga</p>
-<p>输入 ⇒</p>
-<p>i 进入编辑模式   CTRL-k&#x3D;&gt;<br>:dig 可以看到支持这种方法输入的unicode 字符</p>
-</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2023-09-06T03:00:51.812Z" title="2023/9/6 11:00:51">2023-09-06</time></span><span class="level-item">Updated&nbsp;<time dateTime="2023-09-06T03:00:51.812Z" title="2023/9/6 11:00:51">2023-09-06</time></span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/cn/svn_vim/">VIM + SVN 管理</a></p><div class="content"><p>公司使用svn管理源代码，避免不了要和svn打交道，有几个比较好的解决方案。</p>
-<h2 id="1-vcscommand-vim"><a href="#1-vcscommand-vim" class="headerlink" title="1. vcscommand.vim"></a>1. vcscommand.vim</h2><p><a target="_blank" rel="noopener" href="http://www.vim.org/scripts/script.php?script_id=90">http://www.vim.org/scripts/script.php?script_id=90</a></p>
-<p>这个插件的特点是支持的版本管理工具多,支持git，svn等常见版本管理工具。<br>vcscommand.vim插件默认绑定了无差别的快捷键，使用起来非常方便。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">|&lt;Leader&gt;|ca VCSAdd</span><br><span class="line">|&lt;Leader&gt;|cn VCSAnnotate</span><br><span class="line">|&lt;Leader&gt;|cN VCSAnnotate!</span><br><span class="line">|&lt;Leader&gt;|cc VCSCommit</span><br><span class="line">|&lt;Leader&gt;|cD VCSDelete</span><br><span class="line">|&lt;Leader&gt;|cd VCSDiff</span><br><span class="line">|&lt;Leader&gt;|cg VCSGotoOriginal</span><br><span class="line">|&lt;Leader&gt;|cG VCSGotoOriginal!</span><br><span class="line">|&lt;Leader&gt;|ci VCSInfo</span><br><span class="line">|&lt;Leader&gt;|cl VCSLog</span><br><span class="line">|&lt;Leader&gt;|cL VCSLock</span><br><span class="line">|&lt;Leader&gt;|cr VCSReview</span><br><span class="line">|&lt;Leader&gt;|cs VCSStatus</span><br><span class="line">|&lt;Leader&gt;|cu VCSUpdate</span><br><span class="line">|&lt;Leader&gt;|cU VCSUnlock</span><br><span class="line">|&lt;Leader&gt;|cv VCSVimDiff</span><br></pre></td></tr></table></figure>
-
-<p>这个 <code>&lt;Leader&gt;</code> 得看你定义了什么快捷键，vim 默认的是 <code>\</code></p>
-<h2 id="2-vim-unite-svn"><a href="#2-vim-unite-svn" class="headerlink" title="2.  vim-unite-svn"></a>2.  vim-unite-svn</h2><p>小日本写的unite.vim的svn插件，unite.vim 是一个非常不错的vim插件，<br>它的作用是 为vim 写简单界面，要使用vim-unite-svn首先需要安装unite.vim 插件，<br>折腾这个插件的原因是vcscommand.vim有些不太好的地方。</p>
-<ul>
-<li>buffer管理的不太好</li>
-<li>status 比较弱</li>
-<li>羡慕emacs的vc mode的体验</li>
-</ul>
-<p><a target="_blank" rel="noopener" href="https://github.com/Shougo/unite.vim">https://github.com/Shougo/unite.vim</a></p>
-<p>小日本写的 <code>vim-unite-svn</code> 插件太久没有更新了，有一些bug，我修改了一下，用了<br>一段时间暂时没有发现什么问题。</p>
-<p><a target="_blank" rel="noopener" href="https://github.com/henices/vim-unite-svn">https://github.com/henices/vim-unite-svn</a></p>
-<p>支持基本的svn命令， svn status, svn info, svn diff, svn commit, svn up</p>
-<p>使用示例</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">:Unite svn/status</span><br><span class="line">:Unite svn/diff</span><br><span class="line">:Unite svn/blame</span><br></pre></td></tr></table></figure>
-</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2023-07-19T16:00:00.000Z" title="2023/7/20 00:00:00">2023-07-20</time></span><span class="level-item">Updated&nbsp;<time dateTime="2023-07-23T16:00:00.000Z" title="2023/7/24 00:00:00">2023-07-24</time></span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/cn/vim_gtags_leaderf/">在 vim 中使用 LeaderF 和 gtags</a></p><div class="content"><h2 id="☆-缘由和一些-vim-历史"><a href="#☆-缘由和一些-vim-历史" class="headerlink" title="☆ 缘由和一些 vim 历史"></a>☆ 缘由和一些 vim 历史</h2><p>前些年 vim 没有子窗口的概念，日本的一个 vim 插件作者为了解决这个问题生撸了一套流程，当时 unite.vim 横空出世惊艳了我一把。后面随着技术发展，neovim 和 vim 先后引入了 floating window ，这才使得情况变得好了一点。</p>
-<p><a target="_blank" rel="noopener" href="https://github.com/vim/vim/blob/master/runtime/doc/popup.txt">https://github.com/vim/vim/blob/master/runtime/doc/popup.txt</a><br><a target="_blank" rel="noopener" href="https://neovim.io/doc/user/api.html#api-floatwin">https://neovim.io/doc/user/api.html#api-floatwin</a></p>
-<p>得益于新技术，在 vim 中使用 LeaderF 插件的交互体验上了一个台阶。</p>
-<p><img src="https://raw.githubusercontent.com/Yggdroot/Images/master/leaderf/leaderf_popup.gif" alt="Demo"></p>
-<p>neovim 从 0.9 版本开始放弃对 cscope 的支持 <a target="_blank" rel="noopener" href="https://twitter.com/Neovim/status/1580933880579641344">https://twitter.com/Neovim/status/1580933880579641344</a></p>
-<p>这给我阅读源码造成了一些问题，虽然 vim 仍然可以使用 cscope，但 vim 的启动速度不如 nvim 快，所以我开始寻找替代方案。同时，我发现 denite.nvim，unite.vim，作者也不怎么维护了，一想似乎是很多年没有维护 vim 配置了。</p>
-<p>在网络上搜索在 neovim 上阅读源码的方法，无意发现有人提到用 LeaderF 替代 tagbar，于是有了现在的这篇文章。</p>
-<h2 id="☆-安装vim-插件-LeaderF"><a href="#☆-安装vim-插件-LeaderF" class="headerlink" title="☆ 安装vim 插件 LeaderF"></a>☆ 安装vim 插件 LeaderF</h2><p>插件的仓库地址：<a target="_blank" rel="noopener" href="https://github.com/Yggdroot/LeaderF/tree/master">https://github.com/Yggdroot/LeaderF/tree/master</a></p>
-<p>使用 <a target="_blank" rel="noopener" href="https://github.com/VundleVim/Vundle.vim">Vundle.vim</a> 安装，在 .vimrc 中添加下面一行</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Plug &#x27;Yggdroot/LeaderF&#x27;, &#123; &#x27;do&#x27;: &#x27;:LeaderfInstallCExtension&#x27; &#125;</span><br></pre></td></tr></table></figure>
-
-<p>在 vim 中执行下面命令，即可成功安装，如果遇到网络问题，自己挂上线路即可。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">：so %</span><br><span class="line">:PlugInstall</span><br></pre></td></tr></table></figure>
-
-<h2 id="☆-LeaderF-配置"><a href="#☆-LeaderF-配置" class="headerlink" title="☆ LeaderF 配置"></a>☆ LeaderF 配置</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">let g:Lf_WorkingDirectoryMode = <span class="string">&#x27;Ac&#x27;</span></span><br><span class="line">let g:Lf_RootMarkers = [<span class="string">&#x27;.git&#x27;</span>, <span class="string">&#x27;.svn&#x27;</span>, <span class="string">&#x27;.hg&#x27;</span>, <span class="string">&#x27;.project&#x27;</span>, <span class="string">&#x27;.root&#x27;</span>]</span><br><span class="line">let g:Lf_DefaultExternalTool=<span class="string">&#x27;rg&#x27;</span></span><br><span class="line">let g:Lf_WindowPosition = <span class="string">&#x27;popup&#x27;</span></span><br><span class="line"></span><br><span class="line">let g:Lf_UseCache = <span class="number">0</span></span><br><span class="line">let g:Lf_PreviewInPopup = <span class="number">1</span></span><br><span class="line"><span class="string">&quot;let g:Lf_CacheDirectory = s:cachedir</span></span><br><span class="line"><span class="string">let g:Lf_ShowHidden = 1  &quot;</span>show hidden files</span><br><span class="line"></span><br><span class="line"><span class="string">&quot; preview or not</span></span><br><span class="line"><span class="string">let g:Lf_PreviewResult = &#123;&#x27;Function&#x27;: 0, &#x27;BufTag&#x27;: 0 &#125;</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>g:Lf_WorkingDirectoryMode &#x3D; ‘AF’ 设置工作目录，如果没有找到 RootMarker 以当前文件所在目录作为工作目录</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">g:Lf_WorkingDirectoryMode                       *g:Lf_WorkingDirectoryMode*</span><br><span class="line">    This option customizes LeaderF&#x27;s working directory.</span><br><span class="line">    e.g., &gt;</span><br><span class="line">    let g:Lf_WorkingDirectoryMode = &#x27;Ac&#x27;</span><br><span class="line">&lt;</span><br><span class="line">    c - the directory of the current working directory.(default)</span><br><span class="line">    a - the nearest ancestor of current working directory that contains one of</span><br><span class="line">        directories or files defined in |g:Lf_RootMarkers|. Fall back to &#x27;c&#x27; if</span><br><span class="line">        no such ancestor directory found.</span><br><span class="line">    A - the nearest ancestor of current file that contains one of directories</span><br><span class="line">        or files defined in |g:Lf_RootMarkers|. Fall back to &#x27;c&#x27; if no such</span><br><span class="line">        ancestor directory found.</span><br><span class="line">    f - the directory of the current file.</span><br><span class="line">    F - if the current working directory is not the direct ancestor of current</span><br><span class="line">        file, use the directory of the current file as LeaderF&#x27;s working</span><br><span class="line">        directory, otherwise, same as &#x27;c&#x27;.</span><br><span class="line">    Note: if &quot;f&quot;, &quot;F&quot; is included with &quot;a&quot; or &quot;A&quot;, use the behavior of &quot;f&quot; or</span><br><span class="line">    &quot;F&quot;(as a fallback) when a root can&#x27;t be found.</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>g:Lf_DefaultExternalTool  索引文件使用的外部工具，可选值为 ‘rg’, ‘pt’, ‘ag’, ‘find’，作者推荐使用 <a target="_blank" rel="noopener" href="https://github.com/BurntSushi/ripgrep">rg</a></li>
-<li>g:Lf_UseCache 列文件时是否使用缓存，默认值为 1，设置为 0 不使用缓存</li>
-<li>g:Lf_WindowPosition，LeaderF 窗口的位置，可选值有 top, bottom, left, right, popup,fullscreen，默认值为 bottom</li>
-<li>g:Lf_PreviewInPopup 设置是否在 LeaderF 的 popup 窗口显示预览, 默认值为 0</li>
-<li>g:Lf_ShowHidden 是否显示隐藏文件和目录，默认值为 0 不显示隐藏文件</li>
-<li>g:Lf_PreviewResult 设置需要显示预览的内容，默认值为全 1<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> <span class="variable">g:Lf_PreviewResult</span> = &#123;</span><br><span class="line">        \ <span class="string">&#x27;File&#x27;</span>: <span class="number">1</span>,</span><br><span class="line">        \ <span class="string">&#x27;Buffer&#x27;</span>: <span class="number">1</span>,</span><br><span class="line">        \ <span class="string">&#x27;Mru&#x27;</span>: <span class="number">1</span>,</span><br><span class="line">        \ <span class="string">&#x27;Tag&#x27;</span>: <span class="number">1</span>,</span><br><span class="line">        \ <span class="string">&#x27;BufTag&#x27;</span>: <span class="number">1</span>,</span><br><span class="line">        \ <span class="string">&#x27;Function&#x27;</span>: <span class="number">1</span>,</span><br><span class="line">        \ <span class="string">&#x27;Line&#x27;</span>: <span class="number">1</span>,</span><br><span class="line">        \ <span class="string">&#x27;Colorscheme&#x27;</span>: <span class="number">1</span>,</span><br><span class="line">        \ <span class="string">&#x27;Rg&#x27;</span>: <span class="number">1</span>,</span><br><span class="line">        \ <span class="string">&#x27;Gtags&#x27;</span>: <span class="number">1</span></span><br><span class="line">        \&#125;</span><br></pre></td></tr></table></figure></li>
-</ul>
-<p>配置好了 LeaderF，在 vim&#x2F;neovim 的命令行输入  <code>:Leaderf</code>  tab 就可以看到相关的命令了，如果忘记了具体的命令也没有关系，使用 <code>LeaderfSelf</code> 即可列出所有的 Leaderf 命令。如何想查看具体命令的使用方法，在命令窗口输入 <code>:Leaderf -h</code></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">subcommands:</span><br><span class="line"></span><br><span class="line">  &#123;file,tag,function,mru,searchHistory,cmdHistory,help,line,colorscheme,gtags,</span><br><span class="line">      self,bufTag,buffer,rg,filetype,command,window,quickfix,loclist,jumps&#125;</span><br><span class="line">    file                search files</span><br><span class="line">    tag                 navigate tags using the tags file</span><br><span class="line">    function            navigate functions or methods in the buffer</span><br><span class="line">    mru                 search most recently used files</span><br><span class="line">    searchHistory       execute the search command in the history</span><br><span class="line">    cmdHistory          execute the command in the history</span><br><span class="line">    help                navigate the help tags</span><br><span class="line">    line                search a line in the buffer</span><br><span class="line">    colorscheme         switch between colorschemes</span><br><span class="line">    gtags               navigate tags using the gtags</span><br><span class="line">    self                execute the commands of itself</span><br><span class="line">    bufTag              navigate tags in the buffer</span><br><span class="line">    buffer              search buffers</span><br><span class="line">    rg                  grep using rg</span><br><span class="line">    filetype            navigate the filetype</span><br><span class="line">    command             execute built-in/user-defined Ex commands.</span><br><span class="line">    window              search windows.</span><br><span class="line">    quickfix            navigate the quickfix.</span><br><span class="line">    loclist             navigate the location list.</span><br></pre></td></tr></table></figure>
-
-<p>好了，我可以放弃 fzf.vim, ctrp.vim, tagbar, unite.vim, denite.vim 等一系列 vim 插件了。 在日常使用中，每次都输入那么长的命令不太方便，我们可以配置以下容易记忆的快捷键。</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">noremap &lt;leader&gt;fs :LeaderfSelf&lt;cr&gt;</span><br><span class="line">noremap &lt;leader&gt;fm :LeaderfMru&lt;cr&gt;</span><br><span class="line">noremap &lt;leader&gt;ff :LeaderfFunction&lt;cr&gt;</span><br><span class="line">noremap &lt;leader&gt;fb :LeaderfBuffer&lt;cr&gt;</span><br><span class="line">noremap &lt;leader&gt;ft :LeaderfBufTag&lt;cr&gt;</span><br><span class="line">noremap &lt;leader&gt;fl :LeaderfLine&lt;cr&gt;</span><br><span class="line">noremap &lt;leader&gt;fw :LeaderfWindow&lt;cr&gt;</span><br></pre></td></tr></table></figure>
-
-<p>值得一提的是 rg 命令，可以直接在目录文件内搜索字符串，ripgrep 的正则表达式比 vim 的正则要正常多了。vim 的正则表达式的用法可以参见：<a target="_blank" rel="noopener" href="https://vimdoc.sourceforge.net/htmldoc/pattern.html">https://vimdoc.sourceforge.net/htmldoc/pattern.html</a><br>以前我为了规避 vim 的正则使用了一个插件 <a target="_blank" rel="noopener" href="https://github.com/othree/eregex.vim">https://github.com/othree/eregex.vim</a> 现在这个插件也不需要了。</p>
-<p>要利用 LeaderF 调用 rg 命令，可以使用命令行 <code>:Leaderf! rg</code>, 为了方便使用使用下面的快捷键查询光标所在 word</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmap &lt;leader&gt;frb &lt;Plug&gt;LeaderfRgCwordLiteralBoundary</span><br></pre></td></tr></table></figure>
-
-<h3 id="运行-LeaderF-之后的操作"><a href="#运行-LeaderF-之后的操作" class="headerlink" title="运行 LeaderF 之后的操作"></a>运行 LeaderF 之后的操作</h3><p>在执行 Leaderf 命令弹出的界面后，需要使用特定的快捷键进行操作，这些快捷键可以使用 <code>help leaderf-prompt</code> 进行查看。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">Once LeaderF is launched:                       *prompt* *leaderf-prompt*</span><br><span class="line">    &lt;C-C&gt;, &lt;ESC&gt; : quit from LeaderF.</span><br><span class="line">    &lt;C-R&gt; : switch between fuzzy search mode and regex mode.</span><br><span class="line">    &lt;C-F&gt; : switch between full path search mode and name only search mode.</span><br><span class="line">    &lt;Tab&gt; : switch to normal mode.</span><br><span class="line">    &lt;C-V&gt;, &lt;S-Insert&gt; : paste from clipboard.</span><br><span class="line">    &lt;C-U&gt; : clear the prompt.</span><br><span class="line">    &lt;C-W&gt; : delete the word before the cursor in the prompt.</span><br><span class="line">    &lt;C-J&gt;, &lt;C-K&gt; : navigate the result list.</span><br><span class="line">    &lt;Up&gt;, &lt;Down&gt; : recall last/next input pattern from history.</span><br><span class="line">    &lt;2-LeftMouse&gt; or &lt;CR&gt; : open the file under cursor or selected(when</span><br><span class="line">                            multiple files are selected).</span><br><span class="line">    &lt;C-X&gt; : open in horizontal split window.</span><br><span class="line">    &lt;C-]&gt; : open in vertical split window.</span><br><span class="line">    &lt;C-T&gt; : open in new tabpage.</span><br><span class="line">    &lt;F5&gt;  : refresh the cache.</span><br><span class="line">    &lt;C-LeftMouse&gt; or &lt;C-S&gt; : select multiple files.</span><br><span class="line">    &lt;S-LeftMouse&gt; : select consecutive multiple files.</span><br><span class="line">    &lt;C-A&gt; : select all files.</span><br><span class="line">    &lt;C-L&gt; : clear all selections.</span><br><span class="line">    &lt;BS&gt;  : delete the preceding character in the prompt.</span><br><span class="line">    &lt;Del&gt; : delete the current character in the prompt.</span><br><span class="line">    &lt;Home&gt;: move the cursor to the begin of the prompt.</span><br><span class="line">    &lt;End&gt; : move the cursor to the end of the prompt.</span><br><span class="line">    &lt;Left&gt;: move the cursor one character to the left.</span><br><span class="line">    &lt;Right&gt; : move the cursor one character to the right.</span><br><span class="line">    &lt;C-P&gt; : preview the result.</span><br><span class="line">    &lt;C-Up&gt; : scroll up in the popup preview window.</span><br><span class="line">    &lt;C-Down&gt; : scroll down in the popup preview window.</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>tab : 切换输入模式和 normal 模式，进入 normal 模式后可以使用 <code>j</code> 和 <code>k</code> 上下移动光标来查看文件。 </li>
-<li>q :  normal 模式中，退出 LeaderF</li>
-</ul>
-<p>在输入模式下，可以使用下面的快捷键进行分屏显示。</p>
-<ul>
-<li>ctrl + x : 横向分割</li>
-<li>ctrl + ] : 竖向分割</li>
-<li>ctrl + T : tab 分割</li>
-</ul>
-<h2 id="☆-LeaderF-gtags-的配置"><a href="#☆-LeaderF-gtags-的配置" class="headerlink" title="☆ LeaderF + gtags 的配置"></a>☆ LeaderF + gtags 的配置</h2><p>gtags 和 LeaderF 配置起来使用，实在是很不错。首先要配置好 gtags，关于 global 的安装详见 <a target="_blank" rel="noopener" href="https://www.usmacd.com/2023/03/02/gtags-cscope/">GNU Global 的使用</a>，这里就不再详细说了，gtags 的配置添加下面两行即可。</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">let $GTAGSLABEL=<span class="string">&#x27;native-pygments&#x27;</span></span><br><span class="line">let $GTAGSCONF=<span class="string">&#x27;/usr/local/share/gtags/gtags.conf&#x27;</span></span><br></pre></td></tr></table></figure>
-
-<p>配置好系统 gtags，global ，gtags.conf 的正确路径。</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">let g:Lf_Global = <span class="string">&#x27;/usr/local/bin/global&#x27;</span></span><br><span class="line">let g:Lf_Gtags = <span class="string">&#x27;/usr/local/bin/gtags&#x27;</span></span><br><span class="line">let g:Lf_Gtagsconf = <span class="string">&#x27;/usr/local/share/gtags/gtags.conf&#x27;</span></span><br><span class="line">let g:Lf_Gtagslabel = <span class="string">&#x27;native-pygments&#x27;</span></span><br></pre></td></tr></table></figure>
-
-<p>下面两行是配置gtags 自动生成 tags 文件，主要是三个文件 <code>GPATH</code> , <code>GRTAGS</code>  <code>GTAGS</code></p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">let g:Lf_GtagsAutoGenerate = <span class="number">1</span></span><br><span class="line">let g:Lf_GtagsAutoUpdate = <span class="number">1</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>g:Lf_GtagsAutoGenerate  是否自动生成 tags 文件。设置成 1 并且在 g:Lf_RootMarkers 定义的目录中，tags 会自动生成</li>
-<li>g:Lf_GtagsAutoUpdate 是否自动更新 tags。如果设置成 0 ，需要先执行 <code>Leaderf gtags --update</code> 手动更新 tags 文件</li>
-</ul>
-<p>tags 文件生成的目录和 <code>g:Lf_CacheDirectory</code> 的配置相关， g:Lf_CacheDirectory 用于设置缓存文件目录，默认的目录是 $HOME (Windows 上会有变化)使用 <code>_</code> 替换了 <code>/</code> 。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">ls</span> ~/.LfCache/gtags/_home_henices_.vim </span><br><span class="line">GPATH  GRTAGS  GTAGS</span><br></pre></td></tr></table></figure>
-
-<p>完成了上面的配置后，我们就可以正常使用 LeaderF 来对 gtags 生成的 tags 文件进行浏览了，在命令行使用 <code>:Leaderf gtags -h</code> 可以看到详细的命令。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">:Leaderf gtags -h</span><br><span class="line">usage:</span><br><span class="line">Leaderf[!] gtags [-h] [--remove] [--recall]</span><br><span class="line">Leaderf[!] gtags --update [--gtagsconf &lt;FILE&gt;] [--gtagslabel &lt;LABEL&gt;] [--accept-dotfiles]</span><br><span class="line">                 [--skip-unreadable] [--skip-symlink [&lt;TYPE&gt;]] [--gtagslibpath &lt;PATH&gt; [&lt;PATH&gt; ...]]</span><br><span class="line">Leaderf[!] gtags [--current-buffer | --all-buffers | --all] [--result &lt;FORMAT&gt;] [COMMON_OPTIONS]</span><br><span class="line">Leaderf[!] gtags -d &lt;PATTERN&gt; [--auto-jump [&lt;TYPE&gt;]] [-i] [--literal] [--path-style &lt;FORMAT&gt;] [-S &lt;DIR&gt;]</span><br><span class="line">                 [--append] [--match-path] [--gtagsconf &lt;FILE&gt;] [--gtagslabel &lt;LABEL&gt;] [COMMON_OPTIONS]</span><br><span class="line">Leaderf[!] gtags -r &lt;PATTERN&gt; [--auto-jump [&lt;TYPE&gt;]] [-i] [--literal] [--path-style &lt;FORMAT&gt;] [-S &lt;DIR&gt;]</span><br><span class="line">                 [--append] [--match-path] [--gtagsconf &lt;FILE&gt;] [--gtagslabel &lt;LABEL&gt;] [COMMON_OPTIONS]</span><br><span class="line">Leaderf[!] gtags -s &lt;PATTERN&gt; [-i] [--literal] [--path-style &lt;FORMAT&gt;] [-S &lt;DIR&gt;] [--append]</span><br><span class="line">                 [--match-path] [--gtagsconf &lt;FILE&gt;] [--gtagslabel &lt;LABEL&gt;] [COMMON_OPTIONS]</span><br><span class="line">Leaderf[!] gtags -g &lt;PATTERN&gt; [-i] [--literal] [--path-style &lt;FORMAT&gt;] [-S &lt;DIR&gt;] [--append]</span><br><span class="line">                 [--match-path] [--gtagsconf &lt;FILE&gt;] [--gtagslabel &lt;LABEL&gt;] [COMMON_OPTIONS]</span><br><span class="line">Leaderf[!] gtags --by-context [--auto-jump [&lt;TYPE&gt;]] [-i] [--literal] [--path-style &lt;FORMAT&gt;] [-S &lt;DIR&gt;]</span><br><span class="line">                 [--append] [--match-path] [--gtagsconf &lt;FILE&gt;] [--gtagslabel &lt;LABEL&gt;] [COMMON_OPTIONS]</span><br><span class="line">[COMMON_OPTIONS]: [--reverse] [--stayOpen] [--input &lt;INPUT&gt; | --cword]</span><br><span class="line">                  [--top | --bottom | --left | --right | --belowright | --aboveleft | --fullScreen]</span><br><span class="line">                  [--nameOnly | --fullPath | --fuzzy | --regexMode] [--nowrap] [--next | --previous]</span><br><span class="line"></span><br><span class="line">...</span><br></pre></td></tr></table></figure>
-
-<p>LeaderF gtags 最常用的 <code>:Leaderf[!] gtags -d/-r/-s/-g</code>， 具体的作用如下所示，<code>!</code> 表示直接进入 normal 模式。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">--gtagslibpath &lt;PATH&gt; [&lt;PATH&gt; ...]</span><br><span class="line">                      Specify the paths to search for library functions.</span><br><span class="line">-d &lt;PATTERN&gt;, --definition &lt;PATTERN&gt;</span><br><span class="line">                      Show locations of definitions.</span><br><span class="line">-r &lt;PATTERN&gt;, --reference &lt;PATTERN&gt;</span><br><span class="line">                      Show reference to a symbol which has definitions.</span><br><span class="line">-s &lt;PATTERN&gt;, --symbol &lt;PATTERN&gt;</span><br><span class="line">                      Show reference to a symbol which has no definition.</span><br><span class="line">-g &lt;PATTERN&gt;, --grep &lt;PATTERN&gt;</span><br></pre></td></tr></table></figure>
-
-<p>日常使用中，同样可以配置快捷键方便使用，下面的快捷键将对光标所在单词进行 tag 查找。</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">nmap &lt;leader&gt;fgd &lt;Plug&gt;LeaderfGtagsDefinition</span><br><span class="line">nmap &lt;leader&gt;fgr &lt;Plug&gt;LeaderfGtagsReference</span><br><span class="line">nmap &lt;leader&gt;fgs &lt;Plug&gt;LeaderfGtagsSymbol</span><br><span class="line">nmap &lt;leader&gt;fgg &lt;Plug&gt;LeaderfGtagsGrep</span><br></pre></td></tr></table></figure>
-
-<h3 id="运行-LeaderF-gtags-之后"><a href="#运行-LeaderF-gtags-之后" class="headerlink" title="运行 LeaderF gtags 之后"></a>运行 LeaderF gtags 之后</h3><p>使用 LeaderF + gtags 跳转到源码后，如果想继续跳转到下一个或者上一个 tag 可以使用 <code>Leaderf gtags --next</code> 和 <code>Leaderf gtags --previous</code></p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">noremap &lt;leader&gt;fgn :&lt;C-U&gt;&lt;C-R&gt;=<span class="built_in">printf</span>(<span class="string">&quot;Leaderf gtags --next %s&quot;</span>, <span class="string">&quot;&quot;</span>)&lt;CR&gt;&lt;CR&gt;</span><br><span class="line">noremap &lt;leader&gt;fgp :&lt;C-U&gt;&lt;C-R&gt;=<span class="built_in">printf</span>(<span class="string">&quot;Leaderf gtags --previous %s&quot;</span>, <span class="string">&quot;&quot;</span>)&lt;CR&gt;&lt;CR&gt;</span><br></pre></td></tr></table></figure>
+<link rel="stylesheet" href="/css/main.css">
 
 
-<h2 id="☆-LeaderF-的其他用法"><a href="#☆-LeaderF-的其他用法" class="headerlink" title="☆ LeaderF 的其他用法"></a>☆ LeaderF 的其他用法</h2><p>LeaderF 还可以和 <a target="_blank" rel="noopener" href="https://github.com/ludovicchabant/vim-gutentags">Gutentags</a> 配合使用进行源码浏览，但已经超出本文内容，有兴趣者可以查阅网络上的其他资料。</p>
-<h2 id="☆-参考资料"><a href="#☆-参考资料" class="headerlink" title="☆ 参考资料"></a>☆ 参考资料</h2><p><a target="_blank" rel="noopener" href="https://github.com/Yggdroot/LeaderF/blob/master/doc/leaderf.txt">https://github.com/Yggdroot/LeaderF/blob/master/doc/leaderf.txt</a><br><a target="_blank" rel="noopener" href="https://retzzz.github.io/dc9af5aa/">https://retzzz.github.io/dc9af5aa/</a><br><a target="_blank" rel="noopener" href="https://github.com/Yggdroot/LeaderF/blob/master/README.md">https://github.com/Yggdroot/LeaderF/blob/master/README.md</a><br><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/36279445">https://zhuanlan.zhihu.com/p/36279445</a><br><a target="_blank" rel="noopener" href="https://github.com/vim/vim/blob/master/runtime/doc/popup.txt">https://github.com/vim/vim/blob/master/runtime/doc/popup.txt</a><br><a target="_blank" rel="noopener" href="https://neovim.io/doc/user/api.html#api-floatwin">https://neovim.io/doc/user/api.html#api-floatwin</a></p>
-</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2023-03-02T00:00:00.000Z" title="2023/3/2 08:00:00">2023-03-02</time></span><span class="level-item">Updated&nbsp;<time dateTime="2023-07-16T00:00:00.000Z" title="2023/7/16 08:00:00">2023-07-16</time></span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/cn/gtags-cscope/">GNU Global 的使用</a></p><div class="content"><h2 id="☆-1-GNU-Global-简介"><a href="#☆-1-GNU-Global-简介" class="headerlink" title="☆ 1. GNU Global 简介"></a>☆ 1. GNU Global 简介</h2><p>GNU Global 是一种源代码标记系统，可以帮助程序员在代码库中快速定位函数、变量、宏定义等。GNU Global 可以生成索引文件，用于快速跳转到定义、引用、函数调用等地方，从而提高代码阅读和编辑的效率。</p>
-<p>GNU global 具有以下优势：</p>
-<ol>
-<li>多语言支持：在默认情况 GNU Global 支持 C, C++, Yacc, Java, PHP4 和 assembly 语言，在安装拓展的情况下可以支持 50多种语言。</li>
-<li>完整性：GNU global 可以标记更多符号的位置，如定义、引用、结构体、类，宏定义等。</li>
-<li>高效性：GNU global 生成高效的 tag 数据库，节省了磁盘空间，使得查询速度更快，同时也支持增量更新索引文件，这意味着当源代码发生变化时，只需要重新生成变更的部分，而不需要重新生成整个索引文件。</li>
-<li>可集成：可以在 Emacs, Vi &#x2F;vim,  Less viewer, Bash shell， 浏览器环境下正常使用</li>
-<li>持续更新： <a target="_blank" rel="noopener" href="https://www.gnu.org/software/global/whatsnew.html">https://www.gnu.org/software/global/whatsnew.html</a></li>
-</ol>
-<p>更多信息请参考： <a target="_blank" rel="noopener" href="https://www.gnu.org/software/global/globaldoc_toc.html">https://www.gnu.org/software/global/globaldoc_toc.html</a> 1.3 Features</p>
-<h2 id="☆-2-GNU-Global-的安装"><a href="#☆-2-GNU-Global-的安装" class="headerlink" title="☆ 2. GNU Global 的安装"></a>☆ 2. GNU Global 的安装</h2><p>下载地址： <a target="_blank" rel="noopener" href="https://ftp.gnu.org/pub/gnu/global/global-6.6.9.tar.gz">https://ftp.gnu.org/pub/gnu/global/global-6.6.9.tar.gz</a></p>
-<p><a target="_blank" rel="noopener" href="https://www.gnu.org/software/global/download.html">https://www.gnu.org/software/global/download.html</a> 中说明了源码编译方法：</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">% sh reconf.sh </span><br><span class="line">% ./configure</span><br><span class="line">% make</span><br></pre></td></tr></table></figure>
 
-<p>Fedora&#x2F;Debian 等系统可以使用仓库直接安装，下面以 Fedora Linux 为例</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo dnf install global-ctags global cscope</span><br></pre></td></tr></table></figure>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha256-CTSx/A06dm1B063156EVh15m6Y67pAjZZaQc89LLSrU=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
-<p>如果不安装 <code>global-ctags</code> 在 Fedora 下可能会报 <code>Cannot enable custom plug-in parser for GNU GLOBAL</code> 的错误。</p>
-<p>gtags-cscope 由 global 安装包提供不用另外安装了。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">sudo dnf whatprovides gtags-cscope</span><br><span class="line"></span><br><span class="line">global-6.6.5-7.fc37.x86_64 : Source code tag system</span><br><span class="line">仓库        ：@System</span><br><span class="line">匹配来源：</span><br><span class="line">文件名    ：/usr/bin/gtags-cscope</span><br><span class="line"></span><br><span class="line">global-6.6.5-7.fc37.x86_64 : Source code tag system</span><br><span class="line">仓库        ：fedora</span><br><span class="line">匹配来源：</span><br><span class="line">文件名    ：/usr/bin/gtags-cscope</span><br></pre></td></tr></table></figure>
+<script class="next-config" data-name="main" type="application/json">{"hostname":"usmacd.com","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.18.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
 
-<p>macOS 下可以使用 brew 安装 global，执行 <code>brew install global</code> 即可。<br>参见 <a target="_blank" rel="noopener" href="https://www.gnu.org/software/global/download.html">https://www.gnu.org/software/global/download.html</a></p>
-<p>如果需要gtags支持 C&#x2F;C++&#x2F;Java 之外的语言，需要安装 <code>pygments</code>。</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip3 install pygments</span><br></pre></td></tr></table></figure>
-
-<h2 id="☆-3-GNU-global-和-cscope-vim-集成"><a href="#☆-3-GNU-global-和-cscope-vim-集成" class="headerlink" title="☆ 3.  GNU global 和 cscope, vim 集成"></a>☆ 3.  GNU global 和 cscope, vim 集成</h2><p>vim 的 cscope 支持可能需要重新编译 vim，可以通过下面的命令查询。</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">vim --version | grep cscope</span><br><span class="line">+cscope            +localmap          +ruby/dyn          +wildignore</span><br></pre></td></tr></table></figure>
-
-<p>GNU global 提供了两个 vim 插件用于和 vim 结合，分别为 gtags.vim 和 gtags-cscope.vim，可以直接拷贝到 vim 的插件目录使用。</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cp</span> /usr/local/share/gtags/gtags.vim <span class="variable">$HOME</span>/.vim/plugin</span><br><span class="line"><span class="built_in">cp</span> /usr/local/share/gtags/gtags-cscope.vim <span class="variable">$HOME</span>/.vim/plugin</span><br></pre></td></tr></table></figure>
-<p>如果是系统仓库安装路径可能有变化，Fedora 上的 gtags.vim 路径为 <code>/usr/share/gtags/gtags.vim</code> 。</p>
-<p>gtags-cscope.vim 定义了一组快捷键和以前的 <code>cscope_maps.vim</code> 一致</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">:nmap &lt;C-\&gt;s :cs find s &lt;C-R&gt;=<span class="built_in">expand</span>(<span class="string">&quot;&lt;cword&gt;&quot;</span>)&lt;CR&gt;&lt;CR&gt;</span><br><span class="line">:nmap &lt;C-\&gt;g :cs find g &lt;C-R&gt;=<span class="built_in">expand</span>(<span class="string">&quot;&lt;cword&gt;&quot;</span>)&lt;CR&gt;&lt;CR&gt;</span><br><span class="line">:nmap &lt;C-\&gt;c :cs find c &lt;C-R&gt;=<span class="built_in">expand</span>(<span class="string">&quot;&lt;cword&gt;&quot;</span>)&lt;CR&gt;&lt;CR&gt;</span><br><span class="line">:nmap &lt;C-\&gt;t :cs find t &lt;C-R&gt;=<span class="built_in">expand</span>(<span class="string">&quot;&lt;cword&gt;&quot;</span>)&lt;CR&gt;&lt;CR&gt;</span><br><span class="line">:nmap &lt;C-\&gt;e :cs find e &lt;C-R&gt;=<span class="built_in">expand</span>(<span class="string">&quot;&lt;cword&gt;&quot;</span>)&lt;CR&gt;&lt;CR&gt;</span><br><span class="line">:nmap &lt;C-\&gt;f :cs find f &lt;C-R&gt;=<span class="built_in">expand</span>(<span class="string">&quot;&lt;cfile&gt;&quot;</span>)&lt;CR&gt;&lt;CR&gt;</span><br><span class="line">:nmap &lt;C-\&gt;i :cs find i &lt;C-R&gt;=<span class="built_in">expand</span>(<span class="string">&quot;&lt;cfile&gt;&quot;</span>)&lt;CR&gt;&lt;CR&gt;</span><br><span class="line">:nmap &lt;C-\&gt;a :cs find a &lt;C-R&gt;=<span class="built_in">expand</span>(<span class="string">&quot;&lt;cword&gt;&quot;</span>)&lt;CR&gt;&lt;CR&gt;</span><br></pre></td></tr></table></figure>
-
-<p>gtags-cscope.vim 的使用注释里有详细的说明：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">&quot; Usage</span><br><span class="line">&quot; -----</span><br><span class="line">&quot; First of all, you must execute gtags(1) at the root of source directory</span><br><span class="line">&quot; to make tag files. Assuming that your source directory is &#x27;/var/src&#x27;,</span><br><span class="line">&quot; it is neccessary to execute the following commands.</span><br><span class="line">&quot;</span><br><span class="line">&quot; [Load vim]</span><br><span class="line">&quot;	$ cd /var/src</span><br><span class="line">&quot;	$ gtags</span><br><span class="line">&quot;	$ vim</span><br><span class="line">&quot; [Load gtags-cscope]</span><br><span class="line">&quot;	:GtagsCscope &lt;ENTER&gt;            (in vim command line)</span><br><span class="line">&quot;</span><br><span class="line">&quot; Basic command</span><br><span class="line">&quot; -------------</span><br><span class="line">&quot; Then you can use cs commands except for the &#x27;d&#x27;(2) command.</span><br><span class="line">&quot; Profitable commands are assigned to keys like follows:</span><br><span class="line">&quot;</span><br><span class="line">&quot;	explanation		command	</span><br><span class="line">&quot;	----------------------------------------------------------</span><br><span class="line">&quot;	Find symbol		:cs find 0 or s</span><br><span class="line">&quot;	Find definition		:cs find 1 or g</span><br><span class="line">&quot;	Find functions called by this function	(not implemented)</span><br><span class="line">&quot;	Find reference		:cs find 3 or c</span><br><span class="line">&quot;	Find text string	:cs find 4 or t</span><br><span class="line">&quot;	Find egrep pattern	:cs find 6 or e</span><br><span class="line">&quot;	Find path		:cs find 7 or f</span><br><span class="line">&quot;	Find include file	:cs find 8 or i</span><br><span class="line">&quot;	Find assignments	:cs find 9 or a</span><br><span class="line">&quot;</span><br><span class="line">&quot; You can move tag list using:</span><br><span class="line">&quot;	Go to the next tag	 :tn</span><br><span class="line">&quot;	Go to the previous tag	 :tp</span><br><span class="line">&quot;	Pop tag stack		 :pop</span><br></pre></td></tr></table></figure>
-
-<p>除了不能使用 <code>:cs find d</code>  命令，可以使用其他所有的命令，gtags-cscope.vim 使用快捷键替代了输入命令，常用的快捷键的含义如下：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;C-\&gt;g - 查看光标下符号的定义</span><br><span class="line">&lt;C-\&gt;s - 查看光标下符号</span><br><span class="line">&lt;C-\&gt;c - 查看光标下符号的引用</span><br><span class="line">&lt;C-\&gt;f - 查找光标下的文件</span><br><span class="line">&lt;C-\&gt;i - 查找哪些文件 include 了本文件</span><br></pre></td></tr></table></figure>
-
-<p><code>&lt;C-\&gt;g</code>  是同时按下 Ctrl 和 <code>\</code> ，接着再按 g ， 其他的同理。</p>
-<p>在 .vimrc 中添加下面的配置</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> <span class="title function_">has</span><span class="params">(<span class="string">&quot;cscope&quot;</span>)</span></span><br><span class="line">&quot; To use the <span class="keyword">default</span> key/mouse mapping:</span><br><span class="line">    let GtagsCscope_Auto_Map = <span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="string">&quot; To deterring interruption:</span></span><br><span class="line"><span class="string">    let GtagsCscope_Keep_Alive = 1</span></span><br><span class="line"><span class="string">    </span></span><br><span class="line"><span class="string">    set cscopetag</span></span><br><span class="line"><span class="string">    set csprg=/usr/bin/gtags-cscope</span></span><br><span class="line"><span class="string">    set csto=1</span></span><br><span class="line"><span class="string">    set nocsverb</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">&quot;</span> Set enviroment values</span><br><span class="line">    let $GTAGSLABEL=<span class="string">&#x27;native-pygments&#x27;</span></span><br><span class="line">    let $GTAGSCONF=<span class="string">&#x27;/etc/gtags.conf&#x27;</span></span><br><span class="line"></span><br><span class="line">endif</span><br></pre></td></tr></table></figure>
-
-<h2 id="☆-4-GUN-global-的使用方法"><a href="#☆-4-GUN-global-的使用方法" class="headerlink" title="☆ 4.  GUN global 的使用方法"></a>☆ 4.  GUN global 的使用方法</h2><p>切换到源码目录，执行下面的命令将生成 Global 所需要的索引文件。</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">find . -<span class="built_in">type</span> f -name <span class="string">&quot;*.h&quot;</span> -o -name <span class="string">&quot;*.hpp&quot;</span> -o -name <span class="string">&quot;*.hh&quot;</span> -o -name <span class="string">&quot;*.hxx&quot;</span> -o -name <span class="string">&quot;*.c&quot;</span> -o -name <span class="string">&quot;*.cc&quot;</span> -o -name <span class="string">&quot;*.cpp&quot;</span> -o -name <span class="string">&quot;*.cxx&quot;</span> &gt; gtags.files</span><br><span class="line">gtags -f gtags.files</span><br></pre></td></tr></table></figure>
-
-<p>上面的命令执行完毕后，会生成 GPATH、GRTAGS、GTAGS 几个索引文件。</p>
-<p>在 vim 中执行 <code>:GtagsCscope &lt;ENTER&gt; </code> 即可加载索引文件，最后就是使用快捷键愉快地浏览源码文件了。</p>
-<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><ul>
-<li><a target="_blank" rel="noopener" href="https://www.gnu.org/software/global/global.html">https://www.gnu.org/software/global/global.html</a></li>
-<li><a target="_blank" rel="noopener" href="https://www.gnu.org/software/global/globaldoc_toc.html">https://www.gnu.org/software/global/globaldoc_toc.html</a></li>
-</ul>
-</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2013-09-05T16:00:00.000Z" title="2013/9/6 00:00:00">2013-09-06</time></span><span class="level-item">Updated&nbsp;<time dateTime="2013-09-05T16:00:00.000Z" title="2013/9/6 00:00:00">2013-09-06</time></span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/cn/vim_python/">vim中的python</a></p><div class="content"><h2 id="1-判断vim支持python"><a href="#1-判断vim支持python" class="headerlink" title="1. 判断vim支持python"></a>1. 判断vim支持python</h2><p>要判断你的vim是否支持python，可以执行下面命令：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ vim --version | grep python</span><br></pre></td></tr></table></figure>
+    <meta property="og:type" content="website">
+<meta property="og:title" content="安全代码">
+<meta property="og:url" content="http://usmacd.com/tags/vim/index.html">
+<meta property="og:site_name" content="安全代码">
+<meta property="og:locale" content="en_US">
+<meta property="article:author" content="henices">
+<meta name="twitter:card" content="summary">
 
 
-<p>如果显示的结果中有 +python 的话，你的vim已经支持python，<br>如果没有的话，你需要重新编译vim，在windows中可以使用下面的命令行，</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmake -f Make_mvc.mak FEATURES=huge PYTHON=D:\Python27 PYTHON_VER=27 GUI=yes IME=yes</span><br></pre></td></tr></table></figure>
+<link rel="canonical" href="http://usmacd.com/tags/vim/">
 
-<h2 id="2-为什么需要编译支持python的vim"><a href="#2-为什么需要编译支持python的vim" class="headerlink" title="2. 为什么需要编译支持python的vim"></a>2. 为什么需要编译支持python的vim</h2><p>主要的理由有两个，</p>
-<ol>
-<li>可以使用python写的vim插件。</li>
-<li>vim 7.4 以后对python的支持进行了增强。</li>
-</ol>
-<p>有很多不错的vim 插件，这里给大家推荐一个python-mode, 非常不错。<a target="_blank" rel="noopener" href="https://github.com/klen/python-mode">https://github.com/klen/python-mode</a></p>
-<p>vim 7.4 以后对python的支持进行了增强，这个是广大vim注册用户（捐钱的用户）呼声最<br>高的需求，原话为，</p>
-<blockquote>
-<p>add integration with Python instead of inventing more Vim script</p>
-</blockquote>
-<p>确实现在已经有太多的vim脚本了。vim的主页上的完整需求列表; <a target="_blank" rel="noopener" href="http://www.vim.org/sponsor/vote_results.php">http://www.vim.org/sponsor/vote_results.php</a></p>
-<blockquote>
-<p>add IDE features (debugger integration, shell window)</p>
-</blockquote>
-<p>这个是排行老二的需求，不知道什么时侯能实现，期待中…</p>
-<h2 id="3-一些应用举例"><a href="#3-一些应用举例" class="headerlink" title="3. 一些应用举例"></a>3. 一些应用举例</h2><h3 id="3-1-python-commands"><a href="#3-1-python-commands" class="headerlink" title="3.1 python commands"></a>3.1 python commands</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">:[range]py[thon] &#123;stmt&#125;</span><br></pre></td></tr></table></figure>
 
-<p>这个命令比较简单，详细解释如下:</p>
-<p>range 是标准的vim的range 熟悉vim替换命令的同学应该都不会陌生。range的作用的是指<br>定python命令影响哪些行，写法为 [行号，行号]，比如 1,2  影响第一行和第二行，1,$<br>影响整个文件。[] 的意思是这个range是可选的默认将影响整个文件。</p>
-<p>py[thon]的意思为，python 是命令的全写，可以简写为py。</p>
-<p>{stmt} python 语句</p>
-<p>可以写上下面命令，输出 Hello</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">:python print &quot;Hello python&quot;</span><br></pre></td></tr></table></figure>
 
-<p>数学不好的同学可以像我一样使用</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">:py print 1+1</span><br></pre></td></tr></table></figure>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":false,"lang":"en","comments":"","permalink":"","path":"tags/vim/index.html","title":""}</script>
 
-<p>将显示结果2  :)</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">:[range]py[thon] &lt;&lt; &#123;endmarker&#125;</span><br><span class="line">&#123;script&#125;</span><br><span class="line">&#123;endmarker&#125;</span><br></pre></td></tr></table></figure>
-
-<p>上面是这个命令是第二种用法，可以直接写python，相当爽，写法很象cat 命令</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cat</span> &gt; /tmp/xx &lt;&lt; <span class="string">EOF</span></span><br><span class="line"><span class="string">....</span></span><br><span class="line"><span class="string">EOF</span></span><br></pre></td></tr></table></figure>
-
-<p>想用vim查询天气的同学可以参考一下，github上的这个脚本 <a target="_blank" rel="noopener" href="https://raw.github.com/liqunli/vim-plugin-dev/master/dairy.vim">https://raw.github.com/liqunli/vim-plugin-dev/master/dairy.vim</a></p>
-<h3 id="3-2-pydo"><a href="#3-2-pydo" class="headerlink" title="3.2 pydo"></a>3.2 pydo</h3><p>这个命令的格式为， :[range]pydo {body}</p>
-<p>vim 中有一个定义好的函数，这个命令将利用这个函数做一些事情</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">_vim_pydo</span>(<span class="params">line, linenr</span>):</span><br><span class="line">    &#123;body&#125;</span><br></pre></td></tr></table></figure>
-
-<p>pydo 这个命令同样是以行为单位的，range的用法和上面说的一样。 line 是原始的行，<br>linenr 是 line number (行号）。大家可以猜一下下面命令的意思，</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">:pydo if line: return &quot;%4d: %s&quot; % (linenr, line)</span><br></pre></td></tr></table></figure>
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Tag: vim | 安全代码</title>
+  
 
 
 
@@ -245,64 +44,326 @@
 
 
 
-<p>显示结果大致是这样， 直接用这个文件测试了一下，</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">55: 将显示结果2  :)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">58: :[range]py[thon] &lt;&lt; &#123;endmarker&#125;</span><br><span class="line">59: &#123;script&#125;</span><br><span class="line">60: &#123;endmarker&#125;</span><br></pre></td></tr></table></figure>
 
-<p>没有指定range，默认为整个文件，”%4d: %s” % (linenr, line)  这句的意思是，<br>在每行前加行号，不足4位的数字的用空格补齐</p>
-<p>在早些时侯，vim命令要实现这个的效果，需要写一行诡异的命令，</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">:%s/^/\=printf(&#x27;%4d: &#x27;, line(&#x27;.&#x27;))</span><br></pre></td></tr></table></figure>
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="安全代码" type="application/atom+xml">
+</head>
 
-<p>挑战太大，vim 还专门写了一篇wiki <a target="_blank" rel="noopener" href="http://vim.wikia.com/wiki/Insert_line_numbers">http://vim.wikia.com/wiki/Insert_line_numbers</a></p>
-<h3 id="3-3-pyfile"><a href="#3-3-pyfile" class="headerlink" title="3.3 pyfile"></a>3.3 pyfile</h3><p>这条命令的格式为，:[range]pyf[ile] {file}</p>
-<p>可以直接使用python 文件，不需要一句一句的输入python 语句了。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">:python from vim import *</span><br><span class="line">:python from string import upper</span><br><span class="line">:python current.line = upper(current.line)</span><br><span class="line">:python print &quot;Hello&quot;</span><br><span class="line">:python str = current.buffer[42]</span><br></pre></td></tr></table></figure>
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
 
-<h3 id="3-4-python3"><a href="#3-4-python3" class="headerlink" title="3.4  python3"></a>3.4  python3</h3><p>命令的格式和python是一样的，不过需要开启 +python3</p>
-<h3 id="3-5-vim的python-接口"><a href="#3-5-vim的python-接口" class="headerlink" title="3.5  vim的python 接口"></a>3.5  vim的python 接口</h3><p>这个不属于这个小文章的想说的了，写了这成vim的manual了，可以直接参看:<br><a target="_blank" rel="noopener" href="http://vimhelp.appspot.com/if_pyth.txt.html#python-vim">http://vimhelp.appspot.com/if_pyth.txt.html#python-vim</a></p>
-<h2 id="4-最后"><a href="#4-最后" class="headerlink" title="4. 最后"></a>4. 最后</h2><p>为了避免vim和emacs的圣战，hx 和 lzx等emacs党，可以直接忽视此文 ：）</p>
-<h2 id="5-参考资料"><a href="#5-参考资料" class="headerlink" title="5. 参考资料"></a>5. 参考资料</h2><p><a target="_blank" rel="noopener" href="http://vimhelp.appspot.com/if_pyth.txt.html">http://vimhelp.appspot.com/if_pyth.txt.html</a></p>
-</div></article></div></div><div class="column column-left is-4-tablet is-4-desktop is-3-widescreen  order-1"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar" src="/img/avatar.jpg" alt="Henices"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">Henices</p><p class="is-size-6 is-block">安全研究员</p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">Posts</p><a href="/archives"><p class="title">98</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Tags</p><a href="/tags"><p class="title">14</p></a></div></div></nav><div class="level is-mobile is-multiline"><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Twitter" href="https://twitter.com/henices"><i class="fab fa-twitter"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="RSS" href="/atom.xml"><i class="fas fa-rss"></i></a></div></div></div><div class="card widget" data-type="recent-posts"><div class="card-content"><h3 class="menu-label">Recents</h3><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-09-12T16:00:00.000Z">2023-09-13</time></p><p class="title"><a href="/cn/living_younger_healthier_logger/">端粒效应</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-09-06T03:49:12.921Z">2023-09-06</time></p><p class="title"><a href="/en/learn_in_public/">Learn In Public 摘要</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-09-06T03:00:51.915Z">2023-09-06</time></p><p class="title"><a href="/cn/xorddos_hide/">xorddos 样本进程隐藏的小伎俩</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-09-06T03:00:51.914Z">2023-09-06</time></p><p class="title"><a href="/cn/Windows_Rx034/">解决 Windows Rx034</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-09-06T03:00:51.896Z">2023-09-06</time></p><p class="title"><a href="/cn/webview_java/">Android WebView 漏洞</a></p></div></article></div></div><div class="card widget" data-type="links"><div class="card-content"><div class="menu"><h3 class="menu-label">Links</h3><ul class="menu-list"><li><a class="level is-mobile" href="https://scz.617.cn/" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">飞花堂</span></span><span class="level-right"><span class="level-item tag">scz.617.cn</span></span></a></li><li><a class="level is-mobile" href="https://blog.forecho.com/" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">forecho</span></span><span class="level-right"><span class="level-item tag">blog.forecho.com</span></span></a></li><li><a class="level is-mobile" href="https://demochen.com/" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">特立独行的异类</span></span><span class="level-right"><span class="level-item tag">demochen.com</span></span></a></li><li><a class="level is-mobile" href="https://www.mrhuangtalk.com/" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Mr.Huang Talk</span></span><span class="level-right"><span class="level-item tag">www.mrhuangtalk.com</span></span></a></li></ul></div></div></div><div class="column-right-shadow is-hidden-widescreen is-sticky"></div></div><div class="column column-right is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only order-3 is-sticky"><!--!--><div class="card widget" data-type="tags"><div class="card-content"><div class="menu"><h3 class="menu-label">Tags</h3><div class="field is-grouped is-grouped-multiline"><div class="control"><a class="tags has-addons" href="/tags/Android/"><span class="tag">Android</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Archives/"><span class="tag">Archives</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Crack/"><span class="tag">Crack</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Life/"><span class="tag">Life</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Malware/"><span class="tag">Malware</span></a></div><div class="control"><a class="tags has-addons" href="/tags/PKM/"><span class="tag">PKM</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Programming/"><span class="tag">Programming</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Security/"><span class="tag">Security</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Software/"><span class="tag">Software</span></a></div><div class="control"><a class="tags has-addons" href="/tags/ai/"><span class="tag">ai</span></a></div><div class="control"><a class="tags has-addons" href="/tags/investment/"><span class="tag">investment</span></a></div><div class="control"><a class="tags has-addons" href="/tags/linux/"><span class="tag">linux</span></a></div><div class="control"><a class="tags has-addons" href="/tags/vim/"><span class="tag">vim</span></a></div><div class="control"><a class="tags has-addons" href="/tags/windows/"><span class="tag">windows</span></a></div></div></div></div></div><div class="card widget" data-type="adsense"><div class="card-content"><div class="menu"><h3 class="menu-label">Advertisement</h3><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-8793345906937947" data-ad-slot="9350670660" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script></div></div></div></div></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/">安全代码</a><p class="is-size-7"><span>&copy; 2023 henices</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("en");</script><script>var IcarusThemeSettings = {
-            article: {
-                highlight: {
-                    clipboard: true,
-                    fold: 'unfolded'
-                }
-            }
-        };</script><script src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="Back to top" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
-      window.cookieconsent.initialise({
-        type: "info",
-        theme: "edgeless",
-        static: false,
-        position: "bottom-left",
-        content: {
-          message: "This website uses cookies to improve your experience.",
-          dismiss: "Got it!",
-          allow: "Allow cookies",
-          deny: "Decline",
-          link: "Learn more",
-          policy: "Cookie Policy",
-          href: "https://www.cookiesandyou.com/",
-        },
-        palette: {
-          popup: {
-            background: "#edeff5",
-            text: "#838391"
-          },
-          button: {
-            background: "#4b81e8"
-          },
-        },
-      });
-    });</script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
-            if (typeof $.fn.lightGallery === 'function') {
-                $('.article').lightGallery({ selector: '.gallery-item' });
-            }
-            if (typeof $.fn.justifiedGallery === 'function') {
-                if ($('.justified-gallery > p > .gallery-item').length) {
-                    $('.justified-gallery > p > .gallery-item').unwrap();
-                }
-                $('.justified-gallery').justifiedGallery();
-            }
-        });</script><!--!--><!--!--><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="Type something..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
-            loadInsight({"contentUrl":"/content.json"}, {"hint":"Type something...","untitled":"(Untitled)","posts":"Posts","pages":"Pages","categories":"Categories","tags":"Tags"});
-        });</script></body></html>
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">安全代码</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a></li><li class="menu-item menu-item-sitemap"><a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>Sitemap</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-overview-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="henices"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">henices</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">98</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/henices" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;henices" rel="noopener me" target="_blank"><i class="fab fa-twitter fa-fw"></i>Twitter</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml" rel="noopener me"><i class="rss fa-fw"></i>RSS</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+    <div class="sidebar-inner sidebar-blogroll">
+      <div class="links-of-blogroll animated">
+        <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+          Links
+        </div>
+        <ul class="links-of-blogroll-list">
+            <li class="links-of-blogroll-item">
+              <a href="http://scz.617.cn:8/" title="http:&#x2F;&#x2F;scz.617.cn:8&#x2F;" rel="noopener" target="_blank">飞花堂</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://www.v2ex.com/" title="https:&#x2F;&#x2F;www.v2ex.com&#x2F;" rel="noopener" target="_blank">V2EX</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://blog.forecho.com/" title="https:&#x2F;&#x2F;blog.forecho.com&#x2F;" rel="noopener" target="_blank">forecho</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://chensenlin.cn/" title="https:&#x2F;&#x2F;chensenlin.cn&#x2F;" rel="noopener" target="_blank">你好我是森林</a>
+            </li>
+        </ul>
+      </div>
+    </div>
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner tag posts-collapse">
+
+
+  
+  
+  
+  <div class="post-block">
+    <div class="post-content">
+      <div class="collection-title">
+        <h1 class="collection-header">vim
+          <small>Tag</small>
+        </h1>
+      </div>
+
+      
+    <div class="collection-year">
+      <span class="collection-header">2023</span>
+    </div>
+
+  <article itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+      <div class="post-meta-container">
+        <time itemprop="dateCreated"
+              datetime="2023-09-06T11:00:51+08:00"
+              content="2023-09-06">
+          09-06
+        </time>
+      </div>
+
+      <div class="post-title">
+        <a class="post-title-link" href="/cn/vim_special_char/" itemprop="url">
+          <span itemprop="name">vim 输入特殊字符</span>
+        </a>
+      </div>
+
+      
+    </header>
+  </article>
+
+  <article itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+      <div class="post-meta-container">
+        <time itemprop="dateCreated"
+              datetime="2023-09-06T11:00:51+08:00"
+              content="2023-09-06">
+          09-06
+        </time>
+      </div>
+
+      <div class="post-title">
+        <a class="post-title-link" href="/cn/svn_vim/" itemprop="url">
+          <span itemprop="name">VIM + SVN 管理</span>
+        </a>
+      </div>
+
+      
+    </header>
+  </article>
+
+  <article itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+      <div class="post-meta-container">
+        <time itemprop="dateCreated"
+              datetime="2023-07-20T00:00:00+08:00"
+              content="2023-07-20">
+          07-20
+        </time>
+      </div>
+
+      <div class="post-title">
+        <a class="post-title-link" href="/cn/vim_gtags_leaderf/" itemprop="url">
+          <span itemprop="name">在 vim 中使用 LeaderF 和 gtags</span>
+        </a>
+      </div>
+
+      
+    </header>
+  </article>
+
+  <article itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+      <div class="post-meta-container">
+        <time itemprop="dateCreated"
+              datetime="2023-03-02T08:00:00+08:00"
+              content="2023-03-02">
+          03-02
+        </time>
+      </div>
+
+      <div class="post-title">
+        <a class="post-title-link" href="/cn/gtags-cscope/" itemprop="url">
+          <span itemprop="name">GNU Global 的使用</span>
+        </a>
+      </div>
+
+      
+    </header>
+  </article>
+    <div class="collection-year">
+      <span class="collection-header">2013</span>
+    </div>
+
+  <article itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+      <div class="post-meta-container">
+        <time itemprop="dateCreated"
+              datetime="2013-09-06T00:00:00+08:00"
+              content="2013-09-06">
+          09-06
+        </time>
+      </div>
+
+      <div class="post-title">
+        <a class="post-title-link" href="/cn/vim_python/" itemprop="url">
+          <span itemprop="name">vim中的python</span>
+        </a>
+      </div>
+
+      
+    </header>
+  </article>
+
+    </div>
+  </div>
+  
+  
+  
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2023</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">henices</span>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8793345906937947"
+     crossorigin="anonymous"></script>
+<!-- 展示广告 -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-8793345906937947"
+     data-ad-slot="9350670660"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+</body>
+</html>

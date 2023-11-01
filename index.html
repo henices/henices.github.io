@@ -1,36 +1,231 @@
-<!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>安全代码</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="安全代码"><meta name="msapplication-TileImage" content="/img/favicon.png"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="安全代码"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta property="og:type" content="blog"><meta property="og:title" content="安全代码"><meta property="og:url" content="http://usmacd.com/"><meta property="og:site_name" content="安全代码"><meta property="og:locale" content="en_US"><meta property="og:image" content="http://usmacd.com/img/og_image.png"><meta property="article:author" content="henices"><meta property="twitter:card" content="summary"><meta property="twitter:image:src" content="http://usmacd.com/img/og_image.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://usmacd.com"},"headline":"安全代码","image":["http://usmacd.com/img/og_image.png"],"author":{"@type":"Person","name":"henices"},"publisher":{"@type":"Organization","name":"安全代码","logo":{"@type":"ImageObject","url":{"text":"安全代码"}}},"description":""}</script><link rel="icon" href="/img/favicon.png"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.7.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css"><!--!--><!--!--><style>.pace{-webkit-pointer-events:none;pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none}.pace-inactive{display:none}.pace .pace-progress{background:#3273dc;position:fixed;z-index:2000;top:0;right:100%;width:100%;height:2px}</style><script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><!--!--><!--!--><script data-ad-client="ca-pub-8793345906937947" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js" async></script><!-- hexo injector head_end start --><script>
-  (function () {
-      function switchTab() {
-          if (!location.hash) {
-            return;
-          }
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.0.0">
 
-          const id = '#' + CSS.escape(location.hash.substring(1));
-          const $tabMenu = document.querySelector(`.tabs a[href="${id}"]`);
-          if (!$tabMenu) {
-            return;
-          }
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
 
-          const $tabMenuContainer = $tabMenu.parentElement.parentElement;
-          Array.from($tabMenuContainer.children).forEach($menu => $menu.classList.remove('is-active'));
-          Array.from($tabMenuContainer.querySelectorAll('a'))
-              .map($menu => document.getElementById($menu.getAttribute("href").substring(1)))
-              .forEach($content => $content.classList.add('is-hidden'));
+<link rel="stylesheet" href="/css/main.css">
 
-          if ($tabMenu) {
-              $tabMenu.parentElement.classList.add('is-active');
-          }
-          const $activeTab = document.querySelector(id);
-          if ($activeTab) {
-              $activeTab.classList.remove('is-hidden');
-          }
-      }
-      switchTab();
-      window.addEventListener('hashchange', switchTab, false);
-  })();
-  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="安全代码" type="application/atom+xml">
-</head><body class="is-3-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/">安全代码</a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item is-active" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/tags">Tags</a><a class="navbar-item" href="/about">About</a></div><div class="navbar-end"><a class="navbar-item search" title="Search" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-6-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2023-09-12T16:00:00.000Z" title="2023/9/13 00:00:00">2023-09-13</time></span><span class="level-item">Updated&nbsp;<time dateTime="2023-09-12T16:00:00.000Z" title="2023/9/13 00:00:00">2023-09-13</time></span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/cn/living_younger_healthier_logger/">端粒效应</a></p><div class="content"><p>获得 2009 年诺贝尔生理或医学奖的 伊丽莎白·布莱克本在 《端粒效应》一书中说明：人只所以变老，是由于某些细胞不再更新了，而细胞分裂更新的限制在于 “端粒”。</p>
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha256-CTSx/A06dm1B063156EVh15m6Y67pAjZZaQc89LLSrU=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"usmacd.com","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.18.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
+
+    <meta property="og:type" content="website">
+<meta property="og:title" content="安全代码">
+<meta property="og:url" content="http://usmacd.com/index.html">
+<meta property="og:site_name" content="安全代码">
+<meta property="og:locale" content="en_US">
+<meta property="article:author" content="henices">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://usmacd.com/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":true,"isPost":false,"lang":"en","comments":"","permalink":"","path":"index.html","title":""}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>安全代码</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="安全代码" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">安全代码</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a></li><li class="menu-item menu-item-sitemap"><a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>Sitemap</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-overview-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="henices"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">henices</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">98</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/henices" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;henices" rel="noopener me" target="_blank"><i class="fab fa-twitter fa-fw"></i>Twitter</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml" rel="noopener me"><i class="rss fa-fw"></i>RSS</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+    <div class="sidebar-inner sidebar-blogroll">
+      <div class="links-of-blogroll animated">
+        <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+          Links
+        </div>
+        <ul class="links-of-blogroll-list">
+            <li class="links-of-blogroll-item">
+              <a href="http://scz.617.cn:8/" title="http:&#x2F;&#x2F;scz.617.cn:8&#x2F;" rel="noopener" target="_blank">飞花堂</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://www.v2ex.com/" title="https:&#x2F;&#x2F;www.v2ex.com&#x2F;" rel="noopener" target="_blank">V2EX</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://blog.forecho.com/" title="https:&#x2F;&#x2F;blog.forecho.com&#x2F;" rel="noopener" target="_blank">forecho</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://chensenlin.cn/" title="https:&#x2F;&#x2F;chensenlin.cn&#x2F;" rel="noopener" target="_blank">你好我是森林</a>
+            </li>
+        </ul>
+      </div>
+    </div>
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://usmacd.com/cn/living_younger_healthier_logger/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="henices">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="安全代码">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 安全代码">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/cn/living_younger_healthier_logger/" class="post-title-link" itemprop="url">端粒效应</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2023-09-13 00:00:00" itemprop="dateCreated datePublished" datetime="2023-09-13T00:00:00+08:00">2023-09-13</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>获得 2009 年诺贝尔生理或医学奖的 伊丽莎白·布莱克本在 《端粒效应》一书中说明：人只所以变老，是由于某些细胞不再更新了，而细胞分裂更新的限制在于 “端粒”。</p>
 <p>端粒是染色体末端的 DNA 序列，在细胞分裂过程中，端粒起到保护 DNA 序列的作用。所以，人之所变老的本质原因是 「端粒变短」。</p>
 <p>影响端粒变短的因素</p>
 <ul>
@@ -89,7 +284,75 @@
 <li>孕期压力：怀孕期间母亲的压力情况，人遇到压力会分泌皮质醇，从而影响孩子的端粒</li>
 <li>家庭环境：越少父母的关爱，被父母忽视的孩子，端粒会比较短</li>
 </ul>
-</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2023-09-06T03:49:12.921Z" title="2023/9/6 11:49:12">2023-09-06</time></span><span class="level-item">Updated&nbsp;<time dateTime="2023-09-06T03:49:12.921Z" title="2023/9/6 11:49:12">2023-09-06</time></span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/en/learn_in_public/">Learn In Public 摘要</a></p><div class="content"><p>source: <a target="_blank" rel="noopener" href="https://www.swyx.io/learn-in-public/">https://www.swyx.io/learn-in-public/</a></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://usmacd.com/en/learn_in_public/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="henices">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="安全代码">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 安全代码">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/en/learn_in_public/" class="post-title-link" itemprop="url">Learn In Public 摘要</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2023-09-06 11:49:12" itemprop="dateCreated datePublished" datetime="2023-09-06T11:49:12+08:00">2023-09-06</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>source: <a target="_blank" rel="noopener" href="https://www.swyx.io/learn-in-public/">https://www.swyx.io/learn-in-public/</a></p>
 <ul>
 <li>a habit of creating <strong>learning exhaust</strong>  <ul>
 <li>Write blogs and tutorials and cheatsheets.  </li>
@@ -129,7 +392,75 @@
 </ul>
 </li>
 </ul>
-</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2023-09-06T03:00:51.915Z" title="2023/9/6 11:00:51">2023-09-06</time></span><span class="level-item">Updated&nbsp;<time dateTime="2023-09-06T03:00:51.915Z" title="2023/9/6 11:00:51">2023-09-06</time></span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/cn/xorddos_hide/">xorddos 样本进程隐藏的小伎俩</a></p><div class="content"><h2 id="进程隐藏"><a href="#进程隐藏" class="headerlink" title="进程隐藏"></a>进程隐藏</h2><p>上周由于工作原因接触到xorddos的样本，这个样本在过去一年的时间里非常常见，<br>变种也很多，拿到的样本比较有趣的是 ps 无法发现进程。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://usmacd.com/cn/xorddos_hide/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="henices">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="安全代码">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 安全代码">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/cn/xorddos_hide/" class="post-title-link" itemprop="url">xorddos 样本进程隐藏的小伎俩</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2023-09-06 11:00:51" itemprop="dateCreated datePublished" datetime="2023-09-06T11:00:51+08:00">2023-09-06</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="进程隐藏"><a href="#进程隐藏" class="headerlink" title="进程隐藏"></a>进程隐藏</h2><p>上周由于工作原因接触到xorddos的样本，这个样本在过去一年的时间里非常常见，<br>变种也很多，拿到的样本比较有趣的是 ps 无法发现进程。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]<span class="comment"># ps -ef  | grep /usr/bin</span></span><br><span class="line"></span><br><span class="line">...</span><br><span class="line"></span><br><span class="line">root      4597  4594  0 00:37 ?        00:00:00 gnome-pty-helper</span><br><span class="line">root      4598  4594  0 00:37 pts/1    00:00:00 bash</span><br><span class="line">oracle    5359     1  0 00:41 ?        00:00:00 ora_smco_orcl</span><br><span class="line">oracle    5378     1  0 00:41 ?        00:00:00 ora_w000_orcl</span><br><span class="line">oracle    5586     1  0 00:42 ?        00:00:00 ora_j000_orcl</span><br><span class="line">oracle    5588     1  0 00:42 ?        00:00:00 ora_j001_orcl</span><br><span class="line">root      5666     1  0 00:43 ?        00:00:00 sh</span><br><span class="line">root      5669     1  0 00:43 ?        00:00:00 <span class="built_in">echo</span> <span class="string">&quot;find&quot;</span></span><br><span class="line">root      5672     1  0 00:43 ?        00:00:00 <span class="built_in">ls</span> -la</span><br><span class="line">root      5675     1  0 00:43 ?        00:00:00 bash</span><br><span class="line">root      5678     1  0 00:43 ?        00:00:00 gnome-terminal</span><br><span class="line">root      5683     1  0 00:43 ?        00:00:00 <span class="built_in">cd</span> /etc</span><br><span class="line">root      5686     1  0 00:43 ?        00:00:00 top</span><br><span class="line">root      5689     1  0 00:43 ?        00:00:00 sh</span><br><span class="line">root      5692     1  0 00:43 ?        00:00:00 gnome-terminal</span><br><span class="line">root      5695     1  0 00:43 ?        00:00:00 ifconfig</span><br><span class="line">root      5696  4598  0 00:43 pts/1    00:00:00 ps -ef</span><br></pre></td></tr></table></figure>
 
 <p>而使用lsof却可以清除地看见样本正在努力地干活。</p>
@@ -219,7 +550,75 @@
 
 <p>xorddos 样本多态主要就是用这个函数，每次在文件末尾写上10个字节的随机字符。<br>这样样本md5和大小都会发生变化，使得一些检测方法失效。</p>
 <h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><p>正因为这种隐藏方法并不理想，后面xorddos出现了带rootkit的版本，进化了。</p>
-</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2023-09-06T03:00:51.914Z" title="2023/9/6 11:00:51">2023-09-06</time></span><span class="level-item">Updated&nbsp;<time dateTime="2023-09-06T03:00:51.914Z" title="2023/9/6 11:00:51">2023-09-06</time></span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/cn/Windows_Rx034/">解决 Windows Rx034</a></p><div class="content"><p>以前没有遇上这个错误，这次遇上这个错误是装vim的YouCompleteMe插件后出现，因此很容易想到是装插件引起的这个错误，错误提示Runtime Error 如下图：</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://usmacd.com/cn/Windows_Rx034/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="henices">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="安全代码">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 安全代码">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/cn/Windows_Rx034/" class="post-title-link" itemprop="url">解决 Windows Rx034</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2023-09-06 11:00:51" itemprop="dateCreated datePublished" datetime="2023-09-06T11:00:51+08:00">2023-09-06</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>以前没有遇上这个错误，这次遇上这个错误是装vim的YouCompleteMe插件后出现，因此很容易想到是装插件引起的这个错误，错误提示Runtime Error 如下图：</p>
 <p><img src="https://raw.githubusercontent.com/henices/pictures/master/r5051.png" alt="error"></p>
 <p>先放狗搜一下，微软的对R6034的解释如下：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">An application has made an attempt to load the C runtime library without using</span><br><span class="line">a manifest. This is an unsupported way to load Visual C++ DLLs. You need to</span><br><span class="line">modify your application to build with a manifest. For more information, see the</span><br><span class="line">&quot;Visual C++ Libraries as Shared Side-by-Side Assemblies&quot; topic in the product</span><br><span class="line">documentation.</span><br></pre></td></tr></table></figure>
@@ -270,7 +669,75 @@
 <p>另外，《Dynamic-Link Library Search Order》中指出使用manifest可以指定加载DLL的路径，但实际的情况是有可能加载多个DLL导致进程崩溃。</p>
 <p>Desktop applications can control the location from which a DLL is loaded by specifying a full path, using DLL redirection, or by using a manifest. If none of these methods are used, the system searches for the DLL at load time as described in this section.</p>
 <h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p>[1]《Windows via C&#x2F;C++ Fifth Edition》<br>[2] Side-by-side Assemblies <a target="_blank" rel="noopener" href="http://msdn.microsoft.com/en-us/library/aa376307.aspx">http://msdn.microsoft.com/en-us/library/aa376307.aspx</a><br>[3] DLL Hell <a target="_blank" rel="noopener" href="http://en.wikipedia.org/wiki/Dll_hell">http://en.wikipedia.org/wiki/Dll_hell</a><br>[4] C Run-Time Error R6034 <a target="_blank" rel="noopener" href="http://msdn.microsoft.com/en-us/library/ms235560(v=vs.90).aspx">http://msdn.microsoft.com/en-us/library/ms235560(v=vs.90).aspx</a><br>[5] Understanding Manifest Generation for C&#x2F;C++ Programs <a target="_blank" rel="noopener" href="http://msdn.microsoft.com/en-us/library/ms235542.aspx">http://msdn.microsoft.com/en-us/library/ms235542.aspx</a><br>[6] Search Path Used by Windows to Locate a DLL <a target="_blank" rel="noopener" href="http://msdn.microsoft.com/en-us/library/7d83bc18.aspx">http://msdn.microsoft.com/en-us/library/7d83bc18.aspx</a><br>[7] Dynamic-Link Library Search Order <a target="_blank" rel="noopener" href="http://msdn.microsoft.com/en-us/library/windows/desktop/ms682586(v=vs.85).aspx">http://msdn.microsoft.com/en-us/library/windows/desktop/ms682586(v=vs.85).aspx</a><br>[8] <a target="_blank" rel="noopener" href="https://bitbucket.org/Haroogan/vim-youcompleteme-for-windows/src/7dca764c2ee0?at=master">https://bitbucket.org/Haroogan/vim-youcompleteme-for-windows/src/7dca764c2ee0?at=master</a><br>[9] <a target="_blank" rel="noopener" href="https://github.com/Valloric/YouCompleteMe/wiki/Windows-Installation-Guide">https://github.com/Valloric/YouCompleteMe/wiki/Windows-Installation-Guide</a><br>[10] <a target="_blank" rel="noopener" href="http://www.davidlenihan.com/2007/07/winsxs.html">http://www.davidlenihan.com/2007/07/winsxs.html</a></p>
-</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2023-09-06T03:00:51.896Z" title="2023/9/6 11:00:51">2023-09-06</time></span><span class="level-item">Updated&nbsp;<time dateTime="2023-09-06T03:00:51.896Z" title="2023/9/6 11:00:51">2023-09-06</time></span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/cn/webview_java/">Android WebView 漏洞</a></p><div class="content"><h2 id="☆-来自-developer-android-com-的信息"><a href="#☆-来自-developer-android-com-的信息" class="headerlink" title="☆ 来自 developer.android.com 的信息"></a>☆ 来自 developer.android.com 的信息</h2><p>Android 官方网站对addJavascriptInterface的介绍如下：</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://usmacd.com/cn/webview_java/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="henices">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="安全代码">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 安全代码">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/cn/webview_java/" class="post-title-link" itemprop="url">Android WebView 漏洞</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2023-09-06 11:00:51" itemprop="dateCreated datePublished" datetime="2023-09-06T11:00:51+08:00">2023-09-06</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="☆-来自-developer-android-com-的信息"><a href="#☆-来自-developer-android-com-的信息" class="headerlink" title="☆ 来自 developer.android.com 的信息"></a>☆ 来自 developer.android.com 的信息</h2><p>Android 官方网站对addJavascriptInterface的介绍如下：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">public void addJavascriptInterface (Object object, String name)  Added in API level 1</span><br><span class="line"></span><br><span class="line">Injects the supplied Java object into this WebView. The object is injected into</span><br><span class="line">the JavaScript context of the main frame, using the supplied name. This allows </span><br><span class="line">the Java object&#x27;s methods to be accessed from JavaScript. For applications</span><br><span class="line">targeted to API level JELLY_BEAN_MR1 and above, only public methods that are </span><br><span class="line">annotated with JavascriptInterface can be accessed from JavaScript. For applications</span><br><span class="line">targeted to API level JELLY_BEAN or below, all public methods (including the inherited ones)</span><br><span class="line">can be accessed, see the important security note below for implications.</span><br><span class="line"></span><br><span class="line">Note that injected objects will not appear in JavaScript until the page is next</span><br><span class="line">(re)loaded. For example:</span><br></pre></td></tr></table></figure>
 
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">JsObject</span> &#123;</span><br><span class="line">   <span class="meta">@JavascriptInterface</span></span><br><span class="line">   <span class="keyword">public</span> String <span class="title function_">toString</span><span class="params">()</span> &#123; <span class="keyword">return</span> <span class="string">&quot;injectedObject&quot;</span>; &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">webView.addJavascriptInterface(<span class="keyword">new</span> <span class="title class_">JsObject</span>(), <span class="string">&quot;injectedObject&quot;</span>);</span><br><span class="line">webView.loadData(<span class="string">&quot;&quot;</span>, <span class="string">&quot;text/html&quot;</span>, <span class="literal">null</span>);</span><br><span class="line">webView.loadUrl(<span class="string">&quot;javascript:alert(injectedObject.toString())&quot;</span>);</span><br></pre></td></tr></table></figure>
@@ -338,7 +805,75 @@
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Give the host application a chance to take over the control when a new url </span><br><span class="line">is about to be loaded in the current WebView. If WebViewClient is not </span><br><span class="line">provided, by default WebView will ask Activity Manager to choose the proper </span><br><span class="line">handler for the url. If WebViewClient is provided, return true means the </span><br><span class="line">host application handles the url, while return false means the current </span><br><span class="line">WebView handles the url. This method is not called for requests using </span><br><span class="line">the POST &quot;method&quot;.</span><br></pre></td></tr></table></figure>
 
 <p>其实就是当WebView加载新的URL时给App程序一个控制的机会，这还是有一些想象空间的。</p>
-</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2023-09-06T03:00:51.882Z" title="2023/9/6 11:00:51">2023-09-06</time></span><span class="level-item">Updated&nbsp;<time dateTime="2023-09-06T03:00:51.882Z" title="2023/9/6 11:00:51">2023-09-06</time></span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/cn/vnc/">Fedora 安装 vnc server</a></p><div class="content"><p>因为疫情，现在公司启用远程办公了，不得已在工作机上开了vncserver，这篇文档做个记录。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://usmacd.com/cn/vnc/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="henices">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="安全代码">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 安全代码">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/cn/vnc/" class="post-title-link" itemprop="url">Fedora 安装 vnc server</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2023-09-06 11:00:51" itemprop="dateCreated datePublished" datetime="2023-09-06T11:00:51+08:00">2023-09-06</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>因为疫情，现在公司启用远程办公了，不得已在工作机上开了vncserver，这篇文档做个记录。</p>
 <h2 id="1-安装"><a href="#1-安装" class="headerlink" title="(1) 安装"></a>(1) 安装</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo dnf install tigervnc-server</span><br></pre></td></tr></table></figure>
 
 <h2 id="2-创建服务"><a href="#2-创建服务" class="headerlink" title="(2) 创建服务"></a>(2) 创建服务</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp /lib/systemd/system/vncserver@.service /etc/systemd/system/vncserver@.service</span><br></pre></td></tr></table></figure>
@@ -362,14 +897,150 @@
 
 <p>必须改变默认桌面，要不可能登录不进去。</p>
 <h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><p>个人觉得从安全角度看，使用命令启用 vncserver 是比较合理的，要用了就打开，用完就关。另外vncserver 连接加了一层 tunnel，安全无小事。</p>
-</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2023-09-06T03:00:51.880Z" title="2023/9/6 11:00:51">2023-09-06</time></span><span class="level-item">Updated&nbsp;<time dateTime="2023-09-06T03:00:51.880Z" title="2023/9/6 11:00:51">2023-09-06</time></span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/cn/vim_special_char/">vim 输入特殊字符</a></p><div class="content"><p>vim 的编辑能力确实很强，今天说一下如何在vim中输入特殊字符，比如音标、unicode 字符。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://usmacd.com/cn/vim_special_char/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="henices">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="安全代码">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 安全代码">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/cn/vim_special_char/" class="post-title-link" itemprop="url">vim 输入特殊字符</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2023-09-06 11:00:51" itemprop="dateCreated datePublished" datetime="2023-09-06T11:00:51+08:00">2023-09-06</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>vim 的编辑能力确实很强，今天说一下如何在vim中输入特殊字符，比如音标、unicode 字符。</p>
 <p><a target="_blank" rel="noopener" href="http://vimhelp.appspot.com/digraph.txt.html">http://vimhelp.appspot.com/digraph.txt.html</a><br><a target="_blank" rel="noopener" href="http://vimhelp.appspot.com/insert.txt.html#i_CTRL-V_digit">http://vimhelp.appspot.com/insert.txt.html#i_CTRL-V_digit</a></p>
 <p>关键就在上面两篇，可能许多人不喜欢看复杂的文章，我这里简单介绍一下用法。</p>
 <p>输入音标 ə</p>
 <p>i 进入编辑模式    CTRL-vu0259<br>那如何知道 ə 的 unicode hex number 是 0259呢，在vim的normal 模式下，将光标移动到ə输入ga</p>
 <p>输入 ⇒</p>
 <p>i 进入编辑模式   CTRL-k&#x3D;&gt;<br>:dig 可以看到支持这种方法输入的unicode 字符</p>
-</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2023-09-06T03:00:51.814Z" title="2023/9/6 11:00:51">2023-09-06</time></span><span class="level-item">Updated&nbsp;<time dateTime="2023-09-06T03:00:51.814Z" title="2023/9/6 11:00:51">2023-09-06</time></span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/cn/thunderbird.tls.1.0/">ThunerBird 78.8.1 连接 TLS 1.0 失败问题和 Linux 乱谈</a></p><div class="content"><p>我在公司使用 Linux 作用主力机已经 10 多年了，自从抛弃 Ubuntu 转入 Fedora 怀抱，生活幸福了不少。<br>早年最大的问题是 OFFICE 软件，工作中少不了要和 doc、ppx，xls 打交道，又没有太好的软件可以使用。<br>刚开始基本就两个解决方案，wine office 和永中 OFFICE，这两个方案都不是太理想，wine 的速度很慢，<br>永中则兼容性比较差，还会出现文档格式看起来就有明显差异的情况。。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://usmacd.com/cn/thunderbird.tls.1.0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="henices">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="安全代码">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 安全代码">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/cn/thunderbird.tls.1.0/" class="post-title-link" itemprop="url">ThunerBird 78.8.1 连接 TLS 1.0 失败问题和 Linux 乱谈</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2023-09-06 11:00:51" itemprop="dateCreated datePublished" datetime="2023-09-06T11:00:51+08:00">2023-09-06</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>我在公司使用 Linux 作用主力机已经 10 多年了，自从抛弃 Ubuntu 转入 Fedora 怀抱，生活幸福了不少。<br>早年最大的问题是 OFFICE 软件，工作中少不了要和 doc、ppx，xls 打交道，又没有太好的软件可以使用。<br>刚开始基本就两个解决方案，wine office 和永中 OFFICE，这两个方案都不是太理想，wine 的速度很慢，<br>永中则兼容性比较差，还会出现文档格式看起来就有明显差异的情况。。</p>
 <p>随着金山 wps 的发展，现在 OFFICE 的问题基本解决，作为轻度 EXCEL 使用者基本已经满足需求了。Linux<br>现在主要问题是字体渲染比较差，中文经常看起来发虚，如果能把这个问题彻底解决就非常不错了。作为Linux<br>老用户，各种魔改后，也能较好使用了，但后面发现还是换个显示器更管用。要解决中文显示问题，有两个<br>字体很管用，文泉驿微米黒和微软雅黑，实践证明把系统字体用上面两个字体替换，显示效果也就好了不少了。</p>
 <p>Ubuntu Linux 最大的问题就是不太稳定，基本每次大版本升级显示都要挂，弄得我都有点心理阴影了，原来<br>周围还挺多同学使用 Linux，最终放弃了，一个直接用 Windows 了，还有一个 Windows 上跑一个 Linux 虚拟机。<br>Ubuntu 还有个坏习惯喜欢乱改，upstart，Unity等，后面都没有成为主流，bug 就更不用说了，经常挺闹心的。</p>
 <p>Fedora 从近些年的使用情况来看，还是很不错的，网络中流传是 Redhat Linux Enterprise 的小白版本，<br>但是其实只要 bug 修得快，你大概率是感觉不到的。遇上问题，放狗一搜就会发现 redhat 已经有 bug 在<br>处理中了，于是乎就有了今天这篇。</p>
@@ -402,7 +1073,75 @@
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">min_tls_version = TLS1.0</span><br><span class="line">protocol = TLS1.3 TLS1.2 TLS1.1 TLS1.0 DTLS1.2 DTLS1.0</span><br></pre></td></tr></table></figure>
 
 <p>重启系统后，又可以开心地使用 ThunderBird 了 ^_^</p>
-</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2023-09-06T03:00:51.812Z" title="2023/9/6 11:00:51">2023-09-06</time></span><span class="level-item">Updated&nbsp;<time dateTime="2023-09-06T03:00:51.812Z" title="2023/9/6 11:00:51">2023-09-06</time></span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/cn/svn_vim/">VIM + SVN 管理</a></p><div class="content"><p>公司使用svn管理源代码，避免不了要和svn打交道，有几个比较好的解决方案。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://usmacd.com/cn/svn_vim/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="henices">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="安全代码">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 安全代码">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/cn/svn_vim/" class="post-title-link" itemprop="url">VIM + SVN 管理</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2023-09-06 11:00:51" itemprop="dateCreated datePublished" datetime="2023-09-06T11:00:51+08:00">2023-09-06</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>公司使用svn管理源代码，避免不了要和svn打交道，有几个比较好的解决方案。</p>
 <h2 id="1-vcscommand-vim"><a href="#1-vcscommand-vim" class="headerlink" title="1. vcscommand.vim"></a>1. vcscommand.vim</h2><p><a target="_blank" rel="noopener" href="http://www.vim.org/scripts/script.php?script_id=90">http://www.vim.org/scripts/script.php?script_id=90</a></p>
 <p>这个插件的特点是支持的版本管理工具多,支持git，svn等常见版本管理工具。<br>vcscommand.vim插件默认绑定了无差别的快捷键，使用起来非常方便。</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">|&lt;Leader&gt;|ca VCSAdd</span><br><span class="line">|&lt;Leader&gt;|cn VCSAnnotate</span><br><span class="line">|&lt;Leader&gt;|cN VCSAnnotate!</span><br><span class="line">|&lt;Leader&gt;|cc VCSCommit</span><br><span class="line">|&lt;Leader&gt;|cD VCSDelete</span><br><span class="line">|&lt;Leader&gt;|cd VCSDiff</span><br><span class="line">|&lt;Leader&gt;|cg VCSGotoOriginal</span><br><span class="line">|&lt;Leader&gt;|cG VCSGotoOriginal!</span><br><span class="line">|&lt;Leader&gt;|ci VCSInfo</span><br><span class="line">|&lt;Leader&gt;|cl VCSLog</span><br><span class="line">|&lt;Leader&gt;|cL VCSLock</span><br><span class="line">|&lt;Leader&gt;|cr VCSReview</span><br><span class="line">|&lt;Leader&gt;|cs VCSStatus</span><br><span class="line">|&lt;Leader&gt;|cu VCSUpdate</span><br><span class="line">|&lt;Leader&gt;|cU VCSUnlock</span><br><span class="line">|&lt;Leader&gt;|cv VCSVimDiff</span><br></pre></td></tr></table></figure>
@@ -420,53 +1159,164 @@
 <p>支持基本的svn命令， svn status, svn info, svn diff, svn commit, svn up</p>
 <p>使用示例</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">:Unite svn/status</span><br><span class="line">:Unite svn/diff</span><br><span class="line">:Unite svn/blame</span><br></pre></td></tr></table></figure>
-</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2023-09-06T03:00:51.811Z" title="2023/9/6 11:00:51">2023-09-06</time></span><span class="level-item">Updated&nbsp;<time dateTime="2023-09-06T03:00:51.811Z" title="2023/9/6 11:00:51">2023-09-06</time></span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/cn/stock_experience/">个人炒股经历</a></p><div class="content"><p>本人IT男一枚，2015年入市，到今天5年多了，所幸还在吃人不露骨头的市场上活着，也是非常不容易。基本不存在什么特殊情况，韭菜总是在人声鼎沸的牛市高点入场，本人也不例外，上证3500多点入市，上证3800多点让媳妇买了沪深 300 基金 （不是ETF），这基金今年才解套，小赚出局了。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://usmacd.com/cn/stock_experience/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="henices">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="安全代码">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 安全代码">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/cn/stock_experience/" class="post-title-link" itemprop="url">个人炒股经历</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2023-09-06 11:00:51" itemprop="dateCreated datePublished" datetime="2023-09-06T11:00:51+08:00">2023-09-06</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>本人IT男一枚，2015年入市，到今天5年多了，所幸还在吃人不露骨头的市场上活着，也是非常不容易。基本不存在什么特殊情况，韭菜总是在人声鼎沸的牛市高点入场，本人也不例外，上证3500多点入市，上证3800多点让媳妇买了沪深 300 基金 （不是ETF），这基金今年才解套，小赚出局了。</p>
 <p>运气好的是，2015年的时候中了一支新股，新股的收益对冲了倒金字塔加仓的回撤，小赚1万元出局清了仓，有时候我也在想如果不是这赚了1万，是不是也就不会继续炒股了。接下来的事情大家都很熟悉了，熔断和股灾3.0，一直在不赚和小亏中挣扎着，居然也坚持了下来。理工男的特质救了我，从2015年开始认真学习股票操作，恶补基础知识，分时，K线，缺口，价量关系，缠论，波浪理论，箱体理论，趋势交易，价值投资，基本各种理论都看了遍，其实到最后发现有用的东西太少了，关于股票的书也基本没啥用，真正有用的书可能就那么几本，可是如果不看几十本的话，你怎么知道哪几本有用呢？所以炒股并不存在什么捷径，一夜暴富基本是神话，为啥呢？盈亏同源，怎么赚钱就可能怎么亏回去，除非你知道你为什么能赚钱。</p>
 <p>下面是这些年的心得，应该可以涨几年功力吧？</p>
 <p>要在市场上生存你必须具备某种优势，没有这种优势就是纯赌博，真正赚钱的是要做大概率的投机。买卖股票实际上是对股票做分类，哪些可以做，哪些不可以做，这就涉及了股票交易系统，有了交易系统，剩下的就是执行问题了，要做到BDWQ，后面就是仓位计算，根据股票的波动和你愿意承担的风险程度计算出来。</p>
 <p>回首看虽然现在稳定盈利了，又回到了灵魂拷问，投入的时间值得吗？对于很多人来说，最重要可能是资金的原始积累，10万块，翻10倍，100万在中国很多城市一套房也买不了，更不用说财富自由了，所以先努力工作吧，边工作边加大投资比例，梦想还是要有的，万一实现了呢？</p>
-</div></article></div><nav class="pagination" role="navigation" aria-label="pagination"><div class="pagination-previous is-invisible is-hidden-mobile"><a href="/page/0/">Previous</a></div><div class="pagination-next"><a href="/page/2/">Next</a></div><ul class="pagination-list is-hidden-mobile"><li><a class="pagination-link is-current" href="/">1</a></li><li><a class="pagination-link" href="/page/2/">2</a></li><li><span class="pagination-ellipsis">&hellip;</span></li><li><a class="pagination-link" href="/page/10/">10</a></li></ul></nav></div><div class="column column-left is-4-tablet is-4-desktop is-3-widescreen  order-1"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar" src="/img/avatar.jpg" alt="Henices"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">Henices</p><p class="is-size-6 is-block">安全研究员</p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">Posts</p><a href="/archives"><p class="title">98</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Tags</p><a href="/tags"><p class="title">14</p></a></div></div></nav><div class="level is-mobile is-multiline"><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Twitter" href="https://twitter.com/henices"><i class="fab fa-twitter"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="RSS" href="/atom.xml"><i class="fas fa-rss"></i></a></div></div></div><div class="card widget" data-type="recent-posts"><div class="card-content"><h3 class="menu-label">Recents</h3><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-09-12T16:00:00.000Z">2023-09-13</time></p><p class="title"><a href="/cn/living_younger_healthier_logger/">端粒效应</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-09-06T03:49:12.921Z">2023-09-06</time></p><p class="title"><a href="/en/learn_in_public/">Learn In Public 摘要</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-09-06T03:00:51.915Z">2023-09-06</time></p><p class="title"><a href="/cn/xorddos_hide/">xorddos 样本进程隐藏的小伎俩</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-09-06T03:00:51.914Z">2023-09-06</time></p><p class="title"><a href="/cn/Windows_Rx034/">解决 Windows Rx034</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-09-06T03:00:51.896Z">2023-09-06</time></p><p class="title"><a href="/cn/webview_java/">Android WebView 漏洞</a></p></div></article></div></div><div class="card widget" data-type="links"><div class="card-content"><div class="menu"><h3 class="menu-label">Links</h3><ul class="menu-list"><li><a class="level is-mobile" href="https://scz.617.cn/" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">飞花堂</span></span><span class="level-right"><span class="level-item tag">scz.617.cn</span></span></a></li><li><a class="level is-mobile" href="https://blog.forecho.com/" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">forecho</span></span><span class="level-right"><span class="level-item tag">blog.forecho.com</span></span></a></li><li><a class="level is-mobile" href="https://demochen.com/" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">特立独行的异类</span></span><span class="level-right"><span class="level-item tag">demochen.com</span></span></a></li><li><a class="level is-mobile" href="https://www.mrhuangtalk.com/" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Mr.Huang Talk</span></span><span class="level-right"><span class="level-item tag">www.mrhuangtalk.com</span></span></a></li></ul></div></div></div><div class="column-right-shadow is-hidden-widescreen is-sticky"></div></div><div class="column column-right is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only order-3 is-sticky"><!--!--><div class="card widget" data-type="tags"><div class="card-content"><div class="menu"><h3 class="menu-label">Tags</h3><div class="field is-grouped is-grouped-multiline"><div class="control"><a class="tags has-addons" href="/tags/Android/"><span class="tag">Android</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Archives/"><span class="tag">Archives</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Crack/"><span class="tag">Crack</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Life/"><span class="tag">Life</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Malware/"><span class="tag">Malware</span></a></div><div class="control"><a class="tags has-addons" href="/tags/PKM/"><span class="tag">PKM</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Programming/"><span class="tag">Programming</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Security/"><span class="tag">Security</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Software/"><span class="tag">Software</span></a></div><div class="control"><a class="tags has-addons" href="/tags/ai/"><span class="tag">ai</span></a></div><div class="control"><a class="tags has-addons" href="/tags/investment/"><span class="tag">investment</span></a></div><div class="control"><a class="tags has-addons" href="/tags/linux/"><span class="tag">linux</span></a></div><div class="control"><a class="tags has-addons" href="/tags/vim/"><span class="tag">vim</span></a></div><div class="control"><a class="tags has-addons" href="/tags/windows/"><span class="tag">windows</span></a></div></div></div></div></div><div class="card widget" data-type="adsense"><div class="card-content"><div class="menu"><h3 class="menu-label">Advertisement</h3><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-8793345906937947" data-ad-slot="9350670660" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script></div></div></div></div></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/">安全代码</a><p class="is-size-7"><span>&copy; 2023 henices</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("en");</script><script>var IcarusThemeSettings = {
-            article: {
-                highlight: {
-                    clipboard: true,
-                    fold: 'unfolded'
-                }
-            }
-        };</script><script src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="Back to top" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
-      window.cookieconsent.initialise({
-        type: "info",
-        theme: "edgeless",
-        static: false,
-        position: "bottom-left",
-        content: {
-          message: "This website uses cookies to improve your experience.",
-          dismiss: "Got it!",
-          allow: "Allow cookies",
-          deny: "Decline",
-          link: "Learn more",
-          policy: "Cookie Policy",
-          href: "https://www.cookiesandyou.com/",
-        },
-        palette: {
-          popup: {
-            background: "#edeff5",
-            text: "#838391"
-          },
-          button: {
-            background: "#4b81e8"
-          },
-        },
-      });
-    });</script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
-            if (typeof $.fn.lightGallery === 'function') {
-                $('.article').lightGallery({ selector: '.gallery-item' });
-            }
-            if (typeof $.fn.justifiedGallery === 'function') {
-                if ($('.justified-gallery > p > .gallery-item').length) {
-                    $('.justified-gallery > p > .gallery-item').unwrap();
-                }
-                $('.justified-gallery').justifiedGallery();
-            }
-        });</script><!--!--><!--!--><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="Type something..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
-            loadInsight({"contentUrl":"/content.json"}, {"hint":"Type something...","untitled":"(Untitled)","posts":"Posts","pages":"Pages","categories":"Categories","tags":"Tags"});
-        });</script></body></html>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" title="Next page" aria-label="Next page" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+  </nav>
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2023</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">henices</span>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8793345906937947"
+     crossorigin="anonymous"></script>
+<!-- 展示广告 -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-8793345906937947"
+     data-ad-slot="9350670660"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+</body>
+</html>
