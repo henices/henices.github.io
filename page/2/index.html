@@ -122,7 +122,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">100</span>
+          <span class="site-state-item-count">101</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -177,6 +177,107 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://usmacd.com/cn/thunderbird.tls.1.0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="henices">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="安全代码">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 安全代码">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/cn/thunderbird.tls.1.0/" class="post-title-link" itemprop="url">ThunerBird 78.8.1 连接 TLS 1.0 失败问题和 Linux 乱谈</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2023-09-06 11:00:51" itemprop="dateCreated datePublished" datetime="2023-09-06T11:00:51+08:00">2023-09-06</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>我在公司使用 Linux 作用主力机已经 10 多年了，自从抛弃 Ubuntu 转入 Fedora 怀抱，生活幸福了不少。<br>早年最大的问题是 OFFICE 软件，工作中少不了要和 doc、ppx，xls 打交道，又没有太好的软件可以使用。<br>刚开始基本就两个解决方案，wine office 和永中 OFFICE，这两个方案都不是太理想，wine 的速度很慢，<br>永中则兼容性比较差，还会出现文档格式看起来就有明显差异的情况。。</p>
+<p>随着金山 wps 的发展，现在 OFFICE 的问题基本解决，作为轻度 EXCEL 使用者基本已经满足需求了。Linux<br>现在主要问题是字体渲染比较差，中文经常看起来发虚，如果能把这个问题彻底解决就非常不错了。作为Linux<br>老用户，各种魔改后，也能较好使用了，但后面发现还是换个显示器更管用。要解决中文显示问题，有两个<br>字体很管用，文泉驿微米黒和微软雅黑，实践证明把系统字体用上面两个字体替换，显示效果也就好了不少了。</p>
+<p>Ubuntu Linux 最大的问题就是不太稳定，基本每次大版本升级显示都要挂，弄得我都有点心理阴影了，原来<br>周围还挺多同学使用 Linux，最终放弃了，一个直接用 Windows 了，还有一个 Windows 上跑一个 Linux 虚拟机。<br>Ubuntu 还有个坏习惯喜欢乱改，upstart，Unity等，后面都没有成为主流，bug 就更不用说了，经常挺闹心的。</p>
+<p>Fedora 从近些年的使用情况来看，还是很不错的，网络中流传是 Redhat Linux Enterprise 的小白版本，<br>但是其实只要 bug 修得快，你大概率是感觉不到的。遇上问题，放狗一搜就会发现 redhat 已经有 bug 在<br>处理中了，于是乎就有了今天这篇。</p>
+<p>在升级到 Fedara 33 和 ThunderBird 78 后，使用 TLS 连接公司的 ExChange 邮件服务器就连不上了。<br>我们公司的内网安全审核非常严格，邮件不使用加密连接要限时整改。放狗一搜发现，大批人员都遇上了<br>相同的问题，也有人给出了解决方案。</p>
+<p><a target="_blank" rel="noopener" href="https://support.mozilla.org/en-US/questions/1295861">https://support.mozilla.org/en-US/questions/1295861</a></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">I think this could be due to the minimum version of TLS supported by TB 78. The release notes state </span><br><span class="line">that versions lower than 1.2 are disabled, so if your server only supports v. 1.1, </span><br><span class="line">you might be able to fix sending by changing the preference security.tls.version.min to 2 from the default 3, in Config. editor.</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><a target="_blank" rel="noopener" href="https://www.thunderbird.net/en-US/thunderbird/78.0/releasenotes/">https://www.thunderbird.net/en-US/thunderbird/78.0/releasenotes/</a></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">TLS 1.0 and 1.1 disabled</span><br></pre></td></tr></table></figure>
+
+<p>如何开启 TLS 1.0， mozilla 也给出了相应的方案</p>
+<p><a target="_blank" rel="noopener" href="https://support.mozilla.org/en-US/kb/thunderbird-78-faq#w_how-to-enable-outdated-security-protocols-tls-1-0-and-1-1">https://support.mozilla.org/en-US/kb/thunderbird-78-faq#w_how-to-enable-outdated-security-protocols-tls-1-0-and-1-1</a></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">How to enable outdated security protocols TLS 1.0 and 1.1</span><br><span class="line"></span><br><span class="line">Open Config Editor (about:config)</span><br><span class="line">≡ &gt; Preferences &gt; Find in Preferences</span><br><span class="line">In the searchbox, type: about:config, then press Enter.</span><br><span class="line">Click on the button Config Editor… in the search result.</span><br><span class="line">In the about:config dialog, search for: security.tls.version.min</span><br><span class="line">Double-click on the found preference security.tls.version.min and change its value to 1, then press Enter.</span><br><span class="line">Restart Thunderbird and try to download your messages.</span><br><span class="line">If you can receive and/or send your messages after changing this preference:</span><br><span class="line"></span><br><span class="line">Please inform your email provider to upgrade the security protocols on the server to support TLS 1.2.</span><br><span class="line">Revert the preference security.tls.version.min to its original value as soon as possible by repeating </span><br><span class="line">the above procedure, then right-click on the preference and choose Reset from the context menu.</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>看上去解决方案很简单，在 Preferences 中的搜索框里输入 <code>about:config</code> 点击进入，将其中的<br><code>security.tls.version.min</code> 设置为 1 就好了，但是在 Fedora 34 中不起作用。我用 wireshark 抓了包看，<br>ThunderBird 自己报告不支持的协议版本。我仔细研究了一下 ThunderBird 相关的 config 项有下面几个：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">security.tls.version.min</span><br><span class="line">security.tls.version.enable-deprecated</span><br><span class="line">security.tls.version.fallback-limit</span><br></pre></td></tr></table></figure>
+
+<p>我把这几个选项都设置了一下，分别设置为 1 true 1，还是不管用。</p>
+<p>在 Fedora 33 上这个问题就没解决，这都 Fedora 34 了，所以又花了时间研究了一下。没好办法，放狗，运气<br>不错，看到了这篇</p>
+<p><a target="_blank" rel="noopener" href="https://bugzilla.mozilla.org/show_bug.cgi?id=1674092#c11">https://bugzilla.mozilla.org/show_bug.cgi?id=1674092#c11</a></p>
+<p>原来 Fedora 还有个 <code>StrongCryptoSettings</code> ，看文档可以修改</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">update-crypto-policies --set DEFAULT:FEDORA32</span><br><span class="line">update-crypto-policies --set LEGACY</span><br><span class="line">reboot</span><br></pre></td></tr></table></figure>
+
+
+<p>关键的内容就是下面这几行</p>
+<p>cat &#x2F;etc&#x2F;crypto-policies&#x2F;state&#x2F;CURRENT.pol</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">min_tls_version = TLS1.2</span><br><span class="line">protocol = TLS1.3 TLS1.2 DTLS1.2</span><br></pre></td></tr></table></figure>
+
+<p>执行后变为</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">min_tls_version = TLS1.0</span><br><span class="line">protocol = TLS1.3 TLS1.2 TLS1.1 TLS1.0 DTLS1.2 DTLS1.0</span><br></pre></td></tr></table></figure>
+
+<p>重启系统后，又可以开心地使用 ThunderBird 了 ^_^</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -663,7 +764,7 @@
 <h2 id="CVE-官方分配-CVE-ID"><a href="#CVE-官方分配-CVE-ID" class="headerlink" title="CVE 官方分配 CVE ID"></a>CVE 官方分配 CVE ID</h2><p>CVE 官方收到 RESERVED CVE 请求后，会给分配一个 CVE ID，但是状态为 ** RESERVED ** ，不会有公开细节。</p>
 <h2 id="RESERVED-CVE-申请公开"><a href="#RESERVED-CVE-申请公开" class="headerlink" title="RESERVED CVE 申请公开"></a>RESERVED CVE 申请公开</h2><p>当软件官方确认已经修复漏洞，并且发布新版后，可以通知 CVE 官方更新 CVE 的状态。还是通过填写 <a target="_blank" rel="noopener" href="https://cveform.mitre.org/">https://cveform.mitre.org/</a> 表格，选择 Notify CVE about a publication，填写相关信息。</p>
 <h2 id="一些注意事项"><a href="#一些注意事项" class="headerlink" title="一些注意事项"></a>一些注意事项</h2><ol>
-<li>将 <a href="mailto:&#x63;&#118;&#101;&#45;&#x72;&#x65;&#x71;&#x75;&#x65;&#x73;&#116;&#x40;&#x6d;&#x69;&#x74;&#114;&#101;&#46;&#111;&#x72;&#x67;">&#x63;&#118;&#101;&#45;&#x72;&#x65;&#x71;&#x75;&#x65;&#x73;&#116;&#x40;&#x6d;&#x69;&#x74;&#114;&#101;&#46;&#111;&#x72;&#x67;</a> 和  <a href="mailto:&#99;&#x76;&#x65;&#x40;&#x6d;&#x69;&#116;&#114;&#101;&#x2e;&#x6f;&#x72;&#x67;">&#99;&#x76;&#x65;&#x40;&#x6d;&#x69;&#116;&#114;&#101;&#x2e;&#x6f;&#x72;&#x67;</a> 加入邮件白名单 （有可能邮件会被截拦）</li>
+<li>将 <a href="mailto:&#99;&#118;&#101;&#45;&#x72;&#x65;&#113;&#x75;&#101;&#115;&#116;&#x40;&#x6d;&#105;&#x74;&#x72;&#101;&#46;&#x6f;&#x72;&#103;">&#99;&#118;&#101;&#45;&#x72;&#x65;&#113;&#x75;&#101;&#115;&#116;&#x40;&#x6d;&#105;&#x74;&#x72;&#101;&#46;&#x6f;&#x72;&#103;</a> 和  <a href="mailto:&#x63;&#118;&#101;&#x40;&#x6d;&#x69;&#x74;&#x72;&#101;&#46;&#x6f;&#x72;&#103;">&#x63;&#118;&#101;&#x40;&#x6d;&#x69;&#x74;&#x72;&#101;&#46;&#x6f;&#x72;&#103;</a> 加入邮件白名单 （有可能邮件会被截拦）</li>
 <li>在申请公开步骤中，CVE 官方有可能和你要公开披露的链接，如果软件官方不给写，可以自己写一个</li>
 </ol>
 <p>披露要求的信息：</p>
@@ -1052,82 +1153,8 @@
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://usmacd.com/cn/other/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="henices">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="安全代码">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 安全代码">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/cn/other/" class="post-title-link" itemprop="url">一些杂谈</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2023-09-06 11:00:51" itemprop="dateCreated datePublished" datetime="2023-09-06T11:00:51+08:00">2023-09-06</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>整个春节被武汉的新型冠状病毒肺炎搞得人心惶惶，2020 注定是我们这辈人难忘的一年，非典的时候比较小感觉没那么恐怖，现在的感觉就完全不一样了，整天都在洗手中度过。</p>
-<p>在病情扩散期间，大量消息满天飞，给政府提意见的更是比比皆是，但是大家都忽视了 一点，就是要相信专业。很多人不太明白专业和非专业之间的差距，可以想象一下你和一 个围棋九段的人下围棋，怎么换到医学领域大家就都是专家了？</p>
-<p>我看到一个建议轻征不隔离，把资源让给重症者。</p>
-<p>大家觉得这个建议如何？提这个建议的人说，主要依据是死亡人不多。这个犯了几个错误， 第一，要看死亡率，而不是死亡人数，患病的人多了，自然死人的就多了。第二，根据我 有限的常识，病毒是会自适应性的进化的，感染的人多了，可能就会产生更nb 的变种了。</p>
-<p>这个事情主要还是相信国家，相信我们的祖国。我觉得这个事情一定会解决了，只是时间 和损失程度问题，一季度的gdp 肯定是受影响了，希望疫情快点过去，天佑中华！</p>
-<p>最后希望所有看到此文的，新年幸福安康！</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
   <nav class="pagination">
-    <a class="extend prev" rel="prev" title="Previous page" aria-label="Previous page" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" title="Next page" aria-label="Next page" href="/page/3/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" title="Previous page" aria-label="Previous page" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><a class="extend next" rel="next" title="Next page" aria-label="Next page" href="/page/3/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 </div>

@@ -122,7 +122,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">100</span>
+          <span class="site-state-item-count">101</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -177,6 +177,97 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://usmacd.com/cn/oracle_statement_trace/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="henices">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="安全代码">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 安全代码">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/cn/oracle_statement_trace/" class="post-title-link" itemprop="url">Oracle 数据库如何trace 执行的SQL statement</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2013-07-04 00:00:00" itemprop="dateCreated datePublished" datetime="2013-07-04T00:00:00+08:00">2013-07-04</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>Q.  Oracle 数据库如何trace执行的SQL statement</p>
+<h2 id="1-开启trace"><a href="#1-开启trace" class="headerlink" title="1. 开启trace"></a>1. 开启trace</h2><p>方法(1) : 执行SQL语句</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SQL</span><span class="operator">&gt;</span> <span class="keyword">alter</span> <span class="keyword">system</span> <span class="keyword">set</span> sql_trace <span class="operator">=</span> <span class="literal">true</span>;</span><br><span class="line"><span class="keyword">SQL</span><span class="operator">&gt;</span> <span class="keyword">alter</span> <span class="keyword">system</span> <span class="keyword">SET</span> EVENTS <span class="string">&#x27;10046 trace name context forever, level 12&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+<p>方法(2) : 修改init.ora 配置文件</p>
+<p>还可以修改init.ora 文件添加 event&#x3D;”10046 trace name context forever,level 12”  来达到目的，<br>修改以后需要重新启动数据库。</p>
+<h2 id="2-关闭-trace"><a href="#2-关闭-trace" class="headerlink" title="2. 关闭 trace"></a>2. 关闭 trace</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SQL</span><span class="operator">&gt;</span> <span class="keyword">alter</span> <span class="keyword">system</span> <span class="keyword">set</span> EVENTS <span class="string">&#x27;10046 trace name context off&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-trace相关的几个参数"><a href="#3-trace相关的几个参数" class="headerlink" title="3. trace相关的几个参数"></a>3. trace相关的几个参数</h2><ul>
+<li>MAX_DUMP_FILE_SIZE    dump 文件大小</li>
+<li>USER_DUMP_DEST           dump 文件路径</li>
+</ul>
+<p>可以使用下面语句参看：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SQL</span><span class="operator">&gt;</span> <span class="keyword">show</span> <span class="keyword">parameter</span> user_dump_dest;</span><br><span class="line"></span><br><span class="line">NAME				     TYPE	 <span class="keyword">VALUE</span></span><br><span class="line"><span class="comment">------------------------------------ ----------- ------------------------------</span></span><br><span class="line">user_dump_dest			     string	 <span class="operator">/</span>u01<span class="operator">/</span>app<span class="operator">/</span>diag<span class="operator">/</span>rdbms<span class="operator">/</span>orcl<span class="operator">/</span>orcl<span class="operator">/</span>trace</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">SQL</span><span class="operator">&gt;</span> <span class="keyword">show</span> <span class="keyword">parameter</span> max_dump_file_size;</span><br><span class="line"></span><br><span class="line">NAME				     TYPE	 <span class="keyword">VALUE</span></span><br><span class="line"><span class="comment">------------------------------------ ----------- ------------------------------</span></span><br><span class="line">max_dump_file_size		     string	 unlimited</span><br></pre></td></tr></table></figure>
+
+<h2 id="4-trc-文件分析"><a href="#4-trc-文件分析" class="headerlink" title="4.  trc 文件分析"></a>4.  trc 文件分析</h2><p>方法(1)</p>
+<p>可以使用trc2sql.pl 来提取trc文件中的SQL语句</p>
+<p>下载地址: <a target="_blank" rel="noopener" href="https://gist.github.com/henices/5097678">https://gist.github.com/henices/5097678</a></p>
+<p>方法(2)</p>
+<p>oracle提供tkprof 命令可以解析trc文件，使用方法为：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ tkprof tracefile outputfile</span><br></pre></td></tr></table></figure>
+
+<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><p>参考链接： <a target="_blank" rel="noopener" href="http://www.eygle.com/case/Use.sql_trace.to.Diagnose.database.htm">http://www.eygle.com/case/Use.sql_trace.to.Diagnose.database.htm</a></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -939,99 +1030,8 @@
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://usmacd.com/cn/search_sql_injection/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="henices">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="安全代码">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 安全代码">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/cn/search_sql_injection/" class="post-title-link" itemprop="url">站内搜索写法的一个 SQL inject 漏洞</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2004-10-13 00:00:00" itemprop="dateCreated datePublished" datetime="2004-10-13T00:00:00+08:00">2004-10-13</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>最近sql inject 可是说是红遍了整个中国，不知道多少网站在sql inject 面前轰然倒下，其实 Sql inject 在国外技术已经很成熟了，而国内则是在近一两年内慢慢走向成熟。在一个个惨痛的实例面前，脚本工作者不得不重视起来，最好的例子就是动网了。然而今天脚本是不是就很安全的呢。请看我对几个安全站点的测试结果。结果是令人吃惊的， 影子鹰， 华夏， 黑客动画吧 都存在着这个站内搜索的漏洞。</p>
-<p>请看一段常见的站内搜索写法。</p>
-<p>例一：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">name</span>=<span class="string">&quot;form4&quot;</span> <span class="attr">method</span>=<span class="string">&quot;post&quot;</span> <span class="attr">action</span>=<span class="string">&quot;search.asp&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">td</span> <span class="attr">height</span>=<span class="string">&quot;25&quot;</span>&gt;</span> <span class="tag">&lt;<span class="name">div</span> <span class="attr">align</span>=<span class="string">center</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">name</span>=<span class="string">&quot;txtfind&quot;</span> <span class="attr">size</span>=<span class="string">&quot;18&quot;</span> <span class="attr">onMouseOver</span>=<span class="string">&quot;javascript:this.select();&quot;</span> <span class="attr">value</span>=<span class="string">&quot;请输入待查信息&quot;</span> <span class="attr">style</span>=<span class="string">&quot;border:#333333 1px solid;&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span><span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">td</span>&gt;</span> <span class="tag">&lt;<span class="name">div</span> <span class="attr">align</span>=<span class="string">center</span>&gt;</span><span class="tag">&lt;<span class="name">img</span> <span class="attr">height</span>=<span class="string">5</span> <span class="attr">src</span>=<span class="string">&quot;../images/left_2.gif&quot;</span> <span class="attr">width</span>=<span class="string">186</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span><span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">td</span> <span class="attr">height</span>=<span class="string">&quot;30&quot;</span>&gt;</span> <span class="tag">&lt;<span class="name">div</span> <span class="attr">align</span>=<span class="string">center</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">name</span>=<span class="string">&quot;s1&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">option</span> <span class="attr">selected</span> <span class="attr">value</span>=<span class="string">&#x27;0&#x27;</span>&gt;</span>所有类别<span class="tag">&lt;/<span class="name">option</span>&gt;</span><span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span>=<span class="string">&#x27;1&#x27;</span>&gt;</span>网站新闻<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span>=<span class="string">&#x27;2&#x27;</span>&gt;</span>进阶教程<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span>=<span class="string">&#x27;3&#x27;</span>&gt;</span>安全漏洞<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span>=<span class="string">&#x27;5&#x27;</span>&gt;</span>系统防范<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span>=<span class="string">&#x27;6&#x27;</span>&gt;</span>原创作品<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>上面的这段来自影子鹰安全网, 也许看了人说没什么的啊，我也是这么写的，这和sql inject 有什么关系啊。<br>其实问题就出在这, 搜索类别的值是从客户端获得的，而且没有过滤。那么聪明的你是否想到了什么？</p>
-<p>我们可以构造一个url  <code>http://www.cnhacker.cn/search.asp?s1=1</code>  得到的结果是：</p>
-<p>页面返回正常，得到一大堆的搜索结果。</p>
-<p>提交 <code>http://www.cnhacker.cn/search.asp?s1=1 and 1＝1</code> 返回正常<br>提交 <code>http://www.cnhacker.cn/search.asp?s1=1 and 1＝2</code> 没有搜索到任何相关文章 ，请重新搜索</p>
-<p>哈哈，可以注入！像这些安全站点密码一定n变态，还是用nb跑跑吧。后面也证明了我的想法是正确的密码n变态，还好没手工猜。拿到了管理员的密码，就是找不到后台郁闷。</p>
-<p>例二：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&#x27;Soft_Class.asp?ClassID=11&#x27;</span>&gt;</span>安全扫描<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">br</span>&gt;</span><span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&#x27;Soft_Class.asp?ClassID=12&#x27;</span>&gt;</span>嗅探监听<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">br</span>&gt;</span><span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&#x27;Soft_Class.asp?ClassID=13&#x27;</span>&gt;</span>分析检测<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">br</span>&gt;</span><span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&#x27;Soft_Class.asp?ClassID=14&#x27;</span>&gt;</span>字典文档<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">br</span>&gt;</span><span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&#x27;Soft_Class.asp?ClassID=15&#x27;</span>&gt;</span>加密破解<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">br</span>&gt;</span><span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&#x27;Soft_Class.asp?ClassID=16&#x27;</span>&gt;</span>木马类<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">br</span>&gt;</span><span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&#x27;Soft_Class.asp?ClassID=17&#x27;</span>&gt;</span>QQ类<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">br</span>&gt;</span><span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&#x27;Soft_Class.asp?ClassID=18&#x27;</span>&gt;</span>综合工具<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>上面代码来自黑客动画吧，令人吃惊的直接就是<code>classID=</code> 根本就没有过滤。分析完上面的代码，和其他的一些代码综合起来, 我们又可以构造这样的url:</p>
-<p><a target="_blank" rel="noopener" href="http://www.hack58.com/Soft_Search.asp?Field=SoftName&ClassID=8">http://www.hack58.com/Soft_Search.asp?Field=SoftName&amp;ClassID=8</a></p>
-<p>结果返回也是一定堆的搜索结果。。。</p>
-<p>提交 <code>http://www.hack58.com/Soft_Search.asp?Field=SoftName&amp;ClassID=8 and 1＝1</code> 返回正常<br>提交 <code>http://www.hack58.com/Soft_Search.asp?Field=SoftName&amp;ClassID=8 and 1＝2</code> 产生错误的可能原因：</p>
-<p>HOO，漏洞又出来了！</p>
-<p>例三：</p>
-<p>来个大家都知道的华夏黑客联盟，前段时间还被黑了一次。还是看代码吧，听说华夏用的是动力的商业版。可以华夏今天又上不去，反正原理是相同的。我把我构造好的url 给大家看  </p>
-<p><code>http://www.77169.org/soft1/search.asp?ss_name=winrar&amp;sor=01</code></p>
-<p>接下来要怎么发挥就看你们的了。</p>
-<p>总结：这个漏洞应该有一定的普遍性，黑窝里安全站点都有这个问题，更别说是其他站点了。或许有些大虾早就发现了，<br>小弟就在这献丑一下了，第一次写文章，有所差错在所难免，欢迎和我联系。</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
   <nav class="pagination">
-    <a class="extend prev" rel="prev" title="Previous page" aria-label="Previous page" href="/page/9/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><span class="page-number current">10</span>
+    <a class="extend prev" rel="prev" title="Previous page" aria-label="Previous page" href="/page/9/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><span class="page-number current">10</span><a class="page-number" href="/page/11/">11</a><a class="extend next" rel="next" title="Next page" aria-label="Next page" href="/page/11/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 </div>
