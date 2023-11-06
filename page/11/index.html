@@ -1,438 +1,170 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width">
-<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.0.0">
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
-  <link rel="mask-icon" href="/images/logo.svg" color="#222">
-
-<link rel="stylesheet" href="/css/main.css">
-
-
-
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha256-CTSx/A06dm1B063156EVh15m6Y67pAjZZaQc89LLSrU=" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
-
-<script class="next-config" data-name="main" type="application/json">{"hostname":"usmacd.com","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.18.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
-
-    <meta property="og:type" content="website">
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>安全代码</title><meta name="author" content="henices"><meta name="copyright" content="henices"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta property="og:type" content="website">
 <meta property="og:title" content="安全代码">
 <meta property="og:url" content="http://usmacd.com/page/11/index.html">
 <meta property="og:site_name" content="安全代码">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://usmacd.com/img/avatar.png">
 <meta property="article:author" content="henices">
 <meta name="twitter:card" content="summary">
-
-
-<link rel="canonical" href="http://usmacd.com/page/11/">
-
-
-
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":true,"isPost":false,"lang":"en","comments":"","permalink":"","path":"page/11/index.html","title":""}</script>
-
-<script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>安全代码</title>
-  
-
-
-
-
-
-
-
-
-  <noscript>
-    <link rel="stylesheet" href="/css/noscript.css">
-  </noscript>
-<link rel="alternate" href="/atom.xml" title="安全代码" type="application/atom+xml">
-</head>
-
-<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
-  <div class="headband"></div>
-
-  <main class="main">
-    <div class="column">
-      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
-  <div class="site-nav-toggle">
-    <div class="toggle" aria-label="Toggle navigation bar" role="button">
-        <span class="toggle-line"></span>
-        <span class="toggle-line"></span>
-        <span class="toggle-line"></span>
-    </div>
-  </div>
-
-  <div class="site-meta">
-
-    <a href="/" class="brand" rel="start">
-      <i class="logo-line"></i>
-      <h1 class="site-title">安全代码</h1>
-      <i class="logo-line"></i>
-    </a>
-  </div>
-
-  <div class="site-nav-right">
-    <div class="toggle popup-trigger" aria-label="Search" role="button">
-    </div>
-  </div>
-</div>
-
-
-
-<nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a></li><li class="menu-item menu-item-sitemap"><a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>Sitemap</a></li>
-  </ul>
-</nav>
-
-
-
-
-</header>
-        
-  
-  <aside class="sidebar">
-
-    <div class="sidebar-inner sidebar-overview-active">
-      <ul class="sidebar-nav">
-        <li class="sidebar-nav-toc">
-          Table of Contents
-        </li>
-        <li class="sidebar-nav-overview">
-          Overview
-        </li>
-      </ul>
-
-      <div class="sidebar-panel-container">
-        <!--noindex-->
-        <div class="post-toc-wrap sidebar-panel">
-        </div>
-        <!--/noindex-->
-
-        <div class="site-overview-wrap sidebar-panel">
-          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <img class="site-author-image" itemprop="image" alt="henices"
-      src="/images/avatar.jpg">
-  <p class="site-author-name" itemprop="name">henices</p>
-  <div class="site-description" itemprop="description"></div>
-</div>
-<div class="site-state-wrap animated">
-  <nav class="site-state">
-      <div class="site-state-item site-state-posts">
-        <a href="/archives/">
-          <span class="site-state-item-count">102</span>
-          <span class="site-state-item-name">posts</span>
-        </a>
-      </div>
-      <div class="site-state-item site-state-tags">
-          <a href="/tags/">
-        <span class="site-state-item-count">15</span>
-        <span class="site-state-item-name">tags</span></a>
-      </div>
-  </nav>
-</div>
-  <div class="links-of-author animated">
-      <span class="links-of-author-item">
-        <a href="https://twitter.com/henices" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;henices" rel="noopener me" target="_blank"><i class="fab fa-twitter fa-fw"></i>Twitter</a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="/atom.xml" title="RSS → &#x2F;atom.xml" rel="noopener me"><i class="rss fa-fw"></i>RSS</a>
-      </span>
-  </div>
-
-        </div>
-      </div>
-    </div>
-
-    
-    <div class="sidebar-inner sidebar-blogroll">
-      <div class="links-of-blogroll animated">
-        <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
-          Links
-        </div>
-        <ul class="links-of-blogroll-list">
-            <li class="links-of-blogroll-item">
-              <a href="http://scz.617.cn:8/" title="http:&#x2F;&#x2F;scz.617.cn:8&#x2F;" rel="noopener" target="_blank">飞花堂</a>
-            </li>
-            <li class="links-of-blogroll-item">
-              <a href="https://www.v2ex.com/" title="https:&#x2F;&#x2F;www.v2ex.com&#x2F;" rel="noopener" target="_blank">V2EX</a>
-            </li>
-            <li class="links-of-blogroll-item">
-              <a href="https://blog.forecho.com/" title="https:&#x2F;&#x2F;blog.forecho.com&#x2F;" rel="noopener" target="_blank">forecho</a>
-            </li>
-            <li class="links-of-blogroll-item">
-              <a href="https://www.mrhuangtalk.com/" title="https:&#x2F;&#x2F;www.mrhuangtalk.com&#x2F;" rel="noopener" target="_blank">Mr.Huang talk</a>
-            </li>
-            <li class="links-of-blogroll-item">
-              <a href="https://demochen.com/" title="https:&#x2F;&#x2F;demochen.com&#x2F;" rel="noopener" target="_blank">DemoChen</a>
-            </li>
-        </ul>
-      </div>
-    </div>
-  </aside>
-
-
-    </div>
-
-    <div class="main-inner index posts-expand">
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://usmacd.com/cn/5cAcessPath/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="henices">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="安全代码">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 安全代码">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/cn/5cAcessPath/" class="post-title-link" itemprop="url">N 谈 %5C 暴库</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2006-07-13 00:00:00" itemprop="dateCreated datePublished" datetime="2006-07-13T00:00:00+08:00">2006-07-13</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>关于%5c的暴库利用想已经不是什么新技术了，原因我只找到含糊的说法：的UNICODE是%5c当提交时,IIS无法正常解析,导致暴库。但我对 <a target="_blank" rel="noopener" href="http://www.hoky.org/">http://www.hoky.org</a> 测试成功后（现在已经补上）问过hoky.pro，得知%5c与IIS的设置是有关系的。而在默认设置下是可以暴库的。还有很多人说不成功，我要说的三点：</p>
-<ol>
-<li>一般的错误返回页面是本地IE提供的,所以我们先得关了本地的错误页面,具体在菜单项的‘工具-&gt;internet选项-&gt;高级-&gt;显示友好信息’。</li>
-<li>对方数据库要是Access型。</li>
-<li>%5c的暴库需要的是二级目录，一级目录无法成功。如：</li>
-</ol>
-<p><a href="http://www.sometips.com%5c1.asp?id=1">http://www.sometips.com%5c1.asp?id=1</a> 不成功<br><a target="_blank" rel="noopener" href="http://www.sometips.com/other%5c1.asp?id=1">http://www.sometips.com/other%5c1.asp?id=1</a> 成功</p>
-<p>好了，上面说的大家都知道，当是废话。在暴库这么好用的东西下，如果一个网站只有一级目录的话，难道就没有办法了吗？说到重点，其实一级目录我们也同样可以成功的，我们可以通过构造一个多级目录来达到暴库的目的。</p>
-<p><a target="_blank" rel="noopener" href="http://www.target.com/noexists/..%5clist.asp?id=1">http://www.target.com/noexists/..%5clist.asp?id=1</a></p>
-<p>这样大家就会有新的惊喜了，呵呵。</p>
-<p>补救方法也很简单，在conn.asp里 加入数据库文件的位置后面加上这句：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">On Error Resume Next</span><br></pre></td></tr></table></figure>
-
-<p>就可以了。</p>
-<hr>
-<p>今天在黑基又看到了关于％5c暴库的文章，这招真的很管用，大概10个网站里会有一个会暴库吧。</p>
-<p>关于这个漏洞。绿盟有相关的资料：<br><a target="_blank" rel="noopener" href="http://www.nsfocus.net/index.php?act=magazine&do=view&mid=952">http://www.nsfocus.net/index.php?act=magazine&amp;do=view&amp;mid=952</a></p>
-<p>呵呵。虽然这个我们这个漏洞呵暴库关系不是很大， 但是明眼人还是看的出相关的地方，IIS 二次解码。大家知道在 url中 <code>\</code> 和 <code>/</code> 是一样的，也就是说 <a target="_blank" rel="noopener" href="http://www.example.com/abc/123.asp?id=5">http://www.example.com/abc/123.asp?id=5</a> 和 <a target="_blank" rel="noopener" href="http://www.example.com/abc/123.asp?id=5">http://www.example.com/abc\123.asp?id=5</a> 是一样的。</p>
-<p>而 <a target="_blank" rel="noopener" href="http://www.example.com/abc%5c123.asp?id=5">http://www.example.com/abc%5c123.asp?id=5</a> 经过一次解码后变成 <a target="_blank" rel="noopener" href="http://www.example.com/abc/123.asp?id=5">http://www.example.com/abc\123.asp?id=5</a> 这里是不会出错的。</p>
-<p>而经过 IIS 二次解码后就变成 <a target="_blank" rel="noopener" href="http://www.example.com/abc%5c123.asp?id=5">http://www.example.com/abc%5c123.asp?id=5</a>, 如果数据库连接文件用的相对路径的话。HOO, 找不到数据库文件，当然就出错了。还很老实呢，连物理路径都出来了。大家看。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Microsoft JET Database Engine 错误 &#x27;80004005&#x27;</span><br><span class="line"></span><br><span class="line">&#x27;D:\wwwroot\hell\wwwroot\data\abc.asp&#x27;不是一个有效的路径。 确定路径名称拼写是否正确，以及是否连接到文件存放的服务器。</span><br><span class="line"></span><br><span class="line">/blog/conn.asp，行29</span><br></pre></td></tr></table></figure>
-
-<p>这个是我暴 Oblog 暴出来的，这个月的黑防大家都有看吧。(早知道我也去投稿了，我发现的比他早多了，郁闷)<br>很多人都在分析成功的条件，就象itbbs里的人讨论的一样。(itbbs最近我怎么上不去啊，知道告诉我)</p>
-<p>sykkk 认为：</p>
-<ol>
-<li>是数据库连接中没有加入容错代码 所以导致错误不能跳过而活生生的把数据文件连接暴出来</li>
-<li>对方的IIS没有关闭错误提示 只要关了错误提示就算你怎么暴也没有用</li>
-<li>不一定要2级目录 可以自己够造个noexists&#x2F;..%5C的2级目录</li>
-<li>还有就是 要成功一定要调用到数据库 不一定是5c1.asp?id&#x3D;1 这种类别的</li>
-</ol>
-<p>其实还有一个必要条件他忘了，数据库要相对路径，绝对路径是暴不出来的。还有我补充一点应该是 IIS 4.0 或者 IIS 5.0 ，IIS 6 应该是不行了。</p>
-<p>关于二级目录，我同意sykkk的看法，有的人说一定是二级目录，呵呵，我可以告诉大家那是错误的。应该是最靠近的asp文件的那个 “&#x2F;“ 改成 “%5c”, 只有有调用数据库都有可能暴库。哈哈，还有当然对方要没有屏蔽错误信息，要不然你是肯定看不到的。</p>
-<p>总结：％5c暴库成功条件</p>
-<ol>
-<li>对方服务器用的是 IIS 4.0 或 IIS 5.0， 并且没有屏蔽错误信息。</li>
-<li>是数据库连接中没有加入容错代码 所以导致错误不能跳过而活生生的把数据文件连接暴出来 (On Error Resume Next)</li>
-<li>应该是Microsoft JET Database Engine 方式</li>
-<li>数据库文件调用用的是相对路径！！</li>
-</ol>
-<p>不一定要求是二级目录。三级也是可以的(我有成功过), 二级目录有时候反倒没成功。至于还有构造二级目录，我是没成功过，嘿嘿，应该是错误的。：）</p>
-<p>随便也告诉大家，aspx %5c 也有文章的，运用也很巧妙，想知道就 google吧。^_^</p>
-
+<meta name="twitter:image" content="http://usmacd.com/img/avatar.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://usmacd.com/page/11/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: 'Copy Successful',
+    error: 'Copy Error',
+    noSupport: 'Browser Not Supported'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: 'Just now',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: 'Load More'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '安全代码',
+  isPost: false,
+  isHome: true,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2023-11-06 14:11:14'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
       
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
+        get: key => {
+          const itemStr = localStorage.getItem(key)
       
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://usmacd.com/cn/search_sql_injection/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="henices">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="安全代码">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 安全代码">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/cn/search_sql_injection/" class="post-title-link" itemprop="url">站内搜索写法的一个 SQL inject 漏洞</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2004-10-13 00:00:00" itemprop="dateCreated datePublished" datetime="2004-10-13T00:00:00+08:00">2004-10-13</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>最近sql inject 可是说是红遍了整个中国，不知道多少网站在sql inject 面前轰然倒下，其实 Sql inject 在国外技术已经很成熟了，而国内则是在近一两年内慢慢走向成熟。在一个个惨痛的实例面前，脚本工作者不得不重视起来，最好的例子就是动网了。然而今天脚本是不是就很安全的呢。请看我对几个安全站点的测试结果。结果是令人吃惊的， 影子鹰， 华夏， 黑客动画吧 都存在着这个站内搜索的漏洞。</p>
-<p>请看一段常见的站内搜索写法。</p>
-<p>例一：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">name</span>=<span class="string">&quot;form4&quot;</span> <span class="attr">method</span>=<span class="string">&quot;post&quot;</span> <span class="attr">action</span>=<span class="string">&quot;search.asp&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">td</span> <span class="attr">height</span>=<span class="string">&quot;25&quot;</span>&gt;</span> <span class="tag">&lt;<span class="name">div</span> <span class="attr">align</span>=<span class="string">center</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">name</span>=<span class="string">&quot;txtfind&quot;</span> <span class="attr">size</span>=<span class="string">&quot;18&quot;</span> <span class="attr">onMouseOver</span>=<span class="string">&quot;javascript:this.select();&quot;</span> <span class="attr">value</span>=<span class="string">&quot;请输入待查信息&quot;</span> <span class="attr">style</span>=<span class="string">&quot;border:#333333 1px solid;&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span><span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">td</span>&gt;</span> <span class="tag">&lt;<span class="name">div</span> <span class="attr">align</span>=<span class="string">center</span>&gt;</span><span class="tag">&lt;<span class="name">img</span> <span class="attr">height</span>=<span class="string">5</span> <span class="attr">src</span>=<span class="string">&quot;../images/left_2.gif&quot;</span> <span class="attr">width</span>=<span class="string">186</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span><span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">td</span> <span class="attr">height</span>=<span class="string">&quot;30&quot;</span>&gt;</span> <span class="tag">&lt;<span class="name">div</span> <span class="attr">align</span>=<span class="string">center</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">name</span>=<span class="string">&quot;s1&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">option</span> <span class="attr">selected</span> <span class="attr">value</span>=<span class="string">&#x27;0&#x27;</span>&gt;</span>所有类别<span class="tag">&lt;/<span class="name">option</span>&gt;</span><span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span>=<span class="string">&#x27;1&#x27;</span>&gt;</span>网站新闻<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span>=<span class="string">&#x27;2&#x27;</span>&gt;</span>进阶教程<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span>=<span class="string">&#x27;3&#x27;</span>&gt;</span>安全漏洞<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span>=<span class="string">&#x27;5&#x27;</span>&gt;</span>系统防范<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span>=<span class="string">&#x27;6&#x27;</span>&gt;</span>原创作品<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>上面的这段来自影子鹰安全网, 也许看了人说没什么的啊，我也是这么写的，这和sql inject 有什么关系啊。<br>其实问题就出在这, 搜索类别的值是从客户端获得的，而且没有过滤。那么聪明的你是否想到了什么？</p>
-<p>我们可以构造一个url  <code>http://www.cnhacker.cn/search.asp?s1=1</code>  得到的结果是：</p>
-<p>页面返回正常，得到一大堆的搜索结果。</p>
-<p>提交 <code>http://www.cnhacker.cn/search.asp?s1=1 and 1＝1</code> 返回正常<br>提交 <code>http://www.cnhacker.cn/search.asp?s1=1 and 1＝2</code> 没有搜索到任何相关文章 ，请重新搜索</p>
-<p>哈哈，可以注入！像这些安全站点密码一定n变态，还是用nb跑跑吧。后面也证明了我的想法是正确的密码n变态，还好没手工猜。拿到了管理员的密码，就是找不到后台郁闷。</p>
-<p>例二：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&#x27;Soft_Class.asp?ClassID=11&#x27;</span>&gt;</span>安全扫描<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">br</span>&gt;</span><span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&#x27;Soft_Class.asp?ClassID=12&#x27;</span>&gt;</span>嗅探监听<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">br</span>&gt;</span><span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&#x27;Soft_Class.asp?ClassID=13&#x27;</span>&gt;</span>分析检测<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">br</span>&gt;</span><span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&#x27;Soft_Class.asp?ClassID=14&#x27;</span>&gt;</span>字典文档<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">br</span>&gt;</span><span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&#x27;Soft_Class.asp?ClassID=15&#x27;</span>&gt;</span>加密破解<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">br</span>&gt;</span><span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&#x27;Soft_Class.asp?ClassID=16&#x27;</span>&gt;</span>木马类<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">br</span>&gt;</span><span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&#x27;Soft_Class.asp?ClassID=17&#x27;</span>&gt;</span>QQ类<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">br</span>&gt;</span><span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&#x27;Soft_Class.asp?ClassID=18&#x27;</span>&gt;</span>综合工具<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>上面代码来自黑客动画吧，令人吃惊的直接就是<code>classID=</code> 根本就没有过滤。分析完上面的代码，和其他的一些代码综合起来, 我们又可以构造这样的url:</p>
-<p><a target="_blank" rel="noopener" href="http://www.hack58.com/Soft_Search.asp?Field=SoftName&ClassID=8">http://www.hack58.com/Soft_Search.asp?Field=SoftName&amp;ClassID=8</a></p>
-<p>结果返回也是一定堆的搜索结果。。。</p>
-<p>提交 <code>http://www.hack58.com/Soft_Search.asp?Field=SoftName&amp;ClassID=8 and 1＝1</code> 返回正常<br>提交 <code>http://www.hack58.com/Soft_Search.asp?Field=SoftName&amp;ClassID=8 and 1＝2</code> 产生错误的可能原因：</p>
-<p>HOO，漏洞又出来了！</p>
-<p>例三：</p>
-<p>来个大家都知道的华夏黑客联盟，前段时间还被黑了一次。还是看代码吧，听说华夏用的是动力的商业版。可以华夏今天又上不去，反正原理是相同的。我把我构造好的url 给大家看  </p>
-<p><code>http://www.77169.org/soft1/search.asp?ss_name=winrar&amp;sor=01</code></p>
-<p>接下来要怎么发挥就看你们的了。</p>
-<p>总结：这个漏洞应该有一定的普遍性，黑窝里安全站点都有这个问题，更别说是其他站点了。或许有些大虾早就发现了，<br>小弟就在这献丑一下了，第一次写文章，有所差错在所难免，欢迎和我联系。</p>
-
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
       
-    </div>
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
 
-    
-    
-    
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
 
-    <footer class="post-footer">
-        <div class="post-eof"></div>
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
       
-    </footer>
-  </article>
-</div>
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><meta name="generator" content="Hexo 7.0.0"><link rel="alternate" href="/atom.xml" title="安全代码" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">102</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">15</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">1</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div><div class="menus_item"><a class="site-page" href="/atom.xml"><span> RSS</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header" style="background-image: url('https://wallpaperaccess.com/full/1146672.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="安全代码"><span class="site-name">安全代码</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div><div class="menus_item"><a class="site-page" href="/atom.xml"><span> RSS</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">安全代码</h1><div id="site_social_icons"><a class="social-icon" href="https://twitter.com/henices" target="_blank" title="Twitter"><i class="fab fa-twitter" style="color: #4a7dbe;"></i></a><a class="social-icon" href="mailto:henices@163.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #24292e;"></i></a></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/cn/5cAcessPath/" title="N 谈 %5C 暴库">N 谈 %5C 暴库</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2006-07-12T16:00:00.000Z" title="Created 2006-07-13 00:00:00">2006-07-13</time></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/Security/">Security</a></span></div><div class="content">关于%5c的暴库利用想已经不是什么新技术了，原因我只找到含糊的说法：的UNICODE是%5c当提交时,IIS无法正常解析,导致暴库。但我对 http://www.hoky.org 测试成功后（现在已经补上）问过hoky.pro，得知%5c与IIS的设置是有关系的。而在默认设置下是可以暴库的。还有很多人说不成功，我要说的三点：
 
+一般的错误返回页面是本地IE提供的,所以我们先得关了本地的错误页面,具体在菜单项的‘工具-&gt;internet选项-&gt;高级-&gt;显示友好信息’。
+对方数据库要是Access型。
+%5c的暴库需要的是二级目录，一级目录无法成功。如：
 
+http://www.sometips.com%5c1.asp?id=1 不成功http://www.sometips.com/other%5c1.asp?id=1 成功
+好了，上面说的大家都知道，当是废话。在暴库这么好用的东西下，如果一个网站只有一级目录的话，难道就没有办法了吗？说到重点，其实一级目录我们也同样可以成功的，我们可以通过构造一个多级目录来达到暴库的目的。
+http://www.target.com/no ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/cn/search_sql_injection/" title="站内搜索写法的一个 SQL inject 漏洞">站内搜索写法的一个 SQL inject 漏洞</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2004-10-12T16:00:00.000Z" title="Created 2004-10-13 00:00:00">2004-10-13</time></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/Security/">Security</a></span></div><div class="content">最近sql inject 可是说是红遍了整个中国，不知道多少网站在sql inject 面前轰然倒下，其实 Sql inject 在国外技术已经很成熟了，而国内则是在近一两年内慢慢走向成熟。在一个个惨痛的实例面前，脚本工作者不得不重视起来，最好的例子就是动网了。然而今天脚本是不是就很安全的呢。请看我对几个安全站点的测试结果。结果是令人吃惊的， 影子鹰， 华夏， 黑客动画吧 都存在着这个站内搜索的漏洞。
+请看一段常见的站内搜索写法。
+例一：
+123456789101112131415161718&lt;form name=&quot;form4&quot; method=&quot;post&quot; action=&quot;search.asp&quot;&gt;&lt;tr&gt;&lt;td height=&quot;25&quot;&gt; &lt;div align=center&gt;&lt;input type=&quot;text&quot; name=&quot;txtfind&quot; size=&quot;18&quot; onMouseOver=&quot; ...</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/10/#content-inner"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/#content-inner">10</a><span class="page-number current">11</span></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">henices</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">102</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">15</div></a></div></div><!--    a(href=url_for(config.category_dir) + '/')--><!--      .headline= _p('aside.categories') --><!--      .length-num= site.categories.lengthif theme.aside.card_author.button.enable
+  a#card-info-btn(href=theme.aside.card_author.button.link)
+    i(class=theme.aside.card_author.button.icon)
+    span=theme.aside.card_author.button.text
 
-
-  <nav class="pagination">
-    <a class="extend prev" rel="prev" title="Previous page" aria-label="Previous page" href="/page/10/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><span class="page-number current">11</span>
-  </nav>
-
-</div>
-  </main>
-
-  <footer class="footer">
-    <div class="footer-inner">
-
-  <div class="copyright">
-    &copy; 
-    <span itemprop="copyrightYear">2023</span>
-    <span class="with-love">
-      <i class="fa fa-heart"></i>
-    </span>
-    <span class="author" itemprop="copyrightHolder">henices</span>
-  </div>
-
-    </div>
-  </footer>
-
-  
-  <div class="toggle sidebar-toggle" role="button">
-    <span class="toggle-line"></span>
-    <span class="toggle-line"></span>
-    <span class="toggle-line"></span>
-  </div>
-  <div class="sidebar-dimmer"></div>
-  <div class="back-to-top" role="button" aria-label="Back to top">
-    <i class="fa fa-arrow-up fa-lg"></i>
-    <span>0%</span>
-  </div>
-
-<noscript>
-  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
-</noscript>
-
-
-  
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
-<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
-
-  
-
-
-
-
-
-
-  
-
-
-
-
-
-</body>
-</html>
+if(theme.social)
+    .card-info-social-icons.is-center
+      !=partial('includes/header/social', {}, {cache: true})--><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/cn/pdfium-fuzz.public/" title="使用 afl-fuzz fuzz pdfium">使用 afl-fuzz fuzz pdfium</a><time datetime="2023-11-06T05:52:04.969Z" title="Created 2023-11-06 13:52:04">2023-11-06</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/en/learn_in_public/" title="Learn In Public 摘要">Learn In Public 摘要</a><time datetime="2023-11-01T15:05:19.059Z" title="Created 2023-11-01 23:05:19">2023-11-01</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/cn/tulading/" title="图拉鼎谈独立开发">图拉鼎谈独立开发</a><time datetime="2023-10-31T16:00:00.000Z" title="Created 2023-11-01 00:00:00">2023-11-01</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/cn/youyuxi/" title="尤雨溪谈成功和运气">尤雨溪谈成功和运气</a><time datetime="2023-10-31T16:00:00.000Z" title="Created 2023-11-01 00:00:00">2023-11-01</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/cn/qiangliyandu/" title="万维钢的强力研读笔记法">万维钢的强力研读笔记法</a><time datetime="2023-09-24T16:00:00.000Z" title="Created 2023-09-25 00:00:00">2023-09-25</time></div></div></div></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>Tags</span></div><div class="card-tag-cloud"><a href="/tags/Malware/" style="font-size: 1.32em; color: #99a2ae">Malware</a> <a href="/tags/Software/" style="font-size: 1.25em; color: #999fa7">Software</a> <a href="/tags/PKM/" style="font-size: 1.21em; color: #999da3">PKM</a> <a href="/tags/Archives/" style="font-size: 1.14em; color: #999a9c">Archives</a> <a href="/tags/investment/" style="font-size: 1.39em; color: #99a5b5">investment</a> <a href="/tags/KNOWLEDGE/" style="font-size: 1.1em; color: #999">KNOWLEDGE</a> <a href="/tags/vim/" style="font-size: 1.25em; color: #999fa7">vim</a> <a href="/tags/Security/" style="font-size: 1.5em; color: #99a9bf">Security</a> <a href="/tags/Android/" style="font-size: 1.46em; color: #99a8bc">Android</a> <a href="/tags/Crack/" style="font-size: 1.17em; color: #999ca0">Crack</a> <a href="/tags/windows/" style="font-size: 1.32em; color: #99a2ae">windows</a> <a href="/tags/ai/" style="font-size: 1.1em; color: #999">ai</a> <a href="/tags/linux/" style="font-size: 1.43em; color: #99a6b8">linux</a> <a href="/tags/Life/" style="font-size: 1.28em; color: #99a0aa">Life</a> <a href="/tags/Programming/" style="font-size: 1.35em; color: #99a3b1">Programming</a></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By henices</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="Toggle Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between Single-column and Double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="Back To Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

