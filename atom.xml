@@ -6,7 +6,7 @@
   <link href="http://usmacd.com/atom.xml" rel="self"/>
   
   <link href="http://usmacd.com/"/>
-  <updated>2023-11-13T16:00:00.000Z</updated>
+  <updated>2023-11-14T16:00:00.000Z</updated>
   <id>http://usmacd.com/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>定期回顾笔记的好处</title>
+    <link href="http://usmacd.com/cn/note_review/"/>
+    <id>http://usmacd.com/cn/note_review/</id>
+    <published>2023-11-14T16:00:00.000Z</published>
+    <updated>2023-11-14T16:00:00.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>少楠在 《笔记的方法》中介绍了一种 「通过回顾持续刺激」的笔记技术，我以前曾简称为「漫游笔记」技术。</p><p>定期回顾自己的笔记大体有下面几个好处：</p><ul><li>对抗遗忘曲线：尤其是文献笔记等自己不熟悉的笔记</li><li>推动知识内化，想法迭代：知识结构优化，新旧知识连接</li><li>遇见过去的自己 （挺好玩，挺有趣）</li><li>影响现实：促进自我审视，提供思路和线索</li></ul><p>对抗遗忘曲线：我们可能遗忘笔记的内容，尤其是文献笔记等不熟悉的内容。人的思维、行为、习惯具有惯性，观念、思维、方法并不容易改变，必须不断提醒自己。</p><p>知识内化：前提是笔记的上下文没有丢失，如果看不懂笔记了，笔记就失去了价值。所以，这里有一个关键点，笔记是写给未来的自己看的，应该假设未来的自己对文本背后的思想，原文背景一无所知，只具备相关的领域知识。</p><p>子曰：「温故而知新，可以为师矣」回顾笔记提供了再次学习的机会，不断加深对知识的理解，也能促进新的洞见的产生。</p><p>想法迭代：回顾笔记是用新视角去审视旧想法，总体来说人是会不断进步的，经过一段时间后再去重温自己某个时刻的想法，可能以前的一些疑惑现在已经没有了，也可能对某个问题有了更进一步的思路，这是促使想法迭代的一种方法。</p><p>影响现实：回顾笔记提供了过去和现在连接的机会。现在是否具备实践的机会？笔记中的思路、方法、知识都已经成功应用了吗？计划是否如期完成？错误是否已经纠正？坦诚地面对过去的自己，回到现实，可能你将迎来崭新的自己。</p><p>参考：<a href="https://www.usmacd.com/cn/note/">https://www.usmacd.com/cn/note/</a></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;少楠在 《笔记的方法》中介绍了一种 「通过回顾持续刺激」的笔记技术，我以前曾简称为「漫游笔记」技术。&lt;/p&gt;
+&lt;p&gt;定期回顾自己的笔记大体有下面几个好处：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;对抗遗忘曲线：尤其是文献笔记等自己不熟悉的笔记&lt;/li&gt;
+&lt;li&gt;推动知识内化，想法迭代：知</summary>
+      
+    
+    
+    
+    
+    <category term="PKM" scheme="http://usmacd.com/tags/PKM/"/>
+    
+  </entry>
   
   <entry>
     <title>万维钢谈第一性原理</title>
@@ -467,29 +493,6 @@
     
     
     <category term="Android" scheme="http://usmacd.com/tags/Android/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>How to request a RESERVED CVE</title>
-    <link href="http://usmacd.com/cn/request_RESERVED_CVE/"/>
-    <id>http://usmacd.com/cn/request_RESERVED_CVE/</id>
-    <published>2023-09-06T03:00:51.767Z</published>
-    <updated>2023-09-06T03:00:51.767Z</updated>
-    
-    <content type="html"><![CDATA[<p>在申请 CVE 过程中会遇到一个问题，向软件官方提交漏洞修复后，由于软件官方不是CNA 无法直接分配CVE，而申请CVE 通常需要一个软件官方确认的链接，而有些比较正规的软件在漏洞修复之前是不会有公开链接的，这就无法申请CVE了。</p><p>有点鸡生蛋，蛋生鸡的感觉。解决这个问题的办法是申请一个 RESERVED CVE。</p><h2 id="申请-RESERVED-CVE-方法"><a href="#申请-RESERVED-CVE-方法" class="headerlink" title="申请 RESERVED CVE 方法"></a>申请 RESERVED CVE 方法</h2><p>申请 RESERVED CVE，也是需要填写的CVE 申请表格的 <a href="https://cveform.mitre.org/%EF%BC%8C%E9%80%89%E6%8B%A9">https://cveform.mitre.org/，选择</a> Request CVE ID</p><p>根据提示的重要信息：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">IMPORTANT: Once a CVE ID is assigned to your vulnerability, it will not be published </span><br><span class="line">in the CVE List until you have submitted a URL pointing to public information about </span><br><span class="line">the vulnerability. Without a public reference, the CVE ID will display as &quot;RESERVED&quot; </span><br><span class="line">in the CVE List. Please update CVE with a reference to the vulnerability&#x27;s </span><br><span class="line">details as soon as possible. See this FAQ for more information.</span><br></pre></td></tr></table></figure><p>只要将 public reference 留空，就可以申请 RESERVED CVE 了。CVE 官方收到请求后会有确认的邮件。</p><h2 id="CVE-官方分配-CVE-ID"><a href="#CVE-官方分配-CVE-ID" class="headerlink" title="CVE 官方分配 CVE ID"></a>CVE 官方分配 CVE ID</h2><p>CVE 官方收到 RESERVED CVE 请求后，会给分配一个 CVE ID，但是状态为 ** RESERVED ** ，不会有公开细节。</p><h2 id="RESERVED-CVE-申请公开"><a href="#RESERVED-CVE-申请公开" class="headerlink" title="RESERVED CVE 申请公开"></a>RESERVED CVE 申请公开</h2><p>当软件官方确认已经修复漏洞，并且发布新版后，可以通知 CVE 官方更新 CVE 的状态。还是通过填写 <a href="https://cveform.mitre.org/">https://cveform.mitre.org/</a> 表格，选择 Notify CVE about a publication，填写相关信息。</p><h2 id="一些注意事项"><a href="#一些注意事项" class="headerlink" title="一些注意事项"></a>一些注意事项</h2><ol><li>将 <a href="mailto:&#x63;&#x76;&#x65;&#45;&#x72;&#101;&#x71;&#117;&#x65;&#115;&#116;&#64;&#109;&#105;&#116;&#114;&#x65;&#46;&#x6f;&#114;&#103;">&#x63;&#x76;&#x65;&#45;&#x72;&#101;&#x71;&#117;&#x65;&#115;&#116;&#64;&#109;&#105;&#116;&#114;&#x65;&#46;&#x6f;&#114;&#103;</a> 和  <a href="mailto:&#99;&#118;&#x65;&#64;&#x6d;&#x69;&#x74;&#x72;&#x65;&#46;&#111;&#114;&#x67;">&#99;&#118;&#x65;&#64;&#x6d;&#x69;&#x74;&#x72;&#x65;&#46;&#111;&#114;&#x67;</a> 加入邮件白名单 （有可能邮件会被截拦）</li><li>在申请公开步骤中，CVE 官方有可能和你要公开披露的链接，如果软件官方不给写，可以自己写一个</li></ol><p>披露要求的信息：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[CVE ID]</span><br><span class="line">[PRODUCT]</span><br><span class="line">[VERSION]</span><br><span class="line">[PROBLEM TYPE]</span><br><span class="line">[DESCRIPTION]</span><br></pre></td></tr></table></figure>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;在申请 CVE 过程中会遇到一个问题，向软件官方提交漏洞修复后，由于软件官方不是CNA 无法直接分配CVE，而申请CVE 通常需要一个软件官方确认的链接，而有些比较正规的软件在漏洞修复之前是不会有公开链接的，这就无法申请CVE了。&lt;/p&gt;
-&lt;p&gt;有点鸡生蛋，蛋生鸡的感觉。解</summary>
-      
-    
-    
-    
-    
-    <category term="Security" scheme="http://usmacd.com/tags/Security/"/>
     
   </entry>
   
