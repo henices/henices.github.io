@@ -11,6 +11,15 @@
   </url>
   
   <url>
+    <loc>http://usmacd.com/cn/vnote/</loc>
+    
+    <lastmod>2023-11-22</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>http://usmacd.com/cn/fcitx5-rime/</loc>
     
     <lastmod>2023-11-16</lastmod>
@@ -716,15 +725,6 @@
     <loc>http://usmacd.com/cn/trader_vic/</loc>
     
     <lastmod>2022-09-07</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://usmacd.com/cn/vnote/</loc>
-    
-    <lastmod>2022-08-01</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
