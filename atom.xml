@@ -6,7 +6,7 @@
   <link href="http://usmacd.com/atom.xml" rel="self"/>
   
   <link href="http://usmacd.com/"/>
-  <updated>2023-11-14T16:00:00.000Z</updated>
+  <updated>2023-11-22T16:00:00.000Z</updated>
   <id>http://usmacd.com/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>comprehensible input  英语学习方法</title>
+    <link href="http://usmacd.com/cn/learning_english/"/>
+    <id>http://usmacd.com/cn/learning_english/</id>
+    <published>2023-11-22T16:00:00.000Z</published>
+    <updated>2023-11-22T16:00:00.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>youtube 上有 youtuber 在不出国的情况下，将第二外语学习到母语者水平的成功案例。</p><p>Makoto 是一位会说中日英三门语言的 Youtuber，他总结自己学习第二外语的成功经验，可以简单地归纳成一句话：掌握第二外语最重要的是必须有大量地道的 comprehensible input (可理解的输入)。</p><p>Comprehensible input 是 Stephen D. Krashen 提出的语言习得假说，强调语言学习是获得的，而不是通过学习得到的。听力或者阅读获取的内容都可以是有效的输入，获取内容的语言难度必须略高于学习者的水平。</p><p>多大的地道语言输入量才是合适的 ？Makoto 推荐的时长为 1 个小时，30 分钟后休息 5 分钟，然后再继续下一个 30 分钟的学习。</p><p>Youtuber Makoto comprehensible input 英语学习具体步骤：<br>1）使用传统的学习方法，掌握 2000 个单词<br>2）在 youtube 上看视频，打开字幕边看边听，接受一些搞不懂的内容 (如果大量单词不认识就放弃)<br>3）在 youtube 上看视频，如果难度不够 (能听懂 80%以上)，就提高难度<br>4）将口语练习放到最后的步骤，只有输入够了，才能说出地道的外语</p><p>从理解内容到流利地说还有一段距离，Makoto 使用的方法是付费真人聊天，算是比较常规的方法。详细内容可以参考原视频。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;youtube 上有 youtuber 在不出国的情况下，将第二外语学习到母语者水平的成功案例。&lt;/p&gt;
+&lt;p&gt;Makoto 是一位会说中日英三门语言的 Youtuber，他总结自己学习第二外语的成功经验，可以简单地归纳成一句话：掌握第二外语最重要的是必须有大量地道的 co</summary>
+      
+    
+    
+    
+    
+    <category term="KNOWLEDGE" scheme="http://usmacd.com/tags/KNOWLEDGE/"/>
+    
+  </entry>
   
   <entry>
     <title>定期回顾笔记的好处</title>
@@ -470,29 +493,6 @@
     
     
     <category term="linux" scheme="http://usmacd.com/tags/linux/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>root Pixel2 Android 11 的方法</title>
-    <link href="http://usmacd.com/cn/root_android11_pixel2/"/>
-    <id>http://usmacd.com/cn/root_android11_pixel2/</id>
-    <published>2023-09-06T03:00:51.770Z</published>
-    <updated>2023-09-06T03:00:51.770Z</updated>
-    
-    <content type="html"><![CDATA[<p>要正常使用 frida 首先需要把手机给 root 了， 在最近测试的情况发现 Android 10 和 Android 11 系统工作比较正常， Android 6<br>和其他系统似乎差一些？</p><p>要刷机首先需要下载 <code>adb</code> 等工具，这些工具由 Android 的 SDK platform tools 提供，下载地址为：<a href="https://developer.android.com/studio/releases/platform-tools">https://developer.android.com/studio/releases/platform-tools</a><br>选择相应的操作系统版本下载即可， Google 提供了 Windows、Linux、Mac 等系统的支持。</p><p>基础镜像可以选择的 Google 的官方镜像 Factory Image，如果能自己编译 Android 系统则更好，在调试的时候可以看到系统库的符号。</p><p>我的 Android 手机为 Pixel 2 在 <a href="https://developers.google.com/android/images#walleye">https://developers.google.com/android/images#walleye</a> 上可以查找相应的镜像， 下个最新的 <a href="https://dl.google.com/dl/android/aosp/walleye-rp1a.201005.004.a1-factory-0c23f6cf.zip">https://dl.google.com/dl/android/aosp/walleye-rp1a.201005.004.a1-factory-0c23f6cf.zip</a></p><p>要想刷镜像前提条件是先要解锁 bootloader， Pixel2 新手机解锁的命令和以前有变化，可以参考 <a href="https://source.android.com/devices/bootloader/locking_unlocking">https://source.android.com/devices/bootloader/locking_unlocking</a></p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">adb reboot bootloader</span><br><span class="line">fastboot flashing unlock_critical</span><br></pre></td></tr></table></figure><p>下载解压后，里面有个 flash-all 的脚本，将手机重启到 fastboot 模式后可以直接运行， <code>adb reboot bootloader</code>， 重启到 fastboot 模式后，执行 flash-all 脚本，刷机系统镜像就完成了。</p><p>以前 root  Android 用的都是 SuperSU 和 TWRP， 这次使用了一个不同的方法 <a href="https://github.com/topjohnwu/Magisk">Magisk</a> ， 安装的方法参见：<br><a href="https://topjohnwu.github.io/Magisk/install.html">https://topjohnwu.github.io/Magisk/install.html</a></p><p>有两种模式， patch boot 或者 patch recovery， 安装 Magisk app 后如果界面显示  <code>Ramdisk：Yes</code>，则需要 patch boot。<br>Magisk app 的下载地址 <a href="https://github.com/topjohnwu/Magisk/releases/download/v23.0/Magisk-v23.0.apk">https://github.com/topjohnwu/Magisk/releases/download/v23.0/Magisk-v23.0.apk</a></p><p>安装 Magisk app 后， 选择需要 patch 的镜像文件，选择后会自动生成新的修改过后的镜像文件。<br>获得修改后的镜像文件后，需要将修改后的镜像文件重新刷一次</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fastboot flash boot /path/to/magisk_patched.img <span class="comment">#or fastboot flash recovery /path/to/magisk_patched.img</span></span><br></pre></td></tr></table></figure><p>刷完新的修改后的镜像，重启系统，Root 就完成了。</p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;要正常使用 frida 首先需要把手机给 root 了， 在最近测试的情况发现 Android 10 和 Android 11 系统工作比较正常， Android 6&lt;br&gt;和其他系统似乎差一些？&lt;/p&gt;
-&lt;p&gt;要刷机首先需要下载 &lt;code&gt;adb&lt;/code&gt; 等工具，</summary>
-      
-    
-    
-    
-    
-    <category term="Android" scheme="http://usmacd.com/tags/Android/"/>
     
   </entry>
   
