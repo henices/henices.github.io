@@ -6,7 +6,7 @@
   <link href="http://usmacd.com/atom.xml" rel="self"/>
   
   <link href="http://usmacd.com/"/>
-  <updated>2023-11-27T16:00:00.000Z</updated>
+  <updated>2023-11-28T16:00:00.000Z</updated>
   <id>http://usmacd.com/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>halfempty 的一些使用说明</title>
+    <link href="http://usmacd.com/cn/halfempty/"/>
+    <id>http://usmacd.com/cn/halfempty/</id>
+    <published>2023-11-29T08:24:34.461Z</published>
+    <updated>2023-11-28T16:00:00.000Z</updated>
+    
+    <content type="html"><![CDATA[<p><a href="https://github.com/googleprojectzero/halfempty">https://github.com/googleprojectzero/halfempty</a></p><p>google P0 <a href="https://twitter.com/taviso">@taviso</a> 提供的 testcase 并行快速精简工具 （A fast, parallel test case minimization tool）<br>需要注意的是 halfempty 只能精简导致目标程序 crash 的 testcase，如果 testcase 不导致目标程序 crash， 还是需要使用 afl-tmin 类似的工具根据 coverage 来精简。</p><p>halfempty 工具向测试脚本传递内容时使用的是 pipe， 如果测试的程序只接受文件路径作为参数时，需要一些技巧，README 虽然有提及但是说的比较晦涩。</p><p>以 upx 为例，upx 的命令行帮助如下</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">root@fuzzing-5:/mnt/disk/halfempty# ./upx.out_x86-64</span><br><span class="line">                       Ultimate Packer for eXecutables</span><br><span class="line">                          Copyright (C) 1996 - 2020</span><br><span class="line">UPX git-d7ba31+ Markus Oberhumer, Laszlo Molnar &amp; John Reiser   Jan 23rd 2020</span><br><span class="line"></span><br><span class="line">Usage: upx.out_x86-64 [-123456789dlthVL] [-qvfk] [-o file] file..</span><br><span class="line"></span><br><span class="line">Commands:</span><br><span class="line">  -1     compress faster                   -9    compress better</span><br><span class="line">  -d     decompress                        -l    list compressed file</span><br><span class="line">  -t     test compressed file              -V    display version number</span><br><span class="line">  -h     give more help                    -L    display software license</span><br><span class="line">Options:</span><br><span class="line">  -q     be quiet                          -v    be verbose</span><br><span class="line">  -oFILE write output to &#x27;FILE&#x27;</span><br><span class="line">  -f     force compression of suspicious files</span><br><span class="line">  -k     keep backup files</span><br><span class="line">file..   executables to (de)compress</span><br><span class="line"></span><br><span class="line">Type &#x27;upx.out_x86-64 --help&#x27; for more detailed help.</span><br><span class="line"></span><br><span class="line">UPX comes with ABSOLUTELY NO WARRANTY; for details visit https://upx.github.io</span><br></pre></td></tr></table></figure><p>upx 只能使用文件路径作为参数， 比如像这样执行命令。 <code>./upx.out_x86-64 crash.upx</code></p><p>按照 README 中的例子编写测试脚本 test.sh</p><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/sh</span></span><br><span class="line"></span><br><span class="line">./upx.out_x86-64 <span class="variable">$1</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> <span class="built_in">test</span> $? -eq 139; <span class="keyword">then</span></span><br><span class="line">    <span class="built_in">exit</span> 0</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">    <span class="built_in">exit</span> 1</span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure><p>执行的时候会报错</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">./halfempty ./test.sh  crash.upx</span><br><span class="line">╭│   │ ── halfempty ───────────────────────────────────────────────── v0.30 ──</span><br><span class="line">╰│ 16│ A fast, parallel testcase minimization tool</span><br><span class="line"> ╰───╯ ───────────────────────────────────────────────────────── by @taviso ──</span><br><span class="line"></span><br><span class="line">Input file &quot;crash.upx&quot; is now 19088 bytes, starting strategy &quot;bisect&quot;...</span><br><span class="line">Verifying the original input executes successfully... (skip with --noverify)</span><br><span class="line">** Message: This program expected `./test1.sh` to return successfully</span><br><span class="line">** Message: for the original input (i.e. exitcode zero).</span><br><span class="line">** Message: Try it yourself to verify it&#x27;s working.</span><br><span class="line">** Message: Use a command like: `cat crash.upx | ./test.sh || echo failed`</span><br><span class="line"></span><br><span class="line">** (halfempty:2477): WARNING **: Strategy &quot;bisect&quot; failed, cannot continue.</span><br></pre></td></tr></table></figure><p>正确的方法是使用临时文件，因为 halfempty 是一个并行的工具，每次使用的临时文件都应该不一样。</p><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/sh</span></span><br><span class="line"></span><br><span class="line">tempfile=`<span class="built_in">mktemp</span>` &amp;&amp; <span class="built_in">cat</span> &gt; <span class="variable">$&#123;tempfile&#125;</span></span><br><span class="line"></span><br><span class="line">./upx.out_x86-64 <span class="variable">$&#123;tempfile&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> <span class="built_in">test</span> $? -eq 139; <span class="keyword">then</span></span><br><span class="line">    <span class="built_in">exit</span> 0</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">    <span class="built_in">exit</span> 1</span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure><p>运行后的输出，大致如下</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">root@fuzzing-5:/mnt/disk/halfempty# ./halfempty  ./test.sh  crash.upx </span><br><span class="line">╭│   │ ── halfempty ───────────────────────────────────────────────── v0.30 ──</span><br><span class="line">╰│ 16│ A fast, parallel testcase minimization tool</span><br><span class="line"> ╰───╯ ───────────────────────────────────────────────────────── by @taviso ──</span><br><span class="line"></span><br><span class="line">Input file &quot;crash.upx&quot; is now 19088 bytes, starting strategy &quot;bisect&quot;...</span><br><span class="line">Verifying the original input executes successfully... (skip with --noverify)</span><br><span class="line">The original input file succeeded after 0.0 seconds.</span><br><span class="line">New finalized size: 19088 (depth=2) real=0.0s, user=0.0s, speedup=~-0.0s</span><br><span class="line">treesize=6654, height=6376, unproc=0, real=4.4^C user=19.3s, speedup=~14.9s</span><br></pre></td></tr></table></figure><p>已经可以正常运行了。如果执行过程中遇上长时间的卡顿，需要使用 <code>--timeout</code> 参数设置超时时间。</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">./halfempty --help-all | grep timeout</span><br><span class="line">  -T, --timeout=seconds                   Maximum child execution time (default=unlimited).</span><br></pre></td></tr></table></figure>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;&lt;a href=&quot;https://github.com/googleprojectzero/halfempty&quot;&gt;https://github.com/googleprojectzero/halfempty&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;google P0 &lt;a href=&quot;htt</summary>
+      
+    
+    
+    
+    
+    <category term="Security" scheme="http://usmacd.com/tags/Security/"/>
+    
+  </entry>
   
   <entry>
     <title>VMware Workstation Windows 10 host Ubuntu 18.04 Guest 中加载 Linux 内核 kvm 模块</title>
@@ -460,36 +483,6 @@
       
       
     <summary type="html">&lt;p&gt;本人IT男一枚，2015年入市，到今天5年多了，所幸还在吃人不露骨头的市场上活着，也是非常不容易。基本不存在什么特殊情况，韭菜总是在人声鼎沸的牛市高点入场，本人也不例外，上证3500多点入市，上证3800多点让媳妇买了沪深 300 基金 （不是ETF），这基金今年才解套，小</summary>
-      
-    
-    
-    
-    
-    <category term="investment" scheme="http://usmacd.com/tags/investment/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>市场情绪指标</title>
-    <link href="http://usmacd.com/cn/stock_emotion/"/>
-    <id>http://usmacd.com/cn/stock_emotion/</id>
-    <published>2023-09-06T03:00:51.809Z</published>
-    <updated>2023-09-06T03:00:51.809Z</updated>
-    
-    <content type="html"><![CDATA[<p>可以量化一下，有时间考虑程序实现。</p><ul><li>涨&#x2F;跌停板数</li><li>涨停封版成功率</li><li>涨跌股票比率</li><li>大盘成交量额</li><li>融资余额情况</li><li>北向资金净流入 （参考）</li></ul>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;可以量化一下，有时间考虑程序实现。&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;涨&amp;#x2F;跌停板数&lt;/li&gt;
-&lt;li&gt;涨停封版成功率&lt;/li&gt;
-&lt;li&gt;涨跌股票比率&lt;/li&gt;
-&lt;li&gt;大盘成交量额&lt;/li&gt;
-&lt;li&gt;融资余额情况&lt;/li&gt;
-&lt;li&gt;北向资金净流入 （参考）&lt;/li&gt;
-&lt;/</summary>
       
     
     
