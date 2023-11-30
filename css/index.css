@@ -1434,7 +1434,7 @@ canvas:not(#ribbon-canvas),
   }
 }
 :root {
-  --global-font-size: 14px;
+  --global-font-size: 16px;
   --global-bg: #fff;
   --font-color: #4c4948;
   --hr-border: #a4d8fa;
@@ -1478,7 +1478,7 @@ body {
   background: var(--global-bg);
   color: var(--font-color);
   font-size: var(--global-font-size);
-  font-family: "Segoe UI", "Roboto", "Helvetica Neue", Helvetica, "PingFang SC", "Source Han Sans CN", "Noto Sans SC", "Noto Sans CJK SC", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
+  font-family: "Segoe UI", "Roboto", "Helvetica Neue", Helvetica, "Source Han Sans CN", "Noto Sans SC", "Noto Sans CJK SC", ""PingFang SC", Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
   line-height: 2;
   -webkit-tap-highlight-color: rgba(0,0,0,0);
 }
