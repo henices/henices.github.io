@@ -245,15 +245,6 @@
   </url>
   
   <url>
-    <loc>http://usmacd.com/cn/root_android11_pixel2/</loc>
-    
-    <lastmod>2023-09-06</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>http://usmacd.com/cn/request_RESERVED_CVE/</loc>
     
     <lastmod>2023-09-06</lastmod>
@@ -743,6 +734,15 @@
     <loc>http://usmacd.com/cn/trader_vic/</loc>
     
     <lastmod>2022-09-07</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://usmacd.com/cn/root_android11_pixel2/</loc>
+    
+    <lastmod>2022-09-05</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
