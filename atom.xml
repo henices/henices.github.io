@@ -6,7 +6,7 @@
   <link href="http://usmacd.com/atom.xml" rel="self"/>
   
   <link href="http://usmacd.com/"/>
-  <updated>2023-12-04T16:00:00.000Z</updated>
+  <updated>2024-01-16T16:00:00.000Z</updated>
   <id>http://usmacd.com/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>python3 pip loading egg is deprecated 警告的解决方法</title>
+    <link href="http://usmacd.com/cn/egg-is-deprecated/"/>
+    <id>http://usmacd.com/cn/egg-is-deprecated/</id>
+    <published>2024-01-16T16:00:00.000Z</published>
+    <updated>2024-01-16T16:00:00.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>python3 -m pip install some_package 报错：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">DEPRECATION: Loading egg at *.egg is deprecated. pip 24.3 will enforce this behaviour change. A possible replacement is</span><br><span class="line"> to use pip for package installation.. Discussion can be found at https://github.com/pypa/pip/issues/12330</span><br></pre></td></tr></table></figure><p>pip 24.3 将废弃 egg 形式的 python package, 根据 github issue 的信息 pip 24.3 将在 October 2024 发布。可以使用下面的方法，要去掉上面的警告信息。</p><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="built_in">cd</span> source_code_dir</span><br><span class="line"></span><br><span class="line"><span class="comment"># 删除老的 build 结果</span></span><br><span class="line"><span class="built_in">rm</span> -rf build dist htmlcov *.egg-info</span><br><span class="line"></span><br><span class="line"><span class="comment"># 升级 pip</span></span><br><span class="line">python3 -m pip install --upgrade build</span><br><span class="line"></span><br><span class="line"><span class="comment"># 重新 build</span></span><br><span class="line">python3 -m build --wheel</span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用 wheel 的方式安装</span></span><br><span class="line">python3 -m pip install . --user</span><br><span class="line"></span><br></pre></td></tr></table></figure><h2 id="参考信息"><a href="#参考信息" class="headerlink" title="参考信息"></a>参考信息</h2><p><a href="https://github.com/pypa/pip/issues/12330">Remove support for installed .egg distributions</a><br><a href="https://packaging.python.org/en/latest/tutorials/packaging-projects/#uploading-your-project-to-pypi">Packaging Python Projects</a><br><a href="https://docs.python.org/3.11/distutils/setupscript.html">Writing the Setup Script</a></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;python3 -m pip install some_package 报错：&lt;/p&gt;
+&lt;figure class=&quot;highlight plaintext&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/</summary>
+      
+    
+    
+    
+    
+    <category term="Programming" scheme="http://usmacd.com/tags/Programming/"/>
+    
+  </entry>
   
   <entry>
     <title>公开写作的好处和坚持不懈</title>
@@ -460,36 +483,6 @@
       
       
     <summary type="html">&lt;p&gt;本人IT男一枚，2015年入市，到今天5年多了，所幸还在吃人不露骨头的市场上活着，也是非常不容易。基本不存在什么特殊情况，韭菜总是在人声鼎沸的牛市高点入场，本人也不例外，上证3500多点入市，上证3800多点让媳妇买了沪深 300 基金 （不是ETF），这基金今年才解套，小</summary>
-      
-    
-    
-    
-    
-    <category term="investment" scheme="http://usmacd.com/tags/investment/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>市场情绪指标</title>
-    <link href="http://usmacd.com/cn/stock_emotion/"/>
-    <id>http://usmacd.com/cn/stock_emotion/</id>
-    <published>2023-09-06T03:00:51.809Z</published>
-    <updated>2023-09-06T03:00:51.809Z</updated>
-    
-    <content type="html"><![CDATA[<p>可以量化一下，有时间考虑程序实现。</p><ul><li>涨&#x2F;跌停板数</li><li>涨停封版成功率</li><li>涨跌股票比率</li><li>大盘成交量额</li><li>融资余额情况</li><li>北向资金净流入 （参考）</li></ul>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;可以量化一下，有时间考虑程序实现。&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;涨&amp;#x2F;跌停板数&lt;/li&gt;
-&lt;li&gt;涨停封版成功率&lt;/li&gt;
-&lt;li&gt;涨跌股票比率&lt;/li&gt;
-&lt;li&gt;大盘成交量额&lt;/li&gt;
-&lt;li&gt;融资余额情况&lt;/li&gt;
-&lt;li&gt;北向资金净流入 （参考）&lt;/li&gt;
-&lt;/</summary>
       
     
     
