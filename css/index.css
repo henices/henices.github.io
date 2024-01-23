@@ -1755,7 +1755,7 @@ figure.highlight pre .javascript .function {
 #article-container code {
   padding: 2px 4px;
   background: rgba(27,31,35,0.05);
-  color: #f47466;
+  color: #4c566a;
 }
 #article-container pre {
   padding: 10px 20px;
@@ -3889,7 +3889,7 @@ h1.page-title + .tag-cloud-list {
   overflow-wrap: break-word;
 }
 #article-container a {
-  color: #49b1f5;
+  color: #5e81ac;
 }
 #article-container a:hover {
   text-decoration: underline;
