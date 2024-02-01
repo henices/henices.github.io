@@ -9,8 +9,37 @@
     <atom:link href="http://usmacd.com/rss.xml" rel="self" type="application/rss+xml"/>
     
     <description></description>
-    <pubDate>Tue, 30 Jan 2024 16:00:00 GMT</pubDate>
+    <pubDate>Wed, 31 Jan 2024 16:00:00 GMT</pubDate>
     <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>《笔记的方法》 如何做筛选，获取高质量信息</title>
+      <link>http://usmacd.com/cn/how_to_get_good_info/</link>
+      <guid>http://usmacd.com/cn/how_to_get_good_info/</guid>
+      <pubDate>Wed, 31 Jan 2024 16:00:00 GMT</pubDate>
+      
+        
+        
+      <description>&lt;p&gt;在信息爆炸时代，我觉得研究如何获得有效信息是非常重要的。在《笔记的方法》中，少楠分享了如何获取优质的信息的方法，分别是：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;做减法：削减你的信息&lt;/li&gt;
+&lt;li&gt;做加法：添加书本以外的信息源&lt;/li&gt;
+&lt;li&gt;做乘法：用多重视角看待信息&lt;/li&gt;
+</description>
+        
+      
+      
+      
+      <content:encoded><![CDATA[<p>在信息爆炸时代，我觉得研究如何获得有效信息是非常重要的。在《笔记的方法》中，少楠分享了如何获取优质的信息的方法，分别是：</p><ul><li>做减法：削减你的信息</li><li>做加法：添加书本以外的信息源</li><li>做乘法：用多重视角看待信息</li></ul><h2 id="做减法：削减你的信息源"><a href="#做减法：削减你的信息源" class="headerlink" title="做减法：削减你的信息源"></a>做减法：削减你的信息源</h2><ul><li>稀缺的不是信息，而是我们的注意力。我们需要避免信息过载，分散我们的注意力，这样才能专注有价值的信息。</li><li>方法1：削减利用你情绪的信息源，比如将被 GPT 取代的 30 个岗位，其中有你的吗？</li><li>方法2：削减让自己过于舒适的信息源，没有增量信息，不能带来新知和启发信息源；观点很熟悉和认同的信息源，容易培养惰性</li><li>方法3：削减缺乏具体事实的信息源，没有事实依据、大量春秋笔法、不符合基本逻辑的过于主观的观点的信息源</li></ul><h2 id="做加法：添加书本以外的信息源"><a href="#做加法：添加书本以外的信息源" class="headerlink" title="做加法：添加书本以外的信息源"></a>做加法：添加书本以外的信息源</h2><ul><li>书本信息的第一个问题：书本上的知识不够及时，跟不上新技术</li><li>书本信息的第二个问题：书本上学来的大多是理论，理论和实际情况总是有些差别</li></ul><h3 id="方法1：把他人作为信息源，听实践者言"><a href="#方法1：把他人作为信息源，听实践者言" class="headerlink" title="方法1：把他人作为信息源，听实践者言"></a>方法1：把他人作为信息源，听实践者言</h3><ul><li>1）听实践者讲述事实时，注意他在叙述过程中提及的细节。充满细节的事实信息，远比充满戏剧性的宏大叙事更有价值</li><li>2）听实践者讲述事实时，重点听他复盘失败的经历</li><li>3）尽量不要看第三方的叙述，而要看实践者自己写的文章或接受的采访，确保得到一手的信息</li></ul><h3 id="方法2：亲自下场实践"><a href="#方法2：亲自下场实践" class="headerlink" title="方法2：亲自下场实践"></a>方法2：亲自下场实践</h3><ul><li>1）现场观察，现场调研</li><li>2）投入时间，投入金钱，亲身感受</li></ul><h2 id="做乘法：用多重视角看待信息"><a href="#做乘法：用多重视角看待信息" class="headerlink" title="做乘法：用多重视角看待信息"></a>做乘法：用多重视角看待信息</h2><ul><li>方法1：考察概念，向下看，将模糊的概念界定地更清晰，对客观事物、客观事实的认识会更加深入</li><li>方法2：寻找可迁移的范式，向上看，抽象一层</li><li>方法3：向四周看，找到信息相关联的线索，顺藤摸瓜</li></ul><h2 id="多个独立信息源，交叉验证"><a href="#多个独立信息源，交叉验证" class="headerlink" title="多个独立信息源，交叉验证"></a>多个独立信息源，交叉验证</h2><p>这点是我补充的，独立信息源很重要，有些时候多个地方的信息其实来自同一个信息源，这样的信息仍然是不可靠的。</p>]]></content:encoded>
+      
+      
+      
+      <category domain="http://usmacd.com/tags/PKM/">PKM</category>
+      
+      
+      <comments>http://usmacd.com/cn/how_to_get_good_info/#disqus_thread</comments>
+      
+    </item>
     
     <item>
       <title>卡片盒笔记法总体思路与工作流</title>
@@ -498,33 +527,6 @@
       
       
       <comments>http://usmacd.com/cn/vim_special_char/#disqus_thread</comments>
-      
-    </item>
-    
-    <item>
-      <title>VIM + SVN 管理</title>
-      <link>http://usmacd.com/cn/svn_vim/</link>
-      <guid>http://usmacd.com/cn/svn_vim/</guid>
-      <pubDate>Wed, 06 Sep 2023 03:00:51 GMT</pubDate>
-      
-        
-        
-      <description>&lt;p&gt;公司使用svn管理源代码，避免不了要和svn打交道，有几个比较好的解决方案。&lt;/p&gt;
-&lt;h2 id=&quot;1-vcscommand-vim&quot;&gt;&lt;a href=&quot;#1-vcscommand-vim&quot; class=&quot;headerlink&quot; title=&quot;1. vcscommand.</description>
-        
-      
-      
-      
-      <content:encoded><![CDATA[<p>公司使用svn管理源代码，避免不了要和svn打交道，有几个比较好的解决方案。</p><h2 id="1-vcscommand-vim"><a href="#1-vcscommand-vim" class="headerlink" title="1. vcscommand.vim"></a>1. vcscommand.vim</h2><p><a href="http://www.vim.org/scripts/script.php?script_id=90">http://www.vim.org/scripts/script.php?script_id=90</a></p><p>这个插件的特点是支持的版本管理工具多,支持git，svn等常见版本管理工具。<br>vcscommand.vim插件默认绑定了无差别的快捷键，使用起来非常方便。</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">|&lt;Leader&gt;|ca VCSAdd</span><br><span class="line">|&lt;Leader&gt;|cn VCSAnnotate</span><br><span class="line">|&lt;Leader&gt;|cN VCSAnnotate!</span><br><span class="line">|&lt;Leader&gt;|cc VCSCommit</span><br><span class="line">|&lt;Leader&gt;|cD VCSDelete</span><br><span class="line">|&lt;Leader&gt;|cd VCSDiff</span><br><span class="line">|&lt;Leader&gt;|cg VCSGotoOriginal</span><br><span class="line">|&lt;Leader&gt;|cG VCSGotoOriginal!</span><br><span class="line">|&lt;Leader&gt;|ci VCSInfo</span><br><span class="line">|&lt;Leader&gt;|cl VCSLog</span><br><span class="line">|&lt;Leader&gt;|cL VCSLock</span><br><span class="line">|&lt;Leader&gt;|cr VCSReview</span><br><span class="line">|&lt;Leader&gt;|cs VCSStatus</span><br><span class="line">|&lt;Leader&gt;|cu VCSUpdate</span><br><span class="line">|&lt;Leader&gt;|cU VCSUnlock</span><br><span class="line">|&lt;Leader&gt;|cv VCSVimDiff</span><br></pre></td></tr></table></figure><p>这个 <code>&lt;Leader&gt;</code> 得看你定义了什么快捷键，vim 默认的是 <code>\</code></p><h2 id="2-vim-unite-svn"><a href="#2-vim-unite-svn" class="headerlink" title="2.  vim-unite-svn"></a>2.  vim-unite-svn</h2><p>小日本写的unite.vim的svn插件，unite.vim 是一个非常不错的vim插件，<br>它的作用是 为vim 写简单界面，要使用vim-unite-svn首先需要安装unite.vim 插件，<br>折腾这个插件的原因是vcscommand.vim有些不太好的地方。</p><ul><li>buffer管理的不太好</li><li>status 比较弱</li><li>羡慕emacs的vc mode的体验</li></ul><p><a href="https://github.com/Shougo/unite.vim">https://github.com/Shougo/unite.vim</a></p><p>小日本写的 <code>vim-unite-svn</code> 插件太久没有更新了，有一些bug，我修改了一下，用了<br>一段时间暂时没有发现什么问题。</p><p><a href="https://github.com/henices/vim-unite-svn">https://github.com/henices/vim-unite-svn</a></p><p>支持基本的svn命令， svn status, svn info, svn diff, svn commit, svn up</p><p>使用示例</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">:Unite svn/status</span><br><span class="line">:Unite svn/diff</span><br><span class="line">:Unite svn/blame</span><br></pre></td></tr></table></figure>]]></content:encoded>
-      
-      
-      
-      <category domain="http://usmacd.com/tags/linux/">linux</category>
-      
-      <category domain="http://usmacd.com/tags/vim/">vim</category>
-      
-      
-      <comments>http://usmacd.com/cn/svn_vim/#disqus_thread</comments>
       
     </item>
     
