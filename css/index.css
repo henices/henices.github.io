@@ -1617,12 +1617,12 @@ blockquote > :last-child {
   margin-bottom: 0 !important;
 }
 :root {
-  --hl-color: #90a4ae;
+  --hl-color: #626262;
   --hl-bg: #f6f8fa;
   --hltools-bg: #e6ebf1;
-  --hltools-color: #90a4ae;
+  --hltools-color: #626262;
   --hlnumber-bg: #f6f8fa;
-  --hlnumber-color: rgba(144,164,174,0.5);
+  --hlnumber-color: rgba(98,98,98,0.5);
   --hlscrollbar-bg: #dce4eb;
   --hlexpand-bg: linear-gradient(180deg, rgba(246,248,250,0.6), rgba(246,248,250,0.9));
 }
