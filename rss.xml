@@ -9,8 +9,33 @@
     <atom:link href="http://usmacd.com/rss.xml" rel="self" type="application/rss+xml"/>
     
     <description></description>
-    <pubDate>Thu, 01 Feb 2024 16:00:00 GMT</pubDate>
+    <pubDate>Sat, 03 Feb 2024 16:00:00 GMT</pubDate>
     <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>如何写好一篇技术笔记</title>
+      <link>http://usmacd.com/cn/how_to_write_technique_note/</link>
+      <guid>http://usmacd.com/cn/how_to_write_technique_note/</guid>
+      <pubDate>Sat, 03 Feb 2024 16:00:00 GMT</pubDate>
+      
+        
+        
+      <description>&lt;p&gt;翻看前些年的笔记，发现笔记内容的详尽程度将决定未来能留下来多少有用的知识。不论记性多好，大多数内容都会随着时间遗忘在历史的长河中。在得到听了很多课程，基本上能记住的不多，最终能用上的可能还是记录下来的一些东西，古人云：「不动笔墨不读书」还是挺有道理的。&lt;/p&gt;
+&lt;p&gt;技术笔</description>
+        
+      
+      
+      
+      <content:encoded><![CDATA[<p>翻看前些年的笔记，发现笔记内容的详尽程度将决定未来能留下来多少有用的知识。不论记性多好，大多数内容都会随着时间遗忘在历史的长河中。在得到听了很多课程，基本上能记住的不多，最终能用上的可能还是记录下来的一些东西，古人云：「不动笔墨不读书」还是挺有道理的。</p><p>技术笔记和其他的一般笔记不同，详尽程度将决定笔记的质量，有一些十多年前的笔记我现在已经完全看不懂了，有的文档仅仅写了短短几句，明显没有写完，但真的就再也想不起任何内容了。痛定思痛后，我决定总结一篇如何写技术笔记的文章。</p><h2 id="写技术技术记笔记时，应该注意内容"><a href="#写技术技术记笔记时，应该注意内容" class="headerlink" title="写技术技术记笔记时，应该注意内容"></a>写技术技术记笔记时，应该注意内容</h2><p>写详细的记录是为了在若干年后，可以重现所有的操作，如果上下文有丢失，将遇到很大的困难。反复学习，不断迭代，所有的积累才能有效累加，为了达到这个目的，写技术笔记至少需要做到以下几点：</p><ul><li><ol><li>完整性：必须包括原始需求、先验知识、现有解决方案、具体实践、参考文献。</li></ol><ul><li>具体实践包括不但包括成功的经验还包括失败的尝试</li></ul></li><li><ol start="2"><li>严谨性：所有笔记内容都经过验证，包括参考文献中的结论，没有验证过的就说未验证。</li></ol></li><li><ol start="3"><li>可操作性：完整展示环境搭建过程，命令行的所有参数，完整的命令行输出，完整的源代码和编译参数。</li></ol></li><li><ol start="4"><li>深入细节：魔鬼都在细节之中。笔记详细说明各种坑点，关键细节的细微差异，使用调试器等工具展示底层的基本原理。</li></ol></li><li><ol start="5"><li>持续性：反复迭代，在自己感兴趣领域的不断积累。</li></ol></li></ul><p>失败的尝试可能是最容易忽略的地方，明明查询了很多资料，尝试了很多不同的方法，最后记录的只有成功的那一条。有一种可能，在极端的情况下，所有的尝试都失败了，是不是就完全放弃了？<br>如果记录了所有失败的尝试，过一段时间后，你可能重新尝试，但有个前提上下文没有丢失，不然很可能重复走上次失败的尝试。</p><h2 id="严谨的记录带来一种有序"><a href="#严谨的记录带来一种有序" class="headerlink" title="严谨的记录带来一种有序"></a>严谨的记录带来一种有序</h2><p>严谨的记录是对内心的一种拷问，要求不断地问自己是否真搞清楚了，有没有遗漏前提条件，是否只是某种巧合。严谨的记录带来一种新的有序，不断完善的基础概念，不断增加的各种尝试&#x2F;方法，从而提供跨出知识边界，跳出思维定势的可能性。</p><h2 id="记笔记的态度比笔记方法重要"><a href="#记笔记的态度比笔记方法重要" class="headerlink" title="记笔记的态度比笔记方法重要"></a>记笔记的态度比笔记方法重要</h2><p>笔记是一笔可以积累的财富，认真写笔记可以在未来的时间里获得复利，态度决定一切，这比所谓第二大脑，卡片笔记法都重要。任何可以持续积累并获得进步的习惯应该坚持下去。对于个人成长来说，不断记录，不断总结，不断分析，才能螺旋前进。</p><h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2><p>以 scz 的话结尾：若自己写的技术文档三个月之后乃至更长时间跨度，不能指导自己的相关工作，该文档严重不合格。该标准很靠谱，诸君可自行检验。</p><h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p>[1] 网络安全学习方法之一  2023-09-07 19:43<br>    <a href="https://scz.617.cn/misc/202309071943.txt">https://scz.617.cn/misc/202309071943.txt</a></p>]]></content:encoded>
+      
+      
+      
+      <category domain="http://usmacd.com/tags/PKM/">PKM</category>
+      
+      
+      <comments>http://usmacd.com/cn/how_to_write_technique_note/#disqus_thread</comments>
+      
+    </item>
     
     <item>
       <title>《笔记的方法》 如何做筛选，获取高质量信息</title>
@@ -502,31 +527,6 @@
       
       
       <comments>http://usmacd.com/cn/vnc/#disqus_thread</comments>
-      
-    </item>
-    
-    <item>
-      <title>vim 输入特殊字符</title>
-      <link>http://usmacd.com/cn/vim_special_char/</link>
-      <guid>http://usmacd.com/cn/vim_special_char/</guid>
-      <pubDate>Wed, 06 Sep 2023 03:00:51 GMT</pubDate>
-      
-        
-        
-      <description>&lt;p&gt;vim 的编辑能力确实很强，今天说一下如何在vim中输入特殊字符，比如音标、unicode 字符。&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;http://vimhelp.appspot.com/digraph.txt.html&quot;&gt;http://vimhelp.appspot.com</description>
-        
-      
-      
-      
-      <content:encoded><![CDATA[<p>vim 的编辑能力确实很强，今天说一下如何在vim中输入特殊字符，比如音标、unicode 字符。</p><p><a href="http://vimhelp.appspot.com/digraph.txt.html">http://vimhelp.appspot.com/digraph.txt.html</a><br><a href="http://vimhelp.appspot.com/insert.txt.html#i_CTRL-V_digit">http://vimhelp.appspot.com/insert.txt.html#i_CTRL-V_digit</a></p><p>关键就在上面两篇，可能许多人不喜欢看复杂的文章，我这里简单介绍一下用法。</p><p>输入音标 ə</p><p>i 进入编辑模式    CTRL-vu0259<br>那如何知道 ə 的 unicode hex number 是 0259呢，在vim的normal 模式下，将光标移动到ə输入ga</p><p>输入 ⇒</p><p>i 进入编辑模式   CTRL-k&#x3D;&gt;<br>:dig 可以看到支持这种方法输入的unicode 字符</p>]]></content:encoded>
-      
-      
-      
-      <category domain="http://usmacd.com/tags/vim/">vim</category>
-      
-      
-      <comments>http://usmacd.com/cn/vim_special_char/#disqus_thread</comments>
       
     </item>
     
