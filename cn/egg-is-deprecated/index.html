@@ -24,7 +24,7 @@
 <meta property="og:description" content="解决 egg is deprecation 警告python3 -m pip install some_package 时发现 exploitable 有警告：  DEPRECATION: Loading egg at exploitable-1.32-py3.12.egg is deprecated. pip 24.3 will enforce this behaviour change. A">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2024-01-16T16:00:00.000Z">
-<meta property="article:modified_time" content="2024-01-31T16:00:00.000Z">
+<meta property="article:modified_time" content="2024-02-03T16:00:00.000Z">
 <meta property="article:author" content="henices">
 <meta property="article:tag" content="Programming">
 <meta name="twitter:card" content="summary_large_image">
@@ -246,7 +246,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          406 words
+          405 words
         
       </span>
     
@@ -311,7 +311,7 @@
 <blockquote>
 <p>MANIFEST.in does not affect binary distributions such as wheels.</p>
 </blockquote>
-<p>要想给 wheel 添加非纯 python 的文件，有一些困难，主要是一些使用 Extension 的 Python Package 会遇上这个问题。通过研究发现，可以控制 setup.py bdist-wheel 的参数达到打包so 文件的效果。</p>
+<p>要想给 wheel 添加非纯 python 的文件，有一些困难，主要是一些使用 Extension 的 Python Package 会遇上这个问题。通过研究发现，可以控制 <code>setup.py bdist_wheel</code> 的参数达到打包so 文件的效果。</p>
 <p>执行 <code>python3 setup.py bdist_wheel --help</code> ，可以看到详细的参数。</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs sql">Options <span class="hljs-keyword">for</span> <span class="hljs-string">&#x27;bdist_wheel&#x27;</span> command:<br>  <span class="hljs-comment">--bdist-dir (-b)  temporary directory for creating the distribution</span><br>  <span class="hljs-comment">--plat-name (-p)  platform name to embed in generated filenames (default:</span><br>                    linux_x86_64)<br>  <span class="hljs-comment">--keep-temp (-k)  keep the pseudo-installation tree around after creating</span><br>                    the distribution archive<br>  <span class="hljs-comment">--dist-dir (-d)   directory to put final built distributions in</span><br>  <span class="hljs-comment">--skip-build      skip rebuilding everything (for testing/debugging)</span><br>  <span class="hljs-comment">--relative        build the archive using relative paths (default: false)</span><br>  <span class="hljs-comment">--owner (-u)      Owner name used when creating a tar file [default: current</span><br>                    <span class="hljs-keyword">user</span>]<br>  <span class="hljs-comment">--group (-g)      Group name used when creating a tar file [default: current</span><br>                    <span class="hljs-keyword">group</span>]<br>  <span class="hljs-comment">--universal       make a universal wheel (default: false)</span><br>  <span class="hljs-comment">--compression     zipfile compression (one of: stored, deflated) (default:</span><br>                    <span class="hljs-string">&#x27;deflated&#x27;</span>)<br>  <span class="hljs-comment">--python-tag      Python implementation compatibility tag (default: &#x27;py3&#x27;)</span><br>  <span class="hljs-comment">--build-number    Build number for this particular version. As specified in</span><br>                    PEP<span class="hljs-number">-0427</span>, this must <span class="hljs-keyword">start</span> <span class="hljs-keyword">with</span> a digit. [<span class="hljs-keyword">default</span>: <span class="hljs-keyword">None</span>]<br>  <span class="hljs-comment">--py-limited-api  Python tag (cp32|cp33|cpNN) for abi3 wheel tag (default:</span><br>                    <span class="hljs-literal">false</span>)<br></code></pre></td></tr></table></figure>
 
