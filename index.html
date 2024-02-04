@@ -1,252 +1,753 @@
-<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>安全代码</title><meta name="author" content="henices"><meta name="copyright" content="henices"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta property="og:type" content="website">
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="henices">
+  <meta name="keywords" content="">
+  
+    <meta property="og:type" content="website">
 <meta property="og:title" content="安全代码">
 <meta property="og:url" content="http://usmacd.com/index.html">
 <meta property="og:site_name" content="安全代码">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://usmacd.com/img/avatar.png">
 <meta property="article:author" content="henices">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://usmacd.com/img/avatar.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://usmacd.com/index.html"><link rel="preconnect" href="//cdnjs.cloudflare.com"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"><script async="async" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><script>const GLOBAL_CONFIG = {
-  root: '/',
-  algolia: undefined,
-  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found"}},
-  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
-  noticeOutdate: undefined,
-  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
-  copy: {
-    success: 'Copy Successful',
-    error: 'Copy Error',
-    noSupport: 'Browser Not Supported'
-  },
-  relativeDate: {
-    homepage: false,
-    post: false
-  },
-  runtime: '',
-  dateSuffix: {
-    just: 'Just now',
-    min: 'minutes ago',
-    hour: 'hours ago',
-    day: 'days ago',
-    month: 'months ago'
-  },
-  copyright: undefined,
-  lightbox: 'null',
-  Snackbar: undefined,
-  infinitegrid: {
-    js: 'https://cdnjs.cloudflare.com/ajax/libs/egjs-infinitegrid/4.11.0/infinitegrid.min.js',
-    buttonText: 'Load More'
-  },
-  isPhotoFigcaption: false,
-  islazyload: false,
-  isAnchor: false,
-  percent: {
-    toc: true,
-    rightside: false,
-  },
-  autoDarkmode: false
-}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
-  title: '安全代码',
-  isPost: false,
-  isHome: true,
-  isHighlightShrink: false,
-  isToc: false,
-  postUpdate: '2024-02-02 15:57:21'
-}</script><script>(win=>{
-      win.saveToLocal = {
-        set: (key, value, ttl) => {
-          if (ttl === 0) return
-          const now = Date.now()
-          const expiry = now + ttl * 86400000
-          const item = {
-            value,
-            expiry
-          }
-          localStorage.setItem(key, JSON.stringify(item))
-        },
-      
-        get: key => {
-          const itemStr = localStorage.getItem(key)
-      
-          if (!itemStr) {
-            return undefined
-          }
-          const item = JSON.parse(itemStr)
-          const now = Date.now()
-      
-          if (now > item.expiry) {
-            localStorage.removeItem(key)
-            return undefined
-          }
-          return item.value
-        }
-      }
-    
-      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
-        const script = document.createElement('script')
-        script.src = url
-        script.async = true
-        script.onerror = reject
-        script.onload = script.onreadystatechange = function() {
-          const loadState = this.readyState
-          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
-          script.onload = script.onreadystatechange = null
-          resolve()
-        }
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>安全代码</title>
 
-        Object.keys(attr).forEach(key => {
-          script.setAttribute(key, attr[key])
-        })
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
-        document.head.appendChild(script)
-      })
-    
-      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
-        const link = document.createElement('link')
-        link.rel = 'stylesheet'
-        link.href = url
-        if (id) link.id = id
-        link.onerror = reject
-        link.onload = link.onreadystatechange = function() {
-          const loadState = this.readyState
-          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
-          link.onload = link.onreadystatechange = null
-          resolve()
-        }
-        document.head.appendChild(link)
-      })
-    
-      win.activateDarkMode = () => {
-        document.documentElement.setAttribute('data-theme', 'dark')
-        if (document.querySelector('meta[name="theme-color"]') !== null) {
-          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
-        }
-      }
-      win.activateLightMode = () => {
-        document.documentElement.setAttribute('data-theme', 'light')
-        if (document.querySelector('meta[name="theme-color"]') !== null) {
-          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
-        }
-      }
-      const t = saveToLocal.get('theme')
-    
-        if (t === 'dark') activateDarkMode()
-        else if (t === 'light') activateLightMode()
-      
-      const asideStatus = saveToLocal.get('aside-status')
-      if (asideStatus !== undefined) {
-        if (asideStatus === 'hide') {
-          document.documentElement.classList.add('hide-aside')
-        } else {
-          document.documentElement.classList.remove('hide-aside')
-        }
-      }
-    
-      const detectApple = () => {
-        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
-          document.documentElement.classList.add('apple')
-        }
-      }
-      detectApple()
-    })(window)</script><meta name="generator" content="Hexo 7.1.1"><link rel="alternate" href="/atom.xml" title="安全代码" type="application/atom+xml">
+
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"usmacd.com","root":"/","version":"1.9.7","typing":{"enable":false,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.1.1"><link rel="alternate" href="/atom.xml" title="安全代码" type="application/atom+xml">
 <link rel="alternate" href="/rss.xml" title="安全代码" type="application/rss+xml">
-</head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">111</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">15</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">1</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/links/"><i class="fa-fw fas fa-link"></i><span> Links</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div><div class="menus_item"><a class="site-page" href="/rss.xml"><span> RSS</span></a></div><div class="menus_item"><a class="site-page" href="/sitemap.xml"><span> Sitemap</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header" style="background-image: url('https://images.unsplash.com/photo-1646026371686-79950ceb6daa?w=640')"><nav id="nav"><span id="blog-info"><a href="/" title="安全代码"><span class="site-name">安全代码</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> Search</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/links/"><i class="fa-fw fas fa-link"></i><span> Links</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div><div class="menus_item"><a class="site-page" href="/rss.xml"><span> RSS</span></a></div><div class="menus_item"><a class="site-page" href="/sitemap.xml"><span> Sitemap</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">安全代码</h1><div id="site_social_icons"><a class="social-icon" href="https://twitter.com/henices" target="_blank" title="Twitter"><i class="fab fa-twitter" style="color: #4a7dbe;"></i></a><a class="social-icon" href="mailto:henices@163.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #24292e;"></i></a></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/cn/how_to_get_good_info/" title="《笔记的方法》 如何做筛选，获取高质量信息">《笔记的方法》 如何做筛选，获取高质量信息</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2024-01-31T16:00:00.000Z" title="Created 2024-02-01 00:00:00">2024-02-01</time></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/PKM/">PKM</a></span></div><div class="content">在信息爆炸时代，我觉得研究如何获得有效信息是非常重要的。在《笔记的方法》中，少楠分享了如何获取优质的信息的方法，分别是：
+</head>
 
-做减法：削减你的信息
-做加法：添加书本以外的信息源
-做乘法：用多重视角看待信息
 
-做减法：削减你的信息源稀缺的不是信息，而是我们的注意力。我们需要避免信息过载，分散我们的注意力，这样才能专注有价值的信息。
-方法1：削减利用你情绪的信息源
-比如将被 GPT 取代的 30 个岗位，其中有你的吗？
+<body>
+  
 
-方法2：削减让自己过于舒适的信息源
-比如没有增量信息，不能带来新知和启发信息源
-观点很熟悉和认同的信息源，容易培养惰性
+  <header>
+    
 
-方法3：削减缺乏具体事实的信息源
-没有事实依据、大量春秋笔法、不符合基本逻辑的过于主观的观点的信息源
+<div class="header-inner" style="height: 60vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>安全代码</strong>
+    </a>
 
-做加法：添加书本以外的信息源
-书本信息的第一个问题：书本上的知识不够及时，跟不上新技术
-书本信息的第二个问题：书本上学来的大多是理论，理论和实际情况总是有些差别
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
 
-方法1：把他人作为信息源，听实践者言
-1）听实践者讲述事实时，注意他在叙述过程中提及的细节。充满细节的事实信息，远比充满戏剧性的宏大叙事更有价值
-2）听实践者讲述事实时，重点听他复盘失败的经 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/cn/zel_note_flow/" title="卡片盒笔记法总体思路与工作流">卡片盒笔记法总体思路与工作流</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2024-01-28T16:00:00.000Z" title="Created 2024-01-29 00:00:00">2024-01-29</time></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/PKM/">PKM</a></span></div><div class="content">我经常在少数派等网站上看到卡片盒笔记的文章，这些文章少则几千字，多则上万字。过于复杂的方法是很难实践的，我尝试用一种简单的方法把卡片盒笔记法说清楚，希望能给大家带来一些帮助。
-卡片盒笔记法核心要义1）用自己的话记录最感兴趣，最有用的知识，记录自己的洞见，而不是单纯记录信息2）处理各种想法，探寻想法之间的关联、冲突、拓展，建立成熟的想法集群，并和其他的想法集群联系在一起3) 针对项目或主题调整笔记顺序，根据笔记的邻近度聚合不同的想法，从更高的思维层次上完成各个想法的再拼图
-卡片盒笔记法的关键思路卢曼的卡片盒笔记系统不使用预先设定的系统的次序，不按照主题、子主题的方式存放笔记，而是使用固定编号的系统结构。
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>Tags</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>Links</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
 
-卢曼认为卡片盒笔记系统和我们自己是不断发展的，不可能提前几十年就把笔记束缚在某个次序上。
-使用固定编号的方法，将减少我们安排笔记位置的复杂性，使我们可以创造高度复杂的笔记卡片。
-使用固定编号是任意基于内容的系统结构的抽象，将使我们的卡片和笔记系统达到一个更高类型的秩序。
+  
 
-卢曼的卡片盒笔记系统使用固定编号的方法标记唯一的一条笔记，这种编号系统有很大的优势。
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://images.unsplash.com/photo-1646026371686-79950ceb6daa?w=640') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.1)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle">关注科技、投资、健康，和个人成长</span>
+          
+        </div>
 
-固定编号使笔记之间能够相互 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/cn/egg-is-deprecated/" title="python3 pip loading egg is deprecated 警告的解决方法">python3 pip loading egg is deprecated 警告的解决方法</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2024-01-16T16:00:00.000Z" title="Created 2024-01-17 00:00:00">2024-01-17</time></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/Programming/">Programming</a></span></div><div class="content">解决 egg is deprecation 警告python3 -m pip install some_package 时发现 exploitable 有警告：
+        
+      </div>
 
-DEPRECATION: Loading egg at exploitable-1.32-py3.12.egg is deprecated. pip 24.3 will enforce this behaviour change. A possible replacement is to use pip for package installation.Discussion can be found at https://github.com/pypa/pip/issues/12330
+      
+    </div>
+  </div>
+</div>
 
-pip 24.3 将废弃 egg 形式的 python package, 根据 github issue [1] 的信息 pip 24.3 将在 October 2024 发布。可以使用下面的方法，要去掉上面的警告信息。
-123456789101112131415cd exploitable_src_dir# 删除老的 build 结果rm ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/cn/public_writing/" title="公开写作的好处和坚持不懈">公开写作的好处和坚持不懈</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2023-12-04T16:00:00.000Z" title="Created 2023-12-05 00:00:00">2023-12-05</time></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/KNOWLEDGE/">KNOWLEDGE</a></span></div><div class="content">公开写作的好处只有将想法写出来的时候，你才会发现似乎严密的论证中的逻辑漏洞和无知之处，不动笔的思考往往马虎。
+</div>
 
-写下你学习的东西，可以加深你对该主题的理解，有时候向别人解释时你会发现自己的知识缺口。写作不仅是一个记录的方法，它是一个加深理解和暴露知识差距的强大工具。
-写作使我们更加彻底地探索主题，并以更加连贯和准确的方式清晰地表达自己的想法。
+  </header>
 
-坚持不懈（Consistency）的重要性虽然动机可能会点燃写作或任何其他创造性活动的兴趣火花，但真正点燃成功之火的是持续性。
+  <main>
+    
+      <div class="container nopadding-x-md">
+        <div id="board"
+          >
+          
+          <div class="container">
+            <div class="row">
+              <div class="col-12 col-md-10 m-auto">
+                
 
-构建习惯：坚持不懈有利于习惯的建立。习惯一旦建立，将形成自动的行为，需要更少的努力保持行为模式，同时更加自然并享受其中的过程
-逐步提高：持续练习可以带来逐步的提高，每次练习可能获得一个很小的进步，但拉长时间看，微小的进步会积累成显著的进步
-保持动力：坚持不懈有助于保持动力。定期参加练习可以不断获得灵感，并形成肌肉记忆，显著减小开始练习时的阻力。
-达到长期目标：成功通常是长期持续努力的结果。坚持不懈将日常行动和长期目标结合起来，创建一条通往成功之路。
 
-坚持不懈的挑战
-克服拖延症：拖延是坚持不懈最大的障碍，制定一个有规 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/cn/qemu_kvm/" title="VMware Workstation Windows 10 host Ubuntu 18.04 Guest 中加载 Linux 内核 kvm 模块">VMware Workstation Windows 10 host Ubuntu 18.04 Guest 中加载 Linux 内核 kvm 模块</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2023-11-27T16:00:00.000Z" title="Created 2023-11-28 00:00:00">2023-11-28</time></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/linux/">linux</a><span class="article-meta-link">•</span><a class="article-meta__tags" href="/tags/Security/">Security</a></span></div><div class="content">这里在 VMware Workstation Guset OS 里使用 qemu 的用法，有点像俄罗斯套娃。
-qemu.sh
-123456789101112qemu-system-x86_64 \  -m 2G \  -smp 2 \  -kernel $KERNEL/arch/x86——64/boot/bzImage \  -append &quot;console=ttyS0 root=/dev/sda earlyprintk=serial net.ifnames=0&quot; \  -drive file=$IMAGE/bullseye.img,format=raw \  -net user,host=10.0.2.10,hostfwd=tcp:127.0.0.1:10021-:22 \  -net nic,model=e1000 \  -enable-kvm \  -nographic \  -pidfile vm.pid \  2&gt;&amp;1 | tee vm.log
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/cn/how_to_get_good_info/" target="_self">
+          《笔记的方法》 如何做筛选，获取高质量信息
+        </a>
+      </h2>
 
-执行命令后 bash ./qemu.sh 后报错
-12Could not access KVM  ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/cn/learning_english/" title="comprehensible input  英语学习方法">comprehensible input  英语学习方法</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2023-11-22T16:00:00.000Z" title="Created 2023-11-23 00:00:00">2023-11-23</time></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/KNOWLEDGE/">KNOWLEDGE</a></span></div><div class="content">youtube 上有 youtuber 在不出国的情况下，将第二外语学习到母语者水平的成功案例。
-Makoto 是一位会说中日英三门语言的 Youtuber，他总结自己学习第二外语的成功经验，可以简单地归纳成一句话：掌握第二外语最重要的是必须有大量地道的 comprehensible input (可理解的输入)。
-Comprehensible input 是 Stephen D. Krashen 提出的语言习得假说，强调语言学习是获得的，而不是通过学习得到的。听力或者阅读获取的内容都可以是有效的输入，获取内容的语言难度必须略高于学习者的水平。
-多大的地道语言输入量才是合适的 ？Makoto 推荐的时长为 1 个小时，30 分钟后休息 5 分钟，然后再继续下一个 30 分钟的学习。
-Youtuber Makoto comprehensible input 英语学习具体步骤：1）使用传统的学习方法，掌握 2000 个单词2）在 youtube 上看视频，打开字幕边看边听，接受一些搞不懂的内容 (如果大量单词不认识就放弃)3）在 youtube 上看视频，如果难度不够 (能听懂 80%以上 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/cn/note_review/" title="定期回顾笔记的好处">定期回顾笔记的好处</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2023-11-14T16:00:00.000Z" title="Created 2023-11-15 00:00:00">2023-11-15</time></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/PKM/">PKM</a></span></div><div class="content">少楠在 《笔记的方法》中介绍了一种 「通过回顾持续刺激」的笔记技术，我以前曾简称为「漫游笔记」技术。
-定期回顾自己的笔记大体有下面几个好处：
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/cn/how_to_get_good_info/" target="_self">
+        <div>
+          在信息爆炸时代，我觉得研究如何获得有效信息是非常重要的。在《笔记的方法》中，少楠分享了如何获取优质的信息的方法，分别是：  做减法：削减你的信息 做加法：添加书本以外的信息源 做乘法：用多重视角看待信息  做减法：削减你的信息源稀缺的不是信息，而是我们的注意力。我们需要避免信息过载，分散我们的注意力，这样才能专注有价值的信息。 方法1：削减利用你情绪的信息源 比如将被 GPT 取代的 30 个岗位
+        </div>
+      </a>
 
-对抗遗忘曲线：尤其是文献笔记等自己不熟悉的笔记
-推动知识内化，想法迭代：知识结构优化，新旧知识连接
-遇见过去的自己 （挺好玩，挺有趣）
-影响现实：促进自我审视，提供思路和线索
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2024-02-01 00:00" pubdate>
+              2024-02-01
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/PKM/">#PKM</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
 
-对抗遗忘曲线：我们可能遗忘笔记的内容，尤其是文献笔记等不熟悉的内容。人的思维、行为、习惯具有惯性，观念、思维、方法并不容易改变，必须不断提醒自己。
-知识内化：前提是笔记的上下文没有丢失，如果看不懂笔记了，笔记就失去了价值。所以，这里有一个关键点，笔记是写给未来的自己看的，应该假设未来的自己对文本背后的思想，原文背景一无所知，只具备相关的领域知识。
-子曰：「温故而知新，可以为师矣」回顾笔记提供了再次学习的机会，不断加深对知识的理解，也能促进新的洞见的产生。
-想法迭代：回顾笔记是用新视角去审视旧想法，总体来说人是会不断进步的，经过一段时间后再去重温自己某个时刻的想法，可能以前的一些疑惑现在已经没有了，也可能对某个问题有了更进一步的思路，这是促使想法迭代的一种方法。
-影响现实 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/cn/diyixingyuanli/" title="万维钢谈第一性原理">万维钢谈第一性原理</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2023-11-13T16:00:00.000Z" title="Created 2023-11-14 00:00:00">2023-11-14</time></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/KNOWLEDGE/">KNOWLEDGE</a></span></div><div class="content">伊隆·马斯克解释 第一性原理，我们思考老问题，不一定需要使用类比思维考虑前人的做法，直接从最基本的原理出发，可能会找到全新的办法。创业者说第一性原理，精神的主旨为「抛开成见，拒绝套路」，回到最基本的限制条件，重新认识和解决问题。
-马斯克使用第一性原理计算电池价值的例子，可能不太正确。电池的根本价值，重要的不是组成它的材料，而是材料的结合方式 - 凝结在它身上的信息。电池身上的信息，是技术和专利，这是几代人智慧的结晶。
-从物理学上说，所谓第一性原理，是最基本的物理定律。数学学科的所有内容都是建立在第一性原理上的，从几条公理出发，推导出各种定律，所以数学是百分之百正确的学科。
-从第一性原理出发做计算，有时候问题太复杂了，科学家不能使用第一性原理时，通常有两个解法方法：1）把问题简化，做一些基本假设，忽略一些「次要」条件，这些假设构成一个模型，基于模型的计算，结果可能错误2）淡化计算，借助历史经验（实验），比如化学和材料科学，大量的知识是实验积累的结果，不是谁从基本物理定律算出来
-模型和经验既然不是从第一性原理出发的，就有可能是错的，就有被改进的余地，将来就有可能被取代。而取代它们的，往往是 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/cn/jishufenxi/" title="个人对技术分析的一些理解">个人对技术分析的一些理解</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2023-11-13T16:00:00.000Z" title="Created 2023-11-14 00:00:00">2023-11-14</time></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/investment/">investment</a></span></div><div class="content">
-技术分析分三个层次：趋势跟随、支撑&#x2F;阻力，模式识别  (分先后顺序，靠前的重要)。
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/cn/zel_note_flow/" target="_self">
+          卡片盒笔记法总体思路与工作流
+        </a>
+      </h2>
 
-金融投资中的技术分析工具最主要的作用是区别出哪些标的不可以交易，所谓不可以交易就是从概率上讲胜算不理想。顺势交易的胜率要远远超过逆势交易，技术分析工具则可以帮我们识别出「正确的方向」。
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/cn/zel_note_flow/" target="_self">
+        <div>
+          我经常在少数派等网站上看到卡片盒笔记的文章，这些文章少则几千字，多则上万字。过于复杂的方法是很难实践的，我尝试用一种简单的方法把卡片盒笔记法说清楚，希望能给大家带来一些帮助。 卡片盒笔记法核心要义1）用自己的话记录最感兴趣，最有用的知识，记录自己的洞见，而不是单纯记录信息2）处理各种想法，探寻想法之间的关联、冲突、拓展，建立成熟的想法集群，并和其他的想法集群联系在一起3) 针对项目或主题调整笔记顺
+        </div>
+      </a>
 
-传统技术分析多数利用模式识别或者统计学的方法来识别交易机会，这些方法没法从底层逻辑上进行剖析，只是在概率上有一定优势罢了，实战起来就是有时灵验有时不灵验了。
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2024-01-29 00:00" pubdate>
+              2024-01-29
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/PKM/">#PKM</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
 
-但技术分析并不是毫无价值，如果把市场看成是一个复杂系统，复杂系统的重要特征在不同层级涌现出分形自相似，从分形结构上分析基础就扎实了很多。
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/cn/egg-is-deprecated/" target="_self">
+          python3 pip loading egg is deprecated 警告的解决方法
+        </a>
+      </h2>
 
-传统的波浪理论是对市场进行分形分析的一次尝试，但并没有分析出基本结构，出现了千人千浪的现象，无法精确的指导交易。
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/cn/egg-is-deprecated/" target="_self">
+        <div>
+          解决 egg is deprecation 警告python3 -m pip install some_package 时发现 exploitable 有警告：  DEPRECATION: Loading egg at exploitable-1.32-py3.12.egg is deprecated. pip 24.3 will enforce this behaviour change. A
+        </div>
+      </a>
 
-缠中说禅「李彪」大师的 「缠论」有了新的进展，笔、线段、中枢的说法令人耳目一新，可惜天妒英才，大师尚未全面阐述理论就离我们而去。
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2024-01-17 00:00" pubdate>
+              2024-01-17
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Programming/">#Programming</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
 
-如果研究市场的时间长了，基本上都会涉及到 复杂系统，耗散结构理论，混沌理论 等方面的知识去。技术分析到后面，基本会涉及到是市场基本结构形态和动力学。
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/cn/public_writing/" target="_self">
+          公开写作的好处和坚持不懈
+        </a>
+      </h2>
 
-「不存在可以终 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/cn/pdfium-fuzz.public/" title="使用 afl-fuzz fuzz pdfium">使用 afl-fuzz fuzz pdfium</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2023-11-06T05:52:04.969Z" title="Created 2023-11-06 13:52:04">2023-11-06</time></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/Security/">Security</a></span></div><div class="content">下载源码先在 https://pdfium.googlesource.com/pdfium/ 下载源码.
-12345mkdir repocd repogclient config --unmanaged https://pdfium.googlesource.com/pdfium.gitgclient synccd pdfium
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/cn/public_writing/" target="_self">
+        <div>
+          公开写作的好处只有将想法写出来的时候，你才会发现似乎严密的论证中的逻辑漏洞和无知之处，不动笔的思考往往马虎。  写下你学习的东西，可以加深你对该主题的理解，有时候向别人解释时你会发现自己的知识缺口。写作不仅是一个记录的方法，它是一个加深理解和暴露知识差距的强大工具。 写作使我们更加彻底地探索主题，并以更加连贯和准确的方式清晰地表达自己的想法。  坚持不懈（Consistency）的重要性虽然动机可
+        </div>
+      </a>
 
-gclient 命令在 depot_tools 中, 需要安装 参考下面的文章
-http://www.chromium.org/developers/how-tos/install-depot-tools
-12git clone https://chromium.googlesource.com/chromium/tools/depot_tools.gitexport PATH=`pwd`/depot_tools:&quot;$PATH&quot;
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2023-12-05 00:00" pubdate>
+              2023-12-05
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/KNOWLEDGE/">#KNOWLEDGE</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
 
-主要gclient sync 同步时需要翻墙，可以简单的使用环境变量的方法。
-https_proxy=http://localhost:8118 gclient sync 下载 download google  ...</div></div></div><nav id="pagination"><div class="pagination"><span class="page-number current">1</span><a class="page-number" href="/page/2/#content-inner">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/#content-inner">12</a><a class="extend next" rel="next" href="/page/2/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">henices</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">111</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">15</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">1</div></a></div><div class="card-info-social-icons is-center"><a class="social-icon" href="https://twitter.com/henices" target="_blank" title="Twitter"><i class="fab fa-twitter" style="color: #4a7dbe;"></i></a><a class="social-icon" href="mailto:henices@163.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #24292e;"></i></a></div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/cn/how_to_get_good_info/" title="《笔记的方法》 如何做筛选，获取高质量信息">《笔记的方法》 如何做筛选，获取高质量信息</a><time datetime="2024-01-31T16:00:00.000Z" title="Created 2024-02-01 00:00:00">2024-02-01</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/cn/zel_note_flow/" title="卡片盒笔记法总体思路与工作流">卡片盒笔记法总体思路与工作流</a><time datetime="2024-01-28T16:00:00.000Z" title="Created 2024-01-29 00:00:00">2024-01-29</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/cn/egg-is-deprecated/" title="python3 pip loading egg is deprecated 警告的解决方法">python3 pip loading egg is deprecated 警告的解决方法</a><time datetime="2024-01-16T16:00:00.000Z" title="Created 2024-01-17 00:00:00">2024-01-17</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/cn/public_writing/" title="公开写作的好处和坚持不懈">公开写作的好处和坚持不懈</a><time datetime="2023-12-04T16:00:00.000Z" title="Created 2023-12-05 00:00:00">2023-12-05</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/cn/qemu_kvm/" title="VMware Workstation Windows 10 host Ubuntu 18.04 Guest 中加载 Linux 内核 kvm 模块">VMware Workstation Windows 10 host Ubuntu 18.04 Guest 中加载 Linux 内核 kvm 模块</a><time datetime="2023-11-27T16:00:00.000Z" title="Created 2023-11-28 00:00:00">2023-11-28</time></div></div></div></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>Tags</span></div><div class="card-tag-cloud"><a href="/tags/linux/" style="font-size: 1.4em; color: rgb(102, 198, 185)">linux</a><a href="/tags/Crack/" style="font-size: 1.2em; color: rgb(181, 120, 90)">Crack</a><a href="/tags/Archives/" style="font-size: 1.18em; color: rgb(13, 53, 145)">Archives</a><a href="/tags/Life/" style="font-size: 1.29em; color: rgb(87, 173, 161)">Life</a><a href="/tags/Security/" style="font-size: 1.45em; color: rgb(14, 54, 61)">Security</a><a href="/tags/Android/" style="font-size: 1.42em; color: rgb(103, 125, 156)">Android</a><a href="/tags/investment/" style="font-size: 1.37em; color: rgb(67, 0, 6)">investment</a><a href="/tags/Malware/" style="font-size: 1.31em; color: rgb(153, 140, 19)">Malware</a><a href="/tags/PKM/" style="font-size: 1.31em; color: rgb(152, 14, 75)">PKM</a><a href="/tags/windows/" style="font-size: 1.31em; color: rgb(128, 71, 139)">windows</a><a href="/tags/ai/" style="font-size: 1.15em; color: rgb(30, 47, 1)">ai</a><a href="/tags/KNOWLEDGE/" style="font-size: 1.23em; color: rgb(144, 200, 97)">KNOWLEDGE</a><a href="/tags/Software/" style="font-size: 1.26em; color: rgb(92, 176, 153)">Software</a><a href="/tags/Programming/" style="font-size: 1.34em; color: rgb(51, 200, 83)">Programming</a><a href="/tags/vim/" style="font-size: 1.26em; color: rgb(89, 1, 109)">vim</a></div></div></div></div></main><footer id="footer" style="background-image: url('https://images.unsplash.com/photo-1646026371686-79950ceb6daa?w=640')"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By henices</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="translateLink" type="button" title="Toggle Between Traditional Chinese And Simplified Chinese">繁</button><button id="darkmode" type="button" title="Toggle Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between Single-column and Double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="Back To Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">Search</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  Loading the Database</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/cn/qemu_kvm/" target="_self">
+          VMware Workstation Windows 10 host Ubuntu 18.04 Guest 中加载 Linux 内核 kvm 模块
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/cn/qemu_kvm/" target="_self">
+        <div>
+          这里在 VMware Workstation Guset OS 里使用 qemu 的用法，有点像俄罗斯套娃。 qemu.sh 123456789101112qemu-system-x86_64 \  -m 2G \  -smp 2 \  -kernel $KERNEL/arch/x86——64/boot/bzImage \  -append &quot;console=ttyS0 root=/de
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2023-11-28 00:00" pubdate>
+              2023-11-28
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/linux/">#linux</a>
+            
+              <a href="/tags/Security/">#Security</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/cn/learning_english/" target="_self">
+          comprehensible input  英语学习方法
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/cn/learning_english/" target="_self">
+        <div>
+          youtube 上有 youtuber 在不出国的情况下，将第二外语学习到母语者水平的成功案例。 Makoto 是一位会说中日英三门语言的 Youtuber，他总结自己学习第二外语的成功经验，可以简单地归纳成一句话：掌握第二外语最重要的是必须有大量地道的 comprehensible input (可理解的输入)。 Comprehensible input 是 Stephen D. Krashen
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2023-11-23 00:00" pubdate>
+              2023-11-23
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/KNOWLEDGE/">#KNOWLEDGE</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/cn/note_review/" target="_self">
+          定期回顾笔记的好处
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/cn/note_review/" target="_self">
+        <div>
+          少楠在 《笔记的方法》中介绍了一种 「通过回顾持续刺激」的笔记技术，我以前曾简称为「漫游笔记」技术。 定期回顾自己的笔记大体有下面几个好处：  对抗遗忘曲线：尤其是文献笔记等自己不熟悉的笔记 推动知识内化，想法迭代：知识结构优化，新旧知识连接 遇见过去的自己 （挺好玩，挺有趣） 影响现实：促进自我审视，提供思路和线索  对抗遗忘曲线：我们可能遗忘笔记的内容，尤其是文献笔记等不熟悉的内容。人的思维、
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2023-11-15 00:00" pubdate>
+              2023-11-15
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/PKM/">#PKM</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/cn/diyixingyuanli/" target="_self">
+          万维钢谈第一性原理
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/cn/diyixingyuanli/" target="_self">
+        <div>
+          伊隆·马斯克解释 第一性原理，我们思考老问题，不一定需要使用类比思维考虑前人的做法，直接从最基本的原理出发，可能会找到全新的办法。创业者说第一性原理，精神的主旨为「抛开成见，拒绝套路」，回到最基本的限制条件，重新认识和解决问题。 马斯克使用第一性原理计算电池价值的例子，可能不太正确。电池的根本价值，重要的不是组成它的材料，而是材料的结合方式 - 凝结在它身上的信息。电池身上的信息，是技术和专利，这
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2023-11-14 00:00" pubdate>
+              2023-11-14
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/KNOWLEDGE/">#KNOWLEDGE</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/cn/jishufenxi/" target="_self">
+          个人对技术分析的一些理解
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/cn/jishufenxi/" target="_self">
+        <div>
+          技术分析分三个层次：趋势跟随、支撑&#x2F;阻力，模式识别  (分先后顺序，靠前的重要)。  金融投资中的技术分析工具最主要的作用是区别出哪些标的不可以交易，所谓不可以交易就是从概率上讲胜算不理想。顺势交易的胜率要远远超过逆势交易，技术分析工具则可以帮我们识别出「正确的方向」。  传统技术分析多数利用模式识别或者统计学的方法来识别交易机会，这些方法没法从底层逻辑上进行剖析，只是在概率上有一定优
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2023-11-14 00:00" pubdate>
+              2023-11-14
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/investment/">#investment</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/cn/pdfium-fuzz.public/" target="_self">
+          使用 afl-fuzz fuzz pdfium
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/cn/pdfium-fuzz.public/" target="_self">
+        <div>
+          下载源码先在 https://pdfium.googlesource.com/pdfium/ 下载源码. 12345mkdir repocd repogclient config --unmanaged https://pdfium.googlesource.com/pdfium.gitgclient synccd pdfium  gclient 命令在 depot_tools 中, 需要安装 参
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2023-11-06 13:52" pubdate>
+              2023-11-06
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Security/" class="category-chain-item">Security</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Security/">#Security</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+
+
+  <nav aria-label="navigation">
+    <span class="pagination" id="pagination">
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/#board">2</a><a class="page-number" href="/page/3/#board">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/#board">12</a><a class="extend next" rel="next" href="/page/2/#board"><i class="iconfont icon-arrowright"></i></a>
+    </span>
+  </nav>
+
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>

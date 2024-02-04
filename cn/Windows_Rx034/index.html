@@ -1,185 +1,314 @@
-<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>解决 Windows Rx034 | 安全代码</title><meta name="author" content="henices"><meta name="copyright" content="henices"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="以前没有遇上这个错误，这次遇上这个错误是装vim的YouCompleteMe插件后出现，因此很容易想到是装插件引起的这个错误，错误提示Runtime Error 如下图：  先放狗搜一下，微软的对R6034的解释如下： 12345An application has made an attempt to load the C runtime library without usinga manif">
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="henices">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="以前没有遇上这个错误，这次遇上这个错误是装vim的YouCompleteMe插件后出现，因此很容易想到是装插件引起的这个错误，错误提示Runtime Error 如下图：  先放狗搜一下，微软的对R6034的解释如下： 12345An application has made an attempt to load the C runtime library without usinga manif">
 <meta property="og:type" content="article">
 <meta property="og:title" content="解决 Windows Rx034">
 <meta property="og:url" content="http://usmacd.com/cn/Windows_Rx034/index.html">
 <meta property="og:site_name" content="安全代码">
 <meta property="og:description" content="以前没有遇上这个错误，这次遇上这个错误是装vim的YouCompleteMe插件后出现，因此很容易想到是装插件引起的这个错误，错误提示Runtime Error 如下图：  先放狗搜一下，微软的对R6034的解释如下： 12345An application has made an attempt to load the C runtime library without usinga manif">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://images.unsplash.com/photo-1473181488821-2d23949a045a?w=640">
+<meta property="og:image" content="https://raw.githubusercontent.com/henices/pictures/master/r5051.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/henices/pictures/master/sxs.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/henices/pictures/master/manifest.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/henices/pictures/master/process-explorer.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/henices/pictures/master/process-explorer1.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/henices/pictures/master/process-explorer2.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/henices/pictures/master/tc1.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/henices/pictures/master/tc2.png">
 <meta property="article:published_time" content="2023-09-06T03:00:51.914Z">
 <meta property="article:modified_time" content="2023-09-06T03:00:51.914Z">
 <meta property="article:author" content="henices">
 <meta property="article:tag" content="windows">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://images.unsplash.com/photo-1473181488821-2d23949a045a?w=640"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://usmacd.com/cn/Windows_Rx034/index.html"><link rel="preconnect" href="//cdnjs.cloudflare.com"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"><script async="async" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><script>const GLOBAL_CONFIG = {
-  root: '/',
-  algolia: undefined,
-  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found"}},
-  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
-  noticeOutdate: undefined,
-  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
-  copy: {
-    success: 'Copy Successful',
-    error: 'Copy Error',
-    noSupport: 'Browser Not Supported'
-  },
-  relativeDate: {
-    homepage: false,
-    post: false
-  },
-  runtime: '',
-  dateSuffix: {
-    just: 'Just now',
-    min: 'minutes ago',
-    hour: 'hours ago',
-    day: 'days ago',
-    month: 'months ago'
-  },
-  copyright: undefined,
-  lightbox: 'null',
-  Snackbar: undefined,
-  infinitegrid: {
-    js: 'https://cdnjs.cloudflare.com/ajax/libs/egjs-infinitegrid/4.11.0/infinitegrid.min.js',
-    buttonText: 'Load More'
-  },
-  isPhotoFigcaption: false,
-  islazyload: false,
-  isAnchor: false,
-  percent: {
-    toc: true,
-    rightside: false,
-  },
-  autoDarkmode: false
-}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
-  title: '解决 Windows Rx034',
-  isPost: true,
-  isHome: false,
-  isHighlightShrink: false,
-  isToc: true,
-  postUpdate: '2023-09-06 11:00:51'
-}</script><script>(win=>{
-      win.saveToLocal = {
-        set: (key, value, ttl) => {
-          if (ttl === 0) return
-          const now = Date.now()
-          const expiry = now + ttl * 86400000
-          const item = {
-            value,
-            expiry
-          }
-          localStorage.setItem(key, JSON.stringify(item))
-        },
-      
-        get: key => {
-          const itemStr = localStorage.getItem(key)
-      
-          if (!itemStr) {
-            return undefined
-          }
-          const item = JSON.parse(itemStr)
-          const now = Date.now()
-      
-          if (now > item.expiry) {
-            localStorage.removeItem(key)
-            return undefined
-          }
-          return item.value
-        }
-      }
-    
-      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
-        const script = document.createElement('script')
-        script.src = url
-        script.async = true
-        script.onerror = reject
-        script.onload = script.onreadystatechange = function() {
-          const loadState = this.readyState
-          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
-          script.onload = script.onreadystatechange = null
-          resolve()
-        }
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/henices/pictures/master/r5051.png">
+  
+  
+  
+  <title>解决 Windows Rx034 - 安全代码</title>
 
-        Object.keys(attr).forEach(key => {
-          script.setAttribute(key, attr[key])
-        })
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
-        document.head.appendChild(script)
-      })
-    
-      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
-        const link = document.createElement('link')
-        link.rel = 'stylesheet'
-        link.href = url
-        if (id) link.id = id
-        link.onerror = reject
-        link.onload = link.onreadystatechange = function() {
-          const loadState = this.readyState
-          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
-          link.onload = link.onreadystatechange = null
-          resolve()
-        }
-        document.head.appendChild(link)
-      })
-    
-      win.activateDarkMode = () => {
-        document.documentElement.setAttribute('data-theme', 'dark')
-        if (document.querySelector('meta[name="theme-color"]') !== null) {
-          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
-        }
-      }
-      win.activateLightMode = () => {
-        document.documentElement.setAttribute('data-theme', 'light')
-        if (document.querySelector('meta[name="theme-color"]') !== null) {
-          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
-        }
-      }
-      const t = saveToLocal.get('theme')
-    
-        if (t === 'dark') activateDarkMode()
-        else if (t === 'light') activateLightMode()
-      
-      const asideStatus = saveToLocal.get('aside-status')
-      if (asideStatus !== undefined) {
-        if (asideStatus === 'hide') {
-          document.documentElement.classList.add('hide-aside')
-        } else {
-          document.documentElement.classList.remove('hide-aside')
-        }
-      }
-    
-      const detectApple = () => {
-        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
-          document.documentElement.classList.add('apple')
-        }
-      }
-      detectApple()
-    })(window)</script><meta name="generator" content="Hexo 7.1.1"><link rel="alternate" href="/atom.xml" title="安全代码" type="application/atom+xml">
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"usmacd.com","root":"/","version":"1.9.7","typing":{"enable":false,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.1.1"><link rel="alternate" href="/atom.xml" title="安全代码" type="application/atom+xml">
 <link rel="alternate" href="/rss.xml" title="安全代码" type="application/rss+xml">
-</head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">111</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">15</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">1</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/links/"><i class="fa-fw fas fa-link"></i><span> Links</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div><div class="menus_item"><a class="site-page" href="/rss.xml"><span> RSS</span></a></div><div class="menus_item"><a class="site-page" href="/sitemap.xml"><span> Sitemap</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://images.unsplash.com/photo-1473181488821-2d23949a045a?w=640')"><nav id="nav"><span id="blog-info"><a href="/" title="安全代码"><span class="site-name">安全代码</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> Search</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/links/"><i class="fa-fw fas fa-link"></i><span> Links</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div><div class="menus_item"><a class="site-page" href="/rss.xml"><span> RSS</span></a></div><div class="menus_item"><a class="site-page" href="/sitemap.xml"><span> Sitemap</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">解决 Windows Rx034</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2023-09-06T03:00:51.914Z" title="Created 2023-09-06 11:00:51">2023-09-06</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2023-09-06T03:00:51.914Z" title="Updated 2023-09-06 11:00:51">2023-09-06</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="解决 Windows Rx034"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post Views:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p>以前没有遇上这个错误，这次遇上这个错误是装vim的YouCompleteMe插件后出现，因此很容易想到是装插件引起的这个错误，错误提示Runtime Error 如下图：</p>
-<p><img src="https://raw.githubusercontent.com/henices/pictures/master/r5051.png" alt="error"></p>
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>安全代码</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>Tags</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>Links</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://images.unsplash.com/photo-1473181488821-2d23949a045a?w=640') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle">解决 Windows Rx034</span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-09-06 11:00" pubdate>
+          September 6, 2023 am
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.1k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          10 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">解决 Windows Rx034</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>以前没有遇上这个错误，这次遇上这个错误是装vim的YouCompleteMe插件后出现，因此很容易想到是装插件引起的这个错误，错误提示Runtime Error 如下图：</p>
+<p><img src="https://raw.githubusercontent.com/henices/pictures/master/r5051.png" srcset="/img/loading.gif" lazyload alt="error"></p>
 <p>先放狗搜一下，微软的对R6034的解释如下：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">An application has made an attempt to load the C runtime library without using</span><br><span class="line">a manifest. This is an unsupported way to load Visual C++ DLLs. You need to</span><br><span class="line">modify your application to build with a manifest. For more information, see the</span><br><span class="line">&quot;Visual C++ Libraries as Shared Side-by-Side Assemblies&quot; topic in the product</span><br><span class="line">documentation.</span><br></pre></td></tr></table></figure>
+<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs livecodeserver">An application has made <span class="hljs-keyword">an</span> attempt <span class="hljs-built_in">to</span> <span class="hljs-built_in">load</span> <span class="hljs-keyword">the</span> C runtime library <span class="hljs-keyword">without</span> <span class="hljs-keyword">using</span><br><span class="hljs-keyword">a</span> manifest. This is <span class="hljs-keyword">an</span> unsupported way <span class="hljs-built_in">to</span> <span class="hljs-built_in">load</span> Visual C++ DLLs. You need <span class="hljs-built_in">to</span><br>modify your application <span class="hljs-built_in">to</span> build <span class="hljs-keyword">with</span> <span class="hljs-keyword">a</span> manifest. For more information, see <span class="hljs-keyword">the</span><br><span class="hljs-string">&quot;Visual C++ Libraries as Shared Side-by-Side Assemblies&quot;</span> topic <span class="hljs-keyword">in</span> <span class="hljs-keyword">the</span> product<br>documentation.<br></code></pre></td></tr></table></figure>
 
 <p>微软的链接中也提到了解决的方法</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Rebuild your application to include a manifest. Building an application with</span><br><span class="line">Visual Studio automatically puts the manifest into the resulting .exe or .dll</span><br><span class="line">file. If you are building at the command line, use the mt.exe tool to add the</span><br><span class="line">manifest as a resource. Use resource ID 1 if you build an .exe, and resource</span><br><span class="line">ID 2 if you build a .dll. For more information, see How to: Embed a Manifest</span><br><span class="line">Inside a C/C++ Application.</span><br></pre></td></tr></table></figure>
+<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs livecodeserver">Rebuild your application <span class="hljs-built_in">to</span> <span class="hljs-built_in">include</span> <span class="hljs-keyword">a</span> manifest. Building <span class="hljs-keyword">an</span> application <span class="hljs-keyword">with</span><br>Visual Studio automatically puts <span class="hljs-keyword">the</span> manifest <span class="hljs-keyword">into</span> <span class="hljs-keyword">the</span> resulting .exe <span class="hljs-keyword">or</span> .dll<br><span class="hljs-built_in">file</span>. If you are building <span class="hljs-keyword">at</span> <span class="hljs-keyword">the</span> <span class="hljs-keyword">command</span> <span class="hljs-title">line</span>, <span class="hljs-title">use</span> <span class="hljs-title">the</span> <span class="hljs-title">mt</span>.<span class="hljs-title">exe</span> <span class="hljs-title">tool</span> <span class="hljs-title">to</span> <span class="hljs-title">add</span> <span class="hljs-title">the</span><br>manifest <span class="hljs-keyword">as</span> <span class="hljs-keyword">a</span> resource. Use resource ID <span class="hljs-number">1</span> <span class="hljs-keyword">if</span> you build <span class="hljs-keyword">an</span> .exe, <span class="hljs-keyword">and</span> resource<br>ID <span class="hljs-number">2</span> <span class="hljs-keyword">if</span> you build <span class="hljs-keyword">a</span> .dll. For more information, see How <span class="hljs-built_in">to</span>: Embed <span class="hljs-keyword">a</span> Manifest<br>Inside <span class="hljs-keyword">a</span> C/C++ Application.<br></code></pre></td></tr></table></figure>
 
 <p>大概的意思是需要使用manifest.xml来指定需要加载的DLL。上网又翻看了几个链接发现这个错误的成因比较复杂，主要原因是加载mscvr*.dll 出现了问题。不管怎样还是先看看是否使用了 manifest。从微软的解决办法可以知道，manifest很有可能在资源文件里。</p>
 <p>还是先看看manifest的作用，在msdn网站搜索相关内容，根据《Understanding Manifest Generation for C&#x2F;C++ Programs》中的内容，manfest.xml可以是一个外部的XML文件也可以是嵌入在程序的资源文件中。manifest.xml用于管理程序在运行时需要的共享程序集的名字和版本。如果程序只依赖 VisualC++ 的程序集（CRT，MFC，ATL等），manifest会被链接器自动生成。Manifest的Sxs指定了其依赖的清单名称,版本,资源,和其他组件。Sxs是Windows XP引入的新技术，vs 2005 开始使用，全名叫Side by Side assembly，主要还是为了解决兼容性问题，这样同一个系统可以存在不同版本的同名文件而互相不影响各自的运行。</p>
-<p><img src="https://raw.githubusercontent.com/henices/pictures/master/sxs.png" alt="sxs"></p>
+<p><img src="https://raw.githubusercontent.com/henices/pictures/master/sxs.png" srcset="/img/loading.gif" lazyload alt="sxs"></p>
 <p>现在需要定位gvim.exe加载哪个DLL引起了R6034错误，使用Process Explorer发现是加载ycm_client_support.pyd导致。删除YouCompleteMe插件后错误消失。</p>
 <p>先看看ycm_client_support.pyd是否使用了manifest.xml, 使用神器TC,  F3一下，可以查看manifest的情况。</p>
-<p><img src="https://raw.githubusercontent.com/henices/pictures/master/manifest.png" alt="manifest.xml"></p>
+<p><img src="https://raw.githubusercontent.com/henices/pictures/master/manifest.png" srcset="/img/loading.gif" lazyload alt="manifest.xml"></p>
 <p>发现其实ycm_client_support.pyd已经使用了manifest，但是仍然出现R6034错误。上网搜索了一番（见文末的参考链接），发现这就是非常著名的DLL Hell了，维基百科中专门记录了这个问题。 <a target="_blank" rel="noopener" href="http://en.wikipedia.org/wiki/Dll_hell">http://en.wikipedia.org/wiki/Dll_hell</a></p>
 <p>不论如何应该就是DLL加载时出错了，可以使用Process Explorer 工具来查看出问题的进程，看看在进程空间内具体是什么情况。</p>
-<p><img src="https://raw.githubusercontent.com/henices/pictures/master/process-explorer.png" alt="p-e"></p>
+<p><img src="https://raw.githubusercontent.com/henices/pictures/master/process-explorer.png" srcset="/img/loading.gif" lazyload alt="p-e"></p>
 <p>哈哈，发现了一些情况，msvcr90.dll在gvim进程空间里有两个！再看看这两个DLL的位置。</p>
-<p><img src="https://raw.githubusercontent.com/henices/pictures/master/process-explorer1.png" alt="p-e1"></p>
-<p><img src="https://raw.githubusercontent.com/henices/pictures/master/process-explorer2.png" alt="p-e2"></p>
+<p><img src="https://raw.githubusercontent.com/henices/pictures/master/process-explorer1.png" srcset="/img/loading.gif" lazyload alt="p-e1"></p>
+<p><img src="https://raw.githubusercontent.com/henices/pictures/master/process-explorer2.png" srcset="/img/loading.gif" lazyload alt="p-e2"></p>
 <p>删除掉不在C:\WINDOWS\WinSxS\目录里的msvcr90.dll，问题得以解决。由于这个错误是因为加载ycm_client_support.pyd引起的，再看看ycm_client_support.pyd的情况，拿出TC直接F3一下，又发现了一些有用的信息。ycm_client_support.pyd加载的是cmake目录下的msvcr90.dll, 正常情况下因该使用 C:\Windows\winsxs 目录下的msvcr90.dll</p>
-<p><img src="https://raw.githubusercontent.com/henices/pictures/master/tc1.png" alt="tc1"></p>
-<p><img src="https://raw.githubusercontent.com/henices/pictures/master/tc2.png" alt="tc2"></p>
+<p><img src="https://raw.githubusercontent.com/henices/pictures/master/tc1.png" srcset="/img/loading.gif" lazyload alt="tc1"></p>
+<p><img src="https://raw.githubusercontent.com/henices/pictures/master/tc2.png" srcset="/img/loading.gif" lazyload alt="tc2"></p>
 <p>查看一下系统环境变量：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">D:\Program Files\Microsoft Visual Studio 9.0\VC&gt; set | findstr Path</span><br><span class="line"></span><br><span class="line">Path=D:\Program Files\Microsoft Visual Studio 9.0\Common7\IDE;D:\Program Files\M</span><br><span class="line">icrosoft Visual Studio 9.0\VC\BIN;D:\Program Files\Microsoft Visual Studio 9.0\C</span><br><span class="line">ommon7\Tools;c:\Windows\Microsoft.NET\Framework\v3.5;c:\Windows\Microsoft.NET\Fr</span><br><span class="line">amework\v2.0.50727;D:\Program Files\Microsoft Visual Studio 9.0\VC\VCPackages;C:</span><br><span class="line">\Program Files\\Microsoft SDKs\Windows\v6.0A\bin;C:\Windows\system32;C:\Windows;</span><br><span class="line">d:\Program Files\CMake 2.8\bin;d:\Program Files\LLVM 3.4.svn\bin;d:\Program File</span><br><span class="line">s\Git\cmd;d:\Python27;D:\Program Files\IDM Computer Solutions\UltraEdit\</span><br><span class="line">PSModulePath=C:\Windows\system32\WindowsPowerShell\v1.0\Modules\</span><br></pre></td></tr></table></figure>
+<figure class="highlight livescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs livescript">D:<span class="hljs-string">\Program</span> Files<span class="hljs-string">\Microsoft</span> Visual Studio <span class="hljs-number">9.0</span><span class="hljs-string">\VC&gt;</span> set | findstr Path<br><br>Path=D:<span class="hljs-string">\Program</span> Files<span class="hljs-string">\Microsoft</span> Visual Studio <span class="hljs-number">9.0</span><span class="hljs-string">\Common7\IDE;D:\Program</span> Files<span class="hljs-string">\M</span><br>icrosoft Visual Studio <span class="hljs-number">9.0</span><span class="hljs-string">\VC\BIN;D:\Program</span> Files<span class="hljs-string">\Microsoft</span> Visual Studio <span class="hljs-number">9.0</span><span class="hljs-string">\C</span><br>ommon7<span class="hljs-string">\Tools;c:\Windows\Microsoft.NET\Framework\v3.5;c:\Windows\Microsoft.NET\Fr</span><br>amework<span class="hljs-string">\v2.0.50727;D:\Program</span> Files<span class="hljs-string">\Microsoft</span> Visual Studio <span class="hljs-number">9.0</span><span class="hljs-string">\VC\VCPackages;C:</span><br><span class="hljs-string">\Program</span> Files<span class="hljs-string">\\Microsoft</span> SDKs<span class="hljs-string">\Windows\v6.0A\bin;C:\Windows\system32;C:\Windows;</span><br>d:<span class="hljs-string">\Program</span> Files<span class="hljs-string">\CMake</span> <span class="hljs-number">2.8</span><span class="hljs-string">\bin;d:\Program</span> Files<span class="hljs-string">\LLVM</span> <span class="hljs-number">3.4</span>.svn<span class="hljs-string">\bin;d:\Program</span> File<br>s<span class="hljs-string">\Git\cmd;d:\Python27;D:\Program</span> Files<span class="hljs-string">\IDM</span> Computer Solutions<span class="hljs-string">\UltraEdit\</span><br>PSModulePath=C:<span class="hljs-string">\Windows\system32\WindowsPowerShell\v1.0\Modules\</span><br></code></pre></td></tr></table></figure>
 
 <p>引错误的原因是Windows程序加载DLL是会先加载PATH变量中的DLL文件，后面会加载manifest指定的WinSxS目录的文件，这样就加载了两次，引起了错误。</p>
 <p>这个问题涉及 Windows加载DLL文件的顺序，Windows定位 DLL文件的顺序和一个注册表键值相关，这个键值是：</p>
@@ -206,4 +335,337 @@
 <p>另外，《Dynamic-Link Library Search Order》中指出使用manifest可以指定加载DLL的路径，但实际的情况是有可能加载多个DLL导致进程崩溃。</p>
 <p>Desktop applications can control the location from which a DLL is loaded by specifying a full path, using DLL redirection, or by using a manifest. If none of these methods are used, the system searches for the DLL at load time as described in this section.</p>
 <h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p>[1]《Windows via C&#x2F;C++ Fifth Edition》<br>[2] Side-by-side Assemblies <a target="_blank" rel="noopener" href="http://msdn.microsoft.com/en-us/library/aa376307.aspx">http://msdn.microsoft.com/en-us/library/aa376307.aspx</a><br>[3] DLL Hell <a target="_blank" rel="noopener" href="http://en.wikipedia.org/wiki/Dll_hell">http://en.wikipedia.org/wiki/Dll_hell</a><br>[4] C Run-Time Error R6034 <a target="_blank" rel="noopener" href="http://msdn.microsoft.com/en-us/library/ms235560(v=vs.90).aspx">http://msdn.microsoft.com/en-us/library/ms235560(v=vs.90).aspx</a><br>[5] Understanding Manifest Generation for C&#x2F;C++ Programs <a target="_blank" rel="noopener" href="http://msdn.microsoft.com/en-us/library/ms235542.aspx">http://msdn.microsoft.com/en-us/library/ms235542.aspx</a><br>[6] Search Path Used by Windows to Locate a DLL <a target="_blank" rel="noopener" href="http://msdn.microsoft.com/en-us/library/7d83bc18.aspx">http://msdn.microsoft.com/en-us/library/7d83bc18.aspx</a><br>[7] Dynamic-Link Library Search Order <a target="_blank" rel="noopener" href="http://msdn.microsoft.com/en-us/library/windows/desktop/ms682586(v=vs.85).aspx">http://msdn.microsoft.com/en-us/library/windows/desktop/ms682586(v=vs.85).aspx</a><br>[8] <a target="_blank" rel="noopener" href="https://bitbucket.org/Haroogan/vim-youcompleteme-for-windows/src/7dca764c2ee0?at=master">https://bitbucket.org/Haroogan/vim-youcompleteme-for-windows/src/7dca764c2ee0?at=master</a><br>[9] <a target="_blank" rel="noopener" href="https://github.com/Valloric/YouCompleteMe/wiki/Windows-Installation-Guide">https://github.com/Valloric/YouCompleteMe/wiki/Windows-Installation-Guide</a><br>[10] <a target="_blank" rel="noopener" href="http://www.davidlenihan.com/2007/07/winsxs.html">http://www.davidlenihan.com/2007/07/winsxs.html</a></p>
-</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>Author: </span><span class="post-copyright-info"><a href="http://usmacd.com">henices</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>Link: </span><span class="post-copyright-info"><a href="http://usmacd.com/cn/Windows_Rx034/">http://usmacd.com/cn/Windows_Rx034/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/windows/">windows</a></div><div class="post_share"><div class="social-share" data-image="https://images.unsplash.com/photo-1473181488821-2d23949a045a?w=640" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/butterfly-extsrc/1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdnjs.cloudflare.com/ajax/libs/butterfly-extsrc/1.1.3/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/cn/xorddos_hide/" title="xorddos 样本进程隐藏的小伎俩"><img class="cover" src="https://images.unsplash.com/photo-1473181488821-2d23949a045a?w=640" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">Previous</div><div class="prev_info">xorddos 样本进程隐藏的小伎俩</div></div></a></div><div class="next-post pull-right"><a href="/cn/webview_java/" title="Android WebView 漏洞"><img class="cover" src="https://images.unsplash.com/photo-1473181488821-2d23949a045a?w=640" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">Next</div><div class="next_info">Android WebView 漏洞</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>Related Articles</span></div><div class="relatedPosts-list"><div><a href="/cn/process_injection/" title="Windows 进程注入"><img class="cover" src="https://images.unsplash.com/photo-1473181488821-2d23949a045a?w=640" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-09-06</div><div class="title">Windows 进程注入</div></div></a></div><div><a href="/cn/get_system_shell_windows/" title="获取system权限的cmdshell"><img class="cover" src="https://images.unsplash.com/photo-1473181488821-2d23949a045a?w=640" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2010-01-28</div><div class="title">获取system权限的cmdshell</div></div></a></div><div><a href="/cn/hook_ntResume/" title="挂钩 NtResumeThread 实现全局Hook"><img class="cover" src="https://images.unsplash.com/photo-1473181488821-2d23949a045a?w=640" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2008-05-25</div><div class="title">挂钩 NtResumeThread 实现全局Hook</div></div></a></div><div><a href="/cn/int23_native_api/" title="int 2eh 方式调用Native api"><img class="cover" src="https://images.unsplash.com/photo-1473181488821-2d23949a045a?w=640" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2008-04-27</div><div class="title">int 2eh 方式调用Native api</div></div></a></div><div><a href="/cn/T60_device/" title="联想 IBM THINKPAD T60装windows 2003&#x2F;2008红外线设备驱动解决"><img class="cover" src="https://images.unsplash.com/photo-1473181488821-2d23949a045a?w=640" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2008-04-07</div><div class="title">联想 IBM THINKPAD T60装windows 2003&#x2F;2008红外线设备驱动解决</div></div></a></div><div><a href="/cn/ring3_undelete/" title="ring3 下挂钩Native API 简单实现文件防删除"><img class="cover" src="https://images.unsplash.com/photo-1473181488821-2d23949a045a?w=640" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2007-11-12</div><div class="title">ring3 下挂钩Native API 简单实现文件防删除</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Contents</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="toc-number">1.</span> <span class="toc-text">参考资料</span></a></li></ol></div></div></div></div></main><footer id="footer" style="background-image: url('https://images.unsplash.com/photo-1473181488821-2d23949a045a?w=640')"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By henices</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="Toggle Between Traditional Chinese And Simplified Chinese">繁</button><button id="darkmode" type="button" title="Toggle Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between Single-column and Double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back To Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">Search</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  Loading the Database</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/windows/" class="print-no-link">#windows</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>解决 Windows Rx034</div>
+      <div>http://usmacd.com/cn/Windows_Rx034/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>henices</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>September 6, 2023</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/cn/xorddos_hide/" title="xorddos 样本进程隐藏的小伎俩">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">xorddos 样本进程隐藏的小伎俩</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/cn/webview_java/" title="Android WebView 漏洞">
+                        <span class="hidden-mobile">Android WebView 漏洞</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>

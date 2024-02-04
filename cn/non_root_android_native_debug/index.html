@@ -1,162 +1,282 @@
-<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>非root Android 设备用gdbserver进行native 调试的方法 | 安全代码</title><meta name="author" content="henices"><meta name="copyright" content="henices"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="没有root的设备，要使用gdbserver 调试app 会遇到权限问题。(emulator 没有问题) 1231|shell@mako:&#x2F;data&#x2F;local&#x2F;tmp $ .&#x2F;gdbserver :1234 --attach 16907Cannot attach to lwp 16907: Operation not permitted (1)Exiting  Android 系统提供了一个ru">
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="henices">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="没有root的设备，要使用gdbserver 调试app 会遇到权限问题。(emulator 没有问题) 1231|shell@mako:&#x2F;data&#x2F;local&#x2F;tmp $ .&#x2F;gdbserver :1234 --attach 16907Cannot attach to lwp 16907: Operation not permitted (1)Exiting  Android 系统提供了一个ru">
 <meta property="og:type" content="article">
 <meta property="og:title" content="非root Android 设备用gdbserver进行native 调试的方法">
 <meta property="og:url" content="http://usmacd.com/cn/non_root_android_native_debug/index.html">
 <meta property="og:site_name" content="安全代码">
 <meta property="og:description" content="没有root的设备，要使用gdbserver 调试app 会遇到权限问题。(emulator 没有问题) 1231|shell@mako:&#x2F;data&#x2F;local&#x2F;tmp $ .&#x2F;gdbserver :1234 --attach 16907Cannot attach to lwp 16907: Operation not permitted (1)Exiting  Android 系统提供了一个ru">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://images.unsplash.com/photo-1473181488821-2d23949a045a?w=640">
 <meta property="article:published_time" content="2016-01-31T16:00:00.000Z">
 <meta property="article:modified_time" content="2016-01-31T16:00:00.000Z">
 <meta property="article:author" content="henices">
 <meta property="article:tag" content="Android">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://images.unsplash.com/photo-1473181488821-2d23949a045a?w=640"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://usmacd.com/cn/non_root_android_native_debug/index.html"><link rel="preconnect" href="//cdnjs.cloudflare.com"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"><script async="async" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><script>const GLOBAL_CONFIG = {
-  root: '/',
-  algolia: undefined,
-  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found"}},
-  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
-  noticeOutdate: undefined,
-  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
-  copy: {
-    success: 'Copy Successful',
-    error: 'Copy Error',
-    noSupport: 'Browser Not Supported'
-  },
-  relativeDate: {
-    homepage: false,
-    post: false
-  },
-  runtime: '',
-  dateSuffix: {
-    just: 'Just now',
-    min: 'minutes ago',
-    hour: 'hours ago',
-    day: 'days ago',
-    month: 'months ago'
-  },
-  copyright: undefined,
-  lightbox: 'null',
-  Snackbar: undefined,
-  infinitegrid: {
-    js: 'https://cdnjs.cloudflare.com/ajax/libs/egjs-infinitegrid/4.11.0/infinitegrid.min.js',
-    buttonText: 'Load More'
-  },
-  isPhotoFigcaption: false,
-  islazyload: false,
-  isAnchor: false,
-  percent: {
-    toc: true,
-    rightside: false,
-  },
-  autoDarkmode: false
-}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
-  title: '非root Android 设备用gdbserver进行native 调试的方法',
-  isPost: true,
-  isHome: false,
-  isHighlightShrink: false,
-  isToc: false,
-  postUpdate: '2016-02-01 00:00:00'
-}</script><script>(win=>{
-      win.saveToLocal = {
-        set: (key, value, ttl) => {
-          if (ttl === 0) return
-          const now = Date.now()
-          const expiry = now + ttl * 86400000
-          const item = {
-            value,
-            expiry
-          }
-          localStorage.setItem(key, JSON.stringify(item))
-        },
-      
-        get: key => {
-          const itemStr = localStorage.getItem(key)
-      
-          if (!itemStr) {
-            return undefined
-          }
-          const item = JSON.parse(itemStr)
-          const now = Date.now()
-      
-          if (now > item.expiry) {
-            localStorage.removeItem(key)
-            return undefined
-          }
-          return item.value
-        }
-      }
-    
-      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
-        const script = document.createElement('script')
-        script.src = url
-        script.async = true
-        script.onerror = reject
-        script.onload = script.onreadystatechange = function() {
-          const loadState = this.readyState
-          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
-          script.onload = script.onreadystatechange = null
-          resolve()
-        }
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>非root Android 设备用gdbserver进行native 调试的方法 - 安全代码</title>
 
-        Object.keys(attr).forEach(key => {
-          script.setAttribute(key, attr[key])
-        })
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
-        document.head.appendChild(script)
-      })
-    
-      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
-        const link = document.createElement('link')
-        link.rel = 'stylesheet'
-        link.href = url
-        if (id) link.id = id
-        link.onerror = reject
-        link.onload = link.onreadystatechange = function() {
-          const loadState = this.readyState
-          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
-          link.onload = link.onreadystatechange = null
-          resolve()
-        }
-        document.head.appendChild(link)
-      })
-    
-      win.activateDarkMode = () => {
-        document.documentElement.setAttribute('data-theme', 'dark')
-        if (document.querySelector('meta[name="theme-color"]') !== null) {
-          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
-        }
-      }
-      win.activateLightMode = () => {
-        document.documentElement.setAttribute('data-theme', 'light')
-        if (document.querySelector('meta[name="theme-color"]') !== null) {
-          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
-        }
-      }
-      const t = saveToLocal.get('theme')
-    
-        if (t === 'dark') activateDarkMode()
-        else if (t === 'light') activateLightMode()
-      
-      const asideStatus = saveToLocal.get('aside-status')
-      if (asideStatus !== undefined) {
-        if (asideStatus === 'hide') {
-          document.documentElement.classList.add('hide-aside')
-        } else {
-          document.documentElement.classList.remove('hide-aside')
-        }
-      }
-    
-      const detectApple = () => {
-        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
-          document.documentElement.classList.add('apple')
-        }
-      }
-      detectApple()
-    })(window)</script><meta name="generator" content="Hexo 7.1.1"><link rel="alternate" href="/atom.xml" title="安全代码" type="application/atom+xml">
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"usmacd.com","root":"/","version":"1.9.7","typing":{"enable":false,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.1.1"><link rel="alternate" href="/atom.xml" title="安全代码" type="application/atom+xml">
 <link rel="alternate" href="/rss.xml" title="安全代码" type="application/rss+xml">
-</head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">111</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">15</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">1</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/links/"><i class="fa-fw fas fa-link"></i><span> Links</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div><div class="menus_item"><a class="site-page" href="/rss.xml"><span> RSS</span></a></div><div class="menus_item"><a class="site-page" href="/sitemap.xml"><span> Sitemap</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://images.unsplash.com/photo-1473181488821-2d23949a045a?w=640')"><nav id="nav"><span id="blog-info"><a href="/" title="安全代码"><span class="site-name">安全代码</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> Search</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/links/"><i class="fa-fw fas fa-link"></i><span> Links</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div><div class="menus_item"><a class="site-page" href="/rss.xml"><span> RSS</span></a></div><div class="menus_item"><a class="site-page" href="/sitemap.xml"><span> Sitemap</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">非root Android 设备用gdbserver进行native 调试的方法</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2016-01-31T16:00:00.000Z" title="Created 2016-02-01 00:00:00">2016-02-01</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2016-01-31T16:00:00.000Z" title="Updated 2016-02-01 00:00:00">2016-02-01</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="非root Android 设备用gdbserver进行native 调试的方法"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post Views:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p>没有root的设备，要使用gdbserver 调试app 会遇到权限问题。(emulator 没有问题)</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1|shell@mako:/data/local/tmp $ ./gdbserver :1234 --attach 16907</span><br><span class="line">Cannot attach to lwp 16907: Operation not permitted (1)</span><br><span class="line">Exiting</span><br></pre></td></tr></table></figure>
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>安全代码</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>Tags</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>Links</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://images.unsplash.com/photo-1473181488821-2d23949a045a?w=640') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle">非root Android 设备用gdbserver进行native 调试的方法</span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2016-02-01 00:00" pubdate>
+          February 1, 2016 am
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          877 words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          8 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">非root Android 设备用gdbserver进行native 调试的方法</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>没有root的设备，要使用gdbserver 调试app 会遇到权限问题。(emulator 没有问题)</p>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs elixir"><span class="hljs-number">1</span>|shell<span class="hljs-variable">@mako</span><span class="hljs-symbol">:/data/local/tmp</span> <span class="hljs-variable">$ </span>./gdbserver <span class="hljs-symbol">:</span><span class="hljs-number">1234</span> --attach <span class="hljs-number">16907</span><br><span class="hljs-title class_">Cannot</span> attach to lwp <span class="hljs-number">16907</span>: <span class="hljs-title class_">Operation</span> <span class="hljs-keyword">not</span> permitted (<span class="hljs-number">1</span>)<br><span class="hljs-title class_">Exiting</span><br></code></pre></td></tr></table></figure>
 
 <p>Android 系统提供了一个run-as 命令来暂时切换用户，但是这个命令有限制，必须是app 打开了debuggable才行，否则会报 Package xx is not debuggable 的错误。<br>从 <a target="_blank" rel="noopener" href="http://android.googlesource.com/platform/system/core.git/+/master/run-as/run-as.c">http://android.googlesource.com/platform/system/core.git/+/master/run-as/run-as.c</a> 的注释来看，主要的作用有两个：</p>
 <ul>
@@ -164,40 +284,373 @@
 <li>可以使用gdb_server 进行native 的debug</li>
 </ul>
 <p>我们的需求是第2个，我们希望可以使用gdb_server 来调试 app</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">shell@mako:/ $ run-as</span><br><span class="line">Usage: run-as   []</span><br><span class="line"></span><br><span class="line">shell@mako:/ $ </span><br><span class="line">shell@mako:/ $ run-as system_server /data/tmp/gdbserver --attach 596 :1234</span><br><span class="line">run-as: Package &#x27;system_server&#x27; is unknown</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs shell">shell@mako:/ $ run-as<br>Usage: run-as   []<br><br>shell@mako:/ $ <br>shell@mako:/ $ run-as system_server /data/tmp/gdbserver --attach 596 :1234<br>run-as: Package &#x27;system_server&#x27; is unknown<br></code></pre></td></tr></table></figure>
 
 <p>翻看源码，发现有下面 代码：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* reject system packages */</span></span><br><span class="line"><span class="keyword">if</span> (userAppId &lt; AID_APP) &#123;</span><br><span class="line">    panic(<span class="string">&quot;Package &#x27;%s&#x27; is not an application\n&quot;</span>, pkgname);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/* reject any non-debuggable package */</span></span><br><span class="line"><span class="keyword">if</span> (!info.isDebuggable) &#123;</span><br><span class="line">    panic(<span class="string">&quot;Package &#x27;%s&#x27; is not debuggable\n&quot;</span>, pkgname);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-comment">/* reject system packages */</span><br><span class="hljs-keyword">if</span> (userAppId &lt; AID_APP) &#123;<br>    panic(<span class="hljs-string">&quot;Package &#x27;%s&#x27; is not an application\n&quot;</span>, pkgname);<br>&#125;<br><span class="hljs-comment">/* reject any non-debuggable package */</span><br><span class="hljs-keyword">if</span> (!info.isDebuggable) &#123;<br>    panic(<span class="hljs-string">&quot;Package &#x27;%s&#x27; is not debuggable\n&quot;</span>, pkgname);<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <p>限制比较严格，调试系统app估计是没什么戏，root了应该就没有问题了。但是调试一般的app 还是没有问题的，用apktool 将 AndroidManifest.xml 的 debuggable 设置为true，重新 打包就可以进行native 的 debug 了。下面以CVE-2014-7911的POC为例：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=<span class="string">&quot;1.0&quot;</span> encoding=<span class="string">&quot;utf-8&quot;</span>?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">manifest</span> <span class="attr">xmlns:android</span>=<span class="string">&quot;http://schemas.android.com/apk/res/android&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">package</span>=<span class="string">&quot;com.heen.CVE_2014_7911&quot;</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">application</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:allowBackup</span>=<span class="string">&quot;true&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:debuggable</span>=<span class="string">&quot;true&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:icon</span>=<span class="string">&quot;@mipmap/ic_launcher&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:label</span>=<span class="string">&quot;@string/app_name&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:theme</span>=<span class="string">&quot;@style/AppTheme&quot;</span> &gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">activity</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:name</span>=<span class="string">&quot;.MainActivity&quot;</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:label</span>=<span class="string">&quot;@string/app_name&quot;</span> &gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">intent-filter</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">action</span> <span class="attr">android:name</span>=<span class="string">&quot;android.intent.action.MAIN&quot;</span> /&gt;</span></span><br><span class="line"></span><br><span class="line">                <span class="tag">&lt;<span class="name">category</span> <span class="attr">android:name</span>=<span class="string">&quot;android.intent.category.LAUNCHER&quot;</span> /&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">intent-filter</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">activity</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">application</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">manifest</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version=<span class="hljs-string">&quot;1.0&quot;</span> encoding=<span class="hljs-string">&quot;utf-8&quot;</span>?&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">manifest</span> <span class="hljs-attr">xmlns:android</span>=<span class="hljs-string">&quot;http://schemas.android.com/apk/res/android&quot;</span></span><br><span class="hljs-tag">    <span class="hljs-attr">package</span>=<span class="hljs-string">&quot;com.heen.CVE_2014_7911&quot;</span>&gt;</span><br><br>    <span class="hljs-tag">&lt;<span class="hljs-name">application</span></span><br><span class="hljs-tag">        <span class="hljs-attr">android:allowBackup</span>=<span class="hljs-string">&quot;true&quot;</span></span><br><span class="hljs-tag">        <span class="hljs-attr">android:debuggable</span>=<span class="hljs-string">&quot;true&quot;</span></span><br><span class="hljs-tag">        <span class="hljs-attr">android:icon</span>=<span class="hljs-string">&quot;@mipmap/ic_launcher&quot;</span></span><br><span class="hljs-tag">        <span class="hljs-attr">android:label</span>=<span class="hljs-string">&quot;@string/app_name&quot;</span></span><br><span class="hljs-tag">        <span class="hljs-attr">android:theme</span>=<span class="hljs-string">&quot;@style/AppTheme&quot;</span> &gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">activity</span></span><br><span class="hljs-tag">            <span class="hljs-attr">android:name</span>=<span class="hljs-string">&quot;.MainActivity&quot;</span></span><br><span class="hljs-tag">            <span class="hljs-attr">android:label</span>=<span class="hljs-string">&quot;@string/app_name&quot;</span> &gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">intent-filter</span>&gt;</span><br>                <span class="hljs-tag">&lt;<span class="hljs-name">action</span> <span class="hljs-attr">android:name</span>=<span class="hljs-string">&quot;android.intent.action.MAIN&quot;</span> /&gt;</span><br><br>                <span class="hljs-tag">&lt;<span class="hljs-name">category</span> <span class="hljs-attr">android:name</span>=<span class="hljs-string">&quot;android.intent.category.LAUNCHER&quot;</span> /&gt;</span><br>            <span class="hljs-tag">&lt;/<span class="hljs-name">intent-filter</span>&gt;</span><br>        <span class="hljs-tag">&lt;/<span class="hljs-name">activity</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">application</span>&gt;</span><br><br><span class="hljs-tag">&lt;/<span class="hljs-name">manifest</span>&gt;</span><br></code></pre></td></tr></table></figure>
 
 <p>这个app 正好 android:debuggable&#x3D;”true” 不用修改了，在模拟器上安装这个app。搭建 gdb调试环境, 分下面几个步骤走：</p>
 <p>(1) 创建几个目录</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">mkdir</span> ~/Android</span><br><span class="line">mkidr ~/Android/system_lib</span><br><span class="line">mkidr ~/Android/vendor_lib</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">mkdir</span> ~/Android<br>mkidr ~/Android/system_lib<br>mkidr ~/Android/vendor_lib<br></code></pre></td></tr></table></figure>
 
 <p>(2) 将Android 设置上的lib下载到本地</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~/Android/system_lib/</span><br><span class="line">adb pull /system/lib</span><br><span class="line"></span><br><span class="line"><span class="built_in">cd</span> ~/Android/vendor_lib/</span><br><span class="line">adb pull /vendor/lib</span><br><span class="line"></span><br><span class="line"><span class="built_in">cd</span> ~/Android</span><br><span class="line"></span><br><span class="line"><span class="comment"># 在64位系统 /system/bin/app_process32 和 /system/bin/app_process64</span></span><br><span class="line">adb pull /system/bin/app_process</span><br><span class="line"></span><br><span class="line"><span class="built_in">cd</span> ~/Android</span><br><span class="line">adb pull /system/bin/linker</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">cd</span> ~/Android/system_lib/<br>adb pull /system/lib<br><br><span class="hljs-built_in">cd</span> ~/Android/vendor_lib/<br>adb pull /vendor/lib<br><br><span class="hljs-built_in">cd</span> ~/Android<br><br><span class="hljs-comment"># 在64位系统 /system/bin/app_process32 和 /system/bin/app_process64</span><br>adb pull /system/bin/app_process<br><br><span class="hljs-built_in">cd</span> ~/Android<br>adb pull /system/bin/linker<br></code></pre></td></tr></table></figure>
 
 <p>(3) 上传gdbserver</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb push $NDK_PATH/prebuilt/android-arm/gdbserver/gdbserver /data/local/tmp/gdbserver</span><br></pre></td></tr></table></figure>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk">adb push <span class="hljs-variable">$NDK_PATH</span><span class="hljs-regexp">/prebuilt/</span>android-arm<span class="hljs-regexp">/gdbserver/g</span>dbserver <span class="hljs-regexp">/data/</span>local<span class="hljs-regexp">/tmp/g</span>dbserver<br></code></pre></td></tr></table></figure>
 
 <p>环境基本搭建好了，测试一下 run-as 命令</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt; adb shell ps</span><br><span class="line"></span><br><span class="line">...</span><br><span class="line">u0_a86    16907 174   900568 38564 ffffffff 00000000 S com.heen.CVE_2014_7911</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<figure class="highlight node-repl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs node-repl"><span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">adb shell ps</span><br><br><span class="hljs-meta prompt_">...</span><br>u0_a86    16907 174   900568 38564 ffffffff 00000000 S com.heen.CVE_2014_7911<br><span class="hljs-meta prompt_">...</span><br></code></pre></td></tr></table></figure>
 
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; adb shell run-as com.heen.CVE_2014_7911 id</span><br><span class="line">uid=10086(u0_a86) gid=10086(u0_a86) groups=1003(graphics),1004(input),1007(log),1011(adb),1015(sdcard_rw),1028(sdcard_r),3001(net_bt_admin),3002(net_bt),3003(inet),3006(net_bw_stats) context=u:r:untrusted_app:s</span><br></pre></td></tr></table></figure>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs routeros">&gt; adb shell run-as com.heen.CVE_2014_7911 id<br><span class="hljs-attribute">uid</span>=10086(u0_a86) <span class="hljs-attribute">gid</span>=10086(u0_a86) <span class="hljs-attribute">groups</span>=1003(graphics),1004(input),1007(log),1011(adb),1015(sdcard_rw),1028(sdcard_r),3001(net_bt_admin),3002(net_bt),3003(inet),3006(net_bw_stats) <span class="hljs-attribute">context</span>=u:r:untrusted_app:s<br></code></pre></td></tr></table></figure>
 
 <p>已经切换过来了，uid 变了，挂上gdbserver</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt; adb shell run-as com.heen.CVE_2014_7911 /data/local/tmp/gdbserver :123 --attach 16907</span><br><span class="line"></span><br><span class="line">Can&#x27;t open socket: Permission denied.</span><br><span class="line">Exiting</span><br></pre></td></tr></table></figure>
+<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs stata">&gt; adb <span class="hljs-keyword">shell</span> <span class="hljs-keyword">run</span>-<span class="hljs-keyword">as</span> com.heen.CVE_2014_7911 /data/<span class="hljs-keyword">local</span>/tmp/gdbserver :123 --attach 16907<br><br>Can&#x27;t <span class="hljs-keyword">open</span> socket: Permission denied.<br>Exiting<br></code></pre></td></tr></table></figure>
 
 <p>报了另外一个错误，还是不行，google 一翻发现有debug-pipe 参数，尝试了一下</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt; adb shell run-as com.heen.CVE_2014_7911 /data/local/tmp/gdbserver +debug-pipe --attach 16907</span><br><span class="line">Attached; pid = 16907</span><br><span class="line">Listening on Unix socket debug-pipe</span><br></pre></td></tr></table></figure>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs pgsql">&gt; adb shell run-<span class="hljs-keyword">as</span> com.heen.CVE_2014_7911 /data/<span class="hljs-keyword">local</span>/tmp/gdbserver +<span class="hljs-keyword">debug</span>-pipe <span class="hljs-comment">--attach 16907</span><br>Attached; pid = <span class="hljs-number">16907</span><br>Listening <span class="hljs-keyword">on</span> Unix socket <span class="hljs-keyword">debug</span>-pipe<br></code></pre></td></tr></table></figure>
 
 <p>恩，现在没有报错了,执行一下端口转发。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">adb forward tcp:5039 localfilesystem:/data/data/com.heen.CVE_2014_7911/debug-pipe</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs haskell"><span class="hljs-title">adb</span> forward tcp:<span class="hljs-number">5039</span> localfilesystem:/<span class="hljs-class"><span class="hljs-keyword">data</span>/<span class="hljs-keyword">data</span>/com.heen.<span class="hljs-type">CVE_2014_7911</span>/debug-pipe</span><br><br></code></pre></td></tr></table></figure>
 
 <p>OK, 已经可以调试了。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">&gt; $NDK_PATH/toolchains/arm-linux-androideabi-4.9/prebuilt/linux-x86_64/bin/arm-linux-androideabi-gdb ~/Android/app_process </span><br><span class="line">GNU gdb (GDB) 7.6</span><br><span class="line">Copyright (C) 2013 Free Software Foundation, Inc.</span><br><span class="line">License GPLv3+: GNU GPL version 3 or later </span><br><span class="line">This is free software: you are free to change and redistribute it.</span><br><span class="line">There is NO WARRANTY, to the extent permitted by law.  Type &quot;show copying&quot;</span><br><span class="line">and &quot;show warranty&quot; for details.</span><br><span class="line">This GDB was configured as &quot;--host=x86_64-linux-gnu --target=arm-linux-android&quot;.</span><br><span class="line">For bug reporting instructions, please see:</span><br><span class="line">...</span><br><span class="line">Reading symbols from /home/henices/Android/app_process...(no debugging symbols found)...done.</span><br><span class="line">(gdb) target remote :5039</span><br><span class="line">Remote debugging using :5039</span><br><span class="line">warning: Could not load shared library symbols for 100 libraries, e.g. /system/bin/linker.</span><br><span class="line">Use the &quot;info sharedlibrary&quot; command to see the complete listing.</span><br><span class="line">Do you need &quot;set solib-search-path&quot; or &quot;set sysroot&quot;?</span><br><span class="line">warning: Unable to find dynamic linker breakpoint function.</span><br><span class="line">GDB will be unable to debug shared library initializers</span><br><span class="line">and track explicitly loaded dynamic code.</span><br><span class="line">0x4013a73c in ?? ()</span><br><span class="line"></span><br><span class="line">(gdb) info proc</span><br><span class="line">process 16907</span><br><span class="line">cmdline = &#x27;com.heen.CVE_2014_7911&#x27;</span><br><span class="line">cwd = &#x27;/&#x27;</span><br><span class="line">exe = &#x27;/system/bin/app_process&#x27;</span><br><span class="line"></span><br><span class="line">(gdb) set solib-search-path ~/Android:~/Android/system_lib/:~/Android/vendor_lib/</span><br><span class="line">(gdb) info sharedlibrary</span><br><span class="line">0x400f3a60  0x400fe79c  Yes (*)     /home/henices/Android/linker</span><br><span class="line">0x40126070  0x401566ec  Yes (*)     /home/henices/Android/system_lib/libc.so</span><br><span class="line">0x40174828  0x401749c8  Yes (*)     /home/henices/Android/system_lib/libstdc++.so</span><br><span class="line">0x401798f0  0x4018c478  Yes (*)     /home/henices/Android/system_lib/libm.so</span><br><span class="line">0x40114f50  0x40116490  Yes (*)     /home/henices/Android/system_lib/liblog.so</span><br><span class="line">0x4010c38c  0x40110988  Yes (*)     /home/henices/Android/system_lib/libcutils.so</span><br><span class="line">0x401acb1c  0x401af20c  Yes (*)     /home/henices/Android/system_lib/libgccdemangle.so</span><br><span class="line">0x401a81d0  0x401a94ac  Yes (*)     /home/henices/Android/system_lib/libcorkscrew.so</span><br><span class="line">0x4019b780  0x401a1f24  Yes (*)     /home/henices/Android/system_lib/libutils.so</span><br><span class="line">0x401cbc50  0x401d5ba4  Yes (*)     /home/henices/Android/system_lib/libbinder.so</span><br><span class="line">0x402955f0  0x4029585c  Yes (*)     /home/henices/Android/system_lib/libhardware.so</span><br><span class="line">0x402925d0  0x40292834  Yes (*)     /home/henices/Android/system_lib/libmemtrack.so</span><br><span class="line">0x402bbbf0  0x402cb80c  Yes (*)     /home/henices/Android/system_lib/libz.so</span><br><span class="line">0x402a4240  0x402b23fc  Yes (*)     /home/henices/Android/system_lib/libandroidfw.so</span><br><span class="line">0x402d6774  0x402e53a0  Yes (*)     /home/henices/Android/system_lib/libexpat.so</span><br><span class="line">0x403083a8  0x4031e684  Yes (*)     /home/henices/Android/system_lib/libstlport.so</span><br></pre></td></tr></table></figure>
+<figure class="highlight gams"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><code class="hljs gams">&gt; <span class="hljs-symbol">$</span>NDK_PATH/toolchains/arm-linux-androideabi<span class="hljs-number">-4.9</span>/prebuilt/linux-x86_64/bin/arm-linux-androideabi-gdb ~/Android/app_process <br>GNU gdb (GDB) <span class="hljs-number">7.6</span><br>Copyright (C) <span class="hljs-number">2013</span> <span class="hljs-keyword">Free</span> Software Foundation, Inc.<br>License GPLv3+: GNU GPL version <span class="hljs-number">3</span> <span class="hljs-keyword">or</span> later <br>This is <span class="hljs-keyword">free</span> software: you are <span class="hljs-keyword">free</span> to change <span class="hljs-keyword">and</span> redistribute it.<br>There is <span class="hljs-keyword">NO</span> WARRANTY, to the extent permitted by law.  Type <span class="hljs-string">&quot;show copying&quot;</span><br><span class="hljs-keyword">and</span> <span class="hljs-string">&quot;show warranty&quot;</span> <span class="hljs-keyword">for</span> details.<br>This GDB was configured as <span class="hljs-string">&quot;--host=x86_64-linux-gnu --target=arm-linux-android&quot;</span>.<br><span class="hljs-keyword">For</span> bug reporting instructions, please see:<br>...<br>Reading symbols from /home/henices/Android/app_process...(<span class="hljs-keyword">no</span> debugging symbols found)...done.<br>(gdb) target remote :<span class="hljs-number">5039</span><br>Remote debugging <span class="hljs-keyword">using</span> :<span class="hljs-number">5039</span><br>warning: Could <span class="hljs-keyword">not</span> load shared library symbols <span class="hljs-keyword">for</span> <span class="hljs-number">100</span> libraries, e.g. /<span class="hljs-keyword">system</span>/bin/linker.<br>Use the <span class="hljs-string">&quot;info sharedlibrary&quot;</span> command to see the complete listing.<br>Do you need <span class="hljs-string">&quot;set solib-search-path&quot;</span> <span class="hljs-keyword">or</span> <span class="hljs-string">&quot;set sysroot&quot;</span>?<br>warning: Unable to find dynamic linker breakpoint function.<br>GDB will be unable to debug shared library initializers<br><span class="hljs-keyword">and</span> track explicitly loaded dynamic code.<br><span class="hljs-number">0x4013a73c</span> in ?? ()<br><br>(gdb) info proc<br>process <span class="hljs-number">16907</span><br>cmdline = <span class="hljs-string">&#x27;com.heen.CVE_2014_7911&#x27;</span><br>cwd = <span class="hljs-string">&#x27;/&#x27;</span><br>exe = <span class="hljs-string">&#x27;/system/bin/app_process&#x27;</span><br><br>(gdb) <span class="hljs-keyword">set</span> solib-search-path ~/Android:~/<span class="hljs-comment">Android</span>/system_lib/<span class="hljs-comment">:</span>~/Android/<span class="hljs-comment">vendor_lib</span>/<br>(gdb) info sharedlibrary<br><span class="hljs-number">0x400f3a60</span>  <span class="hljs-number">0x400fe79c</span>  <span class="hljs-keyword">Yes</span> (*)     /<span class="hljs-comment">home</span>/henices/<span class="hljs-comment">Android</span>/linker<br><span class="hljs-number">0x40126070</span>  <span class="hljs-number">0x401566ec</span>  <span class="hljs-keyword">Yes</span> (*)     /<span class="hljs-comment">home</span>/henices/<span class="hljs-comment">Android</span>/system_lib/<span class="hljs-comment">libc.so</span><br>0x40174828  <span class="hljs-comment">0x401749c8  Yes (*)</span>     /home/<span class="hljs-comment">henices</span>/Android/<span class="hljs-comment">system_lib</span>/libstdc++.so<br><span class="hljs-number">0x401798f0</span>  <span class="hljs-number">0x4018c478</span>  <span class="hljs-keyword">Yes</span> (*)     /<span class="hljs-comment">home</span>/henices/<span class="hljs-comment">Android</span>/system_lib/<span class="hljs-comment">libm.so</span><br>0x40114f50  <span class="hljs-comment">0x40116490  Yes (*)</span>     /home/<span class="hljs-comment">henices</span>/Android/<span class="hljs-comment">system_lib</span>/liblog.so<br><span class="hljs-number">0x4010c38c</span>  <span class="hljs-number">0x40110988</span>  <span class="hljs-keyword">Yes</span> (*)     /<span class="hljs-comment">home</span>/henices/<span class="hljs-comment">Android</span>/system_lib/<span class="hljs-comment">libcutils.so</span><br>0x401acb1c  <span class="hljs-comment">0x401af20c  Yes (*)</span>     /home/<span class="hljs-comment">henices</span>/Android/<span class="hljs-comment">system_lib</span>/libgccdemangle.so<br><span class="hljs-number">0x401a81d0</span>  <span class="hljs-number">0x401a94ac</span>  <span class="hljs-keyword">Yes</span> (*)     /<span class="hljs-comment">home</span>/henices/<span class="hljs-comment">Android</span>/system_lib/<span class="hljs-comment">libcorkscrew.so</span><br>0x4019b780  <span class="hljs-comment">0x401a1f24  Yes (*)</span>     /home/<span class="hljs-comment">henices</span>/Android/<span class="hljs-comment">system_lib</span>/libutils.so<br><span class="hljs-number">0x401cbc50</span>  <span class="hljs-number">0x401d5ba4</span>  <span class="hljs-keyword">Yes</span> (*)     /<span class="hljs-comment">home</span>/henices/<span class="hljs-comment">Android</span>/system_lib/<span class="hljs-comment">libbinder.so</span><br>0x402955f0  <span class="hljs-comment">0x4029585c  Yes (*)</span>     /home/<span class="hljs-comment">henices</span>/Android/<span class="hljs-comment">system_lib</span>/libhardware.so<br><span class="hljs-number">0x402925d0</span>  <span class="hljs-number">0x40292834</span>  <span class="hljs-keyword">Yes</span> (*)     /<span class="hljs-comment">home</span>/henices/<span class="hljs-comment">Android</span>/system_lib/<span class="hljs-comment">libmemtrack.so</span><br>0x402bbbf0  <span class="hljs-comment">0x402cb80c  Yes (*)</span>     /home/<span class="hljs-comment">henices</span>/Android/<span class="hljs-comment">system_lib</span>/libz.so<br><span class="hljs-number">0x402a4240</span>  <span class="hljs-number">0x402b23fc</span>  <span class="hljs-keyword">Yes</span> (*)     /<span class="hljs-comment">home</span>/henices/<span class="hljs-comment">Android</span>/system_lib/<span class="hljs-comment">libandroidfw.so</span><br>0x402d6774  <span class="hljs-comment">0x402e53a0  Yes (*)</span>     /home/<span class="hljs-comment">henices</span>/Android/<span class="hljs-comment">system_lib</span>/libexpat.so<br><span class="hljs-number">0x403083a8</span>  <span class="hljs-number">0x4031e684</span>  <span class="hljs-keyword">Yes</span> (*)     /<span class="hljs-comment">home</span>/henices/<span class="hljs-comment">Android</span>/system_lib/<span class="hljs-comment">libstlport.so</span><br></code></pre></td></tr></table></figure>
 
 
-</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>Author: </span><span class="post-copyright-info"><a href="http://usmacd.com">henices</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>Link: </span><span class="post-copyright-info"><a href="http://usmacd.com/cn/non_root_android_native_debug/">http://usmacd.com/cn/non_root_android_native_debug/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Android/">Android</a></div><div class="post_share"><div class="social-share" data-image="https://images.unsplash.com/photo-1473181488821-2d23949a045a?w=640" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/butterfly-extsrc/1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdnjs.cloudflare.com/ajax/libs/butterfly-extsrc/1.1.3/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/cn/PowerPoint_egg/" title="PowerPoint 彩蛋和加密"><img class="cover" src="https://images.unsplash.com/photo-1473181488821-2d23949a045a?w=640" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">Previous</div><div class="prev_info">PowerPoint 彩蛋和加密</div></div></a></div><div class="next-post pull-right"><a href="/cn/malware_time_delay_escape/" title="通过延迟执行的方法来逃逸杀软"><img class="cover" src="https://images.unsplash.com/photo-1473181488821-2d23949a045a?w=640" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">Next</div><div class="next_info">通过延迟执行的方法来逃逸杀软</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>Related Articles</span></div><div class="relatedPosts-list"><div><a href="/cn/webview_java/" title="Android WebView 漏洞"><img class="cover" src="https://images.unsplash.com/photo-1473181488821-2d23949a045a?w=640" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-09-06</div><div class="title">Android WebView 漏洞</div></div></a></div><div><a href="/cn/disable_security_flags/" title="恢复 Android App 的截屏功能"><img class="cover" src="https://images.unsplash.com/photo-1473181488821-2d23949a045a?w=640" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-09-06</div><div class="title">恢复 Android App 的截屏功能</div></div></a></div><div><a href="/cn/debug_aosp_java_code/" title="调试AOSP Java 代码"><img class="cover" src="https://images.unsplash.com/photo-1473181488821-2d23949a045a?w=640" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-09-06</div><div class="title">调试AOSP Java 代码</div></div></a></div><div><a href="/cn/compile_android_source_code/" title="编译 Android 系统源码  （AOSP）"><img class="cover" src="https://images.unsplash.com/photo-1473181488821-2d23949a045a?w=640" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-09-06</div><div class="title">编译 Android 系统源码  （AOSP）</div></div></a></div><div><a href="/cn/backtrace_in_android/" title="Android 获取进程的 backtrace 信息"><img class="cover" src="https://images.unsplash.com/photo-1473181488821-2d23949a045a?w=640" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-09-06</div><div class="title">Android 获取进程的 backtrace 信息</div></div></a></div><div><a href="/cn/apk_debug/" title="使用Android Studio 调试无源码apk程序"><img class="cover" src="https://images.unsplash.com/photo-1473181488821-2d23949a045a?w=640" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-09-06</div><div class="title">使用Android Studio 调试无源码apk程序</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">henices</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">111</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">15</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">1</div></a></div><div class="card-info-social-icons is-center"><a class="social-icon" href="https://twitter.com/henices" target="_blank" title="Twitter"><i class="fab fa-twitter" style="color: #4a7dbe;"></i></a><a class="social-icon" href="mailto:henices@163.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #24292e;"></i></a></div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/cn/how_to_get_good_info/" title="《笔记的方法》 如何做筛选，获取高质量信息">《笔记的方法》 如何做筛选，获取高质量信息</a><time datetime="2024-01-31T16:00:00.000Z" title="Created 2024-02-01 00:00:00">2024-02-01</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/cn/zel_note_flow/" title="卡片盒笔记法总体思路与工作流">卡片盒笔记法总体思路与工作流</a><time datetime="2024-01-28T16:00:00.000Z" title="Created 2024-01-29 00:00:00">2024-01-29</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/cn/egg-is-deprecated/" title="python3 pip loading egg is deprecated 警告的解决方法">python3 pip loading egg is deprecated 警告的解决方法</a><time datetime="2024-01-16T16:00:00.000Z" title="Created 2024-01-17 00:00:00">2024-01-17</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/cn/public_writing/" title="公开写作的好处和坚持不懈">公开写作的好处和坚持不懈</a><time datetime="2023-12-04T16:00:00.000Z" title="Created 2023-12-05 00:00:00">2023-12-05</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/cn/qemu_kvm/" title="VMware Workstation Windows 10 host Ubuntu 18.04 Guest 中加载 Linux 内核 kvm 模块">VMware Workstation Windows 10 host Ubuntu 18.04 Guest 中加载 Linux 内核 kvm 模块</a><time datetime="2023-11-27T16:00:00.000Z" title="Created 2023-11-28 00:00:00">2023-11-28</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('https://images.unsplash.com/photo-1473181488821-2d23949a045a?w=640')"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By henices</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="Toggle Between Traditional Chinese And Simplified Chinese">繁</button><button id="darkmode" type="button" title="Toggle Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between Single-column and Double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="Back To Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">Search</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  Loading the Database</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Android/" class="print-no-link">#Android</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>非root Android 设备用gdbserver进行native 调试的方法</div>
+      <div>http://usmacd.com/cn/non_root_android_native_debug/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>henices</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>February 1, 2016</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/cn/PowerPoint_egg/" title="PowerPoint 彩蛋和加密">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">PowerPoint 彩蛋和加密</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/cn/malware_time_delay_escape/" title="通过延迟执行的方法来逃逸杀软">
+                        <span class="hidden-mobile">通过延迟执行的方法来逃逸杀软</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>
