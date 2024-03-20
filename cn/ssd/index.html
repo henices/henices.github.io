@@ -23,8 +23,8 @@
 <meta property="og:site_name" content="安全代码">
 <meta property="og:description" content="由于某些需求，决定上SSD，提高一下硬盘读写速度。上二手东买了三星(SAMSUNG) 860 EVO 最初的想法是作为数据盘使用，即操作系统还是跑在机械硬盘上，仔细一思考，还是折腾 一下，要不实在是有些浪费，事实证明，折腾是值得的，感觉就想飞一样。 首先查看一下原始的情况： 1234$ mount&#x2F;dev&#x2F;sda1 on &#x2F;boot type ext4 (rw,relatime,seclabel,">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2024-03-20T01:20:25.793Z">
-<meta property="article:modified_time" content="2024-03-20T01:20:25.793Z">
+<meta property="article:published_time" content="2022-06-19T16:00:00.000Z">
+<meta property="article:modified_time" content="2022-06-19T16:00:00.000Z">
 <meta property="article:author" content="henices">
 <meta property="article:tag" content="linux">
 <meta name="twitter:card" content="summary_large_image">
@@ -234,8 +234,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-03-20 09:20" pubdate>
-          March 20, 2024 am
+        <time datetime="2022-06-20 00:00" pubdate>
+          June 20, 2022 am
         </time>
       </span>
     
@@ -303,7 +303,7 @@
 <p>首先查看一下原始的情况：</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs sh">$ mount<br><br>/dev/sda1 on /boot <span class="hljs-built_in">type</span> ext4 (rw,relatime,seclabel,stripe=4)<br>/dev/mapper/fedora-root on / <span class="hljs-built_in">type</span> ext4 (rw,relatime,seclabel)<br></code></pre></td></tr></table></figure>
 
-<p>当然首先要把SSD处理一下，安装一下 gparted 图形化界面很好用。建个分区表，选择 gpt，分个区，<code>/dev/mapper/fedora-root</code> 大小为50G，先分个50G的分区，剩下的全部给 另外一个分区，格式化为 ext4。操作完成后，用fdisk 查看一下：</p>
+<p>当然首先要把SSD处理一下，安装一下 gparted 图形化界面很好用。<br>建个分区表，选择 gpt，分个区，<code>/dev/mapper/fedora-root</code> 大小为50G，先分个50G的分区，剩下的全部给 另外一个分区，格式化为 ext4。操作完成后，用fdisk 查看一下：</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs sh">$ fdisk -l<br><br>Disk /dev/sdb：232.9 GiB，250059350016 字节，488397168 个扇区<br>单元：扇区 / 1 * 512 = 512 字节<br>扇区大小(逻辑/物理)：512 字节 / 512 字节<br>I/O 大小(最小/最佳)：512 字节 / 512 字节<br>磁盘标签类型：gpt<br>磁盘标识符：<br><br>设备            起点      末尾      扇区   大小 类型<br>/dev/sdb1       2048 104859647 104857600    50G Linux 文件系统<br>/dev/sdb2  104859648 488396799 383537152 182.9G Linux 文件系统<br></code></pre></td></tr></table></figure>
 
 <p>将原来系统的 &#x2F; dd 到新的SSD，</p>
@@ -376,7 +376,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>Posted on</div>
-          <div>March 20, 2024</div>
+          <div>June 20, 2022</div>
         </div>
       
       
@@ -408,12 +408,18 @@
                   <article class="post-prev col-6">
                     
                     
+                      <a href="/cn/2022-07-21-When-Hypervisor-Met-Snapshot-Fuzzing/" title="When Hypervisor Met Snapshot Fuzzing">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">When Hypervisor Met Snapshot Fuzzing</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/cn/logseq_plugins/" title="我正在使用的 Logseq Plugin (插件)">
-                        <span class="hidden-mobile">我正在使用的 Logseq Plugin (插件)</span>
+                      <a href="/cn/logseq2/" title="Logseq 使用小结 （二）">
+                        <span class="hidden-mobile">Logseq 使用小结 （二）</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

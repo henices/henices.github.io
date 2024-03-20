@@ -246,46 +246,6 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
-        <a href="/cn/compile_android_source_code/" target="_self">
-          编译 Android 系统源码  （AOSP）
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/cn/compile_android_source_code/" target="_self">
-        <div>
-          ☆ 1. 下载源码由于众所周知的原因，国内访问 Android 源码不大方便， 清华大学做了一件好事， 弄了个 mirror。 https://mirrors.tuna.tsinghua.edu.cn/help/AOSP/ 下载 repoGoogle 自己搞一个源码同步工具，需要下下载。 1234mkdir ~/binPATH=~/bin:$PATHcurl https://storage.goo
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2023-09-06 11:00" pubdate>
-              2023-09-06
-            </time>
-          </div>
-        
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/Android/">#Android</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
         <a href="/cn/BankBot/" target="_self">
           Bankbot APK 样本分析
         </a>
@@ -619,6 +579,48 @@
       <a class="index-excerpt index-excerpt__noimg" href="/cn/android_intent_base_attack/" target="_self">
         <div>
           0. Android的安全模型 application sandbox selinux permissions application signing  正是因为Application sandbox的存在，App进程之间是相互隔离的。有下面一个场景一个App需要调用weixin来分享内容，如何处理？这就需要用到intent，告诉Android系统你的意图是什么，Android系统将调用相应的处理
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2023-09-06 11:00" pubdate>
+              2023-09-06
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Security/">#Security</a>
+            
+              <a href="/tags/Android/">#Android</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/cn/Android_binder_fuzzing/" target="_self">
+          Android Binder Fuzzing 的一些思路
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/cn/Android_binder_fuzzing/" target="_self">
+        <div>
+          1. binder 简介Android安全模型的一个关键部分是每一个应用程序都被赋予一个唯一的 Linux 用户 ID 和组 ID，运行在自己的进程和 Dalvik 虚拟机里。在应用程序安装的过程中，Android系统设备上创建一个专门的目录（文件夹），用于存储此应用程序的数据，并且仅允许应用程序利用Linux 用户 ID 和组 ID 的相应访问权限对这些数据进行访问。此外，此应用程序的 Dalv
         </div>
       </a>
 
