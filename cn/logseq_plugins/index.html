@@ -23,6 +23,7 @@
 <meta property="og:site_name" content="安全代码">
 <meta property="og:description" content="推荐一些我正在使用的 Logseq 插件，这些插件的功能都非常实用。Logseq 安装插件的方法可以参考我以前写的文章 Logseq 使用小结 （二） 。 logseq-random-notehttps:&#x2F;&#x2F;github.com&#x2F;TankCool&#x2F;logseq-random-note 在 Logseq 中随机浏览笔记的插件。Logseq 没有默认的随机笔记功能可能是一个失误，反观 Obsidian">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://raw.githubusercontent.com/yoyurec/logseq-banners-plugin/main/screenshots/widgets-light-01.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/henices/pictures/master/logseq4-page-tags.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/henices/pictures/master/logseq4-asset-plus.png">
 <meta property="og:image" content="https://github.com/henices/pictures/raw/master/logseq3_5.png">
@@ -31,7 +32,7 @@
 <meta property="article:author" content="henices">
 <meta property="article:tag" content="Software">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://raw.githubusercontent.com/henices/pictures/master/logseq4-page-tags.png">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/yoyurec/logseq-banners-plugin/main/screenshots/widgets-light-01.png">
   
   
   
@@ -316,6 +317,7 @@
 <p>在 Logseq 中随机浏览笔记的插件。Logseq 没有默认的随机笔记功能可能是一个失误，反观 Obsidian 就有内置 open random note 的功能。关于随机发现笔记的作用，我专门写过一篇文章 <a target="_blank" rel="noopener" href="https://www.usmacd.com/cn/note_review/">定期回顾笔记的好处</a>。在我的 Logseq 工作流(workflow) 中，定期回顾笔记是非常重要的部分，经常都能获得意想不到的收获。</p>
 <p>logseq random note 插件在使用中有一个问题，生成随机数时使用了 javascript math.random 函数，这个函数生成的随机数质量不高，导致 random note 插件经常会访问同一个笔记。我向原仓库提交了修改后的源码，但是原作者没有合并。如果在使用的时候遇上我说的这个问题，可以试试我的修改版插件 <a target="_blank" rel="noopener" href="https://github.com/henices/logseq-random-note">https://github.com/henices/logseq-random-note</a></p>
 <h2 id="Logseq-Banners-plugin"><a href="#Logseq-Banners-plugin" class="headerlink" title="Logseq Banners plugin"></a>Logseq Banners plugin</h2><p><a target="_blank" rel="noopener" href="https://github.com/yoyurec/logseq-banners-plugin">https://github.com/yoyurec/logseq-banners-plugin</a><br>在 Logseq 的 Journal 或者 page 页面显示 banner 。Banner 中可以添加Calendar，Weather，Pomodoro，Random quote 的显示，提供自定义功能，可以自由组合。我只使用了 random note 的功能，每天都可以不经意的看到以前的笔记，感觉非常不错。</p>
+<p><img src="https://raw.githubusercontent.com/yoyurec/logseq-banners-plugin/main/screenshots/widgets-light-01.png" srcset="/img/loading.gif" lazyload alt="banner plugin"></p>
 <h2 id="Page-tags-and-Hierarchy"><a href="#Page-tags-and-Hierarchy" class="headerlink" title="Page-tags and Hierarchy"></a>Page-tags and Hierarchy</h2><p><a target="_blank" rel="noopener" href="https://github.com/YU000jp/logseq-page-tags-and-hierarchy">https://github.com/YU000jp/logseq-page-tags-and-hierarchy</a></p>
 <p>在页面中直观得看见 Page-tags 和 Hierarchy，不用滚动到页面底部的插件。Logseq Page-tags 和 namespace 特性，并不像其他特性被人们熟知。比较遗憾的是我没有在 Logseq 的文档中找到明确的说明。</p>
 <p>namespace 定义了 page 之间的层级关系，可以在一个页面的底部看出层级关系。namespace 有两种表示方式：<code>#topic/topic0/topic1</code> 或者 <code>[[topic/topic0/topic1]]</code>。我一般都使用前面的表达方式，比较简单，输入 <code>#topic</code> Logseq 就会自动提示 <code>#topic/topic0</code> 和 <code>#topic/topic0/topic1</code> 非常方便。</p>
