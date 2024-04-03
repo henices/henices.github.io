@@ -6,7 +6,7 @@
   <link href="http://usmacd.com/atom.xml" rel="self"/>
   
   <link href="http://usmacd.com/"/>
-  <updated>2024-03-31T16:00:00.000Z</updated>
+  <updated>2024-04-02T16:00:00.000Z</updated>
   <id>http://usmacd.com/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>李录谈价值投资</title>
+    <link href="http://usmacd.com/cn/lilu/"/>
+    <id>http://usmacd.com/cn/lilu/</id>
+    <published>2024-04-02T16:00:00.000Z</published>
+    <updated>2024-04-02T16:00:00.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="价值投资是大道"><a href="#价值投资是大道" class="headerlink" title="价值投资是大道"></a>价值投资是大道</h2><p>价值投资的理念只有四个。</p><p>1）买股票是投资一个公司：股票是公司的所有权，公司在创造价值的过程中，作为部分所有者，拥有的部分价值也会增长</p><p>2）忽略短期波动：市场不能告诉你价值，只能告诉你价格，你只能把它当作一个可以利用的工具</p><p>3）注重安全边际：因为无法对未来预测，做判断是要预留很大空间，买入价格要大大低于内在价值</p><p>4）建立能力圈：通过不断努力，在某些行业获得比几乎所有人更深认识，从而能对公司长期表现作出比所有其他人更准确的判断</p><p>前三条自来本杰明·格雷厄姆，最后一条来自沃伦·巴菲特。</p><h2 id="价值投资的难点"><a href="#价值投资的难点" class="headerlink" title="价值投资的难点"></a>价值投资的难点</h2><p>1）价值投资虽然是通向成功的大路，但是这个道路太长了。也许你买的时候价格远低于内在价值，但你不知道市场什么时候变得理性。同时公司的价值要增长，要公司管理层和上上下下的人员共同努力，是一个很艰难的过程。</p><p>2）你对未来的判断也很难，投资的本事是对未来的预测。真正了解一个公司，一个行业，要能够去判断它未来的5年，10年。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;价值投资是大道&quot;&gt;&lt;a href=&quot;#价值投资是大道&quot; class=&quot;headerlink&quot; title=&quot;价值投资是大道&quot;&gt;&lt;/a&gt;价值投资是大道&lt;/h2&gt;&lt;p&gt;价值投资的理念只有四个。&lt;/p&gt;
+&lt;p&gt;1）买股票是投资一个公司：股票是公司的所有权，公司在创造价值</summary>
+      
+    
+    
+    
+    
+    <category term="investment" scheme="http://usmacd.com/tags/investment/"/>
+    
+  </entry>
   
   <entry>
     <title>AFL++ 漏洞挖掘实例</title>
@@ -460,28 +483,6 @@
 &lt;li&gt;长期维护产品：消费者愿意为长期维护的产品买单，旧产品没有添加新功能也用新工具链重新编译一次&lt;/li&gt;
 &lt;li&gt;只开发自己使用的产品：评估未来几年自己是否使用产品，作为是否启动产品开发的重要因素&lt;/li&gt;
 &lt;li&gt;外包 + 独立开发 双驱动</summary>
-      
-    
-    
-    
-    
-    <category term="Programming" scheme="http://usmacd.com/tags/Programming/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>尤雨溪谈成功和运气</title>
-    <link href="http://usmacd.com/cn/youyuxi/"/>
-    <id>http://usmacd.com/cn/youyuxi/</id>
-    <published>2023-10-31T16:00:00.000Z</published>
-    <updated>2023-10-31T16:00:00.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>1）运气很重要，时势造英雄<br>在适当的时间节点上推出合适的产品能大幅提高成功的概率<br>2）真正的关键点，不在写程序上<br>重要的是判断需求，制定合适的技术方案去满足客户的需求<br>3）成功需要市场直觉和产品上的判断力<br>4）光有能力或者光有运气都很难成功<br>运气是客观存在的，But there’s nothing we can do about it.<br>5）我们只能提高自己能力，多尝试，每次尝试运气都不一样<br>6）独立开发重要的不是技术的优劣，而是如何开发一个产品的问题</p><ul><li>如何快速匹配市场需求</li><li>如何识别目标客户</li><li>如何快速验证商业模式</li><li>如何快速推向市场。</li><li>考验的是运营能力、合理分配资源的能力，简化创业流程的能力</li></ul><p>reference: <a href="https://pca.st/yjf05b7i">https://pca.st/yjf05b7i</a></p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;1）运气很重要，时势造英雄&lt;br&gt;在适当的时间节点上推出合适的产品能大幅提高成功的概率&lt;br&gt;2）真正的关键点，不在写程序上&lt;br&gt;重要的是判断需求，制定合适的技术方案去满足客户的需求&lt;br&gt;3）成功需要市场直觉和产品上的判断力&lt;br&gt;4）光有能力或者光有运气都很难成功&lt;b</summary>
       
     
     
