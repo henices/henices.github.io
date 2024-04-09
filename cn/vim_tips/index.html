@@ -16,12 +16,12 @@
   <meta name="author" content="henices">
   <meta name="keywords" content="">
   
-    <meta name="description" content="0.  将tab 替换为空格:ret 1. 全文格式化normal模式下，gg&#x3D;G 2. 跳转到上次编辑处normal模式下，’. 3. 替换行尾多余的空格:%s&#x3D; *$&#x3D;&#x3D; 4. Source your vimrc.:so $MYVIMRC 5. 在文件中跳转normal 模式下，ctrl-o 6. 内置文件浏览器:Exp 7. 一眼看出tab和空格的区别">
+    <meta name="description" content="0.  将tab 替换为空格1:ret  1. 全文格式化normal模式下，gg&#x3D;G 2. 跳转到上次编辑处normal模式下，&#39;. 3. 替换行尾多余的空格1:%s&#x3D; *$&#x3D;&#x3D;  4. Source your vimrc.1:so $MYVIMRC  5. 在文件中跳转normal 模式下，ctrl-o 6. 内置文件浏览器1:Exp 7. 一眼看出tab和空格的区别在.vimrc 中">
 <meta property="og:type" content="article">
-<meta property="og:title" content="安全代码">
+<meta property="og:title" content="vim 使用的几个小技巧">
 <meta property="og:url" content="http://usmacd.com/cn/vim_tips/index.html">
 <meta property="og:site_name" content="安全代码">
-<meta property="og:description" content="0.  将tab 替换为空格:ret 1. 全文格式化normal模式下，gg&#x3D;G 2. 跳转到上次编辑处normal模式下，’. 3. 替换行尾多余的空格:%s&#x3D; *$&#x3D;&#x3D; 4. Source your vimrc.:so $MYVIMRC 5. 在文件中跳转normal 模式下，ctrl-o 6. 内置文件浏览器:Exp 7. 一眼看出tab和空格的区别">
+<meta property="og:description" content="0.  将tab 替换为空格1:ret  1. 全文格式化normal模式下，gg&#x3D;G 2. 跳转到上次编辑处normal模式下，&#39;. 3. 替换行尾多余的空格1:%s&#x3D; *$&#x3D;&#x3D;  4. Source your vimrc.1:so $MYVIMRC  5. 在文件中跳转normal 模式下，ctrl-o 6. 内置文件浏览器1:Exp 7. 一眼看出tab和空格的区别在.vimrc 中">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2014-04-09T16:00:00.000Z">
 <meta property="article:modified_time" content="2014-04-09T16:00:00.000Z">
@@ -32,7 +32,7 @@
   
   
   
-  <title>安全代码</title>
+  <title>vim 使用的几个小技巧 - 安全代码</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -224,7 +224,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle"></span>
+            <span id="subtitle">vim 使用的几个小技巧</span>
           
         </div>
 
@@ -295,22 +295,25 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header"></h1>
+            <h1 id="seo-header">vim 使用的几个小技巧</h1>
             
             
               <div class="markdown-body">
                 
-                <h2 id="0-将tab-替换为空格"><a href="#0-将tab-替换为空格" class="headerlink" title="0.  将tab 替换为空格"></a>0.  将tab 替换为空格</h2><p>:ret</p>
-<h2 id="1-全文格式化"><a href="#1-全文格式化" class="headerlink" title="1. 全文格式化"></a>1. 全文格式化</h2><p>normal模式下，gg&#x3D;G</p>
-<h2 id="2-跳转到上次编辑处"><a href="#2-跳转到上次编辑处" class="headerlink" title="2. 跳转到上次编辑处"></a>2. 跳转到上次编辑处</h2><p>normal模式下，’.</p>
-<h2 id="3-替换行尾多余的空格"><a href="#3-替换行尾多余的空格" class="headerlink" title="3. 替换行尾多余的空格"></a>3. 替换行尾多余的空格</h2><p>:%s&#x3D; *$&#x3D;&#x3D;</p>
-<h2 id="4-Source-your-vimrc"><a href="#4-Source-your-vimrc" class="headerlink" title="4. Source your vimrc."></a>4. Source your vimrc.</h2><p>:so $MYVIMRC</p>
-<h2 id="5-在文件中跳转"><a href="#5-在文件中跳转" class="headerlink" title="5. 在文件中跳转"></a>5. 在文件中跳转</h2><p>normal 模式下，ctrl-o</p>
-<h2 id="6-内置文件浏览器"><a href="#6-内置文件浏览器" class="headerlink" title="6. 内置文件浏览器"></a>6. 内置文件浏览器</h2><p>:Exp</p>
-<h2 id="7-一眼看出tab和空格的区别"><a href="#7-一眼看出tab和空格的区别" class="headerlink" title="7. 一眼看出tab和空格的区别"></a>7. 一眼看出tab和空格的区别</h2><p>在.vimrc 中添加下面行，</p>
-<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs routeros"><span class="hljs-built_in">set</span> list <span class="hljs-attribute">listchars</span>=tab:&gt;-,trail:.,extends:&gt; <br><br></code></pre></td></tr></table></figure>
+                <h2 id="0-将tab-替换为空格"><a href="#0-将tab-替换为空格" class="headerlink" title="0.  将tab 替换为空格"></a>0.  将tab 替换为空格</h2><figure class="highlight avrasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs avrasm">:<span class="hljs-keyword">ret</span><br></code></pre></td></tr></table></figure>
 
-<h2 id="8-解决-vim-编译时权限不够问题"><a href="#8-解决-vim-编译时权限不够问题" class="headerlink" title="8. 解决 vim 编译时权限不够问题"></a>8. 解决 vim 编译时权限不够问题</h2><p>:w !sudo tee %</p>
+<h2 id="1-全文格式化"><a href="#1-全文格式化" class="headerlink" title="1. 全文格式化"></a>1. 全文格式化</h2><p>normal模式下，<code>gg=G</code></p>
+<h2 id="2-跳转到上次编辑处"><a href="#2-跳转到上次编辑处" class="headerlink" title="2. 跳转到上次编辑处"></a>2. 跳转到上次编辑处</h2><p>normal模式下，<code>&#39;.</code></p>
+<h2 id="3-替换行尾多余的空格"><a href="#3-替换行尾多余的空格" class="headerlink" title="3. 替换行尾多余的空格"></a>3. 替换行尾多余的空格</h2><figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs elixir"><span class="hljs-symbol">:%s=</span> *<span class="hljs-variable">$=</span>=<br></code></pre></td></tr></table></figure>
+
+<h2 id="4-Source-your-vimrc"><a href="#4-Source-your-vimrc" class="headerlink" title="4. Source your vimrc."></a>4. Source your vimrc.</h2><figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs elixir"><span class="hljs-symbol">:so</span> <span class="hljs-variable">$MYVIMRC</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="5-在文件中跳转"><a href="#5-在文件中跳转" class="headerlink" title="5. 在文件中跳转"></a>5. 在文件中跳转</h2><p>normal 模式下，<code>ctrl-o</code></p>
+<h2 id="6-内置文件浏览器"><a href="#6-内置文件浏览器" class="headerlink" title="6. 内置文件浏览器"></a>6. 内置文件浏览器</h2><figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs 1c">:<span class="hljs-built_in">Exp</span><br></code></pre></td></tr></table></figure>
+<h2 id="7-一眼看出tab和空格的区别"><a href="#7-一眼看出tab和空格的区别" class="headerlink" title="7. 一眼看出tab和空格的区别"></a>7. 一眼看出tab和空格的区别</h2><p>在.vimrc 中添加下面行，</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs routeros"><span class="hljs-built_in">set</span> list <span class="hljs-attribute">listchars</span>=tab:&gt;-,trail:.,extends:&gt; <br></code></pre></td></tr></table></figure>
+
+<h2 id="8-解决-vim-编译时权限不够问题"><a href="#8-解决-vim-编译时权限不够问题" class="headerlink" title="8. 解决 vim 编译时权限不够问题"></a>8. 解决 vim 编译时权限不够问题</h2><figure class="highlight erlang-repl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs erlang-repl">:w !sudo tee <span class="hljs-comment">%</span><br></code></pre></td></tr></table></figure>
 
                 
               </div>
@@ -337,7 +340,7 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div></div>
+      <div>vim 使用的几个小技巧</div>
       <div>http://usmacd.com/cn/vim_tips/</div>
     </div>
     <div class="license-meta">
