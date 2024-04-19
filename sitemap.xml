@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://usmacd.com/cn/note/</loc>
+    
+    <lastmod>2024-04-18</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>http://usmacd.com/cn/lilu/</loc>
     
     <lastmod>2024-04-02</lastmod>
@@ -734,15 +743,6 @@
     <loc>http://usmacd.com/cn/gtags-cscope/</loc>
     
     <lastmod>2023-07-16</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://usmacd.com/cn/note/</loc>
-    
-    <lastmod>2023-07-09</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
