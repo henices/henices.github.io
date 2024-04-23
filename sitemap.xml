@@ -1145,6 +1145,20 @@
 
   
   <url>
+    <loc>http://usmacd.com/tags/linux/</loc>
+    <lastmod>2024-04-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://usmacd.com/tags/Crack/</loc>
+    <lastmod>2024-04-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>http://usmacd.com/tags/Archives/</loc>
     <lastmod>2024-04-23</lastmod>
     <changefreq>weekly</changefreq>
@@ -1166,7 +1180,7 @@
   </url>
   
   <url>
-    <loc>http://usmacd.com/tags/Crack/</loc>
+    <loc>http://usmacd.com/tags/Android/</loc>
     <lastmod>2024-04-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1174,13 +1188,6 @@
   
   <url>
     <loc>http://usmacd.com/tags/investment/</loc>
-    <lastmod>2024-04-23</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>http://usmacd.com/tags/linux/</loc>
     <lastmod>2024-04-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1209,13 +1216,6 @@
   
   <url>
     <loc>http://usmacd.com/tags/ai/</loc>
-    <lastmod>2024-04-23</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>http://usmacd.com/tags/Android/</loc>
     <lastmod>2024-04-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
