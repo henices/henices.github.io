@@ -6,7 +6,7 @@
   <link href="http://usmacd.com/atom.xml" rel="self"/>
   
   <link href="http://usmacd.com/"/>
-  <updated>2024-04-02T16:00:00.000Z</updated>
+  <updated>2024-04-21T16:00:00.000Z</updated>
   <id>http://usmacd.com/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>知识管理的几个误区</title>
+    <link href="http://usmacd.com/cn/PKM_faults/"/>
+    <id>http://usmacd.com/cn/PKM_faults/</id>
+    <published>2024-04-21T16:00:00.000Z</published>
+    <updated>2024-04-21T16:00:00.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>查理·芒格曾多次在采访中提到，自己一辈子只研究两件事情：第一种是发现什么有效，然后实践它；第二种是发现什么是无效的，然后规避它。<br>查理·芒格会花费大量时间来研究什么事会失败，尽可能减少认知偏差。</p><p>我在知识管理方面犯过不少错误，向芒格学习总结知识管理的几个错误。</p><p>1）频繁切换笔记软件&#x2F;博客系统<br>我先后使用过 EverNote，WizNote，VNote，CSDN blog，Google blogspot, WordPress，最终只造成博客散落在多个互联网角落。有个著名的段子：你以为你在写博客，其实你是在折腾 Wordpress 插件 :)</p><p>2）频繁切换笔记格式<br>我先后使用过 txt, orgmode, markdown，富文本等多种格式，最终只造成各种格式转换烦恼。</p><p>3）闪念笔记和真正有用的笔记混杂<br>闪念笔记用于快速捕捉一瞬间的灵感，但只有你在一两天内回顾它并把它变成有用的合适的笔记才有意义。如果不及时回顾，好的想法将淹没在大量的突发奇想中。我们每天大多数的想法没有太大意义应该被丢弃，而那些可以成为重大有意义的想法我们必须将他们识别出来。</p><p>4）项目笔记和知识笔记混杂<br>只记录特定项目相关的笔记，将导致项目期间有趣的观点或者想法信息丢失。正确的做法是在项目中提取通用的知识。</p><p>5）频繁整理笔记的「洁癖」<br>大量堆积的笔记将造成知识整理冲动，多来几次就会影响坚持记录的信心。解决方法是，确定自己关注的领域和负责的责任范围，并不完全采用自下而上的知识管理方法。在达到心理挤压点时，使用 MOCS（Maps of Content）的方法整理笔记。</p><p>6）只顾记录从不回顾<br>回顾笔记是用新视角去审视旧想法，总体来说人是会不断进步的，经过一段时间后再去重温自己某个时刻的想法，可能以前的一些疑惑现在已经没有了，也可能对某个问题有了更进一步的思路，这是促使想法迭代的一种方法。</p><p>在上面几个知识管理误区中，1）和 2）主要会带来信息丢失问题，不利于后期的知识迭代和更新。3）和 4）则涉及管理知识结构问题，有人提议用「原子笔记」来解决，但真正的问题是混杂，笔记混杂就无法形成群聚效应，无法最大的发挥笔记的效用。</p><p>5）和 6）则是一些知识管理的不好习惯，这些坏习惯将减弱你持续记录的信心。</p><p>知识管理系统最重要的是在同一个地方，用同样的格式和一致的标准记录你的洞见。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;查理·芒格曾多次在采访中提到，自己一辈子只研究两件事情：第一种是发现什么有效，然后实践它；第二种是发现什么是无效的，然后规避它。&lt;br&gt;查理·芒格会花费大量时间来研究什么事会失败，尽可能减少认知偏差。&lt;/p&gt;
+&lt;p&gt;我在知识管理方面犯过不少错误，向芒格学习总结知识管理的几个</summary>
+      
+    
+    
+    
+    
+    <category term="PKM" scheme="http://usmacd.com/tags/PKM/"/>
+    
+  </entry>
   
   <entry>
     <title>李录谈价值投资</title>
@@ -314,9 +337,9 @@
     
     
     
-    <category term="linux" scheme="http://usmacd.com/tags/linux/"/>
-    
     <category term="Security" scheme="http://usmacd.com/tags/Security/"/>
+    
+    <category term="linux" scheme="http://usmacd.com/tags/linux/"/>
     
   </entry>
   
@@ -463,32 +486,6 @@
     
     
     <category term="PKM" scheme="http://usmacd.com/tags/PKM/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>图拉鼎谈独立开发</title>
-    <link href="http://usmacd.com/cn/tulading/"/>
-    <id>http://usmacd.com/cn/tulading/</id>
-    <published>2023-10-31T16:00:00.000Z</published>
-    <updated>2023-10-31T16:00:00.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>独立开发</p><ul><li>长期维护产品：消费者愿意为长期维护的产品买单，旧产品没有添加新功能也用新工具链重新编译一次</li><li>只开发自己使用的产品：评估未来几年自己是否使用产品，作为是否启动产品开发的重要因素</li><li>外包 + 独立开发 双驱动<ul><li>用外包的收入平滑独立开发的收入波动</li><li>在产品开发瓶颈期，利用外包刺激，打开思路</li></ul></li></ul><p>项目管理</p><ul><li>立项流程: 先记下 idea，冷却一段时间后如果有思路就继续完善一下 idea，直到某天还是想做，接着就开始动手</li><li>没有市场分析，没有用户分析，只有分阶段完成的 1.0、2.0 … 版本</li><li>1.0 版本为自己开发，只开发最核心的功能，2-n 通过用户的反馈完善产品</li></ul><p>工作模式</p><ul><li>充分利用灵活性，在家和在外工作的时间大致是 2:1</li><li>定期与设计师碰头，每周2-3 次</li></ul><p>状态管理</p><ul><li>有多少状态做多少事，即使状态不太好，也需要做事。</li><li>外部环境对状态有影响，可以利用图书馆等场所，将自己带入状态。</li></ul><p>时间管理（自律）</p><ul><li>曾经经历工作混乱的时期，现在严格工作时间登记，自己开发系统完成工作时间登记。</li><li>自律还包括定期 Review (日报、周报)，计划管理，保持自己的开发节奏。</li><li>工作日基本都工作和上班无差异，除非遇上紧急的事。</li></ul><p>好奇心</p><ul><li>喜欢新技术，喜欢新产品，喜欢折腾 (ubuntu Tweak)</li></ul><p>敏感度</p><ul><li>独立开发者，需要通过社交媒体、邮件列表、newsletter 连接外部世界，保持对新事物的敏感度</li></ul><p>听完 podcast，我发现图拉鼎非常强调工作和兴趣的匹配度，这可能就是他能长期维护产品的一个重要原因。</p><p>reference: <a href="https://pca.st/5v33uy2z">https://pca.st/5v33uy2z</a></p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;独立开发&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;长期维护产品：消费者愿意为长期维护的产品买单，旧产品没有添加新功能也用新工具链重新编译一次&lt;/li&gt;
-&lt;li&gt;只开发自己使用的产品：评估未来几年自己是否使用产品，作为是否启动产品开发的重要因素&lt;/li&gt;
-&lt;li&gt;外包 + 独立开发 双驱动</summary>
-      
-    
-    
-    
-    
-    <category term="Programming" scheme="http://usmacd.com/tags/Programming/"/>
     
   </entry>
   
