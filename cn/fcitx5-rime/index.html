@@ -250,7 +250,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.7k words
+          1.9k words
         
       </span>
     
@@ -261,7 +261,7 @@
         
         
         
-          15 mins
+          16 mins
         
       </span>
     
@@ -354,6 +354,14 @@
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sh">rime_frontend=fcitx5-rime bash rime-install emoji<br>rime_frontend=fcitx5-rime bash rime-install emoji:customize:schema=double_pinyin<br></code></pre></td></tr></table></figure>
 
 <p>核心的码表在 <a target="_blank" rel="noopener" href="https://github.com/rime/rime-emoji/blob/master/opencc/emoji_category.txt">https://github.com/rime/rime-emoji/blob/master/opencc/emoji_category.txt</a> 在输入汉字的时候会自动提示相应的 emoji。rime-emoji 有时候不能很准确地输出想要的 emoji 符号，这时候可以利用 emoji_category.txt 查询相关分类，例如输入 「颜色」就会显示出各种颜色。</p>
+<h2 id="添加自己词库的方法"><a href="#添加自己词库的方法" class="headerlink" title="添加自己词库的方法"></a>添加自己词库的方法</h2><p>在用户档案目录，新建一个 custom.extended.dict.yaml 内容如下</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-comment"># custom.extended.dict.yaml</span><br><span class="hljs-meta">---</span><br><span class="hljs-attr">name:</span> <span class="hljs-string">custom.extended</span><br><span class="hljs-attr">version:</span> <span class="hljs-string">&quot;2024.4.26&quot;</span><br><span class="hljs-attr">sort:</span> <span class="hljs-string">by_weight</span><br><span class="hljs-attr">use_preset_vocabulary:</span> <span class="hljs-literal">true</span><br><span class="hljs-attr">import_tables:</span><br>  <span class="hljs-bullet">-</span> <span class="hljs-string">luna_pinyin</span><br>  <span class="hljs-bullet">-</span> <span class="hljs-string">luna_pinyin.extended</span><br>  <span class="hljs-bullet">-</span> <span class="hljs-string">gemoji</span><br><span class="hljs-string">...</span><br><br><span class="hljs-string">我的新词</span><br></code></pre></td></tr></table></figure>
+
+<p>这里可以自由导入你想要添加的码表，也可以添加自己的自定义词组。我导入了 <a target="_blank" rel="noopener" href="https://gist.githubusercontent.com/chuangzhu/f60b128fbdae2e30d6edeaf3307489eb/raw/d9b6e250ca035d85190e6b6dd99c4dc1ad4f78c5/gemoji.dict.yaml">github rime Emoji 码表</a></p>
+<p>接着再于 *.schema.yaml 或 *.custom.yaml 中将 translator&#x2F;dictionary 设置成此字典档即可，例如：</p>
+<figure class="highlight nestedtext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs nestedtext"><span class="hljs-attribute">patch</span><span class="hljs-punctuation">:</span><br>  <span class="hljs-attribute">translator/dictionary</span><span class="hljs-punctuation">:</span> <span class="hljs-string">custom.extended</span><br></code></pre></td></tr></table></figure>
+
+<p>这样以后 luna_pinyin.extended 升级后，不会对自己添加的词组造成影响，可以直接升级覆盖。</p>
 <h2 id="将用户词库导入-rime"><a href="#将用户词库导入-rime" class="headerlink" title="将用户词库导入 rime"></a>将用户词库导入 rime</h2><p><code>rime_dict_manager -i luna_pinyin luna_pinyin.userdb.txt</code></p>
 <p>这一步很关键啊，多年的积累不能浪费了。</p>
 <h2 id="配置-fcitx5-皮肤"><a href="#配置-fcitx5-皮肤" class="headerlink" title="配置 fcitx5 皮肤"></a>配置 fcitx5 皮肤</h2><p>fcitx5 默认的皮肤不太好看，所以下载更新了皮肤，这款简约风格的皮肤非常符合老夫的胃口。</p>
