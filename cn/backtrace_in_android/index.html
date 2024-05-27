@@ -1,23 +1,11 @@
-
-
 <!DOCTYPE html>
-<html lang="en" data-default-color-scheme=auto>
-
-
-
+<html lang=en>
 <head>
-  <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
-  <link rel="icon" href="/img/fluid.png">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
-  <meta http-equiv="x-ua-compatible" content="ie=edge">
-  
-    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
-  
-  <meta name="theme-color" content="#2f4154">
-  <meta name="author" content="henices">
-  <meta name="keywords" content="">
-  
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
     <meta name="description" content="☆ 使用kill 发送 SIGNAL_QUIT这种方法只能用于zygote 的子进程 (比如所有的 app 进程, 都是由zygote fork 而来). 1234567891011121314151617181920212223242526272829303132333435363738# kill -3 pid# cat &#x2F;data&#x2F;anr&#x2F;traces.txt...suspend all h">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Android 获取进程的 backtrace 信息">
@@ -29,654 +17,328 @@
 <meta property="article:modified_time" content="2023-09-06T03:00:51.280Z">
 <meta property="article:author" content="henices">
 <meta property="article:tag" content="Android">
-<meta name="twitter:card" content="summary_large_image">
-  
-  
-    <meta name="referrer" content="no-referrer-when-downgrade">
-  
-  
-  <title>Android 获取进程的 backtrace 信息 - 安全代码</title>
-
-  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
-
-
-
-  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
-
-  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
-
-  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
-
-
-
-<!-- 主题依赖的图标库，不要自行修改 -->
-<!-- Do not modify the link that theme dependent icons -->
-
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
-
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>Android 获取进程的 backtrace 信息</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
 
 
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+    <!-- Umami Analytics -->
 
 
-<link  rel="stylesheet" href="/css/main.css" />
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
 
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+      <link rel="alternate" href="https://www.usmacd.com/rss.xml" title="安全代码" type="application/atom+xml" />
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 7.2.0"></head>
 
-  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
-  
-    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
-  
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     --><!--
+       --><li><a href="/search/">Search</a></li><!--
+     --><!--
+       --><li><a href="/links/">Links</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="Previous post" href="/cn/BaiduNetdisk/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="Next post" href="/cn/Automatic_Investment_Plan/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://usmacd.com/cn/backtrace_in_android/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://usmacd.com/cn/backtrace_in_android/&text=Android 获取进程的 backtrace 信息"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://usmacd.com/cn/backtrace_in_android/&title=Android 获取进程的 backtrace 信息"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://usmacd.com/cn/backtrace_in_android/&is_video=false&description=Android 获取进程的 backtrace 信息"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Android 获取进程的 backtrace 信息&body=Check out this article: http://usmacd.com/cn/backtrace_in_android/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://usmacd.com/cn/backtrace_in_android/&title=Android 获取进程的 backtrace 信息"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://usmacd.com/cn/backtrace_in_android/&title=Android 获取进程的 backtrace 信息"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://usmacd.com/cn/backtrace_in_android/&title=Android 获取进程的 backtrace 信息"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://usmacd.com/cn/backtrace_in_android/&title=Android 获取进程的 backtrace 信息"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://usmacd.com/cn/backtrace_in_android/&name=Android 获取进程的 backtrace 信息&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://usmacd.com/cn/backtrace_in_android/&t=Android 获取进程的 backtrace 信息"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
 
+    </div>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E2%98%86-%E4%BD%BF%E7%94%A8kill-%E5%8F%91%E9%80%81-SIGNAL-QUIT"><span class="toc-number">1.</span> <span class="toc-text">☆ 使用kill 发送 SIGNAL_QUIT</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E2%98%86-%E4%BD%BF%E7%94%A8-debugged-%E5%91%BD%E4%BB%A4%E8%A1%8C"><span class="toc-number">2.</span> <span class="toc-text">☆ 使用 debugged 命令行</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E2%98%86-java-%E4%BB%A3%E7%A0%81%E4%B8%AD%E6%89%93%E5%8D%B0%E8%B0%83%E7%94%A8%E6%A0%88"><span class="toc-number">3.</span> <span class="toc-text">☆ java 代码中打印调用栈</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E2%98%86-C-%E4%BB%A3%E7%A0%81%E4%B8%AD%E6%89%93%E5%8D%B0%E8%B0%83%E7%94%A8%E6%A0%88"><span class="toc-number">4.</span> <span class="toc-text">☆ C++代码中打印调用栈</span></a></li></ol>
+      </div>
+    
+  </span>
+</div>
 
-
-
-  <script id="fluid-configs">
-    var Fluid = window.Fluid || {};
-    Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"usmacd.com","root":"/","version":"1.9.7","typing":{"enable":false,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
-
-    if (CONFIG.web_analytics.follow_dnt) {
-      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
-      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
-    }
-  </script>
-  <script  src="/js/utils.js" ></script>
-  <script  src="/js/color-schema.js" ></script>
-  
-
-
-  
-<meta name="generator" content="Hexo 7.2.0"><link rel="alternate" href="/atom.xml" title="安全代码" type="application/atom+xml">
-<link rel="alternate" href="/rss.xml" title="安全代码" type="application/rss+xml">
-</head>
-
-
-<body>
-  
-
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
   <header>
     
+    <h1 class="posttitle p-name" itemprop="name headline">
+        Android 获取进程的 backtrace 信息
+    </h1>
 
-<div class="header-inner" style="height: 70vh;">
-  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
-  <div class="container">
-    <a class="navbar-brand" href="/">
-      <strong>安全代码</strong>
-    </a>
 
-    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
-            data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <div class="animated-icon"><span></span><span></span><span></span></div>
-    </button>
 
-    <!-- Collapsible content -->
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav ml-auto text-center">
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">henices</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2023-09-06T03:00:51.280Z" class="dt-published" itemprop="datePublished">2023-09-06</time>
         
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/" target="_self">
-                <i class="iconfont icon-home-fill"></i>
-                <span>Home</span>
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/archives/" target="_self">
-                <i class="iconfont icon-archive-fill"></i>
-                <span>Archives</span>
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/tags/" target="_self">
-                <i class="iconfont icon-tags-fill"></i>
-                <span>Tags</span>
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/about/" target="_self">
-                <i class="iconfont icon-user-fill"></i>
-                <span>About</span>
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/links/" target="_self">
-                <i class="iconfont icon-link-fill"></i>
-                <span>Links</span>
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/rss.xml" target="_self">
-                <i class="iconfont icon-rss"></i>
-                <span>rss</span>
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/sitemap.xml" target="_self">
-                
-                <span>sitemap</span>
-              </a>
-            </li>
-          
-        
-        
-          <li class="nav-item" id="search-btn">
-            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
-              <i class="iconfont icon-search"></i>
-            </a>
-          </li>
-          
-        
-        
-          <li class="nav-item" id="color-toggle-btn">
-            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
-              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
-            </a>
-          </li>
-        
-      </ul>
+      
     </div>
-  </div>
-</nav>
 
+
+      
+
+      
+    <div class="article-tag">
+        <i class="fa-solid fa-tag"></i>
+        <a class="p-category" href="/tags/Android/" rel="tag">Android</a>
+    </div>
+
+
+    </div>
+  </header>
   
 
-<div id="banner" class="banner" parallax=true
-     style="background: url('https://images.unsplash.com/photo-1473181488821-2d23949a045a?w=640') no-repeat center center; background-size: cover;">
-  <div class="full-bg-img">
-    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
-      <div class="banner-text text-center fade-in-up">
-        <div class="h2">
-          
-            <span id="subtitle">Android 获取进程的 backtrace 信息</span>
-          
-        </div>
-
-        
-          
-  <div class="mt-3">
-    
-    
-      <span class="post-meta">
-        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-09-06 11:00" pubdate>
-          September 6, 2023 am
-        </time>
-      </span>
-    
-  </div>
-
-  <div class="mt-1">
-    
-      <span class="post-meta mr-2">
-        <i class="iconfont icon-chart"></i>
-        
-          901 words
-        
-      </span>
-    
-
-    
-      <span class="post-meta mr-2">
-        <i class="iconfont icon-clock-fill"></i>
-        
-        
-        
-          8 mins
-        
-      </span>
-    
-
-    
-    
-      
-        <span id="busuanzi_container_page_pv" style="display: none">
-          <i class="iconfont icon-eye" aria-hidden="true"></i>
-          <span id="busuanzi_value_page_pv"></span> views
-        </span>
-        
-      
-    
-  </div>
-
-
-        
-      </div>
-
-      
-    </div>
-  </div>
-</div>
-
-</div>
-
-  </header>
-
-  <main>
-    
-      
-
-<div class="container-fluid nopadding-x">
-  <div class="row nomargin-x">
-    <div class="side-col d-none d-lg-block col-lg-2">
-      
-
-    </div>
-
-    <div class="col-lg-8 nopadding-x-md">
-      <div class="container nopadding-x-md" id="board-ctn">
-        <div id="board">
-          <article class="post-content mx-auto">
-            <h1 id="seo-header">Android 获取进程的 backtrace 信息</h1>
-            
-            
-              <div class="markdown-body">
-                
-                <h2 id="☆-使用kill-发送-SIGNAL-QUIT"><a href="#☆-使用kill-发送-SIGNAL-QUIT" class="headerlink" title="☆ 使用kill 发送 SIGNAL_QUIT"></a>☆ 使用kill 发送 SIGNAL_QUIT</h2><p>这种方法只能用于zygote 的子进程 (比如所有的 app 进程, 都是由zygote fork 而来).</p>
-<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><code class="hljs routeros"><span class="hljs-comment"># kill -3 pid</span><br><br><span class="hljs-comment"># cat /data/anr/traces.txt</span><br><br><span class="hljs-built_in">..</span>.<br><br>suspend all histogram:  Sum: 290us 99% C.I. 2us-40us Avg: 14.500us Max: 40us<br>DALVIK THREADS (12):<br><span class="hljs-string">&quot;Signal Catcher&quot;</span> daemon <span class="hljs-attribute">prio</span>=5 <span class="hljs-attribute">tid</span>=2 Runnable<br>  | <span class="hljs-attribute">group</span>=<span class="hljs-string">&quot;system&quot;</span> <span class="hljs-attribute">sCount</span>=0 <span class="hljs-attribute">dsCount</span>=0 <span class="hljs-attribute">obj</span>=0x32c070a0 <span class="hljs-attribute">self</span>=0xaecca000<br>  | <span class="hljs-attribute">sysTid</span>=1918 <span class="hljs-attribute">nice</span>=0 <span class="hljs-attribute">cgrp</span>=bg_non_interactive <span class="hljs-attribute">sched</span>=0/0 <span class="hljs-attribute">handle</span>=0xb4406930<br>  | <span class="hljs-attribute">state</span>=R schedstat=( 228351607 17443703 83 ) <span class="hljs-attribute">utm</span>=12 <span class="hljs-attribute">stm</span>=9 <span class="hljs-attribute">core</span>=0 <span class="hljs-attribute">HZ</span>=100<br>  | <span class="hljs-attribute">stack</span>=0xb430a000-0xb430c000 <span class="hljs-attribute">stackSize</span>=1014KB<br>  | held mutexes= <span class="hljs-string">&quot;mutator lock&quot;</span>(shared held)<br>  native: #00 pc 00370e01  /system/lib/libart.so (_ZN3art15DumpNativeStackERNSt3__113basic_ostreamIcNS0_11char_traitsIcEEEEiPKcPNS_9ArtMethodEPv+160)<br>  native: #01 pc 0035046f  /system/lib/libart.so (_ZNK3art6Thread4DumpERNSt3__113basic_ostreamIcNS1_11char_traitsIcEEEE+150)<br>  native: #02 pc 0035a373  /system/lib/libart.so (_ZN3art14DumpCheckpoint3RunEPNS_6ThreadE+442)<br>  native: #03 pc 0035af31  /system/lib/libart.so (_ZN3art10ThreadList13RunCheckpointEPNS_7ClosureE+212)<br>  native: #04 pc 0035b45f  /system/lib/libart.so (_ZN3art10ThreadList4DumpERNSt3__113basic_ostreamIcNS1_11char_traitsIcEEEE+142)<br>  native: #05 pc 0035bb6f  /system/lib/libart.so (_ZN3art10ThreadList14DumpForSigQuitERNSt3__113basic_ostreamIcNS1_11char_traitsIcEEEE+334)<br>  native: #06 pc 00333cb7  /system/lib/libart.so (_ZN3art7Runtime14DumpForSigQuitERNSt3__113basic_ostreamIcNS1_11char_traitsIcEEEE+74)<br>  native: #07 pc 0033b01d  /system/lib/libart.so (_ZN3art13SignalCatcher13HandleSigQuitEv+928)<br>  native: #08 pc 0033b901  /system/lib/libart.so (_ZN3art13SignalCatcher3RunEPv+340)<br>  native: #09 pc 0003f45f  /system/lib/libc.so (_ZL15__pthread_startPv+30)<br>  native: #10 pc 00019b43  /system/lib/libc.so (__start_thread+6)<br>  (<span class="hljs-literal">no</span> managed stack frames)<br><br><span class="hljs-string">&quot;main&quot;</span> <span class="hljs-attribute">prio</span>=5 <span class="hljs-attribute">tid</span>=1 Native<br>  | <span class="hljs-attribute">group</span>=<span class="hljs-string">&quot;main&quot;</span> <span class="hljs-attribute">sCount</span>=1 <span class="hljs-attribute">dsCount</span>=0 <span class="hljs-attribute">obj</span>=0x74abb2a0 <span class="hljs-attribute">self</span>=0xb4d76500<br>  | <span class="hljs-attribute">sysTid</span>=1914 <span class="hljs-attribute">nice</span>=0 <span class="hljs-attribute">cgrp</span>=bg_non_interactive <span class="hljs-attribute">sched</span>=0/0 <span class="hljs-attribute">handle</span>=0xb6f3fb34<br>  | <span class="hljs-attribute">state</span>=S schedstat=( 76934470 21396828 203 ) <span class="hljs-attribute">utm</span>=3 <span class="hljs-attribute">stm</span>=3 <span class="hljs-attribute">core</span>=0 <span class="hljs-attribute">HZ</span>=100<br>  | <span class="hljs-attribute">stack</span>=0xbe55e000-0xbe560000 <span class="hljs-attribute">stackSize</span>=8MB<br>  | held mutexes=<br>  native: #00 pc 00040894  /system/lib/libc.so (__epoll_pwait+20)<br>  native: #01 pc 00019e6f  /system/lib/libc.so (epoll_pwait+26)<br><br>  <span class="hljs-built_in">..</span>.<br><br></code></pre></td></tr></table></figure>
+  <div class="content e-content" itemprop="articleBody">
+    <h2 id="☆-使用kill-发送-SIGNAL-QUIT"><a href="#☆-使用kill-发送-SIGNAL-QUIT" class="headerlink" title="☆ 使用kill 发送 SIGNAL_QUIT"></a>☆ 使用kill 发送 SIGNAL_QUIT</h2><p>这种方法只能用于zygote 的子进程 (比如所有的 app 进程, 都是由zygote fork 而来).</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"># kill -3 pid</span><br><span class="line"></span><br><span class="line"># cat /data/anr/traces.txt</span><br><span class="line"></span><br><span class="line">...</span><br><span class="line"></span><br><span class="line">suspend all histogram:  Sum: 290us 99% C.I. 2us-40us Avg: 14.500us Max: 40us</span><br><span class="line">DALVIK THREADS (12):</span><br><span class="line">&quot;Signal Catcher&quot; daemon prio=5 tid=2 Runnable</span><br><span class="line">  | group=&quot;system&quot; sCount=0 dsCount=0 obj=0x32c070a0 self=0xaecca000</span><br><span class="line">  | sysTid=1918 nice=0 cgrp=bg_non_interactive sched=0/0 handle=0xb4406930</span><br><span class="line">  | state=R schedstat=( 228351607 17443703 83 ) utm=12 stm=9 core=0 HZ=100</span><br><span class="line">  | stack=0xb430a000-0xb430c000 stackSize=1014KB</span><br><span class="line">  | held mutexes= &quot;mutator lock&quot;(shared held)</span><br><span class="line">  native: #00 pc 00370e01  /system/lib/libart.so (_ZN3art15DumpNativeStackERNSt3__113basic_ostreamIcNS0_11char_traitsIcEEEEiPKcPNS_9ArtMethodEPv+160)</span><br><span class="line">  native: #01 pc 0035046f  /system/lib/libart.so (_ZNK3art6Thread4DumpERNSt3__113basic_ostreamIcNS1_11char_traitsIcEEEE+150)</span><br><span class="line">  native: #02 pc 0035a373  /system/lib/libart.so (_ZN3art14DumpCheckpoint3RunEPNS_6ThreadE+442)</span><br><span class="line">  native: #03 pc 0035af31  /system/lib/libart.so (_ZN3art10ThreadList13RunCheckpointEPNS_7ClosureE+212)</span><br><span class="line">  native: #04 pc 0035b45f  /system/lib/libart.so (_ZN3art10ThreadList4DumpERNSt3__113basic_ostreamIcNS1_11char_traitsIcEEEE+142)</span><br><span class="line">  native: #05 pc 0035bb6f  /system/lib/libart.so (_ZN3art10ThreadList14DumpForSigQuitERNSt3__113basic_ostreamIcNS1_11char_traitsIcEEEE+334)</span><br><span class="line">  native: #06 pc 00333cb7  /system/lib/libart.so (_ZN3art7Runtime14DumpForSigQuitERNSt3__113basic_ostreamIcNS1_11char_traitsIcEEEE+74)</span><br><span class="line">  native: #07 pc 0033b01d  /system/lib/libart.so (_ZN3art13SignalCatcher13HandleSigQuitEv+928)</span><br><span class="line">  native: #08 pc 0033b901  /system/lib/libart.so (_ZN3art13SignalCatcher3RunEPv+340)</span><br><span class="line">  native: #09 pc 0003f45f  /system/lib/libc.so (_ZL15__pthread_startPv+30)</span><br><span class="line">  native: #10 pc 00019b43  /system/lib/libc.so (__start_thread+6)</span><br><span class="line">  (no managed stack frames)</span><br><span class="line"></span><br><span class="line">&quot;main&quot; prio=5 tid=1 Native</span><br><span class="line">  | group=&quot;main&quot; sCount=1 dsCount=0 obj=0x74abb2a0 self=0xb4d76500</span><br><span class="line">  | sysTid=1914 nice=0 cgrp=bg_non_interactive sched=0/0 handle=0xb6f3fb34</span><br><span class="line">  | state=S schedstat=( 76934470 21396828 203 ) utm=3 stm=3 core=0 HZ=100</span><br><span class="line">  | stack=0xbe55e000-0xbe560000 stackSize=8MB</span><br><span class="line">  | held mutexes=</span><br><span class="line">  native: #00 pc 00040894  /system/lib/libc.so (__epoll_pwait+20)</span><br><span class="line">  native: #01 pc 00019e6f  /system/lib/libc.so (epoll_pwait+26)</span><br><span class="line"></span><br><span class="line">  ...</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 <p>结果写在 &#x2F;data&#x2F;anr&#x2F;traces.txt 文件中, anr 是 ANR(Application Not Response)的意思.</p>
 <p><a target="_blank" rel="noopener" href="https://android.googlesource.com/platform/art/+/android-7.1.1_r13/runtime/runtime.cc">https://android.googlesource.com/platform/art/+/android-7.1.1_r13/runtime/runtime.cc</a></p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">Runtime::InitNonZygoteOrPostFork</span><span class="hljs-params">(</span></span><br><span class="hljs-params"><span class="hljs-function">    JNIEnv* env, <span class="hljs-type">bool</span> is_system_server, NativeBridgeAction action, <span class="hljs-type">const</span> <span class="hljs-type">char</span>* isa)</span> </span>&#123;<br><br>...<br><br>  <span class="hljs-comment">// Create the thread pools.</span><br>  heap_-&gt;<span class="hljs-built_in">CreateThreadPool</span>();<br>  <span class="hljs-comment">// Reset the gc performance data at zygote fork so that the GCs</span><br>  <span class="hljs-comment">// before fork aren&#x27;t attributed to an app.</span><br>  heap_-&gt;<span class="hljs-built_in">ResetGcPerformanceInfo</span>();<br>  <span class="hljs-keyword">if</span> (!is_system_server &amp;&amp;<br>      !safe_mode_ &amp;&amp;<br>      (jit_options_-&gt;<span class="hljs-built_in">UseJitCompilation</span>() || jit_options_-&gt;<span class="hljs-built_in">GetSaveProfilingInfo</span>()) &amp;&amp;<br>      jit_.<span class="hljs-built_in">get</span>() == <span class="hljs-literal">nullptr</span>) &#123;<br>    <span class="hljs-comment">// Note that when running ART standalone (not zygote, nor zygote fork),</span><br>    <span class="hljs-comment">// the jit may have already been created.</span><br>    <span class="hljs-built_in">CreateJit</span>();<br>  &#125;<br>  <span class="hljs-built_in">StartSignalCatcher</span>();<br>  <span class="hljs-comment">// Start the JDWP thread. If the command-line debugger flags specified &quot;suspend=y&quot;,</span><br>  <span class="hljs-comment">// this will pause the runtime, so we probably want this to come last.</span><br>  Dbg::<span class="hljs-built_in">StartJdwp</span>();<br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">Runtime::InitNonZygoteOrPostFork</span><span class="params">(</span></span></span><br><span class="line"><span class="params"><span class="function">    JNIEnv* env, <span class="type">bool</span> is_system_server, NativeBridgeAction action, <span class="type">const</span> <span class="type">char</span>* isa)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">...</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Create the thread pools.</span></span><br><span class="line">  heap_-&gt;<span class="built_in">CreateThreadPool</span>();</span><br><span class="line">  <span class="comment">// Reset the gc performance data at zygote fork so that the GCs</span></span><br><span class="line">  <span class="comment">// before fork aren&#x27;t attributed to an app.</span></span><br><span class="line">  heap_-&gt;<span class="built_in">ResetGcPerformanceInfo</span>();</span><br><span class="line">  <span class="keyword">if</span> (!is_system_server &amp;&amp;</span><br><span class="line">      !safe_mode_ &amp;&amp;</span><br><span class="line">      (jit_options_-&gt;<span class="built_in">UseJitCompilation</span>() || jit_options_-&gt;<span class="built_in">GetSaveProfilingInfo</span>()) &amp;&amp;</span><br><span class="line">      jit_.<span class="built_in">get</span>() == <span class="literal">nullptr</span>) &#123;</span><br><span class="line">    <span class="comment">// Note that when running ART standalone (not zygote, nor zygote fork),</span></span><br><span class="line">    <span class="comment">// the jit may have already been created.</span></span><br><span class="line">    <span class="built_in">CreateJit</span>();</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="built_in">StartSignalCatcher</span>();</span><br><span class="line">  <span class="comment">// Start the JDWP thread. If the command-line debugger flags specified &quot;suspend=y&quot;,</span></span><br><span class="line">  <span class="comment">// this will pause the runtime, so we probably want this to come last.</span></span><br><span class="line">  Dbg::<span class="built_in">StartJdwp</span>();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>可以看出非zygote的进程都会启动 Signal Catcher的 线程.</p>
-<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">root</span>@shamu:/ # ps -t <span class="hljs-number">2089</span><br><span class="hljs-attribute">USER</span>      PID   PPID  VSIZE  RSS   WCHAN            PC  NAME<br><span class="hljs-attribute">u0_a58</span>    <span class="hljs-number">2089</span>  <span class="hljs-number">386</span>   <span class="hljs-number">1565280</span> <span class="hljs-number">53732</span> SyS_epoll_ b6cb0894 S com.hujiang.dict:pushservice<br><span class="hljs-attribute">u0_a58</span>    <span class="hljs-number">2092</span>  <span class="hljs-number">2089</span>  <span class="hljs-number">1565280</span> <span class="hljs-number">53732</span> do_sigtime b6cb0b68 S Signal Catcher<br><span class="hljs-attribute">u0_a58</span>    <span class="hljs-number">2095</span>  <span class="hljs-number">2089</span>  <span class="hljs-number">1565280</span> <span class="hljs-number">53732</span> unix_strea b6cb194c S JDWP<br><span class="hljs-attribute">u0_a58</span>    <span class="hljs-number">2096</span>  <span class="hljs-number">2089</span>  <span class="hljs-number">1565280</span> <span class="hljs-number">53732</span> futex_wait b6c875e8 S ReferenceQueueD<br><span class="hljs-attribute">u0_a58</span>    <span class="hljs-number">2097</span>  <span class="hljs-number">2089</span>  <span class="hljs-number">1565280</span> <span class="hljs-number">53732</span> futex_wait b6c875e8 S FinalizerDaemon<br><span class="hljs-attribute">u0_a58</span>    <span class="hljs-number">2099</span>  <span class="hljs-number">2089</span>  <span class="hljs-number">1565280</span> <span class="hljs-number">53732</span> futex_wait b6c875e8 S FinalizerWatchd<br><span class="hljs-attribute">u0_a58</span>    <span class="hljs-number">2100</span>  <span class="hljs-number">2089</span>  <span class="hljs-number">1565280</span> <span class="hljs-number">53732</span> futex_wait b6c875e8 S HeapTaskDaemon<br><span class="hljs-attribute">u0_a58</span>    <span class="hljs-number">2101</span>  <span class="hljs-number">2089</span>  <span class="hljs-number">1565280</span> <span class="hljs-number">53732</span> binder_thr b6cb09c0 S Binder_1<br><span class="hljs-attribute">u0_a58</span>    <span class="hljs-number">2102</span>  <span class="hljs-number">2089</span>  <span class="hljs-number">1565280</span> <span class="hljs-number">53732</span> binder_thr b6cb09c0 S Binder_2<br><span class="hljs-attribute">u0_a58</span>    <span class="hljs-number">2107</span>  <span class="hljs-number">2089</span>  <span class="hljs-number">1565280</span> <span class="hljs-number">53732</span> SyS_epoll_ b6cb0894 S Thread-<span class="hljs-number">123</span><br><span class="hljs-attribute">u0_a58</span>    <span class="hljs-number">2108</span>  <span class="hljs-number">2089</span>  <span class="hljs-number">1565280</span> <span class="hljs-number">53732</span> futex_wait b6c875e8 S taskService-pro<br><br><span class="hljs-attribute">zygote</span> 自己没有该线程.<br><br><span class="hljs-attribute">root</span>@shamu:/ # ps | grep -i zy<br><span class="hljs-attribute">root</span>      <span class="hljs-number">386</span>   <span class="hljs-number">1</span>     <span class="hljs-number">1528448</span> <span class="hljs-number">67416</span> poll_sched b6cb0a5c S zygote<br><br><span class="hljs-attribute">127</span>|root@shamu:/ # ps -t <span class="hljs-number">386</span><br><span class="hljs-attribute">USER</span>      PID   PPID  VSIZE  RSS   WCHAN            PC  NAME<br><span class="hljs-attribute">root</span>      <span class="hljs-number">386</span>   <span class="hljs-number">1</span>     <span class="hljs-number">1528448</span> <span class="hljs-number">67416</span> poll_sched b6cb0a5c S zygote<br><span class="hljs-attribute">root</span>      <span class="hljs-number">2203</span>  <span class="hljs-number">386</span>   <span class="hljs-number">1528448</span> <span class="hljs-number">67416</span> futex_wait b6c875e8 S ReferenceQueueD<br><span class="hljs-attribute">root</span>      <span class="hljs-number">2204</span>  <span class="hljs-number">386</span>   <span class="hljs-number">1528448</span> <span class="hljs-number">67416</span> futex_wait b6c875e8 S FinalizerDaemon<br><span class="hljs-attribute">root</span>      <span class="hljs-number">2205</span>  <span class="hljs-number">386</span>   <span class="hljs-number">1528448</span> <span class="hljs-number">67416</span> futex_wait b6c875e8 S FinalizerWatchd<br><span class="hljs-attribute">root</span>      <span class="hljs-number">2206</span>  <span class="hljs-number">386</span>   <span class="hljs-number">1528448</span> <span class="hljs-number">67416</span> futex_wait b6c875e8 S HeapTaskDaemon<br><br></code></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">root@shamu:/ # ps -t 2089</span><br><span class="line">USER      PID   PPID  VSIZE  RSS   WCHAN            PC  NAME</span><br><span class="line">u0_a58    2089  386   1565280 53732 SyS_epoll_ b6cb0894 S com.hujiang.dict:pushservice</span><br><span class="line">u0_a58    2092  2089  1565280 53732 do_sigtime b6cb0b68 S Signal Catcher</span><br><span class="line">u0_a58    2095  2089  1565280 53732 unix_strea b6cb194c S JDWP</span><br><span class="line">u0_a58    2096  2089  1565280 53732 futex_wait b6c875e8 S ReferenceQueueD</span><br><span class="line">u0_a58    2097  2089  1565280 53732 futex_wait b6c875e8 S FinalizerDaemon</span><br><span class="line">u0_a58    2099  2089  1565280 53732 futex_wait b6c875e8 S FinalizerWatchd</span><br><span class="line">u0_a58    2100  2089  1565280 53732 futex_wait b6c875e8 S HeapTaskDaemon</span><br><span class="line">u0_a58    2101  2089  1565280 53732 binder_thr b6cb09c0 S Binder_1</span><br><span class="line">u0_a58    2102  2089  1565280 53732 binder_thr b6cb09c0 S Binder_2</span><br><span class="line">u0_a58    2107  2089  1565280 53732 SyS_epoll_ b6cb0894 S Thread-123</span><br><span class="line">u0_a58    2108  2089  1565280 53732 futex_wait b6c875e8 S taskService-pro</span><br><span class="line"></span><br><span class="line">zygote 自己没有该线程.</span><br><span class="line"></span><br><span class="line">root@shamu:/ # ps | grep -i zy</span><br><span class="line">root      386   1     1528448 67416 poll_sched b6cb0a5c S zygote</span><br><span class="line"></span><br><span class="line">127|root@shamu:/ # ps -t 386</span><br><span class="line">USER      PID   PPID  VSIZE  RSS   WCHAN            PC  NAME</span><br><span class="line">root      386   1     1528448 67416 poll_sched b6cb0a5c S zygote</span><br><span class="line">root      2203  386   1528448 67416 futex_wait b6c875e8 S ReferenceQueueD</span><br><span class="line">root      2204  386   1528448 67416 futex_wait b6c875e8 S FinalizerDaemon</span><br><span class="line">root      2205  386   1528448 67416 futex_wait b6c875e8 S FinalizerWatchd</span><br><span class="line">root      2206  386   1528448 67416 futex_wait b6c875e8 S HeapTaskDaemon</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 <p><a target="_blank" rel="noopener" href="https://android.googlesource.com/platform/art/+/android-7.1.1_r13/runtime/signal_catcher.cc">https://android.googlesource.com/platform/art/+/android-7.1.1_r13/runtime/signal_catcher.cc</a></p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><code class="hljs cpp">...<br><br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">SignalCatcher::Output</span><span class="hljs-params">(<span class="hljs-type">const</span> std::string&amp; s)</span> </span>&#123;<br>  <span class="hljs-keyword">if</span> (stack_trace_file_.<span class="hljs-built_in">empty</span>()) &#123;<br>    <span class="hljs-built_in">LOG</span>(INFO) &lt;&lt; s;<br>    <span class="hljs-keyword">return</span>;<br>  &#125;<br>...<br><br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">SignalCatcher::HandleSigQuit</span><span class="hljs-params">()</span> </span>&#123;<br>  Runtime* runtime = Runtime::<span class="hljs-built_in">Current</span>();<br>  std::ostringstream os;<br>  os &lt;&lt; <span class="hljs-string">&quot;\n&quot;</span><br>      &lt;&lt; <span class="hljs-string">&quot;----- pid &quot;</span> &lt;&lt; <span class="hljs-built_in">getpid</span>() &lt;&lt; <span class="hljs-string">&quot; at &quot;</span> &lt;&lt; <span class="hljs-built_in">GetIsoDate</span>() &lt;&lt; <span class="hljs-string">&quot; -----\n&quot;</span>;<br>  <span class="hljs-built_in">DumpCmdLine</span>(os);<br>  <span class="hljs-comment">// Note: The strings &quot;Build fingerprint:&quot; and &quot;ABI:&quot; are chosen to match the format used by</span><br>  <span class="hljs-comment">// debuggerd. This allows, for example, the stack tool to work.</span><br>  std::string fingerprint = runtime-&gt;<span class="hljs-built_in">GetFingerprint</span>();<br>  os &lt;&lt; <span class="hljs-string">&quot;Build fingerprint: &#x27;&quot;</span> &lt;&lt; (fingerprint.<span class="hljs-built_in">empty</span>() ? <span class="hljs-string">&quot;unknown&quot;</span> : fingerprint) &lt;&lt; <span class="hljs-string">&quot;&#x27;\n&quot;</span>;<br>  os &lt;&lt; <span class="hljs-string">&quot;ABI: &#x27;&quot;</span> &lt;&lt; <span class="hljs-built_in">GetInstructionSetString</span>(runtime-&gt;<span class="hljs-built_in">GetInstructionSet</span>()) &lt;&lt; <span class="hljs-string">&quot;&#x27;\n&quot;</span>;<br>  os &lt;&lt; <span class="hljs-string">&quot;Build type: &quot;</span> &lt;&lt; (kIsDebugBuild ? <span class="hljs-string">&quot;debug&quot;</span> : <span class="hljs-string">&quot;optimized&quot;</span>) &lt;&lt; <span class="hljs-string">&quot;\n&quot;</span>;<br>  runtime-&gt;<span class="hljs-built_in">DumpForSigQuit</span>(os);<br>  <span class="hljs-keyword">if</span> ((<span class="hljs-literal">false</span>)) &#123;<br>    std::string maps;<br>    <span class="hljs-keyword">if</span> (<span class="hljs-built_in">ReadFileToString</span>(<span class="hljs-string">&quot;/proc/self/maps&quot;</span>, &amp;maps)) &#123;<br>      os &lt;&lt; <span class="hljs-string">&quot;/proc/self/maps:\n&quot;</span> &lt;&lt; maps;<br>    &#125;<br>  &#125;<br>  os &lt;&lt; <span class="hljs-string">&quot;----- end &quot;</span> &lt;&lt; <span class="hljs-built_in">getpid</span>() &lt;&lt; <span class="hljs-string">&quot; -----\n&quot;</span>;<br>  <span class="hljs-built_in">Output</span>(os.<span class="hljs-built_in">str</span>());<br>&#125;<br><br>...<br><br><span class="hljs-keyword">while</span> (<span class="hljs-literal">true</span>) &#123;<br>    <span class="hljs-type">int</span> signal_number = signal_catcher-&gt;<span class="hljs-built_in">WaitForSignal</span>(self, signals);<br>    <span class="hljs-keyword">if</span> (signal_catcher-&gt;<span class="hljs-built_in">ShouldHalt</span>()) &#123;<br>      runtime-&gt;<span class="hljs-built_in">DetachCurrentThread</span>();<br>      <span class="hljs-keyword">return</span> <span class="hljs-literal">nullptr</span>;<br>    &#125;<br>    <span class="hljs-keyword">switch</span> (signal_number) &#123;<br>    <span class="hljs-keyword">case</span> SIGQUIT:<br>      signal_catcher-&gt;<span class="hljs-built_in">HandleSigQuit</span>();<br>      <span class="hljs-keyword">break</span>;<br>    <span class="hljs-keyword">case</span> SIGUSR1:<br>      signal_catcher-&gt;<span class="hljs-built_in">HandleSigUsr1</span>();<br>      <span class="hljs-keyword">break</span>;<br>    <span class="hljs-keyword">default</span>:<br>      <span class="hljs-built_in">LOG</span>(ERROR) &lt;&lt; <span class="hljs-string">&quot;Unexpected signal %d&quot;</span> &lt;&lt; signal_number;<br>      <span class="hljs-keyword">break</span>;<br>    &#125;<br>  &#125;<br>...<br><br></code></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">SignalCatcher::Output</span><span class="params">(<span class="type">const</span> std::string&amp; s)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (stack_trace_file_.<span class="built_in">empty</span>()) &#123;</span><br><span class="line">    <span class="built_in">LOG</span>(INFO) &lt;&lt; s;</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">  &#125;</span><br><span class="line">...</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">SignalCatcher::HandleSigQuit</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  Runtime* runtime = Runtime::<span class="built_in">Current</span>();</span><br><span class="line">  std::ostringstream os;</span><br><span class="line">  os &lt;&lt; <span class="string">&quot;\n&quot;</span></span><br><span class="line">      &lt;&lt; <span class="string">&quot;----- pid &quot;</span> &lt;&lt; <span class="built_in">getpid</span>() &lt;&lt; <span class="string">&quot; at &quot;</span> &lt;&lt; <span class="built_in">GetIsoDate</span>() &lt;&lt; <span class="string">&quot; -----\n&quot;</span>;</span><br><span class="line">  <span class="built_in">DumpCmdLine</span>(os);</span><br><span class="line">  <span class="comment">// Note: The strings &quot;Build fingerprint:&quot; and &quot;ABI:&quot; are chosen to match the format used by</span></span><br><span class="line">  <span class="comment">// debuggerd. This allows, for example, the stack tool to work.</span></span><br><span class="line">  std::string fingerprint = runtime-&gt;<span class="built_in">GetFingerprint</span>();</span><br><span class="line">  os &lt;&lt; <span class="string">&quot;Build fingerprint: &#x27;&quot;</span> &lt;&lt; (fingerprint.<span class="built_in">empty</span>() ? <span class="string">&quot;unknown&quot;</span> : fingerprint) &lt;&lt; <span class="string">&quot;&#x27;\n&quot;</span>;</span><br><span class="line">  os &lt;&lt; <span class="string">&quot;ABI: &#x27;&quot;</span> &lt;&lt; <span class="built_in">GetInstructionSetString</span>(runtime-&gt;<span class="built_in">GetInstructionSet</span>()) &lt;&lt; <span class="string">&quot;&#x27;\n&quot;</span>;</span><br><span class="line">  os &lt;&lt; <span class="string">&quot;Build type: &quot;</span> &lt;&lt; (kIsDebugBuild ? <span class="string">&quot;debug&quot;</span> : <span class="string">&quot;optimized&quot;</span>) &lt;&lt; <span class="string">&quot;\n&quot;</span>;</span><br><span class="line">  runtime-&gt;<span class="built_in">DumpForSigQuit</span>(os);</span><br><span class="line">  <span class="keyword">if</span> ((<span class="literal">false</span>)) &#123;</span><br><span class="line">    std::string maps;</span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">ReadFileToString</span>(<span class="string">&quot;/proc/self/maps&quot;</span>, &amp;maps)) &#123;</span><br><span class="line">      os &lt;&lt; <span class="string">&quot;/proc/self/maps:\n&quot;</span> &lt;&lt; maps;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  os &lt;&lt; <span class="string">&quot;----- end &quot;</span> &lt;&lt; <span class="built_in">getpid</span>() &lt;&lt; <span class="string">&quot; -----\n&quot;</span>;</span><br><span class="line">  <span class="built_in">Output</span>(os.<span class="built_in">str</span>());</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">...</span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">    <span class="type">int</span> signal_number = signal_catcher-&gt;<span class="built_in">WaitForSignal</span>(self, signals);</span><br><span class="line">    <span class="keyword">if</span> (signal_catcher-&gt;<span class="built_in">ShouldHalt</span>()) &#123;</span><br><span class="line">      runtime-&gt;<span class="built_in">DetachCurrentThread</span>();</span><br><span class="line">      <span class="keyword">return</span> <span class="literal">nullptr</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">switch</span> (signal_number) &#123;</span><br><span class="line">    <span class="keyword">case</span> SIGQUIT:</span><br><span class="line">      signal_catcher-&gt;<span class="built_in">HandleSigQuit</span>();</span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> SIGUSR1:</span><br><span class="line">      signal_catcher-&gt;<span class="built_in">HandleSigUsr1</span>();</span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">default</span>:</span><br><span class="line">      <span class="built_in">LOG</span>(ERROR) &lt;&lt; <span class="string">&quot;Unexpected signal %d&quot;</span> &lt;&lt; signal_number;</span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">...</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 <p>从源码中发现除了SIGQUIT 还可以发送 SIGUSR1 , 这个信号可以使进程java 虚拟机执行GC<br>操作 <code>kill -10 pid</code></p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">SignalCatcher::HandleSigUsr1</span><span class="hljs-params">()</span> </span>&#123;<br>  <span class="hljs-built_in">LOG</span>(INFO) &lt;&lt; <span class="hljs-string">&quot;SIGUSR1 forcing GC (no HPROF)&quot;</span>;<br>  Runtime::<span class="hljs-built_in">Current</span>()-&gt;<span class="hljs-built_in">GetHeap</span>()-&gt;<span class="hljs-built_in">CollectGarbage</span>(<span class="hljs-literal">false</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">SignalCatcher::HandleSigUsr1</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  <span class="built_in">LOG</span>(INFO) &lt;&lt; <span class="string">&quot;SIGUSR1 forcing GC (no HPROF)&quot;</span>;</span><br><span class="line">  Runtime::<span class="built_in">Current</span>()-&gt;<span class="built_in">GetHeap</span>()-&gt;<span class="built_in">CollectGarbage</span>(<span class="literal">false</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
 <h2 id="☆-使用-debugged-命令行"><a href="#☆-使用-debugged-命令行" class="headerlink" title="☆ 使用 debugged 命令行"></a>☆ 使用 debugged 命令行</h2><p>这种方法是全系统通用的, 可以用于非zygote的进程.</p>
-<figure class="highlight delphi"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs delphi">Usage: -b [&lt;tid&gt;]<br>  -b dump backtrace <span class="hljs-keyword">to</span> console, <span class="hljs-keyword">otherwise</span> dump full tombstone <span class="hljs-keyword">file</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Usage: -b [&lt;tid&gt;]</span><br><span class="line">  -b dump backtrace to console, otherwise dump full tombstone file</span><br></pre></td></tr></table></figure>
 
 <p>通过 -b 参数指定进程pid, 即可.</p>
-<figure class="highlight maxima"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><code class="hljs maxima"># debuggerd -b <span class="hljs-number">23850</span><br><br>Sending request to dump task <span class="hljs-number">23850</span>.<br><br><br>----- pid <span class="hljs-number">23850</span> <span class="hljs-built_in">at</span> <span class="hljs-number">1970</span>-<span class="hljs-number">01</span>-<span class="hljs-number">27</span> <span class="hljs-number">03</span>:<span class="hljs-number">57</span>:<span class="hljs-number">11</span> -----<br>Cmd line: /sbin/adbd<br>ABI: &#x27;arm&#x27;<br><br><span class="hljs-string">&quot;adbd&quot;</span> sysTid=<span class="hljs-number">23850</span><br>  #<span class="hljs-number">00</span> pc <span class="hljs-number">0002b158</span>  /sbin/adbd<br>  #<span class="hljs-number">01</span> pc <span class="hljs-number">0002467f</span>  /sbin/adbd<br>  #<span class="hljs-number">02</span> pc <span class="hljs-number">00020854</span>  [stack]<br><br><span class="hljs-string">&quot;adbd&quot;</span> sysTid=<span class="hljs-number">23851</span><br>  #<span class="hljs-number">00</span> pc <span class="hljs-number">0002fd38</span>  /sbin/adbd<br>  #<span class="hljs-number">01</span> pc <span class="hljs-number">0002a501</span>  /sbin/adbd<br>  #<span class="hljs-number">02</span> pc <span class="hljs-number">0000000b</span>  &lt;<span class="hljs-literal">unknown</span>&gt;<br><br><span class="hljs-string">&quot;adbd&quot;</span> sysTid=<span class="hljs-number">23852</span><br>  #<span class="hljs-number">00</span> pc <span class="hljs-number">0002b624</span>  /sbin/adbd<br>  #<span class="hljs-number">01</span> pc <span class="hljs-number">000106cf</span>  /sbin/adbd<br>  #<span class="hljs-number">02</span> pc <span class="hljs-number">00010301</span>  /sbin/adbd<br>  #<span class="hljs-number">03</span> pc <span class="hljs-number">0002a613</span>  /sbin/adbd<br>  #<span class="hljs-number">04</span> pc <span class="hljs-number">00030283</span>  /sbin/adbd<br><br><span class="hljs-string">&quot;adbd&quot;</span> sysTid=<span class="hljs-number">23853</span><br>  #<span class="hljs-number">00</span> pc <span class="hljs-number">0002b628</span>  /sbin/adbd<br>  #<span class="hljs-number">01</span> pc <span class="hljs-number">00013999</span>  /sbin/adbd<br>  #<span class="hljs-number">02</span> pc <span class="hljs-number">000112ed</span>  /sbin/adbd<br>  #<span class="hljs-number">03</span> pc <span class="hljs-number">000104e1</span>  /sbin/adbd<br>  #<span class="hljs-number">04</span> pc <span class="hljs-number">0002a613</span>  /sbin/adbd<br>  #<span class="hljs-number">05</span> pc <span class="hljs-number">00030283</span>  /sbin/adbd<br><br><span class="hljs-string">&quot;adbd&quot;</span> sysTid=<span class="hljs-number">23862</span><br>  #<span class="hljs-number">00</span> pc <span class="hljs-number">0002b888</span>  /sbin/adbd<br>  #<span class="hljs-number">01</span> pc <span class="hljs-number">0000a503</span>  /sbin/adbd<br>  #<span class="hljs-number">02</span> pc <span class="hljs-number">00009527</span>  /sbin/adbd<br>  #<span class="hljs-number">03</span> pc <span class="hljs-number">0002a613</span>  /sbin/adbd<br>  #<span class="hljs-number">04</span> pc <span class="hljs-number">00030283</span>  /sbin/adbd<br><br>----- end <span class="hljs-number">23850</span> -----<br>  ...<br></code></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"># debuggerd -b 23850</span><br><span class="line"></span><br><span class="line">Sending request to dump task 23850.</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">----- pid 23850 at 1970-01-27 03:57:11 -----</span><br><span class="line">Cmd line: /sbin/adbd</span><br><span class="line">ABI: &#x27;arm&#x27;</span><br><span class="line"></span><br><span class="line">&quot;adbd&quot; sysTid=23850</span><br><span class="line">  #00 pc 0002b158  /sbin/adbd</span><br><span class="line">  #01 pc 0002467f  /sbin/adbd</span><br><span class="line">  #02 pc 00020854  [stack]</span><br><span class="line"></span><br><span class="line">&quot;adbd&quot; sysTid=23851</span><br><span class="line">  #00 pc 0002fd38  /sbin/adbd</span><br><span class="line">  #01 pc 0002a501  /sbin/adbd</span><br><span class="line">  #02 pc 0000000b  &lt;unknown&gt;</span><br><span class="line"></span><br><span class="line">&quot;adbd&quot; sysTid=23852</span><br><span class="line">  #00 pc 0002b624  /sbin/adbd</span><br><span class="line">  #01 pc 000106cf  /sbin/adbd</span><br><span class="line">  #02 pc 00010301  /sbin/adbd</span><br><span class="line">  #03 pc 0002a613  /sbin/adbd</span><br><span class="line">  #04 pc 00030283  /sbin/adbd</span><br><span class="line"></span><br><span class="line">&quot;adbd&quot; sysTid=23853</span><br><span class="line">  #00 pc 0002b628  /sbin/adbd</span><br><span class="line">  #01 pc 00013999  /sbin/adbd</span><br><span class="line">  #02 pc 000112ed  /sbin/adbd</span><br><span class="line">  #03 pc 000104e1  /sbin/adbd</span><br><span class="line">  #04 pc 0002a613  /sbin/adbd</span><br><span class="line">  #05 pc 00030283  /sbin/adbd</span><br><span class="line"></span><br><span class="line">&quot;adbd&quot; sysTid=23862</span><br><span class="line">  #00 pc 0002b888  /sbin/adbd</span><br><span class="line">  #01 pc 0000a503  /sbin/adbd</span><br><span class="line">  #02 pc 00009527  /sbin/adbd</span><br><span class="line">  #03 pc 0002a613  /sbin/adbd</span><br><span class="line">  #04 pc 00030283  /sbin/adbd</span><br><span class="line"></span><br><span class="line">----- end 23850 -----</span><br><span class="line">  ...</span><br></pre></td></tr></table></figure>
 
-<h2 id="☆-java-代码中打印调用栈"><a href="#☆-java-代码中打印调用栈" class="headerlink" title="☆ java 代码中打印调用栈"></a>☆ java 代码中打印调用栈</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">try</span> &#123;  <br> ...  <br>&#125; <span class="hljs-keyword">catch</span> (RemoteException e) &#123;  <br>  e.printStackTrace();  <br>  ...  <br>&#125; <br></code></pre></td></tr></table></figure>
+<h2 id="☆-java-代码中打印调用栈"><a href="#☆-java-代码中打印调用栈" class="headerlink" title="☆ java 代码中打印调用栈"></a>☆ java 代码中打印调用栈</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span> &#123;  </span><br><span class="line"> ...  </span><br><span class="line">&#125; <span class="keyword">catch</span> (RemoteException e) &#123;  </span><br><span class="line">  e.printStackTrace();  </span><br><span class="line">  ...  </span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure>
 
 <h2 id="☆-C-代码中打印调用栈"><a href="#☆-C-代码中打印调用栈" class="headerlink" title="☆ C++代码中打印调用栈"></a>☆ C++代码中打印调用栈</h2><p>CallStack.cpp</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;utils/CallStack.h&gt;</span></span><br><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br>    android::CallStack stack;<br>    stack.<span class="hljs-built_in">update</span>(); <br>    stack.<span class="hljs-built_in">dump</span>(<span class="hljs-number">1</span>);<br><br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;utils/CallStack.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    android::CallStack stack;</span><br><span class="line">    stack.<span class="built_in">update</span>(); </span><br><span class="line">    stack.<span class="built_in">dump</span>(<span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>Android.mk</p>
-<figure class="highlight make"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs make">LOCAL_PATH:= <span class="hljs-variable">$(<span class="hljs-built_in">call</span> my-<span class="hljs-built_in">dir</span>)</span><br><br><br><span class="hljs-keyword">include</span> <span class="hljs-variable">$(CLEAR_VARS)</span><br>LOCAL_SRC_FILES:= CallStack.cpp<br>LOCAL_SHARED_LIBRARIES += libutils<br>LOCAL_LDLIBS += -ldl -lutils<br><br>LOCAL_CFLAGS := <span class="hljs-variable">$(common_CFLAGS)</span><br>LOCAL_MODULE := CallStack<br><span class="hljs-keyword">include</span> <span class="hljs-variable">$(BUILD_EXECUTABLE)</span><br><br></code></pre></td></tr></table></figure>
+<figure class="highlight make"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">LOCAL_PATH:= <span class="variable">$(<span class="built_in">call</span> my-<span class="built_in">dir</span>)</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">include</span> <span class="variable">$(CLEAR_VARS)</span></span><br><span class="line">LOCAL_SRC_FILES:= CallStack.cpp</span><br><span class="line">LOCAL_SHARED_LIBRARIES += libutils</span><br><span class="line">LOCAL_LDLIBS += -ldl -lutils</span><br><span class="line"></span><br><span class="line">LOCAL_CFLAGS := <span class="variable">$(common_CFLAGS)</span></span><br><span class="line">LOCAL_MODULE := CallStack</span><br><span class="line"><span class="keyword">include</span> <span class="variable">$(BUILD_EXECUTABLE)</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 <p>执行后显示类似下面的结果</p>
-<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs elixir"><br>root<span class="hljs-variable">@shamu</span><span class="hljs-symbol">:/data/local/tmp</span> <span class="hljs-comment"># ./CallStack</span><br><span class="hljs-comment">#00 pc 000006d1  /data/local/tmp/CallStack</span><br><span class="hljs-comment">#01 pc 00017359  /system/lib/libc.so (__libc_init+44)</span><br><span class="hljs-comment">#02 pc 0000074c  /data/local/tmp/CallStack</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">root@shamu:/data/local/tmp # ./CallStack</span><br><span class="line">#00 pc 000006d1  /data/local/tmp/CallStack</span><br><span class="line">#01 pc 00017359  /system/lib/libc.so (__libc_init+44)</span><br><span class="line">#02 pc 0000074c  /data/local/tmp/CallStack</span><br></pre></td></tr></table></figure>
 
-                
-              </div>
-            
-            <hr/>
-            <div>
-              <div class="post-metas my-3">
-  
-  
-    <div class="post-meta">
-      <i class="iconfont icon-tags"></i>
-      
-        <a href="/tags/Android/" class="print-no-link">#Android</a>
-      
-    </div>
-  
-</div>
-
-
-              
-  
-
-  <div class="license-box my-3">
-    <div class="license-title">
-      <div>Android 获取进程的 backtrace 信息</div>
-      <div>http://usmacd.com/cn/backtrace_in_android/</div>
-    </div>
-    <div class="license-meta">
-      
-        <div class="license-meta-item">
-          <div>Author</div>
-          <div>henices</div>
-        </div>
-      
-      
-        <div class="license-meta-item license-meta-date">
-          <div>Posted on</div>
-          <div>September 6, 2023</div>
-        </div>
-      
-      
-      
-        <div class="license-meta-item">
-          <div>Licensed under</div>
-          <div>
-            
-              
-              
-                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
-                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
-                    <i class="iconfont icon-by"></i>
-                  </span>
-                </a>
-              
-            
-          </div>
-        </div>
-      
-    </div>
-    <div class="license-icon iconfont"></div>
   </div>
+</article>
 
 
 
-              
-                <div class="post-prevnext my-3">
-                  <article class="post-prev col-6">
-                    
-                    
-                      <a href="/cn/BaiduNetdisk/" title="Linux 下使用百度网盘">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Linux 下使用百度网盘</span>
-                        <span class="visible-mobile">Previous</span>
-                      </a>
-                    
-                  </article>
-                  <article class="post-next col-6">
-                    
-                    
-                      <a href="/cn/Automatic_Investment_Plan/" title="关于定投的一些思考">
-                        <span class="hidden-mobile">关于定投的一些思考</span>
-                        <span class="visible-mobile">Next</span>
-                        <i class="iconfont icon-arrowright"></i>
-                      </a>
-                    
-                  </article>
-                </div>
-              
-            </div>
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
 
-            
-          </article>
-        </div>
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/">Home</a></li>
+        
+          <li><a href="/about/">About</a></li>
+        
+          <li><a href="/archives/">Writing</a></li>
+        
+          <li><a href="/search/">Search</a></li>
+        
+          <li><a href="/links/">Links</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E2%98%86-%E4%BD%BF%E7%94%A8kill-%E5%8F%91%E9%80%81-SIGNAL-QUIT"><span class="toc-number">1.</span> <span class="toc-text">☆ 使用kill 发送 SIGNAL_QUIT</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E2%98%86-%E4%BD%BF%E7%94%A8-debugged-%E5%91%BD%E4%BB%A4%E8%A1%8C"><span class="toc-number">2.</span> <span class="toc-text">☆ 使用 debugged 命令行</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E2%98%86-java-%E4%BB%A3%E7%A0%81%E4%B8%AD%E6%89%93%E5%8D%B0%E8%B0%83%E7%94%A8%E6%A0%88"><span class="toc-number">3.</span> <span class="toc-text">☆ java 代码中打印调用栈</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E2%98%86-C-%E4%BB%A3%E7%A0%81%E4%B8%AD%E6%89%93%E5%8D%B0%E8%B0%83%E7%94%A8%E6%A0%88"><span class="toc-number">4.</span> <span class="toc-text">☆ C++代码中打印调用栈</span></a></li></ol>
       </div>
+    
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://usmacd.com/cn/backtrace_in_android/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://usmacd.com/cn/backtrace_in_android/&text=Android 获取进程的 backtrace 信息"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://usmacd.com/cn/backtrace_in_android/&title=Android 获取进程的 backtrace 信息"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://usmacd.com/cn/backtrace_in_android/&is_video=false&description=Android 获取进程的 backtrace 信息"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Android 获取进程的 backtrace 信息&body=Check out this article: http://usmacd.com/cn/backtrace_in_android/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://usmacd.com/cn/backtrace_in_android/&title=Android 获取进程的 backtrace 信息"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://usmacd.com/cn/backtrace_in_android/&title=Android 获取进程的 backtrace 信息"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://usmacd.com/cn/backtrace_in_android/&title=Android 获取进程的 backtrace 信息"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://usmacd.com/cn/backtrace_in_android/&title=Android 获取进程的 backtrace 信息"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://usmacd.com/cn/backtrace_in_android/&name=Android 获取进程的 backtrace 信息&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://usmacd.com/cn/backtrace_in_android/&t=Android 获取进程的 backtrace 信息"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
     </div>
 
-    <div class="side-col d-none d-lg-block col-lg-2">
-      
-  <aside class="sidebar" style="margin-left: -1rem">
-    <div id="toc">
-  <p class="toc-header">
-    <i class="iconfont icon-list"></i>
-    <span>Table of Contents</span>
-  </p>
-  <div class="toc-body" id="toc-body"></div>
-</div>
-
-
-
-  </aside>
-
-
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
     </div>
+
   </div>
 </div>
 
-
-
-
-
-  
-
-
-
-  
-
-
-
-  
-
-
-
-  
-
-
-
-  
-
-
-
-
-
-
-
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
     
-
     
-      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
-        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
-      </a>
-    
-
-    
-      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
-     aria-hidden="true">
-  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
-        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body mx-3">
-        <div class="md-form mb-5">
-          <input type="text" id="local-search-input" class="form-control validate">
-          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
-        </div>
-        <div class="list-group" id="local-search-result"></div>
-      </div>
-    </div>
+    2004-2024
+    henices
   </div>
-</div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     --><!--
+       --><li><a href="/search/">Search</a></li><!--
+     --><!--
+       --><li><a href="/links/">Links</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
 
-    
-
-    
-  </main>
-
-  <footer>
-    <div class="footer-inner">
-  
-    <div class="footer-content">
-       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
     </div>
-  
-  
-  
-  
-</div>
+    <!-- styles -->
 
-  </footer>
 
-  <!-- Scripts -->
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
   
-  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
-  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
-
-  <script>
-    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
-    NProgress.start()
-    window.addEventListener('load', function() {
-      NProgress.done();
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
     })
+  })
   </script>
 
 
-<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
-<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
-<script  src="/js/events.js" ></script>
-<script  src="/js/plugins.js" ></script>
+<script src="/js/main.js"></script>
 
+<!-- search -->
 
+<!-- Baidu Analytics -->
 
+<!-- Cloudflare Analytics -->
 
+<!-- Disqus Comments -->
 
-  
-    <script  src="/js/img-lazyload.js" ></script>
-  
+<!-- utterances Comments -->
 
-
-
-
-  
-<script>
-  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
-    var toc = jQuery('#toc');
-    if (toc.length === 0 || !window.tocbot) { return; }
-    var boardCtn = jQuery('#board-ctn');
-    var boardTop = boardCtn.offset().top;
-
-    window.tocbot.init(Object.assign({
-      tocSelector     : '#toc-body',
-      contentSelector : '.markdown-body',
-      linkClass       : 'tocbot-link',
-      activeLinkClass : 'tocbot-active-link',
-      listClass       : 'tocbot-list',
-      isCollapsedClass: 'tocbot-is-collapsed',
-      collapsibleClass: 'tocbot-is-collapsible',
-      scrollSmooth    : true,
-      includeTitleTags: true,
-      headingsOffset  : -boardTop,
-    }, CONFIG.toc));
-    if (toc.find('.toc-list-item').length > 0) {
-      toc.css('visibility', 'visible');
-    }
-
-    Fluid.events.registerRefreshCallback(function() {
-      if ('tocbot' in window) {
-        tocbot.refresh();
-        var toc = jQuery('#toc');
-        if (toc.length === 0 || !tocbot) {
-          return;
-        }
-        if (toc.find('.toc-list-item').length > 0) {
-          toc.css('visibility', 'visible');
-        }
-      }
-    });
-  });
-</script>
-
-
-  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
-
-  <script>Fluid.plugins.codeWidget();</script>
-
-
-  
-<script>
-  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
-    window.anchors.options = {
-      placement: CONFIG.anchorjs.placement,
-      visible  : CONFIG.anchorjs.visible
-    };
-    if (CONFIG.anchorjs.icon) {
-      window.anchors.options.icon = CONFIG.anchorjs.icon;
-    }
-    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
-    var res = [];
-    for (var item of el) {
-      res.push('.markdown-body > ' + item.trim());
-    }
-    if (CONFIG.anchorjs.placement === 'left') {
-      window.anchors.options.class = 'anchorjs-link-left';
-    }
-    window.anchors.add(res.join(', '));
-
-    Fluid.events.registerRefreshCallback(function() {
-      if ('anchors' in window) {
-        anchors.removeAll();
-        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
-        var res = [];
-        for (var item of el) {
-          res.push('.markdown-body > ' + item.trim());
-        }
-        if (CONFIG.anchorjs.placement === 'left') {
-          anchors.options.class = 'anchorjs-link-left';
-        }
-        anchors.add(res.join(', '));
-      }
-    });
-  });
-</script>
-
-
-  
-<script>
-  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
-    Fluid.plugins.fancyBox();
-  });
-</script>
-
-
-  <script>Fluid.plugins.imageCaption();</script>
-
-  <script  src="/js/local-search.js" ></script>
-
-  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
-
-
-
-
-
-<!-- 主题的启动项，将它保持在最底部 -->
-<!-- the boot of the theme, keep it at the bottom -->
-<script  src="/js/boot.js" ></script>
-
-
-  
-
-  <noscript>
-    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
-  </noscript>
 </body>
 </html>

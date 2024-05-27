@@ -1,23 +1,11 @@
-
-
 <!DOCTYPE html>
-<html lang="en" data-default-color-scheme=auto>
-
-
-
+<html lang=en>
 <head>
-  <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
-  <link rel="icon" href="/img/fluid.png">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
-  <meta http-equiv="x-ua-compatible" content="ie=edge">
-  
-    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
-  
-  <meta name="theme-color" content="#2f4154">
-  <meta name="author" content="henices">
-  <meta name="keywords" content="">
-  
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
     <meta name="description" content="由于伟大的X火长城的存在，在境内进行 DNS 解析请求返回的报文不一定是靠谱的，有必要使用远程的服务器进行DNS 解析来缓解这个问题。根据 Google 的文档如果设置了 socks5 代理，URL 中的 hostname 将由代理服务器解析。 12The --proxy-server&#x3D;&quot;socks5:&#x2F;&#x2F;myproxy:8080&quot; flag tells Chrome to s">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Chrome 浏览器中的远程 DNS 解析">
@@ -29,639 +17,313 @@
 <meta property="article:modified_time" content="2023-02-22T16:00:00.000Z">
 <meta property="article:author" content="henices">
 <meta property="article:tag" content="Software">
-<meta name="twitter:card" content="summary_large_image">
-  
-  
-    <meta name="referrer" content="no-referrer-when-downgrade">
-  
-  
-  <title>Chrome 浏览器中的远程 DNS 解析 - 安全代码</title>
-
-  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
-
-
-
-  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
-
-  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
-
-  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
-
-
-
-<!-- 主题依赖的图标库，不要自行修改 -->
-<!-- Do not modify the link that theme dependent icons -->
-
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
-
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>Chrome 浏览器中的远程 DNS 解析</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
 
 
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+    <!-- Umami Analytics -->
 
 
-<link  rel="stylesheet" href="/css/main.css" />
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
 
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+      <link rel="alternate" href="https://www.usmacd.com/rss.xml" title="安全代码" type="application/atom+xml" />
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 7.2.0"></head>
 
-  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
-  
-    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
-  
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     --><!--
+       --><li><a href="/search/">Search</a></li><!--
+     --><!--
+       --><li><a href="/links/">Links</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="Previous post" href="/cn/gtags-cscope/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="Next post" href="/cn/How%20to%20be%20successful/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://usmacd.com/cn/dns_via_socks_proxy_in_chrome/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://usmacd.com/cn/dns_via_socks_proxy_in_chrome/&text=Chrome 浏览器中的远程 DNS 解析"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://usmacd.com/cn/dns_via_socks_proxy_in_chrome/&title=Chrome 浏览器中的远程 DNS 解析"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://usmacd.com/cn/dns_via_socks_proxy_in_chrome/&is_video=false&description=Chrome 浏览器中的远程 DNS 解析"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Chrome 浏览器中的远程 DNS 解析&body=Check out this article: http://usmacd.com/cn/dns_via_socks_proxy_in_chrome/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://usmacd.com/cn/dns_via_socks_proxy_in_chrome/&title=Chrome 浏览器中的远程 DNS 解析"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://usmacd.com/cn/dns_via_socks_proxy_in_chrome/&title=Chrome 浏览器中的远程 DNS 解析"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://usmacd.com/cn/dns_via_socks_proxy_in_chrome/&title=Chrome 浏览器中的远程 DNS 解析"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://usmacd.com/cn/dns_via_socks_proxy_in_chrome/&title=Chrome 浏览器中的远程 DNS 解析"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://usmacd.com/cn/dns_via_socks_proxy_in_chrome/&name=Chrome 浏览器中的远程 DNS 解析&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://usmacd.com/cn/dns_via_socks_proxy_in_chrome/&t=Chrome 浏览器中的远程 DNS 解析"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
 
+    </div>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="toc-number">1.</span> <span class="toc-text">参考资料</span></a></li></ol>
+      </div>
+    
+  </span>
+</div>
 
-
-
-  <script id="fluid-configs">
-    var Fluid = window.Fluid || {};
-    Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"usmacd.com","root":"/","version":"1.9.7","typing":{"enable":false,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
-
-    if (CONFIG.web_analytics.follow_dnt) {
-      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
-      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
-    }
-  </script>
-  <script  src="/js/utils.js" ></script>
-  <script  src="/js/color-schema.js" ></script>
-  
-
-
-  
-<meta name="generator" content="Hexo 7.2.0"><link rel="alternate" href="/atom.xml" title="安全代码" type="application/atom+xml">
-<link rel="alternate" href="/rss.xml" title="安全代码" type="application/rss+xml">
-</head>
-
-
-<body>
-  
-
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
   <header>
     
+    <h1 class="posttitle p-name" itemprop="name headline">
+        Chrome 浏览器中的远程 DNS 解析
+    </h1>
 
-<div class="header-inner" style="height: 70vh;">
-  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
-  <div class="container">
-    <a class="navbar-brand" href="/">
-      <strong>安全代码</strong>
-    </a>
 
-    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
-            data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <div class="animated-icon"><span></span><span></span><span></span></div>
-    </button>
 
-    <!-- Collapsible content -->
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav ml-auto text-center">
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">henices</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2023-02-22T16:00:00.000Z" class="dt-published" itemprop="datePublished">2023-02-23</time>
         
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/" target="_self">
-                <i class="iconfont icon-home-fill"></i>
-                <span>Home</span>
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/archives/" target="_self">
-                <i class="iconfont icon-archive-fill"></i>
-                <span>Archives</span>
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/tags/" target="_self">
-                <i class="iconfont icon-tags-fill"></i>
-                <span>Tags</span>
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/about/" target="_self">
-                <i class="iconfont icon-user-fill"></i>
-                <span>About</span>
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/links/" target="_self">
-                <i class="iconfont icon-link-fill"></i>
-                <span>Links</span>
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/rss.xml" target="_self">
-                <i class="iconfont icon-rss"></i>
-                <span>rss</span>
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/sitemap.xml" target="_self">
-                
-                <span>sitemap</span>
-              </a>
-            </li>
-          
-        
-        
-          <li class="nav-item" id="search-btn">
-            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
-              <i class="iconfont icon-search"></i>
-            </a>
-          </li>
-          
-        
-        
-          <li class="nav-item" id="color-toggle-btn">
-            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
-              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
-            </a>
-          </li>
-        
-      </ul>
+      
     </div>
-  </div>
-</nav>
 
+
+      
+
+      
+    <div class="article-tag">
+        <i class="fa-solid fa-tag"></i>
+        <a class="p-category" href="/tags/Software/" rel="tag">Software</a>
+    </div>
+
+
+    </div>
+  </header>
   
 
-<div id="banner" class="banner" parallax=true
-     style="background: url('https://images.unsplash.com/photo-1473181488821-2d23949a045a?w=640') no-repeat center center; background-size: cover;">
-  <div class="full-bg-img">
-    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
-      <div class="banner-text text-center fade-in-up">
-        <div class="h2">
-          
-            <span id="subtitle">Chrome 浏览器中的远程 DNS 解析</span>
-          
-        </div>
-
-        
-          
-  <div class="mt-3">
-    
-    
-      <span class="post-meta">
-        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-02-23 00:00" pubdate>
-          February 23, 2023 am
-        </time>
-      </span>
-    
-  </div>
-
-  <div class="mt-1">
-    
-      <span class="post-meta mr-2">
-        <i class="iconfont icon-chart"></i>
-        
-          462 words
-        
-      </span>
-    
-
-    
-      <span class="post-meta mr-2">
-        <i class="iconfont icon-clock-fill"></i>
-        
-        
-        
-          4 mins
-        
-      </span>
-    
-
-    
-    
-      
-        <span id="busuanzi_container_page_pv" style="display: none">
-          <i class="iconfont icon-eye" aria-hidden="true"></i>
-          <span id="busuanzi_value_page_pv"></span> views
-        </span>
-        
-      
-    
-  </div>
-
-
-        
-      </div>
-
-      
-    </div>
-  </div>
-</div>
-
-</div>
-
-  </header>
-
-  <main>
-    
-      
-
-<div class="container-fluid nopadding-x">
-  <div class="row nomargin-x">
-    <div class="side-col d-none d-lg-block col-lg-2">
-      
-
-    </div>
-
-    <div class="col-lg-8 nopadding-x-md">
-      <div class="container nopadding-x-md" id="board-ctn">
-        <div id="board">
-          <article class="post-content mx-auto">
-            <h1 id="seo-header">Chrome 浏览器中的远程 DNS 解析</h1>
-            
-            
-              <div class="markdown-body">
-                
-                <p>由于伟大的X火长城的存在，在境内进行 DNS 解析请求返回的报文不一定是靠谱的，有必要使用远程的服务器进行DNS 解析来缓解这个问题。根据 Google 的文档如果设置了 socks5 代理，URL 中的 hostname 将由代理服务器解析。</p>
-<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs livecodeserver">The <span class="hljs-comment">--proxy-server=&quot;socks5://myproxy:8080&quot; flag tells Chrome to send all http:// and https:// URL requests through the SOCKS proxy server &quot;myproxy:8080&quot;,</span><br><span class="hljs-keyword">using</span> <span class="hljs-built_in">version</span> <span class="hljs-number">5</span> <span class="hljs-keyword">of</span> <span class="hljs-keyword">the</span> SOCKS protocol. The hostname <span class="hljs-keyword">for</span> these URLs will be resolved <span class="hljs-keyword">by</span> <span class="hljs-keyword">the</span> proxy server, <span class="hljs-keyword">and</span> <span class="hljs-keyword">not</span> locally <span class="hljs-keyword">by</span> Chrome.<br></code></pre></td></tr></table></figure>
+  <div class="content e-content" itemprop="articleBody">
+    <p>由于伟大的X火长城的存在，在境内进行 DNS 解析请求返回的报文不一定是靠谱的，有必要使用远程的服务器进行DNS 解析来缓解这个问题。根据 Google 的文档如果设置了 socks5 代理，URL 中的 hostname 将由代理服务器解析。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">The --proxy-server=&quot;socks5://myproxy:8080&quot; flag tells Chrome to send all http:// and https:// URL requests through the SOCKS proxy server &quot;myproxy:8080&quot;,</span><br><span class="line">using version 5 of the SOCKS protocol. The hostname for these URLs will be resolved by the proxy server, and not locally by Chrome.</span><br></pre></td></tr></table></figure>
 
 <p>但是由于 chrome 浏览器的 DNS prefetching  特性，即使设置了 socks5 代理 DNS prefetching 特性也会使用本地网络进行 DNS 解析。</p>
-<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs pgsql">The <span class="hljs-comment">--proxy-server flag applies to URL loads only. </span><br>There are other components <span class="hljs-keyword">of</span> Chrome which may issue DNS resolves directly <span class="hljs-keyword">and</span> hence bypass this proxy <span class="hljs-keyword">server</span>. <br>The most notable such component <span class="hljs-keyword">is</span> the &quot;DNS prefetcher&quot;. <br>Hence <span class="hljs-keyword">if</span> DNS prefetching <span class="hljs-keyword">is</span> <span class="hljs-keyword">not</span> disabled <span class="hljs-keyword">in</span> Chrome <span class="hljs-keyword">then</span> you will still see <span class="hljs-keyword">local</span> DNS requests being issued <span class="hljs-keyword">by</span> Chrome despite <span class="hljs-keyword">having</span> specified a SOCKS v5 proxy <span class="hljs-keyword">server</span>.<br></code></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">The --proxy-server flag applies to URL loads only. </span><br><span class="line">There are other components of Chrome which may issue DNS resolves directly and hence bypass this proxy server. </span><br><span class="line">The most notable such component is the &quot;DNS prefetcher&quot;. </span><br><span class="line">Hence if DNS prefetching is not disabled in Chrome then you will still see local DNS requests being issued by Chrome despite having specified a SOCKS v5 proxy server.</span><br></pre></td></tr></table></figure>
 
 <p>下面是禁用 DNS prefetching 的方法，新版本的 chrome 已经取消了直接针对 DNS prefetching 设置的选项，有一个预加载网页的选项，需要把这个选项关闭，具体设置方法为：</p>
-<figure class="highlight clean"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs clean">设置 -&gt; 隐私设置和安全性 -&gt; Cookie 及其他网站数据 -&gt; 预加载网页，以便实现更快速的浏览和搜索<br></code></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">设置 -&gt; 隐私设置和安全性 -&gt; Cookie 及其他网站数据 -&gt; 预加载网页，以便实现更快速的浏览和搜索</span><br></pre></td></tr></table></figure>
 
 <p>禁用 DNS prefetching 的方案是脆弱的，Chrome 可能在其他的地方使用 raw dns requsts （ Chrome 发送 DNS 请求报文)， 绕过代理服务器直接使用本地网络进行 DNS 解析。</p>
-<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs applescript">Disabling DNS prefetching would solve this problem, <br>however <span class="hljs-keyword">it</span> <span class="hljs-keyword">is</span> a fragile solution <span class="hljs-keyword">since</span> once needs <span class="hljs-keyword">to</span> be aware <span class="hljs-keyword">of</span> all <span class="hljs-keyword">the</span> areas <span class="hljs-keyword">in</span> Chrome which issue raw DNS requests.<br></code></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Disabling DNS prefetching would solve this problem, </span><br><span class="line">however it is a fragile solution since once needs to be aware of all the areas in Chrome which issue raw DNS requests.</span><br></pre></td></tr></table></figure>
 
 <p>所以最终的解决方案是使用 Google 文档中的命令行参数 <code>--host-resolver-rules=</code> ，经过测试可以使用下面的命令行来解决 DNS 远程解析</p>
-<figure class="highlight abnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs abnf">google-chrome --proxy-server<span class="hljs-operator">=</span><span class="hljs-string">&quot;socks5://127.0.0.1:9999&quot;</span> --host-resolver-rules<span class="hljs-operator">=</span><span class="hljs-string">&quot;MAP * 0.0.0.0, EXClUDE 127.0.0.1&quot;</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">google-chrome --proxy-server=&quot;socks5://127.0.0.1:9999&quot; --host-resolver-rules=&quot;MAP * 0.0.0.0, EXClUDE 127.0.0.1&quot;</span><br></pre></td></tr></table></figure>
 
 <p>–host-resolver-rules 将阻止Chrome 使用本地网络发起 DNS 请求，具体的方式是将 DNS 请求转向一个不存在的地址，注意需要排除 sock5 代理的地址。</p>
 <p>在实际使用过程中发现，如果不指定 –host-resolver-rules 命令行参数，有少量 DNS 请求会使用本地网络，比如 safebrowsing.googleapis.com</p>
 <h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p><a target="_blank" rel="noopener" href="https://www.chromium.org/developers/design-documents/network-stack/socks-proxy/">https://www.chromium.org/developers/design-documents/network-stack/socks-proxy/</a></p>
 
-                
-              </div>
-            
-            <hr/>
-            <div>
-              <div class="post-metas my-3">
-  
-  
-    <div class="post-meta">
-      <i class="iconfont icon-tags"></i>
-      
-        <a href="/tags/Software/" class="print-no-link">#Software</a>
-      
-    </div>
-  
-</div>
-
-
-              
-  
-
-  <div class="license-box my-3">
-    <div class="license-title">
-      <div>Chrome 浏览器中的远程 DNS 解析</div>
-      <div>http://usmacd.com/cn/dns_via_socks_proxy_in_chrome/</div>
-    </div>
-    <div class="license-meta">
-      
-        <div class="license-meta-item">
-          <div>Author</div>
-          <div>henices</div>
-        </div>
-      
-      
-        <div class="license-meta-item license-meta-date">
-          <div>Posted on</div>
-          <div>February 23, 2023</div>
-        </div>
-      
-      
-      
-        <div class="license-meta-item">
-          <div>Licensed under</div>
-          <div>
-            
-              
-              
-                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
-                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
-                    <i class="iconfont icon-by"></i>
-                  </span>
-                </a>
-              
-            
-          </div>
-        </div>
-      
-    </div>
-    <div class="license-icon iconfont"></div>
   </div>
+</article>
 
 
 
-              
-                <div class="post-prevnext my-3">
-                  <article class="post-prev col-6">
-                    
-                    
-                      <a href="/cn/gtags-cscope/" title="GNU Global 的使用">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">GNU Global 的使用</span>
-                        <span class="visible-mobile">Previous</span>
-                      </a>
-                    
-                  </article>
-                  <article class="post-next col-6">
-                    
-                    
-                      <a href="/cn/How%20to%20be%20successful/" title="How to be successful">
-                        <span class="hidden-mobile">How to be successful</span>
-                        <span class="visible-mobile">Next</span>
-                        <i class="iconfont icon-arrowright"></i>
-                      </a>
-                    
-                  </article>
-                </div>
-              
-            </div>
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
 
-            
-          </article>
-        </div>
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/">Home</a></li>
+        
+          <li><a href="/about/">About</a></li>
+        
+          <li><a href="/archives/">Writing</a></li>
+        
+          <li><a href="/search/">Search</a></li>
+        
+          <li><a href="/links/">Links</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="toc-number">1.</span> <span class="toc-text">参考资料</span></a></li></ol>
       </div>
+    
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://usmacd.com/cn/dns_via_socks_proxy_in_chrome/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://usmacd.com/cn/dns_via_socks_proxy_in_chrome/&text=Chrome 浏览器中的远程 DNS 解析"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://usmacd.com/cn/dns_via_socks_proxy_in_chrome/&title=Chrome 浏览器中的远程 DNS 解析"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://usmacd.com/cn/dns_via_socks_proxy_in_chrome/&is_video=false&description=Chrome 浏览器中的远程 DNS 解析"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Chrome 浏览器中的远程 DNS 解析&body=Check out this article: http://usmacd.com/cn/dns_via_socks_proxy_in_chrome/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://usmacd.com/cn/dns_via_socks_proxy_in_chrome/&title=Chrome 浏览器中的远程 DNS 解析"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://usmacd.com/cn/dns_via_socks_proxy_in_chrome/&title=Chrome 浏览器中的远程 DNS 解析"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://usmacd.com/cn/dns_via_socks_proxy_in_chrome/&title=Chrome 浏览器中的远程 DNS 解析"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://usmacd.com/cn/dns_via_socks_proxy_in_chrome/&title=Chrome 浏览器中的远程 DNS 解析"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://usmacd.com/cn/dns_via_socks_proxy_in_chrome/&name=Chrome 浏览器中的远程 DNS 解析&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://usmacd.com/cn/dns_via_socks_proxy_in_chrome/&t=Chrome 浏览器中的远程 DNS 解析"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
     </div>
 
-    <div class="side-col d-none d-lg-block col-lg-2">
-      
-  <aside class="sidebar" style="margin-left: -1rem">
-    <div id="toc">
-  <p class="toc-header">
-    <i class="iconfont icon-list"></i>
-    <span>Table of Contents</span>
-  </p>
-  <div class="toc-body" id="toc-body"></div>
-</div>
-
-
-
-  </aside>
-
-
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
     </div>
+
   </div>
 </div>
 
-
-
-
-
-  
-
-
-
-  
-
-
-
-  
-
-
-
-  
-
-
-
-  
-
-
-
-
-
-
-
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
     
-
     
-      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
-        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
-      </a>
-    
-
-    
-      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
-     aria-hidden="true">
-  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
-        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body mx-3">
-        <div class="md-form mb-5">
-          <input type="text" id="local-search-input" class="form-control validate">
-          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
-        </div>
-        <div class="list-group" id="local-search-result"></div>
-      </div>
-    </div>
+    2004-2024
+    henices
   </div>
-</div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     --><!--
+       --><li><a href="/search/">Search</a></li><!--
+     --><!--
+       --><li><a href="/links/">Links</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
 
-    
-
-    
-  </main>
-
-  <footer>
-    <div class="footer-inner">
-  
-    <div class="footer-content">
-       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
     </div>
-  
-  
-  
-  
-</div>
+    <!-- styles -->
 
-  </footer>
 
-  <!-- Scripts -->
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
   
-  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
-  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
-
-  <script>
-    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
-    NProgress.start()
-    window.addEventListener('load', function() {
-      NProgress.done();
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
     })
+  })
   </script>
 
 
-<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
-<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
-<script  src="/js/events.js" ></script>
-<script  src="/js/plugins.js" ></script>
+<script src="/js/main.js"></script>
 
+<!-- search -->
 
+<!-- Baidu Analytics -->
 
+<!-- Cloudflare Analytics -->
 
+<!-- Disqus Comments -->
 
-  
-    <script  src="/js/img-lazyload.js" ></script>
-  
+<!-- utterances Comments -->
 
-
-
-
-  
-<script>
-  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
-    var toc = jQuery('#toc');
-    if (toc.length === 0 || !window.tocbot) { return; }
-    var boardCtn = jQuery('#board-ctn');
-    var boardTop = boardCtn.offset().top;
-
-    window.tocbot.init(Object.assign({
-      tocSelector     : '#toc-body',
-      contentSelector : '.markdown-body',
-      linkClass       : 'tocbot-link',
-      activeLinkClass : 'tocbot-active-link',
-      listClass       : 'tocbot-list',
-      isCollapsedClass: 'tocbot-is-collapsed',
-      collapsibleClass: 'tocbot-is-collapsible',
-      scrollSmooth    : true,
-      includeTitleTags: true,
-      headingsOffset  : -boardTop,
-    }, CONFIG.toc));
-    if (toc.find('.toc-list-item').length > 0) {
-      toc.css('visibility', 'visible');
-    }
-
-    Fluid.events.registerRefreshCallback(function() {
-      if ('tocbot' in window) {
-        tocbot.refresh();
-        var toc = jQuery('#toc');
-        if (toc.length === 0 || !tocbot) {
-          return;
-        }
-        if (toc.find('.toc-list-item').length > 0) {
-          toc.css('visibility', 'visible');
-        }
-      }
-    });
-  });
-</script>
-
-
-  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
-
-  <script>Fluid.plugins.codeWidget();</script>
-
-
-  
-<script>
-  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
-    window.anchors.options = {
-      placement: CONFIG.anchorjs.placement,
-      visible  : CONFIG.anchorjs.visible
-    };
-    if (CONFIG.anchorjs.icon) {
-      window.anchors.options.icon = CONFIG.anchorjs.icon;
-    }
-    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
-    var res = [];
-    for (var item of el) {
-      res.push('.markdown-body > ' + item.trim());
-    }
-    if (CONFIG.anchorjs.placement === 'left') {
-      window.anchors.options.class = 'anchorjs-link-left';
-    }
-    window.anchors.add(res.join(', '));
-
-    Fluid.events.registerRefreshCallback(function() {
-      if ('anchors' in window) {
-        anchors.removeAll();
-        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
-        var res = [];
-        for (var item of el) {
-          res.push('.markdown-body > ' + item.trim());
-        }
-        if (CONFIG.anchorjs.placement === 'left') {
-          anchors.options.class = 'anchorjs-link-left';
-        }
-        anchors.add(res.join(', '));
-      }
-    });
-  });
-</script>
-
-
-  
-<script>
-  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
-    Fluid.plugins.fancyBox();
-  });
-</script>
-
-
-  <script>Fluid.plugins.imageCaption();</script>
-
-  <script  src="/js/local-search.js" ></script>
-
-  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
-
-
-
-
-
-<!-- 主题的启动项，将它保持在最底部 -->
-<!-- the boot of the theme, keep it at the bottom -->
-<script  src="/js/boot.js" ></script>
-
-
-  
-
-  <noscript>
-    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
-  </noscript>
 </body>
 </html>

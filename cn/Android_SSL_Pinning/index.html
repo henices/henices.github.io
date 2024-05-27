@@ -1,23 +1,11 @@
-
-
 <!DOCTYPE html>
-<html lang="en" data-default-color-scheme=auto>
-
-
-
+<html lang=en>
 <head>
-  <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
-  <link rel="icon" href="/img/fluid.png">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
-  <meta http-equiv="x-ua-compatible" content="ie=edge">
-  
-    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
-  
-  <meta name="theme-color" content="#2f4154">
-  <meta name="author" content="henices">
-  <meta name="keywords" content="">
-  
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
     <meta name="description" content="SSL pinningSSL Pinning是一种防止中间人攻击的技术，主要机制是在客户端发起请求–&gt;收到服务器发来的证书进行校验，如果收到的证书不被客户端信任，就直接断开连接不继续请求。可以发现中间人攻击的要点是伪造了一个假的服务端证书给了客户端，客户端误以为真。解决思路就是，客户端也预置一份服务端的证书，比较一下就知道真假了。 SSL-pinning有两种方式：证书锁定（Certific">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Andorid 绕过 SSL Pinning 抓 https 报文">
@@ -30,289 +18,154 @@
 <meta property="article:author" content="henices">
 <meta property="article:tag" content="Security">
 <meta property="article:tag" content="Android">
-<meta name="twitter:card" content="summary_large_image">
-  
-  
-    <meta name="referrer" content="no-referrer-when-downgrade">
-  
-  
-  <title>Andorid 绕过 SSL Pinning 抓 https 报文 - 安全代码</title>
-
-  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
-
-
-
-  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
-
-  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
-
-  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
-
-
-
-<!-- 主题依赖的图标库，不要自行修改 -->
-<!-- Do not modify the link that theme dependent icons -->
-
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
-
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>Andorid 绕过 SSL Pinning 抓 https 报文</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
 
 
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+    <!-- Umami Analytics -->
 
 
-<link  rel="stylesheet" href="/css/main.css" />
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
 
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+      <link rel="alternate" href="https://www.usmacd.com/rss.xml" title="安全代码" type="application/atom+xml" />
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 7.2.0"></head>
 
-  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
-  
-    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
-  
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     --><!--
+       --><li><a href="/search/">Search</a></li><!--
+     --><!--
+       --><li><a href="/links/">Links</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="Previous post" href="/cn/anti_sandbox/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="Next post" href="/cn/android_intent_base_attack/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://usmacd.com/cn/Android_SSL_Pinning/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://usmacd.com/cn/Android_SSL_Pinning/&text=Andorid 绕过 SSL Pinning 抓 https 报文"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://usmacd.com/cn/Android_SSL_Pinning/&title=Andorid 绕过 SSL Pinning 抓 https 报文"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://usmacd.com/cn/Android_SSL_Pinning/&is_video=false&description=Andorid 绕过 SSL Pinning 抓 https 报文"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Andorid 绕过 SSL Pinning 抓 https 报文&body=Check out this article: http://usmacd.com/cn/Android_SSL_Pinning/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://usmacd.com/cn/Android_SSL_Pinning/&title=Andorid 绕过 SSL Pinning 抓 https 报文"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://usmacd.com/cn/Android_SSL_Pinning/&title=Andorid 绕过 SSL Pinning 抓 https 报文"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://usmacd.com/cn/Android_SSL_Pinning/&title=Andorid 绕过 SSL Pinning 抓 https 报文"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://usmacd.com/cn/Android_SSL_Pinning/&title=Andorid 绕过 SSL Pinning 抓 https 报文"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://usmacd.com/cn/Android_SSL_Pinning/&name=Andorid 绕过 SSL Pinning 抓 https 报文&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://usmacd.com/cn/Android_SSL_Pinning/&t=Andorid 绕过 SSL Pinning 抓 https 报文"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
 
+    </div>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#SSL-pinning"><span class="toc-number">1.</span> <span class="toc-text">SSL pinning</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AF%81%E4%B9%A6%E9%94%81%E5%AE%9A"><span class="toc-number">1.1.</span> <span class="toc-text">证书锁定</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%85%AC%E9%92%A5%E9%94%81%E5%AE%9A"><span class="toc-number">1.2.</span> <span class="toc-text">公钥锁定</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%BB%E4%BD%93%E6%80%9D%E8%B7%AF"><span class="toc-number">2.</span> <span class="toc-text">总体思路</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%85-mitmproxy"><span class="toc-number">3.</span> <span class="toc-text">安装 mitmproxy</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%BE%E7%BD%AE%E4%BB%A3%E7%90%86"><span class="toc-number">4.</span> <span class="toc-text">设置代理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%BE%E7%BD%AE-CA"><span class="toc-number">5.</span> <span class="toc-text">设置 CA</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8-frida-%E7%BB%95%E8%BF%87-SSL-pinning"><span class="toc-number">6.</span> <span class="toc-text">使用 frida 绕过 SSL pinning</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8-mitmweb-%E6%9F%A5%E7%9C%8B%E6%8A%A5%E6%96%87"><span class="toc-number">7.</span> <span class="toc-text">使用 mitmweb 查看报文</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="toc-number">8.</span> <span class="toc-text">参考资料</span></a></li></ol>
+      </div>
+    
+  </span>
+</div>
 
-
-
-  <script id="fluid-configs">
-    var Fluid = window.Fluid || {};
-    Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"usmacd.com","root":"/","version":"1.9.7","typing":{"enable":false,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
-
-    if (CONFIG.web_analytics.follow_dnt) {
-      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
-      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
-    }
-  </script>
-  <script  src="/js/utils.js" ></script>
-  <script  src="/js/color-schema.js" ></script>
-  
-
-
-  
-<meta name="generator" content="Hexo 7.2.0"><link rel="alternate" href="/atom.xml" title="安全代码" type="application/atom+xml">
-<link rel="alternate" href="/rss.xml" title="安全代码" type="application/rss+xml">
-</head>
-
-
-<body>
-  
-
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
   <header>
     
+    <h1 class="posttitle p-name" itemprop="name headline">
+        Andorid 绕过 SSL Pinning 抓 https 报文
+    </h1>
 
-<div class="header-inner" style="height: 70vh;">
-  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
-  <div class="container">
-    <a class="navbar-brand" href="/">
-      <strong>安全代码</strong>
-    </a>
 
-    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
-            data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <div class="animated-icon"><span></span><span></span><span></span></div>
-    </button>
 
-    <!-- Collapsible content -->
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav ml-auto text-center">
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">henices</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2023-09-06T03:00:51.254Z" class="dt-published" itemprop="datePublished">2023-09-06</time>
         
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/" target="_self">
-                <i class="iconfont icon-home-fill"></i>
-                <span>Home</span>
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/archives/" target="_self">
-                <i class="iconfont icon-archive-fill"></i>
-                <span>Archives</span>
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/tags/" target="_self">
-                <i class="iconfont icon-tags-fill"></i>
-                <span>Tags</span>
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/about/" target="_self">
-                <i class="iconfont icon-user-fill"></i>
-                <span>About</span>
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/links/" target="_self">
-                <i class="iconfont icon-link-fill"></i>
-                <span>Links</span>
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/rss.xml" target="_self">
-                <i class="iconfont icon-rss"></i>
-                <span>rss</span>
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/sitemap.xml" target="_self">
-                
-                <span>sitemap</span>
-              </a>
-            </li>
-          
-        
-        
-          <li class="nav-item" id="search-btn">
-            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
-              <i class="iconfont icon-search"></i>
-            </a>
-          </li>
-          
-        
-        
-          <li class="nav-item" id="color-toggle-btn">
-            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
-              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
-            </a>
-          </li>
-        
-      </ul>
+      
     </div>
-  </div>
-</nav>
 
+
+      
+
+      
+    <div class="article-tag">
+        <i class="fa-solid fa-tag"></i>
+        <a class="p-category" href="/tags/Android/" rel="tag">Android</a>, <a class="p-category" href="/tags/Security/" rel="tag">Security</a>
+    </div>
+
+
+    </div>
+  </header>
   
 
-<div id="banner" class="banner" parallax=true
-     style="background: url('https://images.unsplash.com/photo-1473181488821-2d23949a045a?w=640') no-repeat center center; background-size: cover;">
-  <div class="full-bg-img">
-    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
-      <div class="banner-text text-center fade-in-up">
-        <div class="h2">
-          
-            <span id="subtitle">Andorid 绕过 SSL Pinning 抓 https 报文</span>
-          
-        </div>
-
-        
-          
-  <div class="mt-3">
-    
-    
-      <span class="post-meta">
-        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-09-06 11:00" pubdate>
-          September 6, 2023 am
-        </time>
-      </span>
-    
-  </div>
-
-  <div class="mt-1">
-    
-      <span class="post-meta mr-2">
-        <i class="iconfont icon-chart"></i>
-        
-          1.2k words
-        
-      </span>
-    
-
-    
-      <span class="post-meta mr-2">
-        <i class="iconfont icon-clock-fill"></i>
-        
-        
-        
-          10 mins
-        
-      </span>
-    
-
-    
-    
-      
-        <span id="busuanzi_container_page_pv" style="display: none">
-          <i class="iconfont icon-eye" aria-hidden="true"></i>
-          <span id="busuanzi_value_page_pv"></span> views
-        </span>
-        
-      
-    
-  </div>
-
-
-        
-      </div>
-
-      
-    </div>
-  </div>
-</div>
-
-</div>
-
-  </header>
-
-  <main>
-    
-      
-
-<div class="container-fluid nopadding-x">
-  <div class="row nomargin-x">
-    <div class="side-col d-none d-lg-block col-lg-2">
-      
-
-    </div>
-
-    <div class="col-lg-8 nopadding-x-md">
-      <div class="container nopadding-x-md" id="board-ctn">
-        <div id="board">
-          <article class="post-content mx-auto">
-            <h1 id="seo-header">Andorid 绕过 SSL Pinning 抓 https 报文</h1>
-            
-            
-              <div class="markdown-body">
-                
-                <h3 id="SSL-pinning"><a href="#SSL-pinning" class="headerlink" title="SSL pinning"></a>SSL pinning</h3><p>SSL Pinning是一种防止中间人攻击的技术，主要机制是在客户端发起请求–&gt;收到服务器发来的证书进行校验，如果收到的证书不被客户端信任，就直接断开连接不继续请求。可以发现中间人攻击的要点是伪造了一个假的服务端证书给了客户端，客户端误以为真。解决思路就是，客户端也预置一份服务端的证书，比较一下就知道真假了。</p>
+  <div class="content e-content" itemprop="articleBody">
+    <h3 id="SSL-pinning"><a href="#SSL-pinning" class="headerlink" title="SSL pinning"></a>SSL pinning</h3><p>SSL Pinning是一种防止中间人攻击的技术，主要机制是在客户端发起请求–&gt;收到服务器发来的证书进行校验，如果收到的证书不被客户端信任，就直接断开连接不继续请求。可以发现中间人攻击的要点是伪造了一个假的服务端证书给了客户端，客户端误以为真。解决思路就是，客户端也预置一份服务端的证书，比较一下就知道真假了。</p>
 <p>SSL-pinning有两种方式：证书锁定（Certificate Pinning） 和公钥锁定（ Public Key Pinning）。</p>
 <h4 id="证书锁定"><a href="#证书锁定" class="headerlink" title="证书锁定"></a>证书锁定</h4><p>需要在客户端代码内置仅接受指定域名的证书，而不接受操作系统或浏览器内置的CA根证书对应的任何证书，通过这种授权方式，保障了APP与服务端通信的唯一性和安全性，因此客户端与服务端（例如API网关）之间的通信是可以保证绝对安全。但是CA签发证书都存在有效期问题，缺点是在证书续期后需要将证书重新内置到APP中。</p>
 <h4 id="公钥锁定"><a href="#公钥锁定" class="headerlink" title="公钥锁定"></a>公钥锁定</h4><p>提取证书中的公钥并内置到客户端中，通过与服务器对比公钥值来验证连接的正确性。制作证书密钥时，公钥在证书的续期前后都可以保持不变（即密钥对不变），所以可以避免证书有效期问题，一般推荐这种做法。</p>
@@ -322,11 +175,11 @@
 <p>可以直接下载 Linux binary： <a target="_blank" rel="noopener" href="https://snapshots.mitmproxy.org/7.0.2/mitmproxy-7.0.2-linux.tar.gz%EF%BC%8C">https://snapshots.mitmproxy.org/7.0.2/mitmproxy-7.0.2-linux.tar.gz，</a> 或者使用 pip 进行安装 <code>https://pypi.org/project/mitmproxy/</code><br>执行命令 <code>~/.local/bin/pip3 install mitmproxy --user</code></p>
 <p>安装成功之后，有三个程序可以使用： <code>mitmproxy</code>，<code>mitmdump</code>， <code>mitmweb</code></p>
 <h3 id="设置代理"><a href="#设置代理" class="headerlink" title="设置代理"></a>设置代理</h3><p>在主机上执行下面几行命令设置代理</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">mitmweb -p 8080<br>adb shell settings put global http_proxy 127.0.0.1:8888<br>adb reverse tcp:8888 tcp:8080<br></code></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mitmweb -p 8080</span><br><span class="line">adb shell settings put global http_proxy 127.0.0.1:8888</span><br><span class="line">adb reverse tcp:8888 tcp:8080</span><br></pre></td></tr></table></figure>
 
 <p>mitmweb -p 8080 在本机起 8080 代理，在 Android 上设置 http 全局代理 127.0.0.1:8888， 最后将 Android 的 8888 端口转发到本机 8080 端口</p>
 <h3 id="设置-CA"><a href="#设置-CA" class="headerlink" title="设置 CA"></a>设置 CA</h3><p><a target="_blank" rel="noopener" href="https://docs.mitmproxy.org/stable/concepts-certificates/">https://docs.mitmproxy.org/stable/concepts-certificates/</a></p>
-<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs livecodeserver">The <span class="hljs-keyword">first</span> <span class="hljs-built_in">time</span> mitmproxy is run, <span class="hljs-keyword">it</span> creates <span class="hljs-keyword">the</span> <span class="hljs-built_in">keys</span> <span class="hljs-keyword">for</span> <span class="hljs-keyword">a</span> certificate authority (CA) <span class="hljs-keyword">in</span> <span class="hljs-keyword">the</span> config <span class="hljs-built_in">directory</span> (~/.mitmproxy <span class="hljs-keyword">by</span> default).<br></code></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">The first time mitmproxy is run, it creates the keys for a certificate authority (CA) in the config directory (~/.mitmproxy by default).</span><br></pre></td></tr></table></figure>
 
 <table>
 <thead>
@@ -355,349 +208,156 @@
 <p>我们是 Android 应该使用 <code>mitmproxy-ca-cert.cer</code>，在 Android 系统安装的话，需要点击 设置 -〉安全 -〉 加密与凭证 -〉安装证书 -〉CA 证书</p>
 <h3 id="使用-frida-绕过-SSL-pinning"><a href="#使用-frida-绕过-SSL-pinning" class="headerlink" title="使用 frida 绕过 SSL pinning"></a>使用 frida 绕过 SSL pinning</h3><p>使用 frida 脚本首先需要将 <code>mitmproxy-ca-cert.cer</code> 上传到 <code>/data/local/tmp/cert-der.crt</code></p>
 <p>使用脚本 <a target="_blank" rel="noopener" href="https://codeshare.frida.re/@pcipolloni/universal-android-ssl-pinning-bypass-with-frida/">https://codeshare.frida.re/@pcipolloni/universal-android-ssl-pinning-bypass-with-frida/</a></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">/*</span><br><span class="hljs-comment">   Android SSL Re-pinning frida script v0.2 030417-pier</span><br><span class="hljs-comment"></span><br><span class="hljs-comment">   $ adb push burpca-cert-der.crt /data/local/tmp/cert-der.crt</span><br><span class="hljs-comment">   $ frida -U -f it.app.mobile -l frida-android-repinning.js --no-pause</span><br><span class="hljs-comment"></span><br><span class="hljs-comment">   https://techblog.mediaservice.net/2017/07/universal-android-ssl-pinning-bypass-with-frida/</span><br><span class="hljs-comment"></span><br><span class="hljs-comment">   UPDATE 20191605: Fixed undeclared var. Thanks to @oleavr and @ehsanpc9999 !</span><br><span class="hljs-comment">*/</span><br><br><span class="hljs-built_in">setTimeout</span>(<span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)&#123;<br>  <span class="hljs-title class_">Java</span>.<span class="hljs-title function_">perform</span>(<span class="hljs-keyword">function</span> (<span class="hljs-params"></span>)&#123;<br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;&quot;</span>);<br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;[.] Cert Pinning Bypass/Re-Pinning&quot;</span>);<br><br>    <span class="hljs-keyword">var</span> <span class="hljs-title class_">CertificateFactory</span> = <span class="hljs-title class_">Java</span>.<span class="hljs-title function_">use</span>(<span class="hljs-string">&quot;java.security.cert.CertificateFactory&quot;</span>);<br>    <span class="hljs-keyword">var</span> <span class="hljs-title class_">FileInputStream</span> = <span class="hljs-title class_">Java</span>.<span class="hljs-title function_">use</span>(<span class="hljs-string">&quot;java.io.FileInputStream&quot;</span>);<br>    <span class="hljs-keyword">var</span> <span class="hljs-title class_">BufferedInputStream</span> = <span class="hljs-title class_">Java</span>.<span class="hljs-title function_">use</span>(<span class="hljs-string">&quot;java.io.BufferedInputStream&quot;</span>);<br>    <span class="hljs-keyword">var</span> X509Certificate = <span class="hljs-title class_">Java</span>.<span class="hljs-title function_">use</span>(<span class="hljs-string">&quot;java.security.cert.X509Certificate&quot;</span>);<br>    <span class="hljs-keyword">var</span> <span class="hljs-title class_">KeyStore</span> = <span class="hljs-title class_">Java</span>.<span class="hljs-title function_">use</span>(<span class="hljs-string">&quot;java.security.KeyStore&quot;</span>);<br>    <span class="hljs-keyword">var</span> <span class="hljs-title class_">TrustManagerFactory</span> = <span class="hljs-title class_">Java</span>.<span class="hljs-title function_">use</span>(<span class="hljs-string">&quot;javax.net.ssl.TrustManagerFactory&quot;</span>);<br>    <span class="hljs-keyword">var</span> <span class="hljs-title class_">SSLContext</span> = <span class="hljs-title class_">Java</span>.<span class="hljs-title function_">use</span>(<span class="hljs-string">&quot;javax.net.ssl.SSLContext&quot;</span>);<br><br>    <span class="hljs-comment">// Load CAs from an InputStream</span><br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;[+] Loading our CA...&quot;</span>)<br>    <span class="hljs-keyword">var</span> cf = <span class="hljs-title class_">CertificateFactory</span>.<span class="hljs-title function_">getInstance</span>(<span class="hljs-string">&quot;X.509&quot;</span>);<br><br>    <span class="hljs-keyword">try</span> &#123;<br>      <span class="hljs-keyword">var</span> fileInputStream = <span class="hljs-title class_">FileInputStream</span>.$new(<span class="hljs-string">&quot;/data/local/tmp/cert-der.crt&quot;</span>);<br>    &#125;<br>    <span class="hljs-keyword">catch</span>(err) &#123;<br>      <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;[o] &quot;</span> + err);<br>    &#125;<br><br>    <span class="hljs-keyword">var</span> bufferedInputStream = <span class="hljs-title class_">BufferedInputStream</span>.$new(fileInputStream);<br>    <span class="hljs-keyword">var</span> ca = cf.<span class="hljs-title function_">generateCertificate</span>(bufferedInputStream);<br>    bufferedInputStream.<span class="hljs-title function_">close</span>();<br><br>    <span class="hljs-keyword">var</span> certInfo = <span class="hljs-title class_">Java</span>.<span class="hljs-title function_">cast</span>(ca, X509Certificate);<br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;[o] Our CA Info: &quot;</span> + certInfo.<span class="hljs-title function_">getSubjectDN</span>());<br><br>    <span class="hljs-comment">// Create a KeyStore containing our trusted CAs</span><br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;[+] Creating a KeyStore for our CA...&quot;</span>);<br>    <span class="hljs-keyword">var</span> keyStoreType = <span class="hljs-title class_">KeyStore</span>.<span class="hljs-title function_">getDefaultType</span>();<br>    <span class="hljs-keyword">var</span> keyStore = <span class="hljs-title class_">KeyStore</span>.<span class="hljs-title function_">getInstance</span>(keyStoreType);<br>    keyStore.<span class="hljs-title function_">load</span>(<span class="hljs-literal">null</span>, <span class="hljs-literal">null</span>);<br>    keyStore.<span class="hljs-title function_">setCertificateEntry</span>(<span class="hljs-string">&quot;ca&quot;</span>, ca);<br><br>    <span class="hljs-comment">// Create a TrustManager that trusts the CAs in our KeyStore</span><br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;[+] Creating a TrustManager that trusts the CA in our KeyStore...&quot;</span>);<br>    <span class="hljs-keyword">var</span> tmfAlgorithm = <span class="hljs-title class_">TrustManagerFactory</span>.<span class="hljs-title function_">getDefaultAlgorithm</span>();<br>    <span class="hljs-keyword">var</span> tmf = <span class="hljs-title class_">TrustManagerFactory</span>.<span class="hljs-title function_">getInstance</span>(tmfAlgorithm);<br>    tmf.<span class="hljs-title function_">init</span>(keyStore);<br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;[+] Our TrustManager is ready...&quot;</span>);<br><br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;[+] Hijacking SSLContext methods now...&quot;</span>)<br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;[-] Waiting for the app to invoke SSLContext.init()...&quot;</span>)<br><br>    <span class="hljs-title class_">SSLContext</span>.<span class="hljs-property">init</span>.<span class="hljs-title function_">overload</span>(<span class="hljs-string">&quot;[Ljavax.net.ssl.KeyManager;&quot;</span>, <span class="hljs-string">&quot;[Ljavax.net.ssl.TrustManager;&quot;</span>, <span class="hljs-string">&quot;java.security.SecureRandom&quot;</span>).<span class="hljs-property">implementation</span> = <span class="hljs-keyword">function</span>(<span class="hljs-params">a,b,c</span>) &#123;<br>      <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;[o] App invoked javax.net.ssl.SSLContext.init...&quot;</span>);<br>      <span class="hljs-title class_">SSLContext</span>.<span class="hljs-property">init</span>.<span class="hljs-title function_">overload</span>(<span class="hljs-string">&quot;[Ljavax.net.ssl.KeyManager;&quot;</span>, <span class="hljs-string">&quot;[Ljavax.net.ssl.TrustManager;&quot;</span>, <span class="hljs-string">&quot;java.security.SecureRandom&quot;</span>).<span class="hljs-title function_">call</span>(<span class="hljs-variable language_">this</span>, a, tmf.<span class="hljs-title function_">getTrustManagers</span>(), c);<br>      <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;[+] SSLContext initialized with our custom TrustManager!&quot;</span>);<br>    &#125;<br>  &#125;);<br>&#125;,<span class="hljs-number">0</span>);<br></code></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">   Android SSL Re-pinning frida script v0.2 030417-pier</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">   $ adb push burpca-cert-der.crt /data/local/tmp/cert-der.crt</span></span><br><span class="line"><span class="comment">   $ frida -U -f it.app.mobile -l frida-android-repinning.js --no-pause</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">   https://techblog.mediaservice.net/2017/07/universal-android-ssl-pinning-bypass-with-frida/</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">   UPDATE 20191605: Fixed undeclared var. Thanks to @oleavr and @ehsanpc9999 !</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">setTimeout</span>(<span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">  <span class="title class_">Java</span>.<span class="title function_">perform</span>(<span class="keyword">function</span> (<span class="params"></span>)&#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;&quot;</span>);</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;[.] Cert Pinning Bypass/Re-Pinning&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> <span class="title class_">CertificateFactory</span> = <span class="title class_">Java</span>.<span class="title function_">use</span>(<span class="string">&quot;java.security.cert.CertificateFactory&quot;</span>);</span><br><span class="line">    <span class="keyword">var</span> <span class="title class_">FileInputStream</span> = <span class="title class_">Java</span>.<span class="title function_">use</span>(<span class="string">&quot;java.io.FileInputStream&quot;</span>);</span><br><span class="line">    <span class="keyword">var</span> <span class="title class_">BufferedInputStream</span> = <span class="title class_">Java</span>.<span class="title function_">use</span>(<span class="string">&quot;java.io.BufferedInputStream&quot;</span>);</span><br><span class="line">    <span class="keyword">var</span> X509Certificate = <span class="title class_">Java</span>.<span class="title function_">use</span>(<span class="string">&quot;java.security.cert.X509Certificate&quot;</span>);</span><br><span class="line">    <span class="keyword">var</span> <span class="title class_">KeyStore</span> = <span class="title class_">Java</span>.<span class="title function_">use</span>(<span class="string">&quot;java.security.KeyStore&quot;</span>);</span><br><span class="line">    <span class="keyword">var</span> <span class="title class_">TrustManagerFactory</span> = <span class="title class_">Java</span>.<span class="title function_">use</span>(<span class="string">&quot;javax.net.ssl.TrustManagerFactory&quot;</span>);</span><br><span class="line">    <span class="keyword">var</span> <span class="title class_">SSLContext</span> = <span class="title class_">Java</span>.<span class="title function_">use</span>(<span class="string">&quot;javax.net.ssl.SSLContext&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Load CAs from an InputStream</span></span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;[+] Loading our CA...&quot;</span>)</span><br><span class="line">    <span class="keyword">var</span> cf = <span class="title class_">CertificateFactory</span>.<span class="title function_">getInstance</span>(<span class="string">&quot;X.509&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">      <span class="keyword">var</span> fileInputStream = <span class="title class_">FileInputStream</span>.$new(<span class="string">&quot;/data/local/tmp/cert-der.crt&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">catch</span>(err) &#123;</span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;[o] &quot;</span> + err);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> bufferedInputStream = <span class="title class_">BufferedInputStream</span>.$new(fileInputStream);</span><br><span class="line">    <span class="keyword">var</span> ca = cf.<span class="title function_">generateCertificate</span>(bufferedInputStream);</span><br><span class="line">    bufferedInputStream.<span class="title function_">close</span>();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> certInfo = <span class="title class_">Java</span>.<span class="title function_">cast</span>(ca, X509Certificate);</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;[o] Our CA Info: &quot;</span> + certInfo.<span class="title function_">getSubjectDN</span>());</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Create a KeyStore containing our trusted CAs</span></span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;[+] Creating a KeyStore for our CA...&quot;</span>);</span><br><span class="line">    <span class="keyword">var</span> keyStoreType = <span class="title class_">KeyStore</span>.<span class="title function_">getDefaultType</span>();</span><br><span class="line">    <span class="keyword">var</span> keyStore = <span class="title class_">KeyStore</span>.<span class="title function_">getInstance</span>(keyStoreType);</span><br><span class="line">    keyStore.<span class="title function_">load</span>(<span class="literal">null</span>, <span class="literal">null</span>);</span><br><span class="line">    keyStore.<span class="title function_">setCertificateEntry</span>(<span class="string">&quot;ca&quot;</span>, ca);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Create a TrustManager that trusts the CAs in our KeyStore</span></span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;[+] Creating a TrustManager that trusts the CA in our KeyStore...&quot;</span>);</span><br><span class="line">    <span class="keyword">var</span> tmfAlgorithm = <span class="title class_">TrustManagerFactory</span>.<span class="title function_">getDefaultAlgorithm</span>();</span><br><span class="line">    <span class="keyword">var</span> tmf = <span class="title class_">TrustManagerFactory</span>.<span class="title function_">getInstance</span>(tmfAlgorithm);</span><br><span class="line">    tmf.<span class="title function_">init</span>(keyStore);</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;[+] Our TrustManager is ready...&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;[+] Hijacking SSLContext methods now...&quot;</span>)</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;[-] Waiting for the app to invoke SSLContext.init()...&quot;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="title class_">SSLContext</span>.<span class="property">init</span>.<span class="title function_">overload</span>(<span class="string">&quot;[Ljavax.net.ssl.KeyManager;&quot;</span>, <span class="string">&quot;[Ljavax.net.ssl.TrustManager;&quot;</span>, <span class="string">&quot;java.security.SecureRandom&quot;</span>).<span class="property">implementation</span> = <span class="keyword">function</span>(<span class="params">a,b,c</span>) &#123;</span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;[o] App invoked javax.net.ssl.SSLContext.init...&quot;</span>);</span><br><span class="line">      <span class="title class_">SSLContext</span>.<span class="property">init</span>.<span class="title function_">overload</span>(<span class="string">&quot;[Ljavax.net.ssl.KeyManager;&quot;</span>, <span class="string">&quot;[Ljavax.net.ssl.TrustManager;&quot;</span>, <span class="string">&quot;java.security.SecureRandom&quot;</span>).<span class="title function_">call</span>(<span class="variable language_">this</span>, a, tmf.<span class="title function_">getTrustManagers</span>(), c);</span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;[+] SSLContext initialized with our custom TrustManager!&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;,<span class="number">0</span>);</span><br></pre></td></tr></table></figure>
 
 <p>执行下面命令，绕过 SSL pinning</p>
-<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs awk">frida -U --codeshare pcipolloni/universal-android-ssl-pinning-bypass-with-frida -F<br><br>     ____<br>    / _  |   Frida <span class="hljs-number">14.2</span>.<span class="hljs-number">18</span> - A world-class dynamic instrumentation toolkit<br>   | (_| |<br>    &gt; _  |   Commands:<br>   <span class="hljs-regexp">/_/</span> |_|       help      -&gt; Displays the help system<br>   . . . .       object?   -&gt; Display information about <span class="hljs-string">&#x27;object&#x27;</span><br>   . . . .       <span class="hljs-keyword">exit</span>/quit -&gt; Exit<br>   . . . .<br>   . . . .   More info at https:<span class="hljs-regexp">//</span>frida.re<span class="hljs-regexp">/docs/</span>home/<br><br>[.] Cert Pinning Bypass/Re-Pinning<br>[+] Loading our CA...<br>[o] Our CA Info: O=mitmproxy, CN=mitmproxy<br>[+] Creating a KeyStore <span class="hljs-keyword">for</span> our CA...<br>[+] Creating a TrustManager that trusts the CA <span class="hljs-keyword">in</span> our KeyStore...<br>[+] Our TrustManager is ready...<br>[+] Hijacking SSLContext methods now...<br>[-] Waiting <span class="hljs-keyword">for</span> the app to invoke SSLContext.init()...<br>[Pixel <span class="hljs-number">2</span>::智能生活]-&gt; <span class="hljs-keyword">exit</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">frida -U --codeshare pcipolloni/universal-android-ssl-pinning-bypass-with-frida -F</span><br><span class="line"></span><br><span class="line">     ____</span><br><span class="line">    / _  |   Frida 14.2.18 - A world-class dynamic instrumentation toolkit</span><br><span class="line">   | (_| |</span><br><span class="line">    &gt; _  |   Commands:</span><br><span class="line">   /_/ |_|       help      -&gt; Displays the help system</span><br><span class="line">   . . . .       object?   -&gt; Display information about &#x27;object&#x27;</span><br><span class="line">   . . . .       exit/quit -&gt; Exit</span><br><span class="line">   . . . .</span><br><span class="line">   . . . .   More info at https://frida.re/docs/home/</span><br><span class="line"></span><br><span class="line">[.] Cert Pinning Bypass/Re-Pinning</span><br><span class="line">[+] Loading our CA...</span><br><span class="line">[o] Our CA Info: O=mitmproxy, CN=mitmproxy</span><br><span class="line">[+] Creating a KeyStore for our CA...</span><br><span class="line">[+] Creating a TrustManager that trusts the CA in our KeyStore...</span><br><span class="line">[+] Our TrustManager is ready...</span><br><span class="line">[+] Hijacking SSLContext methods now...</span><br><span class="line">[-] Waiting for the app to invoke SSLContext.init()...</span><br><span class="line">[Pixel 2::智能生活]-&gt; exit</span><br></pre></td></tr></table></figure>
 
 <p>其中 <code>-F</code> 参数 attach to frontmost application 不用指定 pid 或者包名，非常方便。</p>
 <h3 id="使用-mitmweb-查看报文"><a href="#使用-mitmweb-查看报文" class="headerlink" title="使用 mitmweb 查看报文"></a>使用 mitmweb 查看报文</h3><p>执行 <code>mitmweb -p 8080</code> 后可以用浏览器访问 <a target="_blank" rel="noopener" href="http://127.0.0.1:8081/">http://127.0.0.1:8081/</a> 查看报文，如果需要共享报文数据可以使用<br>mitmweb 界面提供的 save 功能，会保存成一个 flow 文件，后面使用 mitmweb 界面提供的 open 打开报文文件即可展示报文详细信息。</p>
 <h3 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h3><p><a target="_blank" rel="noopener" href="https://shunix.com/ssl-pinning/">https://shunix.com/ssl-pinning/</a></p>
 
-                
-              </div>
-            
-            <hr/>
-            <div>
-              <div class="post-metas my-3">
-  
-  
-    <div class="post-meta">
-      <i class="iconfont icon-tags"></i>
-      
-        <a href="/tags/Security/" class="print-no-link">#Security</a>
-      
-        <a href="/tags/Android/" class="print-no-link">#Android</a>
-      
-    </div>
-  
-</div>
-
-
-              
-  
-
-  <div class="license-box my-3">
-    <div class="license-title">
-      <div>Andorid 绕过 SSL Pinning 抓 https 报文</div>
-      <div>http://usmacd.com/cn/Android_SSL_Pinning/</div>
-    </div>
-    <div class="license-meta">
-      
-        <div class="license-meta-item">
-          <div>Author</div>
-          <div>henices</div>
-        </div>
-      
-      
-        <div class="license-meta-item license-meta-date">
-          <div>Posted on</div>
-          <div>September 6, 2023</div>
-        </div>
-      
-      
-      
-        <div class="license-meta-item">
-          <div>Licensed under</div>
-          <div>
-            
-              
-              
-                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
-                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
-                    <i class="iconfont icon-by"></i>
-                  </span>
-                </a>
-              
-            
-          </div>
-        </div>
-      
-    </div>
-    <div class="license-icon iconfont"></div>
   </div>
+</article>
 
 
 
-              
-                <div class="post-prevnext my-3">
-                  <article class="post-prev col-6">
-                    
-                    
-                      <a href="/cn/anti_sandbox/" title="一些反沙盒的新技术">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">一些反沙盒的新技术</span>
-                        <span class="visible-mobile">Previous</span>
-                      </a>
-                    
-                  </article>
-                  <article class="post-next col-6">
-                    
-                    
-                      <a href="/cn/android_intent_base_attack/" title="Intent Spoofing 攻击">
-                        <span class="hidden-mobile">Intent Spoofing 攻击</span>
-                        <span class="visible-mobile">Next</span>
-                        <i class="iconfont icon-arrowright"></i>
-                      </a>
-                    
-                  </article>
-                </div>
-              
-            </div>
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
 
-            
-          </article>
-        </div>
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/">Home</a></li>
+        
+          <li><a href="/about/">About</a></li>
+        
+          <li><a href="/archives/">Writing</a></li>
+        
+          <li><a href="/search/">Search</a></li>
+        
+          <li><a href="/links/">Links</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#SSL-pinning"><span class="toc-number">1.</span> <span class="toc-text">SSL pinning</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AF%81%E4%B9%A6%E9%94%81%E5%AE%9A"><span class="toc-number">1.1.</span> <span class="toc-text">证书锁定</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%85%AC%E9%92%A5%E9%94%81%E5%AE%9A"><span class="toc-number">1.2.</span> <span class="toc-text">公钥锁定</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%BB%E4%BD%93%E6%80%9D%E8%B7%AF"><span class="toc-number">2.</span> <span class="toc-text">总体思路</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%85-mitmproxy"><span class="toc-number">3.</span> <span class="toc-text">安装 mitmproxy</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%BE%E7%BD%AE%E4%BB%A3%E7%90%86"><span class="toc-number">4.</span> <span class="toc-text">设置代理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%BE%E7%BD%AE-CA"><span class="toc-number">5.</span> <span class="toc-text">设置 CA</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8-frida-%E7%BB%95%E8%BF%87-SSL-pinning"><span class="toc-number">6.</span> <span class="toc-text">使用 frida 绕过 SSL pinning</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8-mitmweb-%E6%9F%A5%E7%9C%8B%E6%8A%A5%E6%96%87"><span class="toc-number">7.</span> <span class="toc-text">使用 mitmweb 查看报文</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="toc-number">8.</span> <span class="toc-text">参考资料</span></a></li></ol>
       </div>
+    
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://usmacd.com/cn/Android_SSL_Pinning/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://usmacd.com/cn/Android_SSL_Pinning/&text=Andorid 绕过 SSL Pinning 抓 https 报文"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://usmacd.com/cn/Android_SSL_Pinning/&title=Andorid 绕过 SSL Pinning 抓 https 报文"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://usmacd.com/cn/Android_SSL_Pinning/&is_video=false&description=Andorid 绕过 SSL Pinning 抓 https 报文"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Andorid 绕过 SSL Pinning 抓 https 报文&body=Check out this article: http://usmacd.com/cn/Android_SSL_Pinning/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://usmacd.com/cn/Android_SSL_Pinning/&title=Andorid 绕过 SSL Pinning 抓 https 报文"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://usmacd.com/cn/Android_SSL_Pinning/&title=Andorid 绕过 SSL Pinning 抓 https 报文"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://usmacd.com/cn/Android_SSL_Pinning/&title=Andorid 绕过 SSL Pinning 抓 https 报文"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://usmacd.com/cn/Android_SSL_Pinning/&title=Andorid 绕过 SSL Pinning 抓 https 报文"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://usmacd.com/cn/Android_SSL_Pinning/&name=Andorid 绕过 SSL Pinning 抓 https 报文&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://usmacd.com/cn/Android_SSL_Pinning/&t=Andorid 绕过 SSL Pinning 抓 https 报文"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
     </div>
 
-    <div class="side-col d-none d-lg-block col-lg-2">
-      
-  <aside class="sidebar" style="margin-left: -1rem">
-    <div id="toc">
-  <p class="toc-header">
-    <i class="iconfont icon-list"></i>
-    <span>Table of Contents</span>
-  </p>
-  <div class="toc-body" id="toc-body"></div>
-</div>
-
-
-
-  </aside>
-
-
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
     </div>
+
   </div>
 </div>
 
-
-
-
-
-  
-
-
-
-  
-
-
-
-  
-
-
-
-  
-
-
-
-  
-
-
-
-
-
-
-
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
     
-
     
-      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
-        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
-      </a>
-    
-
-    
-      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
-     aria-hidden="true">
-  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
-        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body mx-3">
-        <div class="md-form mb-5">
-          <input type="text" id="local-search-input" class="form-control validate">
-          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
-        </div>
-        <div class="list-group" id="local-search-result"></div>
-      </div>
-    </div>
+    2004-2024
+    henices
   </div>
-</div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     --><!--
+       --><li><a href="/search/">Search</a></li><!--
+     --><!--
+       --><li><a href="/links/">Links</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
 
-    
-
-    
-  </main>
-
-  <footer>
-    <div class="footer-inner">
-  
-    <div class="footer-content">
-       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
     </div>
-  
-  
-  
-  
-</div>
+    <!-- styles -->
 
-  </footer>
 
-  <!-- Scripts -->
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
   
-  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
-  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
-
-  <script>
-    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
-    NProgress.start()
-    window.addEventListener('load', function() {
-      NProgress.done();
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
     })
+  })
   </script>
 
 
-<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
-<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
-<script  src="/js/events.js" ></script>
-<script  src="/js/plugins.js" ></script>
+<script src="/js/main.js"></script>
 
+<!-- search -->
 
+<!-- Baidu Analytics -->
 
+<!-- Cloudflare Analytics -->
 
+<!-- Disqus Comments -->
 
-  
-    <script  src="/js/img-lazyload.js" ></script>
-  
+<!-- utterances Comments -->
 
-
-
-
-  
-<script>
-  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
-    var toc = jQuery('#toc');
-    if (toc.length === 0 || !window.tocbot) { return; }
-    var boardCtn = jQuery('#board-ctn');
-    var boardTop = boardCtn.offset().top;
-
-    window.tocbot.init(Object.assign({
-      tocSelector     : '#toc-body',
-      contentSelector : '.markdown-body',
-      linkClass       : 'tocbot-link',
-      activeLinkClass : 'tocbot-active-link',
-      listClass       : 'tocbot-list',
-      isCollapsedClass: 'tocbot-is-collapsed',
-      collapsibleClass: 'tocbot-is-collapsible',
-      scrollSmooth    : true,
-      includeTitleTags: true,
-      headingsOffset  : -boardTop,
-    }, CONFIG.toc));
-    if (toc.find('.toc-list-item').length > 0) {
-      toc.css('visibility', 'visible');
-    }
-
-    Fluid.events.registerRefreshCallback(function() {
-      if ('tocbot' in window) {
-        tocbot.refresh();
-        var toc = jQuery('#toc');
-        if (toc.length === 0 || !tocbot) {
-          return;
-        }
-        if (toc.find('.toc-list-item').length > 0) {
-          toc.css('visibility', 'visible');
-        }
-      }
-    });
-  });
-</script>
-
-
-  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
-
-  <script>Fluid.plugins.codeWidget();</script>
-
-
-  
-<script>
-  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
-    window.anchors.options = {
-      placement: CONFIG.anchorjs.placement,
-      visible  : CONFIG.anchorjs.visible
-    };
-    if (CONFIG.anchorjs.icon) {
-      window.anchors.options.icon = CONFIG.anchorjs.icon;
-    }
-    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
-    var res = [];
-    for (var item of el) {
-      res.push('.markdown-body > ' + item.trim());
-    }
-    if (CONFIG.anchorjs.placement === 'left') {
-      window.anchors.options.class = 'anchorjs-link-left';
-    }
-    window.anchors.add(res.join(', '));
-
-    Fluid.events.registerRefreshCallback(function() {
-      if ('anchors' in window) {
-        anchors.removeAll();
-        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
-        var res = [];
-        for (var item of el) {
-          res.push('.markdown-body > ' + item.trim());
-        }
-        if (CONFIG.anchorjs.placement === 'left') {
-          anchors.options.class = 'anchorjs-link-left';
-        }
-        anchors.add(res.join(', '));
-      }
-    });
-  });
-</script>
-
-
-  
-<script>
-  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
-    Fluid.plugins.fancyBox();
-  });
-</script>
-
-
-  <script>Fluid.plugins.imageCaption();</script>
-
-  <script  src="/js/local-search.js" ></script>
-
-  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
-
-
-
-
-
-<!-- 主题的启动项，将它保持在最底部 -->
-<!-- the boot of the theme, keep it at the bottom -->
-<script  src="/js/boot.js" ></script>
-
-
-  
-
-  <noscript>
-    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
-  </noscript>
 </body>
 </html>

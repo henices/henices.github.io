@@ -1,23 +1,11 @@
-
-
 <!DOCTYPE html>
-<html lang="en" data-default-color-scheme=auto>
-
-
-
+<html lang=en>
 <head>
-  <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
-  <link rel="icon" href="/img/fluid.png">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
-  <meta http-equiv="x-ua-compatible" content="ie=edge">
-  
-    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
-  
-  <meta name="theme-color" content="#2f4154">
-  <meta name="author" content="henices">
-  <meta name="keywords" content="">
-  
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
     <meta name="description" content="我在公司使用 Linux 作用主力机已经 10 多年了，自从抛弃 Ubuntu 转入 Fedora 怀抱，生活幸福了不少。早年最大的问题是 OFFICE 软件，工作中少不了要和 doc、ppt，xls 打交道，又没有太好的软件可以使用。刚开始基本就两个解决方案，wine office 和永中 OFFICE，这两个方案都不是太理想，wine 的速度很慢，永中则兼容性比较差，还会出现文档格式看起来就有">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ThunerBird 78.8.1 连接 TLS 1.0 失败问题和 Linux 乱谈">
@@ -29,662 +17,318 @@
 <meta property="article:modified_time" content="2023-12-05T16:00:00.000Z">
 <meta property="article:author" content="henices">
 <meta property="article:tag" content="linux">
-<meta name="twitter:card" content="summary_large_image">
-  
-  
-    <meta name="referrer" content="no-referrer-when-downgrade">
-  
-  
-  <title>ThunerBird 78.8.1 连接 TLS 1.0 失败问题和 Linux 乱谈 - 安全代码</title>
-
-  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
-
-
-
-  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
-
-  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
-
-  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
-
-
-
-<!-- 主题依赖的图标库，不要自行修改 -->
-<!-- Do not modify the link that theme dependent icons -->
-
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
-
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>ThunerBird 78.8.1 连接 TLS 1.0 失败问题和 Linux 乱谈</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
 
 
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+    <!-- Umami Analytics -->
 
 
-<link  rel="stylesheet" href="/css/main.css" />
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
 
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+      <link rel="alternate" href="https://www.usmacd.com/rss.xml" title="安全代码" type="application/atom+xml" />
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 7.2.0"></head>
 
-  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
-  
-    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
-  
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     --><!--
+       --><li><a href="/search/">Search</a></li><!--
+     --><!--
+       --><li><a href="/links/">Links</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="Previous post" href="/cn/fcitx5-rime/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="Next post" href="/cn/halfempty/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://usmacd.com/cn/thunderbird.tls.1.0/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://usmacd.com/cn/thunderbird.tls.1.0/&text=ThunerBird 78.8.1 连接 TLS 1.0 失败问题和 Linux 乱谈"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://usmacd.com/cn/thunderbird.tls.1.0/&title=ThunerBird 78.8.1 连接 TLS 1.0 失败问题和 Linux 乱谈"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://usmacd.com/cn/thunderbird.tls.1.0/&is_video=false&description=ThunerBird 78.8.1 连接 TLS 1.0 失败问题和 Linux 乱谈"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=ThunerBird 78.8.1 连接 TLS 1.0 失败问题和 Linux 乱谈&body=Check out this article: http://usmacd.com/cn/thunderbird.tls.1.0/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://usmacd.com/cn/thunderbird.tls.1.0/&title=ThunerBird 78.8.1 连接 TLS 1.0 失败问题和 Linux 乱谈"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://usmacd.com/cn/thunderbird.tls.1.0/&title=ThunerBird 78.8.1 连接 TLS 1.0 失败问题和 Linux 乱谈"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://usmacd.com/cn/thunderbird.tls.1.0/&title=ThunerBird 78.8.1 连接 TLS 1.0 失败问题和 Linux 乱谈"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://usmacd.com/cn/thunderbird.tls.1.0/&title=ThunerBird 78.8.1 连接 TLS 1.0 失败问题和 Linux 乱谈"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://usmacd.com/cn/thunderbird.tls.1.0/&name=ThunerBird 78.8.1 连接 TLS 1.0 失败问题和 Linux 乱谈&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://usmacd.com/cn/thunderbird.tls.1.0/&t=ThunerBird 78.8.1 连接 TLS 1.0 失败问题和 Linux 乱谈"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
 
+    </div>
+    
+    
+  </span>
+</div>
 
-
-
-  <script id="fluid-configs">
-    var Fluid = window.Fluid || {};
-    Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"usmacd.com","root":"/","version":"1.9.7","typing":{"enable":false,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
-
-    if (CONFIG.web_analytics.follow_dnt) {
-      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
-      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
-    }
-  </script>
-  <script  src="/js/utils.js" ></script>
-  <script  src="/js/color-schema.js" ></script>
-  
-
-
-  
-<meta name="generator" content="Hexo 7.2.0"><link rel="alternate" href="/atom.xml" title="安全代码" type="application/atom+xml">
-<link rel="alternate" href="/rss.xml" title="安全代码" type="application/rss+xml">
-</head>
-
-
-<body>
-  
-
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
   <header>
     
+    <h1 class="posttitle p-name" itemprop="name headline">
+        ThunerBird 78.8.1 连接 TLS 1.0 失败问题和 Linux 乱谈
+    </h1>
 
-<div class="header-inner" style="height: 70vh;">
-  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
-  <div class="container">
-    <a class="navbar-brand" href="/">
-      <strong>安全代码</strong>
-    </a>
 
-    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
-            data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <div class="animated-icon"><span></span><span></span><span></span></div>
-    </button>
 
-    <!-- Collapsible content -->
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav ml-auto text-center">
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">henices</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2021-06-05T16:00:00.000Z" class="dt-published" itemprop="datePublished">2021-06-06</time>
         
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/" target="_self">
-                <i class="iconfont icon-home-fill"></i>
-                <span>Home</span>
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/archives/" target="_self">
-                <i class="iconfont icon-archive-fill"></i>
-                <span>Archives</span>
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/tags/" target="_self">
-                <i class="iconfont icon-tags-fill"></i>
-                <span>Tags</span>
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/about/" target="_self">
-                <i class="iconfont icon-user-fill"></i>
-                <span>About</span>
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/links/" target="_self">
-                <i class="iconfont icon-link-fill"></i>
-                <span>Links</span>
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/rss.xml" target="_self">
-                <i class="iconfont icon-rss"></i>
-                <span>rss</span>
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/sitemap.xml" target="_self">
-                
-                <span>sitemap</span>
-              </a>
-            </li>
-          
-        
-        
-          <li class="nav-item" id="search-btn">
-            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
-              <i class="iconfont icon-search"></i>
-            </a>
-          </li>
-          
-        
-        
-          <li class="nav-item" id="color-toggle-btn">
-            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
-              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
-            </a>
-          </li>
-        
-      </ul>
+      
     </div>
-  </div>
-</nav>
 
+
+      
+
+      
+    <div class="article-tag">
+        <i class="fa-solid fa-tag"></i>
+        <a class="p-category" href="/tags/linux/" rel="tag">linux</a>
+    </div>
+
+
+    </div>
+  </header>
   
 
-<div id="banner" class="banner" parallax=true
-     style="background: url('https://images.unsplash.com/photo-1473181488821-2d23949a045a?w=640') no-repeat center center; background-size: cover;">
-  <div class="full-bg-img">
-    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
-      <div class="banner-text text-center fade-in-up">
-        <div class="h2">
-          
-            <span id="subtitle">ThunerBird 78.8.1 连接 TLS 1.0 失败问题和 Linux 乱谈</span>
-          
-        </div>
-
-        
-          
-  <div class="mt-3">
-    
-    
-      <span class="post-meta">
-        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2021-06-06 00:00" pubdate>
-          June 6, 2021 am
-        </time>
-      </span>
-    
-  </div>
-
-  <div class="mt-1">
-    
-      <span class="post-meta mr-2">
-        <i class="iconfont icon-chart"></i>
-        
-          928 words
-        
-      </span>
-    
-
-    
-      <span class="post-meta mr-2">
-        <i class="iconfont icon-clock-fill"></i>
-        
-        
-        
-          8 mins
-        
-      </span>
-    
-
-    
-    
-      
-        <span id="busuanzi_container_page_pv" style="display: none">
-          <i class="iconfont icon-eye" aria-hidden="true"></i>
-          <span id="busuanzi_value_page_pv"></span> views
-        </span>
-        
-      
-    
-  </div>
-
-
-        
-      </div>
-
-      
-    </div>
-  </div>
-</div>
-
-</div>
-
-  </header>
-
-  <main>
-    
-      
-
-<div class="container-fluid nopadding-x">
-  <div class="row nomargin-x">
-    <div class="side-col d-none d-lg-block col-lg-2">
-      
-
-    </div>
-
-    <div class="col-lg-8 nopadding-x-md">
-      <div class="container nopadding-x-md" id="board-ctn">
-        <div id="board">
-          <article class="post-content mx-auto">
-            <h1 id="seo-header">ThunerBird 78.8.1 连接 TLS 1.0 失败问题和 Linux 乱谈</h1>
-            
-              <p id="updated-time" class="note note-info" style="">
-                
-                  
-                    Last updated on December 6, 2023 am
-                  
-                
-              </p>
-            
-            
-              <div class="markdown-body">
-                
-                <p>我在公司使用 Linux 作用主力机已经 10 多年了，自从抛弃 Ubuntu 转入 Fedora 怀抱，生活幸福了不少。<br>早年最大的问题是 OFFICE 软件，工作中少不了要和 doc、ppt，xls 打交道，又没有太好的软件可以使用。<br>刚开始基本就两个解决方案，wine office 和永中 OFFICE，这两个方案都不是太理想，wine 的速度很慢，<br>永中则兼容性比较差，还会出现文档格式看起来就有明显差异的情况。。</p>
+  <div class="content e-content" itemprop="articleBody">
+    <p>我在公司使用 Linux 作用主力机已经 10 多年了，自从抛弃 Ubuntu 转入 Fedora 怀抱，生活幸福了不少。<br>早年最大的问题是 OFFICE 软件，工作中少不了要和 doc、ppt，xls 打交道，又没有太好的软件可以使用。<br>刚开始基本就两个解决方案，wine office 和永中 OFFICE，这两个方案都不是太理想，wine 的速度很慢，<br>永中则兼容性比较差，还会出现文档格式看起来就有明显差异的情况。。</p>
 <p>随着金山 wps 的发展，现在 OFFICE 的问题基本解决，作为轻度 EXCEL 使用者基本已经满足需求了。Linux<br>现在主要问题是字体渲染比较差，中文经常看起来发虚，如果能把这个问题彻底解决就非常不错了。作为Linux<br>老用户，各种魔改后，也能较好使用了，但后面发现还是换个显示器更管用。要解决中文显示问题，有两个<br>字体很管用，文泉驿微米黒和微软雅黑，实践证明把系统字体用上面两个字体替换，显示效果也就好了不少了。</p>
 <p>Ubuntu Linux 最大的问题就是不太稳定，基本每次大版本升级显示都要挂，弄得我都有点心理阴影了，原来<br>周围还挺多同学使用 Linux，最终放弃了，一个直接用 Windows 了，还有一个 Windows 上跑一个 Linux 虚拟机。<br>Ubuntu 还有个坏习惯喜欢乱改，upstart，Unity等，后面都没有成为主流，bug 就更不用说了，经常挺闹心的。</p>
 <p>Fedora 从近些年的使用情况来看，还是很不错的，网络中流传是 Redhat Linux Enterprise 的小白版本，<br>但是其实只要 bug 修得快，你大概率是感觉不到的。遇上问题，放狗一搜就会发现 redhat 已经有 bug 在<br>处理中了，于是乎就有了今天这篇。</p>
 <p>在升级到 Fedara 33 和 ThunderBird 78 后，使用 TLS 连接公司的 ExChange 邮件服务器就连不上了。<br>我们公司的内网安全审核非常严格，邮件不使用加密连接要限时整改。放狗一搜发现，大批人员都遇上了<br>相同的问题，也有人给出了解决方案。</p>
 <p><a target="_blank" rel="noopener" href="https://support.mozilla.org/en-US/questions/1295861">https://support.mozilla.org/en-US/questions/1295861</a></p>
-<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs livecodeserver">I think this could be due <span class="hljs-built_in">to</span> <span class="hljs-keyword">the</span> minimum <span class="hljs-built_in">version</span> <span class="hljs-keyword">of</span> TLS supported <span class="hljs-keyword">by</span> TB <span class="hljs-number">78.</span> The release notes state <br>that versions <span class="hljs-built_in">lower</span> than <span class="hljs-number">1.2</span> are disabled, so <span class="hljs-keyword">if</span> your server only supports v. <span class="hljs-number">1.1</span>, <br>you might be able <span class="hljs-built_in">to</span> fix sending <span class="hljs-keyword">by</span> changing <span class="hljs-keyword">the</span> preference security.tls.<span class="hljs-built_in">version</span>.<span class="hljs-built_in">min</span> <span class="hljs-built_in">to</span> <span class="hljs-number">2</span> <span class="hljs-built_in">from</span> <span class="hljs-keyword">the</span> default <span class="hljs-number">3</span>, <span class="hljs-keyword">in</span> Config. editor.<br><br></code></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">I think this could be due to the minimum version of TLS supported by TB 78. The release notes state </span><br><span class="line">that versions lower than 1.2 are disabled, so if your server only supports v. 1.1, </span><br><span class="line">you might be able to fix sending by changing the preference security.tls.version.min to 2 from the default 3, in Config. editor.</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 <p><a target="_blank" rel="noopener" href="https://www.thunderbird.net/en-US/thunderbird/78.0/releasenotes/">https://www.thunderbird.net/en-US/thunderbird/78.0/releasenotes/</a></p>
-<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">TLS</span> <span class="hljs-number">1</span>.<span class="hljs-number">0</span> and <span class="hljs-number">1</span>.<span class="hljs-number">1</span> disabled<br></code></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">TLS 1.0 and 1.1 disabled</span><br></pre></td></tr></table></figure>
 
 <p>如何开启 TLS 1.0， mozilla 也给出了相应的方案</p>
 <p><a target="_blank" rel="noopener" href="https://support.mozilla.org/en-US/kb/thunderbird-78-faq#w_how-to-enable-outdated-security-protocols-tls-1-0-and-1-1">https://support.mozilla.org/en-US/kb/thunderbird-78-faq#w_how-to-enable-outdated-security-protocols-tls-1-0-and-1-1</a></p>
-<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs vim">How <span class="hljs-keyword">to</span> enable outdated security protocols TLS <span class="hljs-number">1.0</span> <span class="hljs-built_in">and</span> <span class="hljs-number">1.1</span><br><br>Open Config Editor (abou<span class="hljs-variable">t:config</span>)<br>≡ &gt; Preferences &gt; Find in Preferences<br>In the searchbox, <span class="hljs-built_in">type</span>: abou<span class="hljs-variable">t:config</span>, then press Enter.<br>Click <span class="hljs-keyword">on</span> the button Config Editor… in the <span class="hljs-built_in">search</span> result.<br>In the abou<span class="hljs-variable">t:config</span> dialog, <span class="hljs-built_in">search</span> <span class="hljs-keyword">for</span>: security.tls.<span class="hljs-keyword">version</span>.<span class="hljs-built_in">min</span><br>Double-click <span class="hljs-keyword">on</span> the found preference security.tls.<span class="hljs-keyword">version</span>.<span class="hljs-built_in">min</span> <span class="hljs-built_in">and</span> <span class="hljs-keyword">change</span> its value <span class="hljs-keyword">to</span> <span class="hljs-number">1</span>, then press Enter.<br>Restart Thunderbird <span class="hljs-built_in">and</span> <span class="hljs-keyword">try</span> <span class="hljs-keyword">to</span> download your <span class="hljs-keyword">messages</span>.<br>If you can receive <span class="hljs-built_in">and</span>/<span class="hljs-built_in">or</span> send your <span class="hljs-keyword">messages</span> after changing this preference:<br><br>Please inform your email provider <span class="hljs-keyword">to</span> upgrade the security protocols <span class="hljs-keyword">on</span> the server <span class="hljs-keyword">to</span> support TLS <span class="hljs-number">1.2</span>.<br>Revert the preference security.tls.<span class="hljs-keyword">version</span>.<span class="hljs-built_in">min</span> <span class="hljs-keyword">to</span> its original value <span class="hljs-keyword">as</span> soon <span class="hljs-keyword">as</span> possible by repeating <br>the above procedure, then <span class="hljs-keyword">right</span>-click <span class="hljs-keyword">on</span> the preference <span class="hljs-built_in">and</span> choose Reset from the context <span class="hljs-keyword">menu</span>.<br><br></code></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">How to enable outdated security protocols TLS 1.0 and 1.1</span><br><span class="line"></span><br><span class="line">Open Config Editor (about:config)</span><br><span class="line">≡ &gt; Preferences &gt; Find in Preferences</span><br><span class="line">In the searchbox, type: about:config, then press Enter.</span><br><span class="line">Click on the button Config Editor… in the search result.</span><br><span class="line">In the about:config dialog, search for: security.tls.version.min</span><br><span class="line">Double-click on the found preference security.tls.version.min and change its value to 1, then press Enter.</span><br><span class="line">Restart Thunderbird and try to download your messages.</span><br><span class="line">If you can receive and/or send your messages after changing this preference:</span><br><span class="line"></span><br><span class="line">Please inform your email provider to upgrade the security protocols on the server to support TLS 1.2.</span><br><span class="line">Revert the preference security.tls.version.min to its original value as soon as possible by repeating </span><br><span class="line">the above procedure, then right-click on the preference and choose Reset from the context menu.</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 <p>看上去解决方案很简单，在 Preferences 中的搜索框里输入 <code>about:config</code> 点击进入，将其中的<br><code>security.tls.version.min</code> 设置为 1 就好了，但是在 Fedora 34 中不起作用。我用 wireshark 抓了包看，<br>ThunderBird 自己报告不支持的协议版本。我仔细研究了一下 ThunderBird 相关的 config 项有下面几个：</p>
-<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs pgsql"><span class="hljs-keyword">security</span>.tls.<span class="hljs-keyword">version</span>.min<br><span class="hljs-keyword">security</span>.tls.<span class="hljs-keyword">version</span>.<span class="hljs-keyword">enable</span>-deprecated<br><span class="hljs-keyword">security</span>.tls.<span class="hljs-keyword">version</span>.fallback-<span class="hljs-keyword">limit</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">security.tls.version.min</span><br><span class="line">security.tls.version.enable-deprecated</span><br><span class="line">security.tls.version.fallback-limit</span><br></pre></td></tr></table></figure>
 
 <p>我把这几个选项都设置了一下，分别设置为 1 true 1，还是不管用。</p>
 <p>在 Fedora 33 上这个问题就没解决，这都 Fedora 34 了，所以又花了时间研究了一下。没好办法，放狗，运气<br>不错，看到了这篇</p>
 <p><a target="_blank" rel="noopener" href="https://bugzilla.mozilla.org/show_bug.cgi?id=1674092#c11">https://bugzilla.mozilla.org/show_bug.cgi?id=1674092#c11</a></p>
 <p>原来 Fedora 还有个 <code>StrongCryptoSettings</code> ，看文档可以修改</p>
-<figure class="highlight n1ql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs n1ql"><span class="hljs-keyword">update</span>-crypto-policies --<span class="hljs-keyword">set</span> DEFAULT:FEDORA32<br><span class="hljs-keyword">update</span>-crypto-policies --<span class="hljs-keyword">set</span> LEGACY<br>reboot<br></code></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">update-crypto-policies --set DEFAULT:FEDORA32</span><br><span class="line">update-crypto-policies --set LEGACY</span><br><span class="line">reboot</span><br></pre></td></tr></table></figure>
 
 
 <p>关键的内容就是下面这几行</p>
 <p>cat &#x2F;etc&#x2F;crypto-policies&#x2F;state&#x2F;CURRENT.pol</p>
-<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">min_tls_version</span> = TLS1.<span class="hljs-number">2</span><br><span class="hljs-attribute">protocol</span> = TLS1.<span class="hljs-number">3</span> TLS1.<span class="hljs-number">2</span> DTLS1.<span class="hljs-number">2</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">min_tls_version = TLS1.2</span><br><span class="line">protocol = TLS1.3 TLS1.2 DTLS1.2</span><br></pre></td></tr></table></figure>
 
 <p>执行后变为</p>
-<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">min_tls_version</span> = TLS1.<span class="hljs-number">0</span><br><span class="hljs-attribute">protocol</span> = TLS1.<span class="hljs-number">3</span> TLS1.<span class="hljs-number">2</span> TLS1.<span class="hljs-number">1</span> TLS1.<span class="hljs-number">0</span> DTLS1.<span class="hljs-number">2</span> DTLS1.<span class="hljs-number">0</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">min_tls_version = TLS1.0</span><br><span class="line">protocol = TLS1.3 TLS1.2 TLS1.1 TLS1.0 DTLS1.2 DTLS1.0</span><br></pre></td></tr></table></figure>
 
 <p>重启系统后，又可以开心地使用 ThunderBird 了 ^_^</p>
 
-                
-              </div>
-            
-            <hr/>
-            <div>
-              <div class="post-metas my-3">
-  
-  
-    <div class="post-meta">
-      <i class="iconfont icon-tags"></i>
-      
-        <a href="/tags/linux/" class="print-no-link">#linux</a>
-      
-    </div>
-  
-</div>
-
-
-              
-  
-
-  <div class="license-box my-3">
-    <div class="license-title">
-      <div>ThunerBird 78.8.1 连接 TLS 1.0 失败问题和 Linux 乱谈</div>
-      <div>http://usmacd.com/cn/thunderbird.tls.1.0/</div>
-    </div>
-    <div class="license-meta">
-      
-        <div class="license-meta-item">
-          <div>Author</div>
-          <div>henices</div>
-        </div>
-      
-      
-        <div class="license-meta-item license-meta-date">
-          <div>Posted on</div>
-          <div>June 6, 2021</div>
-        </div>
-      
-      
-      
-        <div class="license-meta-item">
-          <div>Licensed under</div>
-          <div>
-            
-              
-              
-                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
-                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
-                    <i class="iconfont icon-by"></i>
-                  </span>
-                </a>
-              
-            
-          </div>
-        </div>
-      
-    </div>
-    <div class="license-icon iconfont"></div>
   </div>
+</article>
 
 
 
-              
-                <div class="post-prevnext my-3">
-                  <article class="post-prev col-6">
-                    
-                    
-                      <a href="/cn/fcitx5-rime/" title="fedora KDE Plasma 上安装 fcitx5 rime">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">fedora KDE Plasma 上安装 fcitx5 rime</span>
-                        <span class="visible-mobile">Previous</span>
-                      </a>
-                    
-                  </article>
-                  <article class="post-next col-6">
-                    
-                    
-                      <a href="/cn/halfempty/" title="halfempty 的一些使用说明">
-                        <span class="hidden-mobile">halfempty 的一些使用说明</span>
-                        <span class="visible-mobile">Next</span>
-                        <i class="iconfont icon-arrowright"></i>
-                      </a>
-                    
-                  </article>
-                </div>
-              
-            </div>
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
 
-            
-          </article>
-        </div>
-      </div>
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/">Home</a></li>
+        
+          <li><a href="/about/">About</a></li>
+        
+          <li><a href="/archives/">Writing</a></li>
+        
+          <li><a href="/search/">Search</a></li>
+        
+          <li><a href="/links/">Links</a></li>
+        
+      </ul>
     </div>
 
-    <div class="side-col d-none d-lg-block col-lg-2">
-      
-  <aside class="sidebar" style="margin-left: -1rem">
-    <div id="toc">
-  <p class="toc-header">
-    <i class="iconfont icon-list"></i>
-    <span>Table of Contents</span>
-  </p>
-  <div class="toc-body" id="toc-body"></div>
-</div>
+    
+    
 
-
-
-  </aside>
-
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://usmacd.com/cn/thunderbird.tls.1.0/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://usmacd.com/cn/thunderbird.tls.1.0/&text=ThunerBird 78.8.1 连接 TLS 1.0 失败问题和 Linux 乱谈"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://usmacd.com/cn/thunderbird.tls.1.0/&title=ThunerBird 78.8.1 连接 TLS 1.0 失败问题和 Linux 乱谈"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://usmacd.com/cn/thunderbird.tls.1.0/&is_video=false&description=ThunerBird 78.8.1 连接 TLS 1.0 失败问题和 Linux 乱谈"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=ThunerBird 78.8.1 连接 TLS 1.0 失败问题和 Linux 乱谈&body=Check out this article: http://usmacd.com/cn/thunderbird.tls.1.0/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://usmacd.com/cn/thunderbird.tls.1.0/&title=ThunerBird 78.8.1 连接 TLS 1.0 失败问题和 Linux 乱谈"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://usmacd.com/cn/thunderbird.tls.1.0/&title=ThunerBird 78.8.1 连接 TLS 1.0 失败问题和 Linux 乱谈"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://usmacd.com/cn/thunderbird.tls.1.0/&title=ThunerBird 78.8.1 连接 TLS 1.0 失败问题和 Linux 乱谈"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://usmacd.com/cn/thunderbird.tls.1.0/&title=ThunerBird 78.8.1 连接 TLS 1.0 失败问题和 Linux 乱谈"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://usmacd.com/cn/thunderbird.tls.1.0/&name=ThunerBird 78.8.1 连接 TLS 1.0 失败问题和 Linux 乱谈&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://usmacd.com/cn/thunderbird.tls.1.0/&t=ThunerBird 78.8.1 连接 TLS 1.0 失败问题和 Linux 乱谈"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
 
     </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
   </div>
 </div>
 
-
-
-
-
-  
-
-
-
-  
-
-
-
-  
-
-
-
-  
-
-
-
-  
-
-
-
-
-
-
-
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
     
-
     
-      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
-        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
-      </a>
-    
-
-    
-      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
-     aria-hidden="true">
-  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
-        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body mx-3">
-        <div class="md-form mb-5">
-          <input type="text" id="local-search-input" class="form-control validate">
-          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
-        </div>
-        <div class="list-group" id="local-search-result"></div>
-      </div>
-    </div>
+    2004-2024
+    henices
   </div>
-</div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     --><!--
+       --><li><a href="/search/">Search</a></li><!--
+     --><!--
+       --><li><a href="/links/">Links</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
 
-    
-
-    
-  </main>
-
-  <footer>
-    <div class="footer-inner">
-  
-    <div class="footer-content">
-       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
     </div>
-  
-  
-  
-  
-</div>
+    <!-- styles -->
 
-  </footer>
 
-  <!-- Scripts -->
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
   
-  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
-  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
-
-  <script>
-    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
-    NProgress.start()
-    window.addEventListener('load', function() {
-      NProgress.done();
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
     })
+  })
   </script>
 
 
-<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
-<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
-<script  src="/js/events.js" ></script>
-<script  src="/js/plugins.js" ></script>
+<script src="/js/main.js"></script>
 
+<!-- search -->
 
+<!-- Baidu Analytics -->
 
+<!-- Cloudflare Analytics -->
 
+<!-- Disqus Comments -->
 
-  
-    <script  src="/js/img-lazyload.js" ></script>
-  
+<!-- utterances Comments -->
 
-
-
-
-  
-<script>
-  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
-    var toc = jQuery('#toc');
-    if (toc.length === 0 || !window.tocbot) { return; }
-    var boardCtn = jQuery('#board-ctn');
-    var boardTop = boardCtn.offset().top;
-
-    window.tocbot.init(Object.assign({
-      tocSelector     : '#toc-body',
-      contentSelector : '.markdown-body',
-      linkClass       : 'tocbot-link',
-      activeLinkClass : 'tocbot-active-link',
-      listClass       : 'tocbot-list',
-      isCollapsedClass: 'tocbot-is-collapsed',
-      collapsibleClass: 'tocbot-is-collapsible',
-      scrollSmooth    : true,
-      includeTitleTags: true,
-      headingsOffset  : -boardTop,
-    }, CONFIG.toc));
-    if (toc.find('.toc-list-item').length > 0) {
-      toc.css('visibility', 'visible');
-    }
-
-    Fluid.events.registerRefreshCallback(function() {
-      if ('tocbot' in window) {
-        tocbot.refresh();
-        var toc = jQuery('#toc');
-        if (toc.length === 0 || !tocbot) {
-          return;
-        }
-        if (toc.find('.toc-list-item').length > 0) {
-          toc.css('visibility', 'visible');
-        }
-      }
-    });
-  });
-</script>
-
-
-  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
-
-  <script>Fluid.plugins.codeWidget();</script>
-
-
-  
-<script>
-  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
-    window.anchors.options = {
-      placement: CONFIG.anchorjs.placement,
-      visible  : CONFIG.anchorjs.visible
-    };
-    if (CONFIG.anchorjs.icon) {
-      window.anchors.options.icon = CONFIG.anchorjs.icon;
-    }
-    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
-    var res = [];
-    for (var item of el) {
-      res.push('.markdown-body > ' + item.trim());
-    }
-    if (CONFIG.anchorjs.placement === 'left') {
-      window.anchors.options.class = 'anchorjs-link-left';
-    }
-    window.anchors.add(res.join(', '));
-
-    Fluid.events.registerRefreshCallback(function() {
-      if ('anchors' in window) {
-        anchors.removeAll();
-        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
-        var res = [];
-        for (var item of el) {
-          res.push('.markdown-body > ' + item.trim());
-        }
-        if (CONFIG.anchorjs.placement === 'left') {
-          anchors.options.class = 'anchorjs-link-left';
-        }
-        anchors.add(res.join(', '));
-      }
-    });
-  });
-</script>
-
-
-  
-<script>
-  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
-    Fluid.plugins.fancyBox();
-  });
-</script>
-
-
-  <script>Fluid.plugins.imageCaption();</script>
-
-  <script  src="/js/local-search.js" ></script>
-
-  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
-
-
-
-
-
-<!-- 主题的启动项，将它保持在最底部 -->
-<!-- the boot of the theme, keep it at the bottom -->
-<script  src="/js/boot.js" ></script>
-
-
-  
-
-  <noscript>
-    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
-  </noscript>
 </body>
 </html>

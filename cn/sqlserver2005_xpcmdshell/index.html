@@ -1,23 +1,11 @@
-
-
 <!DOCTYPE html>
-<html lang="en" data-default-color-scheme=auto>
-
-
-
+<html lang=en>
 <head>
-  <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
-  <link rel="icon" href="/img/fluid.png">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
-  <meta http-equiv="x-ua-compatible" content="ie=edge">
-  
-    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
-  
-  <meta name="theme-color" content="#2f4154">
-  <meta name="author" content="henices">
-  <meta name="keywords" content="">
-  
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
     <meta name="description" content="SQL Server 2005 中引入的 xp_cmdshell 选项是服务器配置选项，使系统管理员能够控制是否可以在系统上执行 xp_cmdshell 扩展存储过程。 1.  如何在sql server 2005 中开启xp_cmdshell123456789101112-- To allow advanced options to be changed.EXEC sp_configure &amp;#">
 <meta property="og:type" content="article">
 <meta property="og:title" content="SQL Server 2005 xp_cmdshell">
@@ -29,630 +17,304 @@
 <meta property="article:modified_time" content="2009-09-17T16:00:00.000Z">
 <meta property="article:author" content="henices">
 <meta property="article:tag" content="Security">
-<meta name="twitter:card" content="summary_large_image">
-  
-  
-    <meta name="referrer" content="no-referrer-when-downgrade">
-  
-  
-  <title>SQL Server 2005 xp_cmdshell - 安全代码</title>
-
-  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
-
-
-
-  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
-
-  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
-
-  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
-
-
-
-<!-- 主题依赖的图标库，不要自行修改 -->
-<!-- Do not modify the link that theme dependent icons -->
-
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
-
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>SQL Server 2005 xp_cmdshell</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
 
 
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+    <!-- Umami Analytics -->
 
 
-<link  rel="stylesheet" href="/css/main.css" />
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
 
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+      <link rel="alternate" href="https://www.usmacd.com/rss.xml" title="安全代码" type="application/atom+xml" />
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 7.2.0"></head>
 
-  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
-  
-    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
-  
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     --><!--
+       --><li><a href="/search/">Search</a></li><!--
+     --><!--
+       --><li><a href="/links/">Links</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="Previous post" href="/cn/get_system_shell_windows/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="Next post" href="/cn/hook_ntResume/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://usmacd.com/cn/sqlserver2005_xpcmdshell/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://usmacd.com/cn/sqlserver2005_xpcmdshell/&text=SQL Server 2005 xp_cmdshell"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://usmacd.com/cn/sqlserver2005_xpcmdshell/&title=SQL Server 2005 xp_cmdshell"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://usmacd.com/cn/sqlserver2005_xpcmdshell/&is_video=false&description=SQL Server 2005 xp_cmdshell"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=SQL Server 2005 xp_cmdshell&body=Check out this article: http://usmacd.com/cn/sqlserver2005_xpcmdshell/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://usmacd.com/cn/sqlserver2005_xpcmdshell/&title=SQL Server 2005 xp_cmdshell"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://usmacd.com/cn/sqlserver2005_xpcmdshell/&title=SQL Server 2005 xp_cmdshell"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://usmacd.com/cn/sqlserver2005_xpcmdshell/&title=SQL Server 2005 xp_cmdshell"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://usmacd.com/cn/sqlserver2005_xpcmdshell/&title=SQL Server 2005 xp_cmdshell"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://usmacd.com/cn/sqlserver2005_xpcmdshell/&name=SQL Server 2005 xp_cmdshell&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://usmacd.com/cn/sqlserver2005_xpcmdshell/&t=SQL Server 2005 xp_cmdshell"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
 
+    </div>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E5%A6%82%E4%BD%95%E5%9C%A8sql-server-2005-%E4%B8%AD%E5%BC%80%E5%90%AFxp-cmdshell"><span class="toc-number">1.</span> <span class="toc-text">1.  如何在sql server 2005 中开启xp_cmdshell</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E5%A6%82%E4%BD%95%E6%9F%A5%E8%AF%A2sql-server-2005-%E6%8B%93%E5%B1%95%E5%AD%98%E5%82%A8%E8%BF%87%E7%A8%8Bxp-cmdshell-%E7%8A%B6%E6%80%81"><span class="toc-number">2.</span> <span class="toc-text">2. 如何查询sql server 2005 拓展存储过程xp_cmdshell 状态</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E5%A6%82%E4%BD%95%E6%9F%A5%E7%9C%8Bpublic%E8%A7%92%E8%89%B2%E5%AF%B9%E5%93%AA%E4%BA%9B%E6%8B%93%E5%B1%95%E5%AD%98%E5%82%A8%E8%BF%87%E7%A8%8B%E6%9C%89%E6%89%A7%E8%A1%8C%E6%9D%83%E9%99%90"><span class="toc-number">3.</span> <span class="toc-text">3. 如何查看public角色对哪些拓展存储过程有执行权限</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E5%A6%82%E4%BD%95%E5%8E%BB%E6%8E%89public%E8%A7%92%E8%89%B2%E5%AF%B9%E6%8B%93%E5%B1%95%E5%AD%98%E5%82%A8%E8%BF%87%E7%A8%8B%E7%9A%84%E6%89%A7%E8%A1%8C%E6%9D%83%E9%99%90"><span class="toc-number">4.</span> <span class="toc-text">4. 如何去掉public角色对拓展存储过程的执行权限</span></a></li></ol>
+      </div>
+    
+  </span>
+</div>
 
-
-
-  <script id="fluid-configs">
-    var Fluid = window.Fluid || {};
-    Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"usmacd.com","root":"/","version":"1.9.7","typing":{"enable":false,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
-
-    if (CONFIG.web_analytics.follow_dnt) {
-      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
-      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
-    }
-  </script>
-  <script  src="/js/utils.js" ></script>
-  <script  src="/js/color-schema.js" ></script>
-  
-
-
-  
-<meta name="generator" content="Hexo 7.2.0"><link rel="alternate" href="/atom.xml" title="安全代码" type="application/atom+xml">
-<link rel="alternate" href="/rss.xml" title="安全代码" type="application/rss+xml">
-</head>
-
-
-<body>
-  
-
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
   <header>
     
+    <h1 class="posttitle p-name" itemprop="name headline">
+        SQL Server 2005 xp_cmdshell
+    </h1>
 
-<div class="header-inner" style="height: 70vh;">
-  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
-  <div class="container">
-    <a class="navbar-brand" href="/">
-      <strong>安全代码</strong>
-    </a>
 
-    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
-            data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <div class="animated-icon"><span></span><span></span><span></span></div>
-    </button>
 
-    <!-- Collapsible content -->
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav ml-auto text-center">
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">henices</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2009-09-17T16:00:00.000Z" class="dt-published" itemprop="datePublished">2009-09-18</time>
         
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/" target="_self">
-                <i class="iconfont icon-home-fill"></i>
-                <span>Home</span>
-              </a>
-            </li>
-          
+      
+    </div>
+
+
+      
+
+      
+    <div class="article-tag">
+        <i class="fa-solid fa-tag"></i>
+        <a class="p-category" href="/tags/Security/" rel="tag">Security</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <p>SQL Server 2005 中引入的 xp_cmdshell 选项是服务器配置选项，<br>使系统管理员能够控制是否可以在系统上执行 xp_cmdshell 扩展存储过程。</p>
+<h2 id="1-如何在sql-server-2005-中开启xp-cmdshell"><a href="#1-如何在sql-server-2005-中开启xp-cmdshell" class="headerlink" title="1.  如何在sql server 2005 中开启xp_cmdshell"></a>1.  如何在sql server 2005 中开启xp_cmdshell</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- To allow advanced options to be changed.</span></span><br><span class="line"><span class="keyword">EXEC</span> sp_configure <span class="string">&#x27;show advanced options&#x27;</span>, <span class="number">1</span></span><br><span class="line">GO</span><br><span class="line"><span class="comment">-- To update the currently configured value for advanced options.</span></span><br><span class="line">RECONFIGURE</span><br><span class="line">GO</span><br><span class="line"><span class="comment">-- To enable the feature.</span></span><br><span class="line"><span class="keyword">EXEC</span> sp_configure <span class="string">&#x27;xp_cmdshell&#x27;</span>, <span class="number">1</span></span><br><span class="line">GO</span><br><span class="line"><span class="comment">-- To update the currently configured value for this feature.</span></span><br><span class="line">RECONFIGURE</span><br><span class="line">GO</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-如何查询sql-server-2005-拓展存储过程xp-cmdshell-状态"><a href="#2-如何查询sql-server-2005-拓展存储过程xp-cmdshell-状态" class="headerlink" title="2. 如何查询sql server 2005 拓展存储过程xp_cmdshell 状态"></a>2. 如何查询sql server 2005 拓展存储过程xp_cmdshell 状态</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> sys.configurations <span class="keyword">where</span> name<span class="operator">=</span><span class="string">&#x27;xp_cmdshell&#x27;</span></span><br><span class="line">GO</span><br></pre></td></tr></table></figure>
+
+<p>查看value的值， 1 为开启， 0 为关闭</p>
+<h2 id="3-如何查看public角色对哪些拓展存储过程有执行权限"><a href="#3-如何查看public角色对哪些拓展存储过程有执行权限" class="headerlink" title="3. 如何查看public角色对哪些拓展存储过程有执行权限"></a>3. 如何查看public角色对哪些拓展存储过程有执行权限</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> sysusers.name, sysobjects.name, sysprotects.action <span class="keyword">from</span> sysobjects, sysusers, sysprotects</span><br><span class="line"><span class="keyword">where</span> sysobjects.id<span class="operator">=</span>sysprotects.id <span class="keyword">and</span> sysprotects.uid <span class="operator">=</span> sysusers.uid <span class="keyword">and</span> </span><br><span class="line">sysprotects.protecttype<span class="operator">=</span><span class="number">205</span> <span class="keyword">and</span> sysprotects.action<span class="operator">=</span> <span class="number">224</span> <span class="keyword">and</span> (sysusers.name<span class="operator">=</span><span class="string">&#x27;public&#x27;</span> <span class="keyword">or</span></span><br><span class="line">sysusers.name<span class="operator">=</span><span class="string">&#x27;guest&#x27;</span> ) <span class="keyword">and</span> sysobjects.type<span class="operator">=</span><span class="string">&#x27;X&#x27;</span></span><br><span class="line"></span><br><span class="line">GO</span><br></pre></td></tr></table></figure>
+
+<h2 id="4-如何去掉public角色对拓展存储过程的执行权限"><a href="#4-如何去掉public角色对拓展存储过程的执行权限" class="headerlink" title="4. 如何去掉public角色对拓展存储过程的执行权限"></a>4. 如何去掉public角色对拓展存储过程的执行权限</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">deny <span class="keyword">execute</span> <span class="keyword">on</span> xp_dirtree <span class="keyword">to</span> public</span><br><span class="line">GO</span><br></pre></td></tr></table></figure>
+
+  </div>
+</article>
+
+
+
         
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/archives/" target="_self">
-                <i class="iconfont icon-archive-fill"></i>
-                <span>Archives</span>
-              </a>
-            </li>
-          
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
         
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/tags/" target="_self">
-                <i class="iconfont icon-tags-fill"></i>
-                <span>Tags</span>
-              </a>
-            </li>
-          
+          <li><a href="/">Home</a></li>
         
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/about/" target="_self">
-                <i class="iconfont icon-user-fill"></i>
-                <span>About</span>
-              </a>
-            </li>
-          
+          <li><a href="/about/">About</a></li>
         
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/links/" target="_self">
-                <i class="iconfont icon-link-fill"></i>
-                <span>Links</span>
-              </a>
-            </li>
-          
+          <li><a href="/archives/">Writing</a></li>
         
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/rss.xml" target="_self">
-                <i class="iconfont icon-rss"></i>
-                <span>rss</span>
-              </a>
-            </li>
-          
+          <li><a href="/search/">Search</a></li>
         
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/sitemap.xml" target="_self">
-                
-                <span>sitemap</span>
-              </a>
-            </li>
-          
-        
-        
-          <li class="nav-item" id="search-btn">
-            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
-              <i class="iconfont icon-search"></i>
-            </a>
-          </li>
-          
-        
-        
-          <li class="nav-item" id="color-toggle-btn">
-            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
-              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
-            </a>
-          </li>
+          <li><a href="/links/">Links</a></li>
         
       </ul>
     </div>
-  </div>
-</nav>
-
-  
-
-<div id="banner" class="banner" parallax=true
-     style="background: url('https://images.unsplash.com/photo-1473181488821-2d23949a045a?w=640') no-repeat center center; background-size: cover;">
-  <div class="full-bg-img">
-    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
-      <div class="banner-text text-center fade-in-up">
-        <div class="h2">
-          
-            <span id="subtitle">SQL Server 2005 xp_cmdshell</span>
-          
-        </div>
-
-        
-          
-  <div class="mt-3">
-    
-    
-      <span class="post-meta">
-        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2009-09-18 00:00" pubdate>
-          September 18, 2009 am
-        </time>
-      </span>
-    
-  </div>
-
-  <div class="mt-1">
-    
-      <span class="post-meta mr-2">
-        <i class="iconfont icon-chart"></i>
-        
-          170 words
-        
-      </span>
-    
-
-    
-      <span class="post-meta mr-2">
-        <i class="iconfont icon-clock-fill"></i>
-        
-        
-        
-          2 mins
-        
-      </span>
-    
 
     
     
-      
-        <span id="busuanzi_container_page_pv" style="display: none">
-          <i class="iconfont icon-eye" aria-hidden="true"></i>
-          <span id="busuanzi_value_page_pv"></span> views
-        </span>
-        
-      
-    
-  </div>
-
-
-        
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E5%A6%82%E4%BD%95%E5%9C%A8sql-server-2005-%E4%B8%AD%E5%BC%80%E5%90%AFxp-cmdshell"><span class="toc-number">1.</span> <span class="toc-text">1.  如何在sql server 2005 中开启xp_cmdshell</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E5%A6%82%E4%BD%95%E6%9F%A5%E8%AF%A2sql-server-2005-%E6%8B%93%E5%B1%95%E5%AD%98%E5%82%A8%E8%BF%87%E7%A8%8Bxp-cmdshell-%E7%8A%B6%E6%80%81"><span class="toc-number">2.</span> <span class="toc-text">2. 如何查询sql server 2005 拓展存储过程xp_cmdshell 状态</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E5%A6%82%E4%BD%95%E6%9F%A5%E7%9C%8Bpublic%E8%A7%92%E8%89%B2%E5%AF%B9%E5%93%AA%E4%BA%9B%E6%8B%93%E5%B1%95%E5%AD%98%E5%82%A8%E8%BF%87%E7%A8%8B%E6%9C%89%E6%89%A7%E8%A1%8C%E6%9D%83%E9%99%90"><span class="toc-number">3.</span> <span class="toc-text">3. 如何查看public角色对哪些拓展存储过程有执行权限</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E5%A6%82%E4%BD%95%E5%8E%BB%E6%8E%89public%E8%A7%92%E8%89%B2%E5%AF%B9%E6%8B%93%E5%B1%95%E5%AD%98%E5%82%A8%E8%BF%87%E7%A8%8B%E7%9A%84%E6%89%A7%E8%A1%8C%E6%9D%83%E9%99%90"><span class="toc-number">4.</span> <span class="toc-text">4. 如何去掉public角色对拓展存储过程的执行权限</span></a></li></ol>
       </div>
+    
 
-      
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://usmacd.com/cn/sqlserver2005_xpcmdshell/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://usmacd.com/cn/sqlserver2005_xpcmdshell/&text=SQL Server 2005 xp_cmdshell"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://usmacd.com/cn/sqlserver2005_xpcmdshell/&title=SQL Server 2005 xp_cmdshell"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://usmacd.com/cn/sqlserver2005_xpcmdshell/&is_video=false&description=SQL Server 2005 xp_cmdshell"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=SQL Server 2005 xp_cmdshell&body=Check out this article: http://usmacd.com/cn/sqlserver2005_xpcmdshell/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://usmacd.com/cn/sqlserver2005_xpcmdshell/&title=SQL Server 2005 xp_cmdshell"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://usmacd.com/cn/sqlserver2005_xpcmdshell/&title=SQL Server 2005 xp_cmdshell"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://usmacd.com/cn/sqlserver2005_xpcmdshell/&title=SQL Server 2005 xp_cmdshell"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://usmacd.com/cn/sqlserver2005_xpcmdshell/&title=SQL Server 2005 xp_cmdshell"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://usmacd.com/cn/sqlserver2005_xpcmdshell/&name=SQL Server 2005 xp_cmdshell&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://usmacd.com/cn/sqlserver2005_xpcmdshell/&t=SQL Server 2005 xp_cmdshell"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
     </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
   </div>
 </div>
 
-</div>
-
-  </header>
-
-  <main>
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
     
-      
-
-<div class="container-fluid nopadding-x">
-  <div class="row nomargin-x">
-    <div class="side-col d-none d-lg-block col-lg-2">
-      
-
-    </div>
-
-    <div class="col-lg-8 nopadding-x-md">
-      <div class="container nopadding-x-md" id="board-ctn">
-        <div id="board">
-          <article class="post-content mx-auto">
-            <h1 id="seo-header">SQL Server 2005 xp_cmdshell</h1>
-            
-            
-              <div class="markdown-body">
-                
-                <p>SQL Server 2005 中引入的 xp_cmdshell 选项是服务器配置选项，<br>使系统管理员能够控制是否可以在系统上执行 xp_cmdshell 扩展存储过程。</p>
-<h2 id="1-如何在sql-server-2005-中开启xp-cmdshell"><a href="#1-如何在sql-server-2005-中开启xp-cmdshell" class="headerlink" title="1.  如何在sql server 2005 中开启xp_cmdshell"></a>1.  如何在sql server 2005 中开启xp_cmdshell</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-comment">-- To allow advanced options to be changed.</span><br><span class="hljs-keyword">EXEC</span> sp_configure <span class="hljs-string">&#x27;show advanced options&#x27;</span>, <span class="hljs-number">1</span><br>GO<br><span class="hljs-comment">-- To update the currently configured value for advanced options.</span><br>RECONFIGURE<br>GO<br><span class="hljs-comment">-- To enable the feature.</span><br><span class="hljs-keyword">EXEC</span> sp_configure <span class="hljs-string">&#x27;xp_cmdshell&#x27;</span>, <span class="hljs-number">1</span><br>GO<br><span class="hljs-comment">-- To update the currently configured value for this feature.</span><br>RECONFIGURE<br>GO<br></code></pre></td></tr></table></figure>
-
-<h2 id="2-如何查询sql-server-2005-拓展存储过程xp-cmdshell-状态"><a href="#2-如何查询sql-server-2005-拓展存储过程xp-cmdshell-状态" class="headerlink" title="2. 如何查询sql server 2005 拓展存储过程xp_cmdshell 状态"></a>2. 如何查询sql server 2005 拓展存储过程xp_cmdshell 状态</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">FROM</span> sys.configurations <span class="hljs-keyword">where</span> name<span class="hljs-operator">=</span><span class="hljs-string">&#x27;xp_cmdshell&#x27;</span><br>GO<br></code></pre></td></tr></table></figure>
-
-<p>查看value的值， 1 为开启， 0 为关闭</p>
-<h2 id="3-如何查看public角色对哪些拓展存储过程有执行权限"><a href="#3-如何查看public角色对哪些拓展存储过程有执行权限" class="headerlink" title="3. 如何查看public角色对哪些拓展存储过程有执行权限"></a>3. 如何查看public角色对哪些拓展存储过程有执行权限</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">select</span> sysusers.name, sysobjects.name, sysprotects.action <span class="hljs-keyword">from</span> sysobjects, sysusers, sysprotects<br><span class="hljs-keyword">where</span> sysobjects.id<span class="hljs-operator">=</span>sysprotects.id <span class="hljs-keyword">and</span> sysprotects.uid <span class="hljs-operator">=</span> sysusers.uid <span class="hljs-keyword">and</span> <br>sysprotects.protecttype<span class="hljs-operator">=</span><span class="hljs-number">205</span> <span class="hljs-keyword">and</span> sysprotects.action<span class="hljs-operator">=</span> <span class="hljs-number">224</span> <span class="hljs-keyword">and</span> (sysusers.name<span class="hljs-operator">=</span><span class="hljs-string">&#x27;public&#x27;</span> <span class="hljs-keyword">or</span><br>sysusers.name<span class="hljs-operator">=</span><span class="hljs-string">&#x27;guest&#x27;</span> ) <span class="hljs-keyword">and</span> sysobjects.type<span class="hljs-operator">=</span><span class="hljs-string">&#x27;X&#x27;</span><br><br>GO<br></code></pre></td></tr></table></figure>
-
-<h2 id="4-如何去掉public角色对拓展存储过程的执行权限"><a href="#4-如何去掉public角色对拓展存储过程的执行权限" class="headerlink" title="4. 如何去掉public角色对拓展存储过程的执行权限"></a>4. 如何去掉public角色对拓展存储过程的执行权限</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sql">deny <span class="hljs-keyword">execute</span> <span class="hljs-keyword">on</span> xp_dirtree <span class="hljs-keyword">to</span> public<br>GO<br></code></pre></td></tr></table></figure>
-
-                
-              </div>
-            
-            <hr/>
-            <div>
-              <div class="post-metas my-3">
-  
-  
-    <div class="post-meta">
-      <i class="iconfont icon-tags"></i>
-      
-        <a href="/tags/Security/" class="print-no-link">#Security</a>
-      
-    </div>
-  
-</div>
-
-
-              
-  
-
-  <div class="license-box my-3">
-    <div class="license-title">
-      <div>SQL Server 2005 xp_cmdshell</div>
-      <div>http://usmacd.com/cn/sqlserver2005_xpcmdshell/</div>
-    </div>
-    <div class="license-meta">
-      
-        <div class="license-meta-item">
-          <div>Author</div>
-          <div>henices</div>
-        </div>
-      
-      
-        <div class="license-meta-item license-meta-date">
-          <div>Posted on</div>
-          <div>September 18, 2009</div>
-        </div>
-      
-      
-      
-        <div class="license-meta-item">
-          <div>Licensed under</div>
-          <div>
-            
-              
-              
-                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
-                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
-                    <i class="iconfont icon-by"></i>
-                  </span>
-                </a>
-              
-            
-          </div>
-        </div>
-      
-    </div>
-    <div class="license-icon iconfont"></div>
+    
+    2004-2024
+    henices
   </div>
-
-
-
-              
-                <div class="post-prevnext my-3">
-                  <article class="post-prev col-6">
-                    
-                    
-                      <a href="/cn/get_system_shell_windows/" title="获取system权限的cmdshell">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">获取system权限的cmdshell</span>
-                        <span class="visible-mobile">Previous</span>
-                      </a>
-                    
-                  </article>
-                  <article class="post-next col-6">
-                    
-                    
-                      <a href="/cn/hook_ntResume/" title="挂钩 NtResumeThread 实现全局Hook">
-                        <span class="hidden-mobile">挂钩 NtResumeThread 实现全局Hook</span>
-                        <span class="visible-mobile">Next</span>
-                        <i class="iconfont icon-arrowright"></i>
-                      </a>
-                    
-                  </article>
-                </div>
-              
-            </div>
-
-            
-          </article>
-        </div>
-      </div>
-    </div>
-
-    <div class="side-col d-none d-lg-block col-lg-2">
-      
-  <aside class="sidebar" style="margin-left: -1rem">
-    <div id="toc">
-  <p class="toc-header">
-    <i class="iconfont icon-list"></i>
-    <span>Table of Contents</span>
-  </p>
-  <div class="toc-body" id="toc-body"></div>
-</div>
-
-
-
-  </aside>
-
-
-    </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     --><!--
+       --><li><a href="/search/">Search</a></li><!--
+     --><!--
+       --><li><a href="/links/">Links</a></li><!--
+     -->
+      </ul>
+    </nav>
   </div>
-</div>
+</footer>
 
-
-
-
-
-  
-
-
-
-  
-
-
-
-  
-
-
-
-  
-
-
-
-  
-
-
-
-
-
-
-
-    
-
-    
-      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
-        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
-      </a>
-    
-
-    
-      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
-     aria-hidden="true">
-  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
-        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body mx-3">
-        <div class="md-form mb-5">
-          <input type="text" id="local-search-input" class="form-control validate">
-          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
-        </div>
-        <div class="list-group" id="local-search-result"></div>
-      </div>
     </div>
-  </div>
-</div>
+    <!-- styles -->
 
-    
 
-    
-  </main>
 
-  <footer>
-    <div class="footer-inner">
-  
-    <div class="footer-content">
-       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
-    </div>
-  
-  
-  
-  
-</div>
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
 
-  </footer>
 
-  <!-- Scripts -->
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
   
-  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
-  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
-
-  <script>
-    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
-    NProgress.start()
-    window.addEventListener('load', function() {
-      NProgress.done();
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
     })
+  })
   </script>
 
 
-<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
-<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
-<script  src="/js/events.js" ></script>
-<script  src="/js/plugins.js" ></script>
+<script src="/js/main.js"></script>
 
+<!-- search -->
 
+<!-- Baidu Analytics -->
 
+<!-- Cloudflare Analytics -->
 
+<!-- Disqus Comments -->
 
-  
-    <script  src="/js/img-lazyload.js" ></script>
-  
+<!-- utterances Comments -->
 
-
-
-
-  
-<script>
-  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
-    var toc = jQuery('#toc');
-    if (toc.length === 0 || !window.tocbot) { return; }
-    var boardCtn = jQuery('#board-ctn');
-    var boardTop = boardCtn.offset().top;
-
-    window.tocbot.init(Object.assign({
-      tocSelector     : '#toc-body',
-      contentSelector : '.markdown-body',
-      linkClass       : 'tocbot-link',
-      activeLinkClass : 'tocbot-active-link',
-      listClass       : 'tocbot-list',
-      isCollapsedClass: 'tocbot-is-collapsed',
-      collapsibleClass: 'tocbot-is-collapsible',
-      scrollSmooth    : true,
-      includeTitleTags: true,
-      headingsOffset  : -boardTop,
-    }, CONFIG.toc));
-    if (toc.find('.toc-list-item').length > 0) {
-      toc.css('visibility', 'visible');
-    }
-
-    Fluid.events.registerRefreshCallback(function() {
-      if ('tocbot' in window) {
-        tocbot.refresh();
-        var toc = jQuery('#toc');
-        if (toc.length === 0 || !tocbot) {
-          return;
-        }
-        if (toc.find('.toc-list-item').length > 0) {
-          toc.css('visibility', 'visible');
-        }
-      }
-    });
-  });
-</script>
-
-
-  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
-
-  <script>Fluid.plugins.codeWidget();</script>
-
-
-  
-<script>
-  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
-    window.anchors.options = {
-      placement: CONFIG.anchorjs.placement,
-      visible  : CONFIG.anchorjs.visible
-    };
-    if (CONFIG.anchorjs.icon) {
-      window.anchors.options.icon = CONFIG.anchorjs.icon;
-    }
-    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
-    var res = [];
-    for (var item of el) {
-      res.push('.markdown-body > ' + item.trim());
-    }
-    if (CONFIG.anchorjs.placement === 'left') {
-      window.anchors.options.class = 'anchorjs-link-left';
-    }
-    window.anchors.add(res.join(', '));
-
-    Fluid.events.registerRefreshCallback(function() {
-      if ('anchors' in window) {
-        anchors.removeAll();
-        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
-        var res = [];
-        for (var item of el) {
-          res.push('.markdown-body > ' + item.trim());
-        }
-        if (CONFIG.anchorjs.placement === 'left') {
-          anchors.options.class = 'anchorjs-link-left';
-        }
-        anchors.add(res.join(', '));
-      }
-    });
-  });
-</script>
-
-
-  
-<script>
-  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
-    Fluid.plugins.fancyBox();
-  });
-</script>
-
-
-  <script>Fluid.plugins.imageCaption();</script>
-
-  <script  src="/js/local-search.js" ></script>
-
-  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
-
-
-
-
-
-<!-- 主题的启动项，将它保持在最底部 -->
-<!-- the boot of the theme, keep it at the bottom -->
-<script  src="/js/boot.js" ></script>
-
-
-  
-
-  <noscript>
-    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
-  </noscript>
 </body>
 </html>

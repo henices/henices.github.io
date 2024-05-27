@@ -1,781 +1,333 @@
-
-
 <!DOCTYPE html>
-<html lang="en" data-default-color-scheme=auto>
-
-
-
+<html lang=en>
 <head>
-  <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
-  <link rel="icon" href="/img/fluid.png">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
-  <meta http-equiv="x-ua-compatible" content="ie=edge">
-  
-    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
-  
-  <meta name="theme-color" content="#2f4154">
-  <meta name="author" content="henices">
-  <meta name="keywords" content="">
-  
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
     <meta property="og:type" content="website">
 <meta property="og:title" content="安全代码">
 <meta property="og:url" content="http://usmacd.com/page/2/index.html">
 <meta property="og:site_name" content="安全代码">
 <meta property="og:locale" content="en_US">
 <meta property="article:author" content="henices">
-<meta name="twitter:card" content="summary_large_image">
-  
-  
-    <meta name="referrer" content="no-referrer-when-downgrade">
-  
-  
-  <title>安全代码</title>
-
-  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
-
-
-
-
-
-<!-- 主题依赖的图标库，不要自行修改 -->
-<!-- Do not modify the link that theme dependent icons -->
-
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
-
-
-
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
-
-
-<link  rel="stylesheet" href="/css/main.css" />
-
-
-  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
-  
-    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
-  
-
-
-
-
-  <script id="fluid-configs">
-    var Fluid = window.Fluid || {};
-    Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"usmacd.com","root":"/","version":"1.9.7","typing":{"enable":false,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
-
-    if (CONFIG.web_analytics.follow_dnt) {
-      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
-      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
-    }
-  </script>
-  <script  src="/js/utils.js" ></script>
-  <script  src="/js/color-schema.js" ></script>
-  
-
-
-  
-<meta name="generator" content="Hexo 7.2.0"><link rel="alternate" href="/atom.xml" title="安全代码" type="application/atom+xml">
-<link rel="alternate" href="/rss.xml" title="安全代码" type="application/rss+xml">
-</head>
-
-
-<body>
-  
-
-  <header>
+<meta name="twitter:card" content="summary">
     
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>安全代码</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
 
-<div class="header-inner" style="height: 60vh;">
-  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
-  <div class="container">
-    <a class="navbar-brand" href="/">
-      <strong>安全代码</strong>
-    </a>
 
-    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
-            data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <div class="animated-icon"><span></span><span></span><span></span></div>
-    </button>
+    <!-- Umami Analytics -->
 
-    <!-- Collapsible content -->
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav ml-auto text-center">
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/" target="_self">
-                <i class="iconfont icon-home-fill"></i>
-                <span>Home</span>
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/archives/" target="_self">
-                <i class="iconfont icon-archive-fill"></i>
-                <span>Archives</span>
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/tags/" target="_self">
-                <i class="iconfont icon-tags-fill"></i>
-                <span>Tags</span>
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/about/" target="_self">
-                <i class="iconfont icon-user-fill"></i>
-                <span>About</span>
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/links/" target="_self">
-                <i class="iconfont icon-link-fill"></i>
-                <span>Links</span>
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/rss.xml" target="_self">
-                <i class="iconfont icon-rss"></i>
-                <span>rss</span>
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/sitemap.xml" target="_self">
-                
-                <span>sitemap</span>
-              </a>
-            </li>
-          
-        
-        
-          <li class="nav-item" id="search-btn">
-            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
-              <i class="iconfont icon-search"></i>
-            </a>
-          </li>
-          
-        
-        
-          <li class="nav-item" id="color-toggle-btn">
-            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
-              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
-            </a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-</nav>
 
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+      <link rel="alternate" href="https://www.usmacd.com/rss.xml" title="安全代码" type="application/atom+xml" />
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 7.2.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+    <div class="content index py4 h-card">
+        
+          <header id="header">
+  <a class="u-url u-uid" href="/">
   
-
-<div id="banner" class="banner" parallax=true
-     style="background: url('https://images.unsplash.com/photo-1646026371686-79950ceb6daa?w=640') no-repeat center center; background-size: cover;">
-  <div class="full-bg-img">
-    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.1)">
-      <div class="banner-text text-center fade-in-up">
-        <div class="h2">
-          
-            <span id="subtitle">关注科技、投资、健康，和个人成长</span>
-          
-        </div>
+    
+      <img id="logo" alt class="u-logo" src="/images/logo.png" />
+    
+  
+    <div id="title">
+      <h1 class="p-name">安全代码</h1>
+    </div>
+  </a>
+  <div id="nav">
+    <ul>
+      <li class="icon">
+        <a href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-2x"></i></a>
+      </li>
+      <!--
+     --><li><a href="/">Home</a></li><!--
+   --><!--
+     --><li><a href="/about/">About</a></li><!--
+   --><!--
+     --><li><a href="/archives/">Writing</a></li><!--
+   --><!--
+     --><li><a href="/search/">Search</a></li><!--
+   --><!--
+     --><li><a href="/links/">Links</a></li><!--
+   -->
+    </ul>
+  </div>
+</header>
 
         
-      </div>
+        <section id="about" class="p-note">
+  
+  
+    <p>
+      Find me on
+      
+      
+      
+        
+        
+          <a class="icon u-url" target="_blank" rel="noopener me" href="http://github.com/henices" aria-label="github" title="github">
+            <i class="fa-brands fa-github"></i><!--
+      ---></a><!--
+    ---><!--
+    --->, 
+        
+      
+        
+        
+          <a class="icon u-url" target="_blank" rel="noopener me" href="https://x.com/henices" aria-label="twitter" title="twitter">
+            <i class="fa-brands fa-twitter"></i><!--
+      ---></a><!--
+    ---><!--
+    ---> and 
+        
+      
+        
+        
+          <a class="icon u-email" target="_blank" rel="noopener" href="mailto:zhouzhenster@gmail.com" aria-label="mail" title="mail">
+            <i class="fa-solid fa-envelope"></i><!--
+      ---></a>
+        <!--
+    --->.
+        
+      
+    </p>
+  
+</section>
 
+<section id="writing">
+  <span class="h1"><a href="/archives/">Writing</a></span>
+  
+  <span class="h2">Topics</span>
+  <span class="widget tagcloud">
+    <a href="/tags/Android/" style="font-size: 19.09px;">Android</a> <a href="/tags/Archives/" style="font-size: 10.91px;">Archives</a> <a href="/tags/Crack/" style="font-size: 11.82px;">Crack</a> <a href="/tags/KNOWLEDGE/" style="font-size: 12.73px;">KNOWLEDGE</a> <a href="/tags/Life/" style="font-size: 13.64px;">Life</a> <a href="/tags/Malware/" style="font-size: 14.55px;">Malware</a> <a href="/tags/PKM/" style="font-size: 16.36px;">PKM</a> <a href="/tags/Programming/" style="font-size: 16.36px;">Programming</a> <a href="/tags/Security/" style="font-size: 20px;">Security</a> <a href="/tags/Software/" style="font-size: 15.45px;">Software</a> <a href="/tags/ai/" style="font-size: 10px;">ai</a> <a href="/tags/investment/" style="font-size: 17.27px;">investment</a> <a href="/tags/linux/" style="font-size: 18.18px;">linux</a> <a href="/tags/vim/" style="font-size: 13.64px;">vim</a> <a href="/tags/windows/" style="font-size: 14.55px;">windows</a>
+  </span>
+  <span class="h2">Most recent</span>
+  
+  <ul class="post-list">
+    
+    
+      
+    
+    
+      <li class="post-item">
+        
+    <div class="meta">
+      
+        
+          <time datetime="2024-04-21T16:00:00.000Z" class="dt-published" itemprop="datePublished">2024-04-22</time>
+        
       
     </div>
-  </div>
-</div>
 
-</div>
 
-  </header>
-
-  <main>
+        <span>
     
-      <div class="container nopadding-x-md">
-        <div id="board"
-          >
-          
-          <div class="container">
-            <div class="row">
-              <div class="col-12 col-md-10 m-auto">
-                
-
-
-  <div class="row mx-auto index-card">
+        <a class="" href="/cn/PKM_faults/">知识管理的几个误区</a>
     
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/cn/zel_note_flow/" target="_self">
-          卡片盒笔记法总体思路与工作流
-        </a>
-      </h2>
 
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/cn/zel_note_flow/" target="_self">
-        <div>
-          我经常在少数派等网站上看到卡片盒笔记的文章，这些文章少则几千字，多则上万字。过于复杂的方法是很难实践的，我尝试用一种简单的方法把卡片盒笔记法说清楚，希望能给大家带来一些帮助。 卡片盒笔记法核心要义1）用自己的话记录最感兴趣，最有用的知识，记录自己的洞见，而不是单纯记录信息2）处理各种想法，探寻想法之间的关联、冲突、拓展，建立成熟的想法集群，并和其他的想法集群联系在一起3) 针对项目或主题调整笔记顺
-        </div>
-      </a>
 
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2024-01-29 00:00" pubdate>
-              2024-01-29
-            </time>
-          </div>
-        
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/PKM/">#PKM</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/cn/egg-is-deprecated/" target="_self">
-          python3 pip loading egg is deprecated 警告的解决方法
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/cn/egg-is-deprecated/" target="_self">
-        <div>
-          解决 egg is deprecation 警告python3 -m pip install some_package 时发现 exploitable 有警告：  DEPRECATION: Loading egg at exploitable-1.32-py3.12.egg is deprecated. pip 24.3 will enforce this behaviour change. A
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2024-01-17 00:00" pubdate>
-              2024-01-17
-            </time>
-          </div>
-        
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/Programming/">#Programming</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/cn/public_writing/" target="_self">
-          公开写作的好处和坚持不懈
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/cn/public_writing/" target="_self">
-        <div>
-          公开写作的好处只有将想法写出来的时候，你才会发现似乎严密的论证中的逻辑漏洞和无知之处，不动笔的思考往往马虎。  写下你学习的东西，可以加深你对该主题的理解，有时候向别人解释时你会发现自己的知识缺口。写作不仅是一个记录的方法，它是一个加深理解和暴露知识差距的强大工具。 写作使我们更加彻底地探索主题，并以更加连贯和准确的方式清晰地表达自己的想法。  坚持不懈（Consistency）的重要性虽然动机可
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2023-12-05 00:00" pubdate>
-              2023-12-05
-            </time>
-          </div>
-        
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/KNOWLEDGE/">#KNOWLEDGE</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/cn/qemu_kvm/" target="_self">
-          VMware Workstation Windows 10 host Ubuntu 18.04 Guest 中加载 Linux 内核 kvm 模块
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/cn/qemu_kvm/" target="_self">
-        <div>
-          这里在 VMware Workstation Guset OS 里使用 qemu 的用法，有点像俄罗斯套娃。 qemu.sh 123456789101112qemu-system-x86_64 \  -m 2G \  -smp 2 \  -kernel $KERNEL/arch/x86——64/boot/bzImage \  -append &quot;console=ttyS0 root=/de
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2023-11-28 00:00" pubdate>
-              2023-11-28
-            </time>
-          </div>
-        
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/Security/">#Security</a>
-            
-              <a href="/tags/linux/">#linux</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/cn/learning_english/" target="_self">
-          comprehensible input  英语学习方法
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/cn/learning_english/" target="_self">
-        <div>
-          youtube 上有 youtuber 在不出国的情况下，将第二外语学习到母语者水平的成功案例。 Makoto 是一位会说中日英三门语言的 Youtuber，他总结自己学习第二外语的成功经验，可以简单地归纳成一句话：掌握第二外语最重要的是必须有大量地道的 comprehensible input (可理解的输入)。 Comprehensible input 是 Stephen D. Krashen
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2023-11-23 00:00" pubdate>
-              2023-11-23
-            </time>
-          </div>
-        
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/KNOWLEDGE/">#KNOWLEDGE</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/cn/note_review/" target="_self">
-          定期回顾笔记的好处
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/cn/note_review/" target="_self">
-        <div>
-          少楠在 《笔记的方法》中介绍了一种 「通过回顾持续刺激」的笔记技术，我以前曾简称为「漫游笔记」技术。 定期回顾自己的笔记大体有下面几个好处：  对抗遗忘曲线：尤其是文献笔记等自己不熟悉的笔记 推动知识内化，想法迭代：知识结构优化，新旧知识连接 遇见过去的自己 （挺好玩，挺有趣） 影响现实：促进自我审视，提供思路和线索  对抗遗忘曲线：我们可能遗忘笔记的内容，尤其是文献笔记等不熟悉的内容。人的思维、
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2023-11-15 00:00" pubdate>
-              2023-11-15
-            </time>
-          </div>
-        
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/PKM/">#PKM</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/cn/diyixingyuanli/" target="_self">
-          万维钢谈第一性原理
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/cn/diyixingyuanli/" target="_self">
-        <div>
-          伊隆·马斯克解释 第一性原理，我们思考老问题，不一定需要使用类比思维考虑前人的做法，直接从最基本的原理出发，可能会找到全新的办法。创业者说第一性原理，精神的主旨为「抛开成见，拒绝套路」，回到最基本的限制条件，重新认识和解决问题。 马斯克使用第一性原理计算电池价值的例子，可能不太正确。电池的根本价值，重要的不是组成它的材料，而是材料的结合方式 - 凝结在它身上的信息。电池身上的信息，是技术和专利，这
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2023-11-14 00:00" pubdate>
-              2023-11-14
-            </time>
-          </div>
-        
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/KNOWLEDGE/">#KNOWLEDGE</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/cn/jishufenxi/" target="_self">
-          个人对技术分析的一些理解
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/cn/jishufenxi/" target="_self">
-        <div>
-          技术分析分三个层次：趋势跟随、支撑&#x2F;阻力，模式识别  (分先后顺序，靠前的重要)。  金融投资中的技术分析工具最主要的作用是区别出哪些标的不可以交易，所谓不可以交易就是从概率上讲胜算不理想。顺势交易的胜率要远远超过逆势交易，技术分析工具则可以帮我们识别出「正确的方向」。  传统技术分析多数利用模式识别或者统计学的方法来识别交易机会，这些方法没法从底层逻辑上进行剖析，只是在概率上有一定优
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2023-11-14 00:00" pubdate>
-              2023-11-14
-            </time>
-          </div>
-        
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/investment/">#investment</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/cn/pdfium-fuzz.public/" target="_self">
-          使用 afl-fuzz fuzz pdfium
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/cn/pdfium-fuzz.public/" target="_self">
-        <div>
-          下载源码先在 https://pdfium.googlesource.com/pdfium/ 下载源码. 12345mkdir repocd repogclient config --unmanaged https://pdfium.googlesource.com/pdfium.gitgclient synccd pdfium  gclient 命令在 depot_tools 中, 需要安装 参
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2023-11-06 13:52" pubdate>
-              2023-11-06
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
-            
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/Security/" class="category-chain-item">Security</a>
-  
-  
-
-      </span>
-    
-  
 </span>
-
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/Security/">#Security</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
+      </li>
     
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
+      <li class="post-item">
         
-        <a href="/en/learn_in_public/" target="_self">
-          Learn In Public 摘要
-        </a>
-      </h2>
-
+    <div class="meta">
       
-      <a class="index-excerpt index-excerpt__noimg" href="/en/learn_in_public/" target="_self">
-        <div>
-          a habit of creating learning exhaust    Write blogs and tutorials and cheatsheets.   Speak at meetups and conferences.   Ask and answer things on Stackoverflow or Reddit.   Avoid the walled gardens li
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
         
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2023-11-01 23:05" pubdate>
-              2023-11-01
-            </time>
-          </div>
+          <time datetime="2024-04-02T16:00:00.000Z" class="dt-published" itemprop="datePublished">2024-04-03</time>
         
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/PKM/">#PKM</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-
-
-  <nav aria-label="navigation">
-    <span class="pagination" id="pagination">
-      <a class="extend prev" rel="prev" href="/"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/#board">3</a><a class="page-number" href="/page/4/#board">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/13/#board">13</a><a class="extend next" rel="next" href="/page/3/#board"><i class="iconfont icon-arrowright"></i></a>
-    </span>
-  </nav>
-
-
-
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    
-
-    
-      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
-        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
-      </a>
-    
-
-    
-      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
-     aria-hidden="true">
-  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
-        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body mx-3">
-        <div class="md-form mb-5">
-          <input type="text" id="local-search-input" class="form-control validate">
-          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
-        </div>
-        <div class="list-group" id="local-search-result"></div>
-      </div>
+      
     </div>
-  </div>
-</div>
 
+
+        <span>
+    
+        <a class="" href="/cn/lilu/">李录谈价值投资</a>
     
 
-    
-  </main>
 
-  <footer>
-    <div class="footer-inner">
-  
-    <div class="footer-content">
-       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+</span>
+      </li>
+    
+      <li class="post-item">
+        
+    <div class="meta">
+      
+        
+          <time datetime="2024-03-31T16:00:00.000Z" class="dt-published" itemprop="datePublished">2024-04-01</time>
+        
+      
     </div>
+
+
+        <span>
+    
+        <a class="" href="/cn/AFL++%20%E6%BC%8F%E6%B4%9E%E6%8C%96%E6%8E%98%E5%AE%9E%E4%BE%8B/">AFL++ 漏洞挖掘实例</a>
+    
+
+
+</span>
+      </li>
+    
+      <li class="post-item">
+        
+    <div class="meta">
+      
+        
+          <time datetime="2024-03-30T16:00:00.000Z" class="dt-published" itemprop="datePublished">2024-03-31</time>
+        
+      
+    </div>
+
+
+        <span>
+    
+        <a class="" href="/cn/logseq_practice/">我的 Logseq 使用实践</a>
+    
+
+
+</span>
+      </li>
+    
+      <li class="post-item">
+        
+    <div class="meta">
+      
+        
+          <time datetime="2024-03-25T16:00:00.000Z" class="dt-published" itemprop="datePublished">2024-03-26</time>
+        
+      
+    </div>
+
+
+        <span>
+    
+        <a class="" href="/en/logseq_plugins_en/">Some Logseq plugins I&#39;m currently using</a>
+    
+
+
+</span>
+      </li>
+    
+      <li class="post-item">
+        
+    <div class="meta">
+      
+        
+          <time datetime="2024-03-18T16:00:00.000Z" class="dt-published" itemprop="datePublished">2024-03-19</time>
+        
+      
+    </div>
+
+
+        <span>
+    
+        <a class="" href="/cn/logseq_plugins/">我正在使用的 Logseq Plugin (插件)</a>
+    
+
+
+</span>
+      </li>
+    
+  </ul>
   
-  
-  
-  
-</div>
-
-  </footer>
-
-  <!-- Scripts -->
-  
-  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
-  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
-
-  <script>
-    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
-    NProgress.start()
-    window.addEventListener('load', function() {
-      NProgress.done();
-    })
-  </script>
-
-
-<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
-<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
-<script  src="/js/events.js" ></script>
-<script  src="/js/plugins.js" ></script>
+</section>
 
 
 
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2004-2024
+    henices
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     --><!--
+       --><li><a href="/search/">Search</a></li><!--
+     --><!--
+       --><li><a href="/links/">Links</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
 
 
-  
-    <script  src="/js/img-lazyload.js" ></script>
-  
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
 
 
 
 
-  <script  src="/js/local-search.js" ></script>
+<!-- clipboard -->
 
 
+<script src="/js/main.js"></script>
 
+<!-- search -->
 
+<!-- Baidu Analytics -->
 
-<!-- 主题的启动项，将它保持在最底部 -->
-<!-- the boot of the theme, keep it at the bottom -->
-<script  src="/js/boot.js" ></script>
+<!-- Cloudflare Analytics -->
 
+<!-- Disqus Comments -->
 
-  
+<!-- utterances Comments -->
 
-  <noscript>
-    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
-  </noscript>
 </body>
 </html>

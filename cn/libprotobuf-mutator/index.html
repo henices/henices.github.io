@@ -1,23 +1,11 @@
-
-
 <!DOCTYPE html>
-<html lang="en" data-default-color-scheme=auto>
-
-
-
+<html lang=en>
 <head>
-  <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
-  <link rel="icon" href="/img/fluid.png">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
-  <meta http-equiv="x-ua-compatible" content="ie=edge">
-  
-    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
-  
-  <meta name="theme-color" content="#2f4154">
-  <meta name="author" content="henices">
-  <meta name="keywords" content="">
-  
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
     <meta name="description" content="What are protocol buffers?Protocol buffers are Google’s language-neutral, platform-neutral, extensible mechanism for serializing structured data – think XML, but smaller, faster, and simpler. You defi">
 <meta property="og:type" content="article">
 <meta property="og:title" content="libprotobuf-mutator 简单分析">
@@ -29,291 +17,156 @@
 <meta property="article:modified_time" content="2023-09-06T03:00:51.596Z">
 <meta property="article:author" content="henices">
 <meta property="article:tag" content="Security">
-<meta name="twitter:card" content="summary_large_image">
-  
-  
-    <meta name="referrer" content="no-referrer-when-downgrade">
-  
-  
-  <title>libprotobuf-mutator 简单分析 - 安全代码</title>
-
-  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
-
-
-
-  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
-
-  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
-
-  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
-
-
-
-<!-- 主题依赖的图标库，不要自行修改 -->
-<!-- Do not modify the link that theme dependent icons -->
-
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
-
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>libprotobuf-mutator 简单分析</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
 
 
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+    <!-- Umami Analytics -->
 
 
-<link  rel="stylesheet" href="/css/main.css" />
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
 
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+      <link rel="alternate" href="https://www.usmacd.com/rss.xml" title="安全代码" type="application/atom+xml" />
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 7.2.0"></head>
 
-  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
-  
-    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
-  
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     --><!--
+       --><li><a href="/search/">Search</a></li><!--
+     --><!--
+       --><li><a href="/links/">Links</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="Previous post" href="/cn/llvm_coverage/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="Next post" href="/cn/iPhone_white_apple/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://usmacd.com/cn/libprotobuf-mutator/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://usmacd.com/cn/libprotobuf-mutator/&text=libprotobuf-mutator 简单分析"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://usmacd.com/cn/libprotobuf-mutator/&title=libprotobuf-mutator 简单分析"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://usmacd.com/cn/libprotobuf-mutator/&is_video=false&description=libprotobuf-mutator 简单分析"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=libprotobuf-mutator 简单分析&body=Check out this article: http://usmacd.com/cn/libprotobuf-mutator/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://usmacd.com/cn/libprotobuf-mutator/&title=libprotobuf-mutator 简单分析"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://usmacd.com/cn/libprotobuf-mutator/&title=libprotobuf-mutator 简单分析"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://usmacd.com/cn/libprotobuf-mutator/&title=libprotobuf-mutator 简单分析"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://usmacd.com/cn/libprotobuf-mutator/&title=libprotobuf-mutator 简单分析"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://usmacd.com/cn/libprotobuf-mutator/&name=libprotobuf-mutator 简单分析&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://usmacd.com/cn/libprotobuf-mutator/&t=libprotobuf-mutator 简单分析"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
 
+    </div>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#What-are-protocol-buffers"><span class="toc-number">1.</span> <span class="toc-text">What are protocol buffers?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#libprotobuf-mutator"><span class="toc-number">2.</span> <span class="toc-text">libprotobuf-mutator</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BC%96%E8%AF%91%E5%AE%89%E8%A3%85"><span class="toc-number">2.1.</span> <span class="toc-text">编译安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#libprotobuf-mutator-%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0"><span class="toc-number">2.2.</span> <span class="toc-text">libprotobuf-mutator 代码实现</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#libprotobuf-mutator-fuzzing-learning"><span class="toc-number">3.</span> <span class="toc-text">libprotobuf-mutator_fuzzing_learning</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Simple-protobuf-example"><span class="toc-number">3.1.</span> <span class="toc-text">Simple protobuf example</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Combine-libprotobuf-mutator-with-libfuzzer"><span class="toc-number">3.2.</span> <span class="toc-text">Combine libprotobuf-mutator with libfuzzer</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E7%BC%96%E8%AF%91"><span class="toc-number">3.2.1.</span> <span class="toc-text">代码编译</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Handling-input-from-AFL-in-our-custom-mutator"><span class="toc-number">3.3.</span> <span class="toc-text">Handling input from AFL++ in our custom mutator</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="toc-number">4.</span> <span class="toc-text">参考资料</span></a></li></ol>
+      </div>
+    
+  </span>
+</div>
 
-
-
-  <script id="fluid-configs">
-    var Fluid = window.Fluid || {};
-    Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"usmacd.com","root":"/","version":"1.9.7","typing":{"enable":false,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
-
-    if (CONFIG.web_analytics.follow_dnt) {
-      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
-      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
-    }
-  </script>
-  <script  src="/js/utils.js" ></script>
-  <script  src="/js/color-schema.js" ></script>
-  
-
-
-  
-<meta name="generator" content="Hexo 7.2.0"><link rel="alternate" href="/atom.xml" title="安全代码" type="application/atom+xml">
-<link rel="alternate" href="/rss.xml" title="安全代码" type="application/rss+xml">
-</head>
-
-
-<body>
-  
-
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
   <header>
     
+    <h1 class="posttitle p-name" itemprop="name headline">
+        libprotobuf-mutator 简单分析
+    </h1>
 
-<div class="header-inner" style="height: 70vh;">
-  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
-  <div class="container">
-    <a class="navbar-brand" href="/">
-      <strong>安全代码</strong>
-    </a>
 
-    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
-            data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <div class="animated-icon"><span></span><span></span><span></span></div>
-    </button>
 
-    <!-- Collapsible content -->
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav ml-auto text-center">
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">henices</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2023-09-06T03:00:51.596Z" class="dt-published" itemprop="datePublished">2023-09-06</time>
         
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/" target="_self">
-                <i class="iconfont icon-home-fill"></i>
-                <span>Home</span>
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/archives/" target="_self">
-                <i class="iconfont icon-archive-fill"></i>
-                <span>Archives</span>
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/tags/" target="_self">
-                <i class="iconfont icon-tags-fill"></i>
-                <span>Tags</span>
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/about/" target="_self">
-                <i class="iconfont icon-user-fill"></i>
-                <span>About</span>
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/links/" target="_self">
-                <i class="iconfont icon-link-fill"></i>
-                <span>Links</span>
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/rss.xml" target="_self">
-                <i class="iconfont icon-rss"></i>
-                <span>rss</span>
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/sitemap.xml" target="_self">
-                
-                <span>sitemap</span>
-              </a>
-            </li>
-          
-        
-        
-          <li class="nav-item" id="search-btn">
-            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
-              <i class="iconfont icon-search"></i>
-            </a>
-          </li>
-          
-        
-        
-          <li class="nav-item" id="color-toggle-btn">
-            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
-              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
-            </a>
-          </li>
-        
-      </ul>
+      
     </div>
-  </div>
-</nav>
 
+
+      
+
+      
+    <div class="article-tag">
+        <i class="fa-solid fa-tag"></i>
+        <a class="p-category" href="/tags/Security/" rel="tag">Security</a>
+    </div>
+
+
+    </div>
+  </header>
   
 
-<div id="banner" class="banner" parallax=true
-     style="background: url('https://images.unsplash.com/photo-1473181488821-2d23949a045a?w=640') no-repeat center center; background-size: cover;">
-  <div class="full-bg-img">
-    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
-      <div class="banner-text text-center fade-in-up">
-        <div class="h2">
-          
-            <span id="subtitle">libprotobuf-mutator 简单分析</span>
-          
-        </div>
-
-        
-          
-  <div class="mt-3">
-    
-    
-      <span class="post-meta">
-        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-09-06 11:00" pubdate>
-          September 6, 2023 am
-        </time>
-      </span>
-    
-  </div>
-
-  <div class="mt-1">
-    
-      <span class="post-meta mr-2">
-        <i class="iconfont icon-chart"></i>
-        
-          2.3k words
-        
-      </span>
-    
-
-    
-      <span class="post-meta mr-2">
-        <i class="iconfont icon-clock-fill"></i>
-        
-        
-        
-          19 mins
-        
-      </span>
-    
-
-    
-    
-      
-        <span id="busuanzi_container_page_pv" style="display: none">
-          <i class="iconfont icon-eye" aria-hidden="true"></i>
-          <span id="busuanzi_value_page_pv"></span> views
-        </span>
-        
-      
-    
-  </div>
-
-
-        
-      </div>
-
-      
-    </div>
-  </div>
-</div>
-
-</div>
-
-  </header>
-
-  <main>
-    
-      
-
-<div class="container-fluid nopadding-x">
-  <div class="row nomargin-x">
-    <div class="side-col d-none d-lg-block col-lg-2">
-      
-
-    </div>
-
-    <div class="col-lg-8 nopadding-x-md">
-      <div class="container nopadding-x-md" id="board-ctn">
-        <div id="board">
-          <article class="post-content mx-auto">
-            <h1 id="seo-header">libprotobuf-mutator 简单分析</h1>
-            
-            
-              <div class="markdown-body">
-                
-                <h2 id="What-are-protocol-buffers"><a href="#What-are-protocol-buffers" class="headerlink" title="What are protocol buffers?"></a><a target="_blank" rel="noopener" href="https://developers.google.com/protocol-buffers/docs/overview">What are protocol buffers?</a></h2><p>Protocol buffers are Google’s language-neutral, platform-neutral, extensible mechanism for serializing structured data – think XML, but smaller, faster, and simpler. You define how you want your data to be structured once, then you can use special generated source code to easily write and read your structured data to and from a variety of data streams and using a variety of languages.</p>
+  <div class="content e-content" itemprop="articleBody">
+    <h2 id="What-are-protocol-buffers"><a href="#What-are-protocol-buffers" class="headerlink" title="What are protocol buffers?"></a><a target="_blank" rel="noopener" href="https://developers.google.com/protocol-buffers/docs/overview">What are protocol buffers?</a></h2><p>Protocol buffers are Google’s language-neutral, platform-neutral, extensible mechanism for serializing structured data – think XML, but smaller, faster, and simpler. You define how you want your data to be structured once, then you can use special generated source code to easily write and read your structured data to and from a variety of data streams and using a variety of languages.</p>
 <p>这段是 Google 官方网站给出的介绍，protobuf 可以自动化生成代码，用于读入或者写入结构化数据。一个简单的 protobuf 文件可以是这样的：</p>
-<figure class="highlight protobuf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs protobuf"><span class="hljs-keyword">message </span><span class="hljs-title class_">Person</span> &#123;<br>  <span class="hljs-keyword">required</span> <span class="hljs-type">string</span> name = <span class="hljs-number">1</span>;<br>  <span class="hljs-keyword">required</span> <span class="hljs-type">int32</span> id = <span class="hljs-number">2</span>;<br>  <span class="hljs-keyword">optional</span> <span class="hljs-type">string</span> email = <span class="hljs-number">3</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight protobuf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">message </span><span class="title class_">Person</span> &#123;</span><br><span class="line">  <span class="keyword">required</span> <span class="type">string</span> name = <span class="number">1</span>;</span><br><span class="line">  <span class="keyword">required</span> <span class="type">int32</span> id = <span class="number">2</span>;</span><br><span class="line">  <span class="keyword">optional</span> <span class="type">string</span> email = <span class="number">3</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>具体的语法可以参考Google 的文档 <a target="_blank" rel="noopener" href="https://developers.google.com/protocol-buffers/docs/proto">proto2</a> 和 <a target="_blank" rel="noopener" href="https://developers.google.com/protocol-buffers/docs/proto3">proto3</a>。c++ 语言使用 protobuf 的示例可以参见<a target="_blank" rel="noopener" href="https://developers.google.com/protocol-buffers/docs/cpptutorial">Protocol Buffer Basics: C++</a> 文档，基本步骤总结如下：</p>
 <ol>
@@ -322,72 +175,72 @@
 <li>利用生成的文件解析或者写入相关数据结构</li>
 </ol>
 <h2 id="libprotobuf-mutator"><a href="#libprotobuf-mutator" class="headerlink" title="libprotobuf-mutator"></a>libprotobuf-mutator</h2><h3 id="编译安装"><a href="#编译安装" class="headerlink" title="编译安装"></a>编译安装</h3><p>参考： <a target="_blank" rel="noopener" href="https://github.com/google/libprotobuf-mutator/blob/master/README.md">https://github.com/google/libprotobuf-mutator/blob/master/README.md</a></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs bash">git <span class="hljs-built_in">clone</span> https://github.com/google/libprotobuf-mutator.git<br><span class="hljs-built_in">mkdir</span> build<br><span class="hljs-built_in">cd</span> build<br>cmake .. -GNinja -DCMAKE_C_COMPILER=clang -DLIB_PROTO_MUTATOR_DOWNLOAD_PROTOBUF=ON -DCMAKE_CXX_COMPILER=clang++ -DCMAKE_BUILD_TYPE=Debug<br>https_proxy=http://127.0.0.1:3128 ninja check<br></code></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/google/libprotobuf-mutator.git</span><br><span class="line"><span class="built_in">mkdir</span> build</span><br><span class="line"><span class="built_in">cd</span> build</span><br><span class="line">cmake .. -GNinja -DCMAKE_C_COMPILER=clang -DLIB_PROTO_MUTATOR_DOWNLOAD_PROTOBUF=ON -DCMAKE_CXX_COMPILER=clang++ -DCMAKE_BUILD_TYPE=Debug</span><br><span class="line">https_proxy=http://127.0.0.1:3128 ninja check</span><br></pre></td></tr></table></figure>
 
 <p>由于需要从Google下载一些源码，所以在 <code>ninja check</code> 的时候需要挂上代理，结果编译出错了，找不到 <code>libxml2.a</code>，排查一下编译参数，发现需要添加编译静态库的参数</p>
-<figure class="highlight diff"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs diff"><span class="hljs-comment">diff --git a/cmake/external/libxml2.cmake b/cmake/external/libxml2.cmake</span><br><span class="hljs-comment">index c00ace2..a944fab 100644</span><br><span class="hljs-comment">--- a/cmake/external/libxml2.cmake</span><br><span class="hljs-comment">+++ b/cmake/external/libxml2.cmake</span><br><span class="hljs-meta">@@ -38,6 +38,7 @@</span> ExternalProject_Add($&#123;LIBXML2_TARGET&#125;<br>     UPDATE_COMMAND &quot;&quot;<br>     CONFIGURE_COMMAND $&#123;LIBXML2_SRC_DIR&#125;/autogen.sh --without-python<br>                                                     --prefix=$&#123;LIBXML2_INSTALL_DIR&#125;<br><span class="hljs-addition">+                                                    --enable-static=yes</span><br>                                                     CC=$&#123;CMAKE_C_COMPILER&#125;<br>                                                     CXX=$&#123;CMAKE_CXX_COMPILER&#125;<br>                                                     CFLAGS=$&#123;LIBXML2_CFLAGS&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight diff"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">diff --git a/cmake/external/libxml2.cmake b/cmake/external/libxml2.cmake</span></span><br><span class="line"><span class="comment">index c00ace2..a944fab 100644</span></span><br><span class="line"><span class="comment">--- a/cmake/external/libxml2.cmake</span></span><br><span class="line"><span class="comment">+++ b/cmake/external/libxml2.cmake</span></span><br><span class="line"><span class="meta">@@ -38,6 +38,7 @@</span> ExternalProject_Add($&#123;LIBXML2_TARGET&#125;</span><br><span class="line">     UPDATE_COMMAND &quot;&quot;</span><br><span class="line">     CONFIGURE_COMMAND $&#123;LIBXML2_SRC_DIR&#125;/autogen.sh --without-python</span><br><span class="line">                                                     --prefix=$&#123;LIBXML2_INSTALL_DIR&#125;</span><br><span class="line"><span class="addition">+                                                    --enable-static=yes</span></span><br><span class="line">                                                     CC=$&#123;CMAKE_C_COMPILER&#125;</span><br><span class="line">                                                     CXX=$&#123;CMAKE_CXX_COMPILER&#125;</span><br><span class="line">                                                     CFLAGS=$&#123;LIBXML2_CFLAGS&#125;</span><br></pre></td></tr></table></figure>
 
 <p>修改后可以正常通过 <code>ninja check</code> 命令的所有检查。默认情况下 <code>ninja install</code> 会安装到 &#x2F;usr&#x2F;local 目录，因为考虑到后续需要给 <code>afl+</code>使用，所以需要使用下的命令重新 cmake 一下</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">cmake .. -GNinja -DCMAKE_C_COMPILER=clang -DLIB_PROTO_MUTATOR_DOWNLOAD_PROTOBUF=ON \<br>-DCMAKE_INSTALL_PREFIX=/home/henices/code/AFL+/external/libprotobuf-mutator -DCMAKE_CXX_COMPILER=clang++ -DCMAKE_BUILD_TYPE=Debug<br></code></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cmake .. -GNinja -DCMAKE_C_COMPILER=clang -DLIB_PROTO_MUTATOR_DOWNLOAD_PROTOBUF=ON \</span><br><span class="line">-DCMAKE_INSTALL_PREFIX=/home/henices/code/AFL+/external/libprotobuf-mutator -DCMAKE_CXX_COMPILER=clang++ -DCMAKE_BUILD_TYPE=Debug</span><br></pre></td></tr></table></figure>
 <h3 id="libprotobuf-mutator-代码实现"><a href="#libprotobuf-mutator-代码实现" class="headerlink" title="libprotobuf-mutator 代码实现"></a>libprotobuf-mutator 代码实现</h3><p>libfuzzer_macro.h</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">define</span> DEFINE_TEST_ONE_PROTO_INPUT_IMPL(use_binary, Proto)                 \</span><br><span class="hljs-meta">  extern <span class="hljs-string">&quot;C&quot;</span> int LLVMFuzzerTestOneInput(const uint8_t* data, size_t size) &#123; \</span><br><span class="hljs-meta">    using protobuf_mutator::libfuzzer::LoadProtoInput;                      \</span><br><span class="hljs-meta">    Proto input;                                                            \</span><br><span class="hljs-meta">    <span class="hljs-keyword">if</span> (LoadProtoInput(use_binary, data, size, &amp;input))                     \</span><br><span class="hljs-meta">      TestOneProtoInput(input);                                             \</span><br><span class="hljs-meta">    return 0;                                                               \</span><br><span class="hljs-meta">  &#125;</span><br>  <br><span class="hljs-comment">// Defines custom mutator, crossover and test functions using default</span><br><span class="hljs-comment">// serialization format. Default is text.</span><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> DEFINE_PROTO_FUZZER(arg) DEFINE_TEXT_PROTO_FUZZER(arg)</span><br><span class="hljs-comment">// Defines custom mutator, crossover and test functions using text</span><br><span class="hljs-comment">// serialization. This format is more convenient to read.</span><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> DEFINE_TEXT_PROTO_FUZZER(arg) DEFINE_PROTO_FUZZER_IMPL(false, arg)</span><br><span class="hljs-comment">// Defines custom mutator, crossover and test functions using binary</span><br><span class="hljs-comment">// serialization. This makes mutations faster. However often test function is</span><br><span class="hljs-comment">// significantly slower than mutator, so fuzzing rate may stay unchanged.</span><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> DEFINE_BINARY_PROTO_FUZZER(arg) DEFINE_PROTO_FUZZER_IMPL(true, arg)</span><br><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> DEFINE_PROTO_FUZZER_IMPL(use_binary, arg)                              \</span><br><span class="hljs-meta">  static void TestOneProtoInput(arg);                                          \</span><br><span class="hljs-meta">  using FuzzerProtoType = std::remove_const&lt;std::remove_reference&lt;             \</span><br><span class="hljs-meta">      std::function<span class="hljs-string">&lt;decltype(TestOneProtoInput)&gt;</span>::argument_type&gt;::type&gt;::type; \</span><br><span class="hljs-meta">  DEFINE_CUSTOM_PROTO_MUTATOR_IMPL(use_binary, FuzzerProtoType)                \</span><br><span class="hljs-meta">  DEFINE_CUSTOM_PROTO_CROSSOVER_IMPL(use_binary, FuzzerProtoType)              \</span><br><span class="hljs-meta">  DEFINE_TEST_ONE_PROTO_INPUT_IMPL(use_binary, FuzzerProtoType)                \</span><br><span class="hljs-meta">  DEFINE_POST_PROCESS_PROTO_MUTATION_IMPL(FuzzerProtoType)                     \</span><br><span class="hljs-meta">  static void TestOneProtoInput(arg)</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">define</span> DEFINE_TEST_ONE_PROTO_INPUT_IMPL(use_binary, Proto)                 \</span></span><br><span class="line"><span class="meta">  extern <span class="string">&quot;C&quot;</span> int LLVMFuzzerTestOneInput(const uint8_t* data, size_t size) &#123; \</span></span><br><span class="line"><span class="meta">    using protobuf_mutator::libfuzzer::LoadProtoInput;                      \</span></span><br><span class="line"><span class="meta">    Proto input;                                                            \</span></span><br><span class="line"><span class="meta">    <span class="keyword">if</span> (LoadProtoInput(use_binary, data, size, &amp;input))                     \</span></span><br><span class="line"><span class="meta">      TestOneProtoInput(input);                                             \</span></span><br><span class="line"><span class="meta">    return 0;                                                               \</span></span><br><span class="line"><span class="meta">  &#125;</span></span><br><span class="line">  </span><br><span class="line"><span class="comment">// Defines custom mutator, crossover and test functions using default</span></span><br><span class="line"><span class="comment">// serialization format. Default is text.</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> DEFINE_PROTO_FUZZER(arg) DEFINE_TEXT_PROTO_FUZZER(arg)</span></span><br><span class="line"><span class="comment">// Defines custom mutator, crossover and test functions using text</span></span><br><span class="line"><span class="comment">// serialization. This format is more convenient to read.</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> DEFINE_TEXT_PROTO_FUZZER(arg) DEFINE_PROTO_FUZZER_IMPL(false, arg)</span></span><br><span class="line"><span class="comment">// Defines custom mutator, crossover and test functions using binary</span></span><br><span class="line"><span class="comment">// serialization. This makes mutations faster. However often test function is</span></span><br><span class="line"><span class="comment">// significantly slower than mutator, so fuzzing rate may stay unchanged.</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> DEFINE_BINARY_PROTO_FUZZER(arg) DEFINE_PROTO_FUZZER_IMPL(true, arg)</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> DEFINE_PROTO_FUZZER_IMPL(use_binary, arg)                              \</span></span><br><span class="line"><span class="meta">  static void TestOneProtoInput(arg);                                          \</span></span><br><span class="line"><span class="meta">  using FuzzerProtoType = std::remove_const&lt;std::remove_reference&lt;             \</span></span><br><span class="line"><span class="meta">      std::function<span class="string">&lt;decltype(TestOneProtoInput)&gt;</span>::argument_type&gt;::type&gt;::type; \</span></span><br><span class="line"><span class="meta">  DEFINE_CUSTOM_PROTO_MUTATOR_IMPL(use_binary, FuzzerProtoType)                \</span></span><br><span class="line"><span class="meta">  DEFINE_CUSTOM_PROTO_CROSSOVER_IMPL(use_binary, FuzzerProtoType)              \</span></span><br><span class="line"><span class="meta">  DEFINE_TEST_ONE_PROTO_INPUT_IMPL(use_binary, FuzzerProtoType)                \</span></span><br><span class="line"><span class="meta">  DEFINE_POST_PROCESS_PROTO_MUTATION_IMPL(FuzzerProtoType)                     \</span></span><br><span class="line"><span class="meta">  static void TestOneProtoInput(arg)</span></span><br></pre></td></tr></table></figure>
 
 <p>调用路径为 <code>DEFINE_PROTO_FUZZER</code> -&gt; <code>DEFINE_TEXT_PROTO_FUZZER</code> -&gt; <code>DEFINE_PROTO_FUZZER_IMPL</code> -&gt; <code>DEFINE_TEST_ONE_PROTO_INPUT_IMPL</code> -&gt; <code>LLVMFuzzerTestOneInput</code> -&gt; <code>TestOneProtoInput</code>。<br>最终还是实现了<code>LLVMFuzzerTestOneInput</code> libfuzzer 的入口方法，使用 macro 可以少写不少代码非常方便，从这里就可以看出 fuzz 的 target function 必须和 <code>LLVMFuzzerTestOneInput</code> 的参数类型一致</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-comment">// fuzz_target.cc</span><br><span class="hljs-keyword">extern</span> <span class="hljs-string">&quot;C&quot;</span> <span class="hljs-type">int</span> <span class="hljs-title function_">LLVMFuzzerTestOneInput</span><span class="hljs-params">(<span class="hljs-type">const</span> <span class="hljs-type">uint8_t</span> *Data, <span class="hljs-type">size_t</span> Size)</span> &#123;<br>  DoSomethingInterestingWithMyAPI(Data, Size);<br>  <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;  <span class="hljs-comment">// Non-zero return values are reserved for future use.</span><br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// fuzz_target.cc</span></span><br><span class="line"><span class="keyword">extern</span> <span class="string">&quot;C&quot;</span> <span class="type">int</span> <span class="title function_">LLVMFuzzerTestOneInput</span><span class="params">(<span class="type">const</span> <span class="type">uint8_t</span> *Data, <span class="type">size_t</span> Size)</span> &#123;</span><br><span class="line">  DoSomethingInterestingWithMyAPI(Data, Size);</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;  <span class="comment">// Non-zero return values are reserved for future use.</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>libfuzzer_macro.cc</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-type">bool</span> <span class="hljs-title">LoadProtoInput</span><span class="hljs-params">(<span class="hljs-type">bool</span> binary, <span class="hljs-type">const</span> <span class="hljs-type">uint8_t</span>* data, <span class="hljs-type">size_t</span> size,</span></span><br><span class="hljs-params"><span class="hljs-function">                    protobuf::Message* input)</span> </span>&#123;<br>  <span class="hljs-keyword">if</span> (<span class="hljs-built_in">GetCache</span>()-&gt;<span class="hljs-built_in">LoadIfSame</span>(data, size, input)) <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>  <span class="hljs-keyword">auto</span> result = binary ? <span class="hljs-built_in">ParseBinaryMessage</span>(data, size, input)<br>                       : <span class="hljs-built_in">ParseTextMessage</span>(data, size, input);<br>  <span class="hljs-keyword">if</span> (!result) <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>  <span class="hljs-built_in">GetMutator</span>()-&gt;<span class="hljs-built_in">Seed</span>(size);<br>  <span class="hljs-built_in">GetMutator</span>()-&gt;<span class="hljs-built_in">Fix</span>(input);<br>  <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">bool</span> <span class="title">LoadProtoInput</span><span class="params">(<span class="type">bool</span> binary, <span class="type">const</span> <span class="type">uint8_t</span>* data, <span class="type">size_t</span> size,</span></span></span><br><span class="line"><span class="params"><span class="function">                    protobuf::Message* input)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (<span class="built_in">GetCache</span>()-&gt;<span class="built_in">LoadIfSame</span>(data, size, input)) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">  <span class="keyword">auto</span> result = binary ? <span class="built_in">ParseBinaryMessage</span>(data, size, input)</span><br><span class="line">                       : <span class="built_in">ParseTextMessage</span>(data, size, input);</span><br><span class="line">  <span class="keyword">if</span> (!result) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">  <span class="built_in">GetMutator</span>()-&gt;<span class="built_in">Seed</span>(size);</span><br><span class="line">  <span class="built_in">GetMutator</span>()-&gt;<span class="built_in">Fix</span>(input);</span><br><span class="line">  <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p><code>LoadProtoInput</code> 返回 <code>true</code> 或者 <code>false</code>，如果解析成功，将调用 <code>TestOneProtoInput</code>，<code>DEFINE_PROTO_FUZZER</code> macro 其实就是写 TestOneProtoInput 的实现。</p>
 <h2 id="libprotobuf-mutator-fuzzing-learning"><a href="#libprotobuf-mutator-fuzzing-learning" class="headerlink" title="libprotobuf-mutator_fuzzing_learning"></a>libprotobuf-mutator_fuzzing_learning</h2><p>这是 github 上一位同行写的学习 libprotobuf-mutator fuzzing 的文章，总体写的不错，但是其中有一些错误的地方，在实践过程中都记录了其中的修改。</p>
 <h3 id="Simple-protobuf-example"><a href="#Simple-protobuf-example" class="headerlink" title="Simple protobuf example"></a>Simple protobuf example</h3><p>文章：<a target="_blank" rel="noopener" href="https://github.com/bruce30262/libprotobuf-mutator_fuzzing_learning/tree/master/1_simple_protobuf">https://github.com/bruce30262/libprotobuf-mutator_fuzzing_learning/tree/master/1_simple_protobuf</a></p>
 <p>先写一个简单的 protobuf 文件，test.proto</p>
-<figure class="highlight protobuf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs protobuf">syntax = <span class="hljs-string">&quot;proto2&quot;</span>;<br><br><span class="hljs-keyword">message </span><span class="hljs-title class_">TEST</span> &#123;<br>  <span class="hljs-keyword">required</span> <span class="hljs-type">uint32</span> a = <span class="hljs-number">1</span>;<br>  <span class="hljs-keyword">required</span> <span class="hljs-type">string</span> b = <span class="hljs-number">2</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight protobuf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">syntax = <span class="string">&quot;proto2&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">message </span><span class="title class_">TEST</span> &#123;</span><br><span class="line">  <span class="keyword">required</span> <span class="type">uint32</span> a = <span class="number">1</span>;</span><br><span class="line">  <span class="keyword">required</span> <span class="type">string</span> b = <span class="number">2</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>使用 <code>protoc</code> 编译 protobuf 文件</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">mkdir</span> genfiles  <br>protoc ./test.proto --cpp_out=./genfiles<br></code></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">mkdir</span> genfiles  </span><br><span class="line">protoc ./test.proto --cpp_out=./genfiles</span><br></pre></td></tr></table></figure>
 
 <p>将自动生成两个文件</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">ls</span> ./genfiles<br>test.pb.cc  test.pb.h<br></code></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">ls</span> ./genfiles</span><br><span class="line">test.pb.cc  test.pb.h</span><br></pre></td></tr></table></figure>
 
 <p>写一个测试程序 test_proto.cc</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&quot;test.pb.h&quot;</span></span><br><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;bits/stdc++.h&gt;</span></span><br><br><span class="hljs-keyword">using</span> std::cin;<br><span class="hljs-keyword">using</span> std::cout;<br><span class="hljs-keyword">using</span> std::endl;<br><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-type">int</span> argc, <span class="hljs-type">char</span> *argv[])</span></span><br><span class="hljs-function"></span>&#123;<br>    TEST t;<br>    t.<span class="hljs-built_in">set_a</span>(<span class="hljs-number">101</span>);<br>    t.<span class="hljs-built_in">set_b</span>(<span class="hljs-string">&quot;testtest&quot;</span>);<br>    cout &lt;&lt; t.<span class="hljs-built_in">a</span>() &lt;&lt; endl;<br>    cout &lt;&lt; t.<span class="hljs-built_in">b</span>() &lt;&lt; endl;   <br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125; <br></code></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;test.pb.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> std::cin;</span><br><span class="line"><span class="keyword">using</span> std::cout;</span><br><span class="line"><span class="keyword">using</span> std::endl;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span> *argv[])</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    TEST t;</span><br><span class="line">    t.<span class="built_in">set_a</span>(<span class="number">101</span>);</span><br><span class="line">    t.<span class="built_in">set_b</span>(<span class="string">&quot;testtest&quot;</span>);</span><br><span class="line">    cout &lt;&lt; t.<span class="built_in">a</span>() &lt;&lt; endl;</span><br><span class="line">    cout &lt;&lt; t.<span class="built_in">b</span>() &lt;&lt; endl;   </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure>
 
 <p>写 Makefile 来编译 <code>test_proto.cc</code></p>
-<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs makefile">CXX=clang++<br>PB_SRC=test.pb.cc<br><br>PROTOBUF_DIR=<span class="hljs-variable">$(HOME)</span>/code/libprotobuf-mutator/build/external.protobuf/<br>PROTOBUF_LIB=<span class="hljs-variable">$(PROTOBUF_DIR)</span>/lib/libprotobufd.a<br>INC=-I<span class="hljs-variable">$(PROTOBUF_DIR)</span>/<span class="hljs-keyword">include</span><br><br><span class="hljs-section">test_proto: test_proto.cc <span class="hljs-variable">$(PB_SRC)</span></span><br>	<span class="hljs-variable">$(CXX)</span> -o <span class="hljs-variable">$@</span> <span class="hljs-variable">$^</span> <span class="hljs-variable">$(PROTOBUF_LIB)</span> <span class="hljs-variable">$(INC)</span><br><br><span class="hljs-meta"><span class="hljs-keyword">.PHONY</span>: clean</span><br><span class="hljs-section">clean: </span><br>	rm test_proto<br></code></pre></td></tr></table></figure>
+<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">CXX=clang++</span><br><span class="line">PB_SRC=test.pb.cc</span><br><span class="line"></span><br><span class="line">PROTOBUF_DIR=<span class="variable">$(HOME)</span>/code/libprotobuf-mutator/build/external.protobuf/</span><br><span class="line">PROTOBUF_LIB=<span class="variable">$(PROTOBUF_DIR)</span>/lib/libprotobufd.a</span><br><span class="line">INC=-I<span class="variable">$(PROTOBUF_DIR)</span>/<span class="keyword">include</span></span><br><span class="line"></span><br><span class="line"><span class="section">test_proto: test_proto.cc <span class="variable">$(PB_SRC)</span></span></span><br><span class="line">	<span class="variable">$(CXX)</span> -o <span class="variable">$@</span> <span class="variable">$^</span> <span class="variable">$(PROTOBUF_LIB)</span> <span class="variable">$(INC)</span></span><br><span class="line"></span><br><span class="line"><span class="meta"><span class="keyword">.PHONY</span>: clean</span></span><br><span class="line"><span class="section">clean: </span></span><br><span class="line">	rm test_proto</span><br></pre></td></tr></table></figure>
 
 <p>执行 <code>make</code> 后报错 .&#x2F;test.pb.h:17:2: error: This file was generated by an older version of protoc which is，因为我们在编译的时候使用了 <code>-DLIB_PROTO_MUTATOR_DOWNLOAD_PROTOBUF=ON</code> 下载了新版本的 protobuf，所以出了这个错误。只好使用下载的 protoc 重新生成 <code>test.pb.cc</code> 和 <code>test.pb.h</code></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">~/code/libprotobuf-mutator/build/external.protobuf/bin/protoc ./test.proto --cpp_out=./genfiles<br></code></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">~/code/libprotobuf-mutator/build/external.protobuf/bin/protoc ./test.proto --cpp_out=./genfiles</span><br></pre></td></tr></table></figure>
 
 <p>这次可以成功 make 了，实际执行的命令是</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">clang++ -o test_proto test_proto.cc test.pb.cc /home/henices/code/libprotobuf-mutator/build/external.protobuf//lib/libprotobufd.a \<br> -I/home/henices/code/libprotobuf-mutator/build/external.protobuf//include<br></code></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">clang++ -o test_proto test_proto.cc test.pb.cc /home/henices/code/libprotobuf-mutator/build/external.protobuf//lib/libprotobufd.a \</span><br><span class="line"> -I/home/henices/code/libprotobuf-mutator/build/external.protobuf//include</span><br></pre></td></tr></table></figure>
 
 <p>运行 <code>./test_proto</code>, 输出如下</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs">101<br>testtest<br></code></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">101</span><br><span class="line">testtest</span><br></pre></td></tr></table></figure>
 
 <h3 id="Combine-libprotobuf-mutator-with-libfuzzer"><a href="#Combine-libprotobuf-mutator-with-libfuzzer" class="headerlink" title="Combine libprotobuf-mutator with libfuzzer"></a>Combine libprotobuf-mutator with libfuzzer</h3><p>代码在： <a target="_blank" rel="noopener" href="https://github.com/bruce30262/libprotobuf-mutator_fuzzing_learning/tree/master/2_libprotobuf_libfuzzer">https://github.com/bruce30262/libprotobuf-mutator_fuzzing_learning/tree/master/2_libprotobuf_libfuzzer</a></p>
 <p>harness.cc</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdint.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stddef.h&gt;</span></span><br><br><span class="hljs-keyword">extern</span> <span class="hljs-string">&quot;C&quot;</span> <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">FuzzTEST</span><span class="hljs-params">(<span class="hljs-type">const</span> <span class="hljs-type">uint8_t</span> *data, <span class="hljs-type">size_t</span> size)</span> </span>&#123;<br>    <span class="hljs-keyword">if</span>(data[<span class="hljs-number">0</span>] == <span class="hljs-string">&#x27;\x01&#x27;</span>) &#123;<br>        __builtin_trap();<br>    &#125;<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdint.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stddef.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">extern</span> <span class="string">&quot;C&quot;</span> <span class="function"><span class="type">int</span> <span class="title">FuzzTEST</span><span class="params">(<span class="type">const</span> <span class="type">uint8_t</span> *data, <span class="type">size_t</span> size)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(data[<span class="number">0</span>] == <span class="string">&#x27;\x01&#x27;</span>) &#123;</span><br><span class="line">        __builtin_trap();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>其中 FuzzTEST 是我们需要测试的目标函数。</p>
 <p>lpm_libfuzz.cc</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&quot;libprotobuf-mutator/src/libfuzzer/libfuzzer_macro.h&quot;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&quot;test.pb.h&quot;</span></span><br><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;bits/stdc++.h&gt;</span></span><br><br><span class="hljs-keyword">using</span> std::cin;<br><span class="hljs-keyword">using</span> std::cout;<br><span class="hljs-keyword">using</span> std::endl;<br><br><span class="hljs-function">std::string <span class="hljs-title">ProtoToData</span><span class="hljs-params">(<span class="hljs-type">const</span> TEST &amp;test_proto)</span> </span>&#123;<br>    std::stringstream all;<br>    <span class="hljs-type">const</span> <span class="hljs-keyword">auto</span> &amp;aa = test_proto.<span class="hljs-built_in">a</span>();<br>    <span class="hljs-type">const</span> <span class="hljs-keyword">auto</span> &amp;bb = test_proto.<span class="hljs-built_in">b</span>();<br>    all.<span class="hljs-built_in">write</span>((<span class="hljs-type">const</span> <span class="hljs-type">char</span>*)&amp;aa, <span class="hljs-built_in">sizeof</span>(aa));<br>    <span class="hljs-keyword">if</span>(bb.<span class="hljs-built_in">size</span>() != <span class="hljs-number">0</span>) &#123;<br>        all.<span class="hljs-built_in">write</span>(bb.<span class="hljs-built_in">c_str</span>(), bb.<span class="hljs-built_in">size</span>());<br>    &#125;<br><br>    std::string res = all.<span class="hljs-built_in">str</span>();<br>    <span class="hljs-keyword">if</span> (bb.<span class="hljs-built_in">size</span>() != <span class="hljs-number">0</span> &amp;&amp; res.<span class="hljs-built_in">size</span>() != <span class="hljs-number">0</span>) &#123;<br>        <span class="hljs-comment">// set PROTO_FUZZER_DUMP_PATH env to dump the serialized protobuf</span><br>        <span class="hljs-keyword">if</span> (<span class="hljs-type">const</span> <span class="hljs-type">char</span> *dump_path = <span class="hljs-built_in">getenv</span>(<span class="hljs-string">&quot;PROTO_FUZZER_DUMP_PATH&quot;</span>)) &#123;<br>            <span class="hljs-function">std::ofstream <span class="hljs-title">of</span><span class="hljs-params">(dump_path)</span></span>;<br>            of.<span class="hljs-built_in">write</span>(res.<span class="hljs-built_in">data</span>(), res.<span class="hljs-built_in">size</span>());<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">return</span> res;<br>&#125;<br><br><span class="hljs-keyword">extern</span> <span class="hljs-string">&quot;C&quot;</span> <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">FuzzTEST</span><span class="hljs-params">(<span class="hljs-type">const</span> <span class="hljs-type">uint8_t</span>* data, <span class="hljs-type">size_t</span> size)</span></span>; <span class="hljs-comment">// our customized fuzzing function</span><br><br><span class="hljs-built_in">DEFINE_PROTO_FUZZER</span>(<span class="hljs-type">const</span> TEST &amp;test_proto) &#123;<br>    <span class="hljs-keyword">auto</span> s = <span class="hljs-built_in">ProtoToData</span>(test_proto); <span class="hljs-comment">// convert protobuf to raw data</span><br>    <span class="hljs-built_in">FuzzTEST</span>((<span class="hljs-type">const</span> <span class="hljs-type">uint8_t</span>*)s.<span class="hljs-built_in">data</span>(), s.<span class="hljs-built_in">size</span>()); <span class="hljs-comment">// fuzz the function</span><br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;libprotobuf-mutator/src/libfuzzer/libfuzzer_macro.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;test.pb.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> std::cin;</span><br><span class="line"><span class="keyword">using</span> std::cout;</span><br><span class="line"><span class="keyword">using</span> std::endl;</span><br><span class="line"></span><br><span class="line"><span class="function">std::string <span class="title">ProtoToData</span><span class="params">(<span class="type">const</span> TEST &amp;test_proto)</span> </span>&#123;</span><br><span class="line">    std::stringstream all;</span><br><span class="line">    <span class="type">const</span> <span class="keyword">auto</span> &amp;aa = test_proto.<span class="built_in">a</span>();</span><br><span class="line">    <span class="type">const</span> <span class="keyword">auto</span> &amp;bb = test_proto.<span class="built_in">b</span>();</span><br><span class="line">    all.<span class="built_in">write</span>((<span class="type">const</span> <span class="type">char</span>*)&amp;aa, <span class="built_in">sizeof</span>(aa));</span><br><span class="line">    <span class="keyword">if</span>(bb.<span class="built_in">size</span>() != <span class="number">0</span>) &#123;</span><br><span class="line">        all.<span class="built_in">write</span>(bb.<span class="built_in">c_str</span>(), bb.<span class="built_in">size</span>());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    std::string res = all.<span class="built_in">str</span>();</span><br><span class="line">    <span class="keyword">if</span> (bb.<span class="built_in">size</span>() != <span class="number">0</span> &amp;&amp; res.<span class="built_in">size</span>() != <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="comment">// set PROTO_FUZZER_DUMP_PATH env to dump the serialized protobuf</span></span><br><span class="line">        <span class="keyword">if</span> (<span class="type">const</span> <span class="type">char</span> *dump_path = <span class="built_in">getenv</span>(<span class="string">&quot;PROTO_FUZZER_DUMP_PATH&quot;</span>)) &#123;</span><br><span class="line">            <span class="function">std::ofstream <span class="title">of</span><span class="params">(dump_path)</span></span>;</span><br><span class="line">            of.<span class="built_in">write</span>(res.<span class="built_in">data</span>(), res.<span class="built_in">size</span>());</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">extern</span> <span class="string">&quot;C&quot;</span> <span class="function"><span class="type">int</span> <span class="title">FuzzTEST</span><span class="params">(<span class="type">const</span> <span class="type">uint8_t</span>* data, <span class="type">size_t</span> size)</span></span>; <span class="comment">// our customized fuzzing function</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">DEFINE_PROTO_FUZZER</span>(<span class="type">const</span> TEST &amp;test_proto) &#123;</span><br><span class="line">    <span class="keyword">auto</span> s = <span class="built_in">ProtoToData</span>(test_proto); <span class="comment">// convert protobuf to raw data</span></span><br><span class="line">    <span class="built_in">FuzzTEST</span>((<span class="type">const</span> <span class="type">uint8_t</span>*)s.<span class="built_in">data</span>(), s.<span class="built_in">size</span>()); <span class="comment">// fuzz the function</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>在文件的最开头导入 <code>libfuzzer_macro.h</code>， 后面就可以使用一些宏来写代码了，<code>DEFINE_PROTO_FUZZER</code> 是关键的 fuzzer 入口。结构化变异部分 libprotobuf-mutator 已经完成了，需要实现的是一个由 protobuf 转需要的数据类型的函数，如上面的 <code>ProtoToData</code></p>
-<h4 id="代码编译"><a href="#代码编译" class="headerlink" title="代码编译"></a>代码编译</h4><figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><code class="hljs makefile">TARGET=lpm_libfuzz<br>CXX=clang++<br>CXXFLAGS=-g -fsanitize=fuzzer,address<br>PB_SRC=test.pb.cc<br><br>PROTOBUF_DIR=<span class="hljs-variable">$(HOME)</span>/code/libprotobuf-mutator/build/external.protobuf/<br>LPM_DIR=<span class="hljs-variable">$(HOME)</span>/code/AFL+/external/libprotobuf-mutator<br>PROTOBUF_LIB=<span class="hljs-variable">$(PROTOBUF_DIR)</span>/lib/libprotobufd.a<br>LPM_LIB=<span class="hljs-variable">$(LPM_DIR)</span>/lib/libprotobuf-mutator-libfuzzer.a <span class="hljs-variable">$(LPM_DIR)</span>/lib/libprotobuf-mutator.a<br>INC=-I<span class="hljs-variable">$(PROTOBUF_DIR)</span>/<span class="hljs-keyword">include</span> -I<span class="hljs-variable">$(LPM_DIR)</span>/<span class="hljs-keyword">include</span><br>DFUZZ=-DLLVMFuzzerTestOneInput=FuzzTEST<br><br><span class="hljs-section">all: <span class="hljs-variable">$(TARGET)</span></span><br><br><span class="hljs-comment"># for testing libprotobuf + libfuzzer</span><br><span class="hljs-comment"># compile harness first</span><br><span class="hljs-comment"># then link lpm_libfuzz with harness.o &amp; static libraries</span><br><span class="hljs-section">harness.o: harness.cc</span><br>	<span class="hljs-variable">$(CXX)</span> <span class="hljs-variable">$(CXXFLAGS)</span> -c <span class="hljs-variable">$(DFUZZ)</span> <span class="hljs-variable">$&lt;</span><br><br><span class="hljs-variable">$(TARGET)</span>: harness.o <span class="hljs-variable">$(TARGET)</span>.cc<br>	<span class="hljs-variable">$(CXX)</span> <span class="hljs-variable">$(CXXFLAGS)</span> -o <span class="hljs-variable">$@</span> <span class="hljs-variable">$^</span> <span class="hljs-variable">$(PB_SRC)</span> <span class="hljs-variable">$(LPM_LIB)</span> <span class="hljs-variable">$(PROTOBUF_LIB)</span> <span class="hljs-variable">$(INC)</span> <span class="hljs-comment"># $(LPM_LIB) must be placed before $(PROTOBUF_LIB)</span><br><br><span class="hljs-meta"><span class="hljs-keyword">.PHONY</span>: clean</span><br><span class="hljs-section">clean: </span><br>	rm <span class="hljs-variable">$(TARGET)</span> *.o<br></code></pre></td></tr></table></figure>
+<h4 id="代码编译"><a href="#代码编译" class="headerlink" title="代码编译"></a>代码编译</h4><figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">TARGET=lpm_libfuzz</span><br><span class="line">CXX=clang++</span><br><span class="line">CXXFLAGS=-g -fsanitize=fuzzer,address</span><br><span class="line">PB_SRC=test.pb.cc</span><br><span class="line"></span><br><span class="line">PROTOBUF_DIR=<span class="variable">$(HOME)</span>/code/libprotobuf-mutator/build/external.protobuf/</span><br><span class="line">LPM_DIR=<span class="variable">$(HOME)</span>/code/AFL+/external/libprotobuf-mutator</span><br><span class="line">PROTOBUF_LIB=<span class="variable">$(PROTOBUF_DIR)</span>/lib/libprotobufd.a</span><br><span class="line">LPM_LIB=<span class="variable">$(LPM_DIR)</span>/lib/libprotobuf-mutator-libfuzzer.a <span class="variable">$(LPM_DIR)</span>/lib/libprotobuf-mutator.a</span><br><span class="line">INC=-I<span class="variable">$(PROTOBUF_DIR)</span>/<span class="keyword">include</span> -I<span class="variable">$(LPM_DIR)</span>/<span class="keyword">include</span></span><br><span class="line">DFUZZ=-DLLVMFuzzerTestOneInput=FuzzTEST</span><br><span class="line"></span><br><span class="line"><span class="section">all: <span class="variable">$(TARGET)</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment"># for testing libprotobuf + libfuzzer</span></span><br><span class="line"><span class="comment"># compile harness first</span></span><br><span class="line"><span class="comment"># then link lpm_libfuzz with harness.o &amp; static libraries</span></span><br><span class="line"><span class="section">harness.o: harness.cc</span></span><br><span class="line">	<span class="variable">$(CXX)</span> <span class="variable">$(CXXFLAGS)</span> -c <span class="variable">$(DFUZZ)</span> <span class="variable">$&lt;</span></span><br><span class="line"></span><br><span class="line"><span class="variable">$(TARGET)</span>: harness.o <span class="variable">$(TARGET)</span>.cc</span><br><span class="line">	<span class="variable">$(CXX)</span> <span class="variable">$(CXXFLAGS)</span> -o <span class="variable">$@</span> <span class="variable">$^</span> <span class="variable">$(PB_SRC)</span> <span class="variable">$(LPM_LIB)</span> <span class="variable">$(PROTOBUF_LIB)</span> <span class="variable">$(INC)</span> <span class="comment"># $(LPM_LIB) must be placed before $(PROTOBUF_LIB)</span></span><br><span class="line"></span><br><span class="line"><span class="meta"><span class="keyword">.PHONY</span>: clean</span></span><br><span class="line"><span class="section">clean: </span></span><br><span class="line">	rm <span class="variable">$(TARGET)</span> *.o</span><br></pre></td></tr></table></figure>
 
 <p>make 后报错，找不到头文件</p>
-<figure class="highlight gauss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs gauss">/home/henices/<span class="hljs-built_in">code</span>/AFL+/<span class="hljs-keyword">external</span>/libprotobuf-mutator/include/libprotobuf-mutator/src/libfuzzer/libfuzzer_macro.h:<span class="hljs-number">24</span>:<span class="hljs-number">10</span>: fatal <span class="hljs-built_in">error</span>: &#x27;port/protobuf.h&#x27; file <span class="hljs-keyword">not</span> found<br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&quot;port/protobuf.h&quot;</span></span><br>         ^~~~~~~~~~~~~~~~~<br><span class="hljs-number">1</span> <span class="hljs-built_in">error</span> generated.<br></code></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">/home/henices/code/AFL+/external/libprotobuf-mutator/include/libprotobuf-mutator/src/libfuzzer/libfuzzer_macro.h:24:10: fatal error: &#x27;port/protobuf.h&#x27; file not found</span><br><span class="line">#include &quot;port/protobuf.h&quot;</span><br><span class="line">         ^~~~~~~~~~~~~~~~~</span><br><span class="line">1 error generated.</span><br></pre></td></tr></table></figure>
 
 <p>port&#x2F;protobuf.h  来自 <a target="_blank" rel="noopener" href="https://github.com/google/libprotobuf-mutator/blob/master/port/protobuf.h">https://github.com/google/libprotobuf-mutator/blob/master/port/protobuf.h</a>  修改 Makefile 如下</p>
-<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><code class="hljs makefile">TARGET=lpm_libfuzz<br>CXX=clang++<br>CXXFLAGS=-g -fsanitize=fuzzer,address<br>PB_SRC=test.pb.cc<br><br>PROTOBUF_DIR=<span class="hljs-variable">$(HOME)</span>/code/libprotobuf-mutator/build/external.protobuf/<br>LPM_DIR=<span class="hljs-variable">$(HOME)</span>/code/AFL+/external/libprotobuf-mutator<br>PROTOBUF_LIB=<span class="hljs-variable">$(PROTOBUF_DIR)</span>/lib/libprotobufd.a<br>LPM_LIB=<span class="hljs-variable">$(LPM_DIR)</span>/lib/libprotobuf-mutator-libfuzzer.a <span class="hljs-variable">$(LPM_DIR)</span>/lib/libprotobuf-mutator.a<br>INC=-I<span class="hljs-variable">$(PROTOBUF_DIR)</span>/<span class="hljs-keyword">include</span> -I<span class="hljs-variable">$(HOME)</span>/code/libprotobuf-mutator/ -I<span class="hljs-variable">$(LPM_DIR)</span>/<span class="hljs-keyword">include</span><br>DFUZZ=-DLLVMFuzzerTestOneInput=FuzzTEST<br><br><span class="hljs-section">all: <span class="hljs-variable">$(TARGET)</span></span><br><br><span class="hljs-comment"># for testing libprotobuf + libfuzzer</span><br><span class="hljs-comment"># compile harness first</span><br><span class="hljs-comment"># then link lpm_libfuzz with harness.o &amp; static libraries</span><br><span class="hljs-section">harness.o: harness.cc</span><br>	<span class="hljs-variable">$(CXX)</span> <span class="hljs-variable">$(CXXFLAGS)</span> -c <span class="hljs-variable">$(DFUZZ)</span> <span class="hljs-variable">$&lt;</span><br><br><span class="hljs-variable">$(TARGET)</span>: harness.o <span class="hljs-variable">$(TARGET)</span>.cc<br>	<span class="hljs-variable">$(CXX)</span> <span class="hljs-variable">$(CXXFLAGS)</span> -o <span class="hljs-variable">$@</span> <span class="hljs-variable">$^</span> <span class="hljs-variable">$(PB_SRC)</span> <span class="hljs-variable">$(LPM_LIB)</span> <span class="hljs-variable">$(PROTOBUF_LIB)</span> <span class="hljs-variable">$(INC)</span> <span class="hljs-comment"># $(LPM_LIB) must be placed before $(PROTOBUF_LIB)</span><br><br><span class="hljs-meta"><span class="hljs-keyword">.PHONY</span>: clean</span><br><span class="hljs-section">clean: </span><br>	rm <span class="hljs-variable">$(TARGET)</span> *.o<br></code></pre></td></tr></table></figure>
+<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">TARGET=lpm_libfuzz</span><br><span class="line">CXX=clang++</span><br><span class="line">CXXFLAGS=-g -fsanitize=fuzzer,address</span><br><span class="line">PB_SRC=test.pb.cc</span><br><span class="line"></span><br><span class="line">PROTOBUF_DIR=<span class="variable">$(HOME)</span>/code/libprotobuf-mutator/build/external.protobuf/</span><br><span class="line">LPM_DIR=<span class="variable">$(HOME)</span>/code/AFL+/external/libprotobuf-mutator</span><br><span class="line">PROTOBUF_LIB=<span class="variable">$(PROTOBUF_DIR)</span>/lib/libprotobufd.a</span><br><span class="line">LPM_LIB=<span class="variable">$(LPM_DIR)</span>/lib/libprotobuf-mutator-libfuzzer.a <span class="variable">$(LPM_DIR)</span>/lib/libprotobuf-mutator.a</span><br><span class="line">INC=-I<span class="variable">$(PROTOBUF_DIR)</span>/<span class="keyword">include</span> -I<span class="variable">$(HOME)</span>/code/libprotobuf-mutator/ -I<span class="variable">$(LPM_DIR)</span>/<span class="keyword">include</span></span><br><span class="line">DFUZZ=-DLLVMFuzzerTestOneInput=FuzzTEST</span><br><span class="line"></span><br><span class="line"><span class="section">all: <span class="variable">$(TARGET)</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment"># for testing libprotobuf + libfuzzer</span></span><br><span class="line"><span class="comment"># compile harness first</span></span><br><span class="line"><span class="comment"># then link lpm_libfuzz with harness.o &amp; static libraries</span></span><br><span class="line"><span class="section">harness.o: harness.cc</span></span><br><span class="line">	<span class="variable">$(CXX)</span> <span class="variable">$(CXXFLAGS)</span> -c <span class="variable">$(DFUZZ)</span> <span class="variable">$&lt;</span></span><br><span class="line"></span><br><span class="line"><span class="variable">$(TARGET)</span>: harness.o <span class="variable">$(TARGET)</span>.cc</span><br><span class="line">	<span class="variable">$(CXX)</span> <span class="variable">$(CXXFLAGS)</span> -o <span class="variable">$@</span> <span class="variable">$^</span> <span class="variable">$(PB_SRC)</span> <span class="variable">$(LPM_LIB)</span> <span class="variable">$(PROTOBUF_LIB)</span> <span class="variable">$(INC)</span> <span class="comment"># $(LPM_LIB) must be placed before $(PROTOBUF_LIB)</span></span><br><span class="line"></span><br><span class="line"><span class="meta"><span class="keyword">.PHONY</span>: clean</span></span><br><span class="line"><span class="section">clean: </span></span><br><span class="line">	rm <span class="variable">$(TARGET)</span> *.o</span><br></pre></td></tr></table></figure>
 
 <p>修改 makefile 后，可以正常编译通过。经过我们上面的分析，不需要定义 <code>DFUZZ=-DLLVMFuzzerTestOneInput=FuzzTEST</code> 将这行删除掉，同样可以编译通过。</p>
 <p>执行 <code>lpm_libfuzz</code> 运行正常</p>
-<figure class="highlight dts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs dts">➜  ./lpm_libfuzz                                                                                                                                                                                          <br><span class="hljs-symbol">INFO:</span> found LLVMFuzzerCustomMutator (<span class="hljs-number">0x758a80</span>). Disabling -len_control by default.<br><span class="hljs-symbol">INFO:</span> Running with entropic power schedule (<span class="hljs-number">0xFF</span>, <span class="hljs-number">100</span>).                                    <br><span class="hljs-symbol">INFO:</span> Seed: <span class="hljs-number">331712324</span>                       <br><span class="hljs-symbol">INFO:</span> Loaded <span class="hljs-number">1</span> modules   (<span class="hljs-number">434</span> inline <span class="hljs-number">8</span>-bit counters): <span class="hljs-number">434</span> [<span class="hljs-number">0xa056b8</span>, <span class="hljs-number">0xa0586a</span>), <br><span class="hljs-symbol">INFO:</span> Loaded <span class="hljs-number">1</span> PC tables (<span class="hljs-number">434</span> PCs): <span class="hljs-number">434</span> [<span class="hljs-number">0x939398</span>,<span class="hljs-number">0x93aeb8</span>), <br><span class="hljs-symbol">INFO:</span> -max_len is not <span class="hljs-attr">provided</span><span class="hljs-punctuation">;</span> libFuzzer will not generate inputs larger than <span class="hljs-number">4096</span> bytes<br><span class="hljs-symbol">INFO:</span> A corpus is not provided, starting from an empty corpus<br><span class="hljs-meta">#2      INITED cov: 82 ft: 83 corp: 1/1b exec/s: 0 rss: 35Mb</span><br>        NEW_FUNC[<span class="hljs-number">1</span>/<span class="hljs-number">41</span>]: <span class="hljs-number">0x75abb0</span> in TEST::~TEST() <span class="hljs-keyword">/tmp/</span>genfiles/test.pb.cc:<span class="hljs-number">116</span><br>        NEW_FUNC[<span class="hljs-number">2</span>/<span class="hljs-number">41</span>]: <span class="hljs-number">0x75ca10</span> in google::protobuf::UnknownFieldSet* google::protobuf::internal::InternalMetadata::mutable_unknown_fields<span class="hljs-params">&lt;google::protobuf::UnknownFieldSet&gt;</span>() <span class="hljs-keyword">/home/</span>henices<span class="hljs-keyword">/code/</span>libprotobuf-mut<br>ator<span class="hljs-keyword">/build/</span>external.protobuf<span class="hljs-comment">//include/google/protobuf/metadata_lite.h:117</span><br><span class="hljs-meta">#3      NEW    cov: 135 ft: 159 corp: 2/12b lim: 4096 exec/s: 0 rss: 36Mb L: 11/11 MS: 1 CustomCrossOver-</span><br><span class="hljs-meta">#4      NEW    cov: 138 ft: 162 corp: 3/201b lim: 4096 exec/s: 0 rss: 36Mb L: 189/189 MS: 2 InsertRepeatedBytes-Custom-</span><br><span class="hljs-meta">#38     REDUCE cov: 138 ft: 162 corp: 3/127b lim: 4096 exec/s: 0 rss: 37Mb L: 115/115 MS: 5 CustomCrossOver-CustomCrossOver-Custom-InsertRepeatedBytes-Custom-</span><br><span class="hljs-meta">#60     REDUCE cov: 138 ft: 162 corp: 3/124b lim: 4096 exec/s: 0 rss: 37Mb L: 112/112 MS: 4 CustomCrossOver-ShuffleBytes-ChangeByte-Custom-</span><br><span class="hljs-meta">#98     REDUCE cov: 138 ft: 162 corp: 3/56b lim: 4096 exec/s: 0 rss: 37Mb L: 44/44 MS: 5 CrossOver-Custom-Custom-CMP-Custom- DE: <span class="hljs-string">&quot;~\xff\xff\xff\xff\xff\xff\xff&quot;</span>-</span><br><span class="hljs-meta">#144    REDUCE cov: 138 ft: 162 corp: 3/53b lim: 4096 exec/s: 0 rss: 37Mb L: 41/41 MS: 2 CrossOver-Custom-</span><br><span class="hljs-meta">#182    REDUCE cov: 138 ft: 162 corp: 3/25b lim: 4096 exec/s: 0 rss: 37Mb L: 13/13 MS: 5 ChangeBit-Custom-Custom-InsertByte-Custom-</span><br><span class="hljs-meta">#324    REDUCE cov: 138 ft: 162 corp: 3/24b lim: 4096 exec/s: 0 rss: 38Mb L: 12/12 MS: 3 CustomCrossOver-EraseBytes-Custom-</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">➜  ./lpm_libfuzz                                                                                                                                                                                          </span><br><span class="line">INFO: found LLVMFuzzerCustomMutator (0x758a80). Disabling -len_control by default.</span><br><span class="line">INFO: Running with entropic power schedule (0xFF, 100).                                    </span><br><span class="line">INFO: Seed: 331712324                       </span><br><span class="line">INFO: Loaded 1 modules   (434 inline 8-bit counters): 434 [0xa056b8, 0xa0586a), </span><br><span class="line">INFO: Loaded 1 PC tables (434 PCs): 434 [0x939398,0x93aeb8), </span><br><span class="line">INFO: -max_len is not provided; libFuzzer will not generate inputs larger than 4096 bytes</span><br><span class="line">INFO: A corpus is not provided, starting from an empty corpus</span><br><span class="line">#2      INITED cov: 82 ft: 83 corp: 1/1b exec/s: 0 rss: 35Mb</span><br><span class="line">        NEW_FUNC[1/41]: 0x75abb0 in TEST::~TEST() /tmp/genfiles/test.pb.cc:116</span><br><span class="line">        NEW_FUNC[2/41]: 0x75ca10 in google::protobuf::UnknownFieldSet* google::protobuf::internal::InternalMetadata::mutable_unknown_fields&lt;google::protobuf::UnknownFieldSet&gt;() /home/henices/code/libprotobuf-mut</span><br><span class="line">ator/build/external.protobuf//include/google/protobuf/metadata_lite.h:117</span><br><span class="line">#3      NEW    cov: 135 ft: 159 corp: 2/12b lim: 4096 exec/s: 0 rss: 36Mb L: 11/11 MS: 1 CustomCrossOver-</span><br><span class="line">#4      NEW    cov: 138 ft: 162 corp: 3/201b lim: 4096 exec/s: 0 rss: 36Mb L: 189/189 MS: 2 InsertRepeatedBytes-Custom-</span><br><span class="line">#38     REDUCE cov: 138 ft: 162 corp: 3/127b lim: 4096 exec/s: 0 rss: 37Mb L: 115/115 MS: 5 CustomCrossOver-CustomCrossOver-Custom-InsertRepeatedBytes-Custom-</span><br><span class="line">#60     REDUCE cov: 138 ft: 162 corp: 3/124b lim: 4096 exec/s: 0 rss: 37Mb L: 112/112 MS: 4 CustomCrossOver-ShuffleBytes-ChangeByte-Custom-</span><br><span class="line">#98     REDUCE cov: 138 ft: 162 corp: 3/56b lim: 4096 exec/s: 0 rss: 37Mb L: 44/44 MS: 5 CrossOver-Custom-Custom-CMP-Custom- DE: &quot;~\xff\xff\xff\xff\xff\xff\xff&quot;-</span><br><span class="line">#144    REDUCE cov: 138 ft: 162 corp: 3/53b lim: 4096 exec/s: 0 rss: 37Mb L: 41/41 MS: 2 CrossOver-Custom-</span><br><span class="line">#182    REDUCE cov: 138 ft: 162 corp: 3/25b lim: 4096 exec/s: 0 rss: 37Mb L: 13/13 MS: 5 ChangeBit-Custom-Custom-InsertByte-Custom-</span><br><span class="line">#324    REDUCE cov: 138 ft: 162 corp: 3/24b lim: 4096 exec/s: 0 rss: 38Mb L: 12/12 MS: 3 CustomCrossOver-EraseBytes-Custom-</span><br></pre></td></tr></table></figure>
 
 <h3 id="Handling-input-from-AFL-in-our-custom-mutator"><a href="#Handling-input-from-AFL-in-our-custom-mutator" class="headerlink" title="Handling input from AFL++ in our custom mutator"></a>Handling input from AFL++ in our custom mutator</h3><p><a target="_blank" rel="noopener" href="https://github.com/bruce30262/libprotobuf-mutator_fuzzing_learning/tree/master/5_libprotobuf_aflpp_custom_mutator_input">https://github.com/bruce30262/libprotobuf-mutator_fuzzing_learning/tree/master/5_libprotobuf_aflpp_custom_mutator_input</a></p>
 <p>主要内容是将 libprotobuf-mutator 和 afl++ 结合起来，使用的 afl++ 的 custom mutator，值得一提的是在这个例子里，需要使用 <code>-fPIC</code> 参数编译 libprotobuf-mutator。</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs c">cmake .. -GNinja -DCMAKE_C_COMPILER=clang -DLIB_PROTO_MUTATOR_DOWNLOAD_PROTOBUF=ON \<br>-DCMAKE_INSTALL_PREFIX=/home/henices/code/AFL+/external/libprotobuf-mutator \<br>-DCMAKE_CXX_COMPILER=clang++ -DCMAKE_BUILD_TYPE=Debug \<br>-DCMAKE_C_FLAGS=<span class="hljs-string">&quot;-fPIC&quot;</span> -DCMAKE_CXX_FLAGS=<span class="hljs-string">&quot;-fPIC&quot;</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cmake .. -GNinja -DCMAKE_C_COMPILER=clang -DLIB_PROTO_MUTATOR_DOWNLOAD_PROTOBUF=ON \</span><br><span class="line">-DCMAKE_INSTALL_PREFIX=/home/henices/code/AFL+/external/libprotobuf-mutator \</span><br><span class="line">-DCMAKE_CXX_COMPILER=clang++ -DCMAKE_BUILD_TYPE=Debug \</span><br><span class="line">-DCMAKE_C_FLAGS=<span class="string">&quot;-fPIC&quot;</span> -DCMAKE_CXX_FLAGS=<span class="string">&quot;-fPIC&quot;</span></span><br></pre></td></tr></table></figure>
 
 <p>主要的步骤在 <a target="_blank" rel="noopener" href="https://github.com/bruce30262/libprotobuf-mutator_fuzzing_learning/blob/master/5_libprotobuf_aflpp_custom_mutator_input/README.md">readme.md</a> 中已经介绍得比较清楚了。</p>
 <ul>
@@ -398,13 +251,13 @@
 </ul>
 </li>
 </ul>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">extern</span> <span class="hljs-string">&quot;C&quot;</span> <span class="hljs-function"><span class="hljs-type">size_t</span> <span class="hljs-title">afl_custom_fuzz</span><span class="hljs-params">(MyMutator *mutator, <span class="hljs-comment">// return value from afl_custom_init</span></span></span><br><span class="hljs-params"><span class="hljs-function">                       <span class="hljs-type">uint8_t</span> *buf, <span class="hljs-type">size_t</span> buf_size, <span class="hljs-comment">// input data to be mutated</span></span></span><br><span class="hljs-params"><span class="hljs-function">                       <span class="hljs-type">uint8_t</span> **out_buf, <span class="hljs-comment">// output buffer</span></span></span><br><span class="hljs-params"><span class="hljs-function">                       <span class="hljs-type">uint8_t</span> *add_buf, <span class="hljs-type">size_t</span> add_buf_size,  <span class="hljs-comment">// add_buf can be NULL</span></span></span><br><span class="hljs-params"><span class="hljs-function">                       <span class="hljs-type">size_t</span> max_size)</span> </span>&#123;<br>    <span class="hljs-comment">// This function can be named either &quot;afl_custom_fuzz&quot; or &quot;afl_custom_mutator&quot;</span><br>    <span class="hljs-comment">// A simple test shows that &quot;buf&quot; will be the content of the current test case</span><br>    <span class="hljs-comment">// &quot;add_buf&quot; will be the next test case ( from AFL++&#x27;s input queue )</span><br>    <br>    TEST input;<br>    <span class="hljs-comment">// parse input data to TEST</span><br>    <span class="hljs-comment">// Notice that input data should be a serialized protobuf data</span><br>    <span class="hljs-comment">// Check ./in/ii and test_protobuf_serializer for more detail</span><br>    <span class="hljs-type">bool</span> parse_ok = input.<span class="hljs-built_in">ParseFromArray</span>(buf, buf_size);<br>    <span class="hljs-keyword">if</span>(!parse_ok) &#123;<br>        <span class="hljs-comment">// Invalid serialize protobuf data. Don&#x27;t mutate.</span><br>        <span class="hljs-comment">// Return a dummy buffer. Also mutated_size = 0</span><br>        <span class="hljs-type">static</span> <span class="hljs-type">uint8_t</span> *dummy = <span class="hljs-keyword">new</span> <span class="hljs-type">uint8_t</span>[<span class="hljs-number">10</span>]; <span class="hljs-comment">// dummy buffer with no data</span><br>        *out_buf = dummy;<br>        <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>    &#125;<br>    <span class="hljs-comment">// mutate the protobuf</span><br>    mutator-&gt;<span class="hljs-built_in">Mutate</span>(&amp;input, max_size);<br>    <br>    <span class="hljs-comment">// Convert protobuf to raw data</span><br>    <span class="hljs-type">const</span> TEST *p = &amp;input;<br>    std::string s = <span class="hljs-built_in">ProtoToData</span>(*p);<br>    <span class="hljs-comment">// Copy to a new buffer ( mutated_out )</span><br>    <span class="hljs-type">size_t</span> mutated_size = s.<span class="hljs-built_in">size</span>() &lt;= max_size ? s.<span class="hljs-built_in">size</span>() : max_size; <span class="hljs-comment">// check if raw data&#x27;s size is larger than max_size</span><br>    <span class="hljs-type">uint8_t</span> *mutated_out = <span class="hljs-keyword">new</span> <span class="hljs-type">uint8_t</span>[mutated_size+<span class="hljs-number">1</span>];<br>    <span class="hljs-built_in">memcpy</span>(mutated_out, s.<span class="hljs-built_in">c_str</span>(), mutated_size); <span class="hljs-comment">// copy the mutated data</span><br>    <span class="hljs-comment">// Assign the mutated data and return mutated_size</span><br>    *out_buf = mutated_out;<br>    <span class="hljs-keyword">return</span> mutated_size;<br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">extern</span> <span class="string">&quot;C&quot;</span> <span class="function"><span class="type">size_t</span> <span class="title">afl_custom_fuzz</span><span class="params">(MyMutator *mutator, <span class="comment">// return value from afl_custom_init</span></span></span></span><br><span class="line"><span class="params"><span class="function">                       <span class="type">uint8_t</span> *buf, <span class="type">size_t</span> buf_size, <span class="comment">// input data to be mutated</span></span></span></span><br><span class="line"><span class="params"><span class="function">                       <span class="type">uint8_t</span> **out_buf, <span class="comment">// output buffer</span></span></span></span><br><span class="line"><span class="params"><span class="function">                       <span class="type">uint8_t</span> *add_buf, <span class="type">size_t</span> add_buf_size,  <span class="comment">// add_buf can be NULL</span></span></span></span><br><span class="line"><span class="params"><span class="function">                       <span class="type">size_t</span> max_size)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// This function can be named either &quot;afl_custom_fuzz&quot; or &quot;afl_custom_mutator&quot;</span></span><br><span class="line">    <span class="comment">// A simple test shows that &quot;buf&quot; will be the content of the current test case</span></span><br><span class="line">    <span class="comment">// &quot;add_buf&quot; will be the next test case ( from AFL++&#x27;s input queue )</span></span><br><span class="line">    </span><br><span class="line">    TEST input;</span><br><span class="line">    <span class="comment">// parse input data to TEST</span></span><br><span class="line">    <span class="comment">// Notice that input data should be a serialized protobuf data</span></span><br><span class="line">    <span class="comment">// Check ./in/ii and test_protobuf_serializer for more detail</span></span><br><span class="line">    <span class="type">bool</span> parse_ok = input.<span class="built_in">ParseFromArray</span>(buf, buf_size);</span><br><span class="line">    <span class="keyword">if</span>(!parse_ok) &#123;</span><br><span class="line">        <span class="comment">// Invalid serialize protobuf data. Don&#x27;t mutate.</span></span><br><span class="line">        <span class="comment">// Return a dummy buffer. Also mutated_size = 0</span></span><br><span class="line">        <span class="type">static</span> <span class="type">uint8_t</span> *dummy = <span class="keyword">new</span> <span class="type">uint8_t</span>[<span class="number">10</span>]; <span class="comment">// dummy buffer with no data</span></span><br><span class="line">        *out_buf = dummy;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// mutate the protobuf</span></span><br><span class="line">    mutator-&gt;<span class="built_in">Mutate</span>(&amp;input, max_size);</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// Convert protobuf to raw data</span></span><br><span class="line">    <span class="type">const</span> TEST *p = &amp;input;</span><br><span class="line">    std::string s = <span class="built_in">ProtoToData</span>(*p);</span><br><span class="line">    <span class="comment">// Copy to a new buffer ( mutated_out )</span></span><br><span class="line">    <span class="type">size_t</span> mutated_size = s.<span class="built_in">size</span>() &lt;= max_size ? s.<span class="built_in">size</span>() : max_size; <span class="comment">// check if raw data&#x27;s size is larger than max_size</span></span><br><span class="line">    <span class="type">uint8_t</span> *mutated_out = <span class="keyword">new</span> <span class="type">uint8_t</span>[mutated_size+<span class="number">1</span>];</span><br><span class="line">    <span class="built_in">memcpy</span>(mutated_out, s.<span class="built_in">c_str</span>(), mutated_size); <span class="comment">// copy the mutated data</span></span><br><span class="line">    <span class="comment">// Assign the mutated data and return mutated_size</span></span><br><span class="line">    *out_buf = mutated_out;</span><br><span class="line">    <span class="keyword">return</span> mutated_size;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p><code>mutator-&gt;Mutate(&amp;input, max_size);</code> 为真正起作用的核心代码</p>
 <ul>
 <li><code>lpm_aflpp_custom_mutator_input.h</code>  继承了protobuf_mutator::Mutator， 可以使用 libprotobuf-mutator 的 Mutate 方法</li>
 </ul>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&quot;libprotobuf-mutator/src/mutator.h&quot;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&quot;test.pb.h&quot;</span></span><br><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;bits/stdc++.h&gt;</span></span><br><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">MyMutator</span> : <span class="hljs-keyword">public</span> protobuf_mutator::Mutator &#123;<br>&#125;;<br></code></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;libprotobuf-mutator/src/mutator.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;test.pb.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">MyMutator</span> : <span class="keyword">public</span> protobuf_mutator::Mutator &#123;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 <ul>
 <li><p><code>test_proto_serializer.cc</code></p>
 <ul>
@@ -414,349 +267,158 @@
 <li><p><code>vuln.c</code> 漏洞测试程序</p>
 </li>
 </ul>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;string.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;math.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdlib.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;unistd.h&gt;</span></span><br><br><span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">(<span class="hljs-type">int</span> argc, <span class="hljs-type">char</span> *argv[])</span><br>&#123;<br>    <span class="hljs-type">char</span> str[<span class="hljs-number">100</span>]=&#123;&#125;;<br>    read(<span class="hljs-number">0</span>, str, <span class="hljs-number">100</span>);<br>    <span class="hljs-type">int</span> *ptr = <span class="hljs-literal">NULL</span>;<br>    <span class="hljs-keyword">if</span>( str[<span class="hljs-number">0</span>] == <span class="hljs-string">&#x27;\x02&#x27;</span> || str[<span class="hljs-number">0</span>] == <span class="hljs-string">&#x27;\xe8&#x27;</span>) &#123;<br>        *ptr = <span class="hljs-number">123</span>; <br>    &#125;<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;math.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;unistd.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span> *argv[])</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">char</span> str[<span class="number">100</span>]=&#123;&#125;;</span><br><span class="line">    read(<span class="number">0</span>, str, <span class="number">100</span>);</span><br><span class="line">    <span class="type">int</span> *ptr = <span class="literal">NULL</span>;</span><br><span class="line">    <span class="keyword">if</span>( str[<span class="number">0</span>] == <span class="string">&#x27;\x02&#x27;</span> || str[<span class="number">0</span>] == <span class="string">&#x27;\xe8&#x27;</span>) &#123;</span><br><span class="line">        *ptr = <span class="number">123</span>; </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>漏洞测试程序比较简单，只要第一个字节是 <code>0xe8</code> 或者 <code>0x02</code> 即可，libprotobuf-mutator 的变异在这个例子里效率并不高，所以需要使用 <code>PostProcessor</code> 来优化变异。</p>
 <ul>
 <li>Makefile</li>
 </ul>
-<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><code class="hljs makefile">TARGET=lpm_aflpp_custom_mutator_input<br>CXX=clang++-11<br>AFLCC=<span class="hljs-variable">$(HOME)</span>/AFLplusplus/afl-gcc<br>PB_SRC=test.pb.cc<br><br>PROTOBUF_DIR=<span class="hljs-variable">$(HOME)</span>/libprotobuf-mutator/build/external.protobuf<br>PROTOBUF_LIB=<span class="hljs-variable">$(PROTOBUF_DIR)</span>/lib/libprotobufd.a<br><br>LPM_DIR=<span class="hljs-variable">$(HOME)</span>/libprotobuf-mutator<br>LPM_LIB=<span class="hljs-variable">$(LPM_DIR)</span>/build/src/libfuzzer/libprotobuf-mutator-libfuzzer.a <span class="hljs-variable">$(LPM_DIR)</span>/build/src/libprotobuf-mutator.a<br><br>INC=-I<span class="hljs-variable">$(PROTOBUF_DIR)</span>/<span class="hljs-keyword">include</span> -I<span class="hljs-variable">$(LPM_DIR)</span><br><br><span class="hljs-section">all: <span class="hljs-variable">$(TARGET)</span>.so</span><br><br><span class="hljs-variable">$(TARGET)</span>.so: <span class="hljs-variable">$(TARGET)</span>.cc <span class="hljs-variable">$(PB_SRC)</span><br>	<span class="hljs-variable">$(CXX)</span> -fPIC -c <span class="hljs-variable">$^</span> <span class="hljs-variable">$(INC)</span><br>	<span class="hljs-variable">$(CXX)</span> -shared -Wall -O3 -o <span class="hljs-variable">$@</span> *.o <span class="hljs-variable">$(LPM_LIB)</span> <span class="hljs-variable">$(PROTOBUF_LIB)</span><br><br><span class="hljs-section">vuln: vuln.c</span><br>	<span class="hljs-variable">$(AFLCC)</span> -o <span class="hljs-variable">$@</span> <span class="hljs-variable">$^</span><br><br><span class="hljs-section">test_proto_serializer: test_proto_serializer.cc <span class="hljs-variable">$(PB_SRC)</span></span><br>	<span class="hljs-variable">$(CXX)</span> -o <span class="hljs-variable">$@</span> <span class="hljs-variable">$^</span> <span class="hljs-variable">$(PROTOBUF_LIB)</span> <span class="hljs-variable">$(INC)</span><br><br><span class="hljs-meta"><span class="hljs-keyword">.PHONY</span>: clean</span><br><span class="hljs-section">clean: </span><br>	rm *.so *.o vuln test_proto_serializer<br></code></pre></td></tr></table></figure>
+<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">TARGET=lpm_aflpp_custom_mutator_input</span><br><span class="line">CXX=clang++-11</span><br><span class="line">AFLCC=<span class="variable">$(HOME)</span>/AFLplusplus/afl-gcc</span><br><span class="line">PB_SRC=test.pb.cc</span><br><span class="line"></span><br><span class="line">PROTOBUF_DIR=<span class="variable">$(HOME)</span>/libprotobuf-mutator/build/external.protobuf</span><br><span class="line">PROTOBUF_LIB=<span class="variable">$(PROTOBUF_DIR)</span>/lib/libprotobufd.a</span><br><span class="line"></span><br><span class="line">LPM_DIR=<span class="variable">$(HOME)</span>/libprotobuf-mutator</span><br><span class="line">LPM_LIB=<span class="variable">$(LPM_DIR)</span>/build/src/libfuzzer/libprotobuf-mutator-libfuzzer.a <span class="variable">$(LPM_DIR)</span>/build/src/libprotobuf-mutator.a</span><br><span class="line"></span><br><span class="line">INC=-I<span class="variable">$(PROTOBUF_DIR)</span>/<span class="keyword">include</span> -I<span class="variable">$(LPM_DIR)</span></span><br><span class="line"></span><br><span class="line"><span class="section">all: <span class="variable">$(TARGET)</span>.so</span></span><br><span class="line"></span><br><span class="line"><span class="variable">$(TARGET)</span>.so: <span class="variable">$(TARGET)</span>.cc <span class="variable">$(PB_SRC)</span></span><br><span class="line">	<span class="variable">$(CXX)</span> -fPIC -c <span class="variable">$^</span> <span class="variable">$(INC)</span></span><br><span class="line">	<span class="variable">$(CXX)</span> -shared -Wall -O3 -o <span class="variable">$@</span> *.o <span class="variable">$(LPM_LIB)</span> <span class="variable">$(PROTOBUF_LIB)</span></span><br><span class="line"></span><br><span class="line"><span class="section">vuln: vuln.c</span></span><br><span class="line">	<span class="variable">$(AFLCC)</span> -o <span class="variable">$@</span> <span class="variable">$^</span></span><br><span class="line"></span><br><span class="line"><span class="section">test_proto_serializer: test_proto_serializer.cc <span class="variable">$(PB_SRC)</span></span></span><br><span class="line">	<span class="variable">$(CXX)</span> -o <span class="variable">$@</span> <span class="variable">$^</span> <span class="variable">$(PROTOBUF_LIB)</span> <span class="variable">$(INC)</span></span><br><span class="line"></span><br><span class="line"><span class="meta"><span class="keyword">.PHONY</span>: clean</span></span><br><span class="line"><span class="section">clean: </span></span><br><span class="line">	rm *.so *.o vuln test_proto_serializer</span><br></pre></td></tr></table></figure>
 
 <p>Makefile 有瑕疵，这个章节的内容和 libfuzzer 没有关系，不需要链接 <code>libprotobuf-mutator-libfuzzer.a</code></p>
 <h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p><a target="_blank" rel="noopener" href="https://developers.google.com/protocol-buffers/docs/cpptutorial">https://developers.google.com/protocol-buffers/docs/cpptutorial</a><br><a target="_blank" rel="noopener" href="https://github.com/google/fuzzing/blob/master/docs/structure-aware-fuzzing.md">https://github.com/google/fuzzing/blob/master/docs/structure-aware-fuzzing.md</a><br><a target="_blank" rel="noopener" href="https://github.com/google/libprotobuf-mutator/">https://github.com/google/libprotobuf-mutator/</a><br><a target="_blank" rel="noopener" href="https://llvm.org/docs/LibFuzzer.html">https://llvm.org/docs/LibFuzzer.html</a><br><a target="_blank" rel="noopener" href="https://github.com/bruce30262/libprotobuf-mutator_fuzzing_learning">https://github.com/bruce30262/libprotobuf-mutator_fuzzing_learning</a></p>
 
-                
-              </div>
-            
-            <hr/>
-            <div>
-              <div class="post-metas my-3">
-  
-  
-    <div class="post-meta">
-      <i class="iconfont icon-tags"></i>
-      
-        <a href="/tags/Security/" class="print-no-link">#Security</a>
-      
-    </div>
-  
-</div>
-
-
-              
-  
-
-  <div class="license-box my-3">
-    <div class="license-title">
-      <div>libprotobuf-mutator 简单分析</div>
-      <div>http://usmacd.com/cn/libprotobuf-mutator/</div>
-    </div>
-    <div class="license-meta">
-      
-        <div class="license-meta-item">
-          <div>Author</div>
-          <div>henices</div>
-        </div>
-      
-      
-        <div class="license-meta-item license-meta-date">
-          <div>Posted on</div>
-          <div>September 6, 2023</div>
-        </div>
-      
-      
-      
-        <div class="license-meta-item">
-          <div>Licensed under</div>
-          <div>
-            
-              
-              
-                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
-                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
-                    <i class="iconfont icon-by"></i>
-                  </span>
-                </a>
-              
-            
-          </div>
-        </div>
-      
-    </div>
-    <div class="license-icon iconfont"></div>
   </div>
+</article>
 
 
 
-              
-                <div class="post-prevnext my-3">
-                  <article class="post-prev col-6">
-                    
-                    
-                      <a href="/cn/llvm_coverage/" title="llvm Coverage 可视化">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">llvm Coverage 可视化</span>
-                        <span class="visible-mobile">Previous</span>
-                      </a>
-                    
-                  </article>
-                  <article class="post-next col-6">
-                    
-                    
-                      <a href="/cn/iPhone_white_apple/" title="iPhone 内存满了, 白苹果问题解决方法">
-                        <span class="hidden-mobile">iPhone 内存满了, 白苹果问题解决方法</span>
-                        <span class="visible-mobile">Next</span>
-                        <i class="iconfont icon-arrowright"></i>
-                      </a>
-                    
-                  </article>
-                </div>
-              
-            </div>
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
 
-            
-          </article>
-        </div>
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/">Home</a></li>
+        
+          <li><a href="/about/">About</a></li>
+        
+          <li><a href="/archives/">Writing</a></li>
+        
+          <li><a href="/search/">Search</a></li>
+        
+          <li><a href="/links/">Links</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#What-are-protocol-buffers"><span class="toc-number">1.</span> <span class="toc-text">What are protocol buffers?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#libprotobuf-mutator"><span class="toc-number">2.</span> <span class="toc-text">libprotobuf-mutator</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BC%96%E8%AF%91%E5%AE%89%E8%A3%85"><span class="toc-number">2.1.</span> <span class="toc-text">编译安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#libprotobuf-mutator-%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0"><span class="toc-number">2.2.</span> <span class="toc-text">libprotobuf-mutator 代码实现</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#libprotobuf-mutator-fuzzing-learning"><span class="toc-number">3.</span> <span class="toc-text">libprotobuf-mutator_fuzzing_learning</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Simple-protobuf-example"><span class="toc-number">3.1.</span> <span class="toc-text">Simple protobuf example</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Combine-libprotobuf-mutator-with-libfuzzer"><span class="toc-number">3.2.</span> <span class="toc-text">Combine libprotobuf-mutator with libfuzzer</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E7%BC%96%E8%AF%91"><span class="toc-number">3.2.1.</span> <span class="toc-text">代码编译</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Handling-input-from-AFL-in-our-custom-mutator"><span class="toc-number">3.3.</span> <span class="toc-text">Handling input from AFL++ in our custom mutator</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="toc-number">4.</span> <span class="toc-text">参考资料</span></a></li></ol>
       </div>
+    
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://usmacd.com/cn/libprotobuf-mutator/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://usmacd.com/cn/libprotobuf-mutator/&text=libprotobuf-mutator 简单分析"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://usmacd.com/cn/libprotobuf-mutator/&title=libprotobuf-mutator 简单分析"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://usmacd.com/cn/libprotobuf-mutator/&is_video=false&description=libprotobuf-mutator 简单分析"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=libprotobuf-mutator 简单分析&body=Check out this article: http://usmacd.com/cn/libprotobuf-mutator/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://usmacd.com/cn/libprotobuf-mutator/&title=libprotobuf-mutator 简单分析"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://usmacd.com/cn/libprotobuf-mutator/&title=libprotobuf-mutator 简单分析"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://usmacd.com/cn/libprotobuf-mutator/&title=libprotobuf-mutator 简单分析"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://usmacd.com/cn/libprotobuf-mutator/&title=libprotobuf-mutator 简单分析"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://usmacd.com/cn/libprotobuf-mutator/&name=libprotobuf-mutator 简单分析&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://usmacd.com/cn/libprotobuf-mutator/&t=libprotobuf-mutator 简单分析"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
     </div>
 
-    <div class="side-col d-none d-lg-block col-lg-2">
-      
-  <aside class="sidebar" style="margin-left: -1rem">
-    <div id="toc">
-  <p class="toc-header">
-    <i class="iconfont icon-list"></i>
-    <span>Table of Contents</span>
-  </p>
-  <div class="toc-body" id="toc-body"></div>
-</div>
-
-
-
-  </aside>
-
-
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
     </div>
+
   </div>
 </div>
 
-
-
-
-
-  
-
-
-
-  
-
-
-
-  
-
-
-
-  
-
-
-
-  
-
-
-
-
-
-
-
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
     
-
     
-      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
-        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
-      </a>
-    
-
-    
-      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
-     aria-hidden="true">
-  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
-        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body mx-3">
-        <div class="md-form mb-5">
-          <input type="text" id="local-search-input" class="form-control validate">
-          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
-        </div>
-        <div class="list-group" id="local-search-result"></div>
-      </div>
-    </div>
+    2004-2024
+    henices
   </div>
-</div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     --><!--
+       --><li><a href="/search/">Search</a></li><!--
+     --><!--
+       --><li><a href="/links/">Links</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
 
-    
-
-    
-  </main>
-
-  <footer>
-    <div class="footer-inner">
-  
-    <div class="footer-content">
-       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
     </div>
-  
-  
-  
-  
-</div>
+    <!-- styles -->
 
-  </footer>
 
-  <!-- Scripts -->
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
   
-  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
-  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
-
-  <script>
-    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
-    NProgress.start()
-    window.addEventListener('load', function() {
-      NProgress.done();
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
     })
+  })
   </script>
 
 
-<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
-<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
-<script  src="/js/events.js" ></script>
-<script  src="/js/plugins.js" ></script>
+<script src="/js/main.js"></script>
 
+<!-- search -->
 
+<!-- Baidu Analytics -->
 
+<!-- Cloudflare Analytics -->
 
+<!-- Disqus Comments -->
 
-  
-    <script  src="/js/img-lazyload.js" ></script>
-  
+<!-- utterances Comments -->
 
-
-
-
-  
-<script>
-  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
-    var toc = jQuery('#toc');
-    if (toc.length === 0 || !window.tocbot) { return; }
-    var boardCtn = jQuery('#board-ctn');
-    var boardTop = boardCtn.offset().top;
-
-    window.tocbot.init(Object.assign({
-      tocSelector     : '#toc-body',
-      contentSelector : '.markdown-body',
-      linkClass       : 'tocbot-link',
-      activeLinkClass : 'tocbot-active-link',
-      listClass       : 'tocbot-list',
-      isCollapsedClass: 'tocbot-is-collapsed',
-      collapsibleClass: 'tocbot-is-collapsible',
-      scrollSmooth    : true,
-      includeTitleTags: true,
-      headingsOffset  : -boardTop,
-    }, CONFIG.toc));
-    if (toc.find('.toc-list-item').length > 0) {
-      toc.css('visibility', 'visible');
-    }
-
-    Fluid.events.registerRefreshCallback(function() {
-      if ('tocbot' in window) {
-        tocbot.refresh();
-        var toc = jQuery('#toc');
-        if (toc.length === 0 || !tocbot) {
-          return;
-        }
-        if (toc.find('.toc-list-item').length > 0) {
-          toc.css('visibility', 'visible');
-        }
-      }
-    });
-  });
-</script>
-
-
-  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
-
-  <script>Fluid.plugins.codeWidget();</script>
-
-
-  
-<script>
-  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
-    window.anchors.options = {
-      placement: CONFIG.anchorjs.placement,
-      visible  : CONFIG.anchorjs.visible
-    };
-    if (CONFIG.anchorjs.icon) {
-      window.anchors.options.icon = CONFIG.anchorjs.icon;
-    }
-    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
-    var res = [];
-    for (var item of el) {
-      res.push('.markdown-body > ' + item.trim());
-    }
-    if (CONFIG.anchorjs.placement === 'left') {
-      window.anchors.options.class = 'anchorjs-link-left';
-    }
-    window.anchors.add(res.join(', '));
-
-    Fluid.events.registerRefreshCallback(function() {
-      if ('anchors' in window) {
-        anchors.removeAll();
-        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
-        var res = [];
-        for (var item of el) {
-          res.push('.markdown-body > ' + item.trim());
-        }
-        if (CONFIG.anchorjs.placement === 'left') {
-          anchors.options.class = 'anchorjs-link-left';
-        }
-        anchors.add(res.join(', '));
-      }
-    });
-  });
-</script>
-
-
-  
-<script>
-  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
-    Fluid.plugins.fancyBox();
-  });
-</script>
-
-
-  <script>Fluid.plugins.imageCaption();</script>
-
-  <script  src="/js/local-search.js" ></script>
-
-  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
-
-
-
-
-
-<!-- 主题的启动项，将它保持在最底部 -->
-<!-- the boot of the theme, keep it at the bottom -->
-<script  src="/js/boot.js" ></script>
-
-
-  
-
-  <noscript>
-    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
-  </noscript>
 </body>
 </html>
