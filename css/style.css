@@ -482,7 +482,7 @@ body {
   color: #22272a;
   font-weight: 400;
   font-size: 16px;
-  font-family: Helvetica, Tahoma, Arial, "Meslo LG", "Noto Sans", "Source Han Sans SC", "Noto Sans SC", "PingFang SC", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
+  font-family: "Menlo", "Meslo LG", "Source Han Sans SC", "Noto Sans SC", "PingFang SC", "Microsoft YaHei", "WenQuanYi Micro Hei", monospace;
   line-height: 1.725;
   text-rendering: geometricPrecision;
   -moz-osx-font-smoothing: grayscale;
@@ -1416,7 +1416,7 @@ article .content .caption {
   font-display: swap;
   font-weight: 400;
   font-size: 12.8px;
-  font-family: Helvetica, Tahoma, Arial, "Meslo LG", "Noto Sans", "Source Han Sans SC", "Noto Sans SC", "PingFang SC", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
+  font-family: "Menlo", "Meslo LG", "Source Han Sans SC", "Noto Sans SC", "PingFang SC", "Microsoft YaHei", "WenQuanYi Micro Hei", monospace;
   line-height: 1.725;
   text-rendering: geometricPrecision;
   text-align: center;
