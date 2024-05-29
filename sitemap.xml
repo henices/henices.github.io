@@ -1177,14 +1177,14 @@
   </url>
   
   <url>
-    <loc>http://usmacd.com/tags/Life/</loc>
+    <loc>http://usmacd.com/tags/Archives/</loc>
     <lastmod>2024-05-29</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>http://usmacd.com/tags/Archives/</loc>
+    <loc>http://usmacd.com/tags/Life/</loc>
     <lastmod>2024-05-29</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1198,13 +1198,6 @@
   </url>
   
   <url>
-    <loc>http://usmacd.com/tags/investment/</loc>
-    <lastmod>2024-05-29</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>http://usmacd.com/tags/Android/</loc>
     <lastmod>2024-05-29</lastmod>
     <changefreq>weekly</changefreq>
@@ -1212,21 +1205,7 @@
   </url>
   
   <url>
-    <loc>http://usmacd.com/tags/Programming/</loc>
-    <lastmod>2024-05-29</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>http://usmacd.com/tags/vim/</loc>
-    <lastmod>2024-05-29</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>http://usmacd.com/tags/Software/</loc>
+    <loc>http://usmacd.com/tags/investment/</loc>
     <lastmod>2024-05-29</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1262,6 +1241,27 @@
   
   <url>
     <loc>http://usmacd.com/tags/KNOWLEDGE/</loc>
+    <lastmod>2024-05-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://usmacd.com/tags/Software/</loc>
+    <lastmod>2024-05-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://usmacd.com/tags/Programming/</loc>
+    <lastmod>2024-05-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://usmacd.com/tags/vim/</loc>
     <lastmod>2024-05-29</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
