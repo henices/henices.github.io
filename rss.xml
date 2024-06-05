@@ -9,8 +9,33 @@
     <atom:link href="http://usmacd.com/rss.xml" rel="self" type="application/rss+xml"/>
     
     <description></description>
-    <pubDate>Thu, 16 May 2024 16:00:00 GMT</pubDate>
+    <pubDate>Sun, 05 May 2024 16:00:00 GMT</pubDate>
     <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>Android 系统的 USB Tethering 功能</title>
+      <link>http://usmacd.com/cn/android_usb_tethering/</link>
+      <guid>http://usmacd.com/cn/android_usb_tethering/</guid>
+      <pubDate>Sun, 05 May 2024 16:00:00 GMT</pubDate>
+      
+        
+        
+      <description>&lt;p&gt;Android 系统的 USB Tethering 可以共享 Android 手机的 Internet 连接，使用这个功能后，如果 Android 能够通过 Wi-Fi上网或者移动数据网络上网，则你的电脑也能够通过USB数据线共享网络上网了。&lt;/p&gt;
+&lt;p&gt;Android </description>
+        
+      
+      
+      
+      <content:encoded><![CDATA[<p>Android 系统的 USB Tethering 可以共享 Android 手机的 Internet 连接，使用这个功能后，如果 Android 能够通过 Wi-Fi上网或者移动数据网络上网，则你的电脑也能够通过USB数据线共享网络上网了。</p><p>Android 手机的设置方法：Settings &#x3D;&gt; Network &amp; internet &#x3D;&gt; Hotspot &amp; tethering &#x3D;&gt; USB tethering</p><p>不同厂商的系统名字可能不同，ColorOS 上叫 「USB 网络共享」。</p><p>用 USB 数据线连接 Android 手机和 PC 后，在 Android 系统中开启 USB 网络共享，我的Fedora linux 可以利用 Android 的网络上网了（MacOS 应该也可以）。</p><p>Fedora linux 自动添加了一个网络连接， linux  PC 和 Android 手机处于同一局域网下。</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">        IPv4 地址：192.168.203.204</span><br><span class="line">    IPv4 默认网关：192.168.203.74</span><br><span class="line">IPv4 主域名服务器：192.168.203.74</span><br></pre></td></tr></table></figure><p>Androd 手机可以通过 192.168.203.204 访问 PC 。linux 和 Android 在同一局域网下，文件传输就很多办法了。有推油提示， 在 PC 端执行 python -m http.server 手机端可以用浏览器访问下载 PC 上的文件。</p>]]></content:encoded>
+      
+      
+      
+      <category domain="http://usmacd.com/tags/Android/">Android</category>
+      
+      
+      <comments>http://usmacd.com/cn/android_usb_tethering/#disqus_thread</comments>
+      
+    </item>
     
     <item>
       <title>知识管理的几个误区</title>
@@ -407,9 +432,9 @@
       
       
       
-      <category domain="http://usmacd.com/tags/linux/">linux</category>
-      
       <category domain="http://usmacd.com/tags/Security/">Security</category>
+      
+      <category domain="http://usmacd.com/tags/linux/">linux</category>
       
       
       <comments>http://usmacd.com/cn/qemu_kvm/#disqus_thread</comments>
@@ -491,33 +516,6 @@
       
       
       <comments>http://usmacd.com/cn/diyixingyuanli/#disqus_thread</comments>
-      
-    </item>
-    
-    <item>
-      <title>个人对技术分析的一些理解</title>
-      <link>http://usmacd.com/cn/jishufenxi/</link>
-      <guid>http://usmacd.com/cn/jishufenxi/</guid>
-      <pubDate>Mon, 13 Nov 2023 16:00:00 GMT</pubDate>
-      
-        
-        
-      <description>&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;技术分析分三个层次：趋势跟随、支撑&amp;#x2F;阻力，模式识别  (分先后顺序，靠前的重要)。&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;金融投资中的技术分析工具最主要的作用是区别出哪些标的不可以交易，所谓不可以交易就是从概率上讲胜算不理想。顺势交易的胜率要远远超过</description>
-        
-      
-      
-      
-      <content:encoded><![CDATA[<ul><li><p>技术分析分三个层次：趋势跟随、支撑&#x2F;阻力，模式识别  (分先后顺序，靠前的重要)。</p></li><li><p>金融投资中的技术分析工具最主要的作用是区别出哪些标的不可以交易，所谓不可以交易就是从概率上讲胜算不理想。顺势交易的胜率要远远超过逆势交易，技术分析工具则可以帮我们识别出「正确的方向」。</p></li><li><p>传统技术分析多数利用模式识别或者统计学的方法来识别交易机会，这些方法没法从底层逻辑上进行剖析，只是在概率上有一定优势罢了，实战起来就是有时灵验有时不灵验了。</p></li><li><p>但技术分析并不是毫无价值，如果把市场看成是一个复杂系统，复杂系统的重要特征在不同层级涌现出分形自相似，从分形结构上分析基础就扎实了很多。</p></li><li><p>传统的波浪理论是对市场进行分形分析的一次尝试，但并没有分析出基本结构，出现了千人千浪的现象，无法精确的指导交易。</p></li><li><p>缠中说禅「李彪」大师的 「缠论」有了新的进展，笔、线段、中枢的说法令人耳目一新，可惜天妒英才，大师尚未全面阐述理论就离我们而去。</p></li><li><p>如果研究市场的时间长了，基本上都会涉及到 复杂系统，耗散结构理论，混沌理论 等方面的知识去。技术分析到后面，基本会涉及到是市场基本结构形态和动力学。</p></li><li><p>「不存在可以终结所有准则的准则」，技术分析工具是设计来解释市场现象的，但金融市场是一个复杂系统，我们难以对其行为进行建模，所以创造一个可以解释所有市场现象的模型在理论上就是行不通的。</p></li><li><p>技术分析工具只是尝试用一个模型来解释市场行为，它不具备预测市场走势的能力。因此只根据技术分析工具来进行交易是不可取的，我们需要使用更多维度的信息综合判断以提高我们的胜率。这些信息可能涉及基本面，行为经济学、经济学，政治等诸多方面的知识。</p></li><li><p>技术分析的模型在很多时候只是一种模糊的正确，只有市场的走势和模型解释一致时才代表解释可能正确。技术分析工具发出信号只代表市场行情的发展可能来到了一个关键点，这个关键点也是模糊的。</p></li></ul>]]></content:encoded>
-      
-      
-      
-      <category domain="http://usmacd.com/tags/investment/">investment</category>
-      
-      
-      <comments>http://usmacd.com/cn/jishufenxi/#disqus_thread</comments>
       
     </item>
     
