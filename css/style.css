@@ -400,7 +400,7 @@ body abbr {
 body ul,
 body ol,
 body dl {
-  line-height: 1.725;
+  line-height: 1.6;
 }
 body ul ul,
 body ol ul,
@@ -483,7 +483,7 @@ body {
   font-weight: 400;
   font-size: 16px;
   font-family: "Fira Code", "Menlo", "Meslo LG", "Source Han Sans SC", "Noto Sans SC", "PingFang SC", "Microsoft YaHei", "WenQuanYi Micro Hei", monospace;
-  line-height: 1.725;
+  line-height: 1.6;
   text-rendering: geometricPrecision;
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
@@ -1417,7 +1417,7 @@ article .content .caption {
   font-weight: 400;
   font-size: 12.8px;
   font-family: "Fira Code", "Menlo", "Meslo LG", "Source Han Sans SC", "Noto Sans SC", "PingFang SC", "Microsoft YaHei", "WenQuanYi Micro Hei", monospace;
-  line-height: 1.725;
+  line-height: 1.6;
   text-rendering: geometricPrecision;
   text-align: center;
   word-wrap: break-word;
