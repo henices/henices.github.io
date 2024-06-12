@@ -6,12 +6,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
-    <meta name="description" content="最近在 tmux 中使用 vim OneDark theme，总是觉得怪怪的，黑色显示偏灰。无意中发现 joshdick&#x2F;onedark.vim 中提到需要为 tmux 设置真彩色。 1234Plain ASCIIANSI escape codes: 16 color codes with bold&#x2F;italic and background256 color palette: 216">
+    <meta name="description" content="最近在 tmux 中使用 vim OneDark theme，总是觉得怪怪的，黑色显示偏灰。无意中发现 joshdick&#x2F;onedark.vim 中提到需要为 tmux 设置真彩色。 1234- Plain ASCII- ANSI escape codes: 16 color codes with bold&#x2F;italic and background- 256 color palette">
 <meta property="og:type" content="article">
 <meta property="og:title" content="为 tmux 设置真彩色">
 <meta property="og:url" content="http://usmacd.com/cn/tmux_truecolor/index.html">
 <meta property="og:site_name" content="安全代码">
-<meta property="og:description" content="最近在 tmux 中使用 vim OneDark theme，总是觉得怪怪的，黑色显示偏灰。无意中发现 joshdick&#x2F;onedark.vim 中提到需要为 tmux 设置真彩色。 1234Plain ASCIIANSI escape codes: 16 color codes with bold&#x2F;italic and background256 color palette: 216">
+<meta property="og:description" content="最近在 tmux 中使用 vim OneDark theme，总是觉得怪怪的，黑色显示偏灰。无意中发现 joshdick&#x2F;onedark.vim 中提到需要为 tmux 设置真彩色。 1234- Plain ASCII- ANSI escape codes: 16 color codes with bold&#x2F;italic and background- 256 color palette">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-06-11T16:00:00.000Z">
 <meta property="article:modified_time" content="2024-06-11T16:00:00.000Z">
@@ -178,15 +178,16 @@
 
   <div class="content e-content" itemprop="articleBody">
     <p>最近在 tmux 中使用 vim OneDark theme，总是觉得怪怪的，黑色显示偏灰。无意中发现 joshdick&#x2F;onedark.vim 中提到需要为 tmux 设置真彩色。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Plain ASCII</span><br><span class="line">ANSI escape codes: 16 color codes with bold/italic and background</span><br><span class="line">256 color palette: 216 colors + 16 ANSI + 24 gray (colors are 24-bit)</span><br><span class="line">24-bit truecolor: &quot;888&quot; colors (aka 16 million)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">- Plain ASCII</span><br><span class="line">- ANSI escape codes: 16 color codes with bold/italic and background</span><br><span class="line">- 256 color palette: 216 colors + 16 ANSI + 24 gray (colors are 24-bit)</span><br><span class="line">- 24-bit truecolor: &quot;888&quot; colors (aka 16 million)</span><br></pre></td></tr></table></figure>
 
 <p>检查终端是否支持真彩色，可以使用脚本 <a target="_blank" rel="noopener" href="https://raw.githubusercontent.com/gnachman/iTerm2/master/tests/24-bit-color.sh">24-bit-color.sh</a></p>
 <p><code>bash ./24-bit-color.sh</code> 如果终端颜色是连贯的则支持了真彩色，如果颜色是分块的则没有支持。</p>
 <p>修改 ~&#x2F;.tmux.conf 加上两行</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">set -g default-terminal &quot;tmux-256color&quot;</span><br><span class="line">set-option -ga terminal-overrides &quot;,$&#123;TERM&#125;:Tc&quot;</span><br></pre></td></tr></table></figure>
 
-<p>要让 tmux 重新加载 <code>~/.tmux.conf</code> 需要退出所有的 tmux 进程后，重新执行 tmux</p>
-<p>最后，检查你的 tmux 是否开启了真彩色，可以使用下面的命令行：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">default-terminal terminal</span><br><span class="line">        Set the default terminal for new windows created in this session - the default value of the TERM environment variable.  For tmux to work correctly, this must be  set  to</span><br><span class="line">        ‘screen’, ‘tmux’ or a derivative of them.</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">terminal-overrides[] string</span><br><span class="line">        Allow  terminal  descriptions  read  using  terminfo(5)  to  be  overridden.   Each  entry  is a colon-separated string made up of a terminal type pattern (matched using</span><br><span class="line">        fnmatch(3)) and a set of name=value entries.</span><br><span class="line"></span><br><span class="line">        For example, to set the ‘clear’ terminfo(5) entry to ‘\e[H\e[2J’ for all terminal types matching ‘rxvt*’:</span><br><span class="line"></span><br><span class="line">                rxvt*:clear=\e[H\e[2J</span><br><span class="line"></span><br><span class="line">        The terminal entry value is passed through strunvis(3) before interpretation.</span><br></pre></td></tr></table></figure>
+
+<p>要让 tmux 重新加载 <code>~/.tmux.conf</code> 需要退出所有的 tmux 进程后，重新执行 tmux 。最后，检查你的 tmux 是否开启了真彩色，可以使用下面的命令行：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">tmux info | grep Tc</span><br><span class="line"> 227: Tc: (flag) true</span><br></pre></td></tr></table></figure>
 
 <h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p>Adding 24-bit TrueColor RGB escape sequences to tmux - Suraj N. Kurapati , 29 January 2016<br><a target="_blank" rel="noopener" href="https://sunaku.github.io/tmux-24bit-color.html#usage">https://sunaku.github.io/tmux-24bit-color.html#usage</a></p>
