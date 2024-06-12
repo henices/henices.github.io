@@ -6,7 +6,7 @@
   <link href="http://usmacd.com/atom.xml" rel="self"/>
   
   <link href="http://usmacd.com/"/>
-  <updated>2024-05-05T16:00:00.000Z</updated>
+  <updated>2024-06-11T16:00:00.000Z</updated>
   <id>http://usmacd.com/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>为 tmux 设置真彩色</title>
+    <link href="http://usmacd.com/cn/tmux_truecolor/"/>
+    <id>http://usmacd.com/cn/tmux_truecolor/</id>
+    <published>2024-06-11T16:00:00.000Z</published>
+    <updated>2024-06-11T16:00:00.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>最近在 tmux 中使用 vim OneDark theme，总是觉得怪怪的，黑色显示偏灰。无意中发现 joshdick&#x2F;onedark.vim 中提到需要为 tmux 设置真彩色。</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Plain ASCII</span><br><span class="line">ANSI escape codes: 16 color codes with bold/italic and background</span><br><span class="line">256 color palette: 216 colors + 16 ANSI + 24 gray (colors are 24-bit)</span><br><span class="line">24-bit truecolor: &quot;888&quot; colors (aka 16 million)</span><br></pre></td></tr></table></figure><p>检查终端是否支持真彩色，可以使用脚本 <a href="https://raw.githubusercontent.com/gnachman/iTerm2/master/tests/24-bit-color.sh">https://raw.githubusercontent.com/gnachman/iTerm2/master/tests/24-bit-color.sh</a></p><p><code>bash ./24-bit-color.sh</code> 如果终端颜色是连贯的则支持了真彩色，如果颜色是分块的则没有支持。</p><p>修改 ~&#x2F;.tmux.conf 加上两行</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">set -g default-terminal &quot;tmux-256color&quot;</span><br><span class="line">set-option -ga terminal-overrides &quot;,$&#123;TERM&#125;:Tc&quot;</span><br></pre></td></tr></table></figure><p>要让 tmux 重新加载 <code>~/.tmux.conf</code> 需要退出所有的 tmux 进程后，重新执行 tmux</p><p>最后，检查你的 tmux 是否开启了真彩色，可以使用下面的命令行：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">tmux info | grep Tc</span><br><span class="line"> 227: Tc: (flag) true</span><br></pre></td></tr></table></figure><h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p>Adding 24-bit TrueColor RGB escape sequences to tmux - Suraj N. Kurapati , 29 January 2016<br><a href="https://sunaku.github.io/tmux-24bit-color.html#usage">https://sunaku.github.io/tmux-24bit-color.html#usage</a></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;最近在 tmux 中使用 vim OneDark theme，总是觉得怪怪的，黑色显示偏灰。无意中发现 joshdick&amp;#x2F;onedark.vim 中提到需要为 tmux 设置真彩色。&lt;/p&gt;
+&lt;figure class=&quot;highlight plaintext&quot;&gt;</summary>
+      
+    
+    
+    
+    
+    <category term="linux" scheme="http://usmacd.com/tags/linux/"/>
+    
+  </entry>
   
   <entry>
     <title>Android 系统的 USB Tethering 功能</title>
@@ -457,29 +480,6 @@
     
     
     <category term="PKM" scheme="http://usmacd.com/tags/PKM/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>万维钢谈第一性原理</title>
-    <link href="http://usmacd.com/cn/diyixingyuanli/"/>
-    <id>http://usmacd.com/cn/diyixingyuanli/</id>
-    <published>2023-11-13T16:00:00.000Z</published>
-    <updated>2023-11-13T16:00:00.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>伊隆·马斯克解释 第一性原理，我们思考老问题，不一定需要使用类比思维考虑前人的做法，直接从最基本的原理出发，可能会找到全新的办法。创业者说第一性原理，精神的主旨为「抛开成见，拒绝套路」，回到最基本的限制条件，重新认识和解决问题。</p><p>马斯克使用第一性原理计算电池价值的例子，可能不太正确。电池的根本价值，重要的不是组成它的材料，而是材料的结合方式 - 凝结在它身上的信息。电池身上的信息，是技术和专利，这是几代人智慧的结晶。</p><p>从物理学上说，所谓第一性原理，是最基本的物理定律。数学学科的所有内容都是建立在第一性原理上的，从几条公理出发，推导出各种定律，所以数学是百分之百正确的学科。</p><p>从第一性原理出发做计算，有时候问题太复杂了，科学家不能使用第一性原理时，通常有两个解法方法：<br>1）把问题简化，做一些基本假设，忽略一些「次要」条件，这些假设构成一个模型，基于模型的计算，结果可能错误<br>2）淡化计算，借助历史经验（实验），比如化学和材料科学，大量的知识是实验积累的结果，不是谁从基本物理定律算出来</p><p>模型和经验既然不是从第一性原理出发的，就有可能是错的，就有被改进的余地，将来就有可能被取代。而取代它们的，往往是更好的……模型和经验。</p><p>马斯克的精神是对的，我们不应被前人的经验束缚，应该改革和创新。但是我们需要知道，什么情况下忽略前人的经验才是理性的行为。<br>1）有了新的工具：比如有新的工具让你对事物有了全新的理解或更深的理解<br>2）环境变了：比如今天的基础设施、原材料价格、消费者状况和以前有重大差别，老一套的方法不使用了，你就需要一个全新的商业模式</p><p>万维钢：作为一个前物理学家，我对第一性原理的第一反应是最基本的物理定律，所以谁跟我说要从第一性原理出发、重新建立一套新东西，我深表怀疑 —— 因为我尊重人类文明。</p><p>SpaceX 为什么可以使用第一性原理</p><ol><li>航天不是一个竞争充分有效的市场：航天基本是 NASA 垄断的领域，NASA 自己基本上只负责设计和科学研究，它会把火箭的制造工程转包给各个小公司</li><li>NASA 现在不怎么创新：NASA 在科学探索方面没问题，一直在进步，但它就像其他大型企业一样，得了大企业病。流程会让公司一直按照惯性行事</li></ol><p>《像火箭科学家一样思考》书中，瓦罗尔分析了 SpaceX 使用第一性原理的 6 个办法</p><ul><li>尽量不外包，80%的零部件自己生产</li><li>采购的方式更加灵活：可能到 ebay，废品厂去买二手零部件</li><li>和大市场对接：利用民用的产业链做火箭 (可能是最重要的一点)</li><li>回收，尽量重复使用火箭</li><li>用人不只用航天人才，也到大市场找人：从汽车、手机等快速迭代的领域寻找人才</li><li>“奥姆卡剃刀”，尽量简化制造流程</li></ul>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;伊隆·马斯克解释 第一性原理，我们思考老问题，不一定需要使用类比思维考虑前人的做法，直接从最基本的原理出发，可能会找到全新的办法。创业者说第一性原理，精神的主旨为「抛开成见，拒绝套路」，回到最基本的限制条件，重新认识和解决问题。&lt;/p&gt;
-&lt;p&gt;马斯克使用第一性原理计算电池价</summary>
-      
-    
-    
-    
-    
-    <category term="KNOWLEDGE" scheme="http://usmacd.com/tags/KNOWLEDGE/"/>
     
   </entry>
   
