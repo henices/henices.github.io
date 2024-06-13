@@ -1,442 +1,762 @@
+
+
 <!DOCTYPE html>
-<html lang=zh>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
 <head>
-    <!-- so meta -->
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="HandheldFriendly" content="True">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="henices">
+  <meta name="keywords" content="">
+  
     <meta property="og:type" content="website">
 <meta property="og:title" content="安全代码">
 <meta property="og:url" content="http://usmacd.com/page/6/index.html">
 <meta property="og:site_name" content="安全代码">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:author" content="henices">
-<meta name="twitter:card" content="summary">
-    
-    
-      
-        
-          <link rel="shortcut icon" href="/images/favicon.ico">
-        
-      
-      
-        
-          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
-        
-      
-      
-        
-          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
-        
-      
-    
-    <!-- title -->
-    <title>安全代码</title>
-    <!-- async scripts -->
-    <!-- Google Analytics -->
-
-
-    <!-- Umami Analytics -->
-
-
-    <!-- styles -->
-    
-<link rel="stylesheet" href="/css/style.css">
-
-    <!-- persian styles -->
-    
-    <link href="https://cdn.jsdelivr.net/npm/firacode@6.2.0/distr/fira_code.css" rel="stylesheet">
-    <!-- rss -->
-    
-    
-      <link rel="alternate" href="/true" title="安全代码" type="application/atom+xml" />
-    
-	<!-- mathjax -->
-	
-		<script type="text/x-mathjax-config">
-		  MathJax.Hub.Config({
-			tex2jax: {
-			  skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
-			  inlineMath: [['$','$']]
-			}
-		  });
-		</script>
-		<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
-	
-<meta name="generator" content="Hexo 7.2.0"></head>
-
-<body class="max-width mx-auto px3 ltr">
-    
-    <div class="content index py4 h-card">
-        
-          <header id="header">
-  <a class="u-url u-uid" href="/">
-  
-    
-      <img id="logo" alt class="u-logo" src="/images/logo.png" />
-    
-  
-    <div id="title">
-      <h1 class="p-name">安全代码</h1>
-    </div>
-  </a>
-  <div id="nav">
-    <ul>
-      <li class="icon">
-        <a href="#" aria-label="目录"><i class="fa-solid fa-bars fa-2x"></i></a>
-      </li>
-      <!--
-     --><li><a href="/">首页</a></li><!--
-   --><!--
-     --><li><a href="/about/">关于</a></li><!--
-   --><!--
-     --><li><a href="/archives/">归档</a></li><!--
-   --><!--
-     --><li><a href="/search/">搜索</a></li><!--
-   --><!--
-     --><li><a href="/links/">链接</a></li><!--
-   --><!--
-     --><li><a href="/rss.xml">RSS</a></li><!--
-   -->
-    </ul>
-  </div>
-</header>
-
-        
-        <section id="about" class="p-note">
+<meta name="twitter:card" content="summary_large_image">
   
   
-    <p>
-      在这里找到我：
-      
-      
-      
-        
-        
-          <a class="icon u-url" target="_blank" rel="noopener me" href="http://github.com/henices" aria-label="github" title="github">
-            <i class="fa-brands fa-github"></i><!--
-      ---></a><!--
-    ---><!--
-    --->， 
-        
-      
-        
-        
-          <a class="icon u-url" target="_blank" rel="noopener me" href="https://x.com/henices" aria-label="twitter" title="twitter">
-            <i class="fa-brands fa-twitter"></i><!--
-      ---></a><!--
-    ---><!--
-    ---> 和 
-        
-      
-        
-        
-          <a class="icon u-email" target="_blank" rel="noopener" href="mailto:zhouzhenster@gmail.com" aria-label="mail" title="mail">
-            <i class="fa-solid fa-envelope"></i><!--
-      ---></a>
-        <!--
-    --->.
-        
-      
-    </p>
+    <meta name="referrer" content="no-referrer-when-downgrade">
   
-</section>
-
-<section id="writing">
-  <span class="h1"><a href="/archives/">文章</a></span>
   
-  <span class="h2">标签</span>
-  <span class="widget tagcloud">
-    <a href="/tags/Android/" style="font-size: 19px;">Android</a> <a href="/tags/Archives/" style="font-size: 11px;">Archives</a> <a href="/tags/Crack/" style="font-size: 12px;">Crack</a> <a href="/tags/KNOWLEDGE/" style="font-size: 13px;">KNOWLEDGE</a> <a href="/tags/Life/" style="font-size: 13px;">Life</a> <a href="/tags/Malware/" style="font-size: 14px;">Malware</a> <a href="/tags/PKM/" style="font-size: 16px;">PKM</a> <a href="/tags/Programming/" style="font-size: 16px;">Programming</a> <a href="/tags/Security/" style="font-size: 20px;">Security</a> <a href="/tags/Software/" style="font-size: 15px;">Software</a> <a href="/tags/ai/" style="font-size: 10px;">ai</a> <a href="/tags/investment/" style="font-size: 17px;">investment</a> <a href="/tags/linux/" style="font-size: 18px;">linux</a> <a href="/tags/vim/" style="font-size: 13px;">vim</a> <a href="/tags/windows/" style="font-size: 14px;">windows</a>
-  </span>
-  <span class="h2">最新发布</span>
+  <title>安全代码</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
   
-  <ul class="post-list">
-    
-    
-      
-    
-    
-      <li class="post-item">
-        
-    <div class="meta">
-      
-        
-          <time datetime="2023-09-06T03:00:51.522Z" class="dt-published" itemprop="datePublished">2023-09-06</time>
-        
-      
-    </div>
-
-
-        <span>
-    
-        <a class="" href="/cn/fundamental/">基本面需要关注的点</a>
-    
-
-
-</span>
-      </li>
-    
-      <li class="post-item">
-        
-    <div class="meta">
-      
-        
-          <time datetime="2023-09-06T03:00:51.505Z" class="dt-published" itemprop="datePublished">2023-09-06</time>
-        
-      
-    </div>
-
-
-        <span>
-    
-        <a class="" href="/cn/fengliu/">【转】冯柳投资十大金句</a>
-    
-
-
-</span>
-      </li>
-    
-      <li class="post-item">
-        
-    <div class="meta">
-      
-        
-          <time datetime="2023-09-06T03:00:51.432Z" class="dt-published" itemprop="datePublished">2023-09-06</time>
-        
-      
-    </div>
-
-
-        <span>
-    
-        <a class="" href="/cn/Fedora36-Nvidia/">升级 Fedora 36，遇上 Nvidia 驱动问题</a>
-    
-
-
-</span>
-      </li>
-    
-      <li class="post-item">
-        
-    <div class="meta">
-      
-        
-          <time datetime="2023-09-06T03:00:51.430Z" class="dt-published" itemprop="datePublished">2023-09-06</time>
-        
-      
-    </div>
-
-
-        <span>
-    
-        <a class="" href="/cn/Fedora31/">Fedora31 的几个变化</a>
-    
-
-
-</span>
-      </li>
-    
-      <li class="post-item">
-        
-    <div class="meta">
-      
-        
-          <time datetime="2023-09-06T03:00:51.426Z" class="dt-published" itemprop="datePublished">2023-09-06</time>
-        
-      
-    </div>
-
-
-        <span>
-    
-        <a class="" href="/cn/disable_security_flags/">恢复 Android App 的截屏功能</a>
-    
-
-
-</span>
-      </li>
-    
-      <li class="post-item">
-        
-    <div class="meta">
-      
-        
-          <time datetime="2023-09-06T03:00:51.339Z" class="dt-published" itemprop="datePublished">2023-09-06</time>
-        
-      
-    </div>
-
-
-        <span>
-    
-        <a class="" href="/cn/debug_aosp_java_code/">调试AOSP Java 代码</a>
-    
-
-
-</span>
-      </li>
-    
-      <li class="post-item">
-        
-    <div class="meta">
-      
-        
-          <time datetime="2023-09-06T03:00:51.338Z" class="dt-published" itemprop="datePublished">2023-09-06</time>
-        
-      
-    </div>
-
-
-        <span>
-    
-        <a class="" href="/cn/cve-2012-3137/">Oracle Database身份验证协议安全限制绕过漏洞(CVE-2012-3137)</a>
-    
-
-
-</span>
-      </li>
-    
-      <li class="post-item">
-        
-    <div class="meta">
-      
-        
-          <time datetime="2023-09-06T03:00:51.311Z" class="dt-published" itemprop="datePublished">2023-09-06</time>
-        
-      
-    </div>
-
-
-        <span>
-    
-        <a class="" href="/cn/compile_android_source_code/">编译 Android 系统源码  （AOSP）</a>
-    
-
-
-</span>
-      </li>
-    
-      <li class="post-item">
-        
-    <div class="meta">
-      
-        
-          <time datetime="2023-09-06T03:00:51.282Z" class="dt-published" itemprop="datePublished">2023-09-06</time>
-        
-      
-    </div>
-
-
-        <span>
-    
-        <a class="" href="/cn/BankBot/">Bankbot APK 样本分析</a>
-    
-
-
-</span>
-      </li>
-    
-      <li class="post-item">
-        
-    <div class="meta">
-      
-        
-          <time datetime="2023-09-06T03:00:51.281Z" class="dt-published" itemprop="datePublished">2023-09-06</time>
-        
-      
-    </div>
-
-
-        <span>
-    
-        <a class="" href="/cn/BaiduNetdisk/">Linux 下使用百度网盘</a>
-    
-
-
-</span>
-      </li>
-    
-  </ul>
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
   
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"usmacd.com","root":"/","version":"1.9.7","typing":{"enable":false,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.2.0"><link rel="alternate" href="/atom.xml" title="安全代码" type="application/atom+xml">
+<link rel="alternate" href="/rss.xml" title="安全代码" type="application/rss+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
     
-    <div class="pagination">
+
+<div class="header-inner" style="height: 60vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>安全代码</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
         
-            <a href="/page/5/"><i class="fa-solid fa-angle-left"></i></a>
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
         
-        <span class="page-number">第 6 页，共 13 页</span>
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
         
-            <a href="/page/7/"><i class="fa-solid fa-angle-right"></i>
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/rss.xml" target="_self">
+                <i class="iconfont icon-rss"></i>
+                <span>rss</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/sitemap.xml" target="_self">
+                
+                <span>sitemap</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
             </a>
+          </li>
+          
         
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
     </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://images.unsplash.com/photo-1646026371686-79950ceb6daa?w=640') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.1)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle">关注科技、投资、健康，和个人成长</span>
+          
+        </div>
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      <div class="container nopadding-x-md">
+        <div id="board"
+          >
+          
+          <div class="container">
+            <div class="row">
+              <div class="col-12 col-md-10 m-auto">
+                
+
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/cn/fundamental/" target="_self">
+          基本面需要关注的点
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/cn/fundamental/" target="_self">
+        <div>
+          准备多写点东西，内容将不在局限于网络安全。 不得不说搞金融的这些人很厉害，各种玩法坑死大家了。除了一般需要关注的点，还需要关注几个地方，其实这些点在某些情况下比PE，ROE 啥的都重要：  可转债 （一堆家伙喜欢套利） 配股   （散户不太喜欢配股） 融资盘 （主力不喜欢太多人做轿子） 增发   （这个情况比较复杂，增发价是比较重要的） 质押   （太高可能暴雷） GDR   （还是套利） 商誉
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2023-09-06 11:00" pubdate>
+              2023-09-06
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/investment/">#investment</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/cn/fengliu/" target="_self">
+          【转】冯柳投资十大金句
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/cn/fengliu/" target="_self">
+        <div>
+          （一）经济的波动就像是剪羊毛，长好了就剪、剪完了再长。拿剪子的一般就是赢家，当然赢家之间也有互相剪的，所以就有大小赢家、长短赢家之分。 （二）技术分析主要是找出趋势和预期同向运动并强化的机会，价值分析则可以在反向运动但最终会被预期改变的机会上下注。 （三）各方面都完美的系统是不可能长期存在的，放弃效率和短期安全的系统往往才会是长期安全和可重复的。这不太符合人性，也就保证了系统的独特和有效性，也有利
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2023-09-06 11:00" pubdate>
+              2023-09-06
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/investment/">#investment</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/cn/Fedora36-Nvidia/" target="_self">
+          升级 Fedora 36，遇上 Nvidia 驱动问题
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/cn/Fedora36-Nvidia/" target="_self">
+        <div>
+          Fedora 36 正式版已经释出一段时间了，根据我的经验开始的一周都会有 bug，一般等一段时间再升级会更平滑一些。然而，老革命又遇上了新问题，显示出问题了启动不起来。我已经很久没有遇上显示驱动问题了，我在很久以前就禁用了开源驱动 nouveau，一直都用得很好。 修改 &#x2F;etc&#x2F;default&#x2F;grub 文件，在 GRUB_CMDLINE_LINUX 添加下面参数
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2023-09-06 11:00" pubdate>
+              2023-09-06
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/linux/">#linux</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/cn/Fedora31/" target="_self">
+          Fedora31 的几个变化
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/cn/Fedora31/" target="_self">
+        <div>
+          1. 默认启用 Cgroups V2nozuonodie， 升级到 Fedora 31 后， CgroupsV2 已经默认开启，理由是原来不是默认开启没人用，现在让 Fedora 用户先当当小白鼠，于是 Docker 就倒下了。http://t.cn/Ai1sI5LH   grub2 配置文件 &#x2F;etc&#x2F;default&#x2F;grub， 内核参数添加 systemd.uni
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2023-09-06 11:00" pubdate>
+              2023-09-06
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/linux/">#linux</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/cn/disable_security_flags/" target="_self">
+          恢复 Android App 的截屏功能
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/cn/disable_security_flags/" target="_self">
+        <div>
+          今天遇上某 App 禁止截屏，其实就是使用了下面这段代码 1getWindow().setFlags(LayoutParams.FLAG_SECURE, LayoutParams.FLAG_SECURE);   使用 frida 脚本可以绕过绕过这个限制 （使用 frida 需要将手机 root）。 12345678910111213Java.perform(function () &#123;
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2023-09-06 11:00" pubdate>
+              2023-09-06
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Security/">#Security</a>
+            
+              <a href="/tags/Android/">#Android</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/cn/debug_aosp_java_code/" target="_self">
+          调试AOSP Java 代码
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/cn/debug_aosp_java_code/" target="_self">
+        <div>
+          下载 Android 源代码，编译 12345$ source build/envsetup.sh$ lunch$ make$ mmm development/tools/idegen/$ ./development/tools/idegen/idegen.sh  运行后将生成下面几个文件 123android.ipr (IntelliJ / Android Studio)android.iml
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2023-09-06 11:00" pubdate>
+              2023-09-06
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Android/">#Android</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/cn/cve-2012-3137/" target="_self">
+          Oracle Database身份验证协议安全限制绕过漏洞(CVE-2012-3137)
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/cn/cve-2012-3137/" target="_self">
+        <div>
+          12345678910111213NSFOCUS ID:    20847BUGTRAQ ID:    55651CVE ID:        CVE-2012-3137远程漏洞：      是本地漏洞：      是漏洞类型：漏洞影响：      远程攻击者可以密码进行离线密码暴力破解危险指数：      高创建时间：      2012-9-27更新时间：攻击代码：      无跟踪工程师：
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2023-09-06 11:00" pubdate>
+              2023-09-06
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Security/">#Security</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/cn/compile_android_source_code/" target="_self">
+          编译 Android 系统源码  （AOSP）
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/cn/compile_android_source_code/" target="_self">
+        <div>
+          ☆ 1. 下载源码由于众所周知的原因，国内访问 Android 源码不大方便， 清华大学做了一件好事， 弄了个 mirror。 https://mirrors.tuna.tsinghua.edu.cn/help/AOSP/ 下载 repoGoogle 自己搞一个源码同步工具，需要下下载。 1234mkdir ~/binPATH=~/bin:$PATHcurl https://storage.goo
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2023-09-06 11:00" pubdate>
+              2023-09-06
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Android/">#Android</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/cn/BankBot/" target="_self">
+          Bankbot APK 样本分析
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/cn/BankBot/" target="_self">
+        <div>
+          0x00 样本概况   字段 内容    样本名 BankBot   MD5 3c42c391bec405bb28b28195c2961778   SHA256 93b64019ee48177889d908c393703a2a2fe05ca33793c14b175467ce619b1b94   文件类型 APK   这是一个以盗窃信用卡用户密码为主要目的的bot。安装后显示为Android图标。打
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2023-09-06 11:00" pubdate>
+              2023-09-06
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Security/">#Security</a>
+            
+              <a href="/tags/Malware/">#Malware</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/cn/BaiduNetdisk/" target="_self">
+          Linux 下使用百度网盘
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/cn/BaiduNetdisk/" target="_self">
+        <div>
+          百度网盘在国内很大概率是绕不过去，稍大点文件都喜欢用百度网盘给下载地址。可是百度网盘下载是限速的，而且对 Linux 用户非常不友好，我的 Fedora 装上 rpm 包也用不了，直接崩溃，所以得想点其他办法。 1. 官方安装包 （不一定都能使用）官方提供了 deb 和 rpm 格式安装包 http://issuecdn.baidupcs.com/issue/netdisk/LinuxGuanji
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2023-09-06 11:00" pubdate>
+              2023-09-06
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/linux/">#linux</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+
+
+  <nav aria-label="navigation">
+    <span class="pagination" id="pagination">
+      <a class="extend prev" rel="prev" href="/page/5/#board"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/#board">4</a><a class="page-number" href="/page/5/#board">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/#board">7</a><a class="page-number" href="/page/8/#board">8</a><span class="space">&hellip;</span><a class="page-number" href="/page/13/#board">13</a><a class="extend next" rel="next" href="/page/7/#board"><i class="iconfont icon-arrowright"></i></a>
+    </span>
+  </nav>
+
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+
 
 
   
-</section>
-
-
-
-        
-        <footer id="footer">
-  <div class="footer-left">
-    Copyright &copy;
-    
-    
-    2004-2024
-    henices
-  </div>
-  <div class="footer-right">
-    <nav>
-      <ul>
-        <!--
-       --><li><a href="/">首页</a></li><!--
-     --><!--
-       --><li><a href="/about/">关于</a></li><!--
-     --><!--
-       --><li><a href="/archives/">归档</a></li><!--
-     --><!--
-       --><li><a href="/search/">搜索</a></li><!--
-     --><!--
-       --><li><a href="/links/">链接</a></li><!--
-     --><!--
-       --><li><a href="/rss.xml">RSS</a></li><!--
-     -->
-      </ul>
-    </nav>
-  </div>
-</footer>
-
-    </div>
-    <!-- styles -->
-
-
-
-  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
-
-
-    <!-- jquery -->
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+    <script  src="/js/img-lazyload.js" ></script>
+  
 
 
 
 
-<!-- clipboard -->
+  <script  src="/js/local-search.js" ></script>
 
 
-<script src="/js/main.js"></script>
 
-<!-- search -->
 
-<!-- Baidu Analytics -->
 
-<!-- Cloudflare Analytics -->
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
 
-<!-- Disqus Comments -->
 
-<!-- utterances Comments -->
+  
 
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
 </body>
 </html>

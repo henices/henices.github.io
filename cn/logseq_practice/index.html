@@ -1,11 +1,23 @@
+
+
 <!DOCTYPE html>
-<html lang=zh>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
 <head>
-    <!-- so meta -->
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="HandheldFriendly" content="True">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="henices">
+  <meta name="keywords" content="">
+  
     <meta name="description" content="近两年陆陆续续发表了一系列关于 Logseq 实践的文字，零散不易查找阅读，抽空整理成一篇文章，希望能对大家有所帮助。 Logseq 光速入门Logseq 是个不错的工具，就是学习曲线有点陡峭，上手不太容易，最开始可以从 journal 开始，进行日常记事并使用任务管理功能安排日程。Logseq 的高阶用法是利用 query 建立自己的工作流 （workflow），使用基于 Query 的 wor">
 <meta property="og:type" content="article">
 <meta property="og:title" content="我的 Logseq 使用实践">
@@ -19,170 +31,298 @@
 <meta property="article:modified_time" content="2024-05-07T16:00:00.000Z">
 <meta property="article:author" content="henices">
 <meta property="article:tag" content="Software">
-<meta name="twitter:card" content="summary">
+<meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://raw.githubusercontent.com/henices/pictures/master/logseq5_1.jpeg">
-    
-    
-      
-        
-          <link rel="shortcut icon" href="/images/favicon.ico">
-        
-      
-      
-        
-          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
-        
-      
-      
-        
-          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
-        
-      
-    
-    <!-- title -->
-    <title>我的 Logseq 使用实践</title>
-    <!-- async scripts -->
-    <!-- Google Analytics -->
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>我的 Logseq 使用实践 - 安全代码</title>
 
-
-    <!-- Umami Analytics -->
-
-
-    <!-- styles -->
-    
-<link rel="stylesheet" href="/css/style.css">
-
-    <!-- persian styles -->
-    
-    <link href="https://cdn.jsdelivr.net/npm/firacode@6.2.0/distr/fira_code.css" rel="stylesheet">
-    <!-- rss -->
-    
-    
-      <link rel="alternate" href="/true" title="安全代码" type="application/atom+xml" />
-    
-	<!-- mathjax -->
-	
-		<script type="text/x-mathjax-config">
-		  MathJax.Hub.Config({
-			tex2jax: {
-			  skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
-			  inlineMath: [['$','$']]
-			}
-		  });
-		</script>
-		<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
-	
-<meta name="generator" content="Hexo 7.2.0"></head>
-
-<body class="max-width mx-auto px3 ltr">
-    
-      <div id="header-post">
-  <a id="menu-icon" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
-  <a id="menu-icon-tablet" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
-  <a id="top-icon-tablet" href="#" aria-label="顶部" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
-  <span id="menu">
-    <span id="nav">
-      <ul>
-        <!--
-       --><li><a href="/">首页</a></li><!--
-     --><!--
-       --><li><a href="/about/">关于</a></li><!--
-     --><!--
-       --><li><a href="/archives/">归档</a></li><!--
-     --><!--
-       --><li><a href="/search/">搜索</a></li><!--
-     --><!--
-       --><li><a href="/links/">链接</a></li><!--
-     --><!--
-       --><li><a href="/rss.xml">RSS</a></li><!--
-     -->
-      </ul>
-    </span>
-    <br/>
-    <span id="actions">
-      <ul>
-        
-        <li><a class="icon" aria-label="上一篇" href="/cn/AFL++%20%E6%BC%8F%E6%B4%9E%E6%8C%96%E6%8E%98%E5%AE%9E%E4%BE%8B/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
-        
-        
-        <li><a class="icon" aria-label="下一篇" href="/en/logseq_plugins_en/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
-        
-        <li><a class="icon" aria-label="返回顶部" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
-        <li><a class="icon" aria-label="分享文章" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
-      </ul>
-      <span id="i-prev" class="info" style="display:none;">上一篇</span>
-      <span id="i-next" class="info" style="display:none;">下一篇</span>
-      <span id="i-top" class="info" style="display:none;">返回顶部</span>
-      <span id="i-share" class="info" style="display:none;">分享文章</span>
-    </span>
-    <br/>
-    <div id="share" style="display: none">
-      <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://usmacd.com/cn/logseq_practice/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://usmacd.com/cn/logseq_practice/&text=我的 Logseq 使用实践"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://usmacd.com/cn/logseq_practice/&title=我的 Logseq 使用实践"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://usmacd.com/cn/logseq_practice/&is_video=false&description=我的 Logseq 使用实践"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=我的 Logseq 使用实践&body=Check out this article: http://usmacd.com/cn/logseq_practice/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://usmacd.com/cn/logseq_practice/&title=我的 Logseq 使用实践"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://usmacd.com/cn/logseq_practice/&title=我的 Logseq 使用实践"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://usmacd.com/cn/logseq_practice/&title=我的 Logseq 使用实践"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://usmacd.com/cn/logseq_practice/&title=我的 Logseq 使用实践"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://usmacd.com/cn/logseq_practice/&name=我的 Logseq 使用实践&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://usmacd.com/cn/logseq_practice/&t=我的 Logseq 使用实践"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
-</ul>
-
-    </div>
-    
-    
-      <div id="toc">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Logseq-%E5%85%89%E9%80%9F%E5%85%A5%E9%97%A8"><span class="toc-number">1.</span> <span class="toc-text">Logseq 光速入门</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Logseq-%E5%90%8C%E6%AD%A5%E5%8A%9F%E8%83%BD%E7%9A%84%E6%83%85%E5%86%B5"><span class="toc-number">2.</span> <span class="toc-text">Logseq 同步功能的情况</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Journal-or-Page-%EF%BC%9F"><span class="toc-number">3.</span> <span class="toc-text">Journal or Page ？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Journal-%E8%AF%A5%E5%86%99%E7%82%B9%E5%95%A5-%EF%BC%9F"><span class="toc-number">4.</span> <span class="toc-text">Journal 该写点啥 ？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8-Logseq-%E8%BF%9B%E8%A1%8C%E6%97%B6%E9%97%B4%E7%99%BB%E8%AE%B0"><span class="toc-number">5.</span> <span class="toc-text">使用 Logseq 进行时间登记</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8-Logseq-%E5%AE%9A%E6%9C%9F%E5%9B%9E%E9%A1%BE%E7%AC%94%E8%AE%B0"><span class="toc-number">6.</span> <span class="toc-text">使用 Logseq 定期回顾笔记</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%A9%E7%94%A8-Logseq-%E6%9D%A5%E5%AE%9E%E8%B7%B5%E5%8D%A1%E7%89%87%E7%AC%94%E8%AE%B0%E5%B7%A5%E4%BD%9C%E6%B5%81"><span class="toc-number">7.</span> <span class="toc-text">利用 Logseq 来实践卡片笔记工作流</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Zettelkasten-PARA-%E7%9A%84-Logseq-%E5%AE%9E%E8%B7%B5"><span class="toc-number">8.</span> <span class="toc-text">Zettelkasten + PARA 的 Logseq 实践</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%8D%E8%A6%81%E7%A5%9E%E8%AF%9D%E5%8F%8C%E9%93%BE%E7%AC%94%E8%AE%B0%E6%96%B9%E6%B3%95"><span class="toc-number">9.</span> <span class="toc-text">不要神话双链笔记方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="toc-number">10.</span> <span class="toc-text">参考资料</span></a></li></ol>
-      </div>
-    
-  </span>
-</div>
-
-    
-    <div class="content index py4 ">
-        
-        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
-  <header>
-    
-    <h1 class="posttitle p-name" itemprop="name headline">
-        我的 Logseq 使用实践
-    </h1>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
 
 
-    <div class="meta">
-      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
-        <span class="p-name" itemprop="name">henices</span>
-      </span>
-      
-    <div class="postdate">
-      
-        <time datetime="2024-03-30T16:00:00.000Z" class="dt-published" itemprop="datePublished">2024-03-31</time>
-        
-        (Updated: <time datetime="2024-05-07T16:00:00.000Z" class="dt-updated" itemprop="dateModified">2024-05-08</time>)
-        
-      
-    </div>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
 
 
-      
 
-      
-    <div class="article-tag">
-        <i class="fa-solid fa-tag"></i>
-        <a class="p-category" href="/tags/Software/" rel="tag">Software</a>
-    </div>
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
 
 
-    </div>
-  </header>
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
   
 
-  <div class="content e-content" itemprop="articleBody">
-    <p>近两年陆陆续续发表了一系列关于 Logseq 实践的文字，零散不易查找阅读，抽空整理成一篇文章，希望能对大家有所帮助。</p>
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"usmacd.com","root":"/","version":"1.9.7","typing":{"enable":false,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.2.0"><link rel="alternate" href="/atom.xml" title="安全代码" type="application/atom+xml">
+<link rel="alternate" href="/rss.xml" title="安全代码" type="application/rss+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>安全代码</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/rss.xml" target="_self">
+                <i class="iconfont icon-rss"></i>
+                <span>rss</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/sitemap.xml" target="_self">
+                
+                <span>sitemap</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://images.unsplash.com/photo-1473181488821-2d23949a045a?w=640') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle">我的 Logseq 使用实践</span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-03-31 00:00" pubdate>
+          2024年3月31日 凌晨
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.9k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          17 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">我的 Logseq 使用实践</h1>
+            
+              <p id="updated-time" class="note note-info" style="">
+                
+                  
+                    本文最后更新于 2024年5月8日 凌晨
+                  
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
+                <p>近两年陆陆续续发表了一系列关于 Logseq 实践的文字，零散不易查找阅读，抽空整理成一篇文章，希望能对大家有所帮助。</p>
 <h2 id="Logseq-光速入门"><a href="#Logseq-光速入门" class="headerlink" title="Logseq 光速入门"></a>Logseq 光速入门</h2><p>Logseq 是个不错的工具，就是学习曲线有点陡峭，上手不太容易，最开始可以从 journal 开始，进行日常记事并使用任务管理功能安排日程。Logseq 的高阶用法是利用 query 建立自己的工作流 （workflow），使用基于 Query 的 workflow 提示 next action 是 Logseq 最精华的功能，Logseq 的资深用户都是 Query base workflow 的爱好者。</p>
 <p>但是入门还是建议从基础功能的使用开始 （日志，双链，大纲，本地存储 ）。我自己写过 Logseq 四篇，现在由于笔记系统上手熟练，输出反倒不如从前，有点惭愧。</p>
 <p><a target="_blank" rel="noopener" href="https://www.usmacd.com/cn/logseq/">Logseq 试用报告</a><br><a target="_blank" rel="noopener" href="https://www.usmacd.com/cn/logseq2/">Logseq 使用小结（二）</a><br><a target="_blank" rel="noopener" href="https://www.usmacd.com/cn/logseq3/">Logseq 使用小结（三）</a><br><a target="_blank" rel="noopener" href="https://www.usmacd.com/cn/logseq_plugins/">我正在使用的 Logseq Plugin</a></p>
@@ -205,11 +345,11 @@
 <p>我使用第三方网盘单向同步，只有一个设备和网盘自动同步（写网盘），其他设备读网盘后，手动复制一份数据。</p>
 <p>最近看到许多 Community 用户使用 <a target="_blank" rel="noopener" href="https://syncthing.net/">Syncthing</a> 进行多端同步，效果好像不错，但我自己没有尝试这种方法。</p>
 <h2 id="Journal-or-Page-？"><a href="#Journal-or-Page-？" class="headerlink" title="Journal or Page ？"></a>Journal or Page ？</h2><p>Logseq 用户经常会遇上一个问题，究竟是在 journal 写笔记还是新开一个 page 写。community Luhmann 用户给出他的 flowchat，我觉得写得非常好。</p>
-<p><img src="https://raw.githubusercontent.com/henices/pictures/master/logseq5_1.jpeg" alt="Journal or Page"></p>
+<p><img src="https://raw.githubusercontent.com/henices/pictures/master/logseq5_1.jpeg" srcset="/img/loading.gif" lazyload alt="Journal or Page"></p>
 <p>我自己的用法可以简单的概括为，在 Journal 记录较为零散的片段，在 Page 中对 Journal 中的片段进行聚合、重组、整合。Page 中保存较为正式的文字，Journal 中则会较为杂乱地记录想法。</p>
 <h2 id="Journal-该写点啥-？"><a href="#Journal-该写点啥-？" class="headerlink" title="Journal 该写点啥 ？"></a>Journal 该写点啥 ？</h2><p>去年在 Logseq 的 Journal 中有两个保留内容 [[生活随记]] 和 [[每日心得]]，在回顾笔记的过程中觉得这些内容还是挺有意义的。这些内容从某种意义上来说相当于日记，每天都对自己的经历进行记录就像照镜子一般，「每日三省吾身」 值得坚持。对待同一事物，不同时期的心境并不相同。记录下当下的感受，后期再回过来看感触还是挺大的。</p>
 <h2 id="使用-Logseq-进行时间登记"><a href="#使用-Logseq-进行时间登记" class="headerlink" title="使用 Logseq 进行时间登记"></a>使用 Logseq 进行时间登记</h2><p>受图拉鼎的影响，利用 Logseq 启用严格的时间登记，效果不错。方法很简单，支持 markdown 的编辑器理论上都可行。  </p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">## Time-block Grid</span><br><span class="line">- DONE task1  # projectx   09:00 am</span><br><span class="line">- DONE task2  # projectx   10:00 am</span><br><span class="line">- TODO task3  # projecty   1:00 pm</span><br></pre></td></tr></table></figure>
+<figure class="highlight ldif"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs ldif"><span class="hljs-comment">## Time-block Grid</span><br><span class="hljs-literal">-</span> DONE task1  <span class="hljs-comment"># projectx   09:00 am</span><br><span class="hljs-literal">-</span> DONE task2  <span class="hljs-comment"># projectx   10:00 am</span><br><span class="hljs-literal">-</span> TODO task3  <span class="hljs-comment"># projecty   1:00 pm</span><br></code></pre></td></tr></table></figure>
 <p>关于为什么要时间登记，可以阅读采访图拉鼎的播客 <a target="_blank" rel="noopener" href="https://www.usmacd.com/cn/tulading/">图拉鼎谈独立开发</a></p>
 <h2 id="使用-Logseq-定期回顾笔记"><a href="#使用-Logseq-定期回顾笔记" class="headerlink" title="使用 Logseq 定期回顾笔记"></a>使用 Logseq 定期回顾笔记</h2><p>定期回顾自己的笔记大体有下面几个好处:</p>
 <ul>
@@ -244,7 +384,7 @@
 <p>使用 Logseq 时一定要多用 Template 功能，这是保证笔记格式一致性的关键，可以自动提示应该记录的信息，具体内容可以参考我前段时间写的 <a target="_blank" rel="noopener" href="https://www.usmacd.com/cn/zel_note_flow">卡片盒笔记法总体思路与工作流</a></p>
 <h2 id="Zettelkasten-PARA-的-Logseq-实践"><a href="#Zettelkasten-PARA-的-Logseq-实践" class="headerlink" title="Zettelkasten + PARA 的 Logseq 实践"></a>Zettelkasten + PARA 的 Logseq 实践</h2><p>自从使用 Logseq 实践 Zettelkasten 后，我大致发了 1000 条推文，其中有阅读的文献笔记，也有自己思考的永久笔记。我在这两年的时间思考了大量的问题，受益匪浅。 写卡片笔记的目的是为了促进思考，目前正在实践的 PARA  method 又证明可以推动项目的进展。</p>
 <p>笔记工具有没有用，关键在于人，需要有方法论的支撑，如果没有方法论的指导，认为使用一个工具就可以解决所有问题，世界上没有这么神奇的工具。</p>
-<p><img src="https://raw.githubusercontent.com/henices/pictures/master/logseq5_2.jpeg" alt="Logseq graph"></p>
+<p><img src="https://raw.githubusercontent.com/henices/pictures/master/logseq5_2.jpeg" srcset="/img/loading.gif" lazyload alt="Logseq graph"></p>
 <p>关于 PARA 方法，我使用 Claude 翻译了 Tiago Forte <a target="_blank" rel="noopener" href="https://www.usmacd.com/cn/PARA/">一秒钟内整理数字生活的系统</a> 。</p>
 <h2 id="不要神话双链笔记方法"><a href="#不要神话双链笔记方法" class="headerlink" title="不要神话双链笔记方法"></a>不要神话双链笔记方法</h2><p>用了两年的 Logseq 后，神奇的发现我好像不怎么使用双链了。Journal 的好处是可以随时输入一个较为完整的文字片段，心智负担很小。 但如果要真正对某个主题有较为深刻的理解，需要将零碎片段的完整逻辑和前后关系串连起来。真正可以实现这个目标的是写文章，而不是依靠双向链接。 只要写文章的时候，你需要的所有内容都在同一个地方，具体的是用使用标签，还是文件夹都不是重要。</p>
 <p>知识体系的构建是通过不断学习和自我迭代来实现，边界的延伸则可以跟随着自己的好奇心，学习真的是一件很有趣的事情。</p>
@@ -256,151 +396,338 @@
 <li><a target="_blank" rel="noopener" href="https://www.usmacd.com/cn/PARA/">一秒钟内整理数字生活的系统</a></li>
 </ul>
 
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Software/" class="print-no-link">#Software</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>我的 Logseq 使用实践</div>
+      <div>http://usmacd.com/cn/logseq_practice/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>henices</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2024年3月31日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
   </div>
-</article>
 
 
 
-        
-          <div id="footer-post-container">
-  <div id="footer-post">
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/cn/AFL++%20%E6%BC%8F%E6%B4%9E%E6%8C%96%E6%8E%98%E5%AE%9E%E4%BE%8B/" title="AFL++ 漏洞挖掘实例">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">AFL++ 漏洞挖掘实例</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/en/logseq_plugins_en/" title="Some Logseq plugins I&#39;m currently using">
+                        <span class="hidden-mobile">Some Logseq plugins I&#39;m currently using</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
 
-    <div id="nav-footer" style="display: none">
-      <ul>
-        
-          <li><a href="/">首页</a></li>
-        
-          <li><a href="/about/">关于</a></li>
-        
-          <li><a href="/archives/">归档</a></li>
-        
-          <li><a href="/search/">搜索</a></li>
-        
-          <li><a href="/links/">链接</a></li>
-        
-          <li><a href="/rss.xml">RSS</a></li>
-        
-      </ul>
-    </div>
-
-    
-    
-      <div id="toc-footer" style="display: none">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Logseq-%E5%85%89%E9%80%9F%E5%85%A5%E9%97%A8"><span class="toc-number">1.</span> <span class="toc-text">Logseq 光速入门</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Logseq-%E5%90%8C%E6%AD%A5%E5%8A%9F%E8%83%BD%E7%9A%84%E6%83%85%E5%86%B5"><span class="toc-number">2.</span> <span class="toc-text">Logseq 同步功能的情况</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Journal-or-Page-%EF%BC%9F"><span class="toc-number">3.</span> <span class="toc-text">Journal or Page ？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Journal-%E8%AF%A5%E5%86%99%E7%82%B9%E5%95%A5-%EF%BC%9F"><span class="toc-number">4.</span> <span class="toc-text">Journal 该写点啥 ？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8-Logseq-%E8%BF%9B%E8%A1%8C%E6%97%B6%E9%97%B4%E7%99%BB%E8%AE%B0"><span class="toc-number">5.</span> <span class="toc-text">使用 Logseq 进行时间登记</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8-Logseq-%E5%AE%9A%E6%9C%9F%E5%9B%9E%E9%A1%BE%E7%AC%94%E8%AE%B0"><span class="toc-number">6.</span> <span class="toc-text">使用 Logseq 定期回顾笔记</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%A9%E7%94%A8-Logseq-%E6%9D%A5%E5%AE%9E%E8%B7%B5%E5%8D%A1%E7%89%87%E7%AC%94%E8%AE%B0%E5%B7%A5%E4%BD%9C%E6%B5%81"><span class="toc-number">7.</span> <span class="toc-text">利用 Logseq 来实践卡片笔记工作流</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Zettelkasten-PARA-%E7%9A%84-Logseq-%E5%AE%9E%E8%B7%B5"><span class="toc-number">8.</span> <span class="toc-text">Zettelkasten + PARA 的 Logseq 实践</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%8D%E8%A6%81%E7%A5%9E%E8%AF%9D%E5%8F%8C%E9%93%BE%E7%AC%94%E8%AE%B0%E6%96%B9%E6%B3%95"><span class="toc-number">9.</span> <span class="toc-text">不要神话双链笔记方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="toc-number">10.</span> <span class="toc-text">参考资料</span></a></li></ol>
+            
+          </article>
+        </div>
       </div>
-    
-
-    <div id="share-footer" style="display: none">
-      <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://usmacd.com/cn/logseq_practice/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://usmacd.com/cn/logseq_practice/&text=我的 Logseq 使用实践"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://usmacd.com/cn/logseq_practice/&title=我的 Logseq 使用实践"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://usmacd.com/cn/logseq_practice/&is_video=false&description=我的 Logseq 使用实践"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=我的 Logseq 使用实践&body=Check out this article: http://usmacd.com/cn/logseq_practice/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://usmacd.com/cn/logseq_practice/&title=我的 Logseq 使用实践"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://usmacd.com/cn/logseq_practice/&title=我的 Logseq 使用实践"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://usmacd.com/cn/logseq_practice/&title=我的 Logseq 使用实践"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://usmacd.com/cn/logseq_practice/&title=我的 Logseq 使用实践"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://usmacd.com/cn/logseq_practice/&name=我的 Logseq 使用实践&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://usmacd.com/cn/logseq_practice/&t=我的 Logseq 使用实践"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
-</ul>
-
     </div>
 
-    <div id="actions-footer">
-        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
-        
-          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> 目录</a>
-        
-        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
-        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>
-    </div>
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
 
+
+
+  </aside>
+
+
+    </div>
   </div>
 </div>
 
-        
-        <footer id="footer">
-  <div class="footer-left">
-    Copyright &copy;
-    
-    
-    2004-2024
-    henices
-  </div>
-  <div class="footer-right">
-    <nav>
-      <ul>
-        <!--
-       --><li><a href="/">首页</a></li><!--
-     --><!--
-       --><li><a href="/about/">关于</a></li><!--
-     --><!--
-       --><li><a href="/archives/">归档</a></li><!--
-     --><!--
-       --><li><a href="/search/">搜索</a></li><!--
-     --><!--
-       --><li><a href="/links/">链接</a></li><!--
-     --><!--
-       --><li><a href="/rss.xml">RSS</a></li><!--
-     -->
-      </ul>
-    </nav>
-  </div>
-</footer>
 
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
     </div>
-    <!-- styles -->
+  </div>
+</div>
 
+    
 
+    
+  </main>
 
-  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
-
-
-    <!-- jquery -->
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
-
-
-
-
-<!-- clipboard -->
-
+  <footer>
+    <div class="footer-inner">
   
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
   
-  <script type="text/javascript">
-  $(function() {
-    // copy-btn HTML
-    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板！\">";
-    btn += '<i class="fa-regular fa-clone"></i>';
-    btn += '</span>';
-    // mount it!
-    $(".highlight table").before(btn);
-    var clip = new ClipboardJS('.btn-copy', {
-      text: function(trigger) {
-        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
-      }
-    });
-    clip.on('success', function(e) {
-      e.trigger.setAttribute('aria-label', "复制成功！");
-      e.clearSelection();
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
     })
-  })
   </script>
 
 
-<script src="/js/main.js"></script>
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
 
-<!-- search -->
 
-<!-- Baidu Analytics -->
 
-<!-- Cloudflare Analytics -->
 
-<!-- Disqus Comments -->
 
-<!-- utterances Comments -->
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
 
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
 </body>
 </html>

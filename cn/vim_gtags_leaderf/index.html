@@ -1,11 +1,23 @@
+
+
 <!DOCTYPE html>
-<html lang=zh>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
 <head>
-    <!-- so meta -->
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="HandheldFriendly" content="True">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="henices">
+  <meta name="keywords" content="">
+  
     <meta name="description" content="☆ 缘由和一些 vim 历史前些年 vim 没有子窗口的概念，日本的一个 vim 插件作者为了解决这个问题生撸了一套流程，当时 unite.vim 横空出世惊艳了我一把。后面随着技术发展，neovim 和 vim 先后引入了 floating window ，这才使得情况变得好了一点。 https:&#x2F;&#x2F;github.com&#x2F;vim&#x2F;vim&#x2F;blob&#x2F;master&#x2F;runtime&#x2F;doc&#x2F;popup">
 <meta property="og:type" content="article">
 <meta property="og:title" content="在 vim 中使用 LeaderF 和 gtags">
@@ -19,189 +31,317 @@
 <meta property="article:author" content="henices">
 <meta property="article:tag" content="Programming">
 <meta property="article:tag" content="vim">
-<meta name="twitter:card" content="summary">
+<meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://raw.githubusercontent.com/Yggdroot/Images/master/leaderf/leaderf_popup.gif">
-    
-    
-      
-        
-          <link rel="shortcut icon" href="/images/favicon.ico">
-        
-      
-      
-        
-          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
-        
-      
-      
-        
-          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
-        
-      
-    
-    <!-- title -->
-    <title>在 vim 中使用 LeaderF 和 gtags</title>
-    <!-- async scripts -->
-    <!-- Google Analytics -->
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>在 vim 中使用 LeaderF 和 gtags - 安全代码</title>
 
-
-    <!-- Umami Analytics -->
-
-
-    <!-- styles -->
-    
-<link rel="stylesheet" href="/css/style.css">
-
-    <!-- persian styles -->
-    
-    <link href="https://cdn.jsdelivr.net/npm/firacode@6.2.0/distr/fira_code.css" rel="stylesheet">
-    <!-- rss -->
-    
-    
-      <link rel="alternate" href="/true" title="安全代码" type="application/atom+xml" />
-    
-	<!-- mathjax -->
-	
-		<script type="text/x-mathjax-config">
-		  MathJax.Hub.Config({
-			tex2jax: {
-			  skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
-			  inlineMath: [['$','$']]
-			}
-		  });
-		</script>
-		<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
-	
-<meta name="generator" content="Hexo 7.2.0"></head>
-
-<body class="max-width mx-auto px3 ltr">
-    
-      <div id="header-post">
-  <a id="menu-icon" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
-  <a id="menu-icon-tablet" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
-  <a id="top-icon-tablet" href="#" aria-label="顶部" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
-  <span id="menu">
-    <span id="nav">
-      <ul>
-        <!--
-       --><li><a href="/">首页</a></li><!--
-     --><!--
-       --><li><a href="/about/">关于</a></li><!--
-     --><!--
-       --><li><a href="/archives/">归档</a></li><!--
-     --><!--
-       --><li><a href="/search/">搜索</a></li><!--
-     --><!--
-       --><li><a href="/links/">链接</a></li><!--
-     --><!--
-       --><li><a href="/rss.xml">RSS</a></li><!--
-     -->
-      </ul>
-    </span>
-    <br/>
-    <span id="actions">
-      <ul>
-        
-        <li><a class="icon" aria-label="上一篇" href="/cn/PARA/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
-        
-        
-        <li><a class="icon" aria-label="下一篇" href="/cn/logseq_interview/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
-        
-        <li><a class="icon" aria-label="返回顶部" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
-        <li><a class="icon" aria-label="分享文章" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
-      </ul>
-      <span id="i-prev" class="info" style="display:none;">上一篇</span>
-      <span id="i-next" class="info" style="display:none;">下一篇</span>
-      <span id="i-top" class="info" style="display:none;">返回顶部</span>
-      <span id="i-share" class="info" style="display:none;">分享文章</span>
-    </span>
-    <br/>
-    <div id="share" style="display: none">
-      <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://usmacd.com/cn/vim_gtags_leaderf/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://usmacd.com/cn/vim_gtags_leaderf/&text=在 vim 中使用 LeaderF 和 gtags"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://usmacd.com/cn/vim_gtags_leaderf/&title=在 vim 中使用 LeaderF 和 gtags"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://usmacd.com/cn/vim_gtags_leaderf/&is_video=false&description=在 vim 中使用 LeaderF 和 gtags"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=在 vim 中使用 LeaderF 和 gtags&body=Check out this article: http://usmacd.com/cn/vim_gtags_leaderf/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://usmacd.com/cn/vim_gtags_leaderf/&title=在 vim 中使用 LeaderF 和 gtags"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://usmacd.com/cn/vim_gtags_leaderf/&title=在 vim 中使用 LeaderF 和 gtags"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://usmacd.com/cn/vim_gtags_leaderf/&title=在 vim 中使用 LeaderF 和 gtags"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://usmacd.com/cn/vim_gtags_leaderf/&title=在 vim 中使用 LeaderF 和 gtags"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://usmacd.com/cn/vim_gtags_leaderf/&name=在 vim 中使用 LeaderF 和 gtags&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://usmacd.com/cn/vim_gtags_leaderf/&t=在 vim 中使用 LeaderF 和 gtags"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
-</ul>
-
-    </div>
-    
-    
-      <div id="toc">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E2%98%86-%E7%BC%98%E7%94%B1%E5%92%8C%E4%B8%80%E4%BA%9B-vim-%E5%8E%86%E5%8F%B2"><span class="toc-number">1.</span> <span class="toc-text">☆ 缘由和一些 vim 历史</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E2%98%86-%E5%AE%89%E8%A3%85vim-%E6%8F%92%E4%BB%B6-LeaderF"><span class="toc-number">2.</span> <span class="toc-text">☆ 安装vim 插件 LeaderF</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E2%98%86-LeaderF-%E9%85%8D%E7%BD%AE"><span class="toc-number">3.</span> <span class="toc-text">☆ LeaderF 配置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%90%E8%A1%8C-LeaderF-%E4%B9%8B%E5%90%8E%E7%9A%84%E6%93%8D%E4%BD%9C"><span class="toc-number">3.1.</span> <span class="toc-text">运行 LeaderF 之后的操作</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E2%98%86-LeaderF-gtags-%E7%9A%84%E9%85%8D%E7%BD%AE"><span class="toc-number">4.</span> <span class="toc-text">☆ LeaderF + gtags 的配置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%90%E8%A1%8C-LeaderF-gtags-%E4%B9%8B%E5%90%8E"><span class="toc-number">4.1.</span> <span class="toc-text">运行 LeaderF gtags 之后</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E2%98%86-LeaderF-%E7%9A%84%E5%85%B6%E4%BB%96%E7%94%A8%E6%B3%95"><span class="toc-number">5.</span> <span class="toc-text">☆ LeaderF 的其他用法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E2%98%86-%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="toc-number">6.</span> <span class="toc-text">☆ 参考资料</span></a></li></ol>
-      </div>
-    
-  </span>
-</div>
-
-    
-    <div class="content index py4 ">
-        
-        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
-  <header>
-    
-    <h1 class="posttitle p-name" itemprop="name headline">
-        在 vim 中使用 LeaderF 和 gtags
-    </h1>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
 
 
-    <div class="meta">
-      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
-        <span class="p-name" itemprop="name">henices</span>
-      </span>
-      
-    <div class="postdate">
-      
-        <time datetime="2023-07-19T16:00:00.000Z" class="dt-published" itemprop="datePublished">2023-07-20</time>
-        
-        (Updated: <time datetime="2024-06-11T16:00:00.000Z" class="dt-updated" itemprop="dateModified">2024-06-12</time>)
-        
-      
-    </div>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
 
 
-      
 
-      
-    <div class="article-tag">
-        <i class="fa-solid fa-tag"></i>
-        <a class="p-category" href="/tags/Programming/" rel="tag">Programming</a>, <a class="p-category" href="/tags/vim/" rel="tag">vim</a>
-    </div>
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
 
 
-    </div>
-  </header>
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
   
 
-  <div class="content e-content" itemprop="articleBody">
-    <h2 id="☆-缘由和一些-vim-历史"><a href="#☆-缘由和一些-vim-历史" class="headerlink" title="☆ 缘由和一些 vim 历史"></a>☆ 缘由和一些 vim 历史</h2><p>前些年 vim 没有子窗口的概念，日本的一个 vim 插件作者为了解决这个问题生撸了一套流程，当时 unite.vim 横空出世惊艳了我一把。后面随着技术发展，neovim 和 vim 先后引入了 floating window ，这才使得情况变得好了一点。</p>
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"usmacd.com","root":"/","version":"1.9.7","typing":{"enable":false,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.2.0"><link rel="alternate" href="/atom.xml" title="安全代码" type="application/atom+xml">
+<link rel="alternate" href="/rss.xml" title="安全代码" type="application/rss+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>安全代码</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/rss.xml" target="_self">
+                <i class="iconfont icon-rss"></i>
+                <span>rss</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/sitemap.xml" target="_self">
+                
+                <span>sitemap</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://images.unsplash.com/photo-1473181488821-2d23949a045a?w=640') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle">在 vim 中使用 LeaderF 和 gtags</span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-07-20 00:00" pubdate>
+          2023年7月20日 凌晨
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.3k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          19 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">在 vim 中使用 LeaderF 和 gtags</h1>
+            
+              <p id="updated-time" class="note note-info" style="">
+                
+                  
+                    本文最后更新于 2024年6月12日 凌晨
+                  
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
+                <h2 id="☆-缘由和一些-vim-历史"><a href="#☆-缘由和一些-vim-历史" class="headerlink" title="☆ 缘由和一些 vim 历史"></a>☆ 缘由和一些 vim 历史</h2><p>前些年 vim 没有子窗口的概念，日本的一个 vim 插件作者为了解决这个问题生撸了一套流程，当时 unite.vim 横空出世惊艳了我一把。后面随着技术发展，neovim 和 vim 先后引入了 floating window ，这才使得情况变得好了一点。</p>
 <p><a target="_blank" rel="noopener" href="https://github.com/vim/vim/blob/master/runtime/doc/popup.txt">https://github.com/vim/vim/blob/master/runtime/doc/popup.txt</a><br><a target="_blank" rel="noopener" href="https://neovim.io/doc/user/api.html#api-floatwin">https://neovim.io/doc/user/api.html#api-floatwin</a></p>
 <p>得益于新技术，在 vim 中使用 LeaderF 插件的交互体验上了一个台阶。</p>
-<p><img src="https://raw.githubusercontent.com/Yggdroot/Images/master/leaderf/leaderf_popup.gif" alt="Demo"></p>
+<p><img src="https://raw.githubusercontent.com/Yggdroot/Images/master/leaderf/leaderf_popup.gif" srcset="/img/loading.gif" lazyload alt="Demo"></p>
 <p>neovim 从 0.9 版本开始放弃对 cscope 的支持 <a target="_blank" rel="noopener" href="https://twitter.com/Neovim/status/1580933880579641344">https://twitter.com/Neovim/status/1580933880579641344</a></p>
 <p>这给我阅读源码造成了一些问题，虽然 vim 仍然可以使用 cscope，但 vim 的启动速度不如 nvim 快，所以我开始寻找替代方案。同时，我发现 denite.nvim，unite.vim，作者也不怎么维护了，一想似乎是很多年没有维护 vim 配置了。</p>
 <p>在网络上搜索在 neovim 上阅读源码的方法，无意发现有人提到用 LeaderF 替代 tagbar，于是有了现在的这篇文章。</p>
 <h2 id="☆-安装vim-插件-LeaderF"><a href="#☆-安装vim-插件-LeaderF" class="headerlink" title="☆ 安装vim 插件 LeaderF"></a>☆ 安装vim 插件 LeaderF</h2><p>插件的仓库地址：<a target="_blank" rel="noopener" href="https://github.com/Yggdroot/LeaderF/tree/master">https://github.com/Yggdroot/LeaderF/tree/master</a></p>
 <p>使用 <a target="_blank" rel="noopener" href="https://github.com/VundleVim/Vundle.vim">Vundle.vim</a> 安装，在 .vimrc 中添加下面一行</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Plug &#x27;Yggdroot/LeaderF&#x27;, &#123; &#x27;do&#x27;: &#x27;:LeaderfInstallCExtension&#x27; &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs 1c">Plug &#x27;Yggdroot/LeaderF&#x27;, &#123; &#x27;do&#x27;: &#x27;:LeaderfInstallCExtension&#x27; &#125;<br></code></pre></td></tr></table></figure>
 
 <p>在 vim 中执行下面命令，即可成功安装，如果遇到网络问题，自己挂上线路即可。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">：so %</span><br><span class="line">:PlugInstall</span><br></pre></td></tr></table></figure>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs elixir">：so %<br><span class="hljs-symbol">:PlugInstall</span><br></code></pre></td></tr></table></figure>
 
-<h2 id="☆-LeaderF-配置"><a href="#☆-LeaderF-配置" class="headerlink" title="☆ LeaderF 配置"></a>☆ LeaderF 配置</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">let g:Lf_WorkingDirectoryMode = <span class="string">&#x27;Ac&#x27;</span></span><br><span class="line">let g:Lf_RootMarkers = [<span class="string">&#x27;.git&#x27;</span>, <span class="string">&#x27;.svn&#x27;</span>, <span class="string">&#x27;.hg&#x27;</span>, <span class="string">&#x27;.project&#x27;</span>, <span class="string">&#x27;.root&#x27;</span>]</span><br><span class="line">let g:Lf_DefaultExternalTool=<span class="string">&#x27;rg&#x27;</span></span><br><span class="line">let g:Lf_WindowPosition = <span class="string">&#x27;popup&#x27;</span></span><br><span class="line"></span><br><span class="line">let g:Lf_UseCache = <span class="number">0</span></span><br><span class="line">let g:Lf_PreviewInPopup = <span class="number">1</span></span><br><span class="line">let g:Lf_ShowHidden = <span class="number">1</span>  <span class="string">&quot;show hidden files</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">&quot;</span> preview or not</span><br><span class="line">let g:Lf_PreviewResult = &#123;<span class="string">&#x27;Function&#x27;</span>: <span class="number">0</span>, <span class="string">&#x27;BufTag&#x27;</span>: <span class="number">0</span> &#125;</span><br></pre></td></tr></table></figure>
+<h2 id="☆-LeaderF-配置"><a href="#☆-LeaderF-配置" class="headerlink" title="☆ LeaderF 配置"></a>☆ LeaderF 配置</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs c">let g:Lf_WorkingDirectoryMode = <span class="hljs-string">&#x27;Ac&#x27;</span><br>let g:Lf_RootMarkers = [<span class="hljs-string">&#x27;.git&#x27;</span>, <span class="hljs-string">&#x27;.svn&#x27;</span>, <span class="hljs-string">&#x27;.hg&#x27;</span>, <span class="hljs-string">&#x27;.project&#x27;</span>, <span class="hljs-string">&#x27;.root&#x27;</span>]<br>let g:Lf_DefaultExternalTool=<span class="hljs-string">&#x27;rg&#x27;</span><br>let g:Lf_WindowPosition = <span class="hljs-string">&#x27;popup&#x27;</span><br><br>let g:Lf_UseCache = <span class="hljs-number">0</span><br>let g:Lf_PreviewInPopup = <span class="hljs-number">1</span><br>let g:Lf_ShowHidden = <span class="hljs-number">1</span>  <span class="hljs-string">&quot;show hidden files</span><br><span class="hljs-string"></span><br><span class="hljs-string">&quot;</span> preview or not<br>let g:Lf_PreviewResult = &#123;<span class="hljs-string">&#x27;Function&#x27;</span>: <span class="hljs-number">0</span>, <span class="hljs-string">&#x27;BufTag&#x27;</span>: <span class="hljs-number">0</span> &#125;<br></code></pre></td></tr></table></figure>
 
 <ul>
 <li>g:Lf_WorkingDirectoryMode &#x3D; ‘AF’ 设置工作目录，如果没有找到 RootMarker 以当前文件所在目录作为工作目录</li>
 </ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">g:Lf_WorkingDirectoryMode                       *g:Lf_WorkingDirectoryMode*</span><br><span class="line">    This option customizes LeaderF&#x27;s working directory.</span><br><span class="line">    e.g., &gt;</span><br><span class="line">    let g:Lf_WorkingDirectoryMode = &#x27;Ac&#x27;</span><br><span class="line">&lt;</span><br><span class="line">    c - the directory of the current working directory.(default)</span><br><span class="line">    a - the nearest ancestor of current working directory that contains one of</span><br><span class="line">        directories or files defined in |g:Lf_RootMarkers|. Fall back to &#x27;c&#x27; if</span><br><span class="line">        no such ancestor directory found.</span><br><span class="line">    A - the nearest ancestor of current file that contains one of directories</span><br><span class="line">        or files defined in |g:Lf_RootMarkers|. Fall back to &#x27;c&#x27; if no such</span><br><span class="line">        ancestor directory found.</span><br><span class="line">    f - the directory of the current file.</span><br><span class="line">    F - if the current working directory is not the direct ancestor of current</span><br><span class="line">        file, use the directory of the current file as LeaderF&#x27;s working</span><br><span class="line">        directory, otherwise, same as &#x27;c&#x27;.</span><br><span class="line">    Note: if &quot;f&quot;, &quot;F&quot; is included with &quot;a&quot; or &quot;A&quot;, use the behavior of &quot;f&quot; or</span><br><span class="line">    &quot;F&quot;(as a fallback) when a root can&#x27;t be found.</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight vhdl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs vhdl">g:Lf_WorkingDirectoryMode                       *g:Lf_WorkingDirectoryMode*<br>    This option customizes LeaderF<span class="hljs-symbol">&#x27;s</span> working directory.<br>    e.g., &gt;<br>    let g:Lf_WorkingDirectoryMode = <span class="hljs-symbol">&#x27;Ac</span>&#x27;<br>&lt;<br>    c - the directory <span class="hljs-keyword">of</span> the current working directory.(<span class="hljs-keyword">default</span>)<br>    a - the nearest ancestor <span class="hljs-keyword">of</span> current working directory that contains one <span class="hljs-keyword">of</span><br>        directories <span class="hljs-keyword">or</span> files defined <span class="hljs-keyword">in</span> |g:Lf_RootMarkers|. Fall back <span class="hljs-keyword">to</span> <span class="hljs-symbol">&#x27;c</span>&#x27; <span class="hljs-keyword">if</span><br>        no such ancestor directory found.<br>    A - the nearest ancestor <span class="hljs-keyword">of</span> current <span class="hljs-keyword">file</span> that contains one <span class="hljs-keyword">of</span> directories<br>        <span class="hljs-keyword">or</span> files defined <span class="hljs-keyword">in</span> |g:Lf_RootMarkers|. Fall back <span class="hljs-keyword">to</span> <span class="hljs-symbol">&#x27;c</span>&#x27; <span class="hljs-keyword">if</span> no such<br>        ancestor directory found.<br>    f - the directory <span class="hljs-keyword">of</span> the current <span class="hljs-keyword">file</span>.<br>    F - <span class="hljs-keyword">if</span> the current working directory <span class="hljs-keyword">is</span> <span class="hljs-keyword">not</span> the direct ancestor <span class="hljs-keyword">of</span> current<br>        <span class="hljs-keyword">file</span>, <span class="hljs-keyword">use</span> the directory <span class="hljs-keyword">of</span> the current <span class="hljs-keyword">file</span> as LeaderF<span class="hljs-symbol">&#x27;s</span> working<br>        directory, otherwise, same as <span class="hljs-symbol">&#x27;c</span>&#x27;.<br>    <span class="hljs-literal">Note</span>: <span class="hljs-keyword">if</span> <span class="hljs-string">&quot;f&quot;</span>, <span class="hljs-string">&quot;F&quot;</span> <span class="hljs-keyword">is</span> included <span class="hljs-keyword">with</span> <span class="hljs-string">&quot;a&quot;</span> <span class="hljs-keyword">or</span> <span class="hljs-string">&quot;A&quot;</span>, <span class="hljs-keyword">use</span> the behavior <span class="hljs-keyword">of</span> <span class="hljs-string">&quot;f&quot;</span> <span class="hljs-keyword">or</span><br>    <span class="hljs-string">&quot;F&quot;</span>(as a fallback) <span class="hljs-keyword">when</span> a root can<span class="hljs-symbol">&#x27;t</span> be found.<br><br></code></pre></td></tr></table></figure>
 
 <ul>
 <li>g:Lf_DefaultExternalTool  索引文件使用的外部工具，可选值为 ‘rg’, ‘pt’, ‘ag’, ‘find’，作者推荐使用 <a target="_blank" rel="noopener" href="https://github.com/BurntSushi/ripgrep">rg</a></li>
@@ -209,20 +349,20 @@
 <li>g:Lf_WindowPosition，LeaderF 窗口的位置，可选值有 top, bottom, left, right, popup,fullscreen，默认值为 bottom</li>
 <li>g:Lf_PreviewInPopup 设置是否在 LeaderF 的 popup 窗口显示预览, 默认值为 0</li>
 <li>g:Lf_ShowHidden 是否显示隐藏文件和目录，默认值为 0 不显示隐藏文件</li>
-<li>g:Lf_PreviewResult 设置需要显示预览的内容，默认值为全 1<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> <span class="variable">g:Lf_PreviewResult</span> = &#123;</span><br><span class="line">        \ <span class="string">&#x27;File&#x27;</span>: <span class="number">1</span>,</span><br><span class="line">        \ <span class="string">&#x27;Buffer&#x27;</span>: <span class="number">1</span>,</span><br><span class="line">        \ <span class="string">&#x27;Mru&#x27;</span>: <span class="number">1</span>,</span><br><span class="line">        \ <span class="string">&#x27;Tag&#x27;</span>: <span class="number">1</span>,</span><br><span class="line">        \ <span class="string">&#x27;BufTag&#x27;</span>: <span class="number">1</span>,</span><br><span class="line">        \ <span class="string">&#x27;Function&#x27;</span>: <span class="number">1</span>,</span><br><span class="line">        \ <span class="string">&#x27;Line&#x27;</span>: <span class="number">1</span>,</span><br><span class="line">        \ <span class="string">&#x27;Colorscheme&#x27;</span>: <span class="number">1</span>,</span><br><span class="line">        \ <span class="string">&#x27;Rg&#x27;</span>: <span class="number">1</span>,</span><br><span class="line">        \ <span class="string">&#x27;Gtags&#x27;</span>: <span class="number">1</span></span><br><span class="line">        \&#125;</span><br></pre></td></tr></table></figure></li>
+<li>g:Lf_PreviewResult 设置需要显示预览的内容，默认值为全 1<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs vim"><span class="hljs-keyword">let</span> <span class="hljs-variable">g:Lf_PreviewResult</span> = &#123;<br>        \ <span class="hljs-string">&#x27;File&#x27;</span>: <span class="hljs-number">1</span>,<br>        \ <span class="hljs-string">&#x27;Buffer&#x27;</span>: <span class="hljs-number">1</span>,<br>        \ <span class="hljs-string">&#x27;Mru&#x27;</span>: <span class="hljs-number">1</span>,<br>        \ <span class="hljs-string">&#x27;Tag&#x27;</span>: <span class="hljs-number">1</span>,<br>        \ <span class="hljs-string">&#x27;BufTag&#x27;</span>: <span class="hljs-number">1</span>,<br>        \ <span class="hljs-string">&#x27;Function&#x27;</span>: <span class="hljs-number">1</span>,<br>        \ <span class="hljs-string">&#x27;Line&#x27;</span>: <span class="hljs-number">1</span>,<br>        \ <span class="hljs-string">&#x27;Colorscheme&#x27;</span>: <span class="hljs-number">1</span>,<br>        \ <span class="hljs-string">&#x27;Rg&#x27;</span>: <span class="hljs-number">1</span>,<br>        \ <span class="hljs-string">&#x27;Gtags&#x27;</span>: <span class="hljs-number">1</span><br>        \&#125;<br></code></pre></td></tr></table></figure></li>
 </ul>
 <p>配置好了 LeaderF，在 vim&#x2F;neovim 的命令行输入  <code>:Leaderf</code>  tab 就可以看到相关的命令了，如果忘记了具体的命令也没有关系，使用 <code>LeaderfSelf</code> 即可列出所有的 Leaderf 命令。如何想查看具体命令的使用方法，在命令窗口输入 <code>:Leaderf -h</code></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">subcommands:</span><br><span class="line"></span><br><span class="line">  &#123;file,tag,function,mru,searchHistory,cmdHistory,help,line,colorscheme,gtags,</span><br><span class="line">      self,bufTag,buffer,rg,filetype,command,window,quickfix,loclist,jumps&#125;</span><br><span class="line">    file                search files</span><br><span class="line">    tag                 navigate tags using the tags file</span><br><span class="line">    function            navigate functions or methods in the buffer</span><br><span class="line">    mru                 search most recently used files</span><br><span class="line">    searchHistory       execute the search command in the history</span><br><span class="line">    cmdHistory          execute the command in the history</span><br><span class="line">    help                navigate the help tags</span><br><span class="line">    line                search a line in the buffer</span><br><span class="line">    colorscheme         switch between colorschemes</span><br><span class="line">    gtags               navigate tags using the gtags</span><br><span class="line">    self                execute the commands of itself</span><br><span class="line">    bufTag              navigate tags in the buffer</span><br><span class="line">    buffer              search buffers</span><br><span class="line">    rg                  grep using rg</span><br><span class="line">    filetype            navigate the filetype</span><br><span class="line">    command             execute built-in/user-defined Ex commands.</span><br><span class="line">    window              search windows.</span><br><span class="line">    quickfix            navigate the quickfix.</span><br><span class="line">    loclist             navigate the location list.</span><br></pre></td></tr></table></figure>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs vim">subcommands:<br><br>  &#123;<span class="hljs-keyword">file</span>,<span class="hljs-keyword">tag</span>,<span class="hljs-keyword">function</span>,mru,searchHistory,cmdHistory,<span class="hljs-keyword">help</span>,<span class="hljs-built_in">line</span>,<span class="hljs-keyword">colorscheme</span>,gtags,<br>      self,bufTag,<span class="hljs-keyword">buffer</span>,rg,<span class="hljs-keyword">filetype</span>,<span class="hljs-keyword">command</span>,window,quickfix,loclist,<span class="hljs-keyword">jumps</span>&#125;<br>    <span class="hljs-keyword">file</span>                <span class="hljs-built_in">search</span> <span class="hljs-keyword">files</span><br>    <span class="hljs-keyword">tag</span>                 navigate <span class="hljs-keyword">tags</span> using the <span class="hljs-keyword">tags</span> <span class="hljs-keyword">file</span><br>    <span class="hljs-keyword">function</span>            <span class="hljs-title">navigate</span> functions or methods in the buffer<br>    mru                 <span class="hljs-built_in">search</span> most recently used <span class="hljs-keyword">files</span><br>    searchHistory       <span class="hljs-keyword">execute</span> the <span class="hljs-built_in">search</span> <span class="hljs-keyword">command</span> in the <span class="hljs-keyword">history</span><br>    cmdHistory          <span class="hljs-keyword">execute</span> the <span class="hljs-keyword">command</span> in the <span class="hljs-keyword">history</span><br>    <span class="hljs-keyword">help</span>                navigate the <span class="hljs-keyword">help</span> <span class="hljs-keyword">tags</span><br>    <span class="hljs-built_in">line</span>                <span class="hljs-built_in">search</span> <span class="hljs-keyword">a</span> <span class="hljs-built_in">line</span> in the <span class="hljs-keyword">buffer</span><br>    <span class="hljs-keyword">colorscheme</span>         switch between colorschemes<br>    gtags               navigate <span class="hljs-keyword">tags</span> using the gtags<br>    self                <span class="hljs-keyword">execute</span> the commands of itself<br>    bufTag              navigate <span class="hljs-keyword">tags</span> in the <span class="hljs-keyword">buffer</span><br>    <span class="hljs-keyword">buffer</span>              <span class="hljs-built_in">search</span> <span class="hljs-keyword">buffers</span><br>    rg                  <span class="hljs-keyword">grep</span> using rg<br>    <span class="hljs-keyword">filetype</span>            navigate the <span class="hljs-keyword">filetype</span><br>    <span class="hljs-keyword">command</span>             <span class="hljs-keyword">execute</span> built-in/user-defined Ex commands.<br>    window              <span class="hljs-built_in">search</span> windows.<br>    quickfix            navigate the quickfix.<br>    loclist             navigate the location <span class="hljs-keyword">list</span>.<br></code></pre></td></tr></table></figure>
 
 <p>好了，我可以放弃 fzf.vim, ctrp.vim, tagbar, unite.vim, denite.vim 等一系列 vim 插件了。 在日常使用中，每次都输入那么长的命令不太方便，我们可以配置以下容易记忆的快捷键。</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">noremap &lt;leader&gt;fs :LeaderfSelf&lt;cr&gt;</span><br><span class="line">noremap &lt;leader&gt;fm :LeaderfMru&lt;cr&gt;</span><br><span class="line">noremap &lt;leader&gt;ff :LeaderfFunction&lt;cr&gt;</span><br><span class="line">noremap &lt;leader&gt;fb :LeaderfBuffer&lt;cr&gt;</span><br><span class="line">noremap &lt;leader&gt;ft :LeaderfBufTag&lt;cr&gt;</span><br><span class="line">noremap &lt;leader&gt;fl :LeaderfLine&lt;cr&gt;</span><br><span class="line">noremap &lt;leader&gt;fw :LeaderfWindow&lt;cr&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs c">noremap &lt;leader&gt;fs :LeaderfSelf&lt;cr&gt;<br>noremap &lt;leader&gt;fm :LeaderfMru&lt;cr&gt;<br>noremap &lt;leader&gt;ff :LeaderfFunction&lt;cr&gt;<br>noremap &lt;leader&gt;fb :LeaderfBuffer&lt;cr&gt;<br>noremap &lt;leader&gt;ft :LeaderfBufTag&lt;cr&gt;<br>noremap &lt;leader&gt;fl :LeaderfLine&lt;cr&gt;<br>noremap &lt;leader&gt;fw :LeaderfWindow&lt;cr&gt;<br></code></pre></td></tr></table></figure>
 
 <p>值得一提的是 rg 命令，可以直接在目录文件内搜索字符串，ripgrep 的正则表达式比 vim 的正则要正常多了。vim 的正则表达式的用法可以参见：<a target="_blank" rel="noopener" href="https://vimdoc.sourceforge.net/htmldoc/pattern.html">https://vimdoc.sourceforge.net/htmldoc/pattern.html</a><br>以前我为了规避 vim 的正则使用了一个插件 <a target="_blank" rel="noopener" href="https://github.com/othree/eregex.vim">https://github.com/othree/eregex.vim</a> 现在这个插件也不需要了。</p>
 <p>要利用 LeaderF 调用 rg 命令，可以使用命令行 <code>:Leaderf! rg</code>, 为了方便使用使用下面的快捷键查询光标所在 word</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmap &lt;leader&gt;frb &lt;Plug&gt;LeaderfRgCwordLiteralBoundary</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs c">nmap &lt;leader&gt;frb &lt;Plug&gt;LeaderfRgCwordLiteralBoundary<br></code></pre></td></tr></table></figure>
 
 <h3 id="运行-LeaderF-之后的操作"><a href="#运行-LeaderF-之后的操作" class="headerlink" title="运行 LeaderF 之后的操作"></a>运行 LeaderF 之后的操作</h3><p>在执行 Leaderf 命令弹出的界面后，需要使用特定的快捷键进行操作，这些快捷键可以使用 <code>help leaderf-prompt</code> 进行查看。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">Once LeaderF is launched:                       *prompt* *leaderf-prompt*</span><br><span class="line">    &lt;C-C&gt;, &lt;ESC&gt; : quit from LeaderF.</span><br><span class="line">    &lt;C-R&gt; : switch between fuzzy search mode and regex mode.</span><br><span class="line">    &lt;C-F&gt; : switch between full path search mode and name only search mode.</span><br><span class="line">    &lt;Tab&gt; : switch to normal mode.</span><br><span class="line">    &lt;C-V&gt;, &lt;S-Insert&gt; : paste from clipboard.</span><br><span class="line">    &lt;C-U&gt; : clear the prompt.</span><br><span class="line">    &lt;C-W&gt; : delete the word before the cursor in the prompt.</span><br><span class="line">    &lt;C-J&gt;, &lt;C-K&gt; : navigate the result list.</span><br><span class="line">    &lt;Up&gt;, &lt;Down&gt; : recall last/next input pattern from history.</span><br><span class="line">    &lt;2-LeftMouse&gt; or &lt;CR&gt; : open the file under cursor or selected(when</span><br><span class="line">                            multiple files are selected).</span><br><span class="line">    &lt;C-X&gt; : open in horizontal split window.</span><br><span class="line">    &lt;C-]&gt; : open in vertical split window.</span><br><span class="line">    &lt;C-T&gt; : open in new tabpage.</span><br><span class="line">    &lt;F5&gt;  : refresh the cache.</span><br><span class="line">    &lt;C-LeftMouse&gt; or &lt;C-S&gt; : select multiple files.</span><br><span class="line">    &lt;S-LeftMouse&gt; : select consecutive multiple files.</span><br><span class="line">    &lt;C-A&gt; : select all files.</span><br><span class="line">    &lt;C-L&gt; : clear all selections.</span><br><span class="line">    &lt;BS&gt;  : delete the preceding character in the prompt.</span><br><span class="line">    &lt;Del&gt; : delete the current character in the prompt.</span><br><span class="line">    &lt;Home&gt;: move the cursor to the begin of the prompt.</span><br><span class="line">    &lt;End&gt; : move the cursor to the end of the prompt.</span><br><span class="line">    &lt;Left&gt;: move the cursor one character to the left.</span><br><span class="line">    &lt;Right&gt; : move the cursor one character to the right.</span><br><span class="line">    &lt;C-P&gt; : preview the result.</span><br><span class="line">    &lt;C-Up&gt; : scroll up in the popup preview window.</span><br><span class="line">    &lt;C-Down&gt; : scroll down in the popup preview window.</span><br></pre></td></tr></table></figure>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><code class="hljs vim">Once LeaderF <span class="hljs-keyword">is</span> launched:                       *prompt* *leaderf-prompt*<br>    <span class="hljs-symbol">&lt;C-C&gt;</span>, <span class="hljs-symbol">&lt;ESC&gt;</span> : <span class="hljs-keyword">quit</span> from LeaderF.<br>    <span class="hljs-symbol">&lt;C-R&gt;</span> : switch between fuzzy <span class="hljs-built_in">search</span> <span class="hljs-keyword">mode</span> <span class="hljs-built_in">and</span> regex <span class="hljs-keyword">mode</span>.<br>    <span class="hljs-symbol">&lt;C-F&gt;</span> : switch between full path <span class="hljs-built_in">search</span> <span class="hljs-keyword">mode</span> <span class="hljs-built_in">and</span> name <span class="hljs-keyword">only</span> <span class="hljs-built_in">search</span> <span class="hljs-keyword">mode</span>.<br>    <span class="hljs-symbol">&lt;Tab&gt;</span> : switch <span class="hljs-keyword">to</span> <span class="hljs-keyword">normal</span> <span class="hljs-keyword">mode</span>.<br>    <span class="hljs-symbol">&lt;C-V&gt;</span>, <span class="hljs-symbol">&lt;S-Insert&gt;</span> : paste from clipboard.<br>    <span class="hljs-symbol">&lt;C-U&gt;</span> : clear the prompt.<br>    <span class="hljs-symbol">&lt;C-W&gt;</span> : <span class="hljs-keyword">delete</span> the word before the <span class="hljs-built_in">cursor</span> in the prompt.<br>    <span class="hljs-symbol">&lt;C-J&gt;</span>, <span class="hljs-symbol">&lt;C-K&gt;</span> : navigate the result <span class="hljs-keyword">list</span>.<br>    <span class="hljs-symbol">&lt;Up&gt;</span>, <span class="hljs-symbol">&lt;Down&gt;</span> : recall <span class="hljs-keyword">last</span>/<span class="hljs-keyword">next</span> <span class="hljs-built_in">input</span> pattern from <span class="hljs-keyword">history</span>.<br>    <span class="hljs-symbol">&lt;2-LeftMouse&gt;</span> <span class="hljs-built_in">or</span> <span class="hljs-symbol">&lt;CR&gt;</span> : <span class="hljs-keyword">open</span> the <span class="hljs-keyword">file</span> under <span class="hljs-built_in">cursor</span> <span class="hljs-built_in">or</span> selected(when<br>                            multiple <span class="hljs-keyword">files</span> are selected).<br>    <span class="hljs-symbol">&lt;C-X&gt;</span> : <span class="hljs-keyword">open</span> in horizontal <span class="hljs-keyword">split</span> window.<br>    &lt;C-]&gt; : <span class="hljs-keyword">open</span> in <span class="hljs-keyword">vertical</span> <span class="hljs-keyword">split</span> window.<br>    <span class="hljs-symbol">&lt;C-T&gt;</span> : <span class="hljs-keyword">open</span> in <span class="hljs-keyword">new</span> tabpage.<br>    <span class="hljs-symbol">&lt;F5&gt;</span>  : refresh the cache.<br>    <span class="hljs-symbol">&lt;C-LeftMouse&gt;</span> <span class="hljs-built_in">or</span> <span class="hljs-symbol">&lt;C-S&gt;</span> : select multiple <span class="hljs-keyword">files</span>.<br>    <span class="hljs-symbol">&lt;S-LeftMouse&gt;</span> : select consecutive multiple <span class="hljs-keyword">files</span>.<br>    <span class="hljs-symbol">&lt;C-A&gt;</span> : select <span class="hljs-keyword">all</span> <span class="hljs-keyword">files</span>.<br>    <span class="hljs-symbol">&lt;C-L&gt;</span> : clear <span class="hljs-keyword">all</span> selections.<br>    <span class="hljs-symbol">&lt;BS&gt;</span>  : <span class="hljs-keyword">delete</span> the preceding character in the prompt.<br>    <span class="hljs-symbol">&lt;Del&gt;</span> : <span class="hljs-keyword">delete</span> the current character in the prompt.<br>    <span class="hljs-symbol">&lt;Home&gt;</span>: <span class="hljs-keyword">move</span> the <span class="hljs-built_in">cursor</span> <span class="hljs-keyword">to</span> the begin of the prompt.<br>    <span class="hljs-symbol">&lt;End&gt;</span> : <span class="hljs-keyword">move</span> the <span class="hljs-built_in">cursor</span> <span class="hljs-keyword">to</span> the end of the prompt.<br>    <span class="hljs-symbol">&lt;Left&gt;</span>: <span class="hljs-keyword">move</span> the <span class="hljs-built_in">cursor</span> one character <span class="hljs-keyword">to</span> the <span class="hljs-keyword">left</span>.<br>    <span class="hljs-symbol">&lt;Right&gt;</span> : <span class="hljs-keyword">move</span> the <span class="hljs-built_in">cursor</span> one character <span class="hljs-keyword">to</span> the <span class="hljs-keyword">right</span>.<br>    <span class="hljs-symbol">&lt;C-P&gt;</span> : preview the result.<br>    <span class="hljs-symbol">&lt;C-Up&gt;</span> : scroll <span class="hljs-keyword">up</span> in the <span class="hljs-keyword">popup</span> preview window.<br>    <span class="hljs-symbol">&lt;C-Down&gt;</span> : scroll down in the <span class="hljs-keyword">popup</span> preview window.<br></code></pre></td></tr></table></figure>
 
 <ul>
 <li>tab : 切换输入模式和 normal 模式，进入 normal 模式后可以使用 <code>j</code> 和 <code>k</code> 上下移动光标来查看文件。 </li>
@@ -235,13 +375,13 @@
 <li>ctrl + T : tab 分割</li>
 </ul>
 <h2 id="☆-LeaderF-gtags-的配置"><a href="#☆-LeaderF-gtags-的配置" class="headerlink" title="☆ LeaderF + gtags 的配置"></a>☆ LeaderF + gtags 的配置</h2><p>gtags 和 LeaderF 配置起来使用，实在是很不错。首先要配置好 gtags，关于 global 的安装详见 <a target="_blank" rel="noopener" href="https://www.usmacd.com/cn/gtags-cscope/">GNU Global 的使用</a>，这里就不再详细说了，gtags 的配置添加下面两行即可。</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">let $GTAGSLABEL=<span class="string">&#x27;native-pygments&#x27;</span></span><br><span class="line">let $GTAGSCONF=<span class="string">&#x27;/usr/local/share/gtags/gtags.conf&#x27;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs c">let $GTAGSLABEL=<span class="hljs-string">&#x27;native-pygments&#x27;</span><br>let $GTAGSCONF=<span class="hljs-string">&#x27;/usr/local/share/gtags/gtags.conf&#x27;</span><br></code></pre></td></tr></table></figure>
 
 <p>配置好系统 gtags，global ，gtags.conf 的正确路径。</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">let g:Lf_Global = <span class="string">&#x27;/usr/local/bin/global&#x27;</span></span><br><span class="line">let g:Lf_Gtags = <span class="string">&#x27;/usr/local/bin/gtags&#x27;</span></span><br><span class="line">let g:Lf_Gtagsconf = <span class="string">&#x27;/usr/local/share/gtags/gtags.conf&#x27;</span></span><br><span class="line">let g:Lf_Gtagslabel = <span class="string">&#x27;native-pygments&#x27;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs c">let g:Lf_Global = <span class="hljs-string">&#x27;/usr/local/bin/global&#x27;</span><br>let g:Lf_Gtags = <span class="hljs-string">&#x27;/usr/local/bin/gtags&#x27;</span><br>let g:Lf_Gtagsconf = <span class="hljs-string">&#x27;/usr/local/share/gtags/gtags.conf&#x27;</span><br>let g:Lf_Gtagslabel = <span class="hljs-string">&#x27;native-pygments&#x27;</span><br></code></pre></td></tr></table></figure>
 
 <p>下面两行是配置gtags 自动生成 tags 文件，主要是三个文件 <code>GPATH</code> , <code>GRTAGS</code>  <code>GTAGS</code></p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">let g:Lf_GtagsSource = <span class="number">2</span></span><br><span class="line">let g:Lf_GtagsAutoGenerate = <span class="number">1</span></span><br><span class="line">let g:Lf_GtagsAutoUpdate = <span class="number">1</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs c">let g:Lf_GtagsSource = <span class="hljs-number">2</span><br>let g:Lf_GtagsAutoGenerate = <span class="hljs-number">1</span><br>let g:Lf_GtagsAutoUpdate = <span class="hljs-number">1</span><br></code></pre></td></tr></table></figure>
 
 <ul>
 <li>g:Lf_GtagsSource 设置 gtags 的目标文件，设置为 2 通过执行外部命令判断目标文件 （例如 <code>git ls-files</code>）</li>
@@ -249,172 +389,361 @@
 <li>g:Lf_GtagsAutoUpdate 是否自动更新 tags。如果设置成 0 ，需要先执行 <code>Leaderf gtags --update</code> 手动更新 tags 文件</li>
 </ul>
 <p>tags 文件生成的目录和 <code>g:Lf_CacheDirectory</code> 的配置相关， g:Lf_CacheDirectory 用于设置缓存文件目录，默认的目录是 $HOME (Windows 上会有变化)使用 <code>_</code> 替换了 <code>/</code> 。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">ls</span> ~/.LfCache/gtags/_home_henices_.vim </span><br><span class="line">GPATH  GRTAGS  GTAGS</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">ls</span> ~/.LfCache/gtags/_home_henices_.vim <br>GPATH  GRTAGS  GTAGS<br></code></pre></td></tr></table></figure>
 
 <p>新版本的 LeaderF，g:Lf_CacheDirectory 的默认值发生了变化，Linux 系统一般为 <code>~/.cache/LeaderF</code>，详情如下：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">g:Lf_CacheDirectory                              *g:Lf_CacheDirectory*</span><br><span class="line">    Set this option to change the location of the cache directory.</span><br><span class="line">    e.g. &gt;</span><br><span class="line">    let g:Lf_CacheDirectory = &#x27;/root&#x27;</span><br><span class="line">&lt;</span><br><span class="line">    On Windows, default value is &#x27;%APPDATA%&#x27;.</span><br><span class="line">    On Linux, default value is &#x27;$XDG_CACHE_HOME&#x27; if $XDG_CACHE_HOME is defined,</span><br><span class="line">    otherwise, default value is &#x27;$HOME/.cache&#x27;.</span><br></pre></td></tr></table></figure>
+<figure class="highlight vbnet"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs vbnet"><span class="hljs-symbol">g:</span>Lf_CacheDirectory                              *g:Lf_CacheDirectory*<br>    <span class="hljs-keyword">Set</span> this <span class="hljs-keyword">option</span> <span class="hljs-keyword">to</span> change the location <span class="hljs-keyword">of</span> the cache directory.<br>    e.g. &gt;<br>    <span class="hljs-keyword">let</span> g:Lf_CacheDirectory = <span class="hljs-comment">&#x27;/root&#x27;</span><br>&lt;<br>    <span class="hljs-keyword">On</span> Windows, <span class="hljs-keyword">default</span> value <span class="hljs-built_in">is</span> <span class="hljs-comment">&#x27;%APPDATA%&#x27;.</span><br>    <span class="hljs-keyword">On</span> Linux, <span class="hljs-keyword">default</span> value <span class="hljs-built_in">is</span> <span class="hljs-comment">&#x27;$XDG_CACHE_HOME&#x27; if $XDG_CACHE_HOME is defined,</span><br>    otherwise, <span class="hljs-keyword">default</span> value <span class="hljs-built_in">is</span> <span class="hljs-comment">&#x27;$HOME/.cache&#x27;.</span><br></code></pre></td></tr></table></figure>
 
 <p>完成了上面的配置后，我们就可以正常使用 LeaderF 来对 gtags 生成的 tags 文件进行浏览了，在命令行使用 <code>:Leaderf gtags -h</code> 可以看到详细的命令。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">:Leaderf gtags -h</span><br><span class="line">usage:</span><br><span class="line">Leaderf[!] gtags [-h] [--remove] [--recall]</span><br><span class="line">Leaderf[!] gtags --update [--gtagsconf &lt;FILE&gt;] [--gtagslabel &lt;LABEL&gt;] [--accept-dotfiles]</span><br><span class="line">                 [--skip-unreadable] [--skip-symlink [&lt;TYPE&gt;]] [--gtagslibpath &lt;PATH&gt; [&lt;PATH&gt; ...]]</span><br><span class="line">Leaderf[!] gtags [--current-buffer | --all-buffers | --all] [--result &lt;FORMAT&gt;] [COMMON_OPTIONS]</span><br><span class="line">Leaderf[!] gtags -d &lt;PATTERN&gt; [--auto-jump [&lt;TYPE&gt;]] [-i] [--literal] [--path-style &lt;FORMAT&gt;] [-S &lt;DIR&gt;]</span><br><span class="line">                 [--append] [--match-path] [--gtagsconf &lt;FILE&gt;] [--gtagslabel &lt;LABEL&gt;] [COMMON_OPTIONS]</span><br><span class="line">Leaderf[!] gtags -r &lt;PATTERN&gt; [--auto-jump [&lt;TYPE&gt;]] [-i] [--literal] [--path-style &lt;FORMAT&gt;] [-S &lt;DIR&gt;]</span><br><span class="line">                 [--append] [--match-path] [--gtagsconf &lt;FILE&gt;] [--gtagslabel &lt;LABEL&gt;] [COMMON_OPTIONS]</span><br><span class="line">Leaderf[!] gtags -s &lt;PATTERN&gt; [-i] [--literal] [--path-style &lt;FORMAT&gt;] [-S &lt;DIR&gt;] [--append]</span><br><span class="line">                 [--match-path] [--gtagsconf &lt;FILE&gt;] [--gtagslabel &lt;LABEL&gt;] [COMMON_OPTIONS]</span><br><span class="line">Leaderf[!] gtags -g &lt;PATTERN&gt; [-i] [--literal] [--path-style &lt;FORMAT&gt;] [-S &lt;DIR&gt;] [--append]</span><br><span class="line">                 [--match-path] [--gtagsconf &lt;FILE&gt;] [--gtagslabel &lt;LABEL&gt;] [COMMON_OPTIONS]</span><br><span class="line">Leaderf[!] gtags --by-context [--auto-jump [&lt;TYPE&gt;]] [-i] [--literal] [--path-style &lt;FORMAT&gt;] [-S &lt;DIR&gt;]</span><br><span class="line">                 [--append] [--match-path] [--gtagsconf &lt;FILE&gt;] [--gtagslabel &lt;LABEL&gt;] [COMMON_OPTIONS]</span><br><span class="line">[COMMON_OPTIONS]: [--reverse] [--stayOpen] [--input &lt;INPUT&gt; | --cword]</span><br><span class="line">                  [--top | --bottom | --left | --right | --belowright | --aboveleft | --fullScreen]</span><br><span class="line">                  [--nameOnly | --fullPath | --fuzzy | --regexMode] [--nowrap] [--next | --previous]</span><br><span class="line"></span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<figure class="highlight prolog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs prolog">:<span class="hljs-symbol">Leaderf</span> gtags -h<br>usage:<br><span class="hljs-symbol">Leaderf</span>[!] gtags [-h] [--remove] [--recall]<br><span class="hljs-symbol">Leaderf</span>[!] gtags --update [--gtagsconf &lt;<span class="hljs-symbol">FILE</span>&gt;] [--gtagslabel &lt;<span class="hljs-symbol">LABEL</span>&gt;] [--accept-dotfiles]<br>                 [--skip-unreadable] [--skip-symlink [&lt;<span class="hljs-symbol">TYPE</span>&gt;]] [--gtagslibpath &lt;<span class="hljs-symbol">PATH</span>&gt; [&lt;<span class="hljs-symbol">PATH</span>&gt; ...]]<br><span class="hljs-symbol">Leaderf</span>[!] gtags [--current-buffer | --all-buffers | --all] [--result &lt;<span class="hljs-symbol">FORMAT</span>&gt;] [<span class="hljs-symbol">COMMON_OPTIONS</span>]<br><span class="hljs-symbol">Leaderf</span>[!] gtags -d &lt;<span class="hljs-symbol">PATTERN</span>&gt; [--auto-jump [&lt;<span class="hljs-symbol">TYPE</span>&gt;]] [-i] [--literal] [--path-style &lt;<span class="hljs-symbol">FORMAT</span>&gt;] [-<span class="hljs-symbol">S</span> &lt;<span class="hljs-symbol">DIR</span>&gt;]<br>                 [--append] [--match-path] [--gtagsconf &lt;<span class="hljs-symbol">FILE</span>&gt;] [--gtagslabel &lt;<span class="hljs-symbol">LABEL</span>&gt;] [<span class="hljs-symbol">COMMON_OPTIONS</span>]<br><span class="hljs-symbol">Leaderf</span>[!] gtags -r &lt;<span class="hljs-symbol">PATTERN</span>&gt; [--auto-jump [&lt;<span class="hljs-symbol">TYPE</span>&gt;]] [-i] [--literal] [--path-style &lt;<span class="hljs-symbol">FORMAT</span>&gt;] [-<span class="hljs-symbol">S</span> &lt;<span class="hljs-symbol">DIR</span>&gt;]<br>                 [--append] [--match-path] [--gtagsconf &lt;<span class="hljs-symbol">FILE</span>&gt;] [--gtagslabel &lt;<span class="hljs-symbol">LABEL</span>&gt;] [<span class="hljs-symbol">COMMON_OPTIONS</span>]<br><span class="hljs-symbol">Leaderf</span>[!] gtags -s &lt;<span class="hljs-symbol">PATTERN</span>&gt; [-i] [--literal] [--path-style &lt;<span class="hljs-symbol">FORMAT</span>&gt;] [-<span class="hljs-symbol">S</span> &lt;<span class="hljs-symbol">DIR</span>&gt;] [--append]<br>                 [--match-path] [--gtagsconf &lt;<span class="hljs-symbol">FILE</span>&gt;] [--gtagslabel &lt;<span class="hljs-symbol">LABEL</span>&gt;] [<span class="hljs-symbol">COMMON_OPTIONS</span>]<br><span class="hljs-symbol">Leaderf</span>[!] gtags -g &lt;<span class="hljs-symbol">PATTERN</span>&gt; [-i] [--literal] [--path-style &lt;<span class="hljs-symbol">FORMAT</span>&gt;] [-<span class="hljs-symbol">S</span> &lt;<span class="hljs-symbol">DIR</span>&gt;] [--append]<br>                 [--match-path] [--gtagsconf &lt;<span class="hljs-symbol">FILE</span>&gt;] [--gtagslabel &lt;<span class="hljs-symbol">LABEL</span>&gt;] [<span class="hljs-symbol">COMMON_OPTIONS</span>]<br><span class="hljs-symbol">Leaderf</span>[!] gtags --by-context [--auto-jump [&lt;<span class="hljs-symbol">TYPE</span>&gt;]] [-i] [--literal] [--path-style &lt;<span class="hljs-symbol">FORMAT</span>&gt;] [-<span class="hljs-symbol">S</span> &lt;<span class="hljs-symbol">DIR</span>&gt;]<br>                 [--append] [--match-path] [--gtagsconf &lt;<span class="hljs-symbol">FILE</span>&gt;] [--gtagslabel &lt;<span class="hljs-symbol">LABEL</span>&gt;] [<span class="hljs-symbol">COMMON_OPTIONS</span>]<br>[<span class="hljs-symbol">COMMON_OPTIONS</span>]: [--reverse] [--stayOpen] [--input &lt;<span class="hljs-symbol">INPUT</span>&gt; | --cword]<br>                  [--top | --bottom | --left | --right | --belowright | --aboveleft | --fullScreen]<br>                  [--nameOnly | --fullPath | --fuzzy | --regexMode] [--nowrap] [--next | --previous]<br><br>...<br></code></pre></td></tr></table></figure>
 
 <p>LeaderF gtags 最常用的 <code>:Leaderf[!] gtags -d/-r/-s/-g</code>， 具体的作用如下所示，<code>!</code> 表示直接进入 normal 模式。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">--gtagslibpath &lt;PATH&gt; [&lt;PATH&gt; ...]</span><br><span class="line">                      Specify the paths to search for library functions.</span><br><span class="line">-d &lt;PATTERN&gt;, --definition &lt;PATTERN&gt;</span><br><span class="line">                      Show locations of definitions.</span><br><span class="line">-r &lt;PATTERN&gt;, --reference &lt;PATTERN&gt;</span><br><span class="line">                      Show reference to a symbol which has definitions.</span><br><span class="line">-s &lt;PATTERN&gt;, --symbol &lt;PATTERN&gt;</span><br><span class="line">                      Show reference to a symbol which has no definition.</span><br><span class="line">-g &lt;PATTERN&gt;, --grep &lt;PATTERN&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs vim">--gtagslibpath <span class="hljs-symbol">&lt;PATH&gt;</span> [<span class="hljs-symbol">&lt;PATH&gt;</span> ...]<br>                      Specify the paths <span class="hljs-keyword">to</span> <span class="hljs-built_in">search</span> <span class="hljs-keyword">for</span> library functions.<br>-d <span class="hljs-symbol">&lt;PATTERN&gt;</span>, --definition <span class="hljs-symbol">&lt;PATTERN&gt;</span><br>                      Show locations of definitions.<br>-r <span class="hljs-symbol">&lt;PATTERN&gt;</span>, --reference <span class="hljs-symbol">&lt;PATTERN&gt;</span><br>                      Show reference <span class="hljs-keyword">to</span> <span class="hljs-keyword">a</span> symbol which <span class="hljs-built_in">has</span> definitions.<br>-s <span class="hljs-symbol">&lt;PATTERN&gt;</span>, --symbol <span class="hljs-symbol">&lt;PATTERN&gt;</span><br>                      Show reference <span class="hljs-keyword">to</span> <span class="hljs-keyword">a</span> symbol which <span class="hljs-built_in">has</span> <span class="hljs-keyword">no</span> definition.<br>-g <span class="hljs-symbol">&lt;PATTERN&gt;</span>, --<span class="hljs-keyword">grep</span> <span class="hljs-symbol">&lt;PATTERN&gt;</span><br></code></pre></td></tr></table></figure>
 
 <p>日常使用中，同样可以配置快捷键方便使用，下面的快捷键将对光标所在单词进行 tag 查找。</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">nmap &lt;leader&gt;fgd &lt;Plug&gt;LeaderfGtagsDefinition</span><br><span class="line">nmap &lt;leader&gt;fgr &lt;Plug&gt;LeaderfGtagsReference</span><br><span class="line">nmap &lt;leader&gt;fgs &lt;Plug&gt;LeaderfGtagsSymbol</span><br><span class="line">nmap &lt;leader&gt;fgg &lt;Plug&gt;LeaderfGtagsGrep</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs c">nmap &lt;leader&gt;fgd &lt;Plug&gt;LeaderfGtagsDefinition<br>nmap &lt;leader&gt;fgr &lt;Plug&gt;LeaderfGtagsReference<br>nmap &lt;leader&gt;fgs &lt;Plug&gt;LeaderfGtagsSymbol<br>nmap &lt;leader&gt;fgg &lt;Plug&gt;LeaderfGtagsGrep<br></code></pre></td></tr></table></figure>
 
 <h3 id="运行-LeaderF-gtags-之后"><a href="#运行-LeaderF-gtags-之后" class="headerlink" title="运行 LeaderF gtags 之后"></a>运行 LeaderF gtags 之后</h3><p>使用 LeaderF + gtags 跳转到源码后，如果想继续跳转到下一个或者上一个 tag 可以使用 <code>Leaderf gtags --next</code> 和 <code>Leaderf gtags --previous</code></p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">noremap &lt;leader&gt;fgn :&lt;C-U&gt;&lt;C-R&gt;=<span class="built_in">printf</span>(<span class="string">&quot;Leaderf gtags --next %s&quot;</span>, <span class="string">&quot;&quot;</span>)&lt;CR&gt;&lt;CR&gt;</span><br><span class="line">noremap &lt;leader&gt;fgp :&lt;C-U&gt;&lt;C-R&gt;=<span class="built_in">printf</span>(<span class="string">&quot;Leaderf gtags --previous %s&quot;</span>, <span class="string">&quot;&quot;</span>)&lt;CR&gt;&lt;CR&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs c"><br>noremap &lt;leader&gt;fgn :&lt;C-U&gt;&lt;C-R&gt;=<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Leaderf gtags --next %s&quot;</span>, <span class="hljs-string">&quot;&quot;</span>)&lt;CR&gt;&lt;CR&gt;<br>noremap &lt;leader&gt;fgp :&lt;C-U&gt;&lt;C-R&gt;=<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Leaderf gtags --previous %s&quot;</span>, <span class="hljs-string">&quot;&quot;</span>)&lt;CR&gt;&lt;CR&gt;<br></code></pre></td></tr></table></figure>
 
 
 <h2 id="☆-LeaderF-的其他用法"><a href="#☆-LeaderF-的其他用法" class="headerlink" title="☆ LeaderF 的其他用法"></a>☆ LeaderF 的其他用法</h2><p>LeaderF 还可以和 <a target="_blank" rel="noopener" href="https://github.com/ludovicchabant/vim-gutentags">Gutentags</a> 配合使用进行源码浏览，但已经超出本文内容，有兴趣者可以查阅网络上的其他资料。</p>
 <h2 id="☆-参考资料"><a href="#☆-参考资料" class="headerlink" title="☆ 参考资料"></a>☆ 参考资料</h2><p><a target="_blank" rel="noopener" href="https://github.com/Yggdroot/LeaderF/blob/master/doc/leaderf.txt">https://github.com/Yggdroot/LeaderF/blob/master/doc/leaderf.txt</a><br><a target="_blank" rel="noopener" href="https://retzzz.github.io/dc9af5aa/">https://retzzz.github.io/dc9af5aa/</a><br><a target="_blank" rel="noopener" href="https://github.com/Yggdroot/LeaderF/blob/master/README.md">https://github.com/Yggdroot/LeaderF/blob/master/README.md</a><br><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/36279445">https://zhuanlan.zhihu.com/p/36279445</a><br><a target="_blank" rel="noopener" href="https://github.com/vim/vim/blob/master/runtime/doc/popup.txt">https://github.com/vim/vim/blob/master/runtime/doc/popup.txt</a><br><a target="_blank" rel="noopener" href="https://neovim.io/doc/user/api.html#api-floatwin">https://neovim.io/doc/user/api.html#api-floatwin</a></p>
 
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Programming/" class="print-no-link">#Programming</a>
+      
+        <a href="/tags/vim/" class="print-no-link">#vim</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>在 vim 中使用 LeaderF 和 gtags</div>
+      <div>http://usmacd.com/cn/vim_gtags_leaderf/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>henices</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2023年7月20日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
   </div>
-</article>
 
 
 
-        
-          <div id="footer-post-container">
-  <div id="footer-post">
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/cn/PARA/" title="(译文) 一秒钟内整理数字生活的系统 by claude">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">(译文) 一秒钟内整理数字生活的系统 by claude</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/cn/logseq_interview/" title="对话logseq联合创始人，看硅谷大佬的传奇投资 总结">
+                        <span class="hidden-mobile">对话logseq联合创始人，看硅谷大佬的传奇投资 总结</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
 
-    <div id="nav-footer" style="display: none">
-      <ul>
-        
-          <li><a href="/">首页</a></li>
-        
-          <li><a href="/about/">关于</a></li>
-        
-          <li><a href="/archives/">归档</a></li>
-        
-          <li><a href="/search/">搜索</a></li>
-        
-          <li><a href="/links/">链接</a></li>
-        
-          <li><a href="/rss.xml">RSS</a></li>
-        
-      </ul>
-    </div>
-
-    
-    
-      <div id="toc-footer" style="display: none">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E2%98%86-%E7%BC%98%E7%94%B1%E5%92%8C%E4%B8%80%E4%BA%9B-vim-%E5%8E%86%E5%8F%B2"><span class="toc-number">1.</span> <span class="toc-text">☆ 缘由和一些 vim 历史</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E2%98%86-%E5%AE%89%E8%A3%85vim-%E6%8F%92%E4%BB%B6-LeaderF"><span class="toc-number">2.</span> <span class="toc-text">☆ 安装vim 插件 LeaderF</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E2%98%86-LeaderF-%E9%85%8D%E7%BD%AE"><span class="toc-number">3.</span> <span class="toc-text">☆ LeaderF 配置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%90%E8%A1%8C-LeaderF-%E4%B9%8B%E5%90%8E%E7%9A%84%E6%93%8D%E4%BD%9C"><span class="toc-number">3.1.</span> <span class="toc-text">运行 LeaderF 之后的操作</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E2%98%86-LeaderF-gtags-%E7%9A%84%E9%85%8D%E7%BD%AE"><span class="toc-number">4.</span> <span class="toc-text">☆ LeaderF + gtags 的配置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%90%E8%A1%8C-LeaderF-gtags-%E4%B9%8B%E5%90%8E"><span class="toc-number">4.1.</span> <span class="toc-text">运行 LeaderF gtags 之后</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E2%98%86-LeaderF-%E7%9A%84%E5%85%B6%E4%BB%96%E7%94%A8%E6%B3%95"><span class="toc-number">5.</span> <span class="toc-text">☆ LeaderF 的其他用法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E2%98%86-%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="toc-number">6.</span> <span class="toc-text">☆ 参考资料</span></a></li></ol>
+            
+          </article>
+        </div>
       </div>
-    
-
-    <div id="share-footer" style="display: none">
-      <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://usmacd.com/cn/vim_gtags_leaderf/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://usmacd.com/cn/vim_gtags_leaderf/&text=在 vim 中使用 LeaderF 和 gtags"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://usmacd.com/cn/vim_gtags_leaderf/&title=在 vim 中使用 LeaderF 和 gtags"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://usmacd.com/cn/vim_gtags_leaderf/&is_video=false&description=在 vim 中使用 LeaderF 和 gtags"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=在 vim 中使用 LeaderF 和 gtags&body=Check out this article: http://usmacd.com/cn/vim_gtags_leaderf/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://usmacd.com/cn/vim_gtags_leaderf/&title=在 vim 中使用 LeaderF 和 gtags"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://usmacd.com/cn/vim_gtags_leaderf/&title=在 vim 中使用 LeaderF 和 gtags"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://usmacd.com/cn/vim_gtags_leaderf/&title=在 vim 中使用 LeaderF 和 gtags"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://usmacd.com/cn/vim_gtags_leaderf/&title=在 vim 中使用 LeaderF 和 gtags"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://usmacd.com/cn/vim_gtags_leaderf/&name=在 vim 中使用 LeaderF 和 gtags&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://usmacd.com/cn/vim_gtags_leaderf/&t=在 vim 中使用 LeaderF 和 gtags"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
-</ul>
-
     </div>
 
-    <div id="actions-footer">
-        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
-        
-          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> 目录</a>
-        
-        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
-        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>
-    </div>
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
 
+
+
+  </aside>
+
+
+    </div>
   </div>
 </div>
 
-        
-        <footer id="footer">
-  <div class="footer-left">
-    Copyright &copy;
-    
-    
-    2004-2024
-    henices
-  </div>
-  <div class="footer-right">
-    <nav>
-      <ul>
-        <!--
-       --><li><a href="/">首页</a></li><!--
-     --><!--
-       --><li><a href="/about/">关于</a></li><!--
-     --><!--
-       --><li><a href="/archives/">归档</a></li><!--
-     --><!--
-       --><li><a href="/search/">搜索</a></li><!--
-     --><!--
-       --><li><a href="/links/">链接</a></li><!--
-     --><!--
-       --><li><a href="/rss.xml">RSS</a></li><!--
-     -->
-      </ul>
-    </nav>
-  </div>
-</footer>
 
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
     </div>
-    <!-- styles -->
+  </div>
+</div>
 
+    
 
+    
+  </main>
 
-  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
-
-
-    <!-- jquery -->
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
-
-
-
-
-<!-- clipboard -->
-
+  <footer>
+    <div class="footer-inner">
   
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
   
-  <script type="text/javascript">
-  $(function() {
-    // copy-btn HTML
-    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板！\">";
-    btn += '<i class="fa-regular fa-clone"></i>';
-    btn += '</span>';
-    // mount it!
-    $(".highlight table").before(btn);
-    var clip = new ClipboardJS('.btn-copy', {
-      text: function(trigger) {
-        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
-      }
-    });
-    clip.on('success', function(e) {
-      e.trigger.setAttribute('aria-label', "复制成功！");
-      e.clearSelection();
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
     })
-  })
   </script>
 
 
-<script src="/js/main.js"></script>
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
 
-<!-- search -->
 
-<!-- Baidu Analytics -->
 
-<!-- Cloudflare Analytics -->
 
-<!-- Disqus Comments -->
 
-<!-- utterances Comments -->
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
 
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
 </body>
 </html>

@@ -1,11 +1,23 @@
+
+
 <!DOCTYPE html>
-<html lang=zh>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
 <head>
-    <!-- so meta -->
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="HandheldFriendly" content="True">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="henices">
+  <meta name="keywords" content="">
+  
     <meta name="description" content="source: https:&#x2F;&#x2F;null2root.github.io&#x2F;blog&#x2F;2022&#x2F;07&#x2F;21&#x2F;When-Hypervisor-Met-Snapshot-Fuzzing.html 1. IntroductionHypervisor was known as hard target to fuzz over several years. Even though, lots of prior">
 <meta property="og:type" content="article">
 <meta property="og:title" content="When Hypervisor Met Snapshot Fuzzing">
@@ -20,170 +32,290 @@
 <meta property="article:modified_time" content="2022-07-21T08:00:00.000Z">
 <meta property="article:author" content="henices">
 <meta property="article:tag" content="Archives">
-<meta name="twitter:card" content="summary">
+<meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://github.com/henices/pictures/raw/master/wtf-vbox-blahblah1.png">
-    
-    
-      
-        
-          <link rel="shortcut icon" href="/images/favicon.ico">
-        
-      
-      
-        
-          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
-        
-      
-      
-        
-          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
-        
-      
-    
-    <!-- title -->
-    <title>When Hypervisor Met Snapshot Fuzzing</title>
-    <!-- async scripts -->
-    <!-- Google Analytics -->
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>When Hypervisor Met Snapshot Fuzzing - 安全代码</title>
 
-
-    <!-- Umami Analytics -->
-
-
-    <!-- styles -->
-    
-<link rel="stylesheet" href="/css/style.css">
-
-    <!-- persian styles -->
-    
-    <link href="https://cdn.jsdelivr.net/npm/firacode@6.2.0/distr/fira_code.css" rel="stylesheet">
-    <!-- rss -->
-    
-    
-      <link rel="alternate" href="/true" title="安全代码" type="application/atom+xml" />
-    
-	<!-- mathjax -->
-	
-		<script type="text/x-mathjax-config">
-		  MathJax.Hub.Config({
-			tex2jax: {
-			  skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
-			  inlineMath: [['$','$']]
-			}
-		  });
-		</script>
-		<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
-	
-<meta name="generator" content="Hexo 7.2.0"></head>
-
-<body class="max-width mx-auto px3 ltr">
-    
-      <div id="header-post">
-  <a id="menu-icon" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
-  <a id="menu-icon-tablet" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
-  <a id="top-icon-tablet" href="#" aria-label="顶部" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
-  <span id="menu">
-    <span id="nav">
-      <ul>
-        <!--
-       --><li><a href="/">首页</a></li><!--
-     --><!--
-       --><li><a href="/about/">关于</a></li><!--
-     --><!--
-       --><li><a href="/archives/">归档</a></li><!--
-     --><!--
-       --><li><a href="/search/">搜索</a></li><!--
-     --><!--
-       --><li><a href="/links/">链接</a></li><!--
-     --><!--
-       --><li><a href="/rss.xml">RSS</a></li><!--
-     -->
-      </ul>
-    </span>
-    <br/>
-    <span id="actions">
-      <ul>
-        
-        <li><a class="icon" aria-label="上一篇" href="/cn/winafl/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
-        
-        
-        <li><a class="icon" aria-label="下一篇" href="/cn/ssd/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
-        
-        <li><a class="icon" aria-label="返回顶部" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
-        <li><a class="icon" aria-label="分享文章" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
-      </ul>
-      <span id="i-prev" class="info" style="display:none;">上一篇</span>
-      <span id="i-next" class="info" style="display:none;">下一篇</span>
-      <span id="i-top" class="info" style="display:none;">返回顶部</span>
-      <span id="i-share" class="info" style="display:none;">分享文章</span>
-    </span>
-    <br/>
-    <div id="share" style="display: none">
-      <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://usmacd.com/cn/2022-07-21-When-Hypervisor-Met-Snapshot-Fuzzing/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://usmacd.com/cn/2022-07-21-When-Hypervisor-Met-Snapshot-Fuzzing/&text=When Hypervisor Met Snapshot Fuzzing"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://usmacd.com/cn/2022-07-21-When-Hypervisor-Met-Snapshot-Fuzzing/&title=When Hypervisor Met Snapshot Fuzzing"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://usmacd.com/cn/2022-07-21-When-Hypervisor-Met-Snapshot-Fuzzing/&is_video=false&description=When Hypervisor Met Snapshot Fuzzing"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=When Hypervisor Met Snapshot Fuzzing&body=Check out this article: http://usmacd.com/cn/2022-07-21-When-Hypervisor-Met-Snapshot-Fuzzing/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://usmacd.com/cn/2022-07-21-When-Hypervisor-Met-Snapshot-Fuzzing/&title=When Hypervisor Met Snapshot Fuzzing"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://usmacd.com/cn/2022-07-21-When-Hypervisor-Met-Snapshot-Fuzzing/&title=When Hypervisor Met Snapshot Fuzzing"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://usmacd.com/cn/2022-07-21-When-Hypervisor-Met-Snapshot-Fuzzing/&title=When Hypervisor Met Snapshot Fuzzing"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://usmacd.com/cn/2022-07-21-When-Hypervisor-Met-Snapshot-Fuzzing/&title=When Hypervisor Met Snapshot Fuzzing"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://usmacd.com/cn/2022-07-21-When-Hypervisor-Met-Snapshot-Fuzzing/&name=When Hypervisor Met Snapshot Fuzzing&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://usmacd.com/cn/2022-07-21-When-Hypervisor-Met-Snapshot-Fuzzing/&t=When Hypervisor Met Snapshot Fuzzing"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
-</ul>
-
-    </div>
-    
-    
-      <div id="toc">
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-Introduction"><span class="toc-number">1.</span> <span class="toc-text">1. Introduction</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-Developing-Fuzz-Module"><span class="toc-number">2.</span> <span class="toc-text">2. Developing Fuzz Module</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-Vulnerability-TL-DR"><span class="toc-number">3.</span> <span class="toc-text">3. Vulnerability( TL;DR )</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-Conclusion"><span class="toc-number">4.</span> <span class="toc-text">4. Conclusion</span></a></li></ol>
-      </div>
-    
-  </span>
-</div>
-
-    
-    <div class="content index py4 ">
-        
-        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
-  <header>
-    
-    <h1 class="posttitle p-name" itemprop="name headline">
-        When Hypervisor Met Snapshot Fuzzing
-    </h1>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
 
 
-    <div class="meta">
-      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
-        <span class="p-name" itemprop="name">henices</span>
-      </span>
-      
-    <div class="postdate">
-      
-        <time datetime="2022-07-21T08:00:00.000Z" class="dt-published" itemprop="datePublished">2022-07-21</time>
-        
-        (Updated: <time datetime="2022-07-21T08:00:00.000Z" class="dt-updated" itemprop="dateModified">2022-07-21</time>)
-        
-      
-    </div>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
 
 
-      
 
-      
-    <div class="article-tag">
-        <i class="fa-solid fa-tag"></i>
-        <a class="p-category" href="/tags/Archives/" rel="tag">Archives</a>
-    </div>
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
 
 
-    </div>
-  </header>
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
   
 
-  <div class="content e-content" itemprop="articleBody">
-    <p>source: <a target="_blank" rel="noopener" href="https://null2root.github.io/blog/2022/07/21/When-Hypervisor-Met-Snapshot-Fuzzing.html">https://null2root.github.io/blog/2022/07/21/When-Hypervisor-Met-Snapshot-Fuzzing.html</a></p>
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"usmacd.com","root":"/","version":"1.9.7","typing":{"enable":false,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.2.0"><link rel="alternate" href="/atom.xml" title="安全代码" type="application/atom+xml">
+<link rel="alternate" href="/rss.xml" title="安全代码" type="application/rss+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>安全代码</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/rss.xml" target="_self">
+                <i class="iconfont icon-rss"></i>
+                <span>rss</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/sitemap.xml" target="_self">
+                
+                <span>sitemap</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://images.unsplash.com/photo-1473181488821-2d23949a045a?w=640') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle">When Hypervisor Met Snapshot Fuzzing</span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-07-21 16:00" pubdate>
+          2022年7月21日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.4k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          12 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">When Hypervisor Met Snapshot Fuzzing</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>source: <a target="_blank" rel="noopener" href="https://null2root.github.io/blog/2022/07/21/When-Hypervisor-Met-Snapshot-Fuzzing.html">https://null2root.github.io/blog/2022/07/21/When-Hypervisor-Met-Snapshot-Fuzzing.html</a></p>
 <h1 id="1-Introduction"><a href="#1-Introduction" class="headerlink" title="1. Introduction"></a>1. Introduction</h1><p>Hypervisor was known as hard target to fuzz over several years. Even though, lots of prior pioneers( <a target="_blank" rel="noopener" href="https://rezer0dai.github.io/biug-bounties/">Peter Hlavaty</a>, <a target="_blank" rel="noopener" href="https://conference.hitb.org/hitbsecconf2021ams/materials/D2T2%20-%20Discovering%2010+%20Vulnerabilities%20in%20Virtualbox%20-%20Chen%20Nan.pdf">Chaitin Tech</a>, <a target="_blank" rel="noopener" href="https://starlabs.sg/blog/2020/04-adventures-in-hypervisor-oracle-virtualbox-research/#coverage-guided-fuzzing">StarLabs</a>, <a target="_blank" rel="noopener" href="https://github.com/SafeBreach-Labs/hAFL2">Peleg Hadar and Ophir Harpaz</a> and many others ) doing amazing work to overcome this limit and found interesting bugs.</p>
 <p>But it is not an easy topic for some fresh newbie like me to starts from the bottom. I think manual code( or binary ) auditing and static analysis could be only considerable options if I start my research a few years ago without <strong>What The Fuzz</strong>.</p>
 <p><a target="_blank" rel="noopener" href="https://github.com/0vercl0k/wtf">What The Fuzz</a>( a.k.a WTF ) is a snapshot-based fuzzer targeting Windows Ring-3 and Ring-0 component. WTF’s snapshot is based on memory dump both kernel and user-land. Because of that, WTF can not emulate any functionality which requires anything not within in-memory and can not create new process or thread because memory dump limited on single process. But WTF support <a target="_blank" rel="noopener" href="https://github.com/0vercl0k/wtf/blob/4a9bf55/src/wtf/bochscpu_backend.cc#L265">breakpoint Handler</a> which you can set breakpoint on <strong>any</strong> address within memory dump and if fuzz execution reaches that address, pre-defined breakpoint handler will be executed. Based on this, we can trying to overcome some limitation on WTF such as <a target="_blank" rel="noopener" href="https://github.com/0vercl0k/wtf/blob/main/src/wtf/fshooks.cc">file access</a>.</p>
@@ -193,186 +325,373 @@
 <p>SVGA is something like “<a target="_blank" rel="noopener" href="https://www.zerodayinitiative.com/blog/2021/1/6/mindshare-analysis-of-vmware-workstation-and-esxi-using-debug-symbols-from-flings">JavaScript of hypervisors</a>“. Because of its complex nature, many hypervisor bugs are oriented by SVGA. And that’s the reason why I choose it as a first target.</p>
 <p>VirtualBox have a function called <a target="_blank" rel="noopener" href="https://github.com/mdaniel/virtualbox-org-svn-vbox-trunk/blob/8fe9163/src/VBox/Devices/Graphics/DevVGA-SVGA.cpp#L4505">vmsvgaR3FifoLoop</a>. It <a target="_blank" rel="noopener" href="https://github.com/mdaniel/virtualbox-org-svn-vbox-trunk/blob/8fe9163/src/VBox/Devices/Graphics/DevVGA-SVGA.cpp#L4757">waits</a> until guest submit new command data through GPA. So this is a good spot( or should I call it <a target="_blank" rel="noopener" href="https://youtu.be/ZaOtY4i5w_U">source</a>? ) to take a snapshot.</p>
 <p>I set a breakpoint on <code>vmsvgaR3FifoLoop+4E2</code> to take snapshot. It is same position as <a target="_blank" rel="noopener" href="https://github.com/mdaniel/virtualbox-org-svn-vbox-trunk/blob/8fe9163/src/VBox/Devices/Graphics/DevVGA-SVGA.cpp#L4783">here</a>, start of switch-case routine for <a target="_blank" rel="noopener" href="https://github.com/mdaniel/virtualbox-org-svn-vbox-trunk/blob/8fe9163eabe8b7a7f14f29c88c13a458f38fe25e/src/VBox/Devices/Graphics/vmsvga_include/svga_reg.h#L152">SVGA</a> and <a target="_blank" rel="noopener" href="https://github.com/mdaniel/virtualbox-org-svn-vbox-trunk/blob/8fe9163eabe8b7a7f14f29c88c13a458f38fe25e/src/VBox/Additions/3D/mesa/mesa-17.3.9/src/gallium/drivers/svga/include/svga3d_cmd.h#L56">SVGA3D</a> command.</p>
-<p><img src="https://github.com/henices/pictures/raw/master/wtf-vbox-blahblah1.png" alt="blahblah1"></p>
+<p><img src="https://github.com/henices/pictures/raw/master/wtf-vbox-blahblah1.png" srcset="/img/loading.gif" lazyload alt="blahblah1"></p>
 <p>After creating snapshot, I had to decide make it <a target="_blank" rel="noopener" href="https://github.com/0vercl0k/wtf/blob/main/src/wtf/fuzzer_tlv_server.cc">run multiple times in single execution</a> or <a target="_blank" rel="noopener" href="https://github.com/0vercl0k/wtf/blob/main/src/wtf/fuzzer_hevd.cc">not</a>. Because SVGA is consist of various commands like define, update, delete something…, I thought fuzz campaign must handle multiple SVGA commands during single round.</p>
 <p>First, I had to define structure to contains multiple testcases. Luckily, <a target="_blank" rel="noopener" href="https://twitter.com/0vercl0k">0vercl0k</a> already write <a target="_blank" rel="noopener" href="https://github.com/0vercl0k/wtf/blob/4a9bf55/src/wtf/fuzzer_tlv_server.cc#L24-L75">nice example</a> to doing that. So I did same thing as below.</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">define</span> SVGA_CMD_BODY_MAX 0xA000</span></span><br><span class="line"></span><br><span class="line"><span class="type">const</span> <span class="type">uint32_t</span> SvgaCmdList[] = &#123;<span class="number">1</span>, <span class="number">3</span>, <span class="number">19</span>, <span class="number">22</span>, <span class="number">25</span>, <span class="number">29</span>, <span class="number">30</span>, <span class="number">33</span>, <span class="number">34</span>, <span class="number">35</span>, <span class="number">36</span>, <span class="number">37</span>, <span class="number">38</span>, <span class="number">39</span>, <span class="number">40</span>, <span class="number">41</span>, <span class="number">42</span>, <span class="number">1040</span>, <span class="number">1041</span>, <span class="number">1042</span>, <span class="number">1043</span>, <span class="number">1044</span>, <span class="number">1046</span>, <span class="number">1047</span>, <span class="number">1048</span>, <span class="number">1049</span>, <span class="number">1050</span>, <span class="number">1051</span>, <span class="number">1052</span>, <span class="number">1053</span>, <span class="number">1054</span>, <span class="number">1055</span>, <span class="number">1056</span>, <span class="number">1057</span>, <span class="number">1058</span>, <span class="number">1059</span>, <span class="number">1060</span>, <span class="number">1061</span>, <span class="number">1062</span>, <span class="number">1063</span>, <span class="number">1064</span>, <span class="number">1065</span>, <span class="number">1066</span>, <span class="number">1067</span>, <span class="number">1068</span>, <span class="number">1069</span>, <span class="number">1070</span>, <span class="number">1071</span>, <span class="number">1072</span>, <span class="number">1073</span>, <span class="number">1074</span>, <span class="number">1075</span>, <span class="number">1076</span>, <span class="number">1077</span>, <span class="number">1078</span>, <span class="number">1079</span>, <span class="number">1080</span>, <span class="number">1081</span>&#125;;</span><br><span class="line"></span><br><span class="line"><span class="type">const</span> <span class="type">uint32_t</span> SvgaCmdListLen = <span class="number">58</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">SvgaCmd_t</span> &#123;</span><br><span class="line">  <span class="type">uint32_t</span> SvgaCmdCode;</span><br><span class="line">  std::vector&lt;<span class="type">uint8_t</span>&gt; SvgaBody;</span><br><span class="line">  <span class="built_in">NLOHMANN_DEFINE_TYPE_INTRUSIVE</span>(SvgaCmd_t, SvgaCmdCode, SvgaBody);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">SvgaCmds_t</span> &#123;</span><br><span class="line">  std::vector&lt;SvgaCmd_t&gt; SvgaCmds;</span><br><span class="line">  <span class="built_in">NLOHMANN_DEFINE_TYPE_INTRUSIVE</span>(SvgaCmds_t, SvgaCmds);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">struct</span> &#123;</span><br><span class="line">  std::deque&lt;SvgaCmd_t&gt; SvgaCmds;</span><br><span class="line">  CpuState_t Context;</span><br><span class="line">  <span class="type">uint8_t</span> SvgaCmdBody[SVGA_CMD_BODY_MAX];</span><br><span class="line">  <span class="type">uint32_t</span> SvgaCmdBodySize;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="type">void</span> <span class="title">RestoreGprs</span><span class="params">(Backend_t *B)</span> </span>&#123;</span><br><span class="line">    <span class="type">const</span> <span class="keyword">auto</span> &amp;C = Context;</span><br><span class="line">    B-&gt;<span class="built_in">Rsp</span>(C.Rsp);</span><br><span class="line">    B-&gt;<span class="built_in">Rip</span>(C.Rip);</span><br><span class="line">    B-&gt;<span class="built_in">Rax</span>(C.Rax);</span><br><span class="line">    B-&gt;<span class="built_in">Rbx</span>(C.Rbx);</span><br><span class="line">    B-&gt;<span class="built_in">Rcx</span>(C.Rcx);</span><br><span class="line">    B-&gt;<span class="built_in">Rdx</span>(C.Rdx);</span><br><span class="line">    B-&gt;<span class="built_in">Rsi</span>(C.Rsi);</span><br><span class="line">    B-&gt;<span class="built_in">Rdi</span>(C.Rdi);</span><br><span class="line">    B-&gt;<span class="built_in">R8</span>(C.R8);</span><br><span class="line">    B-&gt;<span class="built_in">R9</span>(C.R9);</span><br><span class="line">    B-&gt;<span class="built_in">R10</span>(C.R10);</span><br><span class="line">    B-&gt;<span class="built_in">R11</span>(C.R11);</span><br><span class="line">    B-&gt;<span class="built_in">R12</span>(C.R12);</span><br><span class="line">    B-&gt;<span class="built_in">R13</span>(C.R13);</span><br><span class="line">    B-&gt;<span class="built_in">R14</span>(C.R14);</span><br><span class="line">    B-&gt;<span class="built_in">R15</span>(C.R15);</span><br><span class="line">  &#125;</span><br><span class="line">&#125; GlobalState;</span><br><span class="line"></span><br><span class="line"><span class="function">SvgaCmds_t <span class="title">Deserialize</span><span class="params">(<span class="type">const</span> <span class="type">uint8_t</span> *Buffer, <span class="type">const</span> <span class="type">size_t</span> BufferSize)</span> </span>&#123;</span><br><span class="line">  <span class="type">const</span> <span class="keyword">auto</span> &amp;Root = json::json::<span class="built_in">parse</span>(Buffer, Buffer + BufferSize);</span><br><span class="line">  <span class="keyword">return</span> Root.<span class="built_in">get</span>&lt;SvgaCmds_t&gt;();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">bool</span> <span class="title">InsertTestcase</span><span class="params">(<span class="type">const</span> <span class="type">uint8_t</span> *Buffer, <span class="type">const</span> <span class="type">size_t</span> BufferSize)</span> </span>&#123;</span><br><span class="line">  GlobalState.SvgaCmds.<span class="built_in">clear</span>();</span><br><span class="line"></span><br><span class="line">  <span class="type">const</span> <span class="keyword">auto</span> &amp;Root = <span class="built_in">Deserialize</span>(Buffer, BufferSize);</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">auto</span> SvgaCmd : Root.SvgaCmds) &#123;</span><br><span class="line">    GlobalState.SvgaCmds.<span class="built_in">emplace_back</span>(std::<span class="built_in">move</span>(SvgaCmd));</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-keyword">define</span> SVGA_CMD_BODY_MAX 0xA000</span><br><br><span class="hljs-type">const</span> <span class="hljs-type">uint32_t</span> SvgaCmdList[] = &#123;<span class="hljs-number">1</span>, <span class="hljs-number">3</span>, <span class="hljs-number">19</span>, <span class="hljs-number">22</span>, <span class="hljs-number">25</span>, <span class="hljs-number">29</span>, <span class="hljs-number">30</span>, <span class="hljs-number">33</span>, <span class="hljs-number">34</span>, <span class="hljs-number">35</span>, <span class="hljs-number">36</span>, <span class="hljs-number">37</span>, <span class="hljs-number">38</span>, <span class="hljs-number">39</span>, <span class="hljs-number">40</span>, <span class="hljs-number">41</span>, <span class="hljs-number">42</span>, <span class="hljs-number">1040</span>, <span class="hljs-number">1041</span>, <span class="hljs-number">1042</span>, <span class="hljs-number">1043</span>, <span class="hljs-number">1044</span>, <span class="hljs-number">1046</span>, <span class="hljs-number">1047</span>, <span class="hljs-number">1048</span>, <span class="hljs-number">1049</span>, <span class="hljs-number">1050</span>, <span class="hljs-number">1051</span>, <span class="hljs-number">1052</span>, <span class="hljs-number">1053</span>, <span class="hljs-number">1054</span>, <span class="hljs-number">1055</span>, <span class="hljs-number">1056</span>, <span class="hljs-number">1057</span>, <span class="hljs-number">1058</span>, <span class="hljs-number">1059</span>, <span class="hljs-number">1060</span>, <span class="hljs-number">1061</span>, <span class="hljs-number">1062</span>, <span class="hljs-number">1063</span>, <span class="hljs-number">1064</span>, <span class="hljs-number">1065</span>, <span class="hljs-number">1066</span>, <span class="hljs-number">1067</span>, <span class="hljs-number">1068</span>, <span class="hljs-number">1069</span>, <span class="hljs-number">1070</span>, <span class="hljs-number">1071</span>, <span class="hljs-number">1072</span>, <span class="hljs-number">1073</span>, <span class="hljs-number">1074</span>, <span class="hljs-number">1075</span>, <span class="hljs-number">1076</span>, <span class="hljs-number">1077</span>, <span class="hljs-number">1078</span>, <span class="hljs-number">1079</span>, <span class="hljs-number">1080</span>, <span class="hljs-number">1081</span>&#125;;<br><br><span class="hljs-type">const</span> <span class="hljs-type">uint32_t</span> SvgaCmdListLen = <span class="hljs-number">58</span>;<br><br><span class="hljs-keyword">struct</span> <span class="hljs-title class_">SvgaCmd_t</span> &#123;<br>  <span class="hljs-type">uint32_t</span> SvgaCmdCode;<br>  std::vector&lt;<span class="hljs-type">uint8_t</span>&gt; SvgaBody;<br>  <span class="hljs-built_in">NLOHMANN_DEFINE_TYPE_INTRUSIVE</span>(SvgaCmd_t, SvgaCmdCode, SvgaBody);<br>&#125;;<br><br><span class="hljs-keyword">struct</span> <span class="hljs-title class_">SvgaCmds_t</span> &#123;<br>  std::vector&lt;SvgaCmd_t&gt; SvgaCmds;<br>  <span class="hljs-built_in">NLOHMANN_DEFINE_TYPE_INTRUSIVE</span>(SvgaCmds_t, SvgaCmds);<br>&#125;;<br><br><span class="hljs-keyword">struct</span> &#123;<br>  std::deque&lt;SvgaCmd_t&gt; SvgaCmds;<br>  CpuState_t Context;<br>  <span class="hljs-type">uint8_t</span> SvgaCmdBody[SVGA_CMD_BODY_MAX];<br>  <span class="hljs-type">uint32_t</span> SvgaCmdBodySize;<br><br>  <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">RestoreGprs</span><span class="hljs-params">(Backend_t *B)</span> </span>&#123;<br>    <span class="hljs-type">const</span> <span class="hljs-keyword">auto</span> &amp;C = Context;<br>    B-&gt;<span class="hljs-built_in">Rsp</span>(C.Rsp);<br>    B-&gt;<span class="hljs-built_in">Rip</span>(C.Rip);<br>    B-&gt;<span class="hljs-built_in">Rax</span>(C.Rax);<br>    B-&gt;<span class="hljs-built_in">Rbx</span>(C.Rbx);<br>    B-&gt;<span class="hljs-built_in">Rcx</span>(C.Rcx);<br>    B-&gt;<span class="hljs-built_in">Rdx</span>(C.Rdx);<br>    B-&gt;<span class="hljs-built_in">Rsi</span>(C.Rsi);<br>    B-&gt;<span class="hljs-built_in">Rdi</span>(C.Rdi);<br>    B-&gt;<span class="hljs-built_in">R8</span>(C.R8);<br>    B-&gt;<span class="hljs-built_in">R9</span>(C.R9);<br>    B-&gt;<span class="hljs-built_in">R10</span>(C.R10);<br>    B-&gt;<span class="hljs-built_in">R11</span>(C.R11);<br>    B-&gt;<span class="hljs-built_in">R12</span>(C.R12);<br>    B-&gt;<span class="hljs-built_in">R13</span>(C.R13);<br>    B-&gt;<span class="hljs-built_in">R14</span>(C.R14);<br>    B-&gt;<span class="hljs-built_in">R15</span>(C.R15);<br>  &#125;<br>&#125; GlobalState;<br><br><span class="hljs-function">SvgaCmds_t <span class="hljs-title">Deserialize</span><span class="hljs-params">(<span class="hljs-type">const</span> <span class="hljs-type">uint8_t</span> *Buffer, <span class="hljs-type">const</span> <span class="hljs-type">size_t</span> BufferSize)</span> </span>&#123;<br>  <span class="hljs-type">const</span> <span class="hljs-keyword">auto</span> &amp;Root = json::json::<span class="hljs-built_in">parse</span>(Buffer, Buffer + BufferSize);<br>  <span class="hljs-keyword">return</span> Root.<span class="hljs-built_in">get</span>&lt;SvgaCmds_t&gt;();<br>&#125;<br><br><span class="hljs-function"><span class="hljs-type">bool</span> <span class="hljs-title">InsertTestcase</span><span class="hljs-params">(<span class="hljs-type">const</span> <span class="hljs-type">uint8_t</span> *Buffer, <span class="hljs-type">const</span> <span class="hljs-type">size_t</span> BufferSize)</span> </span>&#123;<br>  GlobalState.SvgaCmds.<span class="hljs-built_in">clear</span>();<br><br>  <span class="hljs-type">const</span> <span class="hljs-keyword">auto</span> &amp;Root = <span class="hljs-built_in">Deserialize</span>(Buffer, BufferSize);<br>  <span class="hljs-keyword">for</span>(<span class="hljs-keyword">auto</span> SvgaCmd : Root.SvgaCmds) &#123;<br>    GlobalState.SvgaCmds.<span class="hljs-built_in">emplace_back</span>(std::<span class="hljs-built_in">move</span>(SvgaCmd));<br>  &#125;<br><br>  <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <p>It is almost identical as example.</p>
 <p>Next question was, how can I insert data into snapshot? I had to find a insertion point and proper memory address. Luckily( again ), VirtualBox using a function called <a target="_blank" rel="noopener" href="https://github.com/mdaniel/virtualbox-org-svn-vbox-trunk/blob/8fe9163/src/VBox/Devices/Graphics/DevVGA-SVGA.cpp#L4183">vmsvgaR3FifoGetCmdPayload</a> to receive command data from guest to host. I define a breakpoint handler in <code>Init()</code> callback function as below.</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="comment">// unsigned __int8 *__fastcall vmsvgaR3FifoGetCmdPayload(</span></span><br><span class="line"><span class="comment">//       unsigned int cbPayloadReq,</span></span><br><span class="line"><span class="comment">//       volatile unsigned int *pFIFO,</span></span><br><span class="line"><span class="comment">//       unsigned int offCurrentCmd,</span></span><br><span class="line"><span class="comment">//       unsigned int offFifoMin,</span></span><br><span class="line"><span class="comment">//       unsigned int offFifoMax,</span></span><br><span class="line"><span class="comment">//       unsigned __int8 *pbBounceBuf,</span></span><br><span class="line"><span class="comment">//       unsigned int *pcbAlreadyRead,</span></span><br><span class="line"><span class="comment">//       PDMTHREAD *pThread,</span></span><br><span class="line"><span class="comment">//       VGAState *pThis,</span></span><br><span class="line"><span class="comment">//       VMSVGAR3STATE *pSVGAState,</span></span><br><span class="line"><span class="comment">//       PDMDEVINSR3 *pDevIns)</span></span><br><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="keyword">if</span>(!g_Backend-&gt;<span class="built_in">Setbreakpoint</span>(<span class="string">&quot;VBoxDD!vmsvgaR3FifoGetCmdPayload&quot;</span>, [](Backend_t *Backend) &#123;</span><br><span class="line">  <span class="type">uint32_t</span> cbPayloadReq = Backend-&gt;<span class="built_in">GetArg</span>(<span class="number">0</span>);</span><br><span class="line">  Gva_t pbBounceBuf_gva = Backend-&gt;<span class="built_in">GetArgGva</span>(<span class="number">5</span>);</span><br><span class="line">  Gva_t pcbAlreadyRead_gva = Backend-&gt;<span class="built_in">GetArgGva</span>(<span class="number">6</span>);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span>(cbPayloadReq &gt; GlobalState.SvgaCmdBodySize) &#123;</span><br><span class="line">    <span class="built_in">DebugPrint</span>(<span class="string">&quot;cbpayloadReq(&#123;:#x&#125;) &gt; SvgaCmdBodySize(&#123;:#x&#125;), restore context and goto next round\n&quot;</span>, cbPayloadReq, GlobalState.SvgaCmdBodySize);</span><br><span class="line">    <span class="keyword">return</span> GlobalState.<span class="built_in">RestoreGprs</span>(Backend);</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">if</span>(cbPayloadReq &gt; u32PbBounceBufMaxSize) &#123;</span><br><span class="line">    <span class="type">const</span> <span class="type">uint64_t</span> RetAddr = Backend-&gt;<span class="built_in">VirtRead8</span>(<span class="built_in">Gva_t</span>(Backend-&gt;<span class="built_in">Rsp</span>()));</span><br><span class="line">    <span class="built_in">DebugPrint</span>(<span class="string">&quot;check this, RetAddr = &#123;:#x&#125;\n&quot;</span>, RetAddr);</span><br><span class="line">    std::<span class="built_in">abort</span>();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span>(!Backend-&gt;<span class="built_in">VirtWriteDirty</span>(pbBounceBuf_gva, GlobalState.SvgaCmdBody, cbPayloadReq)) &#123;</span><br><span class="line">    fmt::<span class="built_in">print</span>(<span class="string">&quot;Failed to write pbBounceBuf, pbBounceBuf = &#123;:#x&#125;, cbPayloadReq = &#123;:#x&#125;, SvgaCmdBodySize = &#123;:#x&#125;\n&quot;</span>,</span><br><span class="line">                pbBounceBuf_gva.<span class="built_in">U64</span>(), cbPayloadReq, GlobalState.SvgaCmdBodySize);</span><br><span class="line">    std::<span class="built_in">abort</span>();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span>(!Backend-&gt;<span class="built_in">VirtWriteStructDirty</span>(pcbAlreadyRead_gva, &amp;cbPayloadReq)) &#123;</span><br><span class="line">    fmt::<span class="built_in">print</span>(<span class="string">&quot;Faile to write pcbAlreadyRead, pcbAlreadyRead = &#123;:#x&#125;\n&quot;</span>, pcbAlreadyRead_gva.<span class="built_in">U64</span>());</span><br><span class="line">    std::<span class="built_in">abort</span>();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  Backend-&gt;<span class="built_in">SimulateReturnFromFunction</span>(pbBounceBuf_gva.<span class="built_in">U64</span>());</span><br><span class="line"></span><br><span class="line">&#125;)) &#123;</span><br><span class="line">  fmt::<span class="built_in">print</span>(<span class="string">&quot;Failed to Setbreakpoint on VBoxDD!vmsvgaR3FifoGetCmdPayload\n&quot;</span>);</span><br><span class="line">  <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-comment">//</span><br><span class="hljs-comment">// unsigned __int8 *__fastcall vmsvgaR3FifoGetCmdPayload(</span><br><span class="hljs-comment">//       unsigned int cbPayloadReq,</span><br><span class="hljs-comment">//       volatile unsigned int *pFIFO,</span><br><span class="hljs-comment">//       unsigned int offCurrentCmd,</span><br><span class="hljs-comment">//       unsigned int offFifoMin,</span><br><span class="hljs-comment">//       unsigned int offFifoMax,</span><br><span class="hljs-comment">//       unsigned __int8 *pbBounceBuf,</span><br><span class="hljs-comment">//       unsigned int *pcbAlreadyRead,</span><br><span class="hljs-comment">//       PDMTHREAD *pThread,</span><br><span class="hljs-comment">//       VGAState *pThis,</span><br><span class="hljs-comment">//       VMSVGAR3STATE *pSVGAState,</span><br><span class="hljs-comment">//       PDMDEVINSR3 *pDevIns)</span><br><span class="hljs-comment">//</span><br><span class="hljs-keyword">if</span>(!g_Backend-&gt;<span class="hljs-built_in">Setbreakpoint</span>(<span class="hljs-string">&quot;VBoxDD!vmsvgaR3FifoGetCmdPayload&quot;</span>, [](Backend_t *Backend) &#123;<br>  <span class="hljs-type">uint32_t</span> cbPayloadReq = Backend-&gt;<span class="hljs-built_in">GetArg</span>(<span class="hljs-number">0</span>);<br>  Gva_t pbBounceBuf_gva = Backend-&gt;<span class="hljs-built_in">GetArgGva</span>(<span class="hljs-number">5</span>);<br>  Gva_t pcbAlreadyRead_gva = Backend-&gt;<span class="hljs-built_in">GetArgGva</span>(<span class="hljs-number">6</span>);<br><br>  <span class="hljs-keyword">if</span>(cbPayloadReq &gt; GlobalState.SvgaCmdBodySize) &#123;<br>    <span class="hljs-built_in">DebugPrint</span>(<span class="hljs-string">&quot;cbpayloadReq(&#123;:#x&#125;) &gt; SvgaCmdBodySize(&#123;:#x&#125;), restore context and goto next round\n&quot;</span>, cbPayloadReq, GlobalState.SvgaCmdBodySize);<br>    <span class="hljs-keyword">return</span> GlobalState.<span class="hljs-built_in">RestoreGprs</span>(Backend);<br>  &#125;<br>  <br>  <span class="hljs-keyword">if</span>(cbPayloadReq &gt; u32PbBounceBufMaxSize) &#123;<br>    <span class="hljs-type">const</span> <span class="hljs-type">uint64_t</span> RetAddr = Backend-&gt;<span class="hljs-built_in">VirtRead8</span>(<span class="hljs-built_in">Gva_t</span>(Backend-&gt;<span class="hljs-built_in">Rsp</span>()));<br>    <span class="hljs-built_in">DebugPrint</span>(<span class="hljs-string">&quot;check this, RetAddr = &#123;:#x&#125;\n&quot;</span>, RetAddr);<br>    std::<span class="hljs-built_in">abort</span>();<br>  &#125;<br><br>  <span class="hljs-keyword">if</span>(!Backend-&gt;<span class="hljs-built_in">VirtWriteDirty</span>(pbBounceBuf_gva, GlobalState.SvgaCmdBody, cbPayloadReq)) &#123;<br>    fmt::<span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;Failed to write pbBounceBuf, pbBounceBuf = &#123;:#x&#125;, cbPayloadReq = &#123;:#x&#125;, SvgaCmdBodySize = &#123;:#x&#125;\n&quot;</span>,<br>                pbBounceBuf_gva.<span class="hljs-built_in">U64</span>(), cbPayloadReq, GlobalState.SvgaCmdBodySize);<br>    std::<span class="hljs-built_in">abort</span>();<br>  &#125;<br><br>  <span class="hljs-keyword">if</span>(!Backend-&gt;<span class="hljs-built_in">VirtWriteStructDirty</span>(pcbAlreadyRead_gva, &amp;cbPayloadReq)) &#123;<br>    fmt::<span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;Faile to write pcbAlreadyRead, pcbAlreadyRead = &#123;:#x&#125;\n&quot;</span>, pcbAlreadyRead_gva.<span class="hljs-built_in">U64</span>());<br>    std::<span class="hljs-built_in">abort</span>();<br>  &#125;<br><br>  Backend-&gt;<span class="hljs-built_in">SimulateReturnFromFunction</span>(pbBounceBuf_gva.<span class="hljs-built_in">U64</span>());<br><br>&#125;)) &#123;<br>  fmt::<span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;Failed to Setbreakpoint on VBoxDD!vmsvgaR3FifoGetCmdPayload\n&quot;</span>);<br>  <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <p>I also had to define end point of execution. After some reversing, I found two spots and using it as end point.</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">const</span> Gva_t SvgaLoopEnd = <span class="built_in">Gva_t</span>(g_Dbg.<span class="built_in">GetSymbol</span>(<span class="string">&quot;VBoxDD!vmsvgaR3FifoLoop&quot;</span>) + <span class="number">0x24AB</span>);</span><br><span class="line"><span class="keyword">if</span>(!g_Backend-&gt;<span class="built_in">Setbreakpoint</span>(SvgaLoopEnd, [](Backend_t *Backend) &#123;</span><br><span class="line">  <span class="built_in">DebugPrint</span>(<span class="string">&quot;loop end reached, restore context\n&quot;</span>);</span><br><span class="line">  GlobalState.<span class="built_in">RestoreGprs</span>(g_Backend);</span><br><span class="line">&#125;)) &#123;</span><br><span class="line">  fmt::<span class="built_in">print</span>(<span class="string">&quot;Failed to Setbreakpoint on SvgaLoopEnd\n&quot;</span>);</span><br><span class="line">  <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">const</span> Gva_t SvgLoopEnd2 = <span class="built_in">Gva_t</span>(g_Dbg.<span class="built_in">GetSymbol</span>(<span class="string">&quot;VBoxDD!vmsvgaR3FifoLoop&quot;</span>) + <span class="number">0x24B2</span>);</span><br><span class="line"><span class="keyword">if</span>(!g_Backend-&gt;<span class="built_in">Setbreakpoint</span>(SvgLoopEnd2, [](Backend_t *Backend) &#123;</span><br><span class="line">  <span class="built_in">DebugPrint</span>(<span class="string">&quot;loop end2 reached, restore context\n&quot;</span>);</span><br><span class="line">  GlobalState.<span class="built_in">RestoreGprs</span>(g_Backend);</span><br><span class="line">&#125;)) &#123;</span><br><span class="line">  fmt::<span class="built_in">print</span>(<span class="string">&quot;Failed to Setbreakpoint on SvgLoopEnd2\n&quot;</span>);</span><br><span class="line">  <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-type">const</span> Gva_t SvgaLoopEnd = <span class="hljs-built_in">Gva_t</span>(g_Dbg.<span class="hljs-built_in">GetSymbol</span>(<span class="hljs-string">&quot;VBoxDD!vmsvgaR3FifoLoop&quot;</span>) + <span class="hljs-number">0x24AB</span>);<br><span class="hljs-keyword">if</span>(!g_Backend-&gt;<span class="hljs-built_in">Setbreakpoint</span>(SvgaLoopEnd, [](Backend_t *Backend) &#123;<br>  <span class="hljs-built_in">DebugPrint</span>(<span class="hljs-string">&quot;loop end reached, restore context\n&quot;</span>);<br>  GlobalState.<span class="hljs-built_in">RestoreGprs</span>(g_Backend);<br>&#125;)) &#123;<br>  fmt::<span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;Failed to Setbreakpoint on SvgaLoopEnd\n&quot;</span>);<br>  <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>&#125;<br><br><span class="hljs-type">const</span> Gva_t SvgLoopEnd2 = <span class="hljs-built_in">Gva_t</span>(g_Dbg.<span class="hljs-built_in">GetSymbol</span>(<span class="hljs-string">&quot;VBoxDD!vmsvgaR3FifoLoop&quot;</span>) + <span class="hljs-number">0x24B2</span>);<br><span class="hljs-keyword">if</span>(!g_Backend-&gt;<span class="hljs-built_in">Setbreakpoint</span>(SvgLoopEnd2, [](Backend_t *Backend) &#123;<br>  <span class="hljs-built_in">DebugPrint</span>(<span class="hljs-string">&quot;loop end2 reached, restore context\n&quot;</span>);<br>  GlobalState.<span class="hljs-built_in">RestoreGprs</span>(g_Backend);<br>&#125;)) &#123;<br>  fmt::<span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;Failed to Setbreakpoint on SvgLoopEnd2\n&quot;</span>);<br>  <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <p>As I said above, I create a snapshot on <code>vmsvgaR3FifoLoop+4E2</code>. So if I restore register context, next execution flow starts from there. Because of that, I had to parse new testcase using breakpoint Handler.</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">const</span> Gva_t SvgaLoopStart = <span class="built_in">Gva_t</span>(g_Dbg.<span class="built_in">GetSymbol</span>(<span class="string">&quot;VBoxDD!vmsvgaR3FifoLoop&quot;</span>) + <span class="number">0x4e2</span>);</span><br><span class="line"><span class="keyword">if</span>(!g_Backend-&gt;<span class="built_in">Setbreakpoint</span>(SvgaLoopStart, [](Backend_t *Backend) &#123;</span><br><span class="line">  <span class="keyword">if</span>(GlobalState.SvgaCmds.<span class="built_in">size</span>() == <span class="number">0</span>) &#123;</span><br><span class="line">    <span class="built_in">DebugPrint</span>(<span class="string">&quot;testcase deque empty! goto next round...\n&quot;</span>);</span><br><span class="line">    <span class="keyword">return</span> Backend-&gt;<span class="built_in">Stop</span>(<span class="built_in">Ok_t</span>());</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">auto</span> &amp;Testcase = GlobalState.SvgaCmds.<span class="built_in">front</span>();</span><br><span class="line"></span><br><span class="line">  <span class="keyword">while</span> (Testcase.SvgaCmdCode == <span class="number">1045</span>) &#123;</span><br><span class="line">    GlobalState.SvgaCmds.<span class="built_in">pop_front</span>();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>(GlobalState.SvgaCmds.<span class="built_in">size</span>() == <span class="number">0</span>) &#123;</span><br><span class="line">      <span class="built_in">DebugPrint</span>(<span class="string">&quot;testcase deque empty during cmd filtering! goto next round...\n&quot;</span>);</span><br><span class="line">      <span class="keyword">return</span> Backend-&gt;<span class="built_in">Stop</span>(<span class="built_in">Ok_t</span>());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    Testcase = GlobalState.SvgaCmds.<span class="built_in">front</span>();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  Backend-&gt;<span class="built_in">Rbx</span>(Testcase.SvgaCmdCode);</span><br><span class="line"></span><br><span class="line">  <span class="built_in">DebugPrint</span>(<span class="string">&quot;SvgaCmdCode = &#123;:#x&#125;\n&quot;</span>, Testcase.SvgaCmdCode);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span>(Testcase.SvgaCmdCode &gt;= <span class="number">1040</span>) &#123;</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">DebugPrint</span>(<span class="string">&quot;Have to avoid AssertBreak(pHdr-&gt;size &lt; pThis-&gt;svga.cbFIFO), write &#123;:#x&#125; on first DWORD\n&quot;</span>, Testcase.SvgaBody.<span class="built_in">size</span>());</span><br><span class="line"></span><br><span class="line">    <span class="type">const</span> <span class="type">uint32_t</span> Svga3dCmdSize = Testcase.SvgaBody.<span class="built_in">size</span>();</span><br><span class="line">    <span class="keyword">if</span>(Svga3dCmdSize &gt;= <span class="number">0x200000</span>) &#123;</span><br><span class="line">      fmt::<span class="built_in">print</span>(<span class="string">&quot;Svga3dCmdSize(&#123;:#x&#125;) &gt; cbFIFO, abort\n&quot;</span>, Svga3dCmdSize);</span><br><span class="line">      std::<span class="built_in">abort</span>();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">memcpy</span>(&amp;GlobalState.SvgaCmdBody[<span class="number">0</span>], &amp;Svga3dCmdSize, <span class="number">4</span>);</span><br><span class="line">    <span class="built_in">memcpy</span>(&amp;GlobalState.SvgaCmdBody[<span class="number">4</span>], Testcase.SvgaBody.<span class="built_in">data</span>(), Testcase.SvgaBody.<span class="built_in">size</span>());</span><br><span class="line">    GlobalState.SvgaCmdBodySize = Testcase.SvgaBody.<span class="built_in">size</span>() + <span class="number">4</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="built_in">memcpy</span>(GlobalState.SvgaCmdBody, Testcase.SvgaBody.<span class="built_in">data</span>(), Testcase.SvgaBody.<span class="built_in">size</span>());</span><br><span class="line">    GlobalState.SvgaCmdBodySize = Testcase.SvgaBody.<span class="built_in">size</span>();</span><br><span class="line">  &#125;    </span><br><span class="line"></span><br><span class="line">  GlobalState.SvgaCmds.<span class="built_in">pop_front</span>();</span><br><span class="line">&#125;)) &#123;</span><br><span class="line">  fmt::<span class="built_in">print</span>(<span class="string">&quot;Failed to Setbreakpoint on SvgaLoopStart\n&quot;</span>);</span><br><span class="line">  <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-type">const</span> Gva_t SvgaLoopStart = <span class="hljs-built_in">Gva_t</span>(g_Dbg.<span class="hljs-built_in">GetSymbol</span>(<span class="hljs-string">&quot;VBoxDD!vmsvgaR3FifoLoop&quot;</span>) + <span class="hljs-number">0x4e2</span>);<br><span class="hljs-keyword">if</span>(!g_Backend-&gt;<span class="hljs-built_in">Setbreakpoint</span>(SvgaLoopStart, [](Backend_t *Backend) &#123;<br>  <span class="hljs-keyword">if</span>(GlobalState.SvgaCmds.<span class="hljs-built_in">size</span>() == <span class="hljs-number">0</span>) &#123;<br>    <span class="hljs-built_in">DebugPrint</span>(<span class="hljs-string">&quot;testcase deque empty! goto next round...\n&quot;</span>);<br>    <span class="hljs-keyword">return</span> Backend-&gt;<span class="hljs-built_in">Stop</span>(<span class="hljs-built_in">Ok_t</span>());<br>  &#125;<br><br>  <span class="hljs-keyword">auto</span> &amp;Testcase = GlobalState.SvgaCmds.<span class="hljs-built_in">front</span>();<br><br>  <span class="hljs-keyword">while</span> (Testcase.SvgaCmdCode == <span class="hljs-number">1045</span>) &#123;<br>    GlobalState.SvgaCmds.<span class="hljs-built_in">pop_front</span>();<br><br>    <span class="hljs-keyword">if</span>(GlobalState.SvgaCmds.<span class="hljs-built_in">size</span>() == <span class="hljs-number">0</span>) &#123;<br>      <span class="hljs-built_in">DebugPrint</span>(<span class="hljs-string">&quot;testcase deque empty during cmd filtering! goto next round...\n&quot;</span>);<br>      <span class="hljs-keyword">return</span> Backend-&gt;<span class="hljs-built_in">Stop</span>(<span class="hljs-built_in">Ok_t</span>());<br>    &#125;<br><br>    Testcase = GlobalState.SvgaCmds.<span class="hljs-built_in">front</span>();<br>  &#125;<br><br>  Backend-&gt;<span class="hljs-built_in">Rbx</span>(Testcase.SvgaCmdCode);<br><br>  <span class="hljs-built_in">DebugPrint</span>(<span class="hljs-string">&quot;SvgaCmdCode = &#123;:#x&#125;\n&quot;</span>, Testcase.SvgaCmdCode);<br><br>  <span class="hljs-keyword">if</span>(Testcase.SvgaCmdCode &gt;= <span class="hljs-number">1040</span>) &#123;<br>    <br>    <span class="hljs-built_in">DebugPrint</span>(<span class="hljs-string">&quot;Have to avoid AssertBreak(pHdr-&gt;size &lt; pThis-&gt;svga.cbFIFO), write &#123;:#x&#125; on first DWORD\n&quot;</span>, Testcase.SvgaBody.<span class="hljs-built_in">size</span>());<br><br>    <span class="hljs-type">const</span> <span class="hljs-type">uint32_t</span> Svga3dCmdSize = Testcase.SvgaBody.<span class="hljs-built_in">size</span>();<br>    <span class="hljs-keyword">if</span>(Svga3dCmdSize &gt;= <span class="hljs-number">0x200000</span>) &#123;<br>      fmt::<span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;Svga3dCmdSize(&#123;:#x&#125;) &gt; cbFIFO, abort\n&quot;</span>, Svga3dCmdSize);<br>      std::<span class="hljs-built_in">abort</span>();<br>    &#125;<br><br>    <span class="hljs-built_in">memcpy</span>(&amp;GlobalState.SvgaCmdBody[<span class="hljs-number">0</span>], &amp;Svga3dCmdSize, <span class="hljs-number">4</span>);<br>    <span class="hljs-built_in">memcpy</span>(&amp;GlobalState.SvgaCmdBody[<span class="hljs-number">4</span>], Testcase.SvgaBody.<span class="hljs-built_in">data</span>(), Testcase.SvgaBody.<span class="hljs-built_in">size</span>());<br>    GlobalState.SvgaCmdBodySize = Testcase.SvgaBody.<span class="hljs-built_in">size</span>() + <span class="hljs-number">4</span>;<br>  &#125;<br>  <span class="hljs-keyword">else</span> &#123;<br>    <span class="hljs-built_in">memcpy</span>(GlobalState.SvgaCmdBody, Testcase.SvgaBody.<span class="hljs-built_in">data</span>(), Testcase.SvgaBody.<span class="hljs-built_in">size</span>());<br>    GlobalState.SvgaCmdBodySize = Testcase.SvgaBody.<span class="hljs-built_in">size</span>();<br>  &#125;    <br><br>  GlobalState.SvgaCmds.<span class="hljs-built_in">pop_front</span>();<br>&#125;)) &#123;<br>  fmt::<span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;Failed to Setbreakpoint on SvgaLoopStart\n&quot;</span>);<br>  <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <p>After some investigation, I found <code>CreateDeviceEx</code> call in <code>vmsvga3dContextDefine</code> keep causing <strong>CR3 context switching</strong> and I didn’t found any way to handling it using breakpoint handler. So I just blacklisting it( <code>SVGA_3D_CMD_CONTEXT_DEFINE</code> &#x3D; <code>1045</code> ).</p>
 <p>I disclose almost every part of fuzz module except mutation part. I just use libfuzzer mutator to mutate body data of SVGA command and pick one of command in array randomly.</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">explicit</span> <span class="title">CustomMutator_t</span><span class="params">(std::mt19937_64 &amp;Rng, <span class="type">const</span> <span class="type">size_t</span> TestcaseMaxSize)</span></span></span><br><span class="line"><span class="function">  : Rng_(Rng), TestcaseMaxSize_(TestcaseMaxSize) &#123;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// set maximum size for multiple (mutated) testcase( Default = 1MB )</span></span><br><span class="line">    ScratchBuffer__ = std::<span class="built_in">make_unique</span>&lt;<span class="type">uint8_t</span>[]&gt;(_1MB);</span><br><span class="line">    ScratchBuffer_  = &#123;ScratchBuffer__.<span class="built_in">get</span>(), _1MB&#125;;</span><br><span class="line"></span><br><span class="line">    BodyMutator_ = <span class="built_in">make_unique</span>&lt;LibfuzzerMutator_t&gt;(Rng, TestcaseMaxSize);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// skip for brevity...</span></span><br><span class="line"></span><br><span class="line"><span class="function">std::string <span class="title">Mutate</span><span class="params">(<span class="type">uint8_t</span> *Data, <span class="type">const</span> <span class="type">size_t</span> DataLen, <span class="type">const</span> <span class="type">size_t</span> MaxSize)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">auto</span> Root = <span class="built_in">Deserialize</span>(Data, DataLen);</span><br><span class="line">  <span class="keyword">auto</span> &amp;SvgaCmds = Root.SvgaCmds;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">auto</span> &amp;SvgaCmd : SvgaCmds) &#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//</span></span><br><span class="line">    <span class="comment">// 50%</span></span><br><span class="line">    <span class="comment">//</span></span><br><span class="line">    <span class="keyword">if</span>(<span class="built_in">GetUint32</span>(<span class="number">0</span>, <span class="number">1</span>) == <span class="number">1</span>) &#123;  </span><br><span class="line">      <span class="type">uint32_t</span> SvgaCmdRandomIdx = <span class="built_in">GetUint32</span>(<span class="number">0</span>, SvgaCmdListLen);</span><br><span class="line">      SvgaCmd.SvgaCmdCode = SvgaCmdList[SvgaCmdRandomIdx];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">memcpy</span>(GlobalMutBuffer, SvgaCmd.SvgaBody.<span class="built_in">data</span>(), SvgaCmd.SvgaBody.<span class="built_in">size</span>());</span><br><span class="line">    <span class="type">size_t</span> NewTestcaseSize = BodyMutator_-&gt;Mut_.<span class="built_in">Mutate</span>(GlobalMutBuffer, SvgaCmd.SvgaBody.<span class="built_in">size</span>(), MaxSize);</span><br><span class="line">    SvgaCmd.SvgaBody.<span class="built_in">resize</span>(NewTestcaseSize);</span><br><span class="line">    <span class="built_in">memcpy</span>(SvgaCmd.SvgaBody.<span class="built_in">data</span>(), GlobalMutBuffer, NewTestcaseSize);</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  json::json Serialized;</span><br><span class="line">  <span class="built_in">to_json</span>(Serialized, Root);</span><br><span class="line">  <span class="keyword">return</span> Serialized.<span class="built_in">dump</span>();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-keyword">explicit</span> <span class="hljs-title">CustomMutator_t</span><span class="hljs-params">(std::mt19937_64 &amp;Rng, <span class="hljs-type">const</span> <span class="hljs-type">size_t</span> TestcaseMaxSize)</span></span><br><span class="hljs-function">  : Rng_(Rng), TestcaseMaxSize_(TestcaseMaxSize) &#123;</span><br><br>    <span class="hljs-comment">// set maximum size for multiple (mutated) testcase( Default = 1MB )</span><br>    ScratchBuffer__ = std::<span class="hljs-built_in">make_unique</span>&lt;<span class="hljs-type">uint8_t</span>[]&gt;(_1MB);<br>    ScratchBuffer_  = &#123;ScratchBuffer__.<span class="hljs-built_in">get</span>(), _1MB&#125;;<br><br>    BodyMutator_ = <span class="hljs-built_in">make_unique</span>&lt;LibfuzzerMutator_t&gt;(Rng, TestcaseMaxSize);<br>&#125;<br><br><span class="hljs-comment">// skip for brevity...</span><br><br><span class="hljs-function">std::string <span class="hljs-title">Mutate</span><span class="hljs-params">(<span class="hljs-type">uint8_t</span> *Data, <span class="hljs-type">const</span> <span class="hljs-type">size_t</span> DataLen, <span class="hljs-type">const</span> <span class="hljs-type">size_t</span> MaxSize)</span> </span>&#123;<br>  <span class="hljs-keyword">auto</span> Root = <span class="hljs-built_in">Deserialize</span>(Data, DataLen);<br>  <span class="hljs-keyword">auto</span> &amp;SvgaCmds = Root.SvgaCmds;<br><br>  <span class="hljs-keyword">for</span>(<span class="hljs-keyword">auto</span> &amp;SvgaCmd : SvgaCmds) &#123;<br><br>    <span class="hljs-comment">//</span><br>    <span class="hljs-comment">// 50%</span><br>    <span class="hljs-comment">//</span><br>    <span class="hljs-keyword">if</span>(<span class="hljs-built_in">GetUint32</span>(<span class="hljs-number">0</span>, <span class="hljs-number">1</span>) == <span class="hljs-number">1</span>) &#123;  <br>      <span class="hljs-type">uint32_t</span> SvgaCmdRandomIdx = <span class="hljs-built_in">GetUint32</span>(<span class="hljs-number">0</span>, SvgaCmdListLen);<br>      SvgaCmd.SvgaCmdCode = SvgaCmdList[SvgaCmdRandomIdx];<br>    &#125;<br><br>    <span class="hljs-built_in">memcpy</span>(GlobalMutBuffer, SvgaCmd.SvgaBody.<span class="hljs-built_in">data</span>(), SvgaCmd.SvgaBody.<span class="hljs-built_in">size</span>());<br>    <span class="hljs-type">size_t</span> NewTestcaseSize = BodyMutator_-&gt;Mut_.<span class="hljs-built_in">Mutate</span>(GlobalMutBuffer, SvgaCmd.SvgaBody.<span class="hljs-built_in">size</span>(), MaxSize);<br>    SvgaCmd.SvgaBody.<span class="hljs-built_in">resize</span>(NewTestcaseSize);<br>    <span class="hljs-built_in">memcpy</span>(SvgaCmd.SvgaBody.<span class="hljs-built_in">data</span>(), GlobalMutBuffer, NewTestcaseSize);<br>  &#125;<br>  <br>  json::json Serialized;<br>  <span class="hljs-built_in">to_json</span>(Serialized, Root);<br>  <span class="hljs-keyword">return</span> Serialized.<span class="hljs-built_in">dump</span>();<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <p>I also define generator function. It is very useful if you are too lazy to create random input like me ^~^.</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">std::string <span class="title">GenerateTestcase</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  SvgaCmds_t Root;</span><br><span class="line">  <span class="type">const</span> <span class="keyword">auto</span> N = <span class="built_in">GetUint32</span>(<span class="number">1</span>, <span class="number">10</span>);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> (<span class="type">size_t</span> Idx = <span class="number">0</span>; Idx &lt; N; Idx++) &#123;</span><br><span class="line">    SvgaCmd_t SvgaCmd;</span><br><span class="line">    </span><br><span class="line">    SvgaCmd.SvgaCmdCode = SvgaCmdList[<span class="built_in">GetUint32</span>(<span class="number">0</span>, SvgaCmdListLen)];</span><br><span class="line">    SvgaCmd.SvgaBody.<span class="built_in">resize</span>(<span class="built_in">GetUint32</span>(<span class="number">0x100</span>, <span class="number">0x400</span>));</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>(<span class="built_in">GetUint32</span>(<span class="number">0</span>, <span class="number">1</span>) == <span class="number">0</span>) &#123;</span><br><span class="line">      <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt; SvgaCmd.SvgaBody.<span class="built_in">size</span>(); i++) &#123;</span><br><span class="line">        SvgaCmd.SvgaBody[i] = <span class="number">0x41</span>;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt; SvgaCmd.SvgaBody.<span class="built_in">size</span>(); i++) &#123;</span><br><span class="line">        SvgaCmd.SvgaBody[i] = (<span class="type">uint8_t</span>)<span class="built_in">GetUint32</span>(<span class="number">0</span>, <span class="number">255</span>);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    Root.SvgaCmds.<span class="built_in">emplace_back</span>(SvgaCmd);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  json::json Serialized;</span><br><span class="line">  <span class="built_in">to_json</span>(Serialized, Root);</span><br><span class="line">  <span class="keyword">return</span> Serialized.<span class="built_in">dump</span>();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">std::string <span class="title">GetNewTestcase</span><span class="params">(<span class="type">const</span> Corpus_t &amp;Corpus)</span> <span class="keyword">override</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="comment">//</span></span><br><span class="line">  <span class="comment">// 20%</span></span><br><span class="line">  <span class="comment">//</span></span><br><span class="line">  <span class="keyword">if</span>(<span class="built_in">GetUint32</span>(<span class="number">1</span>, <span class="number">5</span>) == <span class="number">1</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">GenerateTestcase</span>();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="type">const</span> Testcase_t *Testcase = Corpus.<span class="built_in">PickTestcase</span>();</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (!Testcase) &#123;</span><br><span class="line">    fmt::<span class="built_in">print</span>(<span class="string">&quot;The corpus is empty, generate random one\n&quot;</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">GenerateTestcase</span>();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">//</span></span><br><span class="line">  <span class="comment">// Copy the input in a buffer we&#x27;re going to mutate.</span></span><br><span class="line">  <span class="comment">//</span></span><br><span class="line"></span><br><span class="line">  <span class="built_in">memcpy</span>(ScratchBuffer_.<span class="built_in">data</span>(), Testcase-&gt;Buffer_.<span class="built_in">get</span>(),</span><br><span class="line">         Testcase-&gt;BufferSize_);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// return Mutate(ScratchBuffer_.data(), Testcase-&gt;BufferSize_, TestcaseMaxSize_);</span></span><br><span class="line">  </span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">Mutate</span>(ScratchBuffer_.<span class="built_in">data</span>(), Testcase-&gt;BufferSize_, u32PbBounceBufMaxSize - <span class="built_in">sizeof</span>(<span class="type">uint32_t</span>));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-function">std::string <span class="hljs-title">GenerateTestcase</span><span class="hljs-params">()</span> </span>&#123;<br>  SvgaCmds_t Root;<br>  <span class="hljs-type">const</span> <span class="hljs-keyword">auto</span> N = <span class="hljs-built_in">GetUint32</span>(<span class="hljs-number">1</span>, <span class="hljs-number">10</span>);<br><br>  <span class="hljs-keyword">for</span> (<span class="hljs-type">size_t</span> Idx = <span class="hljs-number">0</span>; Idx &lt; N; Idx++) &#123;<br>    SvgaCmd_t SvgaCmd;<br>    <br>    SvgaCmd.SvgaCmdCode = SvgaCmdList[<span class="hljs-built_in">GetUint32</span>(<span class="hljs-number">0</span>, SvgaCmdListLen)];<br>    SvgaCmd.SvgaBody.<span class="hljs-built_in">resize</span>(<span class="hljs-built_in">GetUint32</span>(<span class="hljs-number">0x100</span>, <span class="hljs-number">0x400</span>));<br><br>    <span class="hljs-keyword">if</span>(<span class="hljs-built_in">GetUint32</span>(<span class="hljs-number">0</span>, <span class="hljs-number">1</span>) == <span class="hljs-number">0</span>) &#123;<br>      <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; SvgaCmd.SvgaBody.<span class="hljs-built_in">size</span>(); i++) &#123;<br>        SvgaCmd.SvgaBody[i] = <span class="hljs-number">0x41</span>;<br>      &#125;<br>    &#125;<br>    <span class="hljs-keyword">else</span> &#123;<br>      <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; SvgaCmd.SvgaBody.<span class="hljs-built_in">size</span>(); i++) &#123;<br>        SvgaCmd.SvgaBody[i] = (<span class="hljs-type">uint8_t</span>)<span class="hljs-built_in">GetUint32</span>(<span class="hljs-number">0</span>, <span class="hljs-number">255</span>);<br>      &#125;<br>    &#125;<br><br>    Root.SvgaCmds.<span class="hljs-built_in">emplace_back</span>(SvgaCmd);<br>  &#125;<br><br>  json::json Serialized;<br>  <span class="hljs-built_in">to_json</span>(Serialized, Root);<br>  <span class="hljs-keyword">return</span> Serialized.<span class="hljs-built_in">dump</span>();<br>&#125;<br><br><span class="hljs-function">std::string <span class="hljs-title">GetNewTestcase</span><span class="hljs-params">(<span class="hljs-type">const</span> Corpus_t &amp;Corpus)</span> <span class="hljs-keyword">override</span> </span>&#123;<br><br>  <span class="hljs-comment">//</span><br>  <span class="hljs-comment">// 20%</span><br>  <span class="hljs-comment">//</span><br>  <span class="hljs-keyword">if</span>(<span class="hljs-built_in">GetUint32</span>(<span class="hljs-number">1</span>, <span class="hljs-number">5</span>) == <span class="hljs-number">1</span>) &#123;<br>    <span class="hljs-keyword">return</span> <span class="hljs-built_in">GenerateTestcase</span>();<br>  &#125;<br><br>  <span class="hljs-type">const</span> Testcase_t *Testcase = Corpus.<span class="hljs-built_in">PickTestcase</span>();<br><br>  <span class="hljs-keyword">if</span> (!Testcase) &#123;<br>    fmt::<span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;The corpus is empty, generate random one\n&quot;</span>);<br>    <span class="hljs-keyword">return</span> <span class="hljs-built_in">GenerateTestcase</span>();<br>  &#125;<br><br>  <span class="hljs-comment">//</span><br>  <span class="hljs-comment">// Copy the input in a buffer we&#x27;re going to mutate.</span><br>  <span class="hljs-comment">//</span><br><br>  <span class="hljs-built_in">memcpy</span>(ScratchBuffer_.<span class="hljs-built_in">data</span>(), Testcase-&gt;Buffer_.<span class="hljs-built_in">get</span>(),<br>         Testcase-&gt;BufferSize_);<br><br>  <span class="hljs-comment">// return Mutate(ScratchBuffer_.data(), Testcase-&gt;BufferSize_, TestcaseMaxSize_);</span><br>  <br>  <span class="hljs-keyword">return</span> <span class="hljs-built_in">Mutate</span>(ScratchBuffer_.<span class="hljs-built_in">data</span>(), Testcase-&gt;BufferSize_, u32PbBounceBufMaxSize - <span class="hljs-built_in">sizeof</span>(<span class="hljs-type">uint32_t</span>));<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <p>Aaaaannnd, this is everything you need to fuzz! I skip some formal code for brevity, but I think you can easily find what you need to define fully working fuzz module.</p>
 <p>…..Ooooh wait, I forgot something. After some hours of struggle, I define a blacklist which cause CR3 context switching. I just put it on the end of <code>Init()</code> function.</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">bool</span> <span class="title">SetupVBoxBlacklistHooks</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  <span class="keyword">if</span>(!g_Backend-&gt;<span class="built_in">SetBreakpoint</span>(<span class="string">&quot;VBoxRT!RTLogLoggerEx&quot;</span>, [](Backend_t *Backend) &#123;</span><br><span class="line">    Backend-&gt;<span class="built_in">SimulateReturnFromFunction</span>(<span class="number">0</span>);</span><br><span class="line">  &#125;)) &#123;</span><br><span class="line">    fmt::<span class="built_in">print</span>(<span class="string">&quot;Failed to SetBreakpoint on VBoxRT!RTLogLoggerEx\n&quot;</span>);</span><br><span class="line">    std::<span class="built_in">abort</span>();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span>(!g_Backend-&gt;<span class="built_in">SetBreakpoint</span>(<span class="string">&quot;VBoxVMM!PDMCritSectLeave&quot;</span>, [](Backend_t *Backend) &#123;</span><br><span class="line">    Backend-&gt;<span class="built_in">SimulateReturnFromFunction</span>(<span class="number">0</span>);</span><br><span class="line">  &#125;)) &#123;</span><br><span class="line">    fmt::<span class="built_in">print</span>(<span class="string">&quot;Failed to SetBreakpoint on VBoxVMM!PDMCritSectLeave\n&quot;</span>);</span><br><span class="line">    std::<span class="built_in">abort</span>();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span>(!g_Backend-&gt;<span class="built_in">SetBreakpoint</span>(<span class="string">&quot;VBoxC!util::AutoLockBase::release&quot;</span>, [](Backend_t *Backend) &#123;</span><br><span class="line">    Backend-&gt;<span class="built_in">SimulateReturnFromFunction</span>(<span class="number">0</span>);</span><br><span class="line">  &#125;)) &#123;</span><br><span class="line">    fmt::<span class="built_in">print</span>(<span class="string">&quot;Failed to SetBreakpoint on VBoxC!util::AutoLockBase::release\n&quot;</span>);</span><br><span class="line">    std::<span class="built_in">abort</span>();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span>(!g_Backend-&gt;<span class="built_in">SetBreakpoint</span>(<span class="string">&quot;VBoxC!util::AutoLockBase::acquire&quot;</span>, [](Backend_t *Backend) &#123;</span><br><span class="line">    Backend-&gt;<span class="built_in">SimulateReturnFromFunction</span>(<span class="number">0</span>);</span><br><span class="line">  &#125;)) &#123;</span><br><span class="line">    fmt::<span class="built_in">print</span>(<span class="string">&quot;Failed to SetBreakpoint on VBoxC!util::AutoLockBase::acquire\n&quot;</span>);</span><br><span class="line">    std::<span class="built_in">abort</span>();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span>(!g_Backend-&gt;<span class="built_in">SetBreakpoint</span>(<span class="string">&quot;VirtualBoxVM!UIFrameBufferPrivate::NotifyChange&quot;</span>, [](Backend_t *Backend) &#123;</span><br><span class="line">    Backend-&gt;<span class="built_in">SimulateReturnFromFunction</span>(<span class="number">0</span>);</span><br><span class="line">  &#125;)) &#123;</span><br><span class="line">    fmt::<span class="built_in">print</span>(<span class="string">&quot;Failed to SetBreakpoint on VirtualBoxVM!UIFrameBufferPrivate::NotifyChange\n&quot;</span>);</span><br><span class="line">    std::<span class="built_in">abort</span>();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span>(!g_Backend-&gt;<span class="built_in">SetBreakpoint</span>(<span class="string">&quot;VBoxRT!SUPSemEventWaitNoResume&quot;</span>, [](Backend_t *Backend) &#123;</span><br><span class="line">    Backend-&gt;<span class="built_in">SimulateReturnFromFunction</span>(<span class="number">0</span>);</span><br><span class="line">  &#125;)) &#123;</span><br><span class="line">    fmt::<span class="built_in">print</span>(<span class="string">&quot;Failed to SetBreakpoint on VBoxRT!SUPSemEventWaitNoResume\n&quot;</span>);</span><br><span class="line">    std::<span class="built_in">abort</span>();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span>(!g_Backend-&gt;<span class="built_in">SetBreakpoint</span>(<span class="string">&quot;d3d9!CBaseDevice::Release&quot;</span>, [](Backend_t *Backend) &#123;</span><br><span class="line">    Backend-&gt;<span class="built_in">SimulateReturnFromFunction</span>(<span class="number">0</span>);</span><br><span class="line">  &#125;)) &#123;</span><br><span class="line">    fmt::<span class="built_in">print</span>(<span class="string">&quot;Failed to SetBreakpoint on d3d9!CBaseDevice::Release\n&quot;</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">if</span>(!g_Backend-&gt;<span class="built_in">SetBreakpoint</span>(<span class="string">&quot;d3d9!CD3DBase::Clear&quot;</span>, [](Backend_t *Backend) &#123;</span><br><span class="line">    Backend-&gt;<span class="built_in">SimulateReturnFromFunction</span>(<span class="number">0</span>);</span><br><span class="line">  &#125;)) &#123;</span><br><span class="line">    fmt::<span class="built_in">print</span>(<span class="string">&quot;Failed to SetBreakpoint on d3d9!CD3DBase::Clear\n&quot;</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">if</span>(!g_Backend-&gt;<span class="built_in">SetBreakpoint</span>(<span class="string">&quot;d3d9!CMipMap::SetAutoGenFilterType&quot;</span>, [](Backend_t *Backend) &#123;</span><br><span class="line">    Backend-&gt;<span class="built_in">SimulateReturnFromFunction</span>(<span class="number">0</span>);</span><br><span class="line">  &#125;)) &#123;</span><br><span class="line">    fmt::<span class="built_in">print</span>(<span class="string">&quot;Failed to SetBreakpoint on d3d9!CMipMap::SetAutoGenFilterType\n&quot;</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">if</span>(!g_Backend-&gt;<span class="built_in">SetBreakpoint</span>(<span class="string">&quot;d3d9!CMipMap::GenerateMipSubLevels&quot;</span>, [](Backend_t *Backend) &#123;</span><br><span class="line">    Backend-&gt;<span class="built_in">SimulateReturnFromFunction</span>(<span class="number">0</span>);</span><br><span class="line">  &#125;)) &#123;</span><br><span class="line">    fmt::<span class="built_in">print</span>(<span class="string">&quot;Failed to SetBreakpoint on d3d9!CMipMap::GenerateMipSubLevels\n&quot;</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span>(!g_Backend-&gt;<span class="built_in">SetBreakpoint</span>(<span class="string">&quot;USER32!GetDC&quot;</span>, [](Backend_t *Backend) &#123;</span><br><span class="line">    Backend-&gt;<span class="built_in">SimulateReturnFromFunction</span>(<span class="number">0x1337</span>);</span><br><span class="line">  &#125;)) &#123;</span><br><span class="line">    fmt::<span class="built_in">print</span>(<span class="string">&quot;Failed to SetBreakpoint on USER32!GetDC\n&quot;</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-type">bool</span> <span class="hljs-title">SetupVBoxBlacklistHooks</span><span class="hljs-params">()</span> </span>&#123;<br>  <span class="hljs-keyword">if</span>(!g_Backend-&gt;<span class="hljs-built_in">SetBreakpoint</span>(<span class="hljs-string">&quot;VBoxRT!RTLogLoggerEx&quot;</span>, [](Backend_t *Backend) &#123;<br>    Backend-&gt;<span class="hljs-built_in">SimulateReturnFromFunction</span>(<span class="hljs-number">0</span>);<br>  &#125;)) &#123;<br>    fmt::<span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;Failed to SetBreakpoint on VBoxRT!RTLogLoggerEx\n&quot;</span>);<br>    std::<span class="hljs-built_in">abort</span>();<br>  &#125;<br><br>  <span class="hljs-keyword">if</span>(!g_Backend-&gt;<span class="hljs-built_in">SetBreakpoint</span>(<span class="hljs-string">&quot;VBoxVMM!PDMCritSectLeave&quot;</span>, [](Backend_t *Backend) &#123;<br>    Backend-&gt;<span class="hljs-built_in">SimulateReturnFromFunction</span>(<span class="hljs-number">0</span>);<br>  &#125;)) &#123;<br>    fmt::<span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;Failed to SetBreakpoint on VBoxVMM!PDMCritSectLeave\n&quot;</span>);<br>    std::<span class="hljs-built_in">abort</span>();<br>  &#125;<br><br>  <span class="hljs-keyword">if</span>(!g_Backend-&gt;<span class="hljs-built_in">SetBreakpoint</span>(<span class="hljs-string">&quot;VBoxC!util::AutoLockBase::release&quot;</span>, [](Backend_t *Backend) &#123;<br>    Backend-&gt;<span class="hljs-built_in">SimulateReturnFromFunction</span>(<span class="hljs-number">0</span>);<br>  &#125;)) &#123;<br>    fmt::<span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;Failed to SetBreakpoint on VBoxC!util::AutoLockBase::release\n&quot;</span>);<br>    std::<span class="hljs-built_in">abort</span>();<br>  &#125;<br><br>  <span class="hljs-keyword">if</span>(!g_Backend-&gt;<span class="hljs-built_in">SetBreakpoint</span>(<span class="hljs-string">&quot;VBoxC!util::AutoLockBase::acquire&quot;</span>, [](Backend_t *Backend) &#123;<br>    Backend-&gt;<span class="hljs-built_in">SimulateReturnFromFunction</span>(<span class="hljs-number">0</span>);<br>  &#125;)) &#123;<br>    fmt::<span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;Failed to SetBreakpoint on VBoxC!util::AutoLockBase::acquire\n&quot;</span>);<br>    std::<span class="hljs-built_in">abort</span>();<br>  &#125;<br><br>  <span class="hljs-keyword">if</span>(!g_Backend-&gt;<span class="hljs-built_in">SetBreakpoint</span>(<span class="hljs-string">&quot;VirtualBoxVM!UIFrameBufferPrivate::NotifyChange&quot;</span>, [](Backend_t *Backend) &#123;<br>    Backend-&gt;<span class="hljs-built_in">SimulateReturnFromFunction</span>(<span class="hljs-number">0</span>);<br>  &#125;)) &#123;<br>    fmt::<span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;Failed to SetBreakpoint on VirtualBoxVM!UIFrameBufferPrivate::NotifyChange\n&quot;</span>);<br>    std::<span class="hljs-built_in">abort</span>();<br>  &#125;<br><br>  <span class="hljs-keyword">if</span>(!g_Backend-&gt;<span class="hljs-built_in">SetBreakpoint</span>(<span class="hljs-string">&quot;VBoxRT!SUPSemEventWaitNoResume&quot;</span>, [](Backend_t *Backend) &#123;<br>    Backend-&gt;<span class="hljs-built_in">SimulateReturnFromFunction</span>(<span class="hljs-number">0</span>);<br>  &#125;)) &#123;<br>    fmt::<span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;Failed to SetBreakpoint on VBoxRT!SUPSemEventWaitNoResume\n&quot;</span>);<br>    std::<span class="hljs-built_in">abort</span>();<br>  &#125;<br><br>  <span class="hljs-keyword">if</span>(!g_Backend-&gt;<span class="hljs-built_in">SetBreakpoint</span>(<span class="hljs-string">&quot;d3d9!CBaseDevice::Release&quot;</span>, [](Backend_t *Backend) &#123;<br>    Backend-&gt;<span class="hljs-built_in">SimulateReturnFromFunction</span>(<span class="hljs-number">0</span>);<br>  &#125;)) &#123;<br>    fmt::<span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;Failed to SetBreakpoint on d3d9!CBaseDevice::Release\n&quot;</span>);<br>  &#125;<br>  <br>  <span class="hljs-keyword">if</span>(!g_Backend-&gt;<span class="hljs-built_in">SetBreakpoint</span>(<span class="hljs-string">&quot;d3d9!CD3DBase::Clear&quot;</span>, [](Backend_t *Backend) &#123;<br>    Backend-&gt;<span class="hljs-built_in">SimulateReturnFromFunction</span>(<span class="hljs-number">0</span>);<br>  &#125;)) &#123;<br>    fmt::<span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;Failed to SetBreakpoint on d3d9!CD3DBase::Clear\n&quot;</span>);<br>  &#125;<br>  <br>  <span class="hljs-keyword">if</span>(!g_Backend-&gt;<span class="hljs-built_in">SetBreakpoint</span>(<span class="hljs-string">&quot;d3d9!CMipMap::SetAutoGenFilterType&quot;</span>, [](Backend_t *Backend) &#123;<br>    Backend-&gt;<span class="hljs-built_in">SimulateReturnFromFunction</span>(<span class="hljs-number">0</span>);<br>  &#125;)) &#123;<br>    fmt::<span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;Failed to SetBreakpoint on d3d9!CMipMap::SetAutoGenFilterType\n&quot;</span>);<br>  &#125;<br>  <br>  <span class="hljs-keyword">if</span>(!g_Backend-&gt;<span class="hljs-built_in">SetBreakpoint</span>(<span class="hljs-string">&quot;d3d9!CMipMap::GenerateMipSubLevels&quot;</span>, [](Backend_t *Backend) &#123;<br>    Backend-&gt;<span class="hljs-built_in">SimulateReturnFromFunction</span>(<span class="hljs-number">0</span>);<br>  &#125;)) &#123;<br>    fmt::<span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;Failed to SetBreakpoint on d3d9!CMipMap::GenerateMipSubLevels\n&quot;</span>);<br>  &#125;<br><br>  <span class="hljs-keyword">if</span>(!g_Backend-&gt;<span class="hljs-built_in">SetBreakpoint</span>(<span class="hljs-string">&quot;USER32!GetDC&quot;</span>, [](Backend_t *Backend) &#123;<br>    Backend-&gt;<span class="hljs-built_in">SimulateReturnFromFunction</span>(<span class="hljs-number">0x1337</span>);<br>  &#125;)) &#123;<br>    fmt::<span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;Failed to SetBreakpoint on USER32!GetDC\n&quot;</span>);<br>  &#125;<br><br>  <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <p>Yep. That’s really everything. I use this fuzz module several hours and it founds interesting crash.</p>
 <h1 id="3-Vulnerability-TL-DR"><a href="#3-Vulnerability-TL-DR" class="headerlink" title="3. Vulnerability( TL;DR )"></a>3. Vulnerability( TL;DR )</h1><p>Crash occurred in <code>vmsvga3dSurfaceCopy</code> function( <strong>PageHeap</strong> needed ).</p>
-<p><img src="https://github.com/henices/pictures/raw/master/wtf-vbox-blahblah2.png" alt="blahblah2"></p>
+<p><img src="https://github.com/henices/pictures/raw/master/wtf-vbox-blahblah2.png" srcset="/img/loading.gif" lazyload alt="blahblah2"></p>
 <p>This function trying to copy surface data from one to another using surface id and there’s no boundary check between surface, so it become exploitable wildcopy vulnerability in heap memory.</p>
-<p><img src="https://github.com/henices/pictures/raw/master/wtf-vbox-blahblah3.png" alt="spot the bug"></p>
+<p><img src="https://github.com/henices/pictures/raw/master/wtf-vbox-blahblah3.png" srcset="/img/loading.gif" lazyload alt="spot the bug"></p>
 <p>This vulnerability patched in <a target="_blank" rel="noopener" href="https://www.oracle.com/security-alerts/cpujul2022.html">6.1.36 release</a> at July, 2022.</p>
 <h1 id="4-Conclusion"><a href="#4-Conclusion" class="headerlink" title="4. Conclusion"></a>4. Conclusion</h1><p>I think importance of snapshot fuzzing is, it makes researcher to focus on target itself. </p>
 <p>Unlike other fuzzers based on runtime and DBI are often create (very) unreasonable side effect or need lots of time to create working harness. The concept of snapshot fuzzing makes it possible to reduce this waste of time.</p>
 
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Archives/" class="print-no-link">#Archives</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>When Hypervisor Met Snapshot Fuzzing</div>
+      <div>http://usmacd.com/cn/2022-07-21-When-Hypervisor-Met-Snapshot-Fuzzing/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>henices</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年7月21日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
   </div>
-</article>
 
 
 
-        
-          <div id="footer-post-container">
-  <div id="footer-post">
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/cn/winafl/" title="winafl fuzz 工具的使用">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">winafl fuzz 工具的使用</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/cn/ssd/" title="SSD 迁移记">
+                        <span class="hidden-mobile">SSD 迁移记</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
 
-    <div id="nav-footer" style="display: none">
-      <ul>
-        
-          <li><a href="/">首页</a></li>
-        
-          <li><a href="/about/">关于</a></li>
-        
-          <li><a href="/archives/">归档</a></li>
-        
-          <li><a href="/search/">搜索</a></li>
-        
-          <li><a href="/links/">链接</a></li>
-        
-          <li><a href="/rss.xml">RSS</a></li>
-        
-      </ul>
-    </div>
-
-    
-    
-      <div id="toc-footer" style="display: none">
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-Introduction"><span class="toc-number">1.</span> <span class="toc-text">1. Introduction</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-Developing-Fuzz-Module"><span class="toc-number">2.</span> <span class="toc-text">2. Developing Fuzz Module</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-Vulnerability-TL-DR"><span class="toc-number">3.</span> <span class="toc-text">3. Vulnerability( TL;DR )</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-Conclusion"><span class="toc-number">4.</span> <span class="toc-text">4. Conclusion</span></a></li></ol>
+            
+          </article>
+        </div>
       </div>
-    
-
-    <div id="share-footer" style="display: none">
-      <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://usmacd.com/cn/2022-07-21-When-Hypervisor-Met-Snapshot-Fuzzing/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://usmacd.com/cn/2022-07-21-When-Hypervisor-Met-Snapshot-Fuzzing/&text=When Hypervisor Met Snapshot Fuzzing"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://usmacd.com/cn/2022-07-21-When-Hypervisor-Met-Snapshot-Fuzzing/&title=When Hypervisor Met Snapshot Fuzzing"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://usmacd.com/cn/2022-07-21-When-Hypervisor-Met-Snapshot-Fuzzing/&is_video=false&description=When Hypervisor Met Snapshot Fuzzing"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=When Hypervisor Met Snapshot Fuzzing&body=Check out this article: http://usmacd.com/cn/2022-07-21-When-Hypervisor-Met-Snapshot-Fuzzing/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://usmacd.com/cn/2022-07-21-When-Hypervisor-Met-Snapshot-Fuzzing/&title=When Hypervisor Met Snapshot Fuzzing"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://usmacd.com/cn/2022-07-21-When-Hypervisor-Met-Snapshot-Fuzzing/&title=When Hypervisor Met Snapshot Fuzzing"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://usmacd.com/cn/2022-07-21-When-Hypervisor-Met-Snapshot-Fuzzing/&title=When Hypervisor Met Snapshot Fuzzing"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://usmacd.com/cn/2022-07-21-When-Hypervisor-Met-Snapshot-Fuzzing/&title=When Hypervisor Met Snapshot Fuzzing"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://usmacd.com/cn/2022-07-21-When-Hypervisor-Met-Snapshot-Fuzzing/&name=When Hypervisor Met Snapshot Fuzzing&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://usmacd.com/cn/2022-07-21-When-Hypervisor-Met-Snapshot-Fuzzing/&t=When Hypervisor Met Snapshot Fuzzing"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
-</ul>
-
     </div>
 
-    <div id="actions-footer">
-        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
-        
-          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> 目录</a>
-        
-        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
-        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>
-    </div>
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
 
+
+
+  </aside>
+
+
+    </div>
   </div>
 </div>
 
-        
-        <footer id="footer">
-  <div class="footer-left">
-    Copyright &copy;
-    
-    
-    2004-2024
-    henices
-  </div>
-  <div class="footer-right">
-    <nav>
-      <ul>
-        <!--
-       --><li><a href="/">首页</a></li><!--
-     --><!--
-       --><li><a href="/about/">关于</a></li><!--
-     --><!--
-       --><li><a href="/archives/">归档</a></li><!--
-     --><!--
-       --><li><a href="/search/">搜索</a></li><!--
-     --><!--
-       --><li><a href="/links/">链接</a></li><!--
-     --><!--
-       --><li><a href="/rss.xml">RSS</a></li><!--
-     -->
-      </ul>
-    </nav>
-  </div>
-</footer>
 
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
     </div>
-    <!-- styles -->
+  </div>
+</div>
 
+    
 
+    
+  </main>
 
-  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
-
-
-    <!-- jquery -->
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
-
-
-
-
-<!-- clipboard -->
-
+  <footer>
+    <div class="footer-inner">
   
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
   
-  <script type="text/javascript">
-  $(function() {
-    // copy-btn HTML
-    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板！\">";
-    btn += '<i class="fa-regular fa-clone"></i>';
-    btn += '</span>';
-    // mount it!
-    $(".highlight table").before(btn);
-    var clip = new ClipboardJS('.btn-copy', {
-      text: function(trigger) {
-        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
-      }
-    });
-    clip.on('success', function(e) {
-      e.trigger.setAttribute('aria-label', "复制成功！");
-      e.clearSelection();
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
     })
-  })
   </script>
 
 
-<script src="/js/main.js"></script>
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
 
-<!-- search -->
 
-<!-- Baidu Analytics -->
 
-<!-- Cloudflare Analytics -->
 
-<!-- Disqus Comments -->
 
-<!-- utterances Comments -->
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
 
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
 </body>
 </html>

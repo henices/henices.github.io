@@ -1,11 +1,23 @@
+
+
 <!DOCTYPE html>
-<html lang=zh>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
 <head>
-    <!-- so meta -->
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="HandheldFriendly" content="True">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="henices">
+  <meta name="keywords" content="">
+  
     <meta name="description" content="☆ Android stunnelhttps:&#x2F;&#x2F;github.com&#x2F;comp500&#x2F;SSLSocks.git  这个项目可以使用 android 版本的 stunnel, 其实就是调用 https:&#x2F;&#x2F;www.stunnel.org&#x2F;downloads&#x2F;stunnel-5.57-android.zip 具体配置和使用命令行差距不大，参考：https:&#x2F;&#x2F;github.com&#x2F;comp500&#x2F;S">
 <meta property="og:type" content="article">
 <meta property="og:title" content="在 Android 手机上的使用 stunnel  （不需要 root ）">
@@ -17,169 +29,297 @@
 <meta property="article:modified_time" content="2023-03-26T16:00:00.000Z">
 <meta property="article:author" content="henices">
 <meta property="article:tag" content="Android">
-<meta name="twitter:card" content="summary">
-    
-    
-      
-        
-          <link rel="shortcut icon" href="/images/favicon.ico">
-        
-      
-      
-        
-          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
-        
-      
-      
-        
-          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
-        
-      
-    
-    <!-- title -->
-    <title>在 Android 手机上的使用 stunnel  （不需要 root ）</title>
-    <!-- async scripts -->
-    <!-- Google Analytics -->
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>在 Android 手机上的使用 stunnel  （不需要 root ） - 安全代码</title>
 
-
-    <!-- Umami Analytics -->
-
-
-    <!-- styles -->
-    
-<link rel="stylesheet" href="/css/style.css">
-
-    <!-- persian styles -->
-    
-    <link href="https://cdn.jsdelivr.net/npm/firacode@6.2.0/distr/fira_code.css" rel="stylesheet">
-    <!-- rss -->
-    
-    
-      <link rel="alternate" href="/true" title="安全代码" type="application/atom+xml" />
-    
-	<!-- mathjax -->
-	
-		<script type="text/x-mathjax-config">
-		  MathJax.Hub.Config({
-			tex2jax: {
-			  skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
-			  inlineMath: [['$','$']]
-			}
-		  });
-		</script>
-		<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
-	
-<meta name="generator" content="Hexo 7.2.0"></head>
-
-<body class="max-width mx-auto px3 ltr">
-    
-      <div id="header-post">
-  <a id="menu-icon" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
-  <a id="menu-icon-tablet" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
-  <a id="top-icon-tablet" href="#" aria-label="顶部" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
-  <span id="menu">
-    <span id="nav">
-      <ul>
-        <!--
-       --><li><a href="/">首页</a></li><!--
-     --><!--
-       --><li><a href="/about/">关于</a></li><!--
-     --><!--
-       --><li><a href="/archives/">归档</a></li><!--
-     --><!--
-       --><li><a href="/search/">搜索</a></li><!--
-     --><!--
-       --><li><a href="/links/">链接</a></li><!--
-     --><!--
-       --><li><a href="/rss.xml">RSS</a></li><!--
-     -->
-      </ul>
-    </span>
-    <br/>
-    <span id="actions">
-      <ul>
-        
-        <li><a class="icon" aria-label="上一篇" href="/cn/halfempty/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
-        
-        
-        <li><a class="icon" aria-label="下一篇" href="/cn/mitmproxy/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
-        
-        <li><a class="icon" aria-label="返回顶部" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
-        <li><a class="icon" aria-label="分享文章" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
-      </ul>
-      <span id="i-prev" class="info" style="display:none;">上一篇</span>
-      <span id="i-next" class="info" style="display:none;">下一篇</span>
-      <span id="i-top" class="info" style="display:none;">返回顶部</span>
-      <span id="i-share" class="info" style="display:none;">分享文章</span>
-    </span>
-    <br/>
-    <div id="share" style="display: none">
-      <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://usmacd.com/cn/android_stunnel/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://usmacd.com/cn/android_stunnel/&text=在 Android 手机上的使用 stunnel  （不需要 root ）"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://usmacd.com/cn/android_stunnel/&title=在 Android 手机上的使用 stunnel  （不需要 root ）"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://usmacd.com/cn/android_stunnel/&is_video=false&description=在 Android 手机上的使用 stunnel  （不需要 root ）"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=在 Android 手机上的使用 stunnel  （不需要 root ）&body=Check out this article: http://usmacd.com/cn/android_stunnel/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://usmacd.com/cn/android_stunnel/&title=在 Android 手机上的使用 stunnel  （不需要 root ）"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://usmacd.com/cn/android_stunnel/&title=在 Android 手机上的使用 stunnel  （不需要 root ）"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://usmacd.com/cn/android_stunnel/&title=在 Android 手机上的使用 stunnel  （不需要 root ）"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://usmacd.com/cn/android_stunnel/&title=在 Android 手机上的使用 stunnel  （不需要 root ）"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://usmacd.com/cn/android_stunnel/&name=在 Android 手机上的使用 stunnel  （不需要 root ）&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://usmacd.com/cn/android_stunnel/&t=在 Android 手机上的使用 stunnel  （不需要 root ）"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
-</ul>
-
-    </div>
-    
-    
-      <div id="toc">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E2%98%86-Android-stunnel"><span class="toc-number">1.</span> <span class="toc-text">☆ Android stunnel</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E2%98%86-%E8%AE%BE%E7%BD%AE%E5%85%A8%E5%B1%80%E4%BB%A3%E7%90%86"><span class="toc-number">2.</span> <span class="toc-text">☆ 设置全局代理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%81%A2%E5%A4%8D%E6%97%A0%E4%BB%A3%E7%90%86"><span class="toc-number">3.</span> <span class="toc-text">恢复无代理</span></a></li></ol>
-      </div>
-    
-  </span>
-</div>
-
-    
-    <div class="content index py4 ">
-        
-        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
-  <header>
-    
-    <h1 class="posttitle p-name" itemprop="name headline">
-        在 Android 手机上的使用 stunnel  （不需要 root ）
-    </h1>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
 
 
-    <div class="meta">
-      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
-        <span class="p-name" itemprop="name">henices</span>
-      </span>
-      
-    <div class="postdate">
-      
-        <time datetime="2021-02-23T16:00:00.000Z" class="dt-published" itemprop="datePublished">2021-02-24</time>
-        
-        (Updated: <time datetime="2023-03-26T16:00:00.000Z" class="dt-updated" itemprop="dateModified">2023-03-27</time>)
-        
-      
-    </div>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
 
 
-      
 
-      
-    <div class="article-tag">
-        <i class="fa-solid fa-tag"></i>
-        <a class="p-category" href="/tags/Android/" rel="tag">Android</a>
-    </div>
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
 
 
-    </div>
-  </header>
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
   
 
-  <div class="content e-content" itemprop="articleBody">
-    <h2 id="☆-Android-stunnel"><a href="#☆-Android-stunnel" class="headerlink" title="☆ Android stunnel"></a>☆ Android stunnel</h2><p><a target="_blank" rel="noopener" href="https://github.com/comp500/SSLSocks.git">https://github.com/comp500/SSLSocks.git</a>  这个项目可以使用 android 版本的 stunnel, 其实就是调用 <a target="_blank" rel="noopener" href="https://www.stunnel.org/downloads/stunnel-5.57-android.zip">https://www.stunnel.org/downloads/stunnel-5.57-android.zip</a></p>
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"usmacd.com","root":"/","version":"1.9.7","typing":{"enable":false,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.2.0"><link rel="alternate" href="/atom.xml" title="安全代码" type="application/atom+xml">
+<link rel="alternate" href="/rss.xml" title="安全代码" type="application/rss+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>安全代码</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/rss.xml" target="_self">
+                <i class="iconfont icon-rss"></i>
+                <span>rss</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/sitemap.xml" target="_self">
+                
+                <span>sitemap</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://images.unsplash.com/photo-1473181488821-2d23949a045a?w=640') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle">在 Android 手机上的使用 stunnel  （不需要 root ）</span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2021-02-24 00:00" pubdate>
+          2021年2月24日 凌晨
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          442 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          4 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">在 Android 手机上的使用 stunnel  （不需要 root ）</h1>
+            
+              <p id="updated-time" class="note note-info" style="">
+                
+                  
+                    本文最后更新于 2023年3月27日 凌晨
+                  
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
+                <h2 id="☆-Android-stunnel"><a href="#☆-Android-stunnel" class="headerlink" title="☆ Android stunnel"></a>☆ Android stunnel</h2><p><a target="_blank" rel="noopener" href="https://github.com/comp500/SSLSocks.git">https://github.com/comp500/SSLSocks.git</a>  这个项目可以使用 android 版本的 stunnel, 其实就是调用 <a target="_blank" rel="noopener" href="https://www.stunnel.org/downloads/stunnel-5.57-android.zip">https://www.stunnel.org/downloads/stunnel-5.57-android.zip</a></p>
 <p>具体配置和使用命令行差距不大，参考：<br><a target="_blank" rel="noopener" href="https://github.com/comp500/SSLSocks/blob/master/README.md">https://github.com/comp500/SSLSocks/blob/master/README.md</a><br><a target="_blank" rel="noopener" href="https://hamy.io/post/0011/how-to-run-stunnel-on-your-android-device/">https://hamy.io/post/0011/how-to-run-stunnel-on-your-android-device/</a></p>
 <h2 id="☆-设置全局代理"><a href="#☆-设置全局代理" class="headerlink" title="☆ 设置全局代理"></a>☆ 设置全局代理</h2><ol>
 <li>在 wifi 连接的情况</li>
@@ -188,171 +328,358 @@
 <ol start="2">
 <li>使用 adb shell 执行命令</li>
 </ol>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell settings put global http_proxy 192.168.xx.xxx:8888</span><br></pre></td></tr></table></figure>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">adb</span> shell settings put global http_proxy <span class="hljs-number">192</span>.<span class="hljs-number">168</span>.xx.xxx:<span class="hljs-number">8888</span><br></code></pre></td></tr></table></figure>
 
 <ol start="3">
 <li>Android Proxy Toggle</li>
 </ol>
 <p><a target="_blank" rel="noopener" href="https://github.com/theappbusiness/android-proxy-toggle.git">https://github.com/theappbusiness/android-proxy-toggle.git</a></p>
 <p>要正常使用 app 需要用 adb shell 连接上设置相应的权限：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell pm grant com.kinandcarta.create.proxytoggle android.permission.WRITE_SECURE_SETTINGS</span><br></pre></td></tr></table></figure>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs stylus">adb shell pm grant com<span class="hljs-selector-class">.kinandcarta</span><span class="hljs-selector-class">.create</span><span class="hljs-selector-class">.proxytoggle</span> android<span class="hljs-selector-class">.permission</span>.WRITE_SECURE_SETTINGS<br></code></pre></td></tr></table></figure>
 
 <p>OnePlus 7T 升级到 Android 12 后，执行上面的命令将出错:</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">OnePlus7T:/ $ pm grant com.kinandcarta.create.proxytoggle android.permission.WRITE_SECURE_SETTINGS</span><br><span class="line"></span><br><span class="line">Exception occurred while executing &#x27;grant&#x27;:</span><br><span class="line">java.lang.SecurityException: grantRuntimePermission: Neither user 2000 nor current process has android.permission.GRANT_RUNTIME_PERMISSIONS.</span><br><span class="line">        at android.app.ContextImpl.enforce(ContextImpl.java:2187)</span><br><span class="line">        at android.app.ContextImpl.enforceCallingOrSelfPermission(ContextImpl.java:2215)</span><br><span class="line">        at com.android.server.pm.permission.PermissionManagerService.grantRuntimePermissionInternal(PermissionManagerService.java:1477)</span><br><span class="line">        at com.android.server.pm.permission.PermissionManagerService.grantRuntimePermission(PermissionManagerService.java:1459)</span><br><span class="line">        at android.permission.PermissionManager.grantRuntimePermission(PermissionManager.java:378)</span><br><span class="line">        at com.android.server.pm.PackageManagerShellCommand.runGrantRevokePermission(PackageManagerShellCommand.java:2419)</span><br><span class="line">        at com.android.server.pm.PackageManagerShellCommand.onCommand(PackageManagerShellCommand.java:260)</span><br><span class="line">        at com.android.modules.utils.BasicShellCommandHandler.exec(BasicShellCommandHandler.java:97)</span><br><span class="line">        at android.os.ShellCommand.exec(ShellCommand.java:38)</span><br><span class="line">        at com.android.server.pm.PackageManagerService.onShellCommand(PackageManagerService.java:25948)</span><br><span class="line">        at android.os.Binder.shellCommand(Binder.java:970)</span><br><span class="line">        at android.os.Binder.onTransact(Binder.java:854)</span><br><span class="line">        at android.content.pm.IPackageManager$Stub.onTransact(IPackageManager.java:4818)</span><br><span class="line">        at com.android.server.pm.PackageManagerService.onTransact(PackageManagerService.java:8987)</span><br><span class="line">        at android.os.Binder.execTransactInternal(Binder.java:1226)</span><br><span class="line">        at android.os.Binder.execTransact(Binder.java:1163)</span><br></pre></td></tr></table></figure>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs stylus">OnePlus7T:/ $ pm grant com<span class="hljs-selector-class">.kinandcarta</span><span class="hljs-selector-class">.create</span><span class="hljs-selector-class">.proxytoggle</span> android<span class="hljs-selector-class">.permission</span><span class="hljs-selector-class">.WRITE_SECURE_SETTINGS</span><br><br>Exception occurred while executing <span class="hljs-string">&#x27;grant&#x27;</span>:<br>java<span class="hljs-selector-class">.lang</span><span class="hljs-selector-class">.SecurityException</span>: grantRuntimePermission: Neither user <span class="hljs-number">2000</span> nor current process has android<span class="hljs-selector-class">.permission</span><span class="hljs-selector-class">.GRANT_RUNTIME_PERMISSIONS</span>.<br>        at android<span class="hljs-selector-class">.app</span><span class="hljs-selector-class">.ContextImpl</span><span class="hljs-selector-class">.enforce</span>(ContextImpl<span class="hljs-selector-class">.java</span>:<span class="hljs-number">2187</span>)<br>        at android<span class="hljs-selector-class">.app</span><span class="hljs-selector-class">.ContextImpl</span><span class="hljs-selector-class">.enforceCallingOrSelfPermission</span>(ContextImpl<span class="hljs-selector-class">.java</span>:<span class="hljs-number">2215</span>)<br>        at com<span class="hljs-selector-class">.android</span><span class="hljs-selector-class">.server</span><span class="hljs-selector-class">.pm</span><span class="hljs-selector-class">.permission</span><span class="hljs-selector-class">.PermissionManagerService</span><span class="hljs-selector-class">.grantRuntimePermissionInternal</span>(PermissionManagerService<span class="hljs-selector-class">.java</span>:<span class="hljs-number">1477</span>)<br>        at com<span class="hljs-selector-class">.android</span><span class="hljs-selector-class">.server</span><span class="hljs-selector-class">.pm</span><span class="hljs-selector-class">.permission</span><span class="hljs-selector-class">.PermissionManagerService</span><span class="hljs-selector-class">.grantRuntimePermission</span>(PermissionManagerService<span class="hljs-selector-class">.java</span>:<span class="hljs-number">1459</span>)<br>        at android<span class="hljs-selector-class">.permission</span><span class="hljs-selector-class">.PermissionManager</span><span class="hljs-selector-class">.grantRuntimePermission</span>(PermissionManager<span class="hljs-selector-class">.java</span>:<span class="hljs-number">378</span>)<br>        at com<span class="hljs-selector-class">.android</span><span class="hljs-selector-class">.server</span><span class="hljs-selector-class">.pm</span><span class="hljs-selector-class">.PackageManagerShellCommand</span><span class="hljs-selector-class">.runGrantRevokePermission</span>(PackageManagerShellCommand<span class="hljs-selector-class">.java</span>:<span class="hljs-number">2419</span>)<br>        at com<span class="hljs-selector-class">.android</span><span class="hljs-selector-class">.server</span><span class="hljs-selector-class">.pm</span><span class="hljs-selector-class">.PackageManagerShellCommand</span><span class="hljs-selector-class">.onCommand</span>(PackageManagerShellCommand<span class="hljs-selector-class">.java</span>:<span class="hljs-number">260</span>)<br>        at com<span class="hljs-selector-class">.android</span><span class="hljs-selector-class">.modules</span><span class="hljs-selector-class">.utils</span><span class="hljs-selector-class">.BasicShellCommandHandler</span><span class="hljs-selector-class">.exec</span>(BasicShellCommandHandler<span class="hljs-selector-class">.java</span>:<span class="hljs-number">97</span>)<br>        at android<span class="hljs-selector-class">.os</span><span class="hljs-selector-class">.ShellCommand</span><span class="hljs-selector-class">.exec</span>(ShellCommand<span class="hljs-selector-class">.java</span>:<span class="hljs-number">38</span>)<br>        at com<span class="hljs-selector-class">.android</span><span class="hljs-selector-class">.server</span><span class="hljs-selector-class">.pm</span><span class="hljs-selector-class">.PackageManagerService</span><span class="hljs-selector-class">.onShellCommand</span>(PackageManagerService<span class="hljs-selector-class">.java</span>:<span class="hljs-number">25948</span>)<br>        at android<span class="hljs-selector-class">.os</span><span class="hljs-selector-class">.Binder</span><span class="hljs-selector-class">.shellCommand</span>(Binder<span class="hljs-selector-class">.java</span>:<span class="hljs-number">970</span>)<br>        at android<span class="hljs-selector-class">.os</span><span class="hljs-selector-class">.Binder</span><span class="hljs-selector-class">.onTransact</span>(Binder<span class="hljs-selector-class">.java</span>:<span class="hljs-number">854</span>)<br>        at android<span class="hljs-selector-class">.content</span><span class="hljs-selector-class">.pm</span>.IPackageManager<span class="hljs-variable">$Stub</span><span class="hljs-selector-class">.onTransact</span>(IPackageManager<span class="hljs-selector-class">.java</span>:<span class="hljs-number">4818</span>)<br>        at com<span class="hljs-selector-class">.android</span><span class="hljs-selector-class">.server</span><span class="hljs-selector-class">.pm</span><span class="hljs-selector-class">.PackageManagerService</span><span class="hljs-selector-class">.onTransact</span>(PackageManagerService<span class="hljs-selector-class">.java</span>:<span class="hljs-number">8987</span>)<br>        at android<span class="hljs-selector-class">.os</span><span class="hljs-selector-class">.Binder</span><span class="hljs-selector-class">.execTransactInternal</span>(Binder<span class="hljs-selector-class">.java</span>:<span class="hljs-number">1226</span>)<br>        at android<span class="hljs-selector-class">.os</span><span class="hljs-selector-class">.Binder</span><span class="hljs-selector-class">.execTransact</span>(Binder<span class="hljs-selector-class">.java</span>:<span class="hljs-number">1163</span>)<br></code></pre></td></tr></table></figure>
 
 <p>少数派的文章 <a target="_blank" rel="noopener" href="https://sspai.com/post/67110">在 ColorOS 上免 root 玩机，请先打开这个开关</a> 中指出需要在开发者选项中<br>开启 <code>禁止权限监控</code>。</p>
 <p>开启后可以正常执行 <code>pm grant</code> 命令，执行成功后可以使用 <code>dumpsys package &lt;package name&gt;</code> 列出所有的权限。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">dumpsys package com.kinandcarta.create.proxytoggle | grep permission</span><br><span class="line"></span><br><span class="line">    requested permissions:</span><br><span class="line">      android.permission.WRITE_SECURE_SETTINGS</span><br><span class="line">      android.permission.WRITE_SETTINGS</span><br><span class="line">    install permissions:</span><br><span class="line">      android.permission.WRITE_SECURE_SETTINGS: granted=true</span><br></pre></td></tr></table></figure>
+<figure class="highlight ada"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs ada">dumpsys <span class="hljs-keyword">package</span> <span class="hljs-title">com.kinandcarta.create.proxytoggle | grep perm</span>ission<br><br>    requested permissions:<br>      android.permission.WRITE_SECURE_SETTINGS<br>      android.permission.WRITE_SETTINGS<br>    install permissions:<br>      android.permission.WRITE_SECURE_SETTINGS: granted=<span class="hljs-literal">true</span><br></code></pre></td></tr></table></figure>
 
 <h2 id="恢复无代理"><a href="#恢复无代理" class="headerlink" title="恢复无代理"></a>恢复无代理</h2><p>如果遇上一些异常情况，比如错误卸载了 Android Proxy Toggle, 可以使用下面命令去掉 Android 全局代理。</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">adb shell settings delete global http_proxy</span><br><span class="line">adb shell settings delete global global_http_proxy_host</span><br><span class="line">adb shell settings delete global global_http_proxy_port</span><br></pre></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs sh">adb shell settings delete global http_proxy<br>adb shell settings delete global global_http_proxy_host<br>adb shell settings delete global global_http_proxy_port<br></code></pre></td></tr></table></figure>
 
 
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Android/" class="print-no-link">#Android</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>在 Android 手机上的使用 stunnel  （不需要 root ）</div>
+      <div>http://usmacd.com/cn/android_stunnel/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>henices</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2021年2月24日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
   </div>
-</article>
 
 
 
-        
-          <div id="footer-post-container">
-  <div id="footer-post">
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/cn/halfempty/" title="halfempty 的一些使用说明">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">halfempty 的一些使用说明</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/cn/mitmproxy/" title="mitmproxy 简介">
+                        <span class="hidden-mobile">mitmproxy 简介</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
 
-    <div id="nav-footer" style="display: none">
-      <ul>
-        
-          <li><a href="/">首页</a></li>
-        
-          <li><a href="/about/">关于</a></li>
-        
-          <li><a href="/archives/">归档</a></li>
-        
-          <li><a href="/search/">搜索</a></li>
-        
-          <li><a href="/links/">链接</a></li>
-        
-          <li><a href="/rss.xml">RSS</a></li>
-        
-      </ul>
-    </div>
-
-    
-    
-      <div id="toc-footer" style="display: none">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E2%98%86-Android-stunnel"><span class="toc-number">1.</span> <span class="toc-text">☆ Android stunnel</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E2%98%86-%E8%AE%BE%E7%BD%AE%E5%85%A8%E5%B1%80%E4%BB%A3%E7%90%86"><span class="toc-number">2.</span> <span class="toc-text">☆ 设置全局代理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%81%A2%E5%A4%8D%E6%97%A0%E4%BB%A3%E7%90%86"><span class="toc-number">3.</span> <span class="toc-text">恢复无代理</span></a></li></ol>
+            
+          </article>
+        </div>
       </div>
-    
-
-    <div id="share-footer" style="display: none">
-      <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://usmacd.com/cn/android_stunnel/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://usmacd.com/cn/android_stunnel/&text=在 Android 手机上的使用 stunnel  （不需要 root ）"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://usmacd.com/cn/android_stunnel/&title=在 Android 手机上的使用 stunnel  （不需要 root ）"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://usmacd.com/cn/android_stunnel/&is_video=false&description=在 Android 手机上的使用 stunnel  （不需要 root ）"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=在 Android 手机上的使用 stunnel  （不需要 root ）&body=Check out this article: http://usmacd.com/cn/android_stunnel/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://usmacd.com/cn/android_stunnel/&title=在 Android 手机上的使用 stunnel  （不需要 root ）"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://usmacd.com/cn/android_stunnel/&title=在 Android 手机上的使用 stunnel  （不需要 root ）"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://usmacd.com/cn/android_stunnel/&title=在 Android 手机上的使用 stunnel  （不需要 root ）"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://usmacd.com/cn/android_stunnel/&title=在 Android 手机上的使用 stunnel  （不需要 root ）"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://usmacd.com/cn/android_stunnel/&name=在 Android 手机上的使用 stunnel  （不需要 root ）&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://usmacd.com/cn/android_stunnel/&t=在 Android 手机上的使用 stunnel  （不需要 root ）"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
-</ul>
-
     </div>
 
-    <div id="actions-footer">
-        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
-        
-          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> 目录</a>
-        
-        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
-        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>
-    </div>
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
 
+
+
+  </aside>
+
+
+    </div>
   </div>
 </div>
 
-        
-        <footer id="footer">
-  <div class="footer-left">
-    Copyright &copy;
-    
-    
-    2004-2024
-    henices
-  </div>
-  <div class="footer-right">
-    <nav>
-      <ul>
-        <!--
-       --><li><a href="/">首页</a></li><!--
-     --><!--
-       --><li><a href="/about/">关于</a></li><!--
-     --><!--
-       --><li><a href="/archives/">归档</a></li><!--
-     --><!--
-       --><li><a href="/search/">搜索</a></li><!--
-     --><!--
-       --><li><a href="/links/">链接</a></li><!--
-     --><!--
-       --><li><a href="/rss.xml">RSS</a></li><!--
-     -->
-      </ul>
-    </nav>
-  </div>
-</footer>
 
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
     </div>
-    <!-- styles -->
+  </div>
+</div>
 
+    
 
+    
+  </main>
 
-  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
-
-
-    <!-- jquery -->
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
-
-
-
-
-<!-- clipboard -->
-
+  <footer>
+    <div class="footer-inner">
   
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
   
-  <script type="text/javascript">
-  $(function() {
-    // copy-btn HTML
-    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板！\">";
-    btn += '<i class="fa-regular fa-clone"></i>';
-    btn += '</span>';
-    // mount it!
-    $(".highlight table").before(btn);
-    var clip = new ClipboardJS('.btn-copy', {
-      text: function(trigger) {
-        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
-      }
-    });
-    clip.on('success', function(e) {
-      e.trigger.setAttribute('aria-label', "复制成功！");
-      e.clearSelection();
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
     })
-  })
   </script>
 
 
-<script src="/js/main.js"></script>
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
 
-<!-- search -->
 
-<!-- Baidu Analytics -->
 
-<!-- Cloudflare Analytics -->
 
-<!-- Disqus Comments -->
 
-<!-- utterances Comments -->
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
 
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
 </body>
 </html>

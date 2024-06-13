@@ -1,442 +1,760 @@
+
+
 <!DOCTYPE html>
-<html lang=zh>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
 <head>
-    <!-- so meta -->
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="HandheldFriendly" content="True">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="henices">
+  <meta name="keywords" content="">
+  
     <meta property="og:type" content="website">
 <meta property="og:title" content="安全代码">
 <meta property="og:url" content="http://usmacd.com/page/2/index.html">
 <meta property="og:site_name" content="安全代码">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:author" content="henices">
-<meta name="twitter:card" content="summary">
-    
-    
-      
-        
-          <link rel="shortcut icon" href="/images/favicon.ico">
-        
-      
-      
-        
-          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
-        
-      
-      
-        
-          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
-        
-      
-    
-    <!-- title -->
-    <title>安全代码</title>
-    <!-- async scripts -->
-    <!-- Google Analytics -->
-
-
-    <!-- Umami Analytics -->
-
-
-    <!-- styles -->
-    
-<link rel="stylesheet" href="/css/style.css">
-
-    <!-- persian styles -->
-    
-    <link href="https://cdn.jsdelivr.net/npm/firacode@6.2.0/distr/fira_code.css" rel="stylesheet">
-    <!-- rss -->
-    
-    
-      <link rel="alternate" href="/true" title="安全代码" type="application/atom+xml" />
-    
-	<!-- mathjax -->
-	
-		<script type="text/x-mathjax-config">
-		  MathJax.Hub.Config({
-			tex2jax: {
-			  skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
-			  inlineMath: [['$','$']]
-			}
-		  });
-		</script>
-		<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
-	
-<meta name="generator" content="Hexo 7.2.0"></head>
-
-<body class="max-width mx-auto px3 ltr">
-    
-    <div class="content index py4 h-card">
-        
-          <header id="header">
-  <a class="u-url u-uid" href="/">
-  
-    
-      <img id="logo" alt class="u-logo" src="/images/logo.png" />
-    
-  
-    <div id="title">
-      <h1 class="p-name">安全代码</h1>
-    </div>
-  </a>
-  <div id="nav">
-    <ul>
-      <li class="icon">
-        <a href="#" aria-label="目录"><i class="fa-solid fa-bars fa-2x"></i></a>
-      </li>
-      <!--
-     --><li><a href="/">首页</a></li><!--
-   --><!--
-     --><li><a href="/about/">关于</a></li><!--
-   --><!--
-     --><li><a href="/archives/">归档</a></li><!--
-   --><!--
-     --><li><a href="/search/">搜索</a></li><!--
-   --><!--
-     --><li><a href="/links/">链接</a></li><!--
-   --><!--
-     --><li><a href="/rss.xml">RSS</a></li><!--
-   -->
-    </ul>
-  </div>
-</header>
-
-        
-        <section id="about" class="p-note">
+<meta name="twitter:card" content="summary_large_image">
   
   
-    <p>
-      在这里找到我：
-      
-      
-      
-        
-        
-          <a class="icon u-url" target="_blank" rel="noopener me" href="http://github.com/henices" aria-label="github" title="github">
-            <i class="fa-brands fa-github"></i><!--
-      ---></a><!--
-    ---><!--
-    --->， 
-        
-      
-        
-        
-          <a class="icon u-url" target="_blank" rel="noopener me" href="https://x.com/henices" aria-label="twitter" title="twitter">
-            <i class="fa-brands fa-twitter"></i><!--
-      ---></a><!--
-    ---><!--
-    ---> 和 
-        
-      
-        
-        
-          <a class="icon u-email" target="_blank" rel="noopener" href="mailto:zhouzhenster@gmail.com" aria-label="mail" title="mail">
-            <i class="fa-solid fa-envelope"></i><!--
-      ---></a>
-        <!--
-    --->.
-        
-      
-    </p>
+    <meta name="referrer" content="no-referrer-when-downgrade">
   
-</section>
-
-<section id="writing">
-  <span class="h1"><a href="/archives/">文章</a></span>
   
-  <span class="h2">标签</span>
-  <span class="widget tagcloud">
-    <a href="/tags/Android/" style="font-size: 19px;">Android</a> <a href="/tags/Archives/" style="font-size: 11px;">Archives</a> <a href="/tags/Crack/" style="font-size: 12px;">Crack</a> <a href="/tags/KNOWLEDGE/" style="font-size: 13px;">KNOWLEDGE</a> <a href="/tags/Life/" style="font-size: 13px;">Life</a> <a href="/tags/Malware/" style="font-size: 14px;">Malware</a> <a href="/tags/PKM/" style="font-size: 16px;">PKM</a> <a href="/tags/Programming/" style="font-size: 16px;">Programming</a> <a href="/tags/Security/" style="font-size: 20px;">Security</a> <a href="/tags/Software/" style="font-size: 15px;">Software</a> <a href="/tags/ai/" style="font-size: 10px;">ai</a> <a href="/tags/investment/" style="font-size: 17px;">investment</a> <a href="/tags/linux/" style="font-size: 18px;">linux</a> <a href="/tags/vim/" style="font-size: 13px;">vim</a> <a href="/tags/windows/" style="font-size: 14px;">windows</a>
-  </span>
-  <span class="h2">最新发布</span>
+  <title>安全代码</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
   
-  <ul class="post-list">
-    
-    
-      
-    
-    
-      <li class="post-item">
-        
-    <div class="meta">
-      
-        
-          <time datetime="2024-03-07T16:00:00.000Z" class="dt-published" itemprop="datePublished">2024-03-08</time>
-        
-      
-    </div>
-
-
-        <span>
-    
-        <a class="" href="/cn/investment_category/">金融市场中的不同流派</a>
-    
-
-
-</span>
-      </li>
-    
-      <li class="post-item">
-        
-    <div class="meta">
-      
-        
-          <time datetime="2024-02-26T16:00:00.000Z" class="dt-published" itemprop="datePublished">2024-02-27</time>
-        
-      
-    </div>
-
-
-        <span>
-    
-        <a class="" href="/cn/android_use_proxy_of_pc/">Android 手机使用 PC 代理上网的方法</a>
-    
-
-
-</span>
-      </li>
-    
-      <li class="post-item">
-        
-    <div class="meta">
-      
-        
-          <time datetime="2024-02-03T16:00:00.000Z" class="dt-published" itemprop="datePublished">2024-02-04</time>
-        
-      
-    </div>
-
-
-        <span>
-    
-        <a class="" href="/cn/how_to_write_technique_note/">如何写好一篇技术笔记</a>
-    
-
-
-</span>
-      </li>
-    
-      <li class="post-item">
-        
-    <div class="meta">
-      
-        
-          <time datetime="2024-01-31T16:00:00.000Z" class="dt-published" itemprop="datePublished">2024-02-01</time>
-        
-      
-    </div>
-
-
-        <span>
-    
-        <a class="" href="/cn/how_to_get_good_info/">《笔记的方法》 如何做筛选，获取高质量信息</a>
-    
-
-
-</span>
-      </li>
-    
-      <li class="post-item">
-        
-    <div class="meta">
-      
-        
-          <time datetime="2024-01-28T16:00:00.000Z" class="dt-published" itemprop="datePublished">2024-01-29</time>
-        
-      
-    </div>
-
-
-        <span>
-    
-        <a class="" href="/cn/zel_note_flow/">卡片盒笔记法总体思路与工作流</a>
-    
-
-
-</span>
-      </li>
-    
-      <li class="post-item">
-        
-    <div class="meta">
-      
-        
-          <time datetime="2024-01-16T16:00:00.000Z" class="dt-published" itemprop="datePublished">2024-01-17</time>
-        
-      
-    </div>
-
-
-        <span>
-    
-        <a class="" href="/cn/egg-is-deprecated/">python3 pip loading egg is deprecated 警告的解决方法</a>
-    
-
-
-</span>
-      </li>
-    
-      <li class="post-item">
-        
-    <div class="meta">
-      
-        
-          <time datetime="2023-12-04T16:00:00.000Z" class="dt-published" itemprop="datePublished">2023-12-05</time>
-        
-      
-    </div>
-
-
-        <span>
-    
-        <a class="" href="/cn/public_writing/">公开写作的好处和坚持不懈</a>
-    
-
-
-</span>
-      </li>
-    
-      <li class="post-item">
-        
-    <div class="meta">
-      
-        
-          <time datetime="2023-11-27T16:00:00.000Z" class="dt-published" itemprop="datePublished">2023-11-28</time>
-        
-      
-    </div>
-
-
-        <span>
-    
-        <a class="" href="/cn/qemu_kvm/">VMware Workstation Windows 10 host Ubuntu 18.04 Guest 中加载 Linux 内核 kvm 模块</a>
-    
-
-
-</span>
-      </li>
-    
-      <li class="post-item">
-        
-    <div class="meta">
-      
-        
-          <time datetime="2023-11-22T16:00:00.000Z" class="dt-published" itemprop="datePublished">2023-11-23</time>
-        
-      
-    </div>
-
-
-        <span>
-    
-        <a class="" href="/cn/learning_english/">comprehensible input  英语学习方法</a>
-    
-
-
-</span>
-      </li>
-    
-      <li class="post-item">
-        
-    <div class="meta">
-      
-        
-          <time datetime="2023-11-14T16:00:00.000Z" class="dt-published" itemprop="datePublished">2023-11-15</time>
-        
-      
-    </div>
-
-
-        <span>
-    
-        <a class="" href="/cn/note_review/">定期回顾笔记的好处</a>
-    
-
-
-</span>
-      </li>
-    
-  </ul>
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
   
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"usmacd.com","root":"/","version":"1.9.7","typing":{"enable":false,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.2.0"><link rel="alternate" href="/atom.xml" title="安全代码" type="application/atom+xml">
+<link rel="alternate" href="/rss.xml" title="安全代码" type="application/rss+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
     
-    <div class="pagination">
+
+<div class="header-inner" style="height: 60vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>安全代码</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
         
-            <a href="/"><i class="fa-solid fa-angle-left"></i></a>
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
         
-        <span class="page-number">第 2 页，共 13 页</span>
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
         
-            <a href="/page/3/"><i class="fa-solid fa-angle-right"></i>
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/rss.xml" target="_self">
+                <i class="iconfont icon-rss"></i>
+                <span>rss</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/sitemap.xml" target="_self">
+                
+                <span>sitemap</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
             </a>
+          </li>
+          
         
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
     </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://images.unsplash.com/photo-1646026371686-79950ceb6daa?w=640') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.1)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle">关注科技、投资、健康，和个人成长</span>
+          
+        </div>
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      <div class="container nopadding-x-md">
+        <div id="board"
+          >
+          
+          <div class="container">
+            <div class="row">
+              <div class="col-12 col-md-10 m-auto">
+                
+
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/cn/investment_category/" target="_self">
+          金融市场中的不同流派
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/cn/investment_category/" target="_self">
+        <div>
+          价值投资：价值低估、价值成长 (巴菲特) 趋势交易：分析市场的方向动力并寻找参与该走势的方法的过程 (理查德.丹尼斯) 量化交易：高频交易、动量交易、统计套利等  (詹姆斯·西蒙斯) 市场博弈：以徐总舵主为代表的打板派 技术分析：通过研究历史交易数据（主要是价格和成交量），来预测未来的价格走势（威廉.江恩） 投资策略：ETF 指数投资、网格交易、基金定投，投资组合理论 等 投资哲学：投资方法建立
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2024-03-08 00:00" pubdate>
+              2024-03-08
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/investment/">#investment</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/cn/android_use_proxy_of_pc/" target="_self">
+          Android 手机使用 PC 代理上网的方法
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/cn/android_use_proxy_of_pc/" target="_self">
+        <div>
+          在一些特殊的情况下，可能需要使用 Android 手机或者 PC 的线路访问外部网络资源，同时没有条件连接 wifi 网络，这时候可以使用 Android Platform Tools 的 adb 工具来达到目的。 Android Platform Tools 的下载地址为：https://developer.android.com/tools/releases/platform-tools#do
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2024-02-27 00:00" pubdate>
+              2024-02-27
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Android/">#Android</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/cn/how_to_write_technique_note/" target="_self">
+          如何写好一篇技术笔记
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/cn/how_to_write_technique_note/" target="_self">
+        <div>
+          翻看前些年的笔记，发现笔记内容的详尽程度将决定未来能留下来多少有用的知识。不论记性多好，大多数内容都会随着时间遗忘在历史的长河中。在得到听了很多课程，基本上能记住的不多，最终能用上的可能还是记录下来的一些东西，古人云：「不动笔墨不读书」还是挺有道理的。 技术笔记和其他的一般笔记不同，详尽程度将决定笔记的质量，有一些十多年前的笔记我现在已经完全看不懂了，有的文档仅仅写了短短几句，明显没有写完，但真的
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2024-02-04 00:00" pubdate>
+              2024-02-04
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/PKM/">#PKM</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/cn/how_to_get_good_info/" target="_self">
+          《笔记的方法》 如何做筛选，获取高质量信息
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/cn/how_to_get_good_info/" target="_self">
+        <div>
+          在信息爆炸时代，我觉得研究如何获得有效信息是非常重要的。在《笔记的方法》中，少楠分享了如何获取优质的信息的方法，分别是：  做减法：削减你的信息 做加法：添加书本以外的信息源 做乘法：用多重视角看待信息  做减法：削减你的信息源稀缺的不是信息，而是我们的注意力。我们需要避免信息过载，分散我们的注意力，这样才能专注有价值的信息。 方法1：削减利用你情绪的信息源 比如将被 GPT 取代的 30 个岗位
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2024-02-01 00:00" pubdate>
+              2024-02-01
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/PKM/">#PKM</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/cn/zel_note_flow/" target="_self">
+          卡片盒笔记法总体思路与工作流
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/cn/zel_note_flow/" target="_self">
+        <div>
+          我经常在少数派等网站上看到卡片盒笔记的文章，这些文章少则几千字，多则上万字。过于复杂的方法是很难实践的，我尝试用一种简单的方法把卡片盒笔记法说清楚，希望能给大家带来一些帮助。 卡片盒笔记法核心要义1）用自己的话记录最感兴趣，最有用的知识，记录自己的洞见，而不是单纯记录信息2）处理各种想法，探寻想法之间的关联、冲突、拓展，建立成熟的想法集群，并和其他的想法集群联系在一起3) 针对项目或主题调整笔记顺
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2024-01-29 00:00" pubdate>
+              2024-01-29
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/PKM/">#PKM</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/cn/egg-is-deprecated/" target="_self">
+          python3 pip loading egg is deprecated 警告的解决方法
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/cn/egg-is-deprecated/" target="_self">
+        <div>
+          解决 egg is deprecation 警告python3 -m pip install some_package 时发现 exploitable 有警告：  DEPRECATION: Loading egg at exploitable-1.32-py3.12.egg is deprecated. pip 24.3 will enforce this behaviour change. A
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2024-01-17 00:00" pubdate>
+              2024-01-17
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Programming/">#Programming</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/cn/public_writing/" target="_self">
+          公开写作的好处和坚持不懈
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/cn/public_writing/" target="_self">
+        <div>
+          公开写作的好处只有将想法写出来的时候，你才会发现似乎严密的论证中的逻辑漏洞和无知之处，不动笔的思考往往马虎。  写下你学习的东西，可以加深你对该主题的理解，有时候向别人解释时你会发现自己的知识缺口。写作不仅是一个记录的方法，它是一个加深理解和暴露知识差距的强大工具。 写作使我们更加彻底地探索主题，并以更加连贯和准确的方式清晰地表达自己的想法。  坚持不懈（Consistency）的重要性虽然动机可
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2023-12-05 00:00" pubdate>
+              2023-12-05
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/KNOWLEDGE/">#KNOWLEDGE</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/cn/qemu_kvm/" target="_self">
+          VMware Workstation Windows 10 host Ubuntu 18.04 Guest 中加载 Linux 内核 kvm 模块
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/cn/qemu_kvm/" target="_self">
+        <div>
+          这里在 VMware Workstation Guset OS 里使用 qemu 的用法，有点像俄罗斯套娃。 qemu.sh 123456789101112qemu-system-x86_64 \  -m 2G \  -smp 2 \  -kernel $KERNEL/arch/x86——64/boot/bzImage \  -append &quot;console=ttyS0 root=/de
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2023-11-28 00:00" pubdate>
+              2023-11-28
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/linux/">#linux</a>
+            
+              <a href="/tags/Security/">#Security</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/cn/learning_english/" target="_self">
+          comprehensible input  英语学习方法
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/cn/learning_english/" target="_self">
+        <div>
+          youtube 上有 youtuber 在不出国的情况下，将第二外语学习到母语者水平的成功案例。 Makoto 是一位会说中日英三门语言的 Youtuber，他总结自己学习第二外语的成功经验，可以简单地归纳成一句话：掌握第二外语最重要的是必须有大量地道的 comprehensible input (可理解的输入)。 Comprehensible input 是 Stephen D. Krashen
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2023-11-23 00:00" pubdate>
+              2023-11-23
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/KNOWLEDGE/">#KNOWLEDGE</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/cn/note_review/" target="_self">
+          定期回顾笔记的好处
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/cn/note_review/" target="_self">
+        <div>
+          少楠在 《笔记的方法》中介绍了一种 「通过回顾持续刺激」的笔记技术，我以前曾简称为「漫游笔记」技术。 定期回顾自己的笔记大体有下面几个好处：  对抗遗忘曲线：尤其是文献笔记等自己不熟悉的笔记 推动知识内化，想法迭代：知识结构优化，新旧知识连接 遇见过去的自己 （挺好玩，挺有趣） 影响现实：促进自我审视，提供思路和线索  对抗遗忘曲线：我们可能遗忘笔记的内容，尤其是文献笔记等不熟悉的内容。人的思维、
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2023-11-15 00:00" pubdate>
+              2023-11-15
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/PKM/">#PKM</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+
+
+  <nav aria-label="navigation">
+    <span class="pagination" id="pagination">
+      <a class="extend prev" rel="prev" href="/"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/#board">3</a><a class="page-number" href="/page/4/#board">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/13/#board">13</a><a class="extend next" rel="next" href="/page/3/#board"><i class="iconfont icon-arrowright"></i></a>
+    </span>
+  </nav>
+
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+
 
 
   
-</section>
-
-
-
-        
-        <footer id="footer">
-  <div class="footer-left">
-    Copyright &copy;
-    
-    
-    2004-2024
-    henices
-  </div>
-  <div class="footer-right">
-    <nav>
-      <ul>
-        <!--
-       --><li><a href="/">首页</a></li><!--
-     --><!--
-       --><li><a href="/about/">关于</a></li><!--
-     --><!--
-       --><li><a href="/archives/">归档</a></li><!--
-     --><!--
-       --><li><a href="/search/">搜索</a></li><!--
-     --><!--
-       --><li><a href="/links/">链接</a></li><!--
-     --><!--
-       --><li><a href="/rss.xml">RSS</a></li><!--
-     -->
-      </ul>
-    </nav>
-  </div>
-</footer>
-
-    </div>
-    <!-- styles -->
-
-
-
-  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
-
-
-    <!-- jquery -->
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+    <script  src="/js/img-lazyload.js" ></script>
+  
 
 
 
 
-<!-- clipboard -->
+  <script  src="/js/local-search.js" ></script>
 
 
-<script src="/js/main.js"></script>
 
-<!-- search -->
 
-<!-- Baidu Analytics -->
 
-<!-- Cloudflare Analytics -->
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
 
-<!-- Disqus Comments -->
 
-<!-- utterances Comments -->
+  
 
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
 </body>
 </html>

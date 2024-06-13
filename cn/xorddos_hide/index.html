@@ -1,11 +1,23 @@
+
+
 <!DOCTYPE html>
-<html lang=zh>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
 <head>
-    <!-- so meta -->
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="HandheldFriendly" content="True">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="henices">
+  <meta name="keywords" content="">
+  
     <meta name="description" content="进程隐藏上周由于工作原因接触到xorddos的样本，这个样本在过去一年的时间里非常常见，变种也很多，拿到的样本比较有趣的是 ps 无法发现进程。 123456789101112131415161718192021[root@localhost ~]# ps -ef  | grep &#x2F;usr&#x2F;bin...root      4597  4594  0 00:37 ?        00:00:00">
 <meta property="og:type" content="article">
 <meta property="og:title" content="xorddos 样本进程隐藏的小伎俩">
@@ -17,404 +29,711 @@
 <meta property="article:modified_time" content="2023-09-06T03:00:51.915Z">
 <meta property="article:author" content="henices">
 <meta property="article:tag" content="Malware">
-<meta name="twitter:card" content="summary">
-    
-    
-      
-        
-          <link rel="shortcut icon" href="/images/favicon.ico">
-        
-      
-      
-        
-          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
-        
-      
-      
-        
-          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
-        
-      
-    
-    <!-- title -->
-    <title>xorddos 样本进程隐藏的小伎俩</title>
-    <!-- async scripts -->
-    <!-- Google Analytics -->
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>xorddos 样本进程隐藏的小伎俩 - 安全代码</title>
 
-
-    <!-- Umami Analytics -->
-
-
-    <!-- styles -->
-    
-<link rel="stylesheet" href="/css/style.css">
-
-    <!-- persian styles -->
-    
-    <link href="https://cdn.jsdelivr.net/npm/firacode@6.2.0/distr/fira_code.css" rel="stylesheet">
-    <!-- rss -->
-    
-    
-      <link rel="alternate" href="/true" title="安全代码" type="application/atom+xml" />
-    
-	<!-- mathjax -->
-	
-		<script type="text/x-mathjax-config">
-		  MathJax.Hub.Config({
-			tex2jax: {
-			  skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
-			  inlineMath: [['$','$']]
-			}
-		  });
-		</script>
-		<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
-	
-<meta name="generator" content="Hexo 7.2.0"></head>
-
-<body class="max-width mx-auto px3 ltr">
-    
-      <div id="header-post">
-  <a id="menu-icon" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
-  <a id="menu-icon-tablet" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
-  <a id="top-icon-tablet" href="#" aria-label="顶部" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
-  <span id="menu">
-    <span id="nav">
-      <ul>
-        <!--
-       --><li><a href="/">首页</a></li><!--
-     --><!--
-       --><li><a href="/about/">关于</a></li><!--
-     --><!--
-       --><li><a href="/archives/">归档</a></li><!--
-     --><!--
-       --><li><a href="/search/">搜索</a></li><!--
-     --><!--
-       --><li><a href="/links/">链接</a></li><!--
-     --><!--
-       --><li><a href="/rss.xml">RSS</a></li><!--
-     -->
-      </ul>
-    </span>
-    <br/>
-    <span id="actions">
-      <ul>
-        
-        <li><a class="icon" aria-label="上一篇" href="/cn/living_younger_healthier_logger/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
-        
-        
-        <li><a class="icon" aria-label="下一篇" href="/cn/Windows_Rx034/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
-        
-        <li><a class="icon" aria-label="返回顶部" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
-        <li><a class="icon" aria-label="分享文章" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
-      </ul>
-      <span id="i-prev" class="info" style="display:none;">上一篇</span>
-      <span id="i-next" class="info" style="display:none;">下一篇</span>
-      <span id="i-top" class="info" style="display:none;">返回顶部</span>
-      <span id="i-share" class="info" style="display:none;">分享文章</span>
-    </span>
-    <br/>
-    <div id="share" style="display: none">
-      <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://usmacd.com/cn/xorddos_hide/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://usmacd.com/cn/xorddos_hide/&text=xorddos 样本进程隐藏的小伎俩"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://usmacd.com/cn/xorddos_hide/&title=xorddos 样本进程隐藏的小伎俩"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://usmacd.com/cn/xorddos_hide/&is_video=false&description=xorddos 样本进程隐藏的小伎俩"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=xorddos 样本进程隐藏的小伎俩&body=Check out this article: http://usmacd.com/cn/xorddos_hide/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://usmacd.com/cn/xorddos_hide/&title=xorddos 样本进程隐藏的小伎俩"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://usmacd.com/cn/xorddos_hide/&title=xorddos 样本进程隐藏的小伎俩"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://usmacd.com/cn/xorddos_hide/&title=xorddos 样本进程隐藏的小伎俩"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://usmacd.com/cn/xorddos_hide/&title=xorddos 样本进程隐藏的小伎俩"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://usmacd.com/cn/xorddos_hide/&name=xorddos 样本进程隐藏的小伎俩&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://usmacd.com/cn/xorddos_hide/&t=xorddos 样本进程隐藏的小伎俩"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
-</ul>
-
-    </div>
-    
-    
-      <div id="toc">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%9B%E7%A8%8B%E9%9A%90%E8%97%8F"><span class="toc-number">1.</span> <span class="toc-text">进程隐藏</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#xorddos-%E7%9A%84%E5%A4%9A%E6%80%81-%EF%BC%88Polymorphic%EF%BC%89"><span class="toc-number">2.</span> <span class="toc-text">xorddos 的多态 （Polymorphic）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B6%E4%BB%96"><span class="toc-number">3.</span> <span class="toc-text">其他</span></a></li></ol>
-      </div>
-    
-  </span>
-</div>
-
-    
-    <div class="content index py4 ">
-        
-        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
-  <header>
-    
-    <h1 class="posttitle p-name" itemprop="name headline">
-        xorddos 样本进程隐藏的小伎俩
-    </h1>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
 
 
-    <div class="meta">
-      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
-        <span class="p-name" itemprop="name">henices</span>
-      </span>
-      
-    <div class="postdate">
-      
-        <time datetime="2023-09-06T03:00:51.915Z" class="dt-published" itemprop="datePublished">2023-09-06</time>
-        
-        (Updated: <time datetime="2023-09-06T03:00:51.915Z" class="dt-updated" itemprop="dateModified">2023-09-06</time>)
-        
-      
-    </div>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
 
 
-      
 
-      
-    <div class="article-tag">
-        <i class="fa-solid fa-tag"></i>
-        <a class="p-category" href="/tags/Malware/" rel="tag">Malware</a>
-    </div>
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
 
 
-    </div>
-  </header>
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
   
 
-  <div class="content e-content" itemprop="articleBody">
-    <h2 id="进程隐藏"><a href="#进程隐藏" class="headerlink" title="进程隐藏"></a>进程隐藏</h2><p>上周由于工作原因接触到xorddos的样本，这个样本在过去一年的时间里非常常见，<br>变种也很多，拿到的样本比较有趣的是 ps 无法发现进程。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]<span class="comment"># ps -ef  | grep /usr/bin</span></span><br><span class="line"></span><br><span class="line">...</span><br><span class="line"></span><br><span class="line">root      4597  4594  0 00:37 ?        00:00:00 gnome-pty-helper</span><br><span class="line">root      4598  4594  0 00:37 pts/1    00:00:00 bash</span><br><span class="line">oracle    5359     1  0 00:41 ?        00:00:00 ora_smco_orcl</span><br><span class="line">oracle    5378     1  0 00:41 ?        00:00:00 ora_w000_orcl</span><br><span class="line">oracle    5586     1  0 00:42 ?        00:00:00 ora_j000_orcl</span><br><span class="line">oracle    5588     1  0 00:42 ?        00:00:00 ora_j001_orcl</span><br><span class="line">root      5666     1  0 00:43 ?        00:00:00 sh</span><br><span class="line">root      5669     1  0 00:43 ?        00:00:00 <span class="built_in">echo</span> <span class="string">&quot;find&quot;</span></span><br><span class="line">root      5672     1  0 00:43 ?        00:00:00 <span class="built_in">ls</span> -la</span><br><span class="line">root      5675     1  0 00:43 ?        00:00:00 bash</span><br><span class="line">root      5678     1  0 00:43 ?        00:00:00 gnome-terminal</span><br><span class="line">root      5683     1  0 00:43 ?        00:00:00 <span class="built_in">cd</span> /etc</span><br><span class="line">root      5686     1  0 00:43 ?        00:00:00 top</span><br><span class="line">root      5689     1  0 00:43 ?        00:00:00 sh</span><br><span class="line">root      5692     1  0 00:43 ?        00:00:00 gnome-terminal</span><br><span class="line">root      5695     1  0 00:43 ?        00:00:00 ifconfig</span><br><span class="line">root      5696  4598  0 00:43 pts/1    00:00:00 ps -ef</span><br></pre></td></tr></table></figure>
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"usmacd.com","root":"/","version":"1.9.7","typing":{"enable":false,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.2.0"><link rel="alternate" href="/atom.xml" title="安全代码" type="application/atom+xml">
+<link rel="alternate" href="/rss.xml" title="安全代码" type="application/rss+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>安全代码</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/rss.xml" target="_self">
+                <i class="iconfont icon-rss"></i>
+                <span>rss</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/sitemap.xml" target="_self">
+                
+                <span>sitemap</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://images.unsplash.com/photo-1473181488821-2d23949a045a?w=640') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle">xorddos 样本进程隐藏的小伎俩</span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-09-06 11:00" pubdate>
+          2023年9月6日 上午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.4k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          20 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">xorddos 样本进程隐藏的小伎俩</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h2 id="进程隐藏"><a href="#进程隐藏" class="headerlink" title="进程隐藏"></a>进程隐藏</h2><p>上周由于工作原因接触到xorddos的样本，这个样本在过去一年的时间里非常常见，<br>变种也很多，拿到的样本比较有趣的是 ps 无法发现进程。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs bash">[root@localhost ~]<span class="hljs-comment"># ps -ef  | grep /usr/bin</span><br><br>...<br><br>root      4597  4594  0 00:37 ?        00:00:00 gnome-pty-helper<br>root      4598  4594  0 00:37 pts/1    00:00:00 bash<br>oracle    5359     1  0 00:41 ?        00:00:00 ora_smco_orcl<br>oracle    5378     1  0 00:41 ?        00:00:00 ora_w000_orcl<br>oracle    5586     1  0 00:42 ?        00:00:00 ora_j000_orcl<br>oracle    5588     1  0 00:42 ?        00:00:00 ora_j001_orcl<br>root      5666     1  0 00:43 ?        00:00:00 sh<br>root      5669     1  0 00:43 ?        00:00:00 <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;find&quot;</span><br>root      5672     1  0 00:43 ?        00:00:00 <span class="hljs-built_in">ls</span> -la<br>root      5675     1  0 00:43 ?        00:00:00 bash<br>root      5678     1  0 00:43 ?        00:00:00 gnome-terminal<br>root      5683     1  0 00:43 ?        00:00:00 <span class="hljs-built_in">cd</span> /etc<br>root      5686     1  0 00:43 ?        00:00:00 top<br>root      5689     1  0 00:43 ?        00:00:00 sh<br>root      5692     1  0 00:43 ?        00:00:00 gnome-terminal<br>root      5695     1  0 00:43 ?        00:00:00 ifconfig<br>root      5696  4598  0 00:43 pts/1    00:00:00 ps -ef<br></code></pre></td></tr></table></figure>
 
 <p>而使用lsof却可以清除地看见样本正在努力地干活。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]<span class="comment"># lsof +d /usr/bin</span></span><br><span class="line">COMMAND    PID USER  FD   TYPE DEVICE    SIZE    NODE NAME</span><br><span class="line">hidd      1853 root txt    REG    3,1   33708 2467454 /usr/bin/hidd</span><br><span class="line">ckucbzknt 2014 root txt    REG    3,1  610331 2459176 /usr/bin/ckucbzkntb</span><br><span class="line">xfs       2143  xfs txt    REG    3,1  107460 2468483 /usr/bin/xfs</span><br><span class="line">Xorg      3117 root txt    REG    3,1 1890596 2466732 /usr/bin/Xorg</span><br><span class="line">gnome-ses 4073 root txt    REG    3,1  129356 2459482 /usr/bin/gnome-session</span><br><span class="line">ssh-agent 4201 root txt    REG    3,1   88996 2467513 /usr/bin/ssh-agent</span><br><span class="line">dbus-laun 4245 root txt    REG    3,1   23796 2471600 /usr/bin/dbus-launch</span><br><span class="line">gnome-key 4255 root txt    REG    3,1   97396 2473617 /usr/bin/gnome-keyring-daemon</span><br><span class="line">metacity  4290 root txt    REG    3,1  521080 2464500 /usr/bin/metacity</span><br><span class="line">gnome-pan 4296 root txt    REG    3,1  540868 2465177 /usr/bin/gnome-panel</span><br><span class="line">nautilus  4298 root txt    REG    3,1 1348932 2461620 /usr/bin/nautilus</span><br><span class="line">gnome-vol 4310 root txt    REG    3,1   65240 2464498 /usr/bin/gnome-volume-manager</span><br><span class="line">bt-applet 4334 root txt    REG    3,1   30452 2464773 /usr/bin/bt-applet</span><br><span class="line">nm-applet 4352 root txt    REG    3,1  312432 2467723 /usr/bin/nm-applet</span><br><span class="line">gnome-pow 4381 root txt    REG    3,1  195284 2459473 /usr/bin/gnome-power-manager</span><br><span class="line">pam-panel 4383 root txt    REG    3,1   39148 2461862 /usr/bin/pam-panel-icon</span><br><span class="line">dbus-laun 4473 root txt    REG    3,1   23796 2471600 /usr/bin/dbus-launch</span><br><span class="line">gnome-scr 4512 root txt    REG    3,1  168628 2468487 /usr/bin/gnome-screensaver</span><br><span class="line">gnome-ter 4594 root txt    REG    3,1  309368 2464648 /usr/bin/gnome-terminal</span><br><span class="line">gadcgkcqn 4681 root txt    REG    3,1  610331 2460159 /usr/bin/gadcgkcqni</span><br><span class="line">gadcgkcqn 4684 root txt    REG    3,1  610331 2460159 /usr/bin/gadcgkcqni</span><br><span class="line">gadcgkcqn 4687 root txt    REG    3,1  610331 2460159 /usr/bin/gadcgkcqni</span><br><span class="line">gadcgkcqn 4690 root txt    REG    3,1  610331 2460159 /usr/bin/gadcgkcqni</span><br><span class="line">gadcgkcqn 4693 root txt    REG    3,1  610331 2460159 /usr/bin/gadcgkcqni</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><code class="hljs bash">[root@localhost ~]<span class="hljs-comment"># lsof +d /usr/bin</span><br>COMMAND    PID USER  FD   TYPE DEVICE    SIZE    NODE NAME<br>hidd      1853 root txt    REG    3,1   33708 2467454 /usr/bin/hidd<br>ckucbzknt 2014 root txt    REG    3,1  610331 2459176 /usr/bin/ckucbzkntb<br>xfs       2143  xfs txt    REG    3,1  107460 2468483 /usr/bin/xfs<br>Xorg      3117 root txt    REG    3,1 1890596 2466732 /usr/bin/Xorg<br>gnome-ses 4073 root txt    REG    3,1  129356 2459482 /usr/bin/gnome-session<br>ssh-agent 4201 root txt    REG    3,1   88996 2467513 /usr/bin/ssh-agent<br>dbus-laun 4245 root txt    REG    3,1   23796 2471600 /usr/bin/dbus-launch<br>gnome-key 4255 root txt    REG    3,1   97396 2473617 /usr/bin/gnome-keyring-daemon<br>metacity  4290 root txt    REG    3,1  521080 2464500 /usr/bin/metacity<br>gnome-pan 4296 root txt    REG    3,1  540868 2465177 /usr/bin/gnome-panel<br>nautilus  4298 root txt    REG    3,1 1348932 2461620 /usr/bin/nautilus<br>gnome-vol 4310 root txt    REG    3,1   65240 2464498 /usr/bin/gnome-volume-manager<br>bt-applet 4334 root txt    REG    3,1   30452 2464773 /usr/bin/bt-applet<br>nm-applet 4352 root txt    REG    3,1  312432 2467723 /usr/bin/nm-applet<br>gnome-pow 4381 root txt    REG    3,1  195284 2459473 /usr/bin/gnome-power-manager<br>pam-panel 4383 root txt    REG    3,1   39148 2461862 /usr/bin/pam-panel-icon<br>dbus-laun 4473 root txt    REG    3,1   23796 2471600 /usr/bin/dbus-launch<br>gnome-scr 4512 root txt    REG    3,1  168628 2468487 /usr/bin/gnome-screensaver<br>gnome-ter 4594 root txt    REG    3,1  309368 2464648 /usr/bin/gnome-terminal<br>gadcgkcqn 4681 root txt    REG    3,1  610331 2460159 /usr/bin/gadcgkcqni<br>gadcgkcqn 4684 root txt    REG    3,1  610331 2460159 /usr/bin/gadcgkcqni<br>gadcgkcqn 4687 root txt    REG    3,1  610331 2460159 /usr/bin/gadcgkcqni<br>gadcgkcqn 4690 root txt    REG    3,1  610331 2460159 /usr/bin/gadcgkcqni<br>gadcgkcqn 4693 root txt    REG    3,1  610331 2460159 /usr/bin/gadcgkcqni<br></code></pre></td></tr></table></figure>
 
 <p>阅读汇编代码，分析具体原因，发现xorddos将一些关键信息加密了，F5处理过的代码如下</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> __cdecl <span class="title function_">encrypt_code</span><span class="params">(<span class="type">int</span> a1, <span class="type">int</span> a2)</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="type">signed</span> <span class="type">int</span> v2; <span class="comment">// ecx@2</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> ( a2 &gt; <span class="number">0</span> )</span><br><span class="line">  &#123;</span><br><span class="line">    v2 = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">do</span></span><br><span class="line">    &#123;</span><br><span class="line">      *(_BYTE *)(v2 + a1) ^= xorkeys[(((_BYTE)v2 + ((<span class="type">unsigned</span> <span class="type">int</span>)(v2 &gt;&gt; <span class="number">31</span>) &gt;&gt; <span class="number">28</span>)) &amp; <span class="number">0xF</span>)</span><br><span class="line">                                   - ((<span class="type">unsigned</span> <span class="type">int</span>)(v2 &gt;&gt; <span class="number">31</span>) &gt;&gt; <span class="number">28</span>)];</span><br><span class="line">      ++v2;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">while</span> ( v2 != a2 );</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> a1;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">int</span> __cdecl <span class="hljs-title function_">encrypt_code</span><span class="hljs-params">(<span class="hljs-type">int</span> a1, <span class="hljs-type">int</span> a2)</span><br>&#123;<br>  <span class="hljs-type">signed</span> <span class="hljs-type">int</span> v2; <span class="hljs-comment">// ecx@2</span><br><br>  <span class="hljs-keyword">if</span> ( a2 &gt; <span class="hljs-number">0</span> )<br>  &#123;<br>    v2 = <span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">do</span><br>    &#123;<br>      *(_BYTE *)(v2 + a1) ^= xorkeys[(((_BYTE)v2 + ((<span class="hljs-type">unsigned</span> <span class="hljs-type">int</span>)(v2 &gt;&gt; <span class="hljs-number">31</span>) &gt;&gt; <span class="hljs-number">28</span>)) &amp; <span class="hljs-number">0xF</span>)<br>                                   - ((<span class="hljs-type">unsigned</span> <span class="hljs-type">int</span>)(v2 &gt;&gt; <span class="hljs-number">31</span>) &gt;&gt; <span class="hljs-number">28</span>)];<br>      ++v2;<br>    &#125;<br>    <span class="hljs-keyword">while</span> ( v2 != a2 );<br>  &#125;<br>  <span class="hljs-keyword">return</span> a1;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <p>xorkey 为 BB2FA36AAA9541F0</p>
 <p>用idapython 写个小脚本，简单处理一下。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> idautils <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">from</span> idc <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">get_string</span>(<span class="params">addr</span>):</span><br><span class="line">  out = <span class="string">&quot;&quot;</span></span><br><span class="line">  <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">    <span class="keyword">if</span> Byte(addr) != <span class="number">0</span>:</span><br><span class="line">      out += <span class="built_in">chr</span>(Byte(addr))</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">      <span class="keyword">break</span></span><br><span class="line">    addr += <span class="number">1</span></span><br><span class="line">  <span class="keyword">return</span> out</span><br><span class="line"> </span><br><span class="line"><span class="keyword">def</span> <span class="title function_">decrypt</span>(<span class="params">data</span>):</span><br><span class="line"></span><br><span class="line">  xorkey = <span class="string">&#x27;BB2FA36AAA9541F0&#x27;</span></span><br><span class="line">  length = <span class="built_in">len</span>(data)</span><br><span class="line">  o = <span class="string">&quot;&quot;</span></span><br><span class="line">  <span class="keyword">if</span> length &gt; <span class="number">0</span>:</span><br><span class="line">    v2 = <span class="number">0</span></span><br><span class="line">    <span class="keyword">while</span> v2 &lt; length:</span><br><span class="line">      o += <span class="built_in">chr</span>( <span class="built_in">ord</span>(data[v2]) ^  <span class="built_in">ord</span>(xorkey[((v2 + ((v2 &gt;&gt; <span class="number">31</span>) &gt;&gt; <span class="number">28</span>)) &amp; <span class="number">0xF</span>) - ( (v2 &gt;&gt; <span class="number">31</span>) &gt;&gt; <span class="number">28</span>)]) )</span><br><span class="line">      v2 += <span class="number">1</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> o</span><br><span class="line"></span><br><span class="line">ea = ScreenEA()</span><br><span class="line">string = get_string(ea)</span><br><span class="line">dec = decrypt(string)</span><br><span class="line"><span class="built_in">print</span> <span class="string">&#x27;Addr: 0x%x, %s&#x27;</span> % (ea, dec)</span><br><span class="line">MakeComm(ea, dec)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> idautils <span class="hljs-keyword">import</span> *<br><span class="hljs-keyword">from</span> idc <span class="hljs-keyword">import</span> *<br><br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">get_string</span>(<span class="hljs-params">addr</span>):<br>  out = <span class="hljs-string">&quot;&quot;</span><br>  <span class="hljs-keyword">while</span> <span class="hljs-literal">True</span>:<br>    <span class="hljs-keyword">if</span> Byte(addr) != <span class="hljs-number">0</span>:<br>      out += <span class="hljs-built_in">chr</span>(Byte(addr))<br>    <span class="hljs-keyword">else</span>:<br>      <span class="hljs-keyword">break</span><br>    addr += <span class="hljs-number">1</span><br>  <span class="hljs-keyword">return</span> out<br> <br><span class="hljs-keyword">def</span> <span class="hljs-title function_">decrypt</span>(<span class="hljs-params">data</span>):<br><br>  xorkey = <span class="hljs-string">&#x27;BB2FA36AAA9541F0&#x27;</span><br>  length = <span class="hljs-built_in">len</span>(data)<br>  o = <span class="hljs-string">&quot;&quot;</span><br>  <span class="hljs-keyword">if</span> length &gt; <span class="hljs-number">0</span>:<br>    v2 = <span class="hljs-number">0</span><br>    <span class="hljs-keyword">while</span> v2 &lt; length:<br>      o += <span class="hljs-built_in">chr</span>( <span class="hljs-built_in">ord</span>(data[v2]) ^  <span class="hljs-built_in">ord</span>(xorkey[((v2 + ((v2 &gt;&gt; <span class="hljs-number">31</span>) &gt;&gt; <span class="hljs-number">28</span>)) &amp; <span class="hljs-number">0xF</span>) - ( (v2 &gt;&gt; <span class="hljs-number">31</span>) &gt;&gt; <span class="hljs-number">28</span>)]) )<br>      v2 += <span class="hljs-number">1</span><br><br>  <span class="hljs-keyword">return</span> o<br><br>ea = ScreenEA()<br>string = get_string(ea)<br>dec = decrypt(string)<br><span class="hljs-built_in">print</span> <span class="hljs-string">&#x27;Addr: 0x%x, %s&#x27;</span> % (ea, dec)<br>MakeComm(ea, dec)<br></code></pre></td></tr></table></figure>
 
 <p>处理后可以看到伪装的命令行信息，daemonname。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line">.data:080CBB40 daemonname      db &#x27;!#Ff3VE.-7&#x27;,17h,&#x27;V[_ 0&#x27;,0 ; DATA XREF: main+31Eo</span><br><span class="line">.data:080CBB40                                         ; main+4AEo ...</span><br><span class="line">.data:080CBB40                                         ; cat resolv.conf</span><br><span class="line">.data:080CBB51                 align 4</span><br><span class="line">.data:080CBB54 a12             db &#x27;1*2&#x27;,0              ; sh</span><br><span class="line">.data:080CBB58                 db    0</span><br><span class="line">.data:080CBB59                 db    0</span><br><span class="line">.data:080CBB5A                 db    0</span><br><span class="line">.data:080CBB5B                 db    0</span><br><span class="line">.data:080CBB5C                 db    0</span><br><span class="line">.data:080CBB5D                 db    0</span><br><span class="line">.data:080CBB5E                 db    0</span><br><span class="line">.data:080CBB5F                 db    0</span><br><span class="line">.data:080CBB60                 db    0</span><br><span class="line">.data:080CBB61                 db    0</span><br><span class="line">.data:080CBB62                 db    0</span><br><span class="line">.data:080CBB63                 db    0</span><br><span class="line">.data:080CBB64                 db    0</span><br><span class="line">.data:080CBB65                 db    0</span><br><span class="line">.data:080CBB66                 db    0</span><br><span class="line">.data:080CBB67                 db    0</span><br><span class="line">.data:080CBB68                 db  20h                 ; bash</span><br><span class="line">.data:080CBB69                 db  23h ; #</span><br><span class="line">.data:080CBB6A                 db  41h ; A</span><br><span class="line">.data:080CBB6B                 db  2Eh ; .</span><br><span class="line">.data:080CBB6C                 db  41h ; A</span><br><span class="line">.data:080CBB6D                 db    0</span><br><span class="line">.data:080CBB6E                 db    0</span><br><span class="line">.data:080CBB6F                 db    0</span><br><span class="line">.data:080CBB70                 db    0</span><br><span class="line">.data:080CBB71                 db    0</span><br><span class="line"></span><br><span class="line">...</span><br><span class="line"></span><br><span class="line">.data:080CBBB8                 db  2Eh ; .             ; ls -la</span><br><span class="line">.data:080CBBB9                 db  31h ; 1</span><br><span class="line">.data:080CBBBA                 db  12h</span><br><span class="line">.data:080CBBBB                 db  6Bh ; k</span><br><span class="line">.data:080CBBBC                 db  2Dh ; -</span><br><span class="line">.data:080CBBBD                 db  52h ; R</span><br><span class="line">.data:080CBBBE                 db  36h ; 6</span><br><span class="line">.data:080CBBBF                 db    0</span><br><span class="line">.data:080CBBC0                 db    0</span><br><span class="line">.data:080CBBC1                 db    0</span><br><span class="line">.data:080CBBC2                 db    0</span><br><span class="line">.data:080CBBC3                 db    0</span><br><span class="line">.data:080CBBC4                 db    0</span><br><span class="line">.data:080CBBC5                 db    0</span><br><span class="line">.data:080CBBC6                 db    0</span><br><span class="line">.data:080CBBC7                 db    0</span><br><span class="line">.data:080CBBC8                 db    0</span><br><span class="line">.data:080CBBC9                 db    0</span><br><span class="line">.data:080CBBCA                 db    0</span><br><span class="line">.data:080CBBCB                 db    0</span><br><span class="line">.data:080CBBCC                 db  36h ; 6             ; top</span><br><span class="line">.data:080CBBCD                 db  2Dh ; -</span><br><span class="line">.data:080CBBCE                 db  42h ; B</span><br><span class="line">.data:080CBBCF                 db  46h ; F</span><br><span class="line">.data:080CBBD0                 db    0</span><br><span class="line">.data:080CBBD1                 db    0</span><br><span class="line">.data:080CBBD2                 db    0</span><br><span class="line"></span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><code class="hljs asm">.data:080CBB40 daemonname      db &#x27;!#Ff3VE.-7&#x27;,17h,&#x27;V[_ 0&#x27;,0 ; DATA XREF: main+31Eo<br>.data:080CBB40                                         ; main+4AEo ...<br>.data:080CBB40                                         ; cat resolv.conf<br>.data:080CBB51                 align 4<br>.data:080CBB54 a12             db &#x27;1*2&#x27;,0              ; sh<br>.data:080CBB58                 db    0<br>.data:080CBB59                 db    0<br>.data:080CBB5A                 db    0<br>.data:080CBB5B                 db    0<br>.data:080CBB5C                 db    0<br>.data:080CBB5D                 db    0<br>.data:080CBB5E                 db    0<br>.data:080CBB5F                 db    0<br>.data:080CBB60                 db    0<br>.data:080CBB61                 db    0<br>.data:080CBB62                 db    0<br>.data:080CBB63                 db    0<br>.data:080CBB64                 db    0<br>.data:080CBB65                 db    0<br>.data:080CBB66                 db    0<br>.data:080CBB67                 db    0<br>.data:080CBB68                 db  20h                 ; bash<br>.data:080CBB69                 db  23h ; #<br>.data:080CBB6A                 db  41h ; A<br>.data:080CBB6B                 db  2Eh ; .<br>.data:080CBB6C                 db  41h ; A<br>.data:080CBB6D                 db    0<br>.data:080CBB6E                 db    0<br>.data:080CBB6F                 db    0<br>.data:080CBB70                 db    0<br>.data:080CBB71                 db    0<br><br>...<br><br>.data:080CBBB8                 db  2Eh ; .             ; ls -la<br>.data:080CBBB9                 db  31h ; 1<br>.data:080CBBBA                 db  12h<br>.data:080CBBBB                 db  6Bh ; k<br>.data:080CBBBC                 db  2Dh ; -<br>.data:080CBBBD                 db  52h ; R<br>.data:080CBBBE                 db  36h ; 6<br>.data:080CBBBF                 db    0<br>.data:080CBBC0                 db    0<br>.data:080CBBC1                 db    0<br>.data:080CBBC2                 db    0<br>.data:080CBBC3                 db    0<br>.data:080CBBC4                 db    0<br>.data:080CBBC5                 db    0<br>.data:080CBBC6                 db    0<br>.data:080CBBC7                 db    0<br>.data:080CBBC8                 db    0<br>.data:080CBBC9                 db    0<br>.data:080CBBCA                 db    0<br>.data:080CBBCB                 db    0<br>.data:080CBBCC                 db  36h ; 6             ; top<br>.data:080CBBCD                 db  2Dh ; -<br>.data:080CBBCE                 db  42h ; B<br>.data:080CBBCF                 db  46h ; F<br>.data:080CBBD0                 db    0<br>.data:080CBBD1                 db    0<br>.data:080CBBD2                 db    0<br><br>...<br></code></pre></td></tr></table></figure>
 
 <p>呵呵，已经看到 top， ls -al 等信息了，查看daemonname 的交叉引用，发现在main函数<br>中，到main里看看。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">.text:0804AC30 ; int __cdecl main(int argc, const char **argv, const char **envp)</span><br><span class="line">.text:0804AC30                 public main</span><br><span class="line">.text:0804AC30 main            proc near               ; DATA XREF: _start+17o</span><br><span class="line"></span><br><span class="line">....</span><br><span class="line"></span><br><span class="line">.text:0804AF4E                 mov     ebx, offset daemonname ; &quot;!#Ff3VE.-7\x17V[_ 0&quot;</span><br><span class="line"></span><br><span class="line">...</span><br><span class="line"></span><br><span class="line">.text:0804AFC2 loc_804AFC2:                            ; CODE XREF: main+3ABj</span><br><span class="line">.text:0804AFC2                 mov     [esp], ebx</span><br><span class="line">.text:0804AFC5                 add     ebx, 14h</span><br><span class="line">.text:0804AFC8                 mov     dword ptr [esp+4], 14h</span><br><span class="line">.text:0804AFD0                 call    encrypt_code</span><br><span class="line">.text:0804AFD5                 cmp     ebx, offset unk_80CBD0C</span><br><span class="line">.text:0804AFDB                 jnz     short loc_804AFC2</span><br></pre></td></tr></table></figure>
+<figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs tcl">.text:<span class="hljs-number">0804</span>AC30 ; int __cdecl main(int argc, const char **argv, const char **envp)<br>.text:<span class="hljs-number">0804</span>AC30                 public main<br>.text:<span class="hljs-number">0804</span>AC30 main            <span class="hljs-keyword">proc</span><span class="hljs-title"> near</span>               ;<span class="hljs-title"> DATA</span> XREF:<span class="hljs-title"> _start+17o</span><br><br>....<br><br>.text:0804AF4E<span class="hljs-title">                 mov</span> <span class="hljs-title">    ebx,</span> offset<span class="hljs-title"> daemonname</span> ; &quot;!#Ff3VE.-7\x17V[_ 0&quot;<br><br>...<br><br>.text:0804AFC2<span class="hljs-title"> loc_804AFC2:</span>                            ;<span class="hljs-title"> CODE</span> XREF:<span class="hljs-title"> main+3ABj</span><br>.text:0804AFC2<span class="hljs-title">                 mov</span>     [esp],<span class="hljs-title"> ebx</span><br>.text:0804AFC5<span class="hljs-title">                 add</span> <span class="hljs-title">    ebx,</span> 14h<br>.text:0804AFC8<span class="hljs-title">                 mov</span> <span class="hljs-title">    dword</span> ptr [esp+4], 14h<br>.text:0804AFD0<span class="hljs-title">                 call</span> <span class="hljs-title">   encrypt_code</span><br>.text:0804AFD5<span class="hljs-title">                 cmp</span> <span class="hljs-title">    ebx,</span> offset<span class="hljs-title"> unk_80CBD0C</span><br>.text:0804AFDB<span class="hljs-title">                 jnz</span> <span class="hljs-title">    short</span> loc_804AFC2<br></code></pre></td></tr></table></figure>
 
 <p>这段汇编代码，使用了一个循环，调用encrypt_code 对daemonname进行了解密。<br>后面的代码，用到了daemonname的地方有下面几处，</p>
 <p>第一处</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">.text:0804B29F                 call    getpid</span><br><span class="line">.text:0804B2A4                 mov     dword ptr [esp+8], (offset aDD+3) ; &quot;%d&quot;</span><br><span class="line">.text:0804B2AC                 mov     dword ptr [esp+4], 0Ah</span><br><span class="line">.text:0804B2B4                 mov     [esp], esi             ；第三形参 pid</span><br><span class="line">.text:0804B2B7                 mov     [esp+0Ch], eax</span><br><span class="line">.text:0804B2BB                 call    snprintf</span><br><span class="line">.text:0804B2C0                 mov     dword ptr [esp+4], 17h</span><br><span class="line">.text:0804B2C8                 mov     dword ptr [esp], 0</span><br><span class="line">.text:0804B2CF                 call    randomid</span><br><span class="line">.text:0804B2D4                 mov     [esp+8], esi</span><br><span class="line">.text:0804B2D8                 mov     [esp], edi             ；第一形参 要跑的木马</span><br><span class="line">.text:0804B2DB                 movzx   eax, ax</span><br><span class="line">.text:0804B2DE                 lea     eax, [eax+eax*4]</span><br><span class="line">.text:0804B2E1                 lea     eax, daemonname[eax*4] ; &quot;!#Ff3VE.-7\x17V[_ 0&quot;</span><br><span class="line">.text:0804B2E8                 mov     [esp+4], eax           ; 第二形参  daemonname</span><br><span class="line">.text:0804B2EC                 call    LinuxExec_Argv2</span><br></pre></td></tr></table></figure>
+<figure class="highlight x86asm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs x86asm"><span class="hljs-symbol">.text:</span>0804B29F                 <span class="hljs-keyword">call</span>    getpid<br><span class="hljs-symbol">.text:</span>0804B2A4                 <span class="hljs-keyword">mov</span>     <span class="hljs-built_in">dword</span> <span class="hljs-built_in">ptr</span> [<span class="hljs-built_in">esp</span>+<span class="hljs-number">8</span>], (offset <span class="hljs-keyword">aDD</span>+<span class="hljs-number">3</span>) <span class="hljs-comment">; &quot;%d&quot;</span><br><span class="hljs-symbol">.text:</span>0804B2AC                 <span class="hljs-keyword">mov</span>     <span class="hljs-built_in">dword</span> <span class="hljs-built_in">ptr</span> [<span class="hljs-built_in">esp</span>+<span class="hljs-number">4</span>], <span class="hljs-number">0Ah</span><br><span class="hljs-symbol">.text:</span>0804B2B4                 <span class="hljs-keyword">mov</span>     [<span class="hljs-built_in">esp</span>], <span class="hljs-built_in">esi</span>             ；第三形参 pid<br><span class="hljs-symbol">.text:</span>0804B2B7                 <span class="hljs-keyword">mov</span>     [<span class="hljs-built_in">esp</span>+<span class="hljs-number">0Ch</span>], <span class="hljs-built_in">eax</span><br><span class="hljs-symbol">.text:</span>0804B2BB                 <span class="hljs-keyword">call</span>    snprintf<br><span class="hljs-symbol">.text:</span>0804B2C0                 <span class="hljs-keyword">mov</span>     <span class="hljs-built_in">dword</span> <span class="hljs-built_in">ptr</span> [<span class="hljs-built_in">esp</span>+<span class="hljs-number">4</span>], <span class="hljs-number">17h</span><br><span class="hljs-symbol">.text:</span>0804B2C8                 <span class="hljs-keyword">mov</span>     <span class="hljs-built_in">dword</span> <span class="hljs-built_in">ptr</span> [<span class="hljs-built_in">esp</span>], <span class="hljs-number">0</span><br><span class="hljs-symbol">.text:</span>0804B2CF                 <span class="hljs-keyword">call</span>    randomid<br><span class="hljs-symbol">.text:</span>0804B2D4                 <span class="hljs-keyword">mov</span>     [<span class="hljs-built_in">esp</span>+<span class="hljs-number">8</span>], <span class="hljs-built_in">esi</span><br><span class="hljs-symbol">.text:</span>0804B2D8                 <span class="hljs-keyword">mov</span>     [<span class="hljs-built_in">esp</span>], <span class="hljs-built_in">edi</span>             ；第一形参 要跑的木马<br><span class="hljs-symbol">.text:</span>0804B2DB                 <span class="hljs-keyword">movzx</span>   <span class="hljs-built_in">eax</span>, <span class="hljs-built_in">ax</span><br><span class="hljs-symbol">.text:</span>0804B2DE                 <span class="hljs-keyword">lea</span>     <span class="hljs-built_in">eax</span>, [<span class="hljs-built_in">eax</span>+<span class="hljs-built_in">eax</span>*<span class="hljs-number">4</span>]<br><span class="hljs-symbol">.text:</span>0804B2E1                 <span class="hljs-keyword">lea</span>     <span class="hljs-built_in">eax</span>, daemonname[<span class="hljs-built_in">eax</span>*<span class="hljs-number">4</span>] <span class="hljs-comment">; &quot;!#Ff3VE.-7\x17V[_ 0&quot;</span><br><span class="hljs-symbol">.text:</span>0804B2E8                 <span class="hljs-keyword">mov</span>     [<span class="hljs-built_in">esp</span>+<span class="hljs-number">4</span>], <span class="hljs-built_in">eax</span>           <span class="hljs-comment">; 第二形参  daemonname</span><br><span class="hljs-symbol">.text:</span>0804B2EC                 <span class="hljs-keyword">call</span>    LinuxExec_Argv2<br></code></pre></td></tr></table></figure>
 
 <p>第二处</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">.text:0804B932                 lea     edx, [ebp+var_1888]</span><br><span class="line">.text:0804B938                 add     ebx, 1</span><br><span class="line">.text:0804B93B                 mov     [esp], edx</span><br><span class="line">.text:0804B93E                 call    randmd5</span><br><span class="line">.text:0804B943                 mov     [ebp+var_22], 0</span><br><span class="line">.text:0804B94A                 mov     [ebp+var_1E], 0</span><br><span class="line">.text:0804B951                 mov     [ebp+var_1A], 0</span><br><span class="line">.text:0804B957                 call    getpid</span><br><span class="line">.text:0804B95C                 mov     dword ptr [esp+8], (offset aDD+3) ; &quot;%d&quot;</span><br><span class="line">.text:0804B964                 mov     dword ptr [esp+4], 0Ah</span><br><span class="line">.text:0804B96C                 mov     [esp], esi</span><br><span class="line">.text:0804B96F                 mov     [esp+0Ch], eax</span><br><span class="line">.text:0804B973                 call    snprintf</span><br><span class="line">.text:0804B978                 mov     dword ptr [esp+4], 17h</span><br><span class="line">.text:0804B980                 mov     dword ptr [esp], 0</span><br><span class="line">.text:0804B987                 call    randomid</span><br><span class="line">.text:0804B98C                 mov     [esp+8], esi</span><br><span class="line">.text:0804B990                 movzx   eax, ax</span><br><span class="line">.text:0804B993                 lea     eax, [eax+eax*4]</span><br><span class="line">.text:0804B996                 lea     eax, daemonname[eax*4] ; &quot;!#Ff3VE.-7\x17V[_ 0&quot;</span><br><span class="line">.text:0804B99D                 mov     [esp+4], eax</span><br><span class="line">.text:0804B9A1                 lea     eax, [ebp+var_1888]</span><br><span class="line">.text:0804B9A7                 mov     [esp], eax</span><br><span class="line">.text:0804B9AA                 call    LinuxExec_Argv2</span><br></pre></td></tr></table></figure>
+<figure class="highlight maxima"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs maxima">.text:<span class="hljs-number">0804B932</span>                 lea     edx, [ebp+var_1888]<br>.text:<span class="hljs-number">0804B938</span>                 add     ebx, <span class="hljs-number">1</span><br>.text:<span class="hljs-number">0804B93B</span>                 mov     [esp], edx<br>.text:<span class="hljs-number">0804B93E</span>                 call    randmd5<br>.text:<span class="hljs-number">0804B943</span>                 mov     [ebp+var_22], <span class="hljs-number">0</span><br>.text:<span class="hljs-number">0804B94A</span>                 mov     [ebp+var_1E], <span class="hljs-number">0</span><br>.text:<span class="hljs-number">0804B951</span>                 mov     [ebp+var_1A], <span class="hljs-number">0</span><br>.text:<span class="hljs-number">0804B957</span>                 call    getpid<br>.text:<span class="hljs-number">0804B95C</span>                 mov     dword ptr [esp+<span class="hljs-number">8</span>], (offset aDD+<span class="hljs-number">3</span>) ; <span class="hljs-string">&quot;%d&quot;</span><br>.text:<span class="hljs-number">0804B964</span>                 mov     dword ptr [esp+<span class="hljs-number">4</span>], <span class="hljs-number">0Ah</span><br>.text:<span class="hljs-number">0804B96C</span>                 mov     [esp], esi<br>.text:<span class="hljs-number">0804B96F</span>                 mov     [esp+<span class="hljs-number">0Ch</span>], eax<br>.text:<span class="hljs-number">0804B973</span>                 call    snprintf<br>.text:<span class="hljs-number">0804B978</span>                 mov     dword ptr [esp+<span class="hljs-number">4</span>], 17h<br>.text:<span class="hljs-number">0804B980</span>                 mov     dword ptr [esp], <span class="hljs-number">0</span><br>.text:<span class="hljs-number">0804B987</span>                 call    randomid<br>.text:<span class="hljs-number">0804B98C</span>                 mov     [esp+<span class="hljs-number">8</span>], esi<br>.text:<span class="hljs-number">0804B990</span>                 movzx   eax, ax<br>.text:<span class="hljs-number">0804B993</span>                 lea     eax, [eax+eax*<span class="hljs-number">4</span>]<br>.text:<span class="hljs-number">0804B996</span>                 lea     eax, daemonname[eax*<span class="hljs-number">4</span>] ; <span class="hljs-string">&quot;!#Ff3VE.-7\x17V[_ 0&quot;</span><br>.text:<span class="hljs-number">0804B99D</span>                 mov     [esp+<span class="hljs-number">4</span>], eax<br>.text:<span class="hljs-number">0804B9A1</span>                 lea     eax, [ebp+var_1888]<br>.text:<span class="hljs-number">0804B9A7</span>                 mov     [esp], eax<br>.text:<span class="hljs-number">0804B9AA</span>                 call    LinuxExec_Argv2<br></code></pre></td></tr></table></figure>
 
 <p>第三处</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">.text:0804B9DF                 lea     edx, [ebp+var_1C88]</span><br><span class="line">.text:0804B9E5                 add     ebx, 1</span><br><span class="line">.text:0804B9E8                 mov     [esp], edx</span><br><span class="line">.text:0804B9EB                 call    randmd5</span><br><span class="line">.text:0804B9F0                 mov     [ebp+var_22], 0</span><br><span class="line">.text:0804B9F7                 mov     [ebp+var_1E], 0</span><br><span class="line">.text:0804B9FE                 mov     [ebp+var_1A], 0</span><br><span class="line">.text:0804BA04                 call    getpid</span><br><span class="line">.text:0804BA09                 mov     dword ptr [esp+8], (offset aDD+3) ; &quot;%d&quot;</span><br><span class="line">.text:0804BA11                 mov     dword ptr [esp+4], 0Ah</span><br><span class="line">.text:0804BA19                 mov     [esp], esi</span><br><span class="line">.text:0804BA1C                 mov     [esp+0Ch], eax</span><br><span class="line">.text:0804BA20                 call    snprintf</span><br><span class="line">.text:0804BA25                 mov     dword ptr [esp+4], 17h</span><br><span class="line">.text:0804BA2D                 mov     dword ptr [esp], 0</span><br><span class="line">.text:0804BA34                 call    randomid</span><br><span class="line">.text:0804BA39                 mov     [esp+8], esi</span><br><span class="line">.text:0804BA3D                 movzx   eax, ax</span><br><span class="line">.text:0804BA40                 lea     eax, [eax+eax*4]</span><br><span class="line">.text:0804BA43                 lea     eax, daemonname[eax*4] ; &quot;!#Ff3VE.-7\x17V[_ 0&quot;</span><br><span class="line">.text:0804BA4A                 mov     [esp+4], eax</span><br><span class="line">.text:0804BA4E                 lea     eax, [ebp+var_1C88]</span><br><span class="line">.text:0804BA54                 mov     [esp], eax</span><br><span class="line">.text:0804BA57                 call    LinuxExec_Argv2</span><br></pre></td></tr></table></figure>
+<figure class="highlight x86asm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs x86asm"><span class="hljs-symbol">.text:</span>0804B9DF                 <span class="hljs-keyword">lea</span>     <span class="hljs-built_in">edx</span>, [<span class="hljs-built_in">ebp</span>+var_1C88]<br><span class="hljs-symbol">.text:</span>0804B9E5                 <span class="hljs-keyword">add</span>     <span class="hljs-built_in">ebx</span>, <span class="hljs-number">1</span><br><span class="hljs-symbol">.text:</span>0804B9E8                 <span class="hljs-keyword">mov</span>     [<span class="hljs-built_in">esp</span>], <span class="hljs-built_in">edx</span><br><span class="hljs-symbol">.text:</span>0804B9EB                 <span class="hljs-keyword">call</span>    randmd5<br><span class="hljs-symbol">.text:</span>0804B9F0                 <span class="hljs-keyword">mov</span>     [<span class="hljs-built_in">ebp</span>+var_22], <span class="hljs-number">0</span><br><span class="hljs-symbol">.text:</span>0804B9F7                 <span class="hljs-keyword">mov</span>     [<span class="hljs-built_in">ebp</span>+var_1E], <span class="hljs-number">0</span><br><span class="hljs-symbol">.text:</span>0804B9FE                 <span class="hljs-keyword">mov</span>     [<span class="hljs-built_in">ebp</span>+var_1A], <span class="hljs-number">0</span><br><span class="hljs-symbol">.text:</span>0804BA04                 <span class="hljs-keyword">call</span>    getpid<br><span class="hljs-symbol">.text:</span>0804BA09                 <span class="hljs-keyword">mov</span>     <span class="hljs-built_in">dword</span> <span class="hljs-built_in">ptr</span> [<span class="hljs-built_in">esp</span>+<span class="hljs-number">8</span>], (offset <span class="hljs-keyword">aDD</span>+<span class="hljs-number">3</span>) <span class="hljs-comment">; &quot;%d&quot;</span><br><span class="hljs-symbol">.text:</span>0804BA11                 <span class="hljs-keyword">mov</span>     <span class="hljs-built_in">dword</span> <span class="hljs-built_in">ptr</span> [<span class="hljs-built_in">esp</span>+<span class="hljs-number">4</span>], <span class="hljs-number">0Ah</span><br><span class="hljs-symbol">.text:</span>0804BA19                 <span class="hljs-keyword">mov</span>     [<span class="hljs-built_in">esp</span>], <span class="hljs-built_in">esi</span><br><span class="hljs-symbol">.text:</span>0804BA1C                 <span class="hljs-keyword">mov</span>     [<span class="hljs-built_in">esp</span>+<span class="hljs-number">0Ch</span>], <span class="hljs-built_in">eax</span><br><span class="hljs-symbol">.text:</span>0804BA20                 <span class="hljs-keyword">call</span>    snprintf<br><span class="hljs-symbol">.text:</span>0804BA25                 <span class="hljs-keyword">mov</span>     <span class="hljs-built_in">dword</span> <span class="hljs-built_in">ptr</span> [<span class="hljs-built_in">esp</span>+<span class="hljs-number">4</span>], <span class="hljs-number">17h</span><br><span class="hljs-symbol">.text:</span>0804BA2D                 <span class="hljs-keyword">mov</span>     <span class="hljs-built_in">dword</span> <span class="hljs-built_in">ptr</span> [<span class="hljs-built_in">esp</span>], <span class="hljs-number">0</span><br><span class="hljs-symbol">.text:</span>0804BA34                 <span class="hljs-keyword">call</span>    randomid<br><span class="hljs-symbol">.text:</span>0804BA39                 <span class="hljs-keyword">mov</span>     [<span class="hljs-built_in">esp</span>+<span class="hljs-number">8</span>], <span class="hljs-built_in">esi</span><br><span class="hljs-symbol">.text:</span>0804BA3D                 <span class="hljs-keyword">movzx</span>   <span class="hljs-built_in">eax</span>, <span class="hljs-built_in">ax</span><br><span class="hljs-symbol">.text:</span>0804BA40                 <span class="hljs-keyword">lea</span>     <span class="hljs-built_in">eax</span>, [<span class="hljs-built_in">eax</span>+<span class="hljs-built_in">eax</span>*<span class="hljs-number">4</span>]<br><span class="hljs-symbol">.text:</span>0804BA43                 <span class="hljs-keyword">lea</span>     <span class="hljs-built_in">eax</span>, daemonname[<span class="hljs-built_in">eax</span>*<span class="hljs-number">4</span>] <span class="hljs-comment">; &quot;!#Ff3VE.-7\x17V[_ 0&quot;</span><br><span class="hljs-symbol">.text:</span>0804BA4A                 <span class="hljs-keyword">mov</span>     [<span class="hljs-built_in">esp</span>+<span class="hljs-number">4</span>], <span class="hljs-built_in">eax</span><br><span class="hljs-symbol">.text:</span>0804BA4E                 <span class="hljs-keyword">lea</span>     <span class="hljs-built_in">eax</span>, [<span class="hljs-built_in">ebp</span>+var_1C88]<br><span class="hljs-symbol">.text:</span>0804BA54                 <span class="hljs-keyword">mov</span>     [<span class="hljs-built_in">esp</span>], <span class="hljs-built_in">eax</span><br><span class="hljs-symbol">.text:</span>0804BA57                 <span class="hljs-keyword">call</span>    LinuxExec_Argv2<br></code></pre></td></tr></table></figure>
 
 <p>都是作为LinuxExec_Argv2 参数使用的，接着来看LinuxExec_Argv2 的代码</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line">.text:08048520 LinuxExec_Argv2 proc near               ; CODE XREF: DelService+B3p</span><br><span class="line">.text:08048520                                         ; DelService+CBlp ...</span><br><span class="line">.text:08048520</span><br><span class="line">.text:08048520 argv            = dword ptr -18h</span><br><span class="line">.text:08048520 var_14          = dword ptr -14h</span><br><span class="line">.text:08048520 var_10          = dword ptr -10h</span><br><span class="line">.text:08048520 var_C           = dword ptr -0Ch</span><br><span class="line">.text:08048520 var_8           = dword ptr -8</span><br><span class="line">.text:08048520 var_4           = dword ptr -4</span><br><span class="line">.text:08048520 file            = dword ptr  8</span><br><span class="line">.text:08048520 arg_4           = dword ptr  0Ch</span><br><span class="line">.text:08048520 arg_8           = dword ptr  10h</span><br><span class="line">.text:08048520</span><br><span class="line">.text:08048520                 push    ebp</span><br><span class="line">.text:08048521                 mov     ebp, esp</span><br><span class="line">.text:08048523                 sub     esp, 28h</span><br><span class="line">.text:08048526                 mov     [ebp+var_4], esi</span><br><span class="line">.text:08048529                 mov     esi, [ebp+file]</span><br><span class="line">.text:0804852C                 mov     [ebp+var_8], ebx</span><br><span class="line">.text:0804852F                 mov     [ebp+argv], 0</span><br><span class="line">.text:08048536                 mov     [ebp+var_14], 0</span><br><span class="line">.text:0804853D                 mov     [ebp+var_10], 0</span><br><span class="line">.text:08048544                 mov     [ebp+var_C], 0</span><br><span class="line">.text:0804854B                 call    doublefork</span><br><span class="line">.text:08048550                 test    eax, eax</span><br><span class="line">.text:08048552                 jz      short ZERO</span><br><span class="line">.text:08048554                 mov     ebx, [ebp+var_8]</span><br><span class="line">.text:08048557                 mov     esi, [ebp+var_4]</span><br><span class="line">.text:0804855A                 mov     esp, ebp</span><br><span class="line">.text:0804855C                 pop     ebp</span><br><span class="line">.text:0804855D                 retn</span><br><span class="line">.text:0804855E ; ---------------------------------------------------------------------------</span><br><span class="line">.text:0804855E</span><br><span class="line">.text:0804855E ZERO:                                   ; CODE XREF: LinuxExec_Argv2+32j</span><br><span class="line">.text:0804855E                 mov     ebx, 3</span><br><span class="line">.text:08048563</span><br><span class="line">.text:08048563 LOOP:                                   ; CODE XREF: LinuxExec_Argv2+54j</span><br><span class="line">.text:08048563                 mov     [esp], ebx      ; fd</span><br><span class="line">.text:08048566                 add     ebx, 1</span><br><span class="line">.text:08048569                 call    close</span><br><span class="line">.text:0804856E                 cmp     ebx, 400h       ；400h == 1024</span><br><span class="line">.text:08048574                 jnz     short LOOP</span><br><span class="line">.text:08048576                 mov     eax, [ebp+arg_4]</span><br><span class="line">.text:08048579                 mov     [ebp+argv], esi</span><br><span class="line">.text:0804857C                 mov     [esp], esi      ; file</span><br><span class="line">.text:0804857F                 mov     [ebp+var_14], eax</span><br><span class="line">.text:08048582                 mov     eax, [ebp+arg_8]；eax = pid</span><br><span class="line">.text:08048585                 mov     [ebp+var_10], eax</span><br><span class="line">.text:08048588                 lea     eax, [ebp+argv]</span><br><span class="line">.text:0804858B                 mov     [esp+4], eax    ; argv</span><br><span class="line">.text:0804858F                 call    execvp</span><br><span class="line">.text:08048594                 mov     dword ptr [esp], 0 ; status</span><br><span class="line">.text:0804859B                 call    exit</span><br><span class="line">.text:0804859B LinuxExec_Argv2 endp</span><br></pre></td></tr></table></figure>
+<figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><code class="hljs tcl">.text:<span class="hljs-number">08048520</span> LinuxExec_Argv2 <span class="hljs-keyword">proc</span><span class="hljs-title"> near</span>               ;<span class="hljs-title"> CODE</span> XREF:<span class="hljs-title"> DelService+B3p</span><br>.text:08048520                                         ;<span class="hljs-title"> DelService+CBlp</span> ...<br>.text:08048520<br>.text:08048520<span class="hljs-title"> argv</span>            =<span class="hljs-title"> dword</span> ptr -18h<br>.text:08048520<span class="hljs-title"> var_14</span>          =<span class="hljs-title"> dword</span> ptr -14h<br>.text:08048520<span class="hljs-title"> var_10</span>          =<span class="hljs-title"> dword</span> ptr -10h<br>.text:08048520<span class="hljs-title"> var_C</span>           =<span class="hljs-title"> dword</span> ptr -0Ch<br>.text:08048520<span class="hljs-title"> var_8</span>           =<span class="hljs-title"> dword</span> ptr -8<br>.text:08048520<span class="hljs-title"> var_4</span>           =<span class="hljs-title"> dword</span> ptr -4<br>.text:08048520<span class="hljs-title"> file</span>            =<span class="hljs-title"> dword</span> ptr  8<br>.text:08048520<span class="hljs-title"> arg_4</span>           =<span class="hljs-title"> dword</span> ptr  0Ch<br>.text:08048520<span class="hljs-title"> arg_8</span>           =<span class="hljs-title"> dword</span> ptr  10h<br>.text:08048520<br>.text:08048520<span class="hljs-title">                 push</span> <span class="hljs-title">   ebp</span><br>.text:08048521<span class="hljs-title">                 mov</span> <span class="hljs-title">    ebp,</span> esp<br>.text:08048523<span class="hljs-title">                 sub</span> <span class="hljs-title">    esp,</span> 28h<br>.text:08048526<span class="hljs-title">                 mov</span>     [ebp+var_4],<span class="hljs-title"> esi</span><br>.text:08048529<span class="hljs-title">                 mov</span> <span class="hljs-title">    esi,</span> [ebp+file]<br>.text:0804852C<span class="hljs-title">                 mov</span>     [ebp+var_8],<span class="hljs-title"> ebx</span><br>.text:0804852F<span class="hljs-title">                 mov</span>     [ebp+argv], 0<br>.text:08048536<span class="hljs-title">                 mov</span>     [ebp+var_14], 0<br>.text:0804853D<span class="hljs-title">                 mov</span>     [ebp+var_10], 0<br>.text:08048544<span class="hljs-title">                 mov</span>     [ebp+var_C], 0<br>.text:0804854B<span class="hljs-title">                 call</span> <span class="hljs-title">   doublefork</span><br>.text:08048550<span class="hljs-title">                 test</span> <span class="hljs-title">   eax,</span> eax<br>.text:08048552<span class="hljs-title">                 jz</span> <span class="hljs-title">     short</span> ZERO<br>.text:08048554<span class="hljs-title">                 mov</span> <span class="hljs-title">    ebx,</span> [ebp+var_8]<br>.text:08048557<span class="hljs-title">                 mov</span> <span class="hljs-title">    esi,</span> [ebp+var_4]<br>.text:0804855A<span class="hljs-title">                 mov</span> <span class="hljs-title">    esp,</span> ebp<br>.text:0804855C<span class="hljs-title">                 pop</span> <span class="hljs-title">    ebp</span><br>.text:0804855D<span class="hljs-title">                 retn</span><br>.text:0804855E ; ---------------------------------------------------------------------------<br>.text:0804855E<br>.text:0804855E<span class="hljs-title"> ZERO:</span>                                   ;<span class="hljs-title"> CODE</span> XREF:<span class="hljs-title"> LinuxExec_Argv2+32j</span><br>.text:0804855E<span class="hljs-title">                 mov</span> <span class="hljs-title">    ebx,</span> 3<br>.text:08048563<br>.text:08048563<span class="hljs-title"> LOOP:</span>                                   ;<span class="hljs-title"> CODE</span> XREF:<span class="hljs-title"> LinuxExec_Argv2+54j</span><br>.text:08048563<span class="hljs-title">                 mov</span>     [esp],<span class="hljs-title"> ebx</span>      ;<span class="hljs-title"> fd</span><br>.text:08048566<span class="hljs-title">                 add</span> <span class="hljs-title">    ebx,</span> 1<br>.text:08048569<span class="hljs-title">                 call</span> <span class="hljs-title">   close</span><br>.text:0804856E<span class="hljs-title">                 cmp</span> <span class="hljs-title">    ebx,</span> 400h       ；400h == 1024<br>.text:08048574<span class="hljs-title">                 jnz</span> <span class="hljs-title">    short</span> LOOP<br>.text:08048576<span class="hljs-title">                 mov</span> <span class="hljs-title">    eax,</span> [ebp+arg_4]<br>.text:08048579<span class="hljs-title">                 mov</span>     [ebp+argv],<span class="hljs-title"> esi</span><br>.text:0804857C<span class="hljs-title">                 mov</span>     [esp],<span class="hljs-title"> esi</span>      ;<span class="hljs-title"> file</span><br>.text:0804857F<span class="hljs-title">                 mov</span>     [ebp+var_14],<span class="hljs-title"> eax</span><br>.text:08048582<span class="hljs-title">                 mov</span> <span class="hljs-title">    eax,</span> [ebp+arg_8]；eax =<span class="hljs-title"> pid</span><br>.text:08048585<span class="hljs-title">                 mov</span>     [ebp+var_10],<span class="hljs-title"> eax</span><br>.text:08048588<span class="hljs-title">                 lea</span> <span class="hljs-title">    eax,</span> [ebp+argv]<br>.text:0804858B<span class="hljs-title">                 mov</span>     [esp+4],<span class="hljs-title"> eax</span>    ;<span class="hljs-title"> argv</span><br>.text:0804858F<span class="hljs-title">                 call</span> <span class="hljs-title">   execvp</span><br>.text:08048594<span class="hljs-title">                 mov</span> <span class="hljs-title">    dword</span> ptr [esp], 0 ;<span class="hljs-title"> status</span><br>.text:0804859B<span class="hljs-title">                 call</span> <span class="hljs-title">   exit</span><br>.text:0804859B<span class="hljs-title"> LinuxExec_Argv2</span> endp<br></code></pre></td></tr></table></figure>
 
 <p>LinuxExec_Argv2 有三个参数。最终执行了execvp</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">.text:0804857C                 mov     [esp], esi      ; file </span><br><span class="line">...</span><br><span class="line">.text:0804858B                 mov     [esp+4], eax    ; argv</span><br><span class="line">.text:0804858F                 call    execvp</span><br></pre></td></tr></table></figure>
+<figure class="highlight x86asm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs x86asm"><span class="hljs-symbol">.text:</span>0804857C                 <span class="hljs-keyword">mov</span>     [<span class="hljs-built_in">esp</span>], <span class="hljs-built_in">esi</span>      <span class="hljs-comment">; file </span><br>...<br><span class="hljs-symbol">.text:</span>0804858B                 <span class="hljs-keyword">mov</span>     [<span class="hljs-built_in">esp</span>+<span class="hljs-number">4</span>], <span class="hljs-built_in">eax</span>    <span class="hljs-comment">; argv</span><br><span class="hljs-symbol">.text:</span>0804858F                 <span class="hljs-keyword">call</span>    execvp<br></code></pre></td></tr></table></figure>
 
 <p>伪代码为，</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">execvp(file, &amp;argv);</span><br></pre></td></tr></table></figure>
+<figure class="highlight lisp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs lisp">execvp(<span class="hljs-name">file</span>, <span class="hljs-symbol">&amp;argv</span>)<span class="hljs-comment">;</span><br></code></pre></td></tr></table></figure>
 
 <p>file 就是arg_0, 需要分析argv， 调出栈图就比较清晰了。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">-00000018 argv            dd ?                    ; offset</span><br><span class="line">-00000014 var_14          dd ?</span><br><span class="line">-00000010 var_10          dd ?</span><br><span class="line">-0000000C var_C           dd ?</span><br><span class="line">-00000008 var_8           dd ?</span><br><span class="line">-00000004 var_4           dd ?</span><br><span class="line">+00000000  s              db 4 dup(?)</span><br><span class="line">+00000004  r              db 4 dup(?)</span><br><span class="line">+00000008 file            dd ?                    ; offset</span><br><span class="line">+0000000C arg_4           dd ?</span><br><span class="line">+00000010 arg_8           dd ?</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight diff"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs diff"><span class="hljs-deletion">-00000018 argv            dd ?                    ; offset</span><br><span class="hljs-deletion">-00000014 var_14          dd ?</span><br><span class="hljs-deletion">-00000010 var_10          dd ?</span><br><span class="hljs-deletion">-0000000C var_C           dd ?</span><br><span class="hljs-deletion">-00000008 var_8           dd ?</span><br><span class="hljs-deletion">-00000004 var_4           dd ?</span><br><span class="hljs-addition">+00000000  s              db 4 dup(?)</span><br><span class="hljs-addition">+00000004  r              db 4 dup(?)</span><br><span class="hljs-addition">+00000008 file            dd ?                    ; offset</span><br><span class="hljs-addition">+0000000C arg_4           dd ?</span><br><span class="hljs-addition">+00000010 arg_8           dd ?</span><br><br></code></pre></td></tr></table></figure>
 
 <p>首先是这句</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">.text:08048529                 mov     esi, [ebp+file]</span><br><span class="line">...</span><br><span class="line">.text:0804852F                 mov     [ebp+argv], 0</span><br><span class="line">...</span><br><span class="line">.text:08048579                 mov     [ebp+argv], esi</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight x86asm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs x86asm"><span class="hljs-symbol">.text:</span><span class="hljs-number">08048529</span>                 <span class="hljs-keyword">mov</span>     <span class="hljs-built_in">esi</span>, [<span class="hljs-built_in">ebp</span>+file]<br>...<br><span class="hljs-symbol">.text:</span>0804852F                 <span class="hljs-keyword">mov</span>     [<span class="hljs-built_in">ebp</span>+argv], <span class="hljs-number">0</span><br>...<br><span class="hljs-symbol">.text:</span><span class="hljs-number">08048579</span>                 <span class="hljs-keyword">mov</span>     [<span class="hljs-built_in">ebp</span>+argv], <span class="hljs-built_in">esi</span><br><br></code></pre></td></tr></table></figure>
 
 <p>执行了这几句代码后，栈图发生了变化</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">-00000018 argv            arg_0                       ; offset</span><br><span class="line">-00000014 var_14          dd ?</span><br><span class="line">-00000010 var_10          dd ?</span><br><span class="line">-0000000C var_C           dd ?</span><br><span class="line">-00000008 var_8           dd ?</span><br><span class="line">-00000004 var_4           dd ?</span><br><span class="line">+00000000  s              db 4 dup(?)</span><br><span class="line">+00000004  r              db 4 dup(?)</span><br><span class="line">+00000008 file            dd ?                    ; offset</span><br><span class="line">+0000000C arg_4           dd ?</span><br><span class="line">+00000010 arg_8           dd ?</span><br></pre></td></tr></table></figure>
+<figure class="highlight diff"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs diff"><span class="hljs-deletion">-00000018 argv            arg_0                       ; offset</span><br><span class="hljs-deletion">-00000014 var_14          dd ?</span><br><span class="hljs-deletion">-00000010 var_10          dd ?</span><br><span class="hljs-deletion">-0000000C var_C           dd ?</span><br><span class="hljs-deletion">-00000008 var_8           dd ?</span><br><span class="hljs-deletion">-00000004 var_4           dd ?</span><br><span class="hljs-addition">+00000000  s              db 4 dup(?)</span><br><span class="hljs-addition">+00000004  r              db 4 dup(?)</span><br><span class="hljs-addition">+00000008 file            dd ?                    ; offset</span><br><span class="hljs-addition">+0000000C arg_4           dd ?</span><br><span class="hljs-addition">+00000010 arg_8           dd ?</span><br></code></pre></td></tr></table></figure>
 
 
 <p>再看这几句代码</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">.text:08048576                 mov     eax, [ebp+arg_4]</span><br><span class="line">.text:08048579                 mov     [ebp+argv], esi</span><br><span class="line">...</span><br><span class="line">.text:0804857F                 mov     [ebp+var_14], eax</span><br></pre></td></tr></table></figure>
+<figure class="highlight x86asm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs x86asm"><span class="hljs-symbol">.text:</span><span class="hljs-number">08048576</span>                 <span class="hljs-keyword">mov</span>     <span class="hljs-built_in">eax</span>, [<span class="hljs-built_in">ebp</span>+arg_4]<br><span class="hljs-symbol">.text:</span><span class="hljs-number">08048579</span>                 <span class="hljs-keyword">mov</span>     [<span class="hljs-built_in">ebp</span>+argv], <span class="hljs-built_in">esi</span><br>...<br><span class="hljs-symbol">.text:</span>0804857F                 <span class="hljs-keyword">mov</span>     [<span class="hljs-built_in">ebp</span>+var_14], <span class="hljs-built_in">eax</span><br></code></pre></td></tr></table></figure>
 
 <p>执行了这几句代码后，栈图发生了变化</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">-00000018 argv            arg_0                   ; offset</span><br><span class="line">-00000014 var_14          arg_4</span><br><span class="line">-00000010 var_10          dd ?</span><br><span class="line">-0000000C var_C           dd ?</span><br><span class="line">-00000008 var_8           dd ?</span><br><span class="line">-00000004 var_4           dd ?</span><br><span class="line">+00000000  s              db 4 dup(?)</span><br><span class="line">+00000004  r              db 4 dup(?)</span><br><span class="line">+00000008 file            dd ?                    ; offset</span><br><span class="line">+0000000C arg_4           dd ?</span><br><span class="line">+00000010 arg_8           dd ?</span><br></pre></td></tr></table></figure>
+<figure class="highlight diff"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs diff"><span class="hljs-deletion">-00000018 argv            arg_0                   ; offset</span><br><span class="hljs-deletion">-00000014 var_14          arg_4</span><br><span class="hljs-deletion">-00000010 var_10          dd ?</span><br><span class="hljs-deletion">-0000000C var_C           dd ?</span><br><span class="hljs-deletion">-00000008 var_8           dd ?</span><br><span class="hljs-deletion">-00000004 var_4           dd ?</span><br><span class="hljs-addition">+00000000  s              db 4 dup(?)</span><br><span class="hljs-addition">+00000004  r              db 4 dup(?)</span><br><span class="hljs-addition">+00000008 file            dd ?                    ; offset</span><br><span class="hljs-addition">+0000000C arg_4           dd ?</span><br><span class="hljs-addition">+00000010 arg_8           dd ?</span><br></code></pre></td></tr></table></figure>
 
 <p>接下来是这几句代码</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">.text:08048582                 mov     eax, [ebp+arg_8]；eax = pid</span><br><span class="line">.text:08048585                 mov     [ebp+var_10], eax</span><br></pre></td></tr></table></figure>
+<figure class="highlight x86asm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs x86asm"><span class="hljs-symbol">.text:</span><span class="hljs-number">08048582</span>                 <span class="hljs-keyword">mov</span>     <span class="hljs-built_in">eax</span>, [<span class="hljs-built_in">ebp</span>+arg_8]；<span class="hljs-built_in">eax</span> = pid<br><span class="hljs-symbol">.text:</span><span class="hljs-number">08048585</span>                 <span class="hljs-keyword">mov</span>     [<span class="hljs-built_in">ebp</span>+var_10], <span class="hljs-built_in">eax</span><br></code></pre></td></tr></table></figure>
 
 <p>执行了这几句代码后，栈图发生了变化</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">-00000018 argv            arg_0                   ; offset</span><br><span class="line">-00000014 var_14          arg_4</span><br><span class="line">-00000010 var_10          arg_8</span><br><span class="line">-0000000C var_C           0</span><br><span class="line">-00000008 var_8           dd ?</span><br><span class="line">-00000004 var_4           dd ?</span><br><span class="line">+00000000  s              db 4 dup(?)</span><br><span class="line">+00000004  r              db 4 dup(?)</span><br><span class="line">+00000008 file            dd ?                    ; offset</span><br><span class="line">+0000000C arg_4           dd ?</span><br><span class="line">+00000010 arg_8           dd ?</span><br><span class="line">`</span><br></pre></td></tr></table></figure>
+<figure class="highlight diff"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs diff"><span class="hljs-deletion">-00000018 argv            arg_0                   ; offset</span><br><span class="hljs-deletion">-00000014 var_14          arg_4</span><br><span class="hljs-deletion">-00000010 var_10          arg_8</span><br><span class="hljs-deletion">-0000000C var_C           0</span><br><span class="hljs-deletion">-00000008 var_8           dd ?</span><br><span class="hljs-deletion">-00000004 var_4           dd ?</span><br><span class="hljs-addition">+00000000  s              db 4 dup(?)</span><br><span class="hljs-addition">+00000004  r              db 4 dup(?)</span><br><span class="hljs-addition">+00000008 file            dd ?                    ; offset</span><br><span class="hljs-addition">+0000000C arg_4           dd ?</span><br><span class="hljs-addition">+00000010 arg_8           dd ?</span><br>`<br></code></pre></td></tr></table></figure>
 
 <p>main函数中对LinuxExec_Argv2 的调用的为代码为</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">LinuxExec_Argv2(&#x27;木马路径&#x27;, &#x27;伪装命令行&#x27;, pid);</span><br></pre></td></tr></table></figure>
+<figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs 1c">LinuxExec_Argv2(&#x27;木马路径&#x27;, &#x27;伪装命令行&#x27;, pid);<br></code></pre></td></tr></table></figure>
 
 <p>因此最后调用的execvp的伪代码为</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">execvp(&#x27;木马路径&#x27;, argv);</span><br></pre></td></tr></table></figure>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs scss"><span class="hljs-built_in">execvp</span>(&#x27;木马路径&#x27;, argv);<br></code></pre></td></tr></table></figure>
 
 <p>将进入 main 函数参数个数为3的流程，用IDA重命名后，关键代码为</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line">text:0804B5D3 PARAM_NUM_3:                            ; CODE XREF: main+3CDj</span><br><span class="line"></span><br><span class="line">.text:0804B5D3                 lea     eax, [ebp+var_18]</span><br><span class="line">.text:0804B5D6                 mov     [esp+4], eax</span><br><span class="line">.text:0804B5DA                 lea     eax, [ebp+self_path]</span><br><span class="line">.text:0804B5E0                 mov     [esp], eax</span><br><span class="line">.text:0804B5E3                 call    readfile</span><br><span class="line">.text:0804B5E8                 mov     edx, [ebp+argv_arr]</span><br><span class="line">.text:0804B5EE                 mov     ebx, [edx+4]</span><br><span class="line">.text:0804B5F1                 mov     [ebp+self_file_content], eax</span><br><span class="line">.text:0804B5F7                 mov     [esp], ebx</span><br><span class="line">.text:0804B5FA                 call    strlen</span><br><span class="line">.text:0804B5FF                 mov     [esp+4], ebx</span><br><span class="line">.text:0804B603                 mov     [esp+8], eax</span><br><span class="line">.text:0804B607                 lea     eax, [ebp+fake_cmd]</span><br><span class="line">.text:0804B60D                 mov     [esp], eax</span><br><span class="line">.text:0804B610                 call    memmove</span><br><span class="line">.text:0804B615                 mov     dword ptr [esp+0Ch], 0</span><br><span class="line">.text:0804B61D                 mov     dword ptr [esp+8], 0Ah</span><br><span class="line">.text:0804B625                 mov     dword ptr [esp+4], 0</span><br><span class="line">.text:0804B62D                 mov     edx, [ebp+argv_arr]</span><br><span class="line">.text:0804B633                 mov     eax, [edx+8]</span><br><span class="line">.text:0804B636                 mov     [esp], eax</span><br><span class="line">.text:0804B639                 call    __strtol_internal</span><br><span class="line">.text:0804B63E                 mov     esi, eax</span><br><span class="line">.text:0804B640                 mov     eax, [ebp+argv_arr]</span><br><span class="line">.text:0804B646                 mov     ebx, [eax]</span><br><span class="line">.text:0804B648                 mov     [esp], ebx</span><br><span class="line">.text:0804B64B                 call    strlen</span><br><span class="line">.text:0804B650                 mov     [esp], ebx</span><br><span class="line">.text:0804B653                 mov     dword ptr [esp+4], 0</span><br><span class="line">.text:0804B65B                 mov     [esp+8], eax</span><br><span class="line">.text:0804B65F                 call    memset</span><br><span class="line">.text:0804B664                 mov     edx, [ebp+argv_arr]</span><br><span class="line">.text:0804B66A                 mov     ebx, [edx+4]</span><br><span class="line">.text:0804B66D                 mov     [esp], ebx</span><br><span class="line">.text:0804B670                 call    strlen</span><br><span class="line">.text:0804B675                 mov     [esp], ebx</span><br><span class="line">.text:0804B678                 mov     dword ptr [esp+4], 0</span><br><span class="line">.text:0804B680                 mov     [esp+8], eax</span><br><span class="line">.text:0804B684                 call    memset</span><br><span class="line">.text:0804B689                 mov     eax, [ebp+argv_arr]</span><br><span class="line">.text:0804B68F                 mov     ebx, [eax+8]</span><br><span class="line">.text:0804B692                 mov     [esp], ebx</span><br><span class="line">.text:0804B695                 call    strlen</span><br><span class="line">.text:0804B69A                 mov     [esp], ebx</span><br><span class="line">.text:0804B69D                 mov     dword ptr [esp+4], 0</span><br><span class="line">.text:0804B6A5                 mov     [esp+8], eax</span><br><span class="line">.text:0804B6A9                 call    memset</span><br><span class="line">.text:0804B6AE                 lea     edx, [ebp+fake_cmd]</span><br><span class="line">.text:0804B6B4                 mov     [esp+4], edx</span><br><span class="line">.text:0804B6B8                 mov     edx, [ebp+argv_arr]</span><br><span class="line">.text:0804B6BE                 mov     eax, [edx]</span><br><span class="line">.text:0804B6C0                 mov     [esp], eax</span><br><span class="line">.text:0804B6C3                 call    strcpy</span><br><span class="line">.text:0804B6C8                 lea     eax, [ebp+filename]</span><br><span class="line">.text:0804B6CE                 mov     [esp+0Ch], esi</span><br><span class="line">.text:0804B6D2                 lea     esi, [ebp+randstr_10]</span><br></pre></td></tr></table></figure>
+<figure class="highlight maxima"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><code class="hljs maxima">text:<span class="hljs-number">0804B5D3</span> PARAM_NUM_3:                            ; CODE XREF: main+3CDj<br><br>.text:<span class="hljs-number">0804B5D3</span>                 lea     eax, [ebp+var_18]<br>.text:<span class="hljs-number">0804B5D6</span>                 mov     [esp+<span class="hljs-number">4</span>], eax<br>.text:<span class="hljs-number">0804B5DA</span>                 lea     eax, [ebp+self_path]<br>.text:<span class="hljs-number">0804B5E0</span>                 mov     [esp], eax<br>.text:<span class="hljs-number">0804B5E3</span>                 call    readfile<br>.text:<span class="hljs-number">0804B5E8</span>                 mov     edx, [ebp+argv_arr]<br>.text:<span class="hljs-number">0804B5EE</span>                 mov     ebx, [edx+<span class="hljs-number">4</span>]<br>.text:<span class="hljs-number">0804B5F1</span>                 mov     [ebp+self_file_content], eax<br>.text:<span class="hljs-number">0804B5F7</span>                 mov     [esp], ebx<br>.text:<span class="hljs-number">0804B5FA</span>                 call    strlen<br>.text:<span class="hljs-number">0804B5FF</span>                 mov     [esp+<span class="hljs-number">4</span>], ebx<br>.text:<span class="hljs-number">0804B603</span>                 mov     [esp+<span class="hljs-number">8</span>], eax<br>.text:<span class="hljs-number">0804B607</span>                 lea     eax, [ebp+fake_cmd]<br>.text:<span class="hljs-number">0804B60D</span>                 mov     [esp], eax<br>.text:<span class="hljs-number">0804B610</span>                 call    memmove<br>.text:<span class="hljs-number">0804B615</span>                 mov     dword ptr [esp+<span class="hljs-number">0Ch</span>], <span class="hljs-number">0</span><br>.text:<span class="hljs-number">0804B61D</span>                 mov     dword ptr [esp+<span class="hljs-number">8</span>], <span class="hljs-number">0Ah</span><br>.text:<span class="hljs-number">0804B625</span>                 mov     dword ptr [esp+<span class="hljs-number">4</span>], <span class="hljs-number">0</span><br>.text:<span class="hljs-number">0804B62D</span>                 mov     edx, [ebp+argv_arr]<br>.text:<span class="hljs-number">0804B633</span>                 mov     eax, [edx+<span class="hljs-number">8</span>]<br>.text:<span class="hljs-number">0804B636</span>                 mov     [esp], eax<br>.text:<span class="hljs-number">0804B639</span>                 call    __strtol_internal<br>.text:<span class="hljs-number">0804B63E</span>                 mov     esi, eax<br>.text:<span class="hljs-number">0804B640</span>                 mov     eax, [ebp+argv_arr]<br>.text:<span class="hljs-number">0804B646</span>                 mov     ebx, [eax]<br>.text:<span class="hljs-number">0804B648</span>                 mov     [esp], ebx<br>.text:<span class="hljs-number">0804B64B</span>                 call    strlen<br>.text:<span class="hljs-number">0804B650</span>                 mov     [esp], ebx<br>.text:<span class="hljs-number">0804B653</span>                 mov     dword ptr [esp+<span class="hljs-number">4</span>], <span class="hljs-number">0</span><br>.text:<span class="hljs-number">0804B65B</span>                 mov     [esp+<span class="hljs-number">8</span>], eax<br>.text:<span class="hljs-number">0804B65F</span>                 call    memset<br>.text:<span class="hljs-number">0804B664</span>                 mov     edx, [ebp+argv_arr]<br>.text:<span class="hljs-number">0804B66A</span>                 mov     ebx, [edx+<span class="hljs-number">4</span>]<br>.text:<span class="hljs-number">0804B66D</span>                 mov     [esp], ebx<br>.text:<span class="hljs-number">0804B670</span>                 call    strlen<br>.text:<span class="hljs-number">0804B675</span>                 mov     [esp], ebx<br>.text:<span class="hljs-number">0804B678</span>                 mov     dword ptr [esp+<span class="hljs-number">4</span>], <span class="hljs-number">0</span><br>.text:<span class="hljs-number">0804B680</span>                 mov     [esp+<span class="hljs-number">8</span>], eax<br>.text:<span class="hljs-number">0804B684</span>                 call    memset<br>.text:<span class="hljs-number">0804B689</span>                 mov     eax, [ebp+argv_arr]<br>.text:<span class="hljs-number">0804B68F</span>                 mov     ebx, [eax+<span class="hljs-number">8</span>]<br>.text:<span class="hljs-number">0804B692</span>                 mov     [esp], ebx<br>.text:<span class="hljs-number">0804B695</span>                 call    strlen<br>.text:<span class="hljs-number">0804B69A</span>                 mov     [esp], ebx<br>.text:<span class="hljs-number">0804B69D</span>                 mov     dword ptr [esp+<span class="hljs-number">4</span>], <span class="hljs-number">0</span><br>.text:<span class="hljs-number">0804B6A5</span>                 mov     [esp+<span class="hljs-number">8</span>], eax<br>.text:<span class="hljs-number">0804B6A9</span>                 call    memset<br>.text:<span class="hljs-number">0804B6AE</span>                 lea     edx, [ebp+fake_cmd]<br>.text:<span class="hljs-number">0804B6B4</span>                 mov     [esp+<span class="hljs-number">4</span>], edx<br>.text:<span class="hljs-number">0804B6B8</span>                 mov     edx, [ebp+argv_arr]<br>.text:<span class="hljs-number">0804B6BE</span>                 mov     eax, [edx]<br>.text:<span class="hljs-number">0804B6C0</span>                 mov     [esp], eax<br>.text:<span class="hljs-number">0804B6C3</span>                 call    strcpy<br>.text:<span class="hljs-number">0804B6C8</span>                 lea     eax, [ebp+filename]<br>.text:<span class="hljs-number">0804B6CE</span>                 mov     [esp+<span class="hljs-number">0Ch</span>], esi<br>.text:<span class="hljs-number">0804B6D2</span>                 lea     esi, [ebp+randstr_10]<br></code></pre></td></tr></table></figure>
 
 <p>上面代码的原理大致等同于下面这段代码</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;unistd.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span> **argv)</span>&#123;</span><br><span class="line">    <span class="type">char</span> fake_cmd[<span class="number">256</span>];</span><br><span class="line">    <span class="built_in">memset</span>(&amp;fake_cmd, <span class="number">0</span>, <span class="number">256</span>);</span><br><span class="line">    <span class="type">char</span> * argv_arr_1 = argv[<span class="number">1</span>];</span><br><span class="line">    <span class="type">int</span> argv_arr_1_length = <span class="built_in">strlen</span>(argv[<span class="number">1</span>]);</span><br><span class="line">    memmove(&amp;fake_cmd, argv_arr_1, argv_arr_1_length);</span><br><span class="line">    <span class="type">long</span> pid_long = strtol(argv[<span class="number">2</span>], <span class="number">0</span>, <span class="number">10</span>);</span><br><span class="line">    <span class="type">char</span> * v29 = (<span class="type">char</span> *)*argv;</span><br><span class="line">    <span class="type">int</span> v30 = <span class="built_in">strlen</span>(*argv);</span><br><span class="line">    <span class="built_in">memset</span>(v29, <span class="number">0</span>, v30);</span><br><span class="line">    <span class="type">char</span> * v31 = argv[<span class="number">1</span>];</span><br><span class="line">    <span class="type">int</span> v32 = <span class="built_in">strlen</span>(argv[<span class="number">1</span>]);</span><br><span class="line">    <span class="built_in">memset</span>(v31, <span class="number">0</span>, v32);</span><br><span class="line">    <span class="type">char</span> * v33 = argv[<span class="number">2</span>];</span><br><span class="line">    <span class="type">int</span> v34 = <span class="built_in">strlen</span>(argv[<span class="number">2</span>]);</span><br><span class="line">    <span class="built_in">memset</span>(v33, <span class="number">0</span>, v34);</span><br><span class="line">    <span class="built_in">strcpy</span>(*argv, fake_cmd);</span><br><span class="line">    sleep(<span class="number">300</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;string.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdlib.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;unistd.h&gt;</span></span><br><br><span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">(<span class="hljs-type">int</span> argc, <span class="hljs-type">char</span> **argv)</span>&#123;<br>    <span class="hljs-type">char</span> fake_cmd[<span class="hljs-number">256</span>];<br>    <span class="hljs-built_in">memset</span>(&amp;fake_cmd, <span class="hljs-number">0</span>, <span class="hljs-number">256</span>);<br>    <span class="hljs-type">char</span> * argv_arr_1 = argv[<span class="hljs-number">1</span>];<br>    <span class="hljs-type">int</span> argv_arr_1_length = <span class="hljs-built_in">strlen</span>(argv[<span class="hljs-number">1</span>]);<br>    memmove(&amp;fake_cmd, argv_arr_1, argv_arr_1_length);<br>    <span class="hljs-type">long</span> pid_long = strtol(argv[<span class="hljs-number">2</span>], <span class="hljs-number">0</span>, <span class="hljs-number">10</span>);<br>    <span class="hljs-type">char</span> * v29 = (<span class="hljs-type">char</span> *)*argv;<br>    <span class="hljs-type">int</span> v30 = <span class="hljs-built_in">strlen</span>(*argv);<br>    <span class="hljs-built_in">memset</span>(v29, <span class="hljs-number">0</span>, v30);<br>    <span class="hljs-type">char</span> * v31 = argv[<span class="hljs-number">1</span>];<br>    <span class="hljs-type">int</span> v32 = <span class="hljs-built_in">strlen</span>(argv[<span class="hljs-number">1</span>]);<br>    <span class="hljs-built_in">memset</span>(v31, <span class="hljs-number">0</span>, v32);<br>    <span class="hljs-type">char</span> * v33 = argv[<span class="hljs-number">2</span>];<br>    <span class="hljs-type">int</span> v34 = <span class="hljs-built_in">strlen</span>(argv[<span class="hljs-number">2</span>]);<br>    <span class="hljs-built_in">memset</span>(v33, <span class="hljs-number">0</span>, v34);<br>    <span class="hljs-built_in">strcpy</span>(*argv, fake_cmd);<br>    sleep(<span class="hljs-number">300</span>);<br>&#125;<br><br></code></pre></td></tr></table></figure>
 
 <p>编译后执行可以看到效果和运行样本的一样。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">➜  ~ gcc -o fakeexe exe.c</span><br><span class="line">➜  ~ ./fakeexe <span class="string">&quot;ls -al&quot;</span> 2554</span><br><span class="line"></span><br><span class="line">➜  ~ <span class="built_in">cat</span> /proc/2605/cmdline</span><br><span class="line"><span class="built_in">ls</span> -al</span><br><span class="line"></span><br><span class="line">➜  ~ <span class="built_in">ls</span> -l /proc/2605/exe</span><br><span class="line">lrwxrwxrwx. 1 henices henices 0 8月   2 12:01 /proc/2605/exe -&gt; /home/henices/research/xorddos/fakeexe</span><br><span class="line"></span><br><span class="line">➜  ~ ps -elf | grep <span class="string">&quot;ls -al&quot;</span> | grep -v grep</span><br><span class="line">0 S henices   2605 25307  0  80   0 -  1043 hrtime 12:01 pts/5    00:00:00 <span class="built_in">ls</span> -al</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs bash">➜  ~ gcc -o fakeexe exe.c<br>➜  ~ ./fakeexe <span class="hljs-string">&quot;ls -al&quot;</span> 2554<br><br>➜  ~ <span class="hljs-built_in">cat</span> /proc/2605/cmdline<br><span class="hljs-built_in">ls</span> -al<br><br>➜  ~ <span class="hljs-built_in">ls</span> -l /proc/2605/exe<br>lrwxrwxrwx. 1 henices henices 0 8月   2 12:01 /proc/2605/exe -&gt; /home/henices/research/xorddos/fakeexe<br><br>➜  ~ ps -elf | grep <span class="hljs-string">&quot;ls -al&quot;</span> | grep -v grep<br>0 S henices   2605 25307  0  80   0 -  1043 hrtime 12:01 pts/5    00:00:00 <span class="hljs-built_in">ls</span> -al<br></code></pre></td></tr></table></figure>
 
 <p>其实效果并不好，可以轻易发现踪迹。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">➜  ~ ps -e | grep fakeexe</span><br><span class="line"> 2605 pts/9    00:00:00 fakeexe</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs vim">➜  ~ <span class="hljs-keyword">ps</span> -<span class="hljs-keyword">e</span> | <span class="hljs-keyword">grep</span> fakeexe<br> <span class="hljs-number">2605</span> <span class="hljs-keyword">pts</span>/<span class="hljs-number">9</span>    <span class="hljs-number">00</span>:<span class="hljs-number">00</span>:<span class="hljs-number">00</span> fakeexe<br><br></code></pre></td></tr></table></figure>
 
 <p>其实有更好的做法，使用 prctl ，至少可以把ps给搞定。</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;sys/prctl.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span> **argv)</span>&#123;</span><br><span class="line">    <span class="type">char</span> fake_cmd[<span class="number">256</span>];</span><br><span class="line">    <span class="built_in">memset</span>(&amp;fake_cmd, <span class="number">0</span>, <span class="number">256</span>);</span><br><span class="line">    <span class="type">char</span> * argv_arr_1 = argv[<span class="number">1</span>];</span><br><span class="line">    <span class="type">int</span> argv_arr_1_length = <span class="built_in">strlen</span>(argv[<span class="number">1</span>]);</span><br><span class="line">    memmove(&amp;fake_cmd, argv_arr_1, argv_arr_1_length);</span><br><span class="line">    <span class="type">long</span> pid_long = strtol(argv[<span class="number">2</span>], <span class="number">0</span>, <span class="number">10</span>);</span><br><span class="line">    <span class="type">char</span> * v29 = (<span class="type">char</span> *)*argv;</span><br><span class="line">    <span class="type">int</span> v30 = <span class="built_in">strlen</span>(*argv);</span><br><span class="line">    <span class="built_in">memset</span>(v29, <span class="number">0</span>, v30);</span><br><span class="line">    <span class="type">char</span> * v31 = argv[<span class="number">1</span>];</span><br><span class="line">    <span class="type">int</span> v32 = <span class="built_in">strlen</span>(argv[<span class="number">1</span>]);</span><br><span class="line">    <span class="built_in">memset</span>(v31, <span class="number">0</span>, v32);</span><br><span class="line">    <span class="type">char</span> * v33 = argv[<span class="number">2</span>];</span><br><span class="line">    <span class="type">int</span> v34 = <span class="built_in">strlen</span>(argv[<span class="number">2</span>]);</span><br><span class="line">    <span class="built_in">memset</span>(v33, <span class="number">0</span>, v34);</span><br><span class="line">    <span class="built_in">strcpy</span>(*argv, fake_cmd);</span><br><span class="line">    prctl(PR_SET_NAME, <span class="string">&quot;bash&quot;</span>);</span><br><span class="line">    sleep(<span class="number">300</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;string.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdlib.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;unistd.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;sys/prctl.h&gt;</span></span><br><br><span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">(<span class="hljs-type">int</span> argc, <span class="hljs-type">char</span> **argv)</span>&#123;<br>    <span class="hljs-type">char</span> fake_cmd[<span class="hljs-number">256</span>];<br>    <span class="hljs-built_in">memset</span>(&amp;fake_cmd, <span class="hljs-number">0</span>, <span class="hljs-number">256</span>);<br>    <span class="hljs-type">char</span> * argv_arr_1 = argv[<span class="hljs-number">1</span>];<br>    <span class="hljs-type">int</span> argv_arr_1_length = <span class="hljs-built_in">strlen</span>(argv[<span class="hljs-number">1</span>]);<br>    memmove(&amp;fake_cmd, argv_arr_1, argv_arr_1_length);<br>    <span class="hljs-type">long</span> pid_long = strtol(argv[<span class="hljs-number">2</span>], <span class="hljs-number">0</span>, <span class="hljs-number">10</span>);<br>    <span class="hljs-type">char</span> * v29 = (<span class="hljs-type">char</span> *)*argv;<br>    <span class="hljs-type">int</span> v30 = <span class="hljs-built_in">strlen</span>(*argv);<br>    <span class="hljs-built_in">memset</span>(v29, <span class="hljs-number">0</span>, v30);<br>    <span class="hljs-type">char</span> * v31 = argv[<span class="hljs-number">1</span>];<br>    <span class="hljs-type">int</span> v32 = <span class="hljs-built_in">strlen</span>(argv[<span class="hljs-number">1</span>]);<br>    <span class="hljs-built_in">memset</span>(v31, <span class="hljs-number">0</span>, v32);<br>    <span class="hljs-type">char</span> * v33 = argv[<span class="hljs-number">2</span>];<br>    <span class="hljs-type">int</span> v34 = <span class="hljs-built_in">strlen</span>(argv[<span class="hljs-number">2</span>]);<br>    <span class="hljs-built_in">memset</span>(v33, <span class="hljs-number">0</span>, v34);<br>    <span class="hljs-built_in">strcpy</span>(*argv, fake_cmd);<br>    prctl(PR_SET_NAME, <span class="hljs-string">&quot;bash&quot;</span>);<br>    sleep(<span class="hljs-number">300</span>);<br>&#125;<br><br></code></pre></td></tr></table></figure>
 
 <p>编译执行后可以看到效果。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">➜  ~ ps -e | grep bash</span><br><span class="line"> 4858 pts/5    00:00:00 bash</span><br><span class="line"></span><br><span class="line">➜  ~ <span class="built_in">cat</span> /proc/4858/cmdline </span><br><span class="line"><span class="built_in">ls</span> -al</span><br><span class="line"></span><br><span class="line">➜  ~ lsof -d txt | grep fakeexe</span><br><span class="line">bash       4858 henices txt       REG  253,2      8816  4588423 /home/henices/research/xorddos/fakeexe</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs bash">➜  ~ ps -e | grep bash<br> 4858 pts/5    00:00:00 bash<br><br>➜  ~ <span class="hljs-built_in">cat</span> /proc/4858/cmdline <br><span class="hljs-built_in">ls</span> -al<br><br>➜  ~ lsof -d txt | grep fakeexe<br>bash       4858 henices txt       REG  253,2      8816  4588423 /home/henices/research/xorddos/fakeexe<br></code></pre></td></tr></table></figure>
 
 
 <h2 id="xorddos-的多态-（Polymorphic）"><a href="#xorddos-的多态-（Polymorphic）" class="headerlink" title="xorddos 的多态 （Polymorphic）"></a>xorddos 的多态 （Polymorphic）</h2><p>xorddos这个样本还值得一提的是，这个样本会不断变化，多态这个词翻译的可能不太准确，<br>可以参见上面的英文，自行理解。</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> __cdecl <span class="title function_">randmd5</span><span class="params">(<span class="type">char</span> *filename)</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="type">int</span> fd; <span class="comment">// eax@1</span></span><br><span class="line">  <span class="type">int</span> fd_dup; <span class="comment">// esi@1</span></span><br><span class="line">  <span class="type">mode_t</span> v4; <span class="comment">// [sp+8h] [bp-20h]@0</span></span><br><span class="line">  <span class="type">int</span> addr; <span class="comment">// [sp+15h] [bp-13h]@1</span></span><br><span class="line">  <span class="type">int</span> v6; <span class="comment">// [sp+19h] [bp-Fh]@1</span></span><br><span class="line">  __int16 v7; <span class="comment">// [sp+1Dh] [bp-Bh]@1</span></span><br><span class="line">  <span class="type">char</span> v8; <span class="comment">// [sp+1Fh] [bp-9h]@1</span></span><br><span class="line"></span><br><span class="line">  addr = <span class="number">0</span>;</span><br><span class="line">  v6 = <span class="number">0</span>;</span><br><span class="line">  v7 = <span class="number">0</span>;</span><br><span class="line">  v8 = <span class="number">0</span>;</span><br><span class="line">  fd = open(filename, <span class="number">1</span>, v4);</span><br><span class="line">  fd_dup = fd;</span><br><span class="line">  <span class="keyword">if</span> ( fd &gt; <span class="number">0</span> )</span><br><span class="line">  &#123;</span><br><span class="line">    lseek(fd, <span class="number">0</span>, SEEK_END);</span><br><span class="line">    randstr((<span class="type">int</span>)&amp;addr, <span class="number">10</span>);</span><br><span class="line">    write(fd_dup, &amp;addr, <span class="number">11u</span>);</span><br><span class="line">    close(fd_dup);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">int</span> __cdecl <span class="hljs-title function_">randmd5</span><span class="hljs-params">(<span class="hljs-type">char</span> *filename)</span><br>&#123;<br>  <span class="hljs-type">int</span> fd; <span class="hljs-comment">// eax@1</span><br>  <span class="hljs-type">int</span> fd_dup; <span class="hljs-comment">// esi@1</span><br>  <span class="hljs-type">mode_t</span> v4; <span class="hljs-comment">// [sp+8h] [bp-20h]@0</span><br>  <span class="hljs-type">int</span> addr; <span class="hljs-comment">// [sp+15h] [bp-13h]@1</span><br>  <span class="hljs-type">int</span> v6; <span class="hljs-comment">// [sp+19h] [bp-Fh]@1</span><br>  __int16 v7; <span class="hljs-comment">// [sp+1Dh] [bp-Bh]@1</span><br>  <span class="hljs-type">char</span> v8; <span class="hljs-comment">// [sp+1Fh] [bp-9h]@1</span><br><br>  addr = <span class="hljs-number">0</span>;<br>  v6 = <span class="hljs-number">0</span>;<br>  v7 = <span class="hljs-number">0</span>;<br>  v8 = <span class="hljs-number">0</span>;<br>  fd = open(filename, <span class="hljs-number">1</span>, v4);<br>  fd_dup = fd;<br>  <span class="hljs-keyword">if</span> ( fd &gt; <span class="hljs-number">0</span> )<br>  &#123;<br>    lseek(fd, <span class="hljs-number">0</span>, SEEK_END);<br>    randstr((<span class="hljs-type">int</span>)&amp;addr, <span class="hljs-number">10</span>);<br>    write(fd_dup, &amp;addr, <span class="hljs-number">11u</span>);<br>    close(fd_dup);<br>  &#125;<br>  <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <p>xorddos 样本多态主要就是用这个函数，每次在文件末尾写上10个字节的随机字符。<br>这样样本md5和大小都会发生变化，使得一些检测方法失效。</p>
 <h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><p>正因为这种隐藏方法并不理想，后面xorddos出现了带rootkit的版本，进化了。</p>
 
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Malware/" class="print-no-link">#Malware</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>xorddos 样本进程隐藏的小伎俩</div>
+      <div>http://usmacd.com/cn/xorddos_hide/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>henices</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2023年9月6日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
   </div>
-</article>
 
 
 
-        
-          <div id="footer-post-container">
-  <div id="footer-post">
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/cn/living_younger_healthier_logger/" title="端粒效应">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">端粒效应</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/cn/Windows_Rx034/" title="解决 Windows Rx034">
+                        <span class="hidden-mobile">解决 Windows Rx034</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
 
-    <div id="nav-footer" style="display: none">
-      <ul>
-        
-          <li><a href="/">首页</a></li>
-        
-          <li><a href="/about/">关于</a></li>
-        
-          <li><a href="/archives/">归档</a></li>
-        
-          <li><a href="/search/">搜索</a></li>
-        
-          <li><a href="/links/">链接</a></li>
-        
-          <li><a href="/rss.xml">RSS</a></li>
-        
-      </ul>
-    </div>
-
-    
-    
-      <div id="toc-footer" style="display: none">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%9B%E7%A8%8B%E9%9A%90%E8%97%8F"><span class="toc-number">1.</span> <span class="toc-text">进程隐藏</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#xorddos-%E7%9A%84%E5%A4%9A%E6%80%81-%EF%BC%88Polymorphic%EF%BC%89"><span class="toc-number">2.</span> <span class="toc-text">xorddos 的多态 （Polymorphic）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B6%E4%BB%96"><span class="toc-number">3.</span> <span class="toc-text">其他</span></a></li></ol>
+            
+          </article>
+        </div>
       </div>
-    
-
-    <div id="share-footer" style="display: none">
-      <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://usmacd.com/cn/xorddos_hide/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://usmacd.com/cn/xorddos_hide/&text=xorddos 样本进程隐藏的小伎俩"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://usmacd.com/cn/xorddos_hide/&title=xorddos 样本进程隐藏的小伎俩"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://usmacd.com/cn/xorddos_hide/&is_video=false&description=xorddos 样本进程隐藏的小伎俩"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=xorddos 样本进程隐藏的小伎俩&body=Check out this article: http://usmacd.com/cn/xorddos_hide/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://usmacd.com/cn/xorddos_hide/&title=xorddos 样本进程隐藏的小伎俩"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://usmacd.com/cn/xorddos_hide/&title=xorddos 样本进程隐藏的小伎俩"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://usmacd.com/cn/xorddos_hide/&title=xorddos 样本进程隐藏的小伎俩"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://usmacd.com/cn/xorddos_hide/&title=xorddos 样本进程隐藏的小伎俩"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://usmacd.com/cn/xorddos_hide/&name=xorddos 样本进程隐藏的小伎俩&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://usmacd.com/cn/xorddos_hide/&t=xorddos 样本进程隐藏的小伎俩"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
-</ul>
-
     </div>
 
-    <div id="actions-footer">
-        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
-        
-          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> 目录</a>
-        
-        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
-        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>
-    </div>
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
 
+
+
+  </aside>
+
+
+    </div>
   </div>
 </div>
 
-        
-        <footer id="footer">
-  <div class="footer-left">
-    Copyright &copy;
-    
-    
-    2004-2024
-    henices
-  </div>
-  <div class="footer-right">
-    <nav>
-      <ul>
-        <!--
-       --><li><a href="/">首页</a></li><!--
-     --><!--
-       --><li><a href="/about/">关于</a></li><!--
-     --><!--
-       --><li><a href="/archives/">归档</a></li><!--
-     --><!--
-       --><li><a href="/search/">搜索</a></li><!--
-     --><!--
-       --><li><a href="/links/">链接</a></li><!--
-     --><!--
-       --><li><a href="/rss.xml">RSS</a></li><!--
-     -->
-      </ul>
-    </nav>
-  </div>
-</footer>
 
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
     </div>
-    <!-- styles -->
+  </div>
+</div>
 
+    
 
+    
+  </main>
 
-  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
-
-
-    <!-- jquery -->
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
-
-
-
-
-<!-- clipboard -->
-
+  <footer>
+    <div class="footer-inner">
   
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
   
-  <script type="text/javascript">
-  $(function() {
-    // copy-btn HTML
-    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板！\">";
-    btn += '<i class="fa-regular fa-clone"></i>';
-    btn += '</span>';
-    // mount it!
-    $(".highlight table").before(btn);
-    var clip = new ClipboardJS('.btn-copy', {
-      text: function(trigger) {
-        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
-      }
-    });
-    clip.on('success', function(e) {
-      e.trigger.setAttribute('aria-label', "复制成功！");
-      e.clearSelection();
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
     })
-  })
   </script>
 
 
-<script src="/js/main.js"></script>
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
 
-<!-- search -->
 
-<!-- Baidu Analytics -->
 
-<!-- Cloudflare Analytics -->
 
-<!-- Disqus Comments -->
 
-<!-- utterances Comments -->
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
 
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
 </body>
 </html>

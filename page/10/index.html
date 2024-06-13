@@ -1,442 +1,764 @@
+
+
 <!DOCTYPE html>
-<html lang=zh>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
 <head>
-    <!-- so meta -->
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="HandheldFriendly" content="True">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="henices">
+  <meta name="keywords" content="">
+  
     <meta property="og:type" content="website">
 <meta property="og:title" content="安全代码">
 <meta property="og:url" content="http://usmacd.com/page/10/index.html">
 <meta property="og:site_name" content="安全代码">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:author" content="henices">
-<meta name="twitter:card" content="summary">
-    
-    
-      
-        
-          <link rel="shortcut icon" href="/images/favicon.ico">
-        
-      
-      
-        
-          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
-        
-      
-      
-        
-          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
-        
-      
-    
-    <!-- title -->
-    <title>安全代码</title>
-    <!-- async scripts -->
-    <!-- Google Analytics -->
-
-
-    <!-- Umami Analytics -->
-
-
-    <!-- styles -->
-    
-<link rel="stylesheet" href="/css/style.css">
-
-    <!-- persian styles -->
-    
-    <link href="https://cdn.jsdelivr.net/npm/firacode@6.2.0/distr/fira_code.css" rel="stylesheet">
-    <!-- rss -->
-    
-    
-      <link rel="alternate" href="/true" title="安全代码" type="application/atom+xml" />
-    
-	<!-- mathjax -->
-	
-		<script type="text/x-mathjax-config">
-		  MathJax.Hub.Config({
-			tex2jax: {
-			  skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
-			  inlineMath: [['$','$']]
-			}
-		  });
-		</script>
-		<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
-	
-<meta name="generator" content="Hexo 7.2.0"></head>
-
-<body class="max-width mx-auto px3 ltr">
-    
-    <div class="content index py4 h-card">
-        
-          <header id="header">
-  <a class="u-url u-uid" href="/">
-  
-    
-      <img id="logo" alt class="u-logo" src="/images/logo.png" />
-    
-  
-    <div id="title">
-      <h1 class="p-name">安全代码</h1>
-    </div>
-  </a>
-  <div id="nav">
-    <ul>
-      <li class="icon">
-        <a href="#" aria-label="目录"><i class="fa-solid fa-bars fa-2x"></i></a>
-      </li>
-      <!--
-     --><li><a href="/">首页</a></li><!--
-   --><!--
-     --><li><a href="/about/">关于</a></li><!--
-   --><!--
-     --><li><a href="/archives/">归档</a></li><!--
-   --><!--
-     --><li><a href="/search/">搜索</a></li><!--
-   --><!--
-     --><li><a href="/links/">链接</a></li><!--
-   --><!--
-     --><li><a href="/rss.xml">RSS</a></li><!--
-   -->
-    </ul>
-  </div>
-</header>
-
-        
-        <section id="about" class="p-note">
+<meta name="twitter:card" content="summary_large_image">
   
   
-    <p>
-      在这里找到我：
-      
-      
-      
-        
-        
-          <a class="icon u-url" target="_blank" rel="noopener me" href="http://github.com/henices" aria-label="github" title="github">
-            <i class="fa-brands fa-github"></i><!--
-      ---></a><!--
-    ---><!--
-    --->， 
-        
-      
-        
-        
-          <a class="icon u-url" target="_blank" rel="noopener me" href="https://x.com/henices" aria-label="twitter" title="twitter">
-            <i class="fa-brands fa-twitter"></i><!--
-      ---></a><!--
-    ---><!--
-    ---> 和 
-        
-      
-        
-        
-          <a class="icon u-email" target="_blank" rel="noopener" href="mailto:zhouzhenster@gmail.com" aria-label="mail" title="mail">
-            <i class="fa-solid fa-envelope"></i><!--
-      ---></a>
-        <!--
-    --->.
-        
-      
-    </p>
+    <meta name="referrer" content="no-referrer-when-downgrade">
   
-</section>
-
-<section id="writing">
-  <span class="h1"><a href="/archives/">文章</a></span>
   
-  <span class="h2">标签</span>
-  <span class="widget tagcloud">
-    <a href="/tags/Android/" style="font-size: 19px;">Android</a> <a href="/tags/Archives/" style="font-size: 11px;">Archives</a> <a href="/tags/Crack/" style="font-size: 12px;">Crack</a> <a href="/tags/KNOWLEDGE/" style="font-size: 13px;">KNOWLEDGE</a> <a href="/tags/Life/" style="font-size: 13px;">Life</a> <a href="/tags/Malware/" style="font-size: 14px;">Malware</a> <a href="/tags/PKM/" style="font-size: 16px;">PKM</a> <a href="/tags/Programming/" style="font-size: 16px;">Programming</a> <a href="/tags/Security/" style="font-size: 20px;">Security</a> <a href="/tags/Software/" style="font-size: 15px;">Software</a> <a href="/tags/ai/" style="font-size: 10px;">ai</a> <a href="/tags/investment/" style="font-size: 17px;">investment</a> <a href="/tags/linux/" style="font-size: 18px;">linux</a> <a href="/tags/vim/" style="font-size: 13px;">vim</a> <a href="/tags/windows/" style="font-size: 14px;">windows</a>
-  </span>
-  <span class="h2">最新发布</span>
+  <title>安全代码</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
   
-  <ul class="post-list">
-    
-    
-      
-    
-    
-      <li class="post-item">
-        
-    <div class="meta">
-      
-        
-          <time datetime="2022-06-19T16:00:00.000Z" class="dt-published" itemprop="datePublished">2022-06-20</time>
-        
-      
-    </div>
-
-
-        <span>
-    
-        <a class="" href="/cn/ssd/">SSD 迁移记</a>
-    
-
-
-</span>
-      </li>
-    
-      <li class="post-item">
-        
-    <div class="meta">
-      
-        
-          <time datetime="2022-03-06T16:00:00.000Z" class="dt-published" itemprop="datePublished">2022-03-07</time>
-        
-      
-    </div>
-
-
-        <span>
-    
-        <a class="" href="/cn/logseq2/">Logseq 使用小结 （二）</a>
-    
-
-
-</span>
-      </li>
-    
-      <li class="post-item">
-        
-    <div class="meta">
-      
-        
-          <time datetime="2022-02-20T16:00:00.000Z" class="dt-published" itemprop="datePublished">2022-02-21</time>
-        
-      
-    </div>
-
-
-        <span>
-    
-        <a class="" href="/cn/logseq/">logseq 试用报告</a>
-    
-
-
-</span>
-      </li>
-    
-      <li class="post-item">
-        
-    <div class="meta">
-      
-        
-          <time datetime="2021-11-28T16:00:00.000Z" class="dt-published" itemprop="datePublished">2021-11-29</time>
-        
-      
-    </div>
-
-
-        <span>
-    
-        <a class="" href="/cn/vnote/">Markdown 笔记软件： VNote</a>
-    
-
-
-</span>
-      </li>
-    
-      <li class="post-item">
-        
-    <div class="meta">
-      
-        
-          <time datetime="2021-07-25T16:00:00.000Z" class="dt-published" itemprop="datePublished">2021-07-26</time>
-        
-      
-    </div>
-
-
-        <span>
-    
-        <a class="" href="/cn/fcitx5-rime/">fedora KDE Plasma 上安装 fcitx5 rime</a>
-    
-
-
-</span>
-      </li>
-    
-      <li class="post-item">
-        
-    <div class="meta">
-      
-        
-          <time datetime="2021-06-05T16:00:00.000Z" class="dt-published" itemprop="datePublished">2021-06-06</time>
-        
-      
-    </div>
-
-
-        <span>
-    
-        <a class="" href="/cn/thunderbird.tls.1.0/">ThunerBird 78.8.1 连接 TLS 1.0 失败问题和 Linux 乱谈</a>
-    
-
-
-</span>
-      </li>
-    
-      <li class="post-item">
-        
-    <div class="meta">
-      
-        
-          <time datetime="2021-02-24T16:00:00.000Z" class="dt-published" itemprop="datePublished">2021-02-25</time>
-        
-      
-    </div>
-
-
-        <span>
-    
-        <a class="" href="/cn/halfempty/">halfempty 的一些使用说明</a>
-    
-
-
-</span>
-      </li>
-    
-      <li class="post-item">
-        
-    <div class="meta">
-      
-        
-          <time datetime="2021-02-23T16:00:00.000Z" class="dt-published" itemprop="datePublished">2021-02-24</time>
-        
-      
-    </div>
-
-
-        <span>
-    
-        <a class="" href="/cn/android_stunnel/">在 Android 手机上的使用 stunnel  （不需要 root ）</a>
-    
-
-
-</span>
-      </li>
-    
-      <li class="post-item">
-        
-    <div class="meta">
-      
-        
-          <time datetime="2020-03-18T16:00:00.000Z" class="dt-published" itemprop="datePublished">2020-03-19</time>
-        
-      
-    </div>
-
-
-        <span>
-    
-        <a class="" href="/cn/mitmproxy/">mitmproxy 简介</a>
-    
-
-
-</span>
-      </li>
-    
-      <li class="post-item">
-        
-    <div class="meta">
-      
-        
-          <time datetime="2018-06-04T16:00:00.000Z" class="dt-published" itemprop="datePublished">2018-06-05</time>
-        
-      
-    </div>
-
-
-        <span>
-    
-        <a class="" href="/cn/android_malware/">关于恶意 Android 软件的那些事</a>
-    
-
-
-</span>
-      </li>
-    
-  </ul>
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
   
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"usmacd.com","root":"/","version":"1.9.7","typing":{"enable":false,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.2.0"><link rel="alternate" href="/atom.xml" title="安全代码" type="application/atom+xml">
+<link rel="alternate" href="/rss.xml" title="安全代码" type="application/rss+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
     
-    <div class="pagination">
+
+<div class="header-inner" style="height: 60vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>安全代码</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
         
-            <a href="/page/9/"><i class="fa-solid fa-angle-left"></i></a>
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
         
-        <span class="page-number">第 10 页，共 13 页</span>
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
         
-            <a href="/page/11/"><i class="fa-solid fa-angle-right"></i>
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/rss.xml" target="_self">
+                <i class="iconfont icon-rss"></i>
+                <span>rss</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/sitemap.xml" target="_self">
+                
+                <span>sitemap</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
             </a>
+          </li>
+          
         
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
     </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://images.unsplash.com/photo-1646026371686-79950ceb6daa?w=640') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.1)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle">关注科技、投资、健康，和个人成长</span>
+          
+        </div>
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      <div class="container nopadding-x-md">
+        <div id="board"
+          >
+          
+          <div class="container">
+            <div class="row">
+              <div class="col-12 col-md-10 m-auto">
+                
+
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/cn/ssd/" target="_self">
+          SSD 迁移记
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/cn/ssd/" target="_self">
+        <div>
+          由于某些需求，决定上SSD，提高一下硬盘读写速度。上二手东买了三星(SAMSUNG) 860 EVO 最初的想法是作为数据盘使用，即操作系统还是跑在机械硬盘上，仔细一思考，还是折腾一下，要不实在是有些浪费，事实证明，折腾是值得的，感觉就像飞一样。 首先查看一下磁盘原始的情况： 1234$ mount/dev/sda1 on /boot type ext4 (rw,relatime,seclabel
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-06-20 00:00" pubdate>
+              2022-06-20
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/linux/">#linux</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/cn/logseq2/" target="_self">
+          Logseq 使用小结 （二）
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/cn/logseq2/" target="_self">
+        <div>
+          用了 Logseq 一段时间了，做个简单的总结，国内的很多文章，在我看来还是不够简单明了, 本文大致介绍了 Logseq 比较常用的一些功能的使用。 Flashcards可以把记录的知识点当作卡片来记忆，用过 Anki 的同学，应该都比较熟悉了，使用的记忆算法为 SM-5要将一个 block 记为卡片非常简单，使用 #card 标签就可以了。  卡片组有些卡片可能是归属同一个大类，这时候就可以使用
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-03-07 00:00" pubdate>
+              2022-03-07
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Software/">#Software</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/cn/logseq/" target="_self">
+          logseq 试用报告
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/cn/logseq/" target="_self">
+        <div>
+          最近双链笔记的概念比较火热， Roam Research 大概是第一个实现此功能的软件，后续 Notion、Obsidian、logseq 等软件大步跟进，这些软件各有千秋。下面这段是参考资料文章中的一小段，很有参考意义： 12345Roam 的突破在于，理论上，把软件设计理念与卡片盒笔记法紧紧捆绑：卢曼（Niklas Luhmann）得益于卡片盒笔记法，从公务员成为德国当代重要的社会学家，因此基
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-02-21 00:00" pubdate>
+              2022-02-21
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Software/">#Software</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/cn/vnote/" target="_self">
+          Markdown 笔记软件： VNote
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/cn/vnote/" target="_self">
+        <div>
+          向大家安利一款 markdown 笔记软件， VNote https://github.com/vnotex/vnote此软件目前已经 1300 多个commits 了，做为一个有些开源软件维护经历的人，深感不易。用了太多 markdown 笔记软件，此软件使得最为顺手，尤其作为程序员 vim 模式 让我感到非常舒服，大量图表的支持比如 UML 流程图，让我用起来很顺手。 Vnote 分为两个开发
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-11-29 00:00" pubdate>
+              2021-11-29
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Software/">#Software</a>
+            
+              <a href="/tags/Programming/">#Programming</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/cn/fcitx5-rime/" target="_self">
+          fedora KDE Plasma 上安装 fcitx5 rime
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/cn/fcitx5-rime/" target="_self">
+        <div>
+          现在 fcitx 已经升级到了 fcitx5, 本来用着 fcitx4 挺好，也没有想着升级，在折腾 fcitx.vim 的时候发现 fcitx 居然升级了，使得我的 vim 插件无法正常工作了，一顿折腾，本来以为很简单没想到进了个大坑 。主要是不愿意放弃我的一万多行的 rime 用户词库，多年的积累了，不过 Linux 用户不就是老折腾吗， 唉。 fcitx5-rime 的默认的配置目录已经变为
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-07-26 00:00" pubdate>
+              2021-07-26
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/linux/">#linux</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/cn/thunderbird.tls.1.0/" target="_self">
+          ThunerBird 78.8.1 连接 TLS 1.0 失败问题和 Linux 乱谈
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/cn/thunderbird.tls.1.0/" target="_self">
+        <div>
+          我在公司使用 Linux 作用主力机已经 10 多年了，自从抛弃 Ubuntu 转入 Fedora 怀抱，生活幸福了不少。早年最大的问题是 OFFICE 软件，工作中少不了要和 doc、ppt，xls 打交道，又没有太好的软件可以使用。刚开始基本就两个解决方案，wine office 和永中 OFFICE，这两个方案都不是太理想，wine 的速度很慢，永中则兼容性比较差，还会出现文档格式看起来就有
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-06-06 00:00" pubdate>
+              2021-06-06
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/linux/">#linux</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/cn/halfempty/" target="_self">
+          halfempty 的一些使用说明
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/cn/halfempty/" target="_self">
+        <div>
+          https://github.com/googleprojectzero/halfempty google P0 @taviso 提供的 testcase 并行快速精简工具 （A fast, parallel test case minimization tool）需要注意的是 halfempty 只能精简导致目标程序 crash 的 testcase，如果 testcase 不导致目标程序 cr
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-02-25 00:00" pubdate>
+              2021-02-25
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Security/">#Security</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/cn/android_stunnel/" target="_self">
+          在 Android 手机上的使用 stunnel  （不需要 root ）
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/cn/android_stunnel/" target="_self">
+        <div>
+          ☆ Android stunnelhttps://github.com/comp500/SSLSocks.git  这个项目可以使用 android 版本的 stunnel, 其实就是调用 https://www.stunnel.org/downloads/stunnel-5.57-android.zip 具体配置和使用命令行差距不大，参考：https://github.com/comp500/S
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-02-24 00:00" pubdate>
+              2021-02-24
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Android/">#Android</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/cn/mitmproxy/" target="_self">
+          mitmproxy 简介
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/cn/mitmproxy/" target="_self">
+        <div>
+          主要特色：Intercept HTTP &amp; HTTPS requests and responses and modify them on the fly 使用python编写，可以在windows，Linux， Mac 下运行，这点比 fiddler 有优势。可以修改报文内容，这点很不错。  官方网站： https://www.mitmproxy.org/ 文档：https://docs
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-03-19 00:00" pubdate>
+              2020-03-19
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Security/">#Security</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/cn/android_malware/" target="_self">
+          关于恶意 Android 软件的那些事
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/cn/android_malware/" target="_self">
+        <div>
+          近年来，Android手机平台上的恶意App呈不断上升的趋势，根据G DATA的数据仅2015年 第一季度发现了440267 种新的安卓恶意软件，也就是说，全球范围内每18秒就有一个新的恶意软件被发现。而天朝由于Google被封的原因，更是使恶意软件的传播更加猖獗。Google Play store 为了保证Android用户的安全做了大量的努力，和国内的一些第三方应用市场相比安全一些的。
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2018-06-05 00:00" pubdate>
+              2018-06-05
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Security/">#Security</a>
+            
+              <a href="/tags/Android/">#Android</a>
+            
+              <a href="/tags/Malware/">#Malware</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+
+
+  <nav aria-label="navigation">
+    <span class="pagination" id="pagination">
+      <a class="extend prev" rel="prev" href="/page/9/#board"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/#board">8</a><a class="page-number" href="/page/9/#board">9</a><span class="page-number current">10</span><a class="page-number" href="/page/11/#board">11</a><a class="page-number" href="/page/12/#board">12</a><a class="page-number" href="/page/13/#board">13</a><a class="extend next" rel="next" href="/page/11/#board"><i class="iconfont icon-arrowright"></i></a>
+    </span>
+  </nav>
+
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+
 
 
   
-</section>
-
-
-
-        
-        <footer id="footer">
-  <div class="footer-left">
-    Copyright &copy;
-    
-    
-    2004-2024
-    henices
-  </div>
-  <div class="footer-right">
-    <nav>
-      <ul>
-        <!--
-       --><li><a href="/">首页</a></li><!--
-     --><!--
-       --><li><a href="/about/">关于</a></li><!--
-     --><!--
-       --><li><a href="/archives/">归档</a></li><!--
-     --><!--
-       --><li><a href="/search/">搜索</a></li><!--
-     --><!--
-       --><li><a href="/links/">链接</a></li><!--
-     --><!--
-       --><li><a href="/rss.xml">RSS</a></li><!--
-     -->
-      </ul>
-    </nav>
-  </div>
-</footer>
-
-    </div>
-    <!-- styles -->
-
-
-
-  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
-
-
-    <!-- jquery -->
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+    <script  src="/js/img-lazyload.js" ></script>
+  
 
 
 
 
-<!-- clipboard -->
+  <script  src="/js/local-search.js" ></script>
 
 
-<script src="/js/main.js"></script>
 
-<!-- search -->
 
-<!-- Baidu Analytics -->
 
-<!-- Cloudflare Analytics -->
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
 
-<!-- Disqus Comments -->
 
-<!-- utterances Comments -->
+  
 
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
 </body>
 </html>

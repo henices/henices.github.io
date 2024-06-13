@@ -1,11 +1,23 @@
+
+
 <!DOCTYPE html>
-<html lang=zh>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
 <head>
-    <!-- so meta -->
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="HandheldFriendly" content="True">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="zz">
+  <meta name="keywords" content="">
+  
     <meta name="description" content="0. 下载 Visual Studio Community 2022下载地址：https:&#x2F;&#x2F;aka.ms&#x2F;vs&#x2F;17&#x2F;release&#x2F;vs_community.exe 从微软网站下载并安装 Visual Studio Community 的时候速度只有2 K，一下午没能下载成功。咨询同事小钻风，指出可能是 DNS 问题，将 DNS 切换成阿里的 DNS 223.5.5.5 后下载速度达到 4 M">
 <meta property="og:type" content="article">
 <meta property="og:title" content="winafl fuzz 工具的使用">
@@ -17,203 +29,331 @@
 <meta property="article:modified_time" content="2022-12-13T16:00:00.000Z">
 <meta property="article:author" content="henices">
 <meta property="article:tag" content="Security">
-<meta name="twitter:card" content="summary">
-    
-    
-      
-        
-          <link rel="shortcut icon" href="/images/favicon.ico">
-        
-      
-      
-        
-          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
-        
-      
-      
-        
-          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
-        
-      
-    
-    <!-- title -->
-    <title>winafl fuzz 工具的使用</title>
-    <!-- async scripts -->
-    <!-- Google Analytics -->
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>winafl fuzz 工具的使用 - 安全代码</title>
 
-
-    <!-- Umami Analytics -->
-
-
-    <!-- styles -->
-    
-<link rel="stylesheet" href="/css/style.css">
-
-    <!-- persian styles -->
-    
-    <link href="https://cdn.jsdelivr.net/npm/firacode@6.2.0/distr/fira_code.css" rel="stylesheet">
-    <!-- rss -->
-    
-    
-      <link rel="alternate" href="/true" title="安全代码" type="application/atom+xml" />
-    
-	<!-- mathjax -->
-	
-		<script type="text/x-mathjax-config">
-		  MathJax.Hub.Config({
-			tex2jax: {
-			  skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
-			  inlineMath: [['$','$']]
-			}
-		  });
-		</script>
-		<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
-	
-<meta name="generator" content="Hexo 7.2.0"></head>
-
-<body class="max-width mx-auto px3 ltr">
-    
-      <div id="header-post">
-  <a id="menu-icon" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
-  <a id="menu-icon-tablet" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
-  <a id="top-icon-tablet" href="#" aria-label="顶部" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
-  <span id="menu">
-    <span id="nav">
-      <ul>
-        <!--
-       --><li><a href="/">首页</a></li><!--
-     --><!--
-       --><li><a href="/about/">关于</a></li><!--
-     --><!--
-       --><li><a href="/archives/">归档</a></li><!--
-     --><!--
-       --><li><a href="/search/">搜索</a></li><!--
-     --><!--
-       --><li><a href="/links/">链接</a></li><!--
-     --><!--
-       --><li><a href="/rss.xml">RSS</a></li><!--
-     -->
-      </ul>
-    </span>
-    <br/>
-    <span id="actions">
-      <ul>
-        
-        <li><a class="icon" aria-label="上一篇" href="/cn/root_android11_pixel2/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
-        
-        
-        <li><a class="icon" aria-label="下一篇" href="/cn/2022-07-21-When-Hypervisor-Met-Snapshot-Fuzzing/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
-        
-        <li><a class="icon" aria-label="返回顶部" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
-        <li><a class="icon" aria-label="分享文章" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
-      </ul>
-      <span id="i-prev" class="info" style="display:none;">上一篇</span>
-      <span id="i-next" class="info" style="display:none;">下一篇</span>
-      <span id="i-top" class="info" style="display:none;">返回顶部</span>
-      <span id="i-share" class="info" style="display:none;">分享文章</span>
-    </span>
-    <br/>
-    <div id="share" style="display: none">
-      <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://usmacd.com/cn/winafl/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://usmacd.com/cn/winafl/&text=winafl fuzz 工具的使用"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://usmacd.com/cn/winafl/&title=winafl fuzz 工具的使用"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://usmacd.com/cn/winafl/&is_video=false&description=winafl fuzz 工具的使用"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=winafl fuzz 工具的使用&body=Check out this article: http://usmacd.com/cn/winafl/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://usmacd.com/cn/winafl/&title=winafl fuzz 工具的使用"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://usmacd.com/cn/winafl/&title=winafl fuzz 工具的使用"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://usmacd.com/cn/winafl/&title=winafl fuzz 工具的使用"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://usmacd.com/cn/winafl/&title=winafl fuzz 工具的使用"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://usmacd.com/cn/winafl/&name=winafl fuzz 工具的使用&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://usmacd.com/cn/winafl/&t=winafl fuzz 工具的使用"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
-</ul>
-
-    </div>
-    
-    
-      <div id="toc">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#0-%E4%B8%8B%E8%BD%BD-Visual-Studio-Community-2022"><span class="toc-number">1.</span> <span class="toc-text">0. 下载 Visual Studio Community 2022</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E7%BC%96%E8%AF%91-winafl"><span class="toc-number">2.</span> <span class="toc-text">1. 编译 winafl</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E6%A3%80%E6%9F%A5-DynamoRIO-%E6%A8%A1%E5%BC%8F%E6%98%AF%E5%90%A6%E6%AD%A3%E5%B8%B8%E5%B7%A5%E4%BD%9C"><span class="toc-number">3.</span> <span class="toc-text">2. 检查 DynamoRIO 模式是否正常工作</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-DynamoRIO-%E6%A8%A1%E5%BC%8F-winafl-dll-%E5%90%84%E4%B8%AA%E5%8F%82%E6%95%B0%E7%9A%84%E5%85%B7%E4%BD%93%E5%90%AB%E4%B9%89"><span class="toc-number">4.</span> <span class="toc-text">3. DynamoRIO 模式 winafl.dll 各个参数的具体含义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-WinAFL-intel-PT-%E6%A8%A1%E5%BC%8F%E4%BD%BF%E7%94%A8"><span class="toc-number">5.</span> <span class="toc-text">4. WinAFL intel PT 模式使用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-%E6%A3%80%E6%9F%A5-Intel-PT-%E6%A8%A1%E5%BC%8F%E6%98%AF%E5%90%A6%E6%AD%A3%E5%B8%B8%E5%B7%A5%E4%BD%9C"><span class="toc-number">6.</span> <span class="toc-text">5. 检查 Intel PT 模式是否正常工作</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-%E7%94%A8-Intel-PT-%E6%A8%A1%E5%BC%8F-fuzz"><span class="toc-number">7.</span> <span class="toc-text">6. 用 Intel PT 模式 fuzz</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-Winafl-%E7%9A%84%E5%A4%9A%E6%A0%B8%E4%BD%BF%E7%94%A8%E6%83%85%E5%86%B5"><span class="toc-number">8.</span> <span class="toc-text">7. Winafl 的多核使用情况</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="toc-number">9.</span> <span class="toc-text">参考资料</span></a></li></ol>
-      </div>
-    
-  </span>
-</div>
-
-    
-    <div class="content index py4 ">
-        
-        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
-  <header>
-    
-    <h1 class="posttitle p-name" itemprop="name headline">
-        winafl fuzz 工具的使用
-    </h1>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
 
 
-    <div class="meta">
-      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
-        <span class="p-name" itemprop="name">zz</span>
-      </span>
-      
-    <div class="postdate">
-      
-        <time datetime="2022-08-22T16:00:00.000Z" class="dt-published" itemprop="datePublished">2022-08-23</time>
-        
-        (Updated: <time datetime="2022-12-13T16:00:00.000Z" class="dt-updated" itemprop="dateModified">2022-12-14</time>)
-        
-      
-    </div>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
 
 
-      
 
-      
-    <div class="article-tag">
-        <i class="fa-solid fa-tag"></i>
-        <a class="p-category" href="/tags/Security/" rel="tag">Security</a>
-    </div>
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
 
 
-    </div>
-  </header>
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
   
 
-  <div class="content e-content" itemprop="articleBody">
-    <h2 id="0-下载-Visual-Studio-Community-2022"><a href="#0-下载-Visual-Studio-Community-2022" class="headerlink" title="0. 下载 Visual Studio Community 2022"></a>0. 下载 Visual Studio Community 2022</h2><p>下载地址：<a target="_blank" rel="noopener" href="https://aka.ms/vs/17/release/vs_community.exe">https://aka.ms/vs/17/release/vs_community.exe</a></p>
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"usmacd.com","root":"/","version":"1.9.7","typing":{"enable":false,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.2.0"><link rel="alternate" href="/atom.xml" title="安全代码" type="application/atom+xml">
+<link rel="alternate" href="/rss.xml" title="安全代码" type="application/rss+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>安全代码</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/rss.xml" target="_self">
+                <i class="iconfont icon-rss"></i>
+                <span>rss</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/sitemap.xml" target="_self">
+                
+                <span>sitemap</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://images.unsplash.com/photo-1473181488821-2d23949a045a?w=640') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle">winafl fuzz 工具的使用</span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-08-23 00:00" pubdate>
+          2022年8月23日 凌晨
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.6k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          14 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">winafl fuzz 工具的使用</h1>
+            
+              <p id="updated-time" class="note note-info" style="">
+                
+                  
+                    本文最后更新于 2022年12月14日 凌晨
+                  
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
+                <h2 id="0-下载-Visual-Studio-Community-2022"><a href="#0-下载-Visual-Studio-Community-2022" class="headerlink" title="0. 下载 Visual Studio Community 2022"></a>0. 下载 Visual Studio Community 2022</h2><p>下载地址：<a target="_blank" rel="noopener" href="https://aka.ms/vs/17/release/vs_community.exe">https://aka.ms/vs/17/release/vs_community.exe</a></p>
 <p>从微软网站下载并安装 Visual Studio Community 的时候速度只有2 K，一下午没能下载成功。咨询同事小钻风，指出可能是 DNS 问题，将 DNS 切换成阿里的 DNS 223.5.5.5 后下载速度达到 4 M。中国开发者网络总是个问题，大家都挺不容易的。</p>
 <h2 id="1-编译-winafl"><a href="#1-编译-winafl" class="headerlink" title="1. 编译 winafl"></a>1. 编译 winafl</h2><ol>
 <li>下载 <a target="_blank" rel="noopener" href="https://github.com/DynamoRIO/dynamorio/releases/download/cronbuild-9.0.19209/DynamoRIO-Windows-9.0.19209.zip">DynamoRIO</a> 解压到 D:\DynamoRIO</li>
 <li>下载 <a target="_blank" rel="noopener" href="https://github.com/Kitware/CMake/releases/download/v3.24.0/cmake-3.24.0-windows-x86_64.zip">cmake</a> 解压到 D:\cmake</li>
 <li>从 Github 下载 <a target="_blank" rel="noopener" href="https://github.com/googleprojectzero/winafl.git">winafl</a> 编译 intel PT 需要同步 third_party 的源码</li>
 </ol>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/googleprojectzero/winafl.git</span><br><span class="line"><span class="built_in">cd</span> winafl</span><br><span class="line">git submodule update --init --recursive</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">git <span class="hljs-built_in">clone</span> https://github.com/googleprojectzero/winafl.git<br><span class="hljs-built_in">cd</span> winafl<br>git submodule update --init --recursive<br></code></pre></td></tr></table></figure>
 
 <ol start="4">
 <li>从菜单中选择  <code>X64 native tool command prompt for VS 2022</code>，执行编译命令</li>
 </ol>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">mkdir build64</span><br><span class="line">cd build64</span><br><span class="line">D:\cmake\bin\cmake.exe -G&quot;Visual Studio 17 2022&quot; -A x64 .. -DDynamoRIO_DIR=D:\DynamoRIO\cmake -DINTELPT=1</span><br><span class="line">D:\cmake\bin\cmake.exe --build . --config Release</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs shell">mkdir build64<br>cd build64<br>D:\cmake\bin\cmake.exe -G&quot;Visual Studio 17 2022&quot; -A x64 .. -DDynamoRIO_DIR=D:\DynamoRIO\cmake -DINTELPT=1<br>D:\cmake\bin\cmake.exe --build . --config Release<br></code></pre></td></tr></table></figure>
 
 <p><code>-DINTelPT=1</code>  参数将编译 Intel PT 模式的支持，编译完成后，可以正常运行</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line">.\build64\bin\Release&gt;.\afl-fuzz.exe</span><br><span class="line"></span><br><span class="line">WinAFL 1.16b by &lt;ifratric@google.com&gt;</span><br><span class="line">Based on AFL 2.43b by &lt;lcamtuf@google.com&gt;</span><br><span class="line"></span><br><span class="line">.\afl-fuzz.exe [ afl options ] -- [instrumentation options] -- \path\to\fuzzed_app [ ... ]</span><br><span class="line"></span><br><span class="line">Required parameters:</span><br><span class="line"></span><br><span class="line">  -i dir        - input directory with test cases</span><br><span class="line">  -o dir        - output directory for fuzzer findings</span><br><span class="line">  -t msec       - timeout for each run</span><br><span class="line"></span><br><span class="line">Instrumentation type:</span><br><span class="line"></span><br><span class="line">  -D dir       - directory with DynamoRIO binaries (drrun, drconfig)</span><br><span class="line">  -w winafl    - Path to winafl.dll</span><br><span class="line">  -P           - use Intel PT tracing mode</span><br><span class="line">  -Y           - enable the static instrumentation mode</span><br><span class="line"></span><br><span class="line">Execution control settings:</span><br><span class="line"></span><br><span class="line">  -f file       - location read by the fuzzed program (stdin)</span><br><span class="line">  -m limit      - memory limit for the target process</span><br><span class="line">  -p            - persist DynamoRIO cache across target process restarts</span><br><span class="line">  -c cpu        - the CPU to run the fuzzed program</span><br><span class="line"></span><br><span class="line">Fuzzing behavior settings:</span><br><span class="line"></span><br><span class="line">  -d            - quick &amp; dirty mode (skips deterministic steps)</span><br><span class="line">  -n            - fuzz without instrumentation (dumb mode)</span><br><span class="line">  -x dir        - optional fuzzer dictionary (see README)</span><br><span class="line"></span><br><span class="line">Other stuff:</span><br><span class="line"></span><br><span class="line">  -I msec       - timeout for process initialization and first run</span><br><span class="line">  -T text       - text banner to show on the screen</span><br><span class="line">  -M \ -S id   - distributed mode (see parallel_fuzzing.txt)</span><br><span class="line">  -C            - crash exploration mode (the peruvian rabbit thing)</span><br><span class="line">  -e            - expert mode to run WinAFL as a DynamoRIO tool</span><br><span class="line">  -l path       - a path to user-defined DLL for custom test cases processing</span><br><span class="line">  -V            - show version number and exit</span><br><span class="line"></span><br><span class="line">Attach:</span><br><span class="line"></span><br><span class="line">  -A module     - attach to the process that loaded the provided module</span><br><span class="line"></span><br><span class="line">For additional tips, please consult afl_docs\README.</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">C:\Users\zhouzhen\Downloads\winafl\build64\bin\Release&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><code class="hljs applescript">.\build64\bin\Release&gt;.\afl-fuzz.exe<br><br>WinAFL <span class="hljs-number">1.16</span>b <span class="hljs-keyword">by</span> &lt;ifratric@google.com&gt;<br>Based <span class="hljs-keyword">on</span> AFL <span class="hljs-number">2.43</span>b <span class="hljs-keyword">by</span> &lt;lcamtuf@google.com&gt;<br><br>.\afl-fuzz.exe [ afl options ] <span class="hljs-comment">-- [instrumentation options] -- \path\to\fuzzed_app [ ... ]</span><br><br>Required parameters:<br><br>  -i dir        - input directory <span class="hljs-keyword">with</span> test cases<br>  -o dir        - output directory <span class="hljs-keyword">for</span> fuzzer findings<br>  -t msec       - <span class="hljs-keyword">timeout</span> <span class="hljs-keyword">for</span> each <span class="hljs-built_in">run</span><br><br>Instrumentation type:<br><br>  -D dir       - directory <span class="hljs-keyword">with</span> DynamoRIO binaries (drrun, drconfig)<br>  -w winafl    - Path <span class="hljs-keyword">to</span> winafl.dll<br>  -P           - use Intel PT tracing mode<br>  -Y           - enable <span class="hljs-keyword">the</span> static instrumentation mode<br><br>Execution control settings:<br><br>  -f <span class="hljs-built_in">file</span>       - location <span class="hljs-built_in">read</span> <span class="hljs-keyword">by</span> <span class="hljs-keyword">the</span> fuzzed program (stdin)<br>  -m limit      - memory limit <span class="hljs-keyword">for</span> <span class="hljs-keyword">the</span> target process<br>  -p            - persist DynamoRIO cache across target process restarts<br>  -c cpu        - <span class="hljs-keyword">the</span> CPU <span class="hljs-keyword">to</span> <span class="hljs-built_in">run</span> <span class="hljs-keyword">the</span> fuzzed program<br><br>Fuzzing behavior settings:<br><br>  -d            - quick &amp; dirty mode (skips deterministic steps)<br>  -n            - fuzz <span class="hljs-keyword">without</span> instrumentation (dumb mode)<br>  -x dir        - optional fuzzer dictionary (see README)<br><br>Other stuff:<br><br>  -I msec       - <span class="hljs-keyword">timeout</span> <span class="hljs-keyword">for</span> process initialization <span class="hljs-keyword">and</span> <span class="hljs-keyword">first</span> <span class="hljs-built_in">run</span><br>  -T <span class="hljs-built_in">text</span>       - <span class="hljs-built_in">text</span> banner <span class="hljs-keyword">to</span> show <span class="hljs-keyword">on</span> <span class="hljs-keyword">the</span> screen<br>  -M \ -S <span class="hljs-built_in">id</span>   - distributed mode (see parallel_fuzzing.txt)<br>  -C            - crash exploration mode (<span class="hljs-keyword">the</span> peruvian rabbit thing)<br>  -e            - expert mode <span class="hljs-keyword">to</span> <span class="hljs-built_in">run</span> WinAFL <span class="hljs-keyword">as</span> a DynamoRIO tool<br>  -l path       - a <span class="hljs-built_in">path to</span> user-defined DLL <span class="hljs-keyword">for</span> custom test cases processing<br>  -V            - show <span class="hljs-built_in">version</span> <span class="hljs-built_in">number</span> <span class="hljs-keyword">and</span> <span class="hljs-keyword">exit</span><br><br>Attach:<br><br>  -A module     - attach <span class="hljs-keyword">to</span> <span class="hljs-keyword">the</span> process <span class="hljs-keyword">that</span> loaded <span class="hljs-keyword">the</span> provided module<br><br>For additional tips, please consult afl_docs\README.<br><br><br>C:\Users\zhouzhen\Downloads\winafl\build64\bin\Release&gt;<br></code></pre></td></tr></table></figure>
 
 <h2 id="2-检查-DynamoRIO-模式是否正常工作"><a href="#2-检查-DynamoRIO-模式是否正常工作" class="headerlink" title="2. 检查 DynamoRIO 模式是否正常工作"></a>2. 检查 DynamoRIO 模式是否正常工作</h2><p>使用 IDA Pro 对 test_gdiplus.exe 进行反汇编，target_offset 为 <code>0x10E0</code></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">.text:00000001400010E0 ; int __cdecl main(int argc, const char **argv, const char **envp)</span><br><span class="line">.text:00000001400010E0 main            proc near               ; CODE XREF: __scrt_common_main_seh(void)+107↓p</span><br><span class="line">.text:00000001400010E0                                         ; DATA XREF: .rdata:0000000140002B6C↓o ...</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs nasm">.text:00000001400010E0 ; int __cdecl main(int argc, const char **argv, const char **envp)<br>.text:00000001400010E0 main            proc near               ; CODE XREF: __scrt_common_main_seh(void)+107↓p<br>.text:00000001400010E0                                         ; DATA XREF: .rdata:0000000140002B6C↓o ...<br></code></pre></td></tr></table></figure>
 
 <p>先用 drrun.exe 测试 winafl 是否正常工作，其实就是循环执行 10 次目标程序。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">D:\DynamoRIO\bin64\drrun.exe -c winafl.dll -debug ^</span><br><span class="line">-target_module test_gdiplus.exe -target_offset 0x10E0 -fuzz_iterations 10 ^</span><br><span class="line">-nargs 2 -- test_gdiplus.exe input.bmp</span><br></pre></td></tr></table></figure>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs stylus">D:\DynamoRIO\bin64\drrun<span class="hljs-selector-class">.exe</span> -c winafl<span class="hljs-selector-class">.dll</span> -debug ^<br>-target_module test_gdiplus<span class="hljs-selector-class">.exe</span> -target_offset <span class="hljs-number">0</span>x10E0 -fuzz_iterations <span class="hljs-number">10</span> ^<br>-nargs <span class="hljs-number">2</span> -- test_gdiplus<span class="hljs-selector-class">.exe</span> <span class="hljs-selector-tag">input</span>.bmp<br></code></pre></td></tr></table></figure>
 
 <p>执行命令后，在当前目录下会生成一个 log 文件，文件名为 <code>afl.test_gdiplus.exe.14172.0000.proc.log</code>，内容如下：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line">Module loaded, dynamorio.dll</span><br><span class="line">Module loaded, winafl.dll</span><br><span class="line">Module loaded, drx.dll</span><br><span class="line">Module loaded, drreg.dll</span><br><span class="line">Module loaded, drmgr.dll</span><br><span class="line">Module loaded, drwrap.dll</span><br><span class="line">Module loaded, test_gdiplus.exe</span><br><span class="line">Module loaded, gdiplus.dll</span><br><span class="line">Module loaded, VCRUNTIME140.dll</span><br><span class="line">Module loaded, msvcp_win.dll</span><br><span class="line">Module loaded, win32u.dll</span><br><span class="line">Module loaded, ucrtbase.dll</span><br><span class="line">Module loaded, KERNELBASE.dll</span><br><span class="line">Module loaded, gdi32full.dll</span><br><span class="line">Module loaded, KERNEL32.dll</span><br><span class="line">Module loaded, msvcrt.dll</span><br><span class="line">Module loaded, IMM32.dll</span><br><span class="line">Module loaded, RPCRT4.dll</span><br><span class="line">Module loaded, GDI32.dll</span><br><span class="line">Module loaded, combase.dll</span><br><span class="line">Module loaded, USER32.dll</span><br><span class="line">Module loaded, ntdll.dll</span><br><span class="line">In pre_fuzz_handler</span><br><span class="line">Module loaded, UxTheme.dll</span><br><span class="line">Module loaded, OLEAUT32.dll</span><br><span class="line">Module loaded, bcrypt.dll</span><br><span class="line">Module loaded, SECHOST.dll</span><br><span class="line">Module loaded, ADVAPI32.dll</span><br><span class="line">Module loaded, WindowsCodecs.dll</span><br><span class="line">Module loaded, MSCTF.dll</span><br><span class="line">In post_fuzz_handler</span><br><span class="line">In pre_fuzz_handler</span><br><span class="line">In post_fuzz_handler</span><br><span class="line">In pre_fuzz_handler</span><br><span class="line">In post_fuzz_handler</span><br><span class="line">In pre_fuzz_handler</span><br><span class="line">In post_fuzz_handler</span><br><span class="line">In pre_fuzz_handler</span><br><span class="line">In post_fuzz_handler</span><br><span class="line">In pre_fuzz_handler</span><br><span class="line">In post_fuzz_handler</span><br><span class="line">In pre_fuzz_handler</span><br><span class="line">In post_fuzz_handler</span><br><span class="line">In pre_fuzz_handler</span><br><span class="line">In post_fuzz_handler</span><br><span class="line">In pre_fuzz_handler</span><br><span class="line">In post_fuzz_handler</span><br><span class="line">In pre_fuzz_handler</span><br><span class="line">In post_fuzz_handler</span><br><span class="line">Everything appears to be running normally.</span><br><span class="line">Coverage map follows:</span><br><span class="line">                                            </span><br></pre></td></tr></table></figure>
+<figure class="highlight mathematica"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><code class="hljs mathematica"><span class="hljs-built_in">Module</span> <span class="hljs-variable">loaded</span><span class="hljs-operator">,</span> <span class="hljs-variable">dynamorio</span><span class="hljs-operator">.</span><span class="hljs-variable">dll</span><br><span class="hljs-built_in">Module</span> <span class="hljs-variable">loaded</span><span class="hljs-operator">,</span> <span class="hljs-variable">winafl</span><span class="hljs-operator">.</span><span class="hljs-variable">dll</span><br><span class="hljs-built_in">Module</span> <span class="hljs-variable">loaded</span><span class="hljs-operator">,</span> <span class="hljs-variable">drx</span><span class="hljs-operator">.</span><span class="hljs-variable">dll</span><br><span class="hljs-built_in">Module</span> <span class="hljs-variable">loaded</span><span class="hljs-operator">,</span> <span class="hljs-variable">drreg</span><span class="hljs-operator">.</span><span class="hljs-variable">dll</span><br><span class="hljs-built_in">Module</span> <span class="hljs-variable">loaded</span><span class="hljs-operator">,</span> <span class="hljs-variable">drmgr</span><span class="hljs-operator">.</span><span class="hljs-variable">dll</span><br><span class="hljs-built_in">Module</span> <span class="hljs-variable">loaded</span><span class="hljs-operator">,</span> <span class="hljs-variable">drwrap</span><span class="hljs-operator">.</span><span class="hljs-variable">dll</span><br><span class="hljs-built_in">Module</span> <span class="hljs-variable">loaded</span><span class="hljs-operator">,</span> <span class="hljs-type">test_gdiplus</span><span class="hljs-operator">.</span><span class="hljs-variable">exe</span><br><span class="hljs-built_in">Module</span> <span class="hljs-variable">loaded</span><span class="hljs-operator">,</span> <span class="hljs-variable">gdiplus</span><span class="hljs-operator">.</span><span class="hljs-variable">dll</span><br><span class="hljs-built_in">Module</span> <span class="hljs-variable">loaded</span><span class="hljs-operator">,</span> <span class="hljs-variable">VCRUNTIME140</span><span class="hljs-operator">.</span><span class="hljs-variable">dll</span><br><span class="hljs-built_in">Module</span> <span class="hljs-variable">loaded</span><span class="hljs-operator">,</span> <span class="hljs-type">msvcp_win</span><span class="hljs-operator">.</span><span class="hljs-variable">dll</span><br><span class="hljs-built_in">Module</span> <span class="hljs-variable">loaded</span><span class="hljs-operator">,</span> <span class="hljs-variable">win32u</span><span class="hljs-operator">.</span><span class="hljs-variable">dll</span><br><span class="hljs-built_in">Module</span> <span class="hljs-variable">loaded</span><span class="hljs-operator">,</span> <span class="hljs-variable">ucrtbase</span><span class="hljs-operator">.</span><span class="hljs-variable">dll</span><br><span class="hljs-built_in">Module</span> <span class="hljs-variable">loaded</span><span class="hljs-operator">,</span> <span class="hljs-variable">KERNELBASE</span><span class="hljs-operator">.</span><span class="hljs-variable">dll</span><br><span class="hljs-built_in">Module</span> <span class="hljs-variable">loaded</span><span class="hljs-operator">,</span> <span class="hljs-variable">gdi32full</span><span class="hljs-operator">.</span><span class="hljs-variable">dll</span><br><span class="hljs-built_in">Module</span> <span class="hljs-variable">loaded</span><span class="hljs-operator">,</span> <span class="hljs-variable">KERNEL32</span><span class="hljs-operator">.</span><span class="hljs-variable">dll</span><br><span class="hljs-built_in">Module</span> <span class="hljs-variable">loaded</span><span class="hljs-operator">,</span> <span class="hljs-variable">msvcrt</span><span class="hljs-operator">.</span><span class="hljs-variable">dll</span><br><span class="hljs-built_in">Module</span> <span class="hljs-variable">loaded</span><span class="hljs-operator">,</span> <span class="hljs-variable">IMM32</span><span class="hljs-operator">.</span><span class="hljs-variable">dll</span><br><span class="hljs-built_in">Module</span> <span class="hljs-variable">loaded</span><span class="hljs-operator">,</span> <span class="hljs-variable">RPCRT4</span><span class="hljs-operator">.</span><span class="hljs-variable">dll</span><br><span class="hljs-built_in">Module</span> <span class="hljs-variable">loaded</span><span class="hljs-operator">,</span> <span class="hljs-variable">GDI32</span><span class="hljs-operator">.</span><span class="hljs-variable">dll</span><br><span class="hljs-built_in">Module</span> <span class="hljs-variable">loaded</span><span class="hljs-operator">,</span> <span class="hljs-variable">combase</span><span class="hljs-operator">.</span><span class="hljs-variable">dll</span><br><span class="hljs-built_in">Module</span> <span class="hljs-variable">loaded</span><span class="hljs-operator">,</span> <span class="hljs-variable">USER32</span><span class="hljs-operator">.</span><span class="hljs-variable">dll</span><br><span class="hljs-built_in">Module</span> <span class="hljs-variable">loaded</span><span class="hljs-operator">,</span> <span class="hljs-variable">ntdll</span><span class="hljs-operator">.</span><span class="hljs-variable">dll</span><br><span class="hljs-built_in">In</span> <span class="hljs-type">pre_fuzz</span><span class="hljs-type">_handler</span><br><span class="hljs-built_in">Module</span> <span class="hljs-variable">loaded</span><span class="hljs-operator">,</span> <span class="hljs-variable">UxTheme</span><span class="hljs-operator">.</span><span class="hljs-variable">dll</span><br><span class="hljs-built_in">Module</span> <span class="hljs-variable">loaded</span><span class="hljs-operator">,</span> <span class="hljs-variable">OLEAUT32</span><span class="hljs-operator">.</span><span class="hljs-variable">dll</span><br><span class="hljs-built_in">Module</span> <span class="hljs-variable">loaded</span><span class="hljs-operator">,</span> <span class="hljs-variable">bcrypt</span><span class="hljs-operator">.</span><span class="hljs-variable">dll</span><br><span class="hljs-built_in">Module</span> <span class="hljs-variable">loaded</span><span class="hljs-operator">,</span> <span class="hljs-variable">SECHOST</span><span class="hljs-operator">.</span><span class="hljs-variable">dll</span><br><span class="hljs-built_in">Module</span> <span class="hljs-variable">loaded</span><span class="hljs-operator">,</span> <span class="hljs-variable">ADVAPI32</span><span class="hljs-operator">.</span><span class="hljs-variable">dll</span><br><span class="hljs-built_in">Module</span> <span class="hljs-variable">loaded</span><span class="hljs-operator">,</span> <span class="hljs-variable">WindowsCodecs</span><span class="hljs-operator">.</span><span class="hljs-variable">dll</span><br><span class="hljs-built_in">Module</span> <span class="hljs-variable">loaded</span><span class="hljs-operator">,</span> <span class="hljs-variable">MSCTF</span><span class="hljs-operator">.</span><span class="hljs-variable">dll</span><br><span class="hljs-built_in">In</span> <span class="hljs-type">post_fuzz</span><span class="hljs-type">_handler</span><br><span class="hljs-built_in">In</span> <span class="hljs-type">pre_fuzz</span><span class="hljs-type">_handler</span><br><span class="hljs-built_in">In</span> <span class="hljs-type">post_fuzz</span><span class="hljs-type">_handler</span><br><span class="hljs-built_in">In</span> <span class="hljs-type">pre_fuzz</span><span class="hljs-type">_handler</span><br><span class="hljs-built_in">In</span> <span class="hljs-type">post_fuzz</span><span class="hljs-type">_handler</span><br><span class="hljs-built_in">In</span> <span class="hljs-type">pre_fuzz</span><span class="hljs-type">_handler</span><br><span class="hljs-built_in">In</span> <span class="hljs-type">post_fuzz</span><span class="hljs-type">_handler</span><br><span class="hljs-built_in">In</span> <span class="hljs-type">pre_fuzz</span><span class="hljs-type">_handler</span><br><span class="hljs-built_in">In</span> <span class="hljs-type">post_fuzz</span><span class="hljs-type">_handler</span><br><span class="hljs-built_in">In</span> <span class="hljs-type">pre_fuzz</span><span class="hljs-type">_handler</span><br><span class="hljs-built_in">In</span> <span class="hljs-type">post_fuzz</span><span class="hljs-type">_handler</span><br><span class="hljs-built_in">In</span> <span class="hljs-type">pre_fuzz</span><span class="hljs-type">_handler</span><br><span class="hljs-built_in">In</span> <span class="hljs-type">post_fuzz</span><span class="hljs-type">_handler</span><br><span class="hljs-built_in">In</span> <span class="hljs-type">pre_fuzz</span><span class="hljs-type">_handler</span><br><span class="hljs-built_in">In</span> <span class="hljs-type">post_fuzz</span><span class="hljs-type">_handler</span><br><span class="hljs-built_in">In</span> <span class="hljs-type">pre_fuzz</span><span class="hljs-type">_handler</span><br><span class="hljs-built_in">In</span> <span class="hljs-type">post_fuzz</span><span class="hljs-type">_handler</span><br><span class="hljs-built_in">In</span> <span class="hljs-type">pre_fuzz</span><span class="hljs-type">_handler</span><br><span class="hljs-built_in">In</span> <span class="hljs-type">post_fuzz</span><span class="hljs-type">_handler</span><br><span class="hljs-variable">Everything</span> <span class="hljs-variable">appears</span> <span class="hljs-variable">to</span> <span class="hljs-variable">be</span> <span class="hljs-variable">running</span> <span class="hljs-variable">normally</span><span class="hljs-operator">.</span><br><span class="hljs-variable">Coverage</span> <span class="hljs-variable">map</span> <span class="hljs-variable">follows</span><span class="hljs-operator">:</span><br>                                            <br></code></pre></td></tr></table></figure>
 
 <p><code>Everything appears to be running normally.</code> 表明 winafl 自己认为没有出错。 log 文件中还包含了其他有用信息，比如说目标程序加载的模块。这些加载的模块可以用来设置 <code>-coverage_module</code>来统计你所关注的 coverage。</p>
 <p>使用 drrun.exe 验证成功后，可以执行下面命令测试 winafl 是否正常工作。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">afl-fuzz.exe -i <span class="keyword">in</span> -o out -D D:\DynamoRIO\bin64 -t 20000 ^</span><br><span class="line">-- -coverage_module gdiplus.dll -coverage_module WindowsCodecs.dll -fuzz_iterations 5000 ^</span><br><span class="line">-target_module test_gdiplus.exe -target_offset 0x10E0 -nargs 2 -- test_gdiplus.exe @@</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">afl-fuzz.exe -i <span class="hljs-keyword">in</span> -o out -D D:\DynamoRIO\bin64 -t 20000 ^<br>-- -coverage_module gdiplus.dll -coverage_module WindowsCodecs.dll -fuzz_iterations 5000 ^<br>-target_module test_gdiplus.exe -target_offset 0x10E0 -nargs 2 -- test_gdiplus.exe @@<br></code></pre></td></tr></table></figure>
 
 <p>执行后上面的命令后，如果发现 total paths 的数字在不断变化， winafl 就已经可以正常工作了，恭喜 😄</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">+- process timing -------------------------------------+- overall results ----+</span><br><span class="line">|        run time : 0 days, 0 hrs, 0 min, 1 sec        |  cycles done : 0     |</span><br><span class="line">|   last new path : 0 days, 0 hrs, 0 min, 1 sec        |  total paths : 2     |</span><br><span class="line">| last uniq crash : none seen yet                      | uniq crashes : 0     |</span><br><span class="line">|  last uniq hang : none seen yet                      |   uniq hangs : 0     |</span><br><span class="line">+- cycle progress --------------------+- map coverage -+----------------------+</span><br><span class="line">|  now processing : 0 (0.00%)         |    map density : 1.65% / 1.65%        |</span><br><span class="line">| paths timed out : 0 (0.00%)         | count coverage : 1.00 bits/tuple      |</span><br><span class="line">+- stage progress --------------------+ findings in depth --------------------+</span><br><span class="line">|  now trying : arith 8\8             | favored paths : 1 (50.00%)            |</span><br><span class="line">| stage execs : 388/389 (99.74%)      |  new edges on : 2 (100.00%)           |</span><br><span class="line">| total execs : 619                   | total crashes : 0 (0 unique)          |</span><br><span class="line">|  exec speed : 353.3/sec             |  total tmouts : 0 (0 unique)          |</span><br><span class="line">+- fuzzing strategy yields -----------+---------------+- path geometry -------+</span><br><span class="line">|   bit flips : 0/56, 1/55, 0/53                      |    levels : 2         |</span><br><span class="line">|  byte flips : 0/7, 0/6, 0/4                         |   pending : 2         |</span><br><span class="line">| arithmetics : 0/0, 0/0, 0/0                         |  pend fav : 1         |</span><br><span class="line">|  known ints : 0/0, 0/0, 0/0                         | own finds : 1         |</span><br><span class="line">|  dictionary : 0/0, 0/0, 0/0                         |  imported : n/a       |</span><br><span class="line">|       havoc : 0/0, 0/0                              | stability : 99.63%    |</span><br><span class="line">|        trim : 0.00%/1, 0.00%                        +-----------------------+</span><br><span class="line">^C----------------------------------------------------+   [cpu000001:  14%]</span><br></pre></td></tr></table></figure>
+<figure class="highlight gherkin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs gherkin">+- process timing -------------------------------------+- overall results ----+<br>|<span class="hljs-string">        run time : 0 days, 0 hrs, 0 min, 1 sec        </span>|<span class="hljs-string">  cycles done : 0     </span>|<br>|<span class="hljs-string">   last new path : 0 days, 0 hrs, 0 min, 1 sec        </span>|<span class="hljs-string">  total paths : 2     </span>|<br>|<span class="hljs-string"> last uniq crash : none seen yet                      </span>|<span class="hljs-string"> uniq crashes : 0     </span>|<br>|<span class="hljs-string">  last uniq hang : none seen yet                      </span>|<span class="hljs-string">   uniq hangs : 0     </span>|<br>+- cycle progress --------------------+- map coverage -+----------------------+<br>|<span class="hljs-string">  now processing : 0 (0.00%)         </span>|<span class="hljs-string">    map density : 1.65% / 1.65%        </span>|<br>|<span class="hljs-string"> paths timed out : 0 (0.00%)         </span>|<span class="hljs-string"> count coverage : 1.00 bits/tuple      </span>|<br>+- stage progress --------------------+ findings in depth --------------------+<br>|<span class="hljs-string">  now trying : arith 8\8             </span>|<span class="hljs-string"> favored paths : 1 (50.00%)            </span>|<br>|<span class="hljs-string"> stage execs : 388/389 (99.74%)      </span>|<span class="hljs-string">  new edges on : 2 (100.00%)           </span>|<br>|<span class="hljs-string"> total execs : 619                   </span>|<span class="hljs-string"> total crashes : 0 (0 unique)          </span>|<br>|<span class="hljs-string">  exec speed : 353.3/sec             </span>|<span class="hljs-string">  total tmouts : 0 (0 unique)          </span>|<br>+- fuzzing strategy yields -----------+---------------+- path geometry -------+<br>|<span class="hljs-string">   bit flips : 0/56, 1/55, 0/53                      </span>|<span class="hljs-string">    levels : 2         </span>|<br>|<span class="hljs-string">  byte flips : 0/7, 0/6, 0/4                         </span>|<span class="hljs-string">   pending : 2         </span>|<br>|<span class="hljs-string"> arithmetics : 0/0, 0/0, 0/0                         </span>|<span class="hljs-string">  pend fav : 1         </span>|<br>|<span class="hljs-string">  known ints : 0/0, 0/0, 0/0                         </span>|<span class="hljs-string"> own finds : 1         </span>|<br>|<span class="hljs-string">  dictionary : 0/0, 0/0, 0/0                         </span>|<span class="hljs-string">  imported : n/a       </span>|<br>|<span class="hljs-string">       havoc : 0/0, 0/0                              </span>|<span class="hljs-string"> stability : 99.63%    </span>|<br>|<span class="hljs-string">        trim : 0.00%/1, 0.00%                        +-----------------------+</span><br><span class="hljs-string">^C----------------------------------------------------+   [cpu000001:  14%]</span><br></code></pre></td></tr></table></figure>
 
 <h2 id="3-DynamoRIO-模式-winafl-dll-各个参数的具体含义"><a href="#3-DynamoRIO-模式-winafl-dll-各个参数的具体含义" class="headerlink" title="3. DynamoRIO 模式 winafl.dll 各个参数的具体含义"></a>3. DynamoRIO 模式 winafl.dll 各个参数的具体含义</h2><p>winafl.dll 是 DynamoRIO client (instrumentation) code，参数挺多 Winafl 的 README 中介绍了下面这些参数。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">-covtype         - the type of coverage being recorded. Supported options are</span><br><span class="line">                   bb (basic block, default) or edge.</span><br><span class="line"></span><br><span class="line">-coverage_module - module for which to record coverage. Multiple module flags</span><br><span class="line">                   are supported.</span><br><span class="line"></span><br><span class="line">-target_module   - module which contains the target function to be fuzzed.</span><br><span class="line">                   Either -target_method or -target_offset need to be</span><br><span class="line">                   specified together with this option.</span><br><span class="line"></span><br><span class="line">-target_method   - name of the method to fuzz in persistent mode. For this to</span><br><span class="line">                   work either the method needs to be exported or the symbols</span><br><span class="line">                   for target_module need to be available. Otherwise use</span><br><span class="line">                   -target_offset instead.</span><br><span class="line"></span><br><span class="line">-target_offset   - offset of the method to fuzz from the start of the module.</span><br><span class="line"></span><br><span class="line">-fuzz_iterations - Maximum number of iterations for the target function to run</span><br><span class="line">                   before restarting the target process.</span><br><span class="line"></span><br><span class="line">-nargs           - Number of arguments the fuzzed method takes. This is used</span><br><span class="line">                   to save/restore the arguments between runs.</span><br><span class="line"></span><br><span class="line">-call_convention - The default calling convention is cdecl on 32-bit x86</span><br><span class="line">                   platforms and Microsoft x64 for Visual Studio 64-bit</span><br><span class="line">                   applications. Possible values:</span><br><span class="line">                       * fastcall: fastcall</span><br><span class="line">                       * ms64: Microsoft x64 (Visual Studio)</span><br><span class="line">                       * stdcall: cdecl or stdcall</span><br><span class="line">                       * thiscall: thiscall</span><br><span class="line"></span><br><span class="line">-debug           - Debug mode. Does not try to connect to the server. Outputs</span><br><span class="line">                   a log file containing loaded modules, opened files and</span><br><span class="line">                   coverage information.</span><br><span class="line"></span><br><span class="line">-logdir          - specifies in which directory the log file will be written</span><br><span class="line">                   (only to be used with -debug).</span><br><span class="line"></span><br><span class="line">-thread_coverage - If set, WinAFL will only collect coverage from a thread</span><br><span class="line">                   that executed the target function</span><br></pre></td></tr></table></figure>
+<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><code class="hljs livecodeserver">-covtype         - <span class="hljs-keyword">the</span> type <span class="hljs-keyword">of</span> coverage being recorded. Supported options are<br>                   bb (basic block, default) <span class="hljs-keyword">or</span> edge.<br><br>-coverage_module - module <span class="hljs-keyword">for</span> which <span class="hljs-built_in">to</span> record coverage. Multiple module flags<br>                   are supported.<br><br>-target_module   - module which <span class="hljs-keyword">contains</span> <span class="hljs-keyword">the</span> target <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">to</span> <span class="hljs-title">be</span> <span class="hljs-title">fuzzed</span>.</span><br>                   Either -target_method <span class="hljs-keyword">or</span> -target_offset need <span class="hljs-built_in">to</span> be<br>                   specified together <span class="hljs-keyword">with</span> this option.<br><br>-target_method   - name <span class="hljs-keyword">of</span> <span class="hljs-keyword">the</span> method <span class="hljs-built_in">to</span> fuzz <span class="hljs-keyword">in</span> persistent mode. For this <span class="hljs-built_in">to</span><br>                   work either <span class="hljs-keyword">the</span> method needs <span class="hljs-built_in">to</span> be exported <span class="hljs-keyword">or</span> <span class="hljs-keyword">the</span> symbols<br>                   <span class="hljs-keyword">for</span> target_module need <span class="hljs-built_in">to</span> be available. Otherwise use<br>                   -target_offset instead.<br><br>-target_offset   - <span class="hljs-built_in">offset</span> <span class="hljs-keyword">of</span> <span class="hljs-keyword">the</span> method <span class="hljs-built_in">to</span> fuzz <span class="hljs-built_in">from</span> <span class="hljs-keyword">the</span> <span class="hljs-built_in">start</span> <span class="hljs-keyword">of</span> <span class="hljs-keyword">the</span> module.<br><br>-fuzz_iterations - Maximum <span class="hljs-built_in">number</span> <span class="hljs-keyword">of</span> iterations <span class="hljs-keyword">for</span> <span class="hljs-keyword">the</span> target <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">to</span> <span class="hljs-title">run</span></span><br>                   <span class="hljs-keyword">before</span> restarting <span class="hljs-keyword">the</span> target <span class="hljs-built_in">process</span>.<br><br>-nargs           - Number <span class="hljs-keyword">of</span> arguments <span class="hljs-keyword">the</span> fuzzed method takes. This is used<br>                   <span class="hljs-built_in">to</span> save/restore <span class="hljs-keyword">the</span> arguments between runs.<br><br>-call_convention - The default calling convention is cdecl <span class="hljs-keyword">on</span> <span class="hljs-title">32-bit</span> <span class="hljs-title">x86</span><br>                   platforms <span class="hljs-keyword">and</span> Microsoft x64 <span class="hljs-keyword">for</span> Visual Studio <span class="hljs-number">64</span>-bit<br>                   applications. Possible values:<br>                       * fastcall: fastcall<br>                       * ms64: Microsoft x64 (Visual Studio)<br>                       * stdcall: cdecl <span class="hljs-keyword">or</span> stdcall<br>                       * thiscall: thiscall<br><br>-debug           - Debug mode. Does <span class="hljs-keyword">not</span> <span class="hljs-keyword">try</span> <span class="hljs-built_in">to</span> connect <span class="hljs-built_in">to</span> <span class="hljs-keyword">the</span> server. Outputs<br>                   <span class="hljs-keyword">a</span> <span class="hljs-built_in">log</span> <span class="hljs-built_in">file</span> containing loaded modules, opened <span class="hljs-built_in">files</span> <span class="hljs-keyword">and</span><br>                   coverage information.<br><br>-logdir          - specifies <span class="hljs-keyword">in</span> which <span class="hljs-built_in">directory</span> <span class="hljs-keyword">the</span> <span class="hljs-built_in">log</span> <span class="hljs-built_in">file</span> will be written<br>                   (only <span class="hljs-built_in">to</span> be used <span class="hljs-keyword">with</span> -debug).<br><br>-thread_coverage - If <span class="hljs-built_in">set</span>, WinAFL will only collect coverage <span class="hljs-built_in">from</span> <span class="hljs-keyword">a</span> thread<br>                   that executed <span class="hljs-keyword">the</span> target <span class="hljs-function"><span class="hljs-keyword">function</span></span><br></code></pre></td></tr></table></figure>
 
 <ul>
 <li><code>-nargs</code> target method 或者 target offset 的参数个数</li>
@@ -234,165 +374,352 @@
 <li><code>-nopersistent_trace</code> 由于性能的缘故，WinAFL 每次循环执行 target 是不重启程序，这个选项可以强制 WinAFL 每次执行 target 都重启，一般是为了调试才会启用这个选项</li>
 <li><code>-trace_cache_size</code>  trace 信息的 cache 字节数，和 <code>full</code> 解码器一起使用</li>
 </ul>
-<h2 id="5-检查-Intel-PT-模式是否正常工作"><a href="#5-检查-Intel-PT-模式是否正常工作" class="headerlink" title="5. 检查 Intel PT 模式是否正常工作"></a>5. 检查 Intel PT 模式是否正常工作</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">winaflpt-debug.exe -debug -coverage_module gdipluss.dll -coverage_module WindowsCodecs.dll ^</span><br><span class="line">-fuzz_iterations 10  -target_module test_gdiplus.exe -target_offset 0x10E0 -nargs 2 -- test_gdiplus.exe @@</span><br></pre></td></tr></table></figure>
+<h2 id="5-检查-Intel-PT-模式是否正常工作"><a href="#5-检查-Intel-PT-模式是否正常工作" class="headerlink" title="5. 检查 Intel PT 模式是否正常工作"></a>5. 检查 Intel PT 模式是否正常工作</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell">winaflpt-debug.exe -debug -coverage_module gdipluss.dll -coverage_module WindowsCodecs.dll ^<br>-fuzz_iterations 10  -target_module test_gdiplus.exe -target_offset 0x10E0 -nargs 2 -- test_gdiplus.exe @@<br></code></pre></td></tr></table></figure>
 
 <p>上面命令其实和检查 DynamoRIO 模式是否正常工作的命令基本一致，执行命令后输出如下：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">Module loaded: test_gdiplus.exe</span><br><span class="line">Module loaded: ntdll.dll</span><br><span class="line">Module loaded: KERNEL32.DLjL</span><br><span class="line">Module loaded: KERNELBASE.dll</span><br><span class="line">Module loaded: ucrtbase.dll</span><br><span class="line">Module loaded: gdiplus.dll</span><br><span class="line">Module loaded: msvcrt.dll</span><br><span class="line">Module loaded: combase.dll</span><br><span class="line">Module loaded: VCRUNTIME140.dll</span><br><span class="line">Module loaded: RPCRT4.dll</span><br><span class="line">Module loaded: USER32.dll</span><br><span class="line">Module loaded: win32u.dll</span><br><span class="line">Module loaded: GDI32.dll</span><br><span class="line">Module loaded: gdi32full.dll</span><br><span class="line">Module loaded: msvcp_win.dll</span><br><span class="line">Module loaded: IMM32.DLL</span><br><span class="line">iteration 0</span><br><span class="line">Module loaded: uxtheme.dll</span><br><span class="line">Module loaded: msctf.dll</span><br><span class="line">Module loaded: oleaut32.dll</span><br><span class="line">Module loaded: sechost.dll</span><br><span class="line">Iteration finished normally</span><br><span class="line">iteration 1</span><br><span class="line">Iteration finished normally</span><br><span class="line">iteration 2</span><br><span class="line">Iteration finished normally</span><br><span class="line">iteration 3</span><br><span class="line">Iteration finished normally</span><br><span class="line">iteration 4</span><br><span class="line">Iteration finished normally</span><br><span class="line">iteration 5</span><br><span class="line">Iteration finished normally</span><br><span class="line">iteration 6</span><br><span class="line">Iteration finished normally</span><br><span class="line">iteration 7</span><br><span class="line">Iteration finished normally</span><br><span class="line">iteration 8</span><br><span class="line">Iteration finished normally</span><br><span class="line">iteration 9</span><br><span class="line">Iteration finished normally</span><br><span class="line">Coverage map (hex): </span><br><span class="line">00000000000000000000000000000000</span><br><span class="line">00000000000000000000000000000000</span><br></pre></td></tr></table></figure>
+<figure class="highlight nestedtext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><code class="hljs nestedtext"><span class="hljs-attribute">Module loaded</span><span class="hljs-punctuation">:</span> <span class="hljs-string">test_gdiplus.exe</span><br><span class="hljs-attribute">Module loaded</span><span class="hljs-punctuation">:</span> <span class="hljs-string">ntdll.dll</span><br><span class="hljs-attribute">Module loaded</span><span class="hljs-punctuation">:</span> <span class="hljs-string">KERNEL32.DLjL</span><br><span class="hljs-attribute">Module loaded</span><span class="hljs-punctuation">:</span> <span class="hljs-string">KERNELBASE.dll</span><br><span class="hljs-attribute">Module loaded</span><span class="hljs-punctuation">:</span> <span class="hljs-string">ucrtbase.dll</span><br><span class="hljs-attribute">Module loaded</span><span class="hljs-punctuation">:</span> <span class="hljs-string">gdiplus.dll</span><br><span class="hljs-attribute">Module loaded</span><span class="hljs-punctuation">:</span> <span class="hljs-string">msvcrt.dll</span><br><span class="hljs-attribute">Module loaded</span><span class="hljs-punctuation">:</span> <span class="hljs-string">combase.dll</span><br><span class="hljs-attribute">Module loaded</span><span class="hljs-punctuation">:</span> <span class="hljs-string">VCRUNTIME140.dll</span><br><span class="hljs-attribute">Module loaded</span><span class="hljs-punctuation">:</span> <span class="hljs-string">RPCRT4.dll</span><br><span class="hljs-attribute">Module loaded</span><span class="hljs-punctuation">:</span> <span class="hljs-string">USER32.dll</span><br><span class="hljs-attribute">Module loaded</span><span class="hljs-punctuation">:</span> <span class="hljs-string">win32u.dll</span><br><span class="hljs-attribute">Module loaded</span><span class="hljs-punctuation">:</span> <span class="hljs-string">GDI32.dll</span><br><span class="hljs-attribute">Module loaded</span><span class="hljs-punctuation">:</span> <span class="hljs-string">gdi32full.dll</span><br><span class="hljs-attribute">Module loaded</span><span class="hljs-punctuation">:</span> <span class="hljs-string">msvcp_win.dll</span><br><span class="hljs-attribute">Module loaded</span><span class="hljs-punctuation">:</span> <span class="hljs-string">IMM32.DLL</span><br><span class="hljs-attribute">iteration 0</span><br><span class="hljs-attribute">Module loaded</span><span class="hljs-punctuation">:</span> <span class="hljs-string">uxtheme.dll</span><br><span class="hljs-attribute">Module loaded</span><span class="hljs-punctuation">:</span> <span class="hljs-string">msctf.dll</span><br><span class="hljs-attribute">Module loaded</span><span class="hljs-punctuation">:</span> <span class="hljs-string">oleaut32.dll</span><br><span class="hljs-attribute">Module loaded</span><span class="hljs-punctuation">:</span> <span class="hljs-string">sechost.dll</span><br><span class="hljs-attribute">Iteration finished normally</span><br><span class="hljs-attribute">iteration 1</span><br><span class="hljs-attribute">Iteration finished normally</span><br><span class="hljs-attribute">iteration 2</span><br><span class="hljs-attribute">Iteration finished normally</span><br><span class="hljs-attribute">iteration 3</span><br><span class="hljs-attribute">Iteration finished normally</span><br><span class="hljs-attribute">iteration 4</span><br><span class="hljs-attribute">Iteration finished normally</span><br><span class="hljs-attribute">iteration 5</span><br><span class="hljs-attribute">Iteration finished normally</span><br><span class="hljs-attribute">iteration 6</span><br><span class="hljs-attribute">Iteration finished normally</span><br><span class="hljs-attribute">iteration 7</span><br><span class="hljs-attribute">Iteration finished normally</span><br><span class="hljs-attribute">iteration 8</span><br><span class="hljs-attribute">Iteration finished normally</span><br><span class="hljs-attribute">iteration 9</span><br><span class="hljs-attribute">Iteration finished normally</span><br><span class="hljs-attribute">Coverage map (hex)</span><span class="hljs-punctuation">: </span><br>00000000000000000000000000000000<br>00000000000000000000000000000000<br></code></pre></td></tr></table></figure>
 
-<h2 id="6-用-Intel-PT-模式-fuzz"><a href="#6-用-Intel-PT-模式-fuzz" class="headerlink" title="6. 用 Intel PT 模式 fuzz"></a>6. 用 Intel PT 模式 fuzz</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">afl-fuzz.exe -i in -o out -P -t 20000 -- -coverage_module gdiplus.dll ^</span><br><span class="line">-coverage_module WindowsCodecs.dll -fuzz_iterations 5000 ^</span><br><span class="line">-target_module test_gdiplus.exe -target_offset 0x10E0 -nargs 2 -- test_gdiplus.exe @@</span><br></pre></td></tr></table></figure>
+<h2 id="6-用-Intel-PT-模式-fuzz"><a href="#6-用-Intel-PT-模式-fuzz" class="headerlink" title="6. 用 Intel PT 模式 fuzz"></a>6. 用 Intel PT 模式 fuzz</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs shell">afl-fuzz.exe -i in -o out -P -t 20000 -- -coverage_module gdiplus.dll ^<br>-coverage_module WindowsCodecs.dll -fuzz_iterations 5000 ^<br>-target_module test_gdiplus.exe -target_offset 0x10E0 -nargs 2 -- test_gdiplus.exe @@<br></code></pre></td></tr></table></figure>
 
 <p>用上面的命令调用 afl-fuzz，发现可以正常工作，界面如下：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">               WinAFL 1.16b based on AFL 2.43b (test_gdiplus.exe)</span><br><span class="line"></span><br><span class="line">+- process timing -------------------------------------+- overall results ----+</span><br><span class="line">|        run time : 0 days, 0 hrs, 0 min, 15 sec       |  cycles done : 0     |</span><br><span class="line">|   last new path : 0 days, 0 hrs, 0 min, 1 sec        |  total paths : 9     |</span><br><span class="line">| last uniq crash : none seen yet                      | uniq crashes : 0     |</span><br><span class="line">|  last uniq hang : none seen yet                      |   uniq hangs : 0     |</span><br><span class="line">+- cycle progress --------------------+- map coverage -+----------------------+</span><br><span class="line">|  now processing : 0 (0.00%)         |    map density : 1.50% / 3.67%        |</span><br><span class="line">| paths timed out : 0 (0.00%)         | count coverage : 1.40 bits/tuple      |</span><br><span class="line">+- stage progress --------------------+ findings in depth --------------------+</span><br><span class="line">|  now trying : havoc                 | favored paths : 1 (11.11%)            |</span><br><span class="line">| stage execs : 2332/8192 (28.47%)    |  new edges on : 5 (55.56%)            |</span><br><span class="line">| total execs : 3350                  | total crashes : 0 (0 unique)          |</span><br><span class="line">|  exec speed : 221.4/sec             |  total tmouts : 0 (0 unique)          |</span><br><span class="line">+- fuzzing strategy yields -----------+---------------+- path geometry -------+</span><br><span class="line">|   bit flips : 0/48, 0/47, 1/45                      |    levels : 2         |</span><br><span class="line">|  byte flips : 0/6, 0/5, 0/3                         |   pending : 9         |</span><br><span class="line">| arithmetics : 1/335, 0/75, 0/0                      |  pend fav : 1         |</span><br><span class="line">|  known ints : 0/28, 1/168, 1/120                    | own finds : 8         |</span><br><span class="line">|  dictionary : 0/0, 0/0, 0/0                         |  imported : n/a       |</span><br><span class="line">|       havoc : 0/0, 0/0                              | stability : 65.28%    |</span><br><span class="line">|        trim : 0.00%/1, 0.00%                        +-----------------------+</span><br><span class="line">+-----------------------------------------------------+   [cpu000001:  23%]</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight gherkin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs gherkin">               WinAFL 1.16b based on AFL 2.43b (test_gdiplus.exe)<br><br>+- process timing -------------------------------------+- overall results ----+<br>|<span class="hljs-string">        run time : 0 days, 0 hrs, 0 min, 15 sec       </span>|<span class="hljs-string">  cycles done : 0     </span>|<br>|<span class="hljs-string">   last new path : 0 days, 0 hrs, 0 min, 1 sec        </span>|<span class="hljs-string">  total paths : 9     </span>|<br>|<span class="hljs-string"> last uniq crash : none seen yet                      </span>|<span class="hljs-string"> uniq crashes : 0     </span>|<br>|<span class="hljs-string">  last uniq hang : none seen yet                      </span>|<span class="hljs-string">   uniq hangs : 0     </span>|<br>+- cycle progress --------------------+- map coverage -+----------------------+<br>|<span class="hljs-string">  now processing : 0 (0.00%)         </span>|<span class="hljs-string">    map density : 1.50% / 3.67%        </span>|<br>|<span class="hljs-string"> paths timed out : 0 (0.00%)         </span>|<span class="hljs-string"> count coverage : 1.40 bits/tuple      </span>|<br>+- stage progress --------------------+ findings in depth --------------------+<br>|<span class="hljs-string">  now trying : havoc                 </span>|<span class="hljs-string"> favored paths : 1 (11.11%)            </span>|<br>|<span class="hljs-string"> stage execs : 2332/8192 (28.47%)    </span>|<span class="hljs-string">  new edges on : 5 (55.56%)            </span>|<br>|<span class="hljs-string"> total execs : 3350                  </span>|<span class="hljs-string"> total crashes : 0 (0 unique)          </span>|<br>|<span class="hljs-string">  exec speed : 221.4/sec             </span>|<span class="hljs-string">  total tmouts : 0 (0 unique)          </span>|<br>+- fuzzing strategy yields -----------+---------------+- path geometry -------+<br>|<span class="hljs-string">   bit flips : 0/48, 0/47, 1/45                      </span>|<span class="hljs-string">    levels : 2         </span>|<br>|<span class="hljs-string">  byte flips : 0/6, 0/5, 0/3                         </span>|<span class="hljs-string">   pending : 9         </span>|<br>|<span class="hljs-string"> arithmetics : 1/335, 0/75, 0/0                      </span>|<span class="hljs-string">  pend fav : 1         </span>|<br>|<span class="hljs-string">  known ints : 0/28, 1/168, 1/120                    </span>|<span class="hljs-string"> own finds : 8         </span>|<br>|<span class="hljs-string">  dictionary : 0/0, 0/0, 0/0                         </span>|<span class="hljs-string">  imported : n/a       </span>|<br>|<span class="hljs-string">       havoc : 0/0, 0/0                              </span>|<span class="hljs-string"> stability : 65.28%    </span>|<br>|<span class="hljs-string">        trim : 0.00%/1, 0.00%                        +-----------------------+</span><br><span class="hljs-string">+-----------------------------------------------------+   [cpu000001:  23%]</span><br><span class="hljs-string"></span><br></code></pre></td></tr></table></figure>
 
 
 <h2 id="7-Winafl-的多核使用情况"><a href="#7-Winafl-的多核使用情况" class="headerlink" title="7. Winafl 的多核使用情况"></a>7. Winafl 的多核使用情况</h2><p>执行 Winafl 的 PT 模式，使用任务管理器 -&gt; 打开资源监视器 -&gt;  CPU 可以观察到只有一个 CPU core 跑满 100%</p>
 <h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p><a target="_blank" rel="noopener" href="https://github.com/googleprojectzero/winafl/blob/master/README.md">https://github.com/googleprojectzero/winafl/blob/master/README.md</a><br><a target="_blank" rel="noopener" href="https://github.com/googleprojectzero/winafl/blob/master/readme_dr.md">https://github.com/googleprojectzero/winafl/blob/master/readme_dr.md</a><br><a target="_blank" rel="noopener" href="https://github.com/googleprojectzero/winafl/blob/master/readme_pt.md">https://github.com/googleprojectzero/winafl/blob/master/readme_pt.md</a></p>
 
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Security/" class="print-no-link">#Security</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>winafl fuzz 工具的使用</div>
+      <div>http://usmacd.com/cn/winafl/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>zz</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年8月23日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
   </div>
-</article>
 
 
 
-        
-          <div id="footer-post-container">
-  <div id="footer-post">
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/cn/root_android11_pixel2/" title="root Pixel2 Android 11 的方法">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">root Pixel2 Android 11 的方法</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/cn/2022-07-21-When-Hypervisor-Met-Snapshot-Fuzzing/" title="When Hypervisor Met Snapshot Fuzzing">
+                        <span class="hidden-mobile">When Hypervisor Met Snapshot Fuzzing</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
 
-    <div id="nav-footer" style="display: none">
-      <ul>
-        
-          <li><a href="/">首页</a></li>
-        
-          <li><a href="/about/">关于</a></li>
-        
-          <li><a href="/archives/">归档</a></li>
-        
-          <li><a href="/search/">搜索</a></li>
-        
-          <li><a href="/links/">链接</a></li>
-        
-          <li><a href="/rss.xml">RSS</a></li>
-        
-      </ul>
-    </div>
-
-    
-    
-      <div id="toc-footer" style="display: none">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#0-%E4%B8%8B%E8%BD%BD-Visual-Studio-Community-2022"><span class="toc-number">1.</span> <span class="toc-text">0. 下载 Visual Studio Community 2022</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E7%BC%96%E8%AF%91-winafl"><span class="toc-number">2.</span> <span class="toc-text">1. 编译 winafl</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E6%A3%80%E6%9F%A5-DynamoRIO-%E6%A8%A1%E5%BC%8F%E6%98%AF%E5%90%A6%E6%AD%A3%E5%B8%B8%E5%B7%A5%E4%BD%9C"><span class="toc-number">3.</span> <span class="toc-text">2. 检查 DynamoRIO 模式是否正常工作</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-DynamoRIO-%E6%A8%A1%E5%BC%8F-winafl-dll-%E5%90%84%E4%B8%AA%E5%8F%82%E6%95%B0%E7%9A%84%E5%85%B7%E4%BD%93%E5%90%AB%E4%B9%89"><span class="toc-number">4.</span> <span class="toc-text">3. DynamoRIO 模式 winafl.dll 各个参数的具体含义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-WinAFL-intel-PT-%E6%A8%A1%E5%BC%8F%E4%BD%BF%E7%94%A8"><span class="toc-number">5.</span> <span class="toc-text">4. WinAFL intel PT 模式使用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-%E6%A3%80%E6%9F%A5-Intel-PT-%E6%A8%A1%E5%BC%8F%E6%98%AF%E5%90%A6%E6%AD%A3%E5%B8%B8%E5%B7%A5%E4%BD%9C"><span class="toc-number">6.</span> <span class="toc-text">5. 检查 Intel PT 模式是否正常工作</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-%E7%94%A8-Intel-PT-%E6%A8%A1%E5%BC%8F-fuzz"><span class="toc-number">7.</span> <span class="toc-text">6. 用 Intel PT 模式 fuzz</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-Winafl-%E7%9A%84%E5%A4%9A%E6%A0%B8%E4%BD%BF%E7%94%A8%E6%83%85%E5%86%B5"><span class="toc-number">8.</span> <span class="toc-text">7. Winafl 的多核使用情况</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="toc-number">9.</span> <span class="toc-text">参考资料</span></a></li></ol>
+            
+          </article>
+        </div>
       </div>
-    
-
-    <div id="share-footer" style="display: none">
-      <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://usmacd.com/cn/winafl/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://usmacd.com/cn/winafl/&text=winafl fuzz 工具的使用"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://usmacd.com/cn/winafl/&title=winafl fuzz 工具的使用"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://usmacd.com/cn/winafl/&is_video=false&description=winafl fuzz 工具的使用"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=winafl fuzz 工具的使用&body=Check out this article: http://usmacd.com/cn/winafl/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://usmacd.com/cn/winafl/&title=winafl fuzz 工具的使用"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://usmacd.com/cn/winafl/&title=winafl fuzz 工具的使用"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://usmacd.com/cn/winafl/&title=winafl fuzz 工具的使用"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://usmacd.com/cn/winafl/&title=winafl fuzz 工具的使用"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://usmacd.com/cn/winafl/&name=winafl fuzz 工具的使用&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://usmacd.com/cn/winafl/&t=winafl fuzz 工具的使用"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
-</ul>
-
     </div>
 
-    <div id="actions-footer">
-        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
-        
-          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> 目录</a>
-        
-        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
-        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>
-    </div>
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
 
+
+
+  </aside>
+
+
+    </div>
   </div>
 </div>
 
-        
-        <footer id="footer">
-  <div class="footer-left">
-    Copyright &copy;
-    
-    
-    2004-2024
-    henices
-  </div>
-  <div class="footer-right">
-    <nav>
-      <ul>
-        <!--
-       --><li><a href="/">首页</a></li><!--
-     --><!--
-       --><li><a href="/about/">关于</a></li><!--
-     --><!--
-       --><li><a href="/archives/">归档</a></li><!--
-     --><!--
-       --><li><a href="/search/">搜索</a></li><!--
-     --><!--
-       --><li><a href="/links/">链接</a></li><!--
-     --><!--
-       --><li><a href="/rss.xml">RSS</a></li><!--
-     -->
-      </ul>
-    </nav>
-  </div>
-</footer>
 
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
     </div>
-    <!-- styles -->
+  </div>
+</div>
 
+    
 
+    
+  </main>
 
-  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
-
-
-    <!-- jquery -->
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
-
-
-
-
-<!-- clipboard -->
-
+  <footer>
+    <div class="footer-inner">
   
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
   
-  <script type="text/javascript">
-  $(function() {
-    // copy-btn HTML
-    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板！\">";
-    btn += '<i class="fa-regular fa-clone"></i>';
-    btn += '</span>';
-    // mount it!
-    $(".highlight table").before(btn);
-    var clip = new ClipboardJS('.btn-copy', {
-      text: function(trigger) {
-        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
-      }
-    });
-    clip.on('success', function(e) {
-      e.trigger.setAttribute('aria-label', "复制成功！");
-      e.clearSelection();
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
     })
-  })
   </script>
 
 
-<script src="/js/main.js"></script>
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
 
-<!-- search -->
 
-<!-- Baidu Analytics -->
 
-<!-- Cloudflare Analytics -->
 
-<!-- Disqus Comments -->
 
-<!-- utterances Comments -->
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
 
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
 </body>
 </html>
