@@ -195,9 +195,9 @@
     
     
     
-    <category term="PKM" scheme="http://usmacd.com/tags/PKM/"/>
-    
     <category term="Software" scheme="http://usmacd.com/tags/Software/"/>
+    
+    <category term="PKM" scheme="http://usmacd.com/tags/PKM/"/>
     
   </entry>
   
@@ -453,9 +453,9 @@
     
     
     
-    <category term="linux" scheme="http://usmacd.com/tags/linux/"/>
-    
     <category term="Security" scheme="http://usmacd.com/tags/Security/"/>
+    
+    <category term="linux" scheme="http://usmacd.com/tags/linux/"/>
     
   </entry>
   

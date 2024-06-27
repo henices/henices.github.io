@@ -1,5 +1,5 @@
 <!doctype html>
-<html>
+<html style='font-size:16px !important'>
 <head>
 <meta charset='UTF-8'><meta name='viewport' content='width=device-width initial-scale=1'>
 <style type="text/css">
@@ -295,6 +295,12 @@ mjx-container { break-inside: avoid; }
 .cm-s-inner .CodeMirror-line>span>span::-moz-selection {
     background: rgba(0,178,123,0.2);
 }
+.cm-s-inner .CodeMirror-selected {
+    background: rgba(0,178,123,0.2) !important;
+}
+.cm-s-inner .CodeMirror-selectedtext {
+    background: transparent !important;
+}
 
 .cm-s-inner .CodeMirror-activeline-background {
     background: #003444;
@@ -467,6 +473,9 @@ mjx-container { break-inside: avoid; }
   line-height: 1.6;
   padding: 36px 0 70px;
 }
+#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p {
+  width: auto;
+}
 html, body, #write {
   background: var(--white-color);
   font-family: 'SourceHanSansSC','JetBrains Mono', -apple-system, sans-serif;
@@ -580,6 +589,16 @@ h2.md-focus::before, h3.md-focus::before, h4.md-focus::before, h5.md-focus::befo
 #write a:hover {
   text-decoration: none;
   border-bottom: 1px solid;
+}
+#write .md-link a>span:after {
+  content: '';
+  display: inline-block;
+  background-image: url("file:////home/henices/.config/Typora/themes/forest/link-icon.svg");
+  background-repeat: no-repeat;
+  width: 0.8em;
+  height: 0.8em;
+  vertical-align: middle;
+  margin-left: 3px;
 }
 
 strong {
@@ -1022,8 +1041,16 @@ table tr th:last-of-type, table tr td:last-of-type {
 /* sidebar search*/
 .sidebar-menu .ty-sidebar-search-panel #file-library-search-input {
   color: var(--white-color);
+  background: transparent;
 }
-
+/* sidebar tab for windows */
+.info-panel-tab:hover {
+  color: var(--white-color)!important;
+}
+.active-tab-files #info-panel-tab-file .info-panel-tab-border,
+.active-tab-outline #info-panel-tab-outline .info-panel-tab-border {
+  background-color: var(--white-color) !important;
+}
 
 /* resizer */
 #typora-sidebar-resizer.dragging{
@@ -1059,6 +1086,22 @@ table tr th:last-of-type, table tr td:last-of-type {
 #typora-source .cm-header {
   color: var(--theme-primary-color);
 }
+
+/* quick open bar */
+.ty-quick-open-category {
+  color: var(--white-color);
+}
+.ty-quick-open-category .typora-quick-open-item {
+  opacity: 0.5;
+}
+.ty-quick-open-category .typora-quick-open-item.active {
+  opacity: 1;
+}
+
+.CodeMirror.cm-s-inner.cm-s-null-scroll.CodeMirror-wrap {
+  padding: 8px;
+}
+
 
 
  .typora-export li, .typora-export p, .typora-export,  .footnote-line {white-space: normal;} h1,h2,h3,h4,h5 {white-space:pre-line}
