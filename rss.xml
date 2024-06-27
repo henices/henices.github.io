@@ -204,9 +204,9 @@
       
       
       
-      <category domain="http://usmacd.com/tags/Software/">Software</category>
-      
       <category domain="http://usmacd.com/tags/PKM/">PKM</category>
+      
+      <category domain="http://usmacd.com/tags/Software/">Software</category>
       
       
       <comments>http://usmacd.com/cn/logseq_practice/#disqus_thread</comments>
@@ -484,9 +484,9 @@
       
       
       
-      <category domain="http://usmacd.com/tags/Security/">Security</category>
-      
       <category domain="http://usmacd.com/tags/linux/">linux</category>
+      
+      <category domain="http://usmacd.com/tags/Security/">Security</category>
       
       
       <comments>http://usmacd.com/cn/qemu_kvm/#disqus_thread</comments>
