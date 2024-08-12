@@ -21,15 +21,15 @@
   <meta name="author" content="henices">
   <meta name="keywords" content="">
   
-    <meta name="description" content="这是一份很久远的笔记，质量也不高，以我现在的标准看是不合格的笔记。 但我觉得有些信息对大家可能还是能有一些帮助，不完善的地方，需要自行上网搜索，见谅！ ☆ 如何切换默认的桌面管理器Fedora 16 后使用新的方法来切换默认的桌面管理器。 1sudo systemctl enable --force lightdm.service 在以前的版本需要使用 &#x2F;etc&#x2F;sysconf">
+    <meta name="description" content="这是一份很久远的笔记，质量也不高，以我现在的标准看是不合格的笔记。 但我觉得有些信息对大家可能还是能有一些帮助，不完善的地方，需要自行上网搜索，见谅！ ☆ 如何切换默认的桌面管理器Fedora 16 后使用新的方法来切换默认的桌面管理器。 1sudo systemctl enable --force lightdm.service  在以前的版本需要使用 &#x2F;etc&#x2F;syscon">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Fedora 使用日常小记">
 <meta property="og:url" content="http://usmacd.com/cn/Fedora_usage/index.html">
 <meta property="og:site_name" content="安全代码">
-<meta property="og:description" content="这是一份很久远的笔记，质量也不高，以我现在的标准看是不合格的笔记。 但我觉得有些信息对大家可能还是能有一些帮助，不完善的地方，需要自行上网搜索，见谅！ ☆ 如何切换默认的桌面管理器Fedora 16 后使用新的方法来切换默认的桌面管理器。 1sudo systemctl enable --force lightdm.service 在以前的版本需要使用 &#x2F;etc&#x2F;sysconf">
+<meta property="og:description" content="这是一份很久远的笔记，质量也不高，以我现在的标准看是不合格的笔记。 但我觉得有些信息对大家可能还是能有一些帮助，不完善的地方，需要自行上网搜索，见谅！ ☆ 如何切换默认的桌面管理器Fedora 16 后使用新的方法来切换默认的桌面管理器。 1sudo systemctl enable --force lightdm.service  在以前的版本需要使用 &#x2F;etc&#x2F;syscon">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-07-23T16:00:00.000Z">
-<meta property="article:modified_time" content="2024-07-23T16:00:00.000Z">
+<meta property="article:modified_time" content="2024-08-11T16:00:00.000Z">
 <meta property="article:author" content="henices">
 <meta property="article:tag" content="linux">
 <meta name="twitter:card" content="summary_large_image">
@@ -265,7 +265,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          629 字
+          716 字
         
       </span>
     
@@ -324,6 +324,14 @@
           <article class="post-content mx-auto">
             <h1 id="seo-header">Fedora 使用日常小记</h1>
             
+              <p id="updated-time" class="note note-info" style="">
+                
+                  
+                    本文最后更新于 2024年8月12日 凌晨
+                  
+                
+              </p>
+            
             
               <div class="markdown-body">
                 
@@ -331,6 +339,7 @@
 <p>但我觉得有些信息对大家可能还是能有一些帮助，不完善的地方，需要自行上网搜索，见谅！</p>
 <h2 id="☆-如何切换默认的桌面管理器"><a href="#☆-如何切换默认的桌面管理器" class="headerlink" title="☆ 如何切换默认的桌面管理器"></a>☆ 如何切换默认的桌面管理器</h2><p>Fedora 16 后使用新的方法来切换默认的桌面管理器。</p>
 <figure class="highlight nsis"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs nsis">sudo <span class="hljs-params">system</span>ctl enable --<span class="hljs-literal">force</span> lightdm.service<br></code></pre></td></tr></table></figure>
+
 <p>在以前的版本需要使用 &#x2F;etc&#x2F;sysconfig&#x2F;desktop 文件来切换。</p>
 <p>参考链接 : <a target="_blank" rel="noopener" href="https://docs.fedoraproject.org/en-US/Fedora/18/html/Release_Notes/sect-Release_Notes-Changes_for_Desktop.html">https://docs.fedoraproject.org/en-US/Fedora/18/html/Release_Notes/sect-Release_Notes-Changes_for_Desktop.html</a></p>
 <h2 id="☆-如何为-dnf-设置代理"><a href="#☆-如何为-dnf-设置代理" class="headerlink" title="☆ 如何为 dnf 设置代理"></a>☆ 如何为 dnf 设置代理</h2><p>方法1: 使用环境变量设置 socks5 代码</p>
@@ -372,6 +381,27 @@
 
 <h2 id="☆-升级系统后-Virtualbox-无法启动虚拟机"><a href="#☆-升级系统后-Virtualbox-无法启动虚拟机" class="headerlink" title="☆ 升级系统后, Virtualbox 无法启动虚拟机"></a>☆ 升级系统后, Virtualbox 无法启动虚拟机</h2><p>原因是 vbox 的内核模块没有加载上，执行下面的命令即可</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo /usr/sbin/akmods --force<br>sudo systemctl restart systemd-modules-load.service<br></code></pre></td></tr></table></figure>
+
+<h2 id="☆-Fedora-如何升级最新的-Docker"><a href="#☆-Fedora-如何升级最新的-Docker" class="headerlink" title="☆ Fedora 如何升级最新的 Docker"></a>☆ Fedora 如何升级最新的 Docker</h2><p>1）移除老的 Docker</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo dnf remove docker \<br>                 docker-client \<br>                 docker-client-latest \<br>                 docker-common \<br>                 docker-latest \<br>                 docker-latest-logrotate \<br>                 docker-logrotate \<br>                 docker-selinux \<br>                 docker-engine-selinux \<br>                 docker-engine<br></code></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>安装 Docker 仓库</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo dnf -y install dnf-plugins-core<br>sudo dnf config-manager --add-repo https://download.docker.com/linux/fedora/docker-ce.repo<br></code></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>安装 Docker 引擎</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo dnf install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin<br></code></pre></td></tr></table></figure>
+
+<p>检查 GPG key 是否为 <code>060A 61C5 1B55 8A7F 742B 77AA C52F EB6B 621E 9F35</code>, 是的话，accept it</p>
+<ol start="4">
+<li>重启 Docker 服务</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo systemctl start docker<br></code></pre></td></tr></table></figure>
+
+<p><a target="_blank" rel="noopener" href="https://docs.docker.com/engine/install/fedora/#set-up-the-repository">https://docs.docker.com/engine/install/fedora/#set-up-the-repository</a></p>
 
                 
               </div>
