@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://usmacd.com/cn/how_to_write_technique_note/</loc>
+    
+    <lastmod>2024-08-15</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>http://usmacd.com/cn/zhengweizhongyao/</loc>
     
     <lastmod>2024-08-13</lastmod>
@@ -239,15 +248,6 @@
     <loc>http://usmacd.com/cn/android_use_proxy_of_pc/</loc>
     
     <lastmod>2024-02-28</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://usmacd.com/cn/how_to_write_technique_note/</loc>
-    
-    <lastmod>2024-02-04</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
