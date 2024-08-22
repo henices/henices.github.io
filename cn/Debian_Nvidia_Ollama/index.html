@@ -266,7 +266,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          998 字
+          999 字
         
       </span>
     
@@ -382,7 +382,7 @@
 <p>测试 llama3 模型，运行正常。</p>
 <figure class="highlight vbnet"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs vbnet">ollama run llama3  <br>&gt;&gt;&gt; hi  <br>Hi! It<span class="hljs-comment">&#x27;s nice to meet you. Is there something I can help you with or would you like to chat?</span><br></code></pre></td></tr></table></figure>
 <h2 id="升级-Ollama"><a href="#升级-Ollama" class="headerlink" title="升级 Ollama"></a>升级 Ollama</h2><p>Ollama 0.3.0 支持通过 llama3.1 进行工具调用，有必要升级。参见 [4]</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sh">sudo curl -L https://ollama.com/download/ollama-linux-amd64 -o /usr/bin/ollama<br>sudo <span class="hljs-built_in">chmod</span> +x /usr/bin/ollama<br></code></pre></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sh">sudo curl -L https://ollama.com/download/ollama-linux-amd64 -o /usr/local/bin/ollama<br>sudo <span class="hljs-built_in">chmod</span> +x /usr/bin/ollama<br></code></pre></td></tr></table></figure>
 
 <p>升级完毕，需要重启 Ollama 服务。</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sh">sudo systemctl daemon-reload<br>sudo systemctl restart ollama<br></code></pre></td></tr></table></figure>
