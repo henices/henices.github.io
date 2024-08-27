@@ -4,9 +4,9 @@
   xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>安全代码</title>
-    <link>http://usmacd.com/</link>
+    <link>https://usmacd.com/</link>
     
-    <atom:link href="http://usmacd.com/rss.xml" rel="self" type="application/rss+xml"/>
+    <atom:link href="https://usmacd.com/rss.xml" rel="self" type="application/rss+xml"/>
     
     <description></description>
     <pubDate>Sun, 25 Aug 2024 16:00:00 GMT</pubDate>
@@ -14,8 +14,8 @@
     
     <item>
       <title>几秒钟内整理数字生活的系统</title>
-      <link>http://usmacd.com/cn/PARA_methd/</link>
-      <guid>http://usmacd.com/cn/PARA_methd/</guid>
+      <link>https://usmacd.com/cn/PARA_methd/</link>
+      <guid>https://usmacd.com/cn/PARA_methd/</guid>
       <pubDate>Sun, 25 Aug 2024 16:00:00 GMT</pubDate>
       
         
@@ -31,17 +31,17 @@
       
       
       
-      <category domain="http://usmacd.com/tags/PKM/">PKM</category>
+      <category domain="https://usmacd.com/tags/PKM/">PKM</category>
       
       
-      <comments>http://usmacd.com/cn/PARA_methd/#disqus_thread</comments>
+      <comments>https://usmacd.com/cn/PARA_methd/#disqus_thread</comments>
       
     </item>
     
     <item>
       <title>如何提取 Android 手机中已经安装的 APK 文件</title>
-      <link>http://usmacd.com/cn/android_apk_extract/</link>
-      <guid>http://usmacd.com/cn/android_apk_extract/</guid>
+      <link>https://usmacd.com/cn/android_apk_extract/</link>
+      <guid>https://usmacd.com/cn/android_apk_extract/</guid>
       <pubDate>Wed, 21 Aug 2024 16:00:00 GMT</pubDate>
       
         
@@ -56,17 +56,17 @@
       
       
       
-      <category domain="http://usmacd.com/tags/Android/">Android</category>
+      <category domain="https://usmacd.com/tags/Android/">Android</category>
       
       
-      <comments>http://usmacd.com/cn/android_apk_extract/#disqus_thread</comments>
+      <comments>https://usmacd.com/cn/android_apk_extract/#disqus_thread</comments>
       
     </item>
     
     <item>
       <title>Debian 12 安装 Nvidia 驱动和 Ollama</title>
-      <link>http://usmacd.com/cn/Debian_Nvidia_Ollama/</link>
-      <guid>http://usmacd.com/cn/Debian_Nvidia_Ollama/</guid>
+      <link>https://usmacd.com/cn/Debian_Nvidia_Ollama/</link>
+      <guid>https://usmacd.com/cn/Debian_Nvidia_Ollama/</guid>
       <pubDate>Thu, 25 Jul 2024 16:00:00 GMT</pubDate>
       
         
@@ -81,19 +81,19 @@
       
       
       
-      <category domain="http://usmacd.com/tags/linux/">linux</category>
+      <category domain="https://usmacd.com/tags/linux/">linux</category>
       
-      <category domain="http://usmacd.com/tags/ai/">ai</category>
+      <category domain="https://usmacd.com/tags/ai/">ai</category>
       
       
-      <comments>http://usmacd.com/cn/Debian_Nvidia_Ollama/#disqus_thread</comments>
+      <comments>https://usmacd.com/cn/Debian_Nvidia_Ollama/#disqus_thread</comments>
       
     </item>
     
     <item>
       <title>马斯克的哲学</title>
-      <link>http://usmacd.com/cn/elon_philosophy/</link>
-      <guid>http://usmacd.com/cn/elon_philosophy/</guid>
+      <link>https://usmacd.com/cn/elon_philosophy/</link>
+      <guid>https://usmacd.com/cn/elon_philosophy/</guid>
       <pubDate>Wed, 24 Jul 2024 16:00:00 GMT</pubDate>
       
         
@@ -107,17 +107,17 @@
       
       
       
-      <category domain="http://usmacd.com/tags/KNOWLEDGE/">KNOWLEDGE</category>
+      <category domain="https://usmacd.com/tags/KNOWLEDGE/">KNOWLEDGE</category>
       
       
-      <comments>http://usmacd.com/cn/elon_philosophy/#disqus_thread</comments>
+      <comments>https://usmacd.com/cn/elon_philosophy/#disqus_thread</comments>
       
     </item>
     
     <item>
       <title>Fedora 使用日常小记</title>
-      <link>http://usmacd.com/cn/Fedora_usage/</link>
-      <guid>http://usmacd.com/cn/Fedora_usage/</guid>
+      <link>https://usmacd.com/cn/Fedora_usage/</link>
+      <guid>https://usmacd.com/cn/Fedora_usage/</guid>
       <pubDate>Tue, 23 Jul 2024 16:00:00 GMT</pubDate>
       
         
@@ -133,17 +133,17 @@
       
       
       
-      <category domain="http://usmacd.com/tags/linux/">linux</category>
+      <category domain="https://usmacd.com/tags/linux/">linux</category>
       
       
-      <comments>http://usmacd.com/cn/Fedora_usage/#disqus_thread</comments>
+      <comments>https://usmacd.com/cn/Fedora_usage/#disqus_thread</comments>
       
     </item>
     
     <item>
       <title>付费专栏：《曼福吉的分享》</title>
-      <link>http://usmacd.com/cn/share_knowledge/</link>
-      <guid>http://usmacd.com/cn/share_knowledge/</guid>
+      <link>https://usmacd.com/cn/share_knowledge/</link>
+      <guid>https://usmacd.com/cn/share_knowledge/</guid>
       <pubDate>Sat, 20 Jul 2024 16:00:00 GMT</pubDate>
       
         
@@ -159,17 +159,17 @@
       
       
       
-      <category domain="http://usmacd.com/tags/KNOWLEDGE/">KNOWLEDGE</category>
+      <category domain="https://usmacd.com/tags/KNOWLEDGE/">KNOWLEDGE</category>
       
       
-      <comments>http://usmacd.com/cn/share_knowledge/#disqus_thread</comments>
+      <comments>https://usmacd.com/cn/share_knowledge/#disqus_thread</comments>
       
     </item>
     
     <item>
       <title>读《运气与努力》有感</title>
-      <link>http://usmacd.com/cn/luck_and_success/</link>
-      <guid>http://usmacd.com/cn/luck_and_success/</guid>
+      <link>https://usmacd.com/cn/luck_and_success/</link>
+      <guid>https://usmacd.com/cn/luck_and_success/</guid>
       <pubDate>Sat, 15 Jun 2024 16:00:00 GMT</pubDate>
       
         
@@ -184,17 +184,17 @@
       
       
       
-      <category domain="http://usmacd.com/tags/Misc/">Misc</category>
+      <category domain="https://usmacd.com/tags/Misc/">Misc</category>
       
       
-      <comments>http://usmacd.com/cn/luck_and_success/#disqus_thread</comments>
+      <comments>https://usmacd.com/cn/luck_and_success/#disqus_thread</comments>
       
     </item>
     
     <item>
       <title>为 tmux 设置真彩色</title>
-      <link>http://usmacd.com/cn/tmux_truecolor/</link>
-      <guid>http://usmacd.com/cn/tmux_truecolor/</guid>
+      <link>https://usmacd.com/cn/tmux_truecolor/</link>
+      <guid>https://usmacd.com/cn/tmux_truecolor/</guid>
       <pubDate>Tue, 11 Jun 2024 16:00:00 GMT</pubDate>
       
         
@@ -209,17 +209,17 @@
       
       
       
-      <category domain="http://usmacd.com/tags/linux/">linux</category>
+      <category domain="https://usmacd.com/tags/linux/">linux</category>
       
       
-      <comments>http://usmacd.com/cn/tmux_truecolor/#disqus_thread</comments>
+      <comments>https://usmacd.com/cn/tmux_truecolor/#disqus_thread</comments>
       
     </item>
     
     <item>
       <title>Android 系统的 USB Tethering 功能</title>
-      <link>http://usmacd.com/cn/android_usb_tethering/</link>
-      <guid>http://usmacd.com/cn/android_usb_tethering/</guid>
+      <link>https://usmacd.com/cn/android_usb_tethering/</link>
+      <guid>https://usmacd.com/cn/android_usb_tethering/</guid>
       <pubDate>Sun, 05 May 2024 16:00:00 GMT</pubDate>
       
         
@@ -234,17 +234,17 @@
       
       
       
-      <category domain="http://usmacd.com/tags/Android/">Android</category>
+      <category domain="https://usmacd.com/tags/Android/">Android</category>
       
       
-      <comments>http://usmacd.com/cn/android_usb_tethering/#disqus_thread</comments>
+      <comments>https://usmacd.com/cn/android_usb_tethering/#disqus_thread</comments>
       
     </item>
     
     <item>
       <title>知识管理的几个误区</title>
-      <link>http://usmacd.com/cn/PKM_faults/</link>
-      <guid>http://usmacd.com/cn/PKM_faults/</guid>
+      <link>https://usmacd.com/cn/PKM_faults/</link>
+      <guid>https://usmacd.com/cn/PKM_faults/</guid>
       <pubDate>Sun, 21 Apr 2024 16:00:00 GMT</pubDate>
       
         
@@ -259,17 +259,17 @@
       
       
       
-      <category domain="http://usmacd.com/tags/PKM/">PKM</category>
+      <category domain="https://usmacd.com/tags/PKM/">PKM</category>
       
       
-      <comments>http://usmacd.com/cn/PKM_faults/#disqus_thread</comments>
+      <comments>https://usmacd.com/cn/PKM_faults/#disqus_thread</comments>
       
     </item>
     
     <item>
       <title>也许学校根本没有教你如何学习：论什么是真正的自学</title>
-      <link>http://usmacd.com/cn/learn_method/</link>
-      <guid>http://usmacd.com/cn/learn_method/</guid>
+      <link>https://usmacd.com/cn/learn_method/</link>
+      <guid>https://usmacd.com/cn/learn_method/</guid>
       <pubDate>Sun, 14 Apr 2024 16:00:00 GMT</pubDate>
       
         
@@ -284,17 +284,17 @@
       
       
       
-      <category domain="http://usmacd.com/tags/KNOWLEDGE/">KNOWLEDGE</category>
+      <category domain="https://usmacd.com/tags/KNOWLEDGE/">KNOWLEDGE</category>
       
       
-      <comments>http://usmacd.com/cn/learn_method/#disqus_thread</comments>
+      <comments>https://usmacd.com/cn/learn_method/#disqus_thread</comments>
       
     </item>
     
     <item>
       <title>李录谈价值投资</title>
-      <link>http://usmacd.com/cn/lilu/</link>
-      <guid>http://usmacd.com/cn/lilu/</guid>
+      <link>https://usmacd.com/cn/lilu/</link>
+      <guid>https://usmacd.com/cn/lilu/</guid>
       <pubDate>Tue, 02 Apr 2024 16:00:00 GMT</pubDate>
       
         
@@ -309,17 +309,17 @@
       
       
       
-      <category domain="http://usmacd.com/tags/investment/">investment</category>
+      <category domain="https://usmacd.com/tags/investment/">investment</category>
       
       
-      <comments>http://usmacd.com/cn/lilu/#disqus_thread</comments>
+      <comments>https://usmacd.com/cn/lilu/#disqus_thread</comments>
       
     </item>
     
     <item>
       <title>AFL++ 漏洞挖掘实例</title>
-      <link>http://usmacd.com/cn/AFL++%20%E6%BC%8F%E6%B4%9E%E6%8C%96%E6%8E%98%E5%AE%9E%E4%BE%8B/</link>
-      <guid>http://usmacd.com/cn/AFL++%20%E6%BC%8F%E6%B4%9E%E6%8C%96%E6%8E%98%E5%AE%9E%E4%BE%8B/</guid>
+      <link>https://usmacd.com/cn/AFL++%20%E6%BC%8F%E6%B4%9E%E6%8C%96%E6%8E%98%E5%AE%9E%E4%BE%8B/</link>
+      <guid>https://usmacd.com/cn/AFL++%20%E6%BC%8F%E6%B4%9E%E6%8C%96%E6%8E%98%E5%AE%9E%E4%BE%8B/</guid>
       <pubDate>Sun, 31 Mar 2024 16:00:00 GMT</pubDate>
       
         
@@ -333,17 +333,17 @@
       
       
       
-      <category domain="http://usmacd.com/tags/Security/">Security</category>
+      <category domain="https://usmacd.com/tags/Security/">Security</category>
       
       
-      <comments>http://usmacd.com/cn/AFL++%20%E6%BC%8F%E6%B4%9E%E6%8C%96%E6%8E%98%E5%AE%9E%E4%BE%8B/#disqus_thread</comments>
+      <comments>https://usmacd.com/cn/AFL++%20%E6%BC%8F%E6%B4%9E%E6%8C%96%E6%8E%98%E5%AE%9E%E4%BE%8B/#disqus_thread</comments>
       
     </item>
     
     <item>
       <title>我的 Logseq 使用实践</title>
-      <link>http://usmacd.com/cn/logseq_practice/</link>
-      <guid>http://usmacd.com/cn/logseq_practice/</guid>
+      <link>https://usmacd.com/cn/logseq_practice/</link>
+      <guid>https://usmacd.com/cn/logseq_practice/</guid>
       <pubDate>Sat, 30 Mar 2024 16:00:00 GMT</pubDate>
       
         
@@ -358,19 +358,19 @@
       
       
       
-      <category domain="http://usmacd.com/tags/PKM/">PKM</category>
+      <category domain="https://usmacd.com/tags/PKM/">PKM</category>
       
-      <category domain="http://usmacd.com/tags/Software/">Software</category>
+      <category domain="https://usmacd.com/tags/Software/">Software</category>
       
       
-      <comments>http://usmacd.com/cn/logseq_practice/#disqus_thread</comments>
+      <comments>https://usmacd.com/cn/logseq_practice/#disqus_thread</comments>
       
     </item>
     
     <item>
       <title>Some Logseq plugins I&#39;m currently using</title>
-      <link>http://usmacd.com/en/logseq_plugins_en/</link>
-      <guid>http://usmacd.com/en/logseq_plugins_en/</guid>
+      <link>https://usmacd.com/en/logseq_plugins_en/</link>
+      <guid>https://usmacd.com/en/logseq_plugins_en/</guid>
       <pubDate>Mon, 25 Mar 2024 16:00:00 GMT</pubDate>
       
         
@@ -384,17 +384,17 @@
       
       
       
-      <category domain="http://usmacd.com/tags/Software/">Software</category>
+      <category domain="https://usmacd.com/tags/Software/">Software</category>
       
       
-      <comments>http://usmacd.com/en/logseq_plugins_en/#disqus_thread</comments>
+      <comments>https://usmacd.com/en/logseq_plugins_en/#disqus_thread</comments>
       
     </item>
     
     <item>
       <title>我正在使用的 Logseq Plugin (插件)</title>
-      <link>http://usmacd.com/cn/logseq_plugins/</link>
-      <guid>http://usmacd.com/cn/logseq_plugins/</guid>
+      <link>https://usmacd.com/cn/logseq_plugins/</link>
+      <guid>https://usmacd.com/cn/logseq_plugins/</guid>
       <pubDate>Mon, 18 Mar 2024 16:00:00 GMT</pubDate>
       
         
@@ -408,17 +408,17 @@
       
       
       
-      <category domain="http://usmacd.com/tags/Software/">Software</category>
+      <category domain="https://usmacd.com/tags/Software/">Software</category>
       
       
-      <comments>http://usmacd.com/cn/logseq_plugins/#disqus_thread</comments>
+      <comments>https://usmacd.com/cn/logseq_plugins/#disqus_thread</comments>
       
     </item>
     
     <item>
       <title>如果语言学习只能做一件事</title>
-      <link>http://usmacd.com/cn/language_learning/</link>
-      <guid>http://usmacd.com/cn/language_learning/</guid>
+      <link>https://usmacd.com/cn/language_learning/</link>
+      <guid>https://usmacd.com/cn/language_learning/</guid>
       <pubDate>Wed, 13 Mar 2024 16:00:00 GMT</pubDate>
       
         
@@ -432,17 +432,17 @@
       
       
       
-      <category domain="http://usmacd.com/tags/KNOWLEDGE/">KNOWLEDGE</category>
+      <category domain="https://usmacd.com/tags/KNOWLEDGE/">KNOWLEDGE</category>
       
       
-      <comments>http://usmacd.com/cn/language_learning/#disqus_thread</comments>
+      <comments>https://usmacd.com/cn/language_learning/#disqus_thread</comments>
       
     </item>
     
     <item>
       <title>金融市场中的不同流派</title>
-      <link>http://usmacd.com/cn/investment_category/</link>
-      <guid>http://usmacd.com/cn/investment_category/</guid>
+      <link>https://usmacd.com/cn/investment_category/</link>
+      <guid>https://usmacd.com/cn/investment_category/</guid>
       <pubDate>Thu, 07 Mar 2024 16:00:00 GMT</pubDate>
       
         
@@ -460,17 +460,17 @@
       
       
       
-      <category domain="http://usmacd.com/tags/investment/">investment</category>
+      <category domain="https://usmacd.com/tags/investment/">investment</category>
       
       
-      <comments>http://usmacd.com/cn/investment_category/#disqus_thread</comments>
+      <comments>https://usmacd.com/cn/investment_category/#disqus_thread</comments>
       
     </item>
     
     <item>
       <title>Android 手机使用 PC 代理上网的方法</title>
-      <link>http://usmacd.com/cn/android_use_proxy_of_pc/</link>
-      <guid>http://usmacd.com/cn/android_use_proxy_of_pc/</guid>
+      <link>https://usmacd.com/cn/android_use_proxy_of_pc/</link>
+      <guid>https://usmacd.com/cn/android_use_proxy_of_pc/</guid>
       <pubDate>Mon, 26 Feb 2024 16:00:00 GMT</pubDate>
       
         
@@ -485,17 +485,17 @@
       
       
       
-      <category domain="http://usmacd.com/tags/Android/">Android</category>
+      <category domain="https://usmacd.com/tags/Android/">Android</category>
       
       
-      <comments>http://usmacd.com/cn/android_use_proxy_of_pc/#disqus_thread</comments>
+      <comments>https://usmacd.com/cn/android_use_proxy_of_pc/#disqus_thread</comments>
       
     </item>
     
     <item>
       <title>如何写好一篇技术笔记</title>
-      <link>http://usmacd.com/cn/how_to_write_technique_note/</link>
-      <guid>http://usmacd.com/cn/how_to_write_technique_note/</guid>
+      <link>https://usmacd.com/cn/how_to_write_technique_note/</link>
+      <guid>https://usmacd.com/cn/how_to_write_technique_note/</guid>
       <pubDate>Sat, 03 Feb 2024 16:00:00 GMT</pubDate>
       
         
@@ -511,10 +511,10 @@
       
       
       
-      <category domain="http://usmacd.com/tags/PKM/">PKM</category>
+      <category domain="https://usmacd.com/tags/PKM/">PKM</category>
       
       
-      <comments>http://usmacd.com/cn/how_to_write_technique_note/#disqus_thread</comments>
+      <comments>https://usmacd.com/cn/how_to_write_technique_note/#disqus_thread</comments>
       
     </item>
     

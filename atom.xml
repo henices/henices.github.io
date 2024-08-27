@@ -3,11 +3,11 @@
   <title>安全代码</title>
   
   <subtitle>关注科技、投资、健康，和个人成长</subtitle>
-  <link href="http://usmacd.com/atom.xml" rel="self"/>
+  <link href="https://usmacd.com/atom.xml" rel="self"/>
   
-  <link href="http://usmacd.com/"/>
+  <link href="https://usmacd.com/"/>
   <updated>2024-08-25T16:00:00.000Z</updated>
-  <id>http://usmacd.com/</id>
+  <id>https://usmacd.com/</id>
   
   <author>
     <name>henices</name>
@@ -18,8 +18,8 @@
   
   <entry>
     <title>几秒钟内整理数字生活的系统</title>
-    <link href="http://usmacd.com/cn/PARA_methd/"/>
-    <id>http://usmacd.com/cn/PARA_methd/</id>
+    <link href="https://usmacd.com/cn/PARA_methd/"/>
+    <id>https://usmacd.com/cn/PARA_methd/</id>
     <published>2024-08-25T16:00:00.000Z</published>
     <updated>2024-08-25T16:00:00.000Z</updated>
     
@@ -36,14 +36,14 @@
     
     
     
-    <category term="PKM" scheme="http://usmacd.com/tags/PKM/"/>
+    <category term="PKM" scheme="https://usmacd.com/tags/PKM/"/>
     
   </entry>
   
   <entry>
     <title>如何提取 Android 手机中已经安装的 APK 文件</title>
-    <link href="http://usmacd.com/cn/android_apk_extract/"/>
-    <id>http://usmacd.com/cn/android_apk_extract/</id>
+    <link href="https://usmacd.com/cn/android_apk_extract/"/>
+    <id>https://usmacd.com/cn/android_apk_extract/</id>
     <published>2024-08-21T16:00:00.000Z</published>
     <updated>2024-08-21T16:00:00.000Z</updated>
     
@@ -59,14 +59,14 @@
     
     
     
-    <category term="Android" scheme="http://usmacd.com/tags/Android/"/>
+    <category term="Android" scheme="https://usmacd.com/tags/Android/"/>
     
   </entry>
   
   <entry>
     <title>Debian 12 安装 Nvidia 驱动和 Ollama</title>
-    <link href="http://usmacd.com/cn/Debian_Nvidia_Ollama/"/>
-    <id>http://usmacd.com/cn/Debian_Nvidia_Ollama/</id>
+    <link href="https://usmacd.com/cn/Debian_Nvidia_Ollama/"/>
+    <id>https://usmacd.com/cn/Debian_Nvidia_Ollama/</id>
     <published>2024-07-25T16:00:00.000Z</published>
     <updated>2024-08-21T16:00:00.000Z</updated>
     
@@ -82,16 +82,16 @@
     
     
     
-    <category term="linux" scheme="http://usmacd.com/tags/linux/"/>
+    <category term="linux" scheme="https://usmacd.com/tags/linux/"/>
     
-    <category term="ai" scheme="http://usmacd.com/tags/ai/"/>
+    <category term="ai" scheme="https://usmacd.com/tags/ai/"/>
     
   </entry>
   
   <entry>
     <title>马斯克的哲学</title>
-    <link href="http://usmacd.com/cn/elon_philosophy/"/>
-    <id>http://usmacd.com/cn/elon_philosophy/</id>
+    <link href="https://usmacd.com/cn/elon_philosophy/"/>
+    <id>https://usmacd.com/cn/elon_philosophy/</id>
     <published>2024-07-24T16:00:00.000Z</published>
     <updated>2024-07-24T16:00:00.000Z</updated>
     
@@ -106,14 +106,14 @@
     
     
     
-    <category term="KNOWLEDGE" scheme="http://usmacd.com/tags/KNOWLEDGE/"/>
+    <category term="KNOWLEDGE" scheme="https://usmacd.com/tags/KNOWLEDGE/"/>
     
   </entry>
   
   <entry>
     <title>Fedora 使用日常小记</title>
-    <link href="http://usmacd.com/cn/Fedora_usage/"/>
-    <id>http://usmacd.com/cn/Fedora_usage/</id>
+    <link href="https://usmacd.com/cn/Fedora_usage/"/>
+    <id>https://usmacd.com/cn/Fedora_usage/</id>
     <published>2024-07-23T16:00:00.000Z</published>
     <updated>2024-08-11T16:00:00.000Z</updated>
     
@@ -130,14 +130,14 @@
     
     
     
-    <category term="linux" scheme="http://usmacd.com/tags/linux/"/>
+    <category term="linux" scheme="https://usmacd.com/tags/linux/"/>
     
   </entry>
   
   <entry>
     <title>付费专栏：《曼福吉的分享》</title>
-    <link href="http://usmacd.com/cn/share_knowledge/"/>
-    <id>http://usmacd.com/cn/share_knowledge/</id>
+    <link href="https://usmacd.com/cn/share_knowledge/"/>
+    <id>https://usmacd.com/cn/share_knowledge/</id>
     <published>2024-07-20T16:00:00.000Z</published>
     <updated>2024-07-20T16:00:00.000Z</updated>
     
@@ -154,14 +154,14 @@
     
     
     
-    <category term="KNOWLEDGE" scheme="http://usmacd.com/tags/KNOWLEDGE/"/>
+    <category term="KNOWLEDGE" scheme="https://usmacd.com/tags/KNOWLEDGE/"/>
     
   </entry>
   
   <entry>
     <title>读《运气与努力》有感</title>
-    <link href="http://usmacd.com/cn/luck_and_success/"/>
-    <id>http://usmacd.com/cn/luck_and_success/</id>
+    <link href="https://usmacd.com/cn/luck_and_success/"/>
+    <id>https://usmacd.com/cn/luck_and_success/</id>
     <published>2024-06-15T16:00:00.000Z</published>
     <updated>2024-07-04T16:00:00.000Z</updated>
     
@@ -177,14 +177,14 @@
     
     
     
-    <category term="Misc" scheme="http://usmacd.com/tags/Misc/"/>
+    <category term="Misc" scheme="https://usmacd.com/tags/Misc/"/>
     
   </entry>
   
   <entry>
     <title>为 tmux 设置真彩色</title>
-    <link href="http://usmacd.com/cn/tmux_truecolor/"/>
-    <id>http://usmacd.com/cn/tmux_truecolor/</id>
+    <link href="https://usmacd.com/cn/tmux_truecolor/"/>
+    <id>https://usmacd.com/cn/tmux_truecolor/</id>
     <published>2024-06-11T16:00:00.000Z</published>
     <updated>2024-06-11T16:00:00.000Z</updated>
     
@@ -200,14 +200,14 @@
     
     
     
-    <category term="linux" scheme="http://usmacd.com/tags/linux/"/>
+    <category term="linux" scheme="https://usmacd.com/tags/linux/"/>
     
   </entry>
   
   <entry>
     <title>Android 系统的 USB Tethering 功能</title>
-    <link href="http://usmacd.com/cn/android_usb_tethering/"/>
-    <id>http://usmacd.com/cn/android_usb_tethering/</id>
+    <link href="https://usmacd.com/cn/android_usb_tethering/"/>
+    <id>https://usmacd.com/cn/android_usb_tethering/</id>
     <published>2024-05-05T16:00:00.000Z</published>
     <updated>2024-05-05T16:00:00.000Z</updated>
     
@@ -223,14 +223,14 @@
     
     
     
-    <category term="Android" scheme="http://usmacd.com/tags/Android/"/>
+    <category term="Android" scheme="https://usmacd.com/tags/Android/"/>
     
   </entry>
   
   <entry>
     <title>知识管理的几个误区</title>
-    <link href="http://usmacd.com/cn/PKM_faults/"/>
-    <id>http://usmacd.com/cn/PKM_faults/</id>
+    <link href="https://usmacd.com/cn/PKM_faults/"/>
+    <id>https://usmacd.com/cn/PKM_faults/</id>
     <published>2024-04-21T16:00:00.000Z</published>
     <updated>2024-07-03T16:00:00.000Z</updated>
     
@@ -246,14 +246,14 @@
     
     
     
-    <category term="PKM" scheme="http://usmacd.com/tags/PKM/"/>
+    <category term="PKM" scheme="https://usmacd.com/tags/PKM/"/>
     
   </entry>
   
   <entry>
     <title>也许学校根本没有教你如何学习：论什么是真正的自学</title>
-    <link href="http://usmacd.com/cn/learn_method/"/>
-    <id>http://usmacd.com/cn/learn_method/</id>
+    <link href="https://usmacd.com/cn/learn_method/"/>
+    <id>https://usmacd.com/cn/learn_method/</id>
     <published>2024-04-14T16:00:00.000Z</published>
     <updated>2024-04-14T16:00:00.000Z</updated>
     
@@ -269,14 +269,14 @@
     
     
     
-    <category term="KNOWLEDGE" scheme="http://usmacd.com/tags/KNOWLEDGE/"/>
+    <category term="KNOWLEDGE" scheme="https://usmacd.com/tags/KNOWLEDGE/"/>
     
   </entry>
   
   <entry>
     <title>李录谈价值投资</title>
-    <link href="http://usmacd.com/cn/lilu/"/>
-    <id>http://usmacd.com/cn/lilu/</id>
+    <link href="https://usmacd.com/cn/lilu/"/>
+    <id>https://usmacd.com/cn/lilu/</id>
     <published>2024-04-02T16:00:00.000Z</published>
     <updated>2024-04-02T16:00:00.000Z</updated>
     
@@ -292,14 +292,14 @@
     
     
     
-    <category term="investment" scheme="http://usmacd.com/tags/investment/"/>
+    <category term="investment" scheme="https://usmacd.com/tags/investment/"/>
     
   </entry>
   
   <entry>
     <title>AFL++ 漏洞挖掘实例</title>
-    <link href="http://usmacd.com/cn/AFL++%20%E6%BC%8F%E6%B4%9E%E6%8C%96%E6%8E%98%E5%AE%9E%E4%BE%8B/"/>
-    <id>http://usmacd.com/cn/AFL++%20%E6%BC%8F%E6%B4%9E%E6%8C%96%E6%8E%98%E5%AE%9E%E4%BE%8B/</id>
+    <link href="https://usmacd.com/cn/AFL++%20%E6%BC%8F%E6%B4%9E%E6%8C%96%E6%8E%98%E5%AE%9E%E4%BE%8B/"/>
+    <id>https://usmacd.com/cn/AFL++%20%E6%BC%8F%E6%B4%9E%E6%8C%96%E6%8E%98%E5%AE%9E%E4%BE%8B/</id>
     <published>2024-03-31T16:00:00.000Z</published>
     <updated>2024-03-31T16:00:00.000Z</updated>
     
@@ -314,14 +314,14 @@
     
     
     
-    <category term="Security" scheme="http://usmacd.com/tags/Security/"/>
+    <category term="Security" scheme="https://usmacd.com/tags/Security/"/>
     
   </entry>
   
   <entry>
     <title>我的 Logseq 使用实践</title>
-    <link href="http://usmacd.com/cn/logseq_practice/"/>
-    <id>http://usmacd.com/cn/logseq_practice/</id>
+    <link href="https://usmacd.com/cn/logseq_practice/"/>
+    <id>https://usmacd.com/cn/logseq_practice/</id>
     <published>2024-03-30T16:00:00.000Z</published>
     <updated>2024-06-20T16:00:00.000Z</updated>
     
@@ -337,16 +337,16 @@
     
     
     
-    <category term="PKM" scheme="http://usmacd.com/tags/PKM/"/>
+    <category term="PKM" scheme="https://usmacd.com/tags/PKM/"/>
     
-    <category term="Software" scheme="http://usmacd.com/tags/Software/"/>
+    <category term="Software" scheme="https://usmacd.com/tags/Software/"/>
     
   </entry>
   
   <entry>
     <title>Some Logseq plugins I&#39;m currently using</title>
-    <link href="http://usmacd.com/en/logseq_plugins_en/"/>
-    <id>http://usmacd.com/en/logseq_plugins_en/</id>
+    <link href="https://usmacd.com/en/logseq_plugins_en/"/>
+    <id>https://usmacd.com/en/logseq_plugins_en/</id>
     <published>2024-03-25T16:00:00.000Z</published>
     <updated>2024-03-25T16:00:00.000Z</updated>
     
@@ -361,14 +361,14 @@
     
     
     
-    <category term="Software" scheme="http://usmacd.com/tags/Software/"/>
+    <category term="Software" scheme="https://usmacd.com/tags/Software/"/>
     
   </entry>
   
   <entry>
     <title>我正在使用的 Logseq Plugin (插件)</title>
-    <link href="http://usmacd.com/cn/logseq_plugins/"/>
-    <id>http://usmacd.com/cn/logseq_plugins/</id>
+    <link href="https://usmacd.com/cn/logseq_plugins/"/>
+    <id>https://usmacd.com/cn/logseq_plugins/</id>
     <published>2024-03-18T16:00:00.000Z</published>
     <updated>2024-03-23T16:00:00.000Z</updated>
     
@@ -383,14 +383,14 @@
     
     
     
-    <category term="Software" scheme="http://usmacd.com/tags/Software/"/>
+    <category term="Software" scheme="https://usmacd.com/tags/Software/"/>
     
   </entry>
   
   <entry>
     <title>如果语言学习只能做一件事</title>
-    <link href="http://usmacd.com/cn/language_learning/"/>
-    <id>http://usmacd.com/cn/language_learning/</id>
+    <link href="https://usmacd.com/cn/language_learning/"/>
+    <id>https://usmacd.com/cn/language_learning/</id>
     <published>2024-03-13T16:00:00.000Z</published>
     <updated>2024-03-13T16:00:00.000Z</updated>
     
@@ -405,14 +405,14 @@
     
     
     
-    <category term="KNOWLEDGE" scheme="http://usmacd.com/tags/KNOWLEDGE/"/>
+    <category term="KNOWLEDGE" scheme="https://usmacd.com/tags/KNOWLEDGE/"/>
     
   </entry>
   
   <entry>
     <title>金融市场中的不同流派</title>
-    <link href="http://usmacd.com/cn/investment_category/"/>
-    <id>http://usmacd.com/cn/investment_category/</id>
+    <link href="https://usmacd.com/cn/investment_category/"/>
+    <id>https://usmacd.com/cn/investment_category/</id>
     <published>2024-03-07T16:00:00.000Z</published>
     <updated>2024-03-07T16:00:00.000Z</updated>
     
@@ -431,14 +431,14 @@
     
     
     
-    <category term="investment" scheme="http://usmacd.com/tags/investment/"/>
+    <category term="investment" scheme="https://usmacd.com/tags/investment/"/>
     
   </entry>
   
   <entry>
     <title>Android 手机使用 PC 代理上网的方法</title>
-    <link href="http://usmacd.com/cn/android_use_proxy_of_pc/"/>
-    <id>http://usmacd.com/cn/android_use_proxy_of_pc/</id>
+    <link href="https://usmacd.com/cn/android_use_proxy_of_pc/"/>
+    <id>https://usmacd.com/cn/android_use_proxy_of_pc/</id>
     <published>2024-02-26T16:00:00.000Z</published>
     <updated>2024-02-28T16:00:00.000Z</updated>
     
@@ -454,14 +454,14 @@
     
     
     
-    <category term="Android" scheme="http://usmacd.com/tags/Android/"/>
+    <category term="Android" scheme="https://usmacd.com/tags/Android/"/>
     
   </entry>
   
   <entry>
     <title>如何写好一篇技术笔记</title>
-    <link href="http://usmacd.com/cn/how_to_write_technique_note/"/>
-    <id>http://usmacd.com/cn/how_to_write_technique_note/</id>
+    <link href="https://usmacd.com/cn/how_to_write_technique_note/"/>
+    <id>https://usmacd.com/cn/how_to_write_technique_note/</id>
     <published>2024-02-03T16:00:00.000Z</published>
     <updated>2024-08-15T16:00:00.000Z</updated>
     
@@ -478,7 +478,7 @@
     
     
     
-    <category term="PKM" scheme="http://usmacd.com/tags/PKM/"/>
+    <category term="PKM" scheme="https://usmacd.com/tags/PKM/"/>
     
   </entry>
   
