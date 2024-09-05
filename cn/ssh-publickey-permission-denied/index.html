@@ -21,24 +21,24 @@
   <meta name="author" content="henices">
   <meta name="keywords" content="">
   
-    <meta name="description" content="本人IT男一枚，2015年入市，到今天5年多了，所幸还在吃人不露骨头的市场上活着，也是非常不容易。基本不存在什么特殊情况，韭菜总是在人声鼎沸的牛市高点入场，本人也不例外，上证3500多点入市，上证3800多点让媳妇买了沪深 300 基金 （不是ETF），这基金今年才解套，小赚出局了。 运气好的是，2015年的时候中了一支新股，新股的收益对冲了倒金字塔加仓的回撤，小赚1万元出局清了仓，有时候我也在想">
+    <meta name="description" content="openssh publickey 登录的方式突然不好用了，检查 grep sshd &#x2F;var&#x2F;log&#x2F;auth.log 1Aug 30 16:58:33 pm-65c50001 sshd[9118]: Authentication refused: bad ownership or modes for directory &#x2F;root  执行下面的命令后，可以成功登录了。 1234chown ro">
 <meta property="og:type" content="article">
-<meta property="og:title" content="个人炒股经历">
-<meta property="og:url" content="https://usmacd.com/cn/stock_experience/index.html">
+<meta property="og:title" content="ssh publickey permission denied 错误的解决方法">
+<meta property="og:url" content="https://usmacd.com/cn/ssh-publickey-permission-denied/index.html">
 <meta property="og:site_name" content="安全代码">
-<meta property="og:description" content="本人IT男一枚，2015年入市，到今天5年多了，所幸还在吃人不露骨头的市场上活着，也是非常不容易。基本不存在什么特殊情况，韭菜总是在人声鼎沸的牛市高点入场，本人也不例外，上证3500多点入市，上证3800多点让媳妇买了沪深 300 基金 （不是ETF），这基金今年才解套，小赚出局了。 运气好的是，2015年的时候中了一支新股，新股的收益对冲了倒金字塔加仓的回撤，小赚1万元出局清了仓，有时候我也在想">
+<meta property="og:description" content="openssh publickey 登录的方式突然不好用了，检查 grep sshd &#x2F;var&#x2F;log&#x2F;auth.log 1Aug 30 16:58:33 pm-65c50001 sshd[9118]: Authentication refused: bad ownership or modes for directory &#x2F;root  执行下面的命令后，可以成功登录了。 1234chown ro">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2023-09-06T03:00:51.811Z">
-<meta property="article:modified_time" content="2023-09-06T03:00:51.811Z">
+<meta property="article:published_time" content="2024-09-04T16:00:00.000Z">
+<meta property="article:modified_time" content="2024-09-04T16:00:00.000Z">
 <meta property="article:author" content="henices">
-<meta property="article:tag" content="investment">
+<meta property="article:tag" content="linux">
 <meta name="twitter:card" content="summary_large_image">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>个人炒股经历 - 安全代码</title>
+  <title>ssh publickey permission denied 错误的解决方法 - 安全代码</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -242,7 +242,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle">个人炒股经历</span>
+            <span id="subtitle">ssh publickey permission denied 错误的解决方法</span>
           
         </div>
 
@@ -253,8 +253,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-09-06 11:00" pubdate>
-          2023年9月6日 上午
+        <time datetime="2024-09-05 00:00" pubdate>
+          2024年9月5日 凌晨
         </time>
       </span>
     
@@ -265,7 +265,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          657 字
+          166 字
         
       </span>
     
@@ -276,7 +276,7 @@
         
         
         
-          6 分钟
+          2 分钟
         
       </span>
     
@@ -322,16 +322,23 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">个人炒股经历</h1>
+            <h1 id="seo-header">ssh publickey permission denied 错误的解决方法</h1>
             
             
               <div class="markdown-body">
                 
-                <p>本人IT男一枚，2015年入市，到今天5年多了，所幸还在吃人不露骨头的市场上活着，也是非常不容易。基本不存在什么特殊情况，韭菜总是在人声鼎沸的牛市高点入场，本人也不例外，上证3500多点入市，上证3800多点让媳妇买了沪深 300 基金 （不是ETF），这基金今年才解套，小赚出局了。</p>
-<p>运气好的是，2015年的时候中了一支新股，新股的收益对冲了倒金字塔加仓的回撤，小赚1万元出局清了仓，有时候我也在想如果不是这赚了1万，是不是也就不会继续炒股了。接下来的事情大家都很熟悉了，熔断和股灾3.0，一直在不赚和小亏中挣扎着，居然也坚持了下来。理工男的特质救了我，从2015年开始认真学习股票操作，恶补基础知识，分时，K线，缺口，价量关系，缠论，波浪理论，箱体理论，趋势交易，价值投资，基本各种理论都看了遍，其实到最后发现有用的东西太少了，关于股票的书也基本没啥用，真正有用的书可能就那么几本，可是如果不看几十本的话，你怎么知道哪几本有用呢？所以炒股并不存在什么捷径，一夜暴富基本是神话，为啥呢？盈亏同源，怎么赚钱就可能怎么亏回去，除非你知道你为什么能赚钱。</p>
-<p>下面是这些年的心得，应该可以涨几年功力吧？</p>
-<p>要在市场上生存你必须具备某种优势，没有这种优势就是纯赌博，真正赚钱的是要做大概率的投机。买卖股票实际上是对股票做分类，哪些可以做，哪些不可以做，这就涉及了股票交易系统，有了交易系统，剩下的就是执行问题了，要做到BDWQ，后面就是仓位计算，根据股票的波动和你愿意承担的风险程度计算出来。</p>
-<p>回首看虽然现在稳定盈利了，又回到了灵魂拷问，投入的时间值得吗？对于很多人来说，最重要可能是资金的原始积累，10万块，翻10倍，100万在中国很多城市一套房也买不了，更不用说财富自由了，所以先努力工作吧，边工作边加大投资比例，梦想还是要有的，万一实现了呢？</p>
+                <p>openssh publickey 登录的方式突然不好用了，检查 <code>grep sshd /var/log/auth.log</code></p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">Aug</span> <span class="hljs-number">30</span> <span class="hljs-number">16</span>:<span class="hljs-number">58</span>:<span class="hljs-number">33</span> pm-<span class="hljs-number">65</span>c50001 sshd[<span class="hljs-number">9118</span>]: Authentication refused: bad ownership or modes for directory /root<br></code></pre></td></tr></table></figure>
+
+<p>执行下面的命令后，可以成功登录了。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-built_in">chown</span> root:root /root<br><span class="hljs-built_in">chown</span> root:root /root/.ssh<br><span class="hljs-built_in">chmod</span> 700 /root/.ssh<br><span class="hljs-built_in">chmod</span> 600 /root/.ssh/authorized_keys<br></code></pre></td></tr></table></figure>
+
+<p>&#x2F;etc&#x2F;ssh&#x2F;sshd_config 文件中最关键的配置项</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs nginx"><span class="hljs-attribute">PasswordAuthentication</span> <span class="hljs-literal">yes</span><br></code></pre></td></tr></table></figure>
+
+<p>我以前也遇到过这个问题，都是 file permession 设置错误，这次是 directory ownership 设置错误。<br>排查此类错误，最靠谱的方法还是看日志，我折腾了 1 个小时。</p>
+<p>Claude 3.5 Sonnet 没有回答出正确答案。</p>
+<figure class="highlight vbnet"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><code class="hljs vbnet">fix <span class="hljs-keyword">error</span> ssh publickey  Permission denied<br><br><br><span class="hljs-keyword">To</span> fix the <span class="hljs-string">&quot;ssh publickey Permission denied&quot;</span> <span class="hljs-keyword">error</span>, we need <span class="hljs-keyword">to</span> troubleshoot your SSH <span class="hljs-keyword">key</span> configuration. Here are some steps <span class="hljs-keyword">to</span> resolve this issue:<br><br>Check <span class="hljs-keyword">if</span> your SSH <span class="hljs-keyword">key</span> <span class="hljs-built_in">is</span> added <span class="hljs-keyword">to</span> the SSH agent:<br><br>Copy<br>ssh-add -l<br><span class="hljs-keyword">If</span> your <span class="hljs-keyword">key</span> isn<span class="hljs-comment">&#x27;t listed, add it:</span><br><br>Copy<br>ssh-add ~/.ssh/your_private_key<br>Verify that your <span class="hljs-keyword">public</span> <span class="hljs-keyword">key</span> <span class="hljs-built_in">is</span> properly added <span class="hljs-keyword">to</span> the remote server<span class="hljs-comment">&#x27;s authorized_keys file. On the remote server, check:</span><br><br>Copy<br>cat ~/.ssh/authorized_keys<br>Your <span class="hljs-keyword">public</span> <span class="hljs-keyword">key</span> should be listed here.<br>Ensure correct permissions <span class="hljs-keyword">on</span> SSH files:<br><br>Copy<br>chmod <span class="hljs-number">700</span> ~/.ssh<br>chmod <span class="hljs-number">600</span> ~/.ssh/authorized_keys<br><span class="hljs-keyword">Try</span> connecting <span class="hljs-keyword">with</span> verbose output <span class="hljs-keyword">to</span> <span class="hljs-keyword">get</span> more information:<br><br>Copy<br>ssh -vv user@host<br>Make sure you<span class="hljs-comment">&#x27;re using the correct username and hostname.</span><br>Check <span class="hljs-keyword">if</span> the remote server allows <span class="hljs-keyword">public</span> <span class="hljs-keyword">key</span> authentication <span class="hljs-keyword">in</span> its SSH configuration.<br></code></pre></td></tr></table></figure>
 
                 
               </div>
@@ -344,7 +351,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/investment/" class="print-no-link">#investment</a>
+        <a href="/tags/linux/" class="print-no-link">#linux</a>
       
     </div>
   
@@ -356,8 +363,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>个人炒股经历</div>
-      <div>https://usmacd.com/cn/stock_experience/</div>
+      <div>ssh publickey permission denied 错误的解决方法</div>
+      <div>https://usmacd.com/cn/ssh-publickey-permission-denied/</div>
     </div>
     <div class="license-meta">
       
@@ -369,7 +376,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2023年9月6日</div>
+          <div>2024年9月5日</div>
         </div>
       
       
@@ -401,18 +408,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/cn/svn_vim/" title="VIM + SVN 管理">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">VIM + SVN 管理</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/cn/stock_emotion/" title="市场情绪指标">
-                        <span class="hidden-mobile">市场情绪指标</span>
+                      <a href="/cn/obsidian/" title="Obsidian 使用技巧">
+                        <span class="hidden-mobile">Obsidian 使用技巧</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
