@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://usmacd.com/cn/share_knowledge/</loc>
+    
+    <lastmod>2024-09-08</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://usmacd.com/cn/PKM_faults/</loc>
     
     <lastmod>2024-09-05</lastmod>
@@ -95,15 +104,6 @@
     <loc>https://usmacd.com/cn/note_review/</loc>
     
     <lastmod>2024-07-21</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://usmacd.com/cn/share_knowledge/</loc>
-    
-    <lastmod>2024-07-20</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
