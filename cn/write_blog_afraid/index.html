@@ -21,24 +21,25 @@
   <meta name="author" content="henices">
   <meta name="keywords" content="">
   
-    <meta name="description" content="非常粗糙的示例代码，使用 Ollama 和 LlamaIndex 打造全本地的知识检索系统。 LlamaIndex 的安装方法如下： 123456python3 -m venv .venvsource .venv&#x2F;bin&#x2F;activatepip3 install llama-indexpip3 install llama-index-llms-ollama pip3 install llama-i">
+    <meta name="description" content="中文独立博客犹如互联网上的一道靓丽风景线，众多博主在这片天地里记录人生百态，分享精彩纷呈的生活点滴。 从 Google Reader 开始，我用 RSS 订阅了很多中文独立博客。然而，如今能看到更新的博文寥寥无几，大多数博客陷入了长久的沉寂。 更糟糕的是，我的订阅列表中，越来越多的博客链接已经无法访问。 前不久，我在”积薪”平台上读到一篇有关博客写作的文章，引发了我的一些思考，跟大家分享一些我的看">
 <meta property="og:type" content="article">
-<meta property="og:title" content="50 行代码打造全本地的 RAG 知识检索系统">
-<meta property="og:url" content="https://usmacd.com/cn/local_rag_llamaindex/index.html">
+<meta property="og:title" content="如何破除写博客的焦虑">
+<meta property="og:url" content="https://usmacd.com/cn/write_blog_afraid/index.html">
 <meta property="og:site_name" content="安全代码">
-<meta property="og:description" content="非常粗糙的示例代码，使用 Ollama 和 LlamaIndex 打造全本地的知识检索系统。 LlamaIndex 的安装方法如下： 123456python3 -m venv .venvsource .venv&#x2F;bin&#x2F;activatepip3 install llama-indexpip3 install llama-index-llms-ollama pip3 install llama-i">
+<meta property="og:description" content="中文独立博客犹如互联网上的一道靓丽风景线，众多博主在这片天地里记录人生百态，分享精彩纷呈的生活点滴。 从 Google Reader 开始，我用 RSS 订阅了很多中文独立博客。然而，如今能看到更新的博文寥寥无几，大多数博客陷入了长久的沉寂。 更糟糕的是，我的订阅列表中，越来越多的博客链接已经无法访问。 前不久，我在”积薪”平台上读到一篇有关博客写作的文章，引发了我的一些思考，跟大家分享一些我的看">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2024-09-22T16:00:00.000Z">
-<meta property="article:modified_time" content="2024-09-22T16:00:00.000Z">
+<meta property="article:published_time" content="2024-09-24T16:00:00.000Z">
+<meta property="article:modified_time" content="2024-09-24T16:00:00.000Z">
 <meta property="article:author" content="henices">
-<meta property="article:tag" content="ai">
+<meta property="article:tag" content="KNOWLEDGE">
+<meta property="article:tag" content="PMK">
 <meta name="twitter:card" content="summary_large_image">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>50 行代码打造全本地的 RAG 知识检索系统 - 安全代码</title>
+  <title>如何破除写博客的焦虑 - 安全代码</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -254,7 +255,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle">50 行代码打造全本地的 RAG 知识检索系统</span>
+            <span id="subtitle">如何破除写博客的焦虑</span>
           
         </div>
 
@@ -265,8 +266,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-09-23 00:00" pubdate>
-          2024年9月23日 凌晨
+        <time datetime="2024-09-25 00:00" pubdate>
+          2024年9月25日 凌晨
         </time>
       </span>
     
@@ -277,7 +278,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          317 字
+          1.4k 字
         
       </span>
     
@@ -288,7 +289,7 @@
         
         
         
-          3 分钟
+          12 分钟
         
       </span>
     
@@ -334,25 +335,62 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">50 行代码打造全本地的 RAG 知识检索系统</h1>
+            <h1 id="seo-header">如何破除写博客的焦虑</h1>
             
             
               <div class="markdown-body">
                 
-                <p>非常粗糙的示例代码，使用 Ollama 和 LlamaIndex 打造全本地的知识检索系统。</p>
-<p>LlamaIndex 的安装方法如下：</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs sh">python3 -m venv .venv<br><span class="hljs-built_in">source</span> .venv/bin/activate<br>pip3 install llama-index<br>pip3 install llama-index-llms-ollama <br>pip3 install llama-index-embeddings-huggingface<br>pip3 install llama-index-embeddings-ollama<br></code></pre></td></tr></table></figure>
-
-<p>Ollama 的安装可以参考：<a target="_blank" rel="noopener" href="https://www.usmacd.com/cn/Debian_Nvidia_Ollama/">Debian 12 安装 Nvidia 驱动和 Ollama</a></p>
-<p>在例子中，检索目标为 markdown 格式的笔记，供参考。</p>
-<p>使用方法：<code>python3 rag_query.py &quot;分析全部文本内容，分点列出个人成长的建议&quot;</code></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment">#! /usr/bin/python3</span><br><span class="hljs-comment">#coding: utf-8;</span><br><span class="hljs-comment"># author: @henices</span><br><br><span class="hljs-keyword">from</span> llama_index.core.node_parser <span class="hljs-keyword">import</span> MarkdownNodeParser, SimpleFileNodeParser, MarkdownElementNodeParser<br><span class="hljs-keyword">from</span> llama_index.readers.file <span class="hljs-keyword">import</span> FlatReader<br><span class="hljs-keyword">from</span> llama_index.core <span class="hljs-keyword">import</span> VectorStoreIndex<br><span class="hljs-keyword">from</span> llama_index.core <span class="hljs-keyword">import</span> Settings<br><span class="hljs-keyword">from</span> llama_index.llms.ollama <span class="hljs-keyword">import</span> Ollama<br><br><span class="hljs-comment">#from llama_index.embeddings.huggingface import HuggingFaceEmbedding</span><br><span class="hljs-keyword">from</span> llama_index.embeddings.ollama <span class="hljs-keyword">import</span> OllamaEmbedding<br><br><span class="hljs-keyword">from</span> llama_index.core <span class="hljs-keyword">import</span> SimpleDirectoryReader<br><span class="hljs-keyword">from</span> llama_index.core <span class="hljs-keyword">import</span> StorageContext, load_index_from_storage<br><br><span class="hljs-keyword">from</span> llama_index.core <span class="hljs-keyword">import</span> get_response_synthesizer<br><span class="hljs-keyword">from</span> llama_index.core.response_synthesizers <span class="hljs-keyword">import</span> ResponseMode<br><br><br><span class="hljs-keyword">import</span> llama_index.core<br>llama_index.core.set_global_handler(<span class="hljs-string">&quot;simple&quot;</span>)<br><br><span class="hljs-keyword">from</span> pathlib <span class="hljs-keyword">import</span> Path<br><br><span class="hljs-keyword">import</span> pprint<br><span class="hljs-keyword">import</span> logging<br><span class="hljs-keyword">import</span> sys<br><span class="hljs-keyword">import</span> os.path<br><br><span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&quot;__main__&quot;</span>:<br><br>    logging.basicConfig(stream=sys.stdout, level=logging.DEBUG)<br>    logging.getLogger().addHandler(logging.StreamHandler(stream=sys.stdout))<br><br>    ollama_embedding = OllamaEmbedding(<br>        model_name=<span class="hljs-string">&quot;bge-m3&quot;</span>,<br>        base_url=<span class="hljs-string">&quot;http://127.0.0.1:11434&quot;</span>,<br>    )<br>    <span class="hljs-comment">#Settings.embed_model = HuggingFaceEmbedding(model_name=&quot;BAAI/bge-base-en-v1.5&quot;)</span><br>    Settings.embed_model = ollama_embedding<br><br>    Settings.llm = Ollama(<br>            model=<span class="hljs-string">&quot;qwen2.5:14b-instruct-fp16&quot;</span>,<br>            request_timeout=<span class="hljs-number">60.0</span>*<span class="hljs-number">5</span>)<br><br>    Settings.chunk_size = <span class="hljs-number">512</span><br>    Settings.chunk_overlap = <span class="hljs-number">50</span><br><br><br>    <span class="hljs-keyword">if</span> os.path.exists(<span class="hljs-string">&#x27;./storage&#x27;</span>):<br>        storage_context = StorageContext.from_defaults(persist_dir=<span class="hljs-string">&quot;./storage&quot;</span>)<br>        index = load_index_from_storage(storage_context)<br><br>    <span class="hljs-keyword">else</span>:<br><br>        parser = MarkdownNodeParser()<br>        md_docs = SimpleDirectoryReader(<span class="hljs-string">&quot;data&quot;</span>).load_data()<br>        nodes = parser.get_nodes_from_documents(md_docs)<br><br>        index = VectorStoreIndex(nodes)<br><br>        index.storage_context.persist(persist_dir=<span class="hljs-string">&quot;./storage&quot;</span>)<br><br><br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;finish index&#x27;</span>)<br><br>    response_synthesizer = get_response_synthesizer(<br>            streaming=<span class="hljs-literal">True</span>,<br>            response_mode=ResponseMode.SIMPLE_SUMMARIZE)<br>    query_engine = index.as_query_engine(<br>            response_synthesizer=response_synthesizer, similarity_top_k=<span class="hljs-number">10</span>, similarity_cutoff=<span class="hljs-number">0.5</span>)<br><br>    streaming_response = query_engine.query(sys.argv[<span class="hljs-number">1</span>])<br>    <span class="hljs-built_in">print</span>(streaming_response.print_response_stream())<br><br>    <span class="hljs-keyword">for</span> idx, node <span class="hljs-keyword">in</span> <span class="hljs-built_in">enumerate</span>(streaming_response.source_nodes):<br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;%d=========\n&#x27;</span> % idx)<br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;%s\n\n&#x27;</span> % node.text)<br></code></pre></td></tr></table></figure>
-
-<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ol>
-<li><a target="_blank" rel="noopener" href="https://github.com/ollama/ollama">https://github.com/ollama/ollama</a></li>
-<li><a target="_blank" rel="noopener" href="https://github.com/run-llama/llama_index">https://github.com/run-llama/llama_index</a></li>
-<li><a target="_blank" rel="noopener" href="https://docs.llamaindex.ai/en/stable/">https://docs.llamaindex.ai/en/stable/</a></li>
-</ol>
+                <p>中文独立博客犹如互联网上的一道靓丽风景线，众多博主在这片天地里记录人生百态，分享精彩纷呈的生活点滴。</p>
+<p>从 Google Reader 开始，我用 RSS 订阅了很多中文独立博客。然而，如今能看到更新的博文寥寥无几，大多数博客陷入了长久的沉寂。</p>
+<p>更糟糕的是，我的订阅列表中，越来越多的博客链接已经无法访问。</p>
+<p>前不久，我在”积薪”平台上读到一篇有关博客写作的文章，引发了我的一些思考，跟大家分享一些我的看法。</p>
+<p>比较尴尬的是，积薪也没法访问了 …</p>
+<p>《写博客的焦虑》</p>
+<p><a target="_blank" rel="noopener" href="https://homura.live/2023/11/22/Other/anxiety-of-blogging/">https://homura.live/2023/11/22/Other/anxiety-of-blogging/</a></p>
+<p>作者 Homura 总结写博客的焦虑有下面几点：</p>
+<p>负面想法很重，想一些负面的东西要不要写</p>
+<p>纠结要不要放上去，有的内容因为比较短，有的内容因为不那么“好”</p>
+<p>自己的想法太少</p>
+<p>觉得自己内容不佳，觉得自己水平不佳</p>
+<p>想写好文章：具体点来说就是“内容长”，”看起来高深“，这种看起来好的内容</p>
+<p>最后，发出感叹「我何时才能真正能写出好文章呢？」。</p>
+<p>homura 写博客遇到的困难，我总结下来有 4 个，选题困难、篇幅较短、内容不佳、想写好文章。</p>
+<h2 id="选题困难"><a href="#选题困难" class="headerlink" title="选题困难"></a>选题困难</h2><p>博客选题是有点困难，但也好解决。</p>
+<p>在 @3 如何讲好一个故事 中分享了三种故事，你自己的故事，别人的故事，某个品牌或产品的故事。</p>
+<p>独立博客当然最适合讲自己的故事，你的旅游见闻，你的读书心得，你的技术见解。</p>
+<p>还有一个简单的标准，你写的文章能不能给别人带来一些帮助，哪怕是很小的一个人群。</p>
+<p>纯笔记的技术类博客文章，我不建议写。</p>
+<p>软件下载、安装、编译这些简单步骤，直接参考官方文档或 Github README 是更好的选择。</p>
+<p>技术类的文章，要写搜索引擎无法简单找到答案的内容。</p>
+<h2 id="篇幅较短"><a href="#篇幅较短" class="headerlink" title="篇幅较短"></a>篇幅较短</h2><p>这可能是对写博客最大的误解了。</p>
+<p>文章的好坏和篇幅的长短没有绝对关系 ，重要的是你想表达什么观点，这些观点是否有证据支撑。</p>
+<p>我经常看到大几千字的文章，却很难从里面提炼出作者想表达的重要观点。</p>
+<p>Owen 博客的 短想法 页面，我就很喜欢。简短精炼的文字，反而更能引发深刻的思考。</p>
+<p>不用过于追求深度长文，思考的内容多，文章的字数就多，这是自然的过程。</p>
+<p>我们更需要清晰地表达，内容质量才是文章好坏的决定性因素。</p>
+<h2 id="内容不佳"><a href="#内容不佳" class="headerlink" title="内容不佳"></a>内容不佳</h2><p>我从 2000 年左右开始写博客，向来没有觉得写文章有压力，总结起来有下面几点：</p>
+<p>第一，觉得自己比较菜，得向前辈学习</p>
+<p>第二，觉得自己的观点有偏见，希望大家可以指导我</p>
+<p>第三，秉承互联网的分享精神，能分享就尽量分享</p>
+<p>以学习和分享的心态写博客，尽力做到自己的最好水平就行。</p>
+<p>大多数人写博客都是从水平不高开始的，只要坚持输出，一段时间后内容的水平就会慢慢提高。</p>
+<p>尽你最大的努力去做到正确，但当你出错时也不要担心。</p>
+<h2 id="想写好文章"><a href="#想写好文章" class="headerlink" title="想写好文章"></a>想写好文章</h2><p>日常写的文章也就是自己的日常水平，正常发挥即可。</p>
+<p>写文章是为了提高自己的水平和能力，为自己而写，别人眼里的好和坏和自己关系不大。</p>
+<p>从方法论上讲，读书学习是输入，写文章是输出，两者相辅相成。</p>
+<p>文章的好坏由两方面决定，第一内容是否好，第二表达是否好。</p>
+<p>表达可以通过刻意练习来提高。</p>
+<p>内容质量的提高，唯有大量的输入、学习、总结才能做到，同样没有捷径。</p>
+<h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2><p>为什么要写博客是一个重要的动机问题。内在动机的基础因素有五个：好奇心、激情、目标、掌控感、自主权。</p>
+<p>个人独立博客，自主权和掌控感得到极大满足，你有排版的自由，内容选择的自由，这也就是大家喜欢折腾博客系统的原因。</p>
+<p>但是，好奇心和目标两个动机因素的作用时间更长，也是决定能否持续做一件事的关键。</p>
+<p>我写博客是受到业内一位前辈的影响，他有着传统互联网分享精神的理想主义情怀，我希望这种分享精神能传承下去。</p>
+<p>对长期分享的朋友，我心存感激，他们是值得敬佩的人。</p>
+<p>写博客要有一定的表达欲望和分享精神，只有这样的文字大家才会爱看。</p>
+<p>翻看 Homura 的博客，他还在坚持更新，希望他能继续坚持下去。</p>
+<div class="note note-info">
+            <p>本文来自 「曼福吉的分享」<a target="_blank" rel="noopener" href="https://xiaobot.net/p/MindForge">https://xiaobot.net/p/MindForge</a> 小报童专栏 </p><p>详情请见：<a target="_blank" rel="noopener" href="https://www.usmacd.com/cn/share_knowledge/">付费专栏：《曼福吉的分享》</a></p>
+          </div>
 
                 
               </div>
@@ -365,7 +403,9 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/ai/" class="print-no-link">#ai</a>
+        <a href="/tags/KNOWLEDGE/" class="print-no-link">#KNOWLEDGE</a>
+      
+        <a href="/tags/PMK/" class="print-no-link">#PMK</a>
       
     </div>
   
@@ -377,8 +417,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>50 行代码打造全本地的 RAG 知识检索系统</div>
-      <div>https://usmacd.com/cn/local_rag_llamaindex/</div>
+      <div>如何破除写博客的焦虑</div>
+      <div>https://usmacd.com/cn/write_blog_afraid/</div>
     </div>
     <div class="license-meta">
       
@@ -390,7 +430,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2024年9月23日</div>
+          <div>2024年9月25日</div>
         </div>
       
       
@@ -422,18 +462,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/cn/write_blog_afraid/" title="如何破除写博客的焦虑">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">如何破除写博客的焦虑</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/cn/ssh-publickey-permission-denied/" title="ssh publickey permission denied 错误的解决方法">
-                        <span class="hidden-mobile">ssh publickey permission denied 错误的解决方法</span>
+                      <a href="/cn/local_rag_llamaindex/" title="50 行代码打造全本地的 RAG 知识检索系统">
+                        <span class="hidden-mobile">50 行代码打造全本地的 RAG 知识检索系统</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
