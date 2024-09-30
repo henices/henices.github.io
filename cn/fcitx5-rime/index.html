@@ -23,7 +23,7 @@
   
     <meta name="description" content="现在 fcitx 已经升级到了 fcitx5, 本来用着 fcitx4 挺好，也没有想着升级，在折腾 fcitx.vim 的时候发现 fcitx 居然升级了，使得我的 vim 插件无法正常工作了，一顿折腾，本来以为很简单没想到进了个大坑 。主要是不愿意放弃我的一万多行的 rime 用户词库，多年的积累了，不过 Linux 用户不就是老折腾吗， 唉。 fcitx5-rime 的默认的配置目录已经变为">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Fedora KDE Plasma &#x2F; Android 上安装 fcitx5 rime">
+<meta property="og:title" content="Fedora KDE Plasma 和 Android 系统上安装 fcitx5 rime">
 <meta property="og:url" content="https://usmacd.com/cn/fcitx5-rime/index.html">
 <meta property="og:site_name" content="安全代码">
 <meta property="og:description" content="现在 fcitx 已经升级到了 fcitx5, 本来用着 fcitx4 挺好，也没有想着升级，在折腾 fcitx.vim 的时候发现 fcitx 居然升级了，使得我的 vim 插件无法正常工作了，一顿折腾，本来以为很简单没想到进了个大坑 。主要是不愿意放弃我的一万多行的 rime 用户词库，多年的积累了，不过 Linux 用户不就是老折腾吗， 唉。 fcitx5-rime 的默认的配置目录已经变为">
@@ -38,7 +38,7 @@
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>Fedora KDE Plasma / Android 上安装 fcitx5 rime - 安全代码</title>
+  <title>Fedora KDE Plasma 和 Android 系统上安装 fcitx5 rime - 安全代码</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -254,7 +254,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle">Fedora KDE Plasma / Android 上安装 fcitx5 rime</span>
+            <span id="subtitle">Fedora KDE Plasma 和 Android 系统上安装 fcitx5 rime</span>
           
         </div>
 
@@ -334,7 +334,7 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">Fedora KDE Plasma / Android 上安装 fcitx5 rime</h1>
+            <h1 id="seo-header">Fedora KDE Plasma 和 Android 系统上安装 fcitx5 rime</h1>
             
               <p id="updated-time" class="note note-info" style="">
                 
@@ -378,7 +378,7 @@
 <figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-attr">patch:</span><br>  <span class="hljs-comment"># 載入朙月拼音擴充詞庫</span><br>  <span class="hljs-attr">&quot;translator/dictionary&quot;:</span> <span class="hljs-string">luna_pinyin.extended</span><br>  <span class="hljs-attr">&quot;punctuator/import_preset&quot;:</span> <span class="hljs-string">symbols</span><br>  <span class="hljs-attr">&quot;recognizer/patterns/punct&quot;:</span> <span class="hljs-string">&quot;^/([A-Z|a-z]*|[0-9]|10)$&quot;</span><br></code></pre></td></tr></table></figure>
 
 <p>设置完成后，要重新启动输入法，比如要输入 ☆ ，输入  <code>/xh</code> 即可</p>
-<h2 id="rime-安装-Emoji"><a href="#rime-安装-Emoji" class="headerlink" title="rime 安装 Emoji"></a>rime 安装 Emoji</h2><p>😄️Emoji 表情在现在的聊天中已经很常见了，rime 对 emoji 也提供了支持。参考 <a target="_blank" rel="noopener" href="https://github.com/rime/rime-emoji">https://github.com/rime/rime-emoji</a>  安装 emoji 同样需要使用 <a target="_blank" rel="noopener" href="https://github.com/rime/plum">東風破</a>，我常用的输入法是双拼，将 double_pinyin 替换成你的输入法就可以了。</p>
+<h2 id="rime-安装-Emoji"><a href="#rime-安装-Emoji" class="headerlink" title="rime 安装 Emoji"></a>rime 安装 Emoji</h2><p>😄️ Emoji 表情在现在的聊天中已经很常见了，rime 对 emoji 也提供了支持。参考 <a target="_blank" rel="noopener" href="https://github.com/rime/rime-emoji">https://github.com/rime/rime-emoji</a>  安装 emoji 同样需要使用 <a target="_blank" rel="noopener" href="https://github.com/rime/plum">東風破</a>，我常用的输入法是双拼，将 double_pinyin 替换成你的输入法就可以了。</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sh">rime_frontend=fcitx5-rime bash rime-install emoji<br>rime_frontend=fcitx5-rime bash rime-install emoji:customize:schema=double_pinyin<br></code></pre></td></tr></table></figure>
 
 <p>核心的码表在 <a target="_blank" rel="noopener" href="https://github.com/rime/rime-emoji/blob/master/opencc/emoji_category.txt">https://github.com/rime/rime-emoji/blob/master/opencc/emoji_category.txt</a> 在输入汉字的时候会自动提示相应的 emoji。rime-emoji 有时候不能很准确地输出想要的 emoji 符号，这时候可以利用 emoji_category.txt 查询相关分类，例如输入 「颜色」就会显示出各种颜色。</p>
@@ -414,6 +414,9 @@
 <p>vim 确实是程序编辑的利器，但是在用vim 写中文文档的时候，有一个痛点，你在用 fcitx 写中文的时候想保存文档，vim 必须切换到 normal 模式才能输入保存的命令 <code>:w</code>，进入normal 模式的方法是连续按两下 ESC，好了现在你应该输入命令了，但是你没法输入你现在还在打中文呢，没有办法你必须先切换到英文输入法，然后才能正确地输入 <code>:w</code> 痛苦啊。</p>
 <p>fcitx.vim 就是为解决这个痛点而生的插件，个人觉得这是vim 必装的几个插件之一。fcitx.vim 的github 仓库地址为：<a target="_blank" rel="noopener" href="https://github.com/lilydjwg/fcitx.vim">https://github.com/lilydjwg/fcitx.vim</a></p>
 <p>值得一提的是这个仓库有两个分支，fcitx4 分支 和 fcitx5 分支，使用的时候一定要分清楚，这两个分支如果使用错了，就没法正常使用 fcitx.vim 插件了。fcitx4 和 fcitx5 dbus 对象名字有变化，导致代码通用性不好。现在默认分支为 fcitx5，如果你使用 fcitx4 可能直接 git clone 下来就会发现插件用不了，我也是因为这个原因才发现 fcitx 居然更新了。</p>
+<h2 id="中英文混合输入技巧"><a href="#中英文混合输入技巧" class="headerlink" title="中英文混合输入技巧"></a>中英文混合输入技巧</h2><p>在 default.custom.yaml 中添加下面的配置，可以开启右键 shift 回车上屏功能，非常实用。</p>
+<figure class="highlight dts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs dts"><span class="hljs-symbol">ascii_composer:</span><br><span class="hljs-symbol">   switch_key:</span><br><span class="hljs-symbol">     Shift_R:</span> inline_ascii <span class="hljs-meta"># 按右 shift 键，切换为英文输入，同时保留已输入字符继续输入，回车上屏</span><br></code></pre></td></tr></table></figure>
+
 <h2 id="在-Android-下使用-Fcitx5-Rime"><a href="#在-Android-下使用-Fcitx5-Rime" class="headerlink" title="在 Android 下使用 Fcitx5 Rime"></a>在 Android 下使用 Fcitx5 Rime</h2><p>Fcitx5 Rime Android 解决方案</p>
 <p>我一直在寻找 Rime 输入法的 Android 解决方案，最先是找到 Trime<br><a target="_blank" rel="noopener" href="https://github.com/osfans/trime">https://github.com/osfans/trime</a></p>
 <p>Trime 我试过三次，有三个不理想的点：<br>1）不够流畅，有卡顿的感觉<br>2）不够稳定，经常出现崩溃<br>3）Trime 自己有一套配置，要学习 trime.yaml </p>
@@ -457,7 +460,7 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>Fedora KDE Plasma / Android 上安装 fcitx5 rime</div>
+      <div>Fedora KDE Plasma 和 Android 系统上安装 fcitx5 rime</div>
       <div>https://usmacd.com/cn/fcitx5-rime/</div>
     </div>
     <div class="license-meta">
