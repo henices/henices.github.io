@@ -6,7 +6,7 @@
   <link href="https://usmacd.com/atom.xml" rel="self"/>
   
   <link href="https://usmacd.com/"/>
-  <updated>2024-09-24T16:00:00.000Z</updated>
+  <updated>2024-11-06T05:38:20.602Z</updated>
   <id>https://usmacd.com/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Fedora linux 安装 wechat 4.0 的方法</title>
+    <link href="https://usmacd.com/cn/Fedora_linux_wechat_4.0/"/>
+    <id>https://usmacd.com/cn/Fedora_linux_wechat_4.0/</id>
+    <published>2024-11-06T05:38:20.602Z</published>
+    <updated>2024-11-06T05:38:20.602Z</updated>
+    
+    <content type="html"><![CDATA[<p>感谢国产化软件项目，多年后，Linux 终于有 wechat 的官方安装包了 🥳</p><p>从麒麟 Linux 的源中，下载 wechat deb 安装包，解压后可以正常在 Fedora Linux 上使用。</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs bash">wget https://archive2.kylinos.cn/DEB/KYLIN_DEB/pool/main/deb/wechat/wechat-beta_4.0.0.21_amd64.deb<br>sudo dnf install dpkg vlc<br>dpkg-deb -xv ./wechat-beta_4.0.0.21_amd64.deb /tmp/wechat<br><span class="hljs-built_in">cd</span> /tmp/wechat/opt/wechat-beta<br>sudo <span class="hljs-built_in">ln</span> -sf /usr/lib64/libbz2.so.1.0.8 /usr/lib64/libbz2.so.1.0<br>./wechat<br></code></pre></td></tr></table></figure><p>我的 Fedora Linux 上安装了许多软件，常见的依赖库都已安装，大家可能还会遇到找不到动态库的情况。</p><p>其他 Linux 发行版 wechat 的适配原理上是一样的。</p><p>1）将 deb 包解开，执行 wechat 主程序<br>2）处理具体的异常情况，比如找不到某个动态库</p><p>Wechat linux 4.0 支持小程序，是时候跟微信网页版说再见了。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;感谢国产化软件项目，多年后，Linux 终于有 wechat 的官方安装包了 🥳&lt;/p&gt;
+&lt;p&gt;从麒麟 Linux 的源中，下载 wechat deb 安装包，解压后可以正常在 Fedora Linux 上使用。&lt;/p&gt;
+&lt;figure class=&quot;highlight </summary>
+      
+    
+    
+    
+    
+    <category term="linux" scheme="https://usmacd.com/tags/linux/"/>
+    
+  </entry>
   
   <entry>
     <title>如何破除写博客的焦虑</title>
@@ -450,28 +474,6 @@
       
       
     <summary type="html">&lt;p&gt;Recommend some Logseq plugins I’m currently using. The functions of these plugins are very practical. You can refer to my previous articl</summary>
-      
-    
-    
-    
-    
-    <category term="Software" scheme="https://usmacd.com/tags/Software/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>我正在使用的 Logseq Plugin (插件)</title>
-    <link href="https://usmacd.com/cn/logseq_plugins/"/>
-    <id>https://usmacd.com/cn/logseq_plugins/</id>
-    <published>2024-03-18T16:00:00.000Z</published>
-    <updated>2024-03-23T16:00:00.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>推荐一些我正在使用的 <a href="https://github.com/logseq/logseq">Logseq</a> 插件，这些插件的功能都非常实用。Logseq 安装插件的方法可以参考我以前写的文章 <a href="https://www.usmacd.com/cn/logseq2/">Logseq 使用小结 （二）</a> 。</p><h2 id="logseq-random-note"><a href="#logseq-random-note" class="headerlink" title="logseq-random-note"></a>logseq-random-note</h2><p><a href="https://github.com/TankCool/logseq-random-note">https://github.com/TankCool/logseq-random-note</a></p><p>在 Logseq 中随机浏览笔记的插件。Logseq 没有默认的随机笔记功能可能是一个失误，反观 Obsidian 就有内置 open random note 的功能。关于随机发现笔记的作用，我专门写过一篇文章 <a href="https://www.usmacd.com/cn/note_review/">定期回顾笔记的好处</a>。在我的 Logseq 工作流(workflow) 中，定期回顾笔记是非常重要的部分，经常都能获得意想不到的收获。</p><p>logseq random note 插件在使用中有一个问题，生成随机数时使用了 javascript math.random 函数，这个函数生成的随机数质量不高，导致 random note 插件经常会访问同一个笔记。我向原仓库提交了修改后的源码，但是原作者没有合并。如果在使用的时候遇上我说的这个问题，可以试试我的修改版插件 <a href="https://github.com/henices/logseq-random-note">https://github.com/henices/logseq-random-note</a></p><h2 id="Logseq-Banners-plugin"><a href="#Logseq-Banners-plugin" class="headerlink" title="Logseq Banners plugin"></a>Logseq Banners plugin</h2><p><a href="https://github.com/yoyurec/logseq-banners-plugin">https://github.com/yoyurec/logseq-banners-plugin</a><br>在 Logseq 的 Journal 或者其他页面显示 banner 。Banner 中可以添加 Calendar，Weather，Pomodoro，Random quote 小组件，提供自定义功能，可以自由组合。我只使用了 random note 的功能，每天都可以不经意的看到以前的笔记，感觉非常不错。</p><p><img src="https://raw.githubusercontent.com/yoyurec/logseq-banners-plugin/main/screenshots/widgets-light-01.png" alt="banner plugin"></p><h2 id="Page-tags-and-Hierarchy"><a href="#Page-tags-and-Hierarchy" class="headerlink" title="Page-tags and Hierarchy"></a>Page-tags and Hierarchy</h2><p><a href="https://github.com/YU000jp/logseq-page-tags-and-hierarchy">https://github.com/YU000jp/logseq-page-tags-and-hierarchy</a></p><p>在页面中直观得看见 Page-tags 和 Hierarchy，不用滚动到页面底部的插件。Logseq Page-tags 和 namespace 特性，并不像其他特性被人们熟知。比较遗憾的是我没有在 Logseq 的文档中找到明确的说明。</p><p>namespace 定义了 page 之间的层级关系，可以在一个页面的底部看出层级关系。namespace 有两种表示方式：</p><ul><li><code>#topic/topic0/topic1</code></li><li><code>[[topic/topic0/topic1]]</code></li></ul><p>我一般都使用前面的表达方式，比较简单，输入 <code>#topic</code> Logseq 就会自动提示 <code>#topic/topic0</code> 和 <code>#topic/topic0/topic1</code> 非常方便。</p><p>Page-tags 是一个特殊的属性，在一个 page 的第一个block 使用 <code>tags:: #topic</code> 可以在topic 页面底部反向查看到这个 page。</p><p>实际使用的过程中会发现，一旦页面的内容多了，要查看 Page-tags 和 namespace 的 Hierarchy 必须滚动到页面底部非常费事，这个插件就是为了解决这个问题而开发的。</p><p><img src="https://raw.githubusercontent.com/henices/pictures/master/logseq4-page-tags.png" alt="page-tags"></p><h2 id="logseq-assets-plus"><a href="#logseq-assets-plus" class="headerlink" title="logseq-assets-plus"></a>logseq-assets-plus</h2><p><a href="https://github.com/xyhp915/logseq-assets-plus">https://github.com/xyhp915/logseq-assets-plus</a></p><p>方便插入资源 asset 的插件，快捷键  ctrl&#x2F;cmd+Shift+O 。在Logseq 中插入 asset 的方法是，使用 &#x2F;upload a asset 命令，回车后会弹出一个对话框选择你要保存的文件即可。但是要在一个 block 中插入一个已有的 asset ，只能使用名字搜索，Logseq assets plus 提供了更加丰富的过滤方法。</p><p><img src="https://raw.githubusercontent.com/henices/pictures/master/logseq4-asset-plus.png" alt="asset-plus"></p><h2 id="logseq-plugin-mark-map"><a href="#logseq-plugin-mark-map" class="headerlink" title="logseq-plugin-mark-map"></a>logseq-plugin-mark-map</h2><p><a href="https://github.com/vipzhicheng/logseq-plugin-mark-map">https://github.com/vipzhicheng/logseq-plugin-mark-map</a></p><p>将大纲笔记展示为思维导图插件，触发快捷键 mm 。将大纲笔记转化为思维导图，对内容记忆有一些帮助。</p><p><img src="https://github.com/henices/pictures/raw/master/logseq3_5.png" alt="mark-map"></p><h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul><li>Logseq 使用小结 （二）<a href="https://www.usmacd.com/cn/logseq2/">https://www.usmacd.com/cn/logseq2/</a></li></ul>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;推荐一些我正在使用的 &lt;a href=&quot;https://github.com/logseq/logseq&quot;&gt;Logseq&lt;/a&gt; 插件，这些插件的功能都非常实用。Logseq 安装插件的方法可以参考我以前写的文章 &lt;a href=&quot;https://www.usmacd.co</summary>
       
     
     
