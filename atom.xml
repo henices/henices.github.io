@@ -6,7 +6,7 @@
   <link href="https://usmacd.com/atom.xml" rel="self"/>
   
   <link href="https://usmacd.com/"/>
-  <updated>2024-11-05T16:00:00.000Z</updated>
+  <updated>2024-11-07T16:00:00.000Z</updated>
   <id>https://usmacd.com/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>【意译】我们为什么要写作</title>
+    <link href="https://usmacd.com/cn/Why_we_need_to_write/"/>
+    <id>https://usmacd.com/cn/Why_we_need_to_write/</id>
+    <published>2024-11-07T16:00:00.000Z</published>
+    <updated>2024-11-07T16:00:00.000Z</updated>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;探索：撰写关于某个主题的文章需要对该主题进行全面探究。写作过程中常常会发现新的洞察和联系。&lt;/p&gt;
+&lt;p&gt;阐述：将想法转化为文字迫使一个人澄清自己的理解。这种阐述过程有助于识别出理解模糊或不完整的区域。&lt;/p&gt;
+&lt;p&gt;反思：写作允许对主题进行反思，使学习者能够将新信息与已有的知识联系起来。这种综合使我们对主题理解更加深入。&lt;/p&gt;
+&lt;p&gt;揭示差距：撰写文章会暴露出知识缺乏或不一致的地方。认识</summary>
+      
+    
+    
+    
+    
+    <category term="KNOWLEDGE" scheme="https://usmacd.com/tags/KNOWLEDGE/"/>
+    
+  </entry>
   
   <entry>
     <title>Fedora linux 安装 wechat 4.0 的方法</title>
@@ -212,28 +235,6 @@
     
     
     <category term="KNOWLEDGE" scheme="https://usmacd.com/tags/KNOWLEDGE/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Fedora 使用日常小记</title>
-    <link href="https://usmacd.com/cn/Fedora_usage/"/>
-    <id>https://usmacd.com/cn/Fedora_usage/</id>
-    <published>2024-07-23T16:00:00.000Z</published>
-    <updated>2024-08-11T16:00:00.000Z</updated>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;这是一份很久远的笔记，质量也不高，以我现在的标准看是不合格的笔记。&lt;/p&gt;
-&lt;p&gt;但我觉得有些信息对大家可能还是能有一些帮助，不完善的地方，需要自行上网搜索，见谅！&lt;/p&gt;
-&lt;h2 id=&quot;☆-如何切换默认的桌面管理器&quot;&gt;&lt;a href=&quot;#☆-如何切换默认的桌面管理器&quot; class=&quot;headerlink&quot; title=&quot;☆ 如何切换默认的桌面管理器&quot;&gt;&lt;/a&gt;☆ 如何切换默认的桌面管理器</summary>
-      
-    
-    
-    
-    
-    <category term="linux" scheme="https://usmacd.com/tags/linux/"/>
     
   </entry>
   
