@@ -9,8 +9,31 @@
     <atom:link href="https://usmacd.com/rss.xml" rel="self" type="application/rss+xml"/>
     
     <description></description>
-    <pubDate>Thu, 07 Nov 2024 16:00:00 GMT</pubDate>
+    <pubDate>Mon, 18 Nov 2024 16:00:00 GMT</pubDate>
     <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title></title>
+      <link>https://usmacd.com/cn/wps_fedora_linux_chinese_bad_char/</link>
+      <guid>https://usmacd.com/cn/wps_fedora_linux_chinese_bad_char/</guid>
+      <pubDate>Mon, 18 Nov 2024 16:00:00 GMT</pubDate>
+      
+        
+        
+      <description>&lt;p&gt;不知从哪个版本开始，Fedora Linux 上的 wps 字体乱码，基本处于不可用状态。最近，又遇上要打开 Office 文件的需求，研究了一下解决的方法。&lt;/p&gt;
+&lt;h2 id=&quot;安装缺少的字体，wps-可能没有某些字体的版权&quot;&gt;&lt;a href=&quot;#安装缺少的字体，wps-可能没有某些字体的版权&quot; class=&quot;headerlink&quot; title=&quot;安装缺少的字体，wps 可能没有某些字</description>
+        
+      
+      
+      
+      
+      
+      <category domain="https://usmacd.com/tags/linux/">linux</category>
+      
+      
+      <comments>https://usmacd.com/cn/wps_fedora_linux_chinese_bad_char/#disqus_thread</comments>
+      
+    </item>
     
     <item>
       <title>【意译】我们为什么要写作</title>
@@ -227,30 +250,6 @@
       
       
       <comments>https://usmacd.com/cn/Debian_Nvidia_Ollama/#disqus_thread</comments>
-      
-    </item>
-    
-    <item>
-      <title>马斯克的哲学</title>
-      <link>https://usmacd.com/cn/elon_philosophy/</link>
-      <guid>https://usmacd.com/cn/elon_philosophy/</guid>
-      <pubDate>Wed, 24 Jul 2024 16:00:00 GMT</pubDate>
-      
-        
-        
-      <description>&lt;h2 id=&quot;马斯克的五步工作法&quot;&gt;&lt;a href=&quot;#马斯克的五步工作法&quot; class=&quot;headerlink&quot; title=&quot;马斯克的五步工作法&quot;&gt;&lt;/a&gt;马斯克的五步工作法&lt;/h2&gt;&lt;p&gt;马斯克提炼出了一个五步工作法，称之为“算法”，自称每天的工作就是「算法复读机」😄️&lt;/p&gt;
-&lt;p&gt;这五个步骤按顺序分别是:&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;1）质疑每项需求，让要求不那么愚蠢&lt;/stron</description>
-        
-      
-      
-      
-      
-      
-      <category domain="https://usmacd.com/tags/KNOWLEDGE/">KNOWLEDGE</category>
-      
-      
-      <comments>https://usmacd.com/cn/elon_philosophy/#disqus_thread</comments>
       
     </item>
     
