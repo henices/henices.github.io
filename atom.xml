@@ -6,7 +6,7 @@
   <link href="https://usmacd.com/atom.xml" rel="self"/>
   
   <link href="https://usmacd.com/"/>
-  <updated>2024-11-18T16:00:00.000Z</updated>
+  <updated>2024-11-24T16:00:00.000Z</updated>
   <id>https://usmacd.com/</id>
   
   <author>
@@ -15,6 +15,26 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>禁用 Phantom Process Killer</title>
+    <link href="https://usmacd.com/cn/andorid_disable_Phantom_Process_Killer/"/>
+    <id>https://usmacd.com/cn/andorid_disable_Phantom_Process_Killer/</id>
+    <published>2024-11-24T16:00:00.000Z</published>
+    <updated>2024-11-24T16:00:00.000Z</updated>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;禁用-Phantom-Process-Killer&quot;&gt;&lt;a href=&quot;#禁用-Phantom-Process-Killer&quot; class=&quot;headerlink&quot; title=&quot;禁用 Phantom Process Killer&quot;&gt;&lt;/a&gt;禁用 Phantom Process Killer&lt;/h2&gt;&lt;p&gt;从 Android 12 开始，Google 引入了 &lt;code&gt;Phant</summary>
+      
+    
+    
+    
+    
+    <category term="Android" scheme="https://usmacd.com/tags/Android/"/>
+    
+  </entry>
   
   <entry>
     <title>解决 Fedora Linux WPS 中文乱码问题</title>
@@ -211,29 +231,6 @@
     
     
     <category term="Android" scheme="https://usmacd.com/tags/Android/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Debian 12 安装 Nvidia 驱动和 Ollama</title>
-    <link href="https://usmacd.com/cn/Debian_Nvidia_Ollama/"/>
-    <id>https://usmacd.com/cn/Debian_Nvidia_Ollama/</id>
-    <published>2024-07-25T16:00:00.000Z</published>
-    <updated>2024-09-22T16:00:00.000Z</updated>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;根据同事反馈，高版本的 NVIDIA 驱动兼容性有问题，需要安装 Nvidia 驱动 525.147.05 ，过程中可能需要升级内核。&lt;/p&gt;
-&lt;h2 id=&quot;安装-Nvidia-驱动&quot;&gt;&lt;a href=&quot;#安装-Nvidia-驱动&quot; class=&quot;headerlink&quot; title=&quot;安装 Nvidia 驱动&quot;&gt;&lt;/a&gt;安装 Nvidia 驱动&lt;/h2&gt;&lt;p&gt;查看 Debian 上显卡安装</summary>
-      
-    
-    
-    
-    
-    <category term="linux" scheme="https://usmacd.com/tags/linux/"/>
-    
-    <category term="ai" scheme="https://usmacd.com/tags/ai/"/>
     
   </entry>
   

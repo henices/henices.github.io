@@ -9,8 +9,30 @@
     <atom:link href="https://usmacd.com/rss.xml" rel="self" type="application/rss+xml"/>
     
     <description></description>
-    <pubDate>Mon, 18 Nov 2024 16:00:00 GMT</pubDate>
+    <pubDate>Sun, 24 Nov 2024 16:00:00 GMT</pubDate>
     <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>禁用 Phantom Process Killer</title>
+      <link>https://usmacd.com/cn/andorid_disable_Phantom_Process_Killer/</link>
+      <guid>https://usmacd.com/cn/andorid_disable_Phantom_Process_Killer/</guid>
+      <pubDate>Sun, 24 Nov 2024 16:00:00 GMT</pubDate>
+      
+        
+        
+      <description>&lt;h2 id=&quot;禁用-Phantom-Process-Killer&quot;&gt;&lt;a href=&quot;#禁用-Phantom-Process-Killer&quot; class=&quot;headerlink&quot; title=&quot;禁用 Phantom Process Killer&quot;&gt;&lt;/a&gt;禁用 Phantom Process Killer&lt;/h2&gt;&lt;p&gt;从 Android 12 开始，Google 引入了 &lt;code&gt;Phant</description>
+        
+      
+      
+      
+      
+      
+      <category domain="https://usmacd.com/tags/Android/">Android</category>
+      
+      
+      <comments>https://usmacd.com/cn/andorid_disable_Phantom_Process_Killer/#disqus_thread</comments>
+      
+    </item>
     
     <item>
       <title>解决 Fedora Linux WPS 中文乱码问题</title>
@@ -225,31 +247,6 @@
       
       
       <comments>https://usmacd.com/cn/android_apk_extract/#disqus_thread</comments>
-      
-    </item>
-    
-    <item>
-      <title>Debian 12 安装 Nvidia 驱动和 Ollama</title>
-      <link>https://usmacd.com/cn/Debian_Nvidia_Ollama/</link>
-      <guid>https://usmacd.com/cn/Debian_Nvidia_Ollama/</guid>
-      <pubDate>Thu, 25 Jul 2024 16:00:00 GMT</pubDate>
-      
-        
-        
-      <description>&lt;p&gt;根据同事反馈，高版本的 NVIDIA 驱动兼容性有问题，需要安装 Nvidia 驱动 525.147.05 ，过程中可能需要升级内核。&lt;/p&gt;
-&lt;h2 id=&quot;安装-Nvidia-驱动&quot;&gt;&lt;a href=&quot;#安装-Nvidia-驱动&quot; class=&quot;headerlink&quot; title=&quot;安装 Nvidia 驱动&quot;&gt;&lt;/a&gt;安装 Nvidia 驱动&lt;/h2&gt;&lt;p&gt;查看 Debian 上显卡安装</description>
-        
-      
-      
-      
-      
-      
-      <category domain="https://usmacd.com/tags/linux/">linux</category>
-      
-      <category domain="https://usmacd.com/tags/ai/">ai</category>
-      
-      
-      <comments>https://usmacd.com/cn/Debian_Nvidia_Ollama/#disqus_thread</comments>
       
     </item>
     
