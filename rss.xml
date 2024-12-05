@@ -9,8 +9,32 @@
     <atom:link href="https://usmacd.com/rss.xml" rel="self" type="application/rss+xml"/>
     
     <description></description>
-    <pubDate>Tue, 26 Nov 2024 16:00:00 GMT</pubDate>
+    <pubDate>Wed, 04 Dec 2024 16:00:00 GMT</pubDate>
     <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>旧文：拓展训练心得</title>
+      <link>https://usmacd.com/cn/some_thoughts/</link>
+      <guid>https://usmacd.com/cn/some_thoughts/</guid>
+      <pubDate>Wed, 04 Dec 2024 16:00:00 GMT</pubDate>
+      
+        
+        
+      <description>&lt;p&gt;转眼间拓展训练已经结束快一周的时间了。但是其中的很多经历或许一辈子也忘记不了，我忘记不了火箭队亲爱的队友，也忘记不了这两天的艰辛。&lt;/p&gt;
+&lt;p&gt;拓展训练的项目不是很多，但都很有特点。这次我们的拓展主要的目的是团队融炼，培养团队的协作能力，锻炼自我的韧性，挑战自我，挑战极限。&lt;/p&gt;
+&lt;p&gt;训练的时间安排的很紧，即使难度很大的项目也只是安排了一个小时左右的时间，要在这么短的时间内高效地完成项</description>
+        
+      
+      
+      
+      
+      
+      <category domain="https://usmacd.com/tags/Misc/">Misc</category>
+      
+      
+      <comments>https://usmacd.com/cn/some_thoughts/#disqus_thread</comments>
+      
+    </item>
     
     <item>
       <title>禁用 Phantom Process Killer</title>
@@ -224,29 +248,6 @@
       
       
       <comments>https://usmacd.com/cn/PARA_methd/#disqus_thread</comments>
-      
-    </item>
-    
-    <item>
-      <title>如何提取 Android 手机中已经安装的 APK 文件</title>
-      <link>https://usmacd.com/cn/android_apk_extract/</link>
-      <guid>https://usmacd.com/cn/android_apk_extract/</guid>
-      <pubDate>Wed, 21 Aug 2024 16:00:00 GMT</pubDate>
-      
-        
-        
-      <description>&lt;p&gt;首先需要下载 Android Platform Tools 获取 adb 工具。&lt;/p&gt;
-&lt;p&gt;Android Platform Tools 的下载地址为：&lt;br&gt;&lt;a href=&quot;https://developer.android.com/tools/releases/platform-tools#downloads&quot;&gt;https://developer.android.com/tools</description>
-        
-      
-      
-      
-      
-      
-      <category domain="https://usmacd.com/tags/Android/">Android</category>
-      
-      
-      <comments>https://usmacd.com/cn/android_apk_extract/#disqus_thread</comments>
       
     </item>
     

@@ -6,7 +6,7 @@
   <link href="https://usmacd.com/atom.xml" rel="self"/>
   
   <link href="https://usmacd.com/"/>
-  <updated>2024-11-26T16:00:00.000Z</updated>
+  <updated>2024-12-04T16:00:00.000Z</updated>
   <id>https://usmacd.com/</id>
   
   <author>
@@ -15,6 +15,28 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>旧文：拓展训练心得</title>
+    <link href="https://usmacd.com/cn/some_thoughts/"/>
+    <id>https://usmacd.com/cn/some_thoughts/</id>
+    <published>2024-12-04T16:00:00.000Z</published>
+    <updated>2024-12-04T16:00:00.000Z</updated>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;转眼间拓展训练已经结束快一周的时间了。但是其中的很多经历或许一辈子也忘记不了，我忘记不了火箭队亲爱的队友，也忘记不了这两天的艰辛。&lt;/p&gt;
+&lt;p&gt;拓展训练的项目不是很多，但都很有特点。这次我们的拓展主要的目的是团队融炼，培养团队的协作能力，锻炼自我的韧性，挑战自我，挑战极限。&lt;/p&gt;
+&lt;p&gt;训练的时间安排的很紧，即使难度很大的项目也只是安排了一个小时左右的时间，要在这么短的时间内高效地完成项</summary>
+      
+    
+    
+    
+    
+    <category term="Misc" scheme="https://usmacd.com/tags/Misc/"/>
+    
+  </entry>
   
   <entry>
     <title>禁用 Phantom Process Killer</title>
@@ -210,27 +232,6 @@
     
     
     <category term="PKM" scheme="https://usmacd.com/tags/PKM/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>如何提取 Android 手机中已经安装的 APK 文件</title>
-    <link href="https://usmacd.com/cn/android_apk_extract/"/>
-    <id>https://usmacd.com/cn/android_apk_extract/</id>
-    <published>2024-08-21T16:00:00.000Z</published>
-    <updated>2024-08-21T16:00:00.000Z</updated>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;首先需要下载 Android Platform Tools 获取 adb 工具。&lt;/p&gt;
-&lt;p&gt;Android Platform Tools 的下载地址为：&lt;br&gt;&lt;a href=&quot;https://developer.android.com/tools/releases/platform-tools#downloads&quot;&gt;https://developer.android.com/tools</summary>
-      
-    
-    
-    
-    
-    <category term="Android" scheme="https://usmacd.com/tags/Android/"/>
     
   </entry>
   
