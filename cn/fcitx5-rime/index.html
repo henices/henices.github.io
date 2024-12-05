@@ -23,7 +23,7 @@
   
     <meta name="description" content="现在 fcitx 已经升级到了 fcitx5, 本来用着 fcitx4 挺好，也没有想着升级，在折腾 fcitx.vim 的时候发现 fcitx 居然升级了，使得我的 vim 插件无法正常工作了，一顿折腾，本来以为很简单没想到进了个大坑 。主要是不愿意放弃我的一万多行的 rime 用户词库，多年的积累了，不过 Linux 用户不就是老折腾吗， 唉。 fcitx5-rime 的默认的配置目录已经变为">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Fedora KDE Plasma 和 Android 系统上安装 fcitx5 rime">
+<meta property="og:title" content="Fedora KDE Plasma 上安装 fcitx5 rime">
 <meta property="og:url" content="https://usmacd.com/cn/fcitx5-rime/index.html">
 <meta property="og:site_name" content="安全代码">
 <meta property="og:description" content="现在 fcitx 已经升级到了 fcitx5, 本来用着 fcitx4 挺好，也没有想着升级，在折腾 fcitx.vim 的时候发现 fcitx 居然升级了，使得我的 vim 插件无法正常工作了，一顿折腾，本来以为很简单没想到进了个大坑 。主要是不愿意放弃我的一万多行的 rime 用户词库，多年的积累了，不过 Linux 用户不就是老折腾吗， 唉。 fcitx5-rime 的默认的配置目录已经变为">
@@ -38,7 +38,7 @@
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>Fedora KDE Plasma 和 Android 系统上安装 fcitx5 rime - 安全代码</title>
+  <title>Fedora KDE Plasma 上安装 fcitx5 rime - 安全代码</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -254,7 +254,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle">Fedora KDE Plasma 和 Android 系统上安装 fcitx5 rime</span>
+            <span id="subtitle">Fedora KDE Plasma 上安装 fcitx5 rime</span>
           
         </div>
 
@@ -277,7 +277,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.2k 字
+          2k 字
         
       </span>
     
@@ -288,7 +288,7 @@
         
         
         
-          19 分钟
+          17 分钟
         
       </span>
     
@@ -334,7 +334,7 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">Fedora KDE Plasma 和 Android 系统上安装 fcitx5 rime</h1>
+            <h1 id="seo-header">Fedora KDE Plasma 上安装 fcitx5 rime</h1>
             
               <p id="updated-time" class="note note-info" style="">
                 
@@ -417,24 +417,11 @@
 <h2 id="中英文混合输入技巧"><a href="#中英文混合输入技巧" class="headerlink" title="中英文混合输入技巧"></a>中英文混合输入技巧</h2><p>在 default.custom.yaml 中添加下面的配置，可以开启右键 shift 回车上屏功能，非常实用。</p>
 <figure class="highlight dts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs dts"><span class="hljs-symbol">ascii_composer:</span><br><span class="hljs-symbol">   switch_key:</span><br><span class="hljs-symbol">     Shift_R:</span> inline_ascii <span class="hljs-meta"># 按右 shift 键，切换为英文输入，同时保留已输入字符继续输入，回车上屏</span><br></code></pre></td></tr></table></figure>
 
-<h2 id="在-Android-下使用-Fcitx5-Rime"><a href="#在-Android-下使用-Fcitx5-Rime" class="headerlink" title="在 Android 下使用 Fcitx5 Rime"></a>在 Android 下使用 Fcitx5 Rime</h2><p>Fcitx5 Rime Android 解决方案</p>
-<p>我一直在寻找 Rime 输入法的 Android 解决方案，最先是找到 Trime<br><a target="_blank" rel="noopener" href="https://github.com/osfans/trime">https://github.com/osfans/trime</a></p>
-<p>Trime 我试过三次，有三个不理想的点：<br>1）不够流畅，有卡顿的感觉<br>2）不够稳定，经常出现崩溃<br>3）Trime 自己有一套配置，要学习 trime.yaml </p>
-<p>昨天看到有朋友 Fcitx5 Android 替换了 Google Gborad，上次看到时它不支持 Rime。<br><a target="_blank" rel="noopener" href="https://github.com/fcitx5-android/fcitx5-android">https://github.com/fcitx5-android/fcitx5-android</a></p>
-<p>惊喜的发现，Fcitx5 Android 已经比较完善了，通过插件的形式支持了 fcitx5 Rime 。</p>
-<p>在 Android 上使用 Fcitx5 Rime，需要安装两个 APK ：</p>
-<p>主程序：<a target="_blank" rel="noopener" href="https://github.com/fcitx5-android/fcitx5-android/releases/download/0.0.9/org.fcitx.fcitx5.android-0.0.9-0-g8dc51356-arm64-v8a-release.apk">https://github.com/fcitx5-android/fcitx5-android/releases/download/0.0.9/org.fcitx.fcitx5.android-0.0.9-0-g8dc51356-arm64-v8a-release.apk</a></p>
-<p>插件：<a target="_blank" rel="noopener" href="https://github.com/fcitx5-android/fcitx5-android/releases/download/0.0.9/org.fcitx.fcitx5.android.plugin.rime-0.0.9-0-g8dc51356-arm64-v8a-release.apk">https://github.com/fcitx5-android/fcitx5-android/releases/download/0.0.9/org.fcitx.fcitx5.android.plugin.rime-0.0.9-0-g8dc51356-arm64-v8a-release.apk</a></p>
-<p>安装完两个 APK 后，将 rime 的配置文件放到<br><code>/sdcard/Android/data/org.fcitx.fcitx5.android/files/data/rime/</code></p>
-<p>重新部署。</p>
-<p>我试用了一个晚上 Fcitx5 Rime Android ，没有出现崩溃现象，速度可以接受。</p>
-<p>摆脱了 Gboard，这点很好。</p>
 <h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>可能有些人不知道为什么要折腾 rime，rime 的用户词库文件是个宝贝，这个词库是都是你真实的在日常使用中用到的词库，小巧又实用还能到处同步，上传到云后永不丢失，符合自己的数据自己掌握的硬道理。至于国内的那些输入法，我就不加以评价了，在这商业的社会要保持基本的做人底线不易。</p>
 <h3 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h3><ul>
 <li><a target="_blank" rel="noopener" href="https://fcitx-im.org/wiki/Setup_Fcitx_5">https://fcitx-im.org/wiki/Setup_Fcitx_5</a></li>
 <li><a target="_blank" rel="noopener" href="https://xuthus.cc/misc/fedora-install-fcitx5.html">https://xuthus.cc/misc/fedora-install-fcitx5.html</a></li>
 <li><a target="_blank" rel="noopener" href="https://gist.github.com/ukazap/6495324cf3220b1fef0484e8fdb244ab">https://gist.github.com/ukazap/6495324cf3220b1fef0484e8fdb244ab</a></li>
-<li><a target="_blank" rel="noopener" href="https://github.com/fcitx5-android/fcitx5-android">https://github.com/fcitx5-android/fcitx5-android</a></li>
 </ul>
 
                 
@@ -460,7 +447,7 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>Fedora KDE Plasma 和 Android 系统上安装 fcitx5 rime</div>
+      <div>Fedora KDE Plasma 上安装 fcitx5 rime</div>
       <div>https://usmacd.com/cn/fcitx5-rime/</div>
     </div>
     <div class="license-meta">

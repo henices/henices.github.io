@@ -13,6 +13,29 @@
     <generator>http://hexo.io/</generator>
     
     <item>
+      <title>Android 上使用 Fcitx5 和 Rime</title>
+      <link>https://usmacd.com/cn/fcitx5-android/</link>
+      <guid>https://usmacd.com/cn/fcitx5-android/</guid>
+      <pubDate>Wed, 04 Dec 2024 16:00:00 GMT</pubDate>
+      
+        
+        
+      <description>&lt;p&gt;我一直在寻找 Rime 输入法的 Android 解决方案，最先是找到 Trime&lt;br&gt;&lt;a href=&quot;https://github.com/osfans/trime&quot;&gt;https://github.com/osfans/trime&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Trime 我试过三次，有三个不理想的点：&lt;br&gt;1）不够流畅，有卡顿的感觉&lt;br&gt;2）不够稳定，经常出现崩溃&lt;br&gt;3）Trime </description>
+        
+      
+      
+      
+      
+      
+      <category domain="https://usmacd.com/tags/Android/">Android</category>
+      
+      
+      <comments>https://usmacd.com/cn/fcitx5-android/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
       <title>旧文：拓展训练心得</title>
       <link>https://usmacd.com/cn/some_thoughts/</link>
       <guid>https://usmacd.com/cn/some_thoughts/</guid>
@@ -223,31 +246,6 @@
       
       
       <comments>https://usmacd.com/cn/obsidian/#disqus_thread</comments>
-      
-    </item>
-    
-    <item>
-      <title>几秒钟内整理数字生活的系统</title>
-      <link>https://usmacd.com/cn/PARA_methd/</link>
-      <guid>https://usmacd.com/cn/PARA_methd/</guid>
-      <pubDate>Sun, 25 Aug 2024 16:00:00 GMT</pubDate>
-      
-        
-        
-      <description>&lt;p&gt;我们在使用知识管理系统对信息进行整理时，最令人头痛的地方是很难将信息划分到一个具体的类别 （打标签） 。&lt;/p&gt;
-&lt;p&gt;虽然现代的知识管理软件，支持多个标签联合查询或支持标签的级联查询，在具体的信息分类问题上依然没有找到好方法。&lt;/p&gt;
-&lt;p&gt;时间一长，我们甚至难以记起我们使用了哪些标签。&lt;/p&gt;
-&lt;p&gt;Tiago Forte 是知名的生产力效率专家，在 《Build a Second Ba</description>
-        
-      
-      
-      
-      
-      
-      <category domain="https://usmacd.com/tags/PKM/">PKM</category>
-      
-      
-      <comments>https://usmacd.com/cn/PARA_methd/#disqus_thread</comments>
       
     </item>
     
