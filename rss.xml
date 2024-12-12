@@ -9,8 +9,36 @@
     <atom:link href="https://usmacd.com/rss.xml" rel="self" type="application/rss+xml"/>
     
     <description></description>
-    <pubDate>Wed, 04 Dec 2024 16:00:00 GMT</pubDate>
+    <pubDate>Wed, 11 Dec 2024 16:00:00 GMT</pubDate>
     <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>Emoji 在 Fcitx5 提示栏正常显示的字体配置</title>
+      <link>https://usmacd.com/cn/fcitx5_emoji_display/</link>
+      <guid>https://usmacd.com/cn/fcitx5_emoji_display/</guid>
+      <pubDate>Wed, 11 Dec 2024 16:00:00 GMT</pubDate>
+      
+        
+        
+      <description>&lt;p&gt;关于升级大版本的 Linux 发行版，我有个经验，不要太着急升级，至少等2个星期再说。&lt;/p&gt;
+&lt;p&gt;即便如此，还是会遇上各种使用的问题，&lt;/p&gt;
+&lt;p&gt;升级 Fedora 41 后，Color Emoji 无法在 Fcitx5 的输入法提示栏正常显示。&lt;/p&gt;
+&lt;p&gt;上网搜索了一番，估计和字体渲染相关，下面是具体的解决问题方法：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;安装 Emoji 字体&lt;/li&gt;
+</description>
+        
+      
+      
+      
+      
+      
+      <category domain="https://usmacd.com/tags/linux/">linux</category>
+      
+      
+      <comments>https://usmacd.com/cn/fcitx5_emoji_display/#disqus_thread</comments>
+      
+    </item>
     
     <item>
       <title>Android 上使用 Fcitx5 和 Rime</title>
@@ -224,28 +252,6 @@
       
       
       <comments>https://usmacd.com/cn/ssh-publickey-permission-denied/#disqus_thread</comments>
-      
-    </item>
-    
-    <item>
-      <title>Obsidian 使用技巧</title>
-      <link>https://usmacd.com/cn/obsidian/</link>
-      <guid>https://usmacd.com/cn/obsidian/</guid>
-      <pubDate>Sun, 01 Sep 2024 16:00:00 GMT</pubDate>
-      
-        
-        
-      <description>&lt;h2 id=&quot;☆-在-Obsidian-中使用-mind-map&quot;&gt;&lt;a href=&quot;#☆-在-Obsidian-中使用-mind-map&quot; class=&quot;headerlink&quot; title=&quot;☆ 在 Obsidian 中使用 mind map&quot;&gt;&lt;/a&gt;☆ 在 Obsidian 中使用 mind map&lt;/h2&gt;&lt;p&gt;&lt;a href=&quot;https://github.com/joethei/ob</description>
-        
-      
-      
-      
-      
-      
-      <category domain="https://usmacd.com/tags/Software/">Software</category>
-      
-      
-      <comments>https://usmacd.com/cn/obsidian/#disqus_thread</comments>
       
     </item>
     

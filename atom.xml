@@ -6,7 +6,7 @@
   <link href="https://usmacd.com/atom.xml" rel="self"/>
   
   <link href="https://usmacd.com/"/>
-  <updated>2024-12-04T16:00:00.000Z</updated>
+  <updated>2024-12-11T16:00:00.000Z</updated>
   <id>https://usmacd.com/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Emoji 在 Fcitx5 提示栏正常显示的字体配置</title>
+    <link href="https://usmacd.com/cn/fcitx5_emoji_display/"/>
+    <id>https://usmacd.com/cn/fcitx5_emoji_display/</id>
+    <published>2024-12-11T16:00:00.000Z</published>
+    <updated>2024-12-11T16:00:00.000Z</updated>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;关于升级大版本的 Linux 发行版，我有个经验，不要太着急升级，至少等2个星期再说。&lt;/p&gt;
+&lt;p&gt;即便如此，还是会遇上各种使用的问题，&lt;/p&gt;
+&lt;p&gt;升级 Fedora 41 后，Color Emoji 无法在 Fcitx5 的输入法提示栏正常显示。&lt;/p&gt;
+&lt;p&gt;上网搜索了一番，估计和字体渲染相关，下面是具体的解决问题方法：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;安装 Emoji 字体&lt;/li&gt;
+</summary>
+      
+    
+    
+    
+    
+    <category term="linux" scheme="https://usmacd.com/tags/linux/"/>
+    
+  </entry>
   
   <entry>
     <title>Android 上使用 Fcitx5 和 Rime</title>
@@ -210,26 +236,6 @@
     
     
     <category term="linux" scheme="https://usmacd.com/tags/linux/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Obsidian 使用技巧</title>
-    <link href="https://usmacd.com/cn/obsidian/"/>
-    <id>https://usmacd.com/cn/obsidian/</id>
-    <published>2024-09-01T16:00:00.000Z</published>
-    <updated>2024-09-12T16:00:00.000Z</updated>
-    
-    
-      
-      
-    <summary type="html">&lt;h2 id=&quot;☆-在-Obsidian-中使用-mind-map&quot;&gt;&lt;a href=&quot;#☆-在-Obsidian-中使用-mind-map&quot; class=&quot;headerlink&quot; title=&quot;☆ 在 Obsidian 中使用 mind map&quot;&gt;&lt;/a&gt;☆ 在 Obsidian 中使用 mind map&lt;/h2&gt;&lt;p&gt;&lt;a href=&quot;https://github.com/joethei/ob</summary>
-      
-    
-    
-    
-    
-    <category term="Software" scheme="https://usmacd.com/tags/Software/"/>
     
   </entry>
   
