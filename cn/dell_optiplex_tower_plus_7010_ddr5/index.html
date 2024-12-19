@@ -21,12 +21,12 @@
   <meta name="author" content="henices">
   <meta name="keywords" content="">
   
-    <meta name="description" content="Dell 台式机的内存兼容性问题原始的工作机配备两条 8G 内存，想再添加一条 16G 的内存，没想到遇到内存兼容性问题。 在Windows 下查看内存类型，品牌，频率，容量，品牌，可以使用下面的命令。 12345678powershellPS&gt; Get-WmiObject Win32_PhysicalMemory | Format-Table SMBIOSMemoryType, Speed">
+    <meta name="description" content="Dell 台式机的内存兼容性问题原始的工作机配备两条 8G 内存，想再添加一条 16G 的内存，没想到遇到内存兼容性问题。 在Windows 下查看内存类型，频率，容量，品牌，可以使用下面的命令。 12345678powershellPS&gt; Get-WmiObject Win32_PhysicalMemory | Format-Table SMBIOSMemoryType, Speed, C">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Dell Optiplex Tower Plus 7010 内存的兼容性问题">
 <meta property="og:url" content="https://usmacd.com/cn/dell_optiplex_tower_plus_7010_ddr5/index.html">
 <meta property="og:site_name" content="安全代码">
-<meta property="og:description" content="Dell 台式机的内存兼容性问题原始的工作机配备两条 8G 内存，想再添加一条 16G 的内存，没想到遇到内存兼容性问题。 在Windows 下查看内存类型，品牌，频率，容量，品牌，可以使用下面的命令。 12345678powershellPS&gt; Get-WmiObject Win32_PhysicalMemory | Format-Table SMBIOSMemoryType, Speed">
+<meta property="og:description" content="Dell 台式机的内存兼容性问题原始的工作机配备两条 8G 内存，想再添加一条 16G 的内存，没想到遇到内存兼容性问题。 在Windows 下查看内存类型，频率，容量，品牌，可以使用下面的命令。 12345678powershellPS&gt; Get-WmiObject Win32_PhysicalMemory | Format-Table SMBIOSMemoryType, Speed, C">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://usmacd.com/img/dual3.jpg">
 <meta property="article:published_time" content="2024-12-18T16:00:00.000Z">
@@ -279,7 +279,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          502 字
+          500 字
         
       </span>
     
@@ -342,7 +342,7 @@
               <div class="markdown-body">
                 
                 <h2 id="Dell-台式机的内存兼容性问题"><a href="#Dell-台式机的内存兼容性问题" class="headerlink" title="Dell 台式机的内存兼容性问题"></a>Dell 台式机的内存兼容性问题</h2><p>原始的工作机配备两条 8G 内存，想再添加一条 16G 的内存，没想到遇到内存兼容性问题。</p>
-<p>在Windows 下查看内存类型，品牌，频率，容量，品牌，可以使用下面的命令。</p>
+<p>在Windows 下查看内存类型，频率，容量，品牌，可以使用下面的命令。</p>
 <figure class="highlight brainfuck"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs brainfuck"><span class="hljs-comment">powershell</span><br><br><span class="hljs-comment">PS</span>&gt; <span class="hljs-comment">Get</span><span class="hljs-literal">-</span><span class="hljs-comment">WmiObject Win32_PhysicalMemory | Format</span><span class="hljs-literal">-</span><span class="hljs-comment">Table SMBIOSMemoryType</span><span class="hljs-string">,</span> <span class="hljs-comment">Speed</span><span class="hljs-string">,</span> <span class="hljs-comment">Capacity</span><span class="hljs-string">,</span> <span class="hljs-comment">Manufacturer</span><br><br><span class="hljs-comment">SMBIOSMemoryType Speed    Capacity Manufacturer</span><br><span class="hljs-literal">----------------</span> <span class="hljs-literal">-----</span>    <span class="hljs-literal">--------</span> <span class="hljs-literal">------------</span><br>              <span class="hljs-comment">34  4800  8589934592 80CE000080CE</span><br>              <span class="hljs-comment">34  4800  8589934592 80AD000080AD</span><br></code></pre></td></tr></table></figure>
 
 <p>参照下表可以发现，我的工作机使用的是两条8G DDR5 4800 的内存，两条 8G 内存品牌不一样。🤣</p>
