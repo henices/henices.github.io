@@ -6,7 +6,7 @@
   <link href="https://usmacd.com/atom.xml" rel="self"/>
   
   <link href="https://usmacd.com/"/>
-  <updated>2024-12-11T16:00:00.000Z</updated>
+  <updated>2024-12-18T16:00:00.000Z</updated>
   <id>https://usmacd.com/</id>
   
   <author>
@@ -15,6 +15,27 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Dell Optiplex Tower Plus 7010 内存的兼容性问题</title>
+    <link href="https://usmacd.com/cn/dell_optiplex_tower_plus_7010_ddr5/"/>
+    <id>https://usmacd.com/cn/dell_optiplex_tower_plus_7010_ddr5/</id>
+    <published>2024-12-18T16:00:00.000Z</published>
+    <updated>2024-12-18T16:00:00.000Z</updated>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;Dell-台式机的内存兼容性问题&quot;&gt;&lt;a href=&quot;#Dell-台式机的内存兼容性问题&quot; class=&quot;headerlink&quot; title=&quot;Dell 台式机的内存兼容性问题&quot;&gt;&lt;/a&gt;Dell 台式机的内存兼容性问题&lt;/h2&gt;&lt;p&gt;原始的工作机配备两条 8G 内存，想再添加一条 16G 的内存，没想到遇到内存兼容性问题。&lt;/p&gt;
+&lt;p&gt;在Windows 下查看内存类型，品牌，频</summary>
+      
+    
+    
+    
+    
+    <category term="windows" scheme="https://usmacd.com/tags/windows/"/>
+    
+  </entry>
   
   <entry>
     <title>Emoji 在 Fcitx5 提示栏正常显示的字体配置</title>
@@ -217,27 +238,6 @@
     
     
     <category term="ai" scheme="https://usmacd.com/tags/ai/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>ssh publickey permission denied 错误的解决方法</title>
-    <link href="https://usmacd.com/cn/ssh-publickey-permission-denied/"/>
-    <id>https://usmacd.com/cn/ssh-publickey-permission-denied/</id>
-    <published>2024-09-04T16:00:00.000Z</published>
-    <updated>2024-09-04T16:00:00.000Z</updated>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;openssh publickey 登录的方式突然不好用了，检查 &lt;code&gt;grep sshd /var/log/auth.log&lt;/code&gt;&lt;/p&gt;
-&lt;figure class=&quot;highlight apache&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class</summary>
-      
-    
-    
-    
-    
-    <category term="linux" scheme="https://usmacd.com/tags/linux/"/>
     
   </entry>
   

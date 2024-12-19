@@ -9,8 +9,31 @@
     <atom:link href="https://usmacd.com/rss.xml" rel="self" type="application/rss+xml"/>
     
     <description></description>
-    <pubDate>Wed, 11 Dec 2024 16:00:00 GMT</pubDate>
+    <pubDate>Wed, 18 Dec 2024 16:00:00 GMT</pubDate>
     <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>Dell Optiplex Tower Plus 7010 内存的兼容性问题</title>
+      <link>https://usmacd.com/cn/dell_optiplex_tower_plus_7010_ddr5/</link>
+      <guid>https://usmacd.com/cn/dell_optiplex_tower_plus_7010_ddr5/</guid>
+      <pubDate>Wed, 18 Dec 2024 16:00:00 GMT</pubDate>
+      
+        
+        
+      <description>&lt;h2 id=&quot;Dell-台式机的内存兼容性问题&quot;&gt;&lt;a href=&quot;#Dell-台式机的内存兼容性问题&quot; class=&quot;headerlink&quot; title=&quot;Dell 台式机的内存兼容性问题&quot;&gt;&lt;/a&gt;Dell 台式机的内存兼容性问题&lt;/h2&gt;&lt;p&gt;原始的工作机配备两条 8G 内存，想再添加一条 16G 的内存，没想到遇到内存兼容性问题。&lt;/p&gt;
+&lt;p&gt;在Windows 下查看内存类型，品牌，频</description>
+        
+      
+      
+      
+      
+      
+      <category domain="https://usmacd.com/tags/windows/">windows</category>
+      
+      
+      <comments>https://usmacd.com/cn/dell_optiplex_tower_plus_7010_ddr5/#disqus_thread</comments>
+      
+    </item>
     
     <item>
       <title>Emoji 在 Fcitx5 提示栏正常显示的字体配置</title>
@@ -231,29 +254,6 @@
       
       
       <comments>https://usmacd.com/cn/local_rag_llamaindex/#disqus_thread</comments>
-      
-    </item>
-    
-    <item>
-      <title>ssh publickey permission denied 错误的解决方法</title>
-      <link>https://usmacd.com/cn/ssh-publickey-permission-denied/</link>
-      <guid>https://usmacd.com/cn/ssh-publickey-permission-denied/</guid>
-      <pubDate>Wed, 04 Sep 2024 16:00:00 GMT</pubDate>
-      
-        
-        
-      <description>&lt;p&gt;openssh publickey 登录的方式突然不好用了，检查 &lt;code&gt;grep sshd /var/log/auth.log&lt;/code&gt;&lt;/p&gt;
-&lt;figure class=&quot;highlight apache&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class</description>
-        
-      
-      
-      
-      
-      
-      <category domain="https://usmacd.com/tags/linux/">linux</category>
-      
-      
-      <comments>https://usmacd.com/cn/ssh-publickey-permission-denied/#disqus_thread</comments>
       
     </item>
     
