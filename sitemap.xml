@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://usmacd.com/cn/lilu/</loc>
+    
+    <lastmod>2024-12-26</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://usmacd.com/cn/dell_optiplex_tower_plus_7010_ddr5/</loc>
     
     <lastmod>2024-12-18</lastmod>
@@ -311,15 +320,6 @@
     <loc>https://usmacd.com/cn/learn_method/</loc>
     
     <lastmod>2024-04-14</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://usmacd.com/cn/lilu/</loc>
-    
-    <lastmod>2024-04-02</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
