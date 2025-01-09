@@ -9,8 +9,30 @@
     <atom:link href="https://usmacd.com/rss.xml" rel="self" type="application/rss+xml"/>
     
     <description></description>
-    <pubDate>Wed, 18 Dec 2024 16:00:00 GMT</pubDate>
+    <pubDate>Wed, 08 Jan 2025 16:00:00 GMT</pubDate>
     <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>12306 火车票的一些经验</title>
+      <link>https://usmacd.com/cn/12306_train_ticket/</link>
+      <guid>https://usmacd.com/cn/12306_train_ticket/</guid>
+      <pubDate>Wed, 08 Jan 2025 16:00:00 GMT</pubDate>
+      
+        
+        
+      <description>&lt;h2 id=&quot;12306-买火车票的几个知识-2024&quot;&gt;&lt;a href=&quot;#12306-买火车票的几个知识-2024&quot; class=&quot;headerlink&quot; title=&quot;12306 买火车票的几个知识 ( 2024 )&quot;&gt;&lt;/a&gt;12306 买火车票的几个知识 ( 2024 )&lt;/h2&gt;&lt;p&gt;1&amp;#x2F; 国铁集团相关负责人表示，任何用户没有优先购票权，在第三方平台购买的任何价格的加速包，</description>
+        
+      
+      
+      
+      
+      
+      <category domain="https://usmacd.com/tags/misc/">misc</category>
+      
+      
+      <comments>https://usmacd.com/cn/12306_train_ticket/#disqus_thread</comments>
+      
+    </item>
     
     <item>
       <title>Dell Optiplex Tower Plus 7010 内存的兼容性问题</title>
@@ -234,30 +256,6 @@
       
       
       <comments>https://usmacd.com/cn/write_blog_afraid/#disqus_thread</comments>
-      
-    </item>
-    
-    <item>
-      <title>50 行代码打造全本地的 RAG 知识检索系统</title>
-      <link>https://usmacd.com/cn/local_rag_llamaindex/</link>
-      <guid>https://usmacd.com/cn/local_rag_llamaindex/</guid>
-      <pubDate>Sun, 22 Sep 2024 16:00:00 GMT</pubDate>
-      
-        
-        
-      <description>&lt;p&gt;非常粗糙的示例代码，使用 Ollama 和 LlamaIndex 打造全本地的知识检索系统。&lt;/p&gt;
-&lt;p&gt;LlamaIndex 的安装方法如下：&lt;/p&gt;
-&lt;figure class=&quot;highlight sh&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/sp</description>
-        
-      
-      
-      
-      
-      
-      <category domain="https://usmacd.com/tags/ai/">ai</category>
-      
-      
-      <comments>https://usmacd.com/cn/local_rag_llamaindex/#disqus_thread</comments>
       
     </item>
     
