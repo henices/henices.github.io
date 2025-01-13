@@ -160,7 +160,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/thoughts" target="_self">
                 <i class="iconfont icon-exp-fill"></i>
-                <span>短想法</span>
+                <span>thoughts</span>
               </a>
             </li>
           
@@ -354,7 +354,7 @@
 <li>文档：<a target="_blank" rel="noopener" href="https://docs.mitmproxy.org/stable/">https://docs.mitmproxy.org/stable/</a></li>
 </ul>
 <h2 id="☆-1-安装"><a href="#☆-1-安装" class="headerlink" title="☆ 1. 安装"></a>☆ 1. 安装</h2><p>参考 <a target="_blank" rel="noopener" href="https://docs.mitmproxy.org/stable/overview-installation/">https://docs.mitmproxy.org/stable/overview-installation/</a></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo dnf install -y python-pip python-devel libffi-devel openssl-devel libxml2-devel libxslt-devel libpng-devel libjpeg-devel<br>sudo pip install mitmproxy  <span class="hljs-comment"># or pip install --user mitmproxy</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> dnf install -y python-pip python-devel libffi-devel openssl-devel libxml2-devel libxslt-devel libpng-devel libjpeg-devel<br><span class="hljs-built_in">sudo</span> pip install mitmproxy  <span class="hljs-comment"># or pip install --user mitmproxy</span><br></code></pre></td></tr></table></figure>
 <h2 id="☆-2-基本使用"><a href="#☆-2-基本使用" class="headerlink" title="☆ 2. 基本使用"></a>☆ 2. 基本使用</h2><p><code>mitmproxy --listen-host 127.0.0.1 -p 8080</code></p>
 <ul>
 <li><code>--listen-host</code> address to bind address</li>

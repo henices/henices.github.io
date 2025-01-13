@@ -160,7 +160,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/thoughts" target="_self">
                 <i class="iconfont icon-exp-fill"></i>
-                <span>短想法</span>
+                <span>thoughts</span>
               </a>
             </li>
           
@@ -349,7 +349,7 @@
                 
                 <p>感谢国产化软件项目，多年后，Linux 终于有 wechat 的官方安装包了 🥳</p>
 <p>从麒麟 Linux 的源中，下载 wechat deb 安装包，解压后可以正常在 Fedora Linux 上使用。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs bash">wget https://archive2.kylinos.cn/DEB/KYLIN_DEB/pool/main/deb/wechat/wechat-beta_4.0.0.21_amd64.deb<br>sudo dnf install dpkg vlc<br>dpkg-deb -xv ./wechat-beta_4.0.0.21_amd64.deb /tmp/wechat<br><span class="hljs-built_in">cd</span> /tmp/wechat/opt/wechat-beta<br>sudo <span class="hljs-built_in">ln</span> -sf /usr/lib64/libbz2.so.1.0.8 /usr/lib64/libbz2.so.1.0<br>./wechat<br></code></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs bash">wget https://archive2.kylinos.cn/DEB/KYLIN_DEB/pool/main/deb/wechat/wechat-beta_4.0.0.21_amd64.deb<br><span class="hljs-built_in">sudo</span> dnf install dpkg vlc<br>dpkg-deb -xv ./wechat-beta_4.0.0.21_amd64.deb /tmp/wechat<br><span class="hljs-built_in">cd</span> /tmp/wechat/opt/wechat-beta<br><span class="hljs-built_in">sudo</span> <span class="hljs-built_in">ln</span> -sf /usr/lib64/libbz2.so.1.0.8 /usr/lib64/libbz2.so.1.0<br>./wechat<br></code></pre></td></tr></table></figure>
 
 <p>我的 Fedora Linux 上安装了许多软件，常见的依赖库都已安装，大家可能还会遇到找不到动态库的情况。</p>
 <p>其他 Linux 发行版 wechat 的适配原理上是一样的。</p>
@@ -357,7 +357,7 @@
 <p>Wechat linux 4.0 支持小程序，是时候跟微信网页版说再见了。</p>
 <p>2024.11.6 更新</p>
 <p>腾讯添加了linux wechat 下载网页，提供 rpm ，deb 和 AppImage  安装包。<br><a target="_blank" rel="noopener" href="https://linux.weixin.qq.com/">https://linux.weixin.qq.com/</a> </p>
-<figure class="highlight gcode"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs gcode">sudo rpm -ivh WeChatLi<span class="hljs-symbol">nux_x86</span>_<span class="hljs-number">64.</span>rpm<br></code></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> rpm -ivh WeChatLinux_x86_64.rpm<br></code></pre></td></tr></table></figure>
 
                 
               </div>

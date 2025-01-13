@@ -32,8 +32,8 @@
 <meta property="article:published_time" content="2021-11-28T16:00:00.000Z">
 <meta property="article:modified_time" content="2024-06-13T16:00:00.000Z">
 <meta property="article:author" content="henices">
-<meta property="article:tag" content="Programming">
 <meta property="article:tag" content="Software">
+<meta property="article:tag" content="Programming">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://raw.githubusercontent.com/henices/pictures/master/vnote.png">
   
@@ -163,7 +163,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/thoughts" target="_self">
                 <i class="iconfont icon-exp-fill"></i>
-                <span>短想法</span>
+                <span>thoughts</span>
               </a>
             </li>
           
@@ -418,7 +418,7 @@
 
 <p>2022.8.2 更新: Qt 5.15.5 已经修复了这个问题。</p>
 <h2 id="Fedora-上使用-Qt6-编译-VNote"><a href="#Fedora-上使用-Qt6-编译-VNote" class="headerlink" title="Fedora 上使用 Qt6 编译 VNote"></a>Fedora 上使用 Qt6 编译 VNote</h2><p>最近，VNote 迎来了一个大更新，支持Qt6 并保留了对 Qt5 的支持。使用Qt6 编译 VNote 需要安装一些依赖库，下面的可能不全，需要根据具体情况调整。</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">sudo dnf install qt6-qtbase-devel qt6-qt5compat-devel qt6-qtsvg-devel qt6-qtwebengine-devel<br></code></pre></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-built_in">sudo</span> dnf install qt6-qtbase-devel qt6-qt5compat-devel qt6-qtsvg-devel qt6-qtwebengine-devel<br></code></pre></td></tr></table></figure>
 
 <p>使用 Fedora 系统自带的 Qt6 编译比较简单，在 VNote 的源码目录新建一个脚本 build.sh，内容如下：</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs sh">VNOTEDIR=~/vnote/<br><span class="hljs-built_in">mkdir</span> -p build_system<br><span class="hljs-built_in">cd</span> build_system<br>/lib64/qt6/bin/qmake PREFIX=<span class="hljs-variable">$&#123;VNOTEDIR&#125;</span> CONFIG+=release -spec linux-g++-64 ../vnote.pro<br>make -j`<span class="hljs-built_in">nproc</span>` &amp;&amp; make install<br></code></pre></td></tr></table></figure>
@@ -446,9 +446,9 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/Programming/" class="print-no-link">#Programming</a>
-      
         <a href="/tags/Software/" class="print-no-link">#Software</a>
+      
+        <a href="/tags/Programming/" class="print-no-link">#Programming</a>
       
     </div>
   

@@ -160,7 +160,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/thoughts" target="_self">
                 <i class="iconfont icon-exp-fill"></i>
-                <span>短想法</span>
+                <span>thoughts</span>
               </a>
             </li>
           
@@ -349,7 +349,7 @@
                 
                 <p>现在 fcitx 已经升级到了 fcitx5, 本来用着 fcitx4 挺好，也没有想着升级，在折腾 fcitx.vim 的时候发现 fcitx 居然升级了，使得我的 vim 插件无法正常工作了，一顿折腾，本来以为很简单没想到进了个大坑 。<br>主要是不愿意放弃我的一万多行的 rime 用户词库，多年的积累了，不过 Linux 用户不就是老折腾吗， 唉。</p>
 <p>fcitx5-rime 的默认的配置目录已经变为 <code>~/.local/share/fcitx5/rime</code>， fcitx4 默认的配置目录是 <code>~/.config/fcitx/rime</code></p>
-<h2 id="安装-fcitx5-和-fcitx5-rime"><a href="#安装-fcitx5-和-fcitx5-rime" class="headerlink" title="安装 fcitx5 和 fcitx5 rime"></a>安装 fcitx5 和 fcitx5 rime</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo dnf install -y fcitx5 fcitx5-autostart fcitx5-chinese-addons fcitx5-configtool fcitx5-gtk fcitx5-qt kcm-fcitx5<br>sudo dnf install -y fcitx5-rime<br></code></pre></td></tr></table></figure>
+<h2 id="安装-fcitx5-和-fcitx5-rime"><a href="#安装-fcitx5-和-fcitx5-rime" class="headerlink" title="安装 fcitx5 和 fcitx5 rime"></a>安装 fcitx5 和 fcitx5 rime</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> dnf install -y fcitx5 fcitx5-autostart fcitx5-chinese-addons fcitx5-configtool fcitx5-gtk fcitx5-qt kcm-fcitx5<br><span class="hljs-built_in">sudo</span> dnf install -y fcitx5-rime<br></code></pre></td></tr></table></figure>
 
 <p>Fedora dnf 已经默认有 fcitx5-rime 的安装包了，不用自己重新编译了，非常不错。 <code>fcitx5-chinese-addons </code> 为 fcitx5 自己默认带的中文输入法，这些和 rime 没有什么关系，网络上有人说， fcitx 的中文输入较以前有较大改进。<code>fcitx5-autostart</code> 用于自启动，不安装其实也没有什么问题。</p>
 <p>Fcitx5 官方说明需要设置启动文件。</p>
@@ -364,7 +364,7 @@
 <p> environment.d 是 system.d 引入的，被  GDM 或 Plasma 5.22+ 支持，可以往 <code>~/.config/environment/</code> 目录写文件，注意不要写 <strong>export</strong> 。</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-built_in">cat</span> &lt;&lt; <span class="hljs-string">EOF &gt; ~/.config/environment.d/00-fcitx5.conf</span><br><span class="hljs-string">INPUT_METHOD=fcitx5</span><br><span class="hljs-string">GTK_IM_MODULE=fcitx</span><br><span class="hljs-string">QT_IM_MODULE=fcitx</span><br><span class="hljs-string">XMODIFIERS=@im=fcitx</span><br><span class="hljs-string">EOF</span><br></code></pre></td></tr></table></figure>
 
-<h2 id="配置中文环境"><a href="#配置中文环境" class="headerlink" title="配置中文环境"></a>配置中文环境</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo vim /etc/locale.conf<br><br><span class="hljs-built_in">export</span> LANG=<span class="hljs-string">&quot;zh_CN.UTF-8&quot;</span><br><span class="hljs-built_in">export</span> LC_CTYPE=<span class="hljs-string">&quot;zh_CN.UTF-8&quot;</span><br></code></pre></td></tr></table></figure>
+<h2 id="配置中文环境"><a href="#配置中文环境" class="headerlink" title="配置中文环境"></a>配置中文环境</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> vim /etc/locale.conf<br><br><span class="hljs-built_in">export</span> LANG=<span class="hljs-string">&quot;zh_CN.UTF-8&quot;</span><br><span class="hljs-built_in">export</span> LC_CTYPE=<span class="hljs-string">&quot;zh_CN.UTF-8&quot;</span><br></code></pre></td></tr></table></figure>
 
 <h2 id="安装-rime-词库"><a href="#安装-rime-词库" class="headerlink" title="安装 rime 词库"></a>安装 rime 词库</h2><p>rime 现在已经使用 plum 管理词库，如果需要安装双拼输入法的，可以执行下面的命令：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">curl -fsSL https://git.io/rime-install | bash<br>rime_frontend=fcitx5-rime bash rime-install double_pinyin<br></code></pre></td></tr></table></figure>

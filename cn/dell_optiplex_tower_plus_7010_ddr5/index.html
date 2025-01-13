@@ -28,13 +28,13 @@
 <meta property="og:site_name" content="安全代码">
 <meta property="og:description" content="Dell 台式机的内存兼容性问题原始的工作机配备两条 8G 内存，想再添加一条 16G 的内存，没想到遇到内存兼容性问题。 在Windows 下查看内存类型，频率，容量，品牌，可以使用下面的命令。 12345678powershellPS&gt; Get-WmiObject Win32_PhysicalMemory | Format-Table SMBIOSMemoryType, Speed, C">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://usmacd.com/img/dual3.jpg">
+<meta property="og:image" content="https://usmacd.com/images/dual3.jpg">
 <meta property="article:published_time" content="2024-12-18T16:00:00.000Z">
 <meta property="article:modified_time" content="2024-12-18T16:00:00.000Z">
 <meta property="article:author" content="henices">
 <meta property="article:tag" content="windows">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://usmacd.com/img/dual3.jpg">
+<meta name="twitter:image" content="https://usmacd.com/images/dual3.jpg">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
@@ -162,7 +162,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/thoughts" target="_self">
                 <i class="iconfont icon-exp-fill"></i>
-                <span>短想法</span>
+                <span>thoughts</span>
               </a>
             </li>
           
@@ -354,9 +354,9 @@
 <p>lyx 补充了一些信息，DELL台式机新机型不支持带XMP功能的内存条。</p>
 <figure class="highlight subunit"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs subunit">使用 cpu-z 软件查看，SPD -&gt; SPD Ext. 必须是空，否则无法正常开机。<br>外形上就是不带马甲的内存条。价格上比马甲条贵50%以上。<br><br>而且即便不支持XMP的内存条，也有可能不兼容。必须实际测试才能知道是否可用。<br><br>这种事情大概也就最近一两年才出现，DELL在BIOS中做了限制。更多内容的请看这里：<br>https://www.chiphell.com/thread<span class="hljs-string">-2401168</span><span class="hljs-string">-1</span><span class="hljs-string">-1</span>.html<br><br>想自己扩展内存的最佳方式是网购后如果发现不兼容，7天之内退货。然后再买其他类型的，直到能用为止。<br></code></pre></td></tr></table></figure>
 
-<h2 id="Intel-Dual-Channel-的各种内存插法"><a href="#Intel-Dual-Channel-的各种内存插法" class="headerlink" title="Intel Dual-Channel 的各种内存插法"></a>Intel Dual-Channel 的各种内存插法</h2><p>Dual Channel (Interleaved) Mode Configuration with Two DIMMs<br><img src="/img/dual2.jpg" srcset="/img/loading.gif" lazyload alt="dual2"></p>
-<p>Dual Channel (Interleaved) Mode Configuration with Three DIMMs<br><img src="/img/dual3.jpg" srcset="/img/loading.gif" lazyload alt="dual3"></p>
-<p>Dual Channel (Interleaved) Mode Configuration with Four DIMMs<br><img src="/img/dual4.jpg" srcset="/img/loading.gif" lazyload alt="dual4"></p>
+<h2 id="Intel-Dual-Channel-的各种内存插法"><a href="#Intel-Dual-Channel-的各种内存插法" class="headerlink" title="Intel Dual-Channel 的各种内存插法"></a>Intel Dual-Channel 的各种内存插法</h2><p>Dual Channel (Interleaved) Mode Configuration with Two DIMMs<br><img src="/images/dual2.jpg" srcset="/img/loading.gif" lazyload alt="dual2"></p>
+<p>Dual Channel (Interleaved) Mode Configuration with Three DIMMs<br><img src="/images/dual3.jpg" srcset="/img/loading.gif" lazyload alt="dual3"></p>
+<p>Dual Channel (Interleaved) Mode Configuration with Four DIMMs<br><img src="/images/dual4.jpg" srcset="/img/loading.gif" lazyload alt="dual4"></p>
 <h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p>[1] How to Enable XMP Memory Speed on Alienware Laptops  - 09 Aug 2024<br><a target="_blank" rel="noopener" href="https://www.dell.com/support/kbdoc/en-us/000218606/how-to-enable-xmp-memory-speed-on-alienware-laptops">https://www.dell.com/support/kbdoc/en-us/000218606/how-to-enable-xmp-memory-speed-on-alienware-laptops</a><br>[2] Single &#x2F; Dual &#x2F; Flex memory modes - 24 Jun 2004 - 24 Apr 2024<br><a target="_blank" rel="noopener" href="https://web.archive.org/web/20081101200235/http://www.intel.com/support/motherboards/desktop/sb/cs-011965.htm">https://web.archive.org/web/20081101200235/http://www.intel.com/support/motherboards/desktop/sb/cs-011965.htm</a></p>
 
                 

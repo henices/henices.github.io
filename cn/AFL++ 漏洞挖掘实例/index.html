@@ -160,7 +160,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/thoughts" target="_self">
                 <i class="iconfont icon-exp-fill"></i>
-                <span>短想法</span>
+                <span>thoughts</span>
               </a>
             </li>
           
@@ -357,10 +357,10 @@
 
 <p><strong>git submodule</strong> 这条命令很重要，要不编译一些 AFL++ mode 的时候会因为缺少源码而报错。</p>
 <p>要从源码编译 AFL++ 需要先安装系统的依赖库。</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sh">sudo apt-get update<br>sudo apt-get install -y build-essential python3-dev automake git flex bison libglib2.0-dev libpixman-1-dev python3-setuptools curl ninja-build<br></code></pre></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-built_in">sudo</span> apt-get update<br><span class="hljs-built_in">sudo</span> apt-get install -y build-essential python3-dev automake git flex bison libglib2.0-dev libpixman-1-dev python3-setuptools curl ninja-build<br></code></pre></td></tr></table></figure>
 
 <p>AFL++ 在文档中推荐使用 llvm 13+ ,  所以先要升级 Ubuntu 系统的 llvm ，<a target="_blank" rel="noopener" href="https://apt.llvm.org/">https://apt.llvm.org/</a> 提供了编译好的 llvm binary 可以下载，也提供了 llvm.sh 可以非常方面的安装新版本的 llvm，下面的例子演示安装 llvm 15</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs sh">wget https://apt.llvm.org/llvm.sh<br><span class="hljs-built_in">chmod</span> +x llvm.sh<br>sudo ./llvm.sh 15 all<br></code></pre></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs sh">wget https://apt.llvm.org/llvm.sh<br><span class="hljs-built_in">chmod</span> +x llvm.sh<br><span class="hljs-built_in">sudo</span> ./llvm.sh 15 all<br></code></pre></td></tr></table></figure>
 
 <p>编译 AFL++</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-built_in">export</span> LLVM_CONFIG=<span class="hljs-string">&quot;llvm-config-15&quot;</span><br>make distrib<br></code></pre></td></tr></table></figure>
@@ -412,7 +412,7 @@
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-built_in">export</span> LLVM_CONFIG=<span class="hljs-string">&quot;llvm-config-15&quot;</span><br><span class="hljs-built_in">export</span> CFLAGS=<span class="hljs-string">&quot;-O1 -g -fno-omit-frame-pointer&quot;</span><br><span class="hljs-built_in">cd</span> vim<br>CC=afl-cc CXX=afl-c++ ./configure --with-features=huge --enable-gui=none --disable-shared<br>make<br></code></pre></td></tr></table></figure>
 
 <h3 id="5-3-寻找-fuzz-vim-的-testcases-corpus"><a href="#5-3-寻找-fuzz-vim-的-testcases-corpus" class="headerlink" title="5.3 寻找 fuzz vim 的 testcases ( corpus)"></a>5.3 寻找 fuzz vim 的 testcases ( corpus)</h3><p>vim 官方仓库里有历史上造成 vim crash 的 poc ，正好拿来用。<br><a target="_blank" rel="noopener" href="https://github.com/vim/vim/tree/master/src/testdir/crash">https://github.com/vim/vim/tree/master/src/testdir/crash</a></p>
-<h3 id="5-4-fuzz-vim"><a href="#5-4-fuzz-vim" class="headerlink" title="5.4 fuzz vim"></a>5.4 fuzz vim</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">mkdir</span> -p ~/fuzz/vim<br><span class="hljs-built_in">mkdir</span> -p /tmp/afl++<br>afl-fuzz -i testdir/crash/ -o ~/fuzz/vim -mnone -p fast -- ./vim -u NONE -i NONE -X -Z -m -n -e -s -S @@ -c <span class="hljs-string">&#x27;:qa!&#x27;</span><br></code></pre></td></tr></table></figure>
+<h3 id="5-4-fuzz-vim"><a href="#5-4-fuzz-vim" class="headerlink" title="5.4 fuzz vim"></a>5.4 fuzz vim</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs css">mkdir -<span class="hljs-selector-tag">p</span> ~/fuzz/vim<br>mkdir -<span class="hljs-selector-tag">p</span> /tmp/afl++<br>afl-fuzz -<span class="hljs-selector-tag">i</span> testdir/crash/ -o ~/fuzz/vim -mnone -<span class="hljs-selector-tag">p</span> fast -- ./vim -u <span class="hljs-attribute">NONE</span> -<span class="hljs-selector-tag">i</span> <span class="hljs-attribute">NONE</span> -<span class="hljs-attribute">X</span> -Z -m -n -e -s -S @@ -c <span class="hljs-string">&#x27;:qa!&#x27;</span><br></code></pre></td></tr></table></figure>
 
 <ul>
 <li>-x 指定字典文件</li>

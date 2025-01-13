@@ -160,7 +160,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/thoughts" target="_self">
                 <i class="iconfont icon-exp-fill"></i>
-                <span>短想法</span>
+                <span>thoughts</span>
               </a>
             </li>
           
@@ -340,7 +340,7 @@
               <div class="markdown-body">
                 
                 <p>因为疫情，现在公司启用远程办公了，不得已在工作机上开了vncserver，这篇文档做个记录。</p>
-<h2 id="1-安装"><a href="#1-安装" class="headerlink" title="(1) 安装"></a>(1) 安装</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo dnf install tigervnc-server<br></code></pre></td></tr></table></figure>
+<h2 id="1-安装"><a href="#1-安装" class="headerlink" title="(1) 安装"></a>(1) 安装</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> dnf install tigervnc-server<br></code></pre></td></tr></table></figure>
 
 <h2 id="2-创建服务"><a href="#2-创建服务" class="headerlink" title="(2) 创建服务"></a>(2) 创建服务</h2><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk">cp <span class="hljs-regexp">/lib/</span>systemd<span class="hljs-regexp">/system/</span>vncserver@.service <span class="hljs-regexp">/etc/</span>systemd<span class="hljs-regexp">/system/</span>vncserver@.service<br></code></pre></td></tr></table></figure>
 
@@ -349,7 +349,7 @@
 
 <p>执行命令 <code>systemctl daemon-reload</code></p>
 <p>使用vpnpasswd修改密码</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs sh">~]<span class="hljs-comment"># su - USER</span><br>~]$ vncpasswd<br>Password:<br>Verify:<br></code></pre></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs sh">~]# su - USER<br>~]$ vncpasswd<br>Password:<br>Verify:<br></code></pre></td></tr></table></figure>
 
 <p>启动vncserver的命令行</p>
 <figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs angelscript">sudo systemctl start <span class="hljs-symbol">vncserver@</span>:<span class="hljs-number">1</span><br></code></pre></td></tr></table></figure>

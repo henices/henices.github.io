@@ -161,7 +161,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/thoughts" target="_self">
                 <i class="iconfont icon-exp-fill"></i>
-                <span>短想法</span>
+                <span>thoughts</span>
               </a>
             </li>
           
@@ -357,7 +357,7 @@
 
 <h2 id="解决-failed-to-initialize-KVM-错误"><a href="#解决-failed-to-initialize-KVM-错误" class="headerlink" title="解决 failed to initialize KVM 错误"></a>解决 failed to initialize KVM 错误</h2><p><code>lsmod | grep -i kvm</code> 发现没有加载 kvm 内核模块</p>
 <p>使用 kvm-ok 检查具体情况。</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs sh">sudo /usr/sbin/kvm-ok<br><br>INFO: Your CPU does not support KVM extension<br>KVM acceleration can NOT be used<br></code></pre></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-built_in">sudo</span> /usr/sbin/kvm-ok<br><br>INFO: Your CPU does not support KVM extension<br>KVM acceleration can NOT be used<br></code></pre></td></tr></table></figure>
 
 <p>首先检查 VMware Workstation 的设置，发现处理器没有勾选虚拟化相关的设置。</p>
 <ul>
@@ -375,7 +375,7 @@
 <p><code>egrep &quot;vmx|svm&quot; /proc/cpuinfo</code> 匹配 vmx，<code>lsmod | grep -i kvm</code> 显示加载了 <code>kvm_intel</code> 和 <code>kvm</code> 内核模块。</p>
 <p>重新验证 Ubuntu Guest 里 qemu 是否正常工作，执行执行 qemu.sh，报错 <code>Could not access KVM kernel module: Permission denied</code></p>
 <h2 id="解决-failed-to-initialize-KVM-Permission-denied"><a href="#解决-failed-to-initialize-KVM-Permission-denied" class="headerlink" title="解决 failed to initialize KVM: Permission denied"></a>解决 failed to initialize KVM: Permission denied</h2><p>看上去是权限问题，将当前用户添加在 kvm 组，<code>sudo usermod -a -G kvm &quot;test&quot;</code>，重启系统，执行 <code>bash ./qemu.sh</code> 成功启动</p>
-<figure class="highlight arcade"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs arcade">early <span class="hljs-built_in">console</span> in setup code<br>early <span class="hljs-built_in">console</span> in extract_kerne<br>...<br></code></pre></td></tr></table></figure>
+<figure class="highlight arcade"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs arcade">early <span class="hljs-built_in">console</span> <span class="hljs-keyword">in</span> setup code<br>early <span class="hljs-built_in">console</span> <span class="hljs-keyword">in</span> extract_kerne<br>...<br></code></pre></td></tr></table></figure>
 
 <p>此文档可能有不完备之处，后续会继续更新此文档。</p>
 <h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a target="_blank" rel="noopener" href="https://www.xda-developers.com/disable-hyper-v-windows-11/">https://www.xda-developers.com/disable-hyper-v-windows-11/</a></p>

@@ -161,7 +161,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/thoughts" target="_self">
                 <i class="iconfont icon-exp-fill"></i>
-                <span>短想法</span>
+                <span>thoughts</span>
               </a>
             </li>
           
@@ -349,11 +349,11 @@
 <h2 id="4-Source-your-vimrc"><a href="#4-Source-your-vimrc" class="headerlink" title="4. Source your vimrc."></a>4. Source your vimrc.</h2><figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs elixir"><span class="hljs-symbol">:so</span> <span class="hljs-variable">$MYVIMRC</span><br></code></pre></td></tr></table></figure>
 
 <h2 id="5-在文件中跳转"><a href="#5-在文件中跳转" class="headerlink" title="5. 在文件中跳转"></a>5. 在文件中跳转</h2><p>normal 模式下，<code>ctrl-o</code></p>
-<h2 id="6-内置文件浏览器"><a href="#6-内置文件浏览器" class="headerlink" title="6. 内置文件浏览器"></a>6. 内置文件浏览器</h2><figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs 1c">:<span class="hljs-built_in">Exp</span><br></code></pre></td></tr></table></figure>
+<h2 id="6-内置文件浏览器"><a href="#6-内置文件浏览器" class="headerlink" title="6. 内置文件浏览器"></a>6. 内置文件浏览器</h2><figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs 1c"><span class="hljs-punctuation">:</span><span class="hljs-built_in">Exp</span><br></code></pre></td></tr></table></figure>
 <h2 id="7-一眼看出tab和空格的区别"><a href="#7-一眼看出tab和空格的区别" class="headerlink" title="7. 一眼看出tab和空格的区别"></a>7. 一眼看出tab和空格的区别</h2><p>在.vimrc 中添加下面行，</p>
 <figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs routeros"><span class="hljs-built_in">set</span> list <span class="hljs-attribute">listchars</span>=tab:&gt;-,trail:.,extends:&gt; <br></code></pre></td></tr></table></figure>
 
-<h2 id="8-解决-vim-编译时权限不够问题"><a href="#8-解决-vim-编译时权限不够问题" class="headerlink" title="8. 解决 vim 编译时权限不够问题"></a>8. 解决 vim 编译时权限不够问题</h2><figure class="highlight erlang-repl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs erlang-repl">:w !sudo tee <span class="hljs-comment">%</span><br></code></pre></td></tr></table></figure>
+<h2 id="8-解决-vim-编译时权限不够问题"><a href="#8-解决-vim-编译时权限不够问题" class="headerlink" title="8. 解决 vim 编译时权限不够问题"></a>8. 解决 vim 编译时权限不够问题</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">:w !<span class="hljs-built_in">sudo</span> <span class="hljs-built_in">tee</span> %<br></code></pre></td></tr></table></figure>
 
                 
               </div>

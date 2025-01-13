@@ -160,7 +160,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/thoughts" target="_self">
                 <i class="iconfont icon-exp-fill"></i>
-                <span>短想法</span>
+                <span>thoughts</span>
               </a>
             </li>
           
@@ -367,7 +367,7 @@
 <figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs routeros">root@fuzzing-5:/mnt/disk/halfempty# ./halfempty  ./test.sh  crash.upx <br>╭│   │ ── halfempty ───────────────────────────────────────────────── v0.30 ──<br>╰│ 16│ A fast, parallel testcase minimization<span class="hljs-built_in"> tool</span><br><span class="hljs-built_in"></span> ╰───╯ ───────────────────────────────────────────────────────── by @taviso ──<br><br>Input file <span class="hljs-string">&quot;crash.upx&quot;</span> is now 19088 bytes, starting strategy <span class="hljs-string">&quot;bisect&quot;</span><span class="hljs-built_in">..</span>.<br>Verifying the original input executes successfully<span class="hljs-built_in">..</span>. (skip with --noverify)<br>The original input file succeeded after 0.0 seconds.<br>New finalized size: 19088 (<span class="hljs-attribute">depth</span>=2) <span class="hljs-attribute">real</span>=0.0s, <span class="hljs-attribute">user</span>=0.0s, <span class="hljs-attribute">speedup</span>=~-0.0s<br><span class="hljs-attribute">treesize</span>=6654, <span class="hljs-attribute">height</span>=6376, <span class="hljs-attribute">unproc</span>=0, <span class="hljs-attribute">real</span>=4.4^C <span class="hljs-attribute">user</span>=19.3s, <span class="hljs-attribute">speedup</span>=~14.9s<br></code></pre></td></tr></table></figure>
 
 <p>已经可以正常运行了。如果执行过程中遇上长时间的卡顿，需要使用 <code>--timeout</code> 参数设置超时时间。</p>
-<figure class="highlight coq"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs coq">./halfempty --help-all | <span class="hljs-type">grep</span> <span class="hljs-built_in">timeout</span><br>  -T, --<span class="hljs-built_in">timeout</span>=seconds                   Maximum child execution <span class="hljs-built_in">time</span> (default=unlimited).<br></code></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">./halfempty --help-all | grep <span class="hljs-built_in">timeout</span><br>  -T, --<span class="hljs-built_in">timeout</span>=seconds                   Maximum child execution <span class="hljs-keyword">time</span> (default=unlimited).<br></code></pre></td></tr></table></figure>
 
 
                 

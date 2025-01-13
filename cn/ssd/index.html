@@ -160,7 +160,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/thoughts" target="_self">
                 <i class="iconfont icon-exp-fill"></i>
-                <span>短想法</span>
+                <span>thoughts</span>
               </a>
             </li>
           
@@ -352,7 +352,7 @@
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs sh">$ mount<br><br>/dev/sda1 on /boot <span class="hljs-built_in">type</span> ext4 (rw,relatime,seclabel,stripe=4)<br>/dev/mapper/fedora-root on / <span class="hljs-built_in">type</span> ext4 (rw,relatime,seclabel)<br></code></pre></td></tr></table></figure>
 
 <p>当然首先要把 SSD 处理一下，安装一下 <code>gparted</code> 图形化界面很好用。</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">sudo dnf install gparted<br></code></pre></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-built_in">sudo</span> dnf install gparted<br></code></pre></td></tr></table></figure>
 
 <p>建个分区表，选择 gpt，分个区，<code>/dev/mapper/fedora-root</code> 大小为50G，先分个50G的分区，剩下的全部给 另外一个分区，格式化为 ext4。操作完成后，用fdisk 查看一下：</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs sh">$ fdisk -l<br><br>Disk /dev/sdb：232.9 GiB，250059350016 字节，488397168 个扇区<br>单元：扇区 / 1 * 512 = 512 字节<br>扇区大小(逻辑/物理)：512 字节 / 512 字节<br>I/O 大小(最小/最佳)：512 字节 / 512 字节<br>磁盘标签类型：gpt<br>磁盘标识符：<br><br>设备            起点      末尾      扇区   大小 类型<br>/dev/sdb1       2048 104859647 104857600    50G Linux 文件系统<br>/dev/sdb2  104859648 488396799 383537152 182.9G Linux 文件系统<br></code></pre></td></tr></table></figure>

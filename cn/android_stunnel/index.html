@@ -160,7 +160,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/thoughts" target="_self">
                 <i class="iconfont icon-exp-fill"></i>
-                <span>短想法</span>
+                <span>thoughts</span>
               </a>
             </li>
           
@@ -370,7 +370,7 @@
 
 <p>少数派的文章 <a target="_blank" rel="noopener" href="https://sspai.com/post/67110">在 ColorOS 上免 root 玩机，请先打开这个开关</a> 中指出需要在开发者选项中<br>开启 <code>禁止权限监控</code>。</p>
 <p>开启后可以正常执行 <code>pm grant</code> 命令，执行成功后可以使用 <code>dumpsys package &lt;package name&gt;</code> 列出所有的权限。</p>
-<figure class="highlight ada"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs ada">dumpsys <span class="hljs-keyword">package</span> <span class="hljs-title">com.kinandcarta.create.proxytoggle | grep perm</span>ission<br><br>    requested permissions:<br>      android.permission.WRITE_SECURE_SETTINGS<br>      android.permission.WRITE_SETTINGS<br>    install permissions:<br>      android.permission.WRITE_SECURE_SETTINGS: granted=<span class="hljs-literal">true</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight nix"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs nix">dumpsys package com.kinandcarta.create.proxytoggle | grep permission<br><br>    requested <span class="hljs-params">permissions:</span><br>      android.permission.WRITE_SECURE_SETTINGS<br>      android.permission.WRITE_SETTINGS<br>    install <span class="hljs-params">permissions:</span><br>      android.permission.<span class="hljs-params">WRITE_SECURE_SETTINGS:</span> granted<span class="hljs-operator">=</span><span class="hljs-literal">true</span><br></code></pre></td></tr></table></figure>
 
 <h2 id="恢复无代理"><a href="#恢复无代理" class="headerlink" title="恢复无代理"></a>恢复无代理</h2><p>如果遇上一些异常情况，比如错误卸载了 Android Proxy Toggle, 可以使用下面命令去掉 Android 全局代理。</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs sh">adb shell settings delete global http_proxy<br>adb shell settings delete global global_http_proxy_host<br>adb shell settings delete global global_http_proxy_port<br></code></pre></td></tr></table></figure>
