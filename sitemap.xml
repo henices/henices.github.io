@@ -488,15 +488,6 @@
   </url>
   
   <url>
-    <loc>https://usmacd.com/cn/pdfium-fuzz.public/</loc>
-    
-    <lastmod>2023-11-06</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://usmacd.com/categories/index.html</loc>
     
     <lastmod>2023-11-06</lastmod>
@@ -1046,6 +1037,15 @@
   </url>
   
   <url>
+    <loc>https://usmacd.com/cn/pdfium-fuzz.public/</loc>
+    
+    <lastmod>2022-12-07</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://usmacd.com/cn/logseq3/</loc>
     
     <lastmod>2022-10-08</lastmod>
@@ -1382,14 +1382,14 @@
   </url>
   
   <url>
-    <loc>https://usmacd.com/tags/Security/</loc>
+    <loc>https://usmacd.com/tags/misc/</loc>
     <lastmod>2025-01-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://usmacd.com/tags/misc/</loc>
+    <loc>https://usmacd.com/tags/Security/</loc>
     <lastmod>2025-01-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1410,14 +1410,14 @@
   </url>
   
   <url>
-    <loc>https://usmacd.com/tags/Malware/</loc>
+    <loc>https://usmacd.com/tags/ai/</loc>
     <lastmod>2025-01-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://usmacd.com/tags/ai/</loc>
+    <loc>https://usmacd.com/tags/Malware/</loc>
     <lastmod>2025-01-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1452,14 +1452,14 @@
   </url>
   
   <url>
-    <loc>https://usmacd.com/tags/Programming/</loc>
+    <loc>https://usmacd.com/tags/Software/</loc>
     <lastmod>2025-01-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://usmacd.com/tags/Software/</loc>
+    <loc>https://usmacd.com/tags/Programming/</loc>
     <lastmod>2025-01-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1487,12 +1487,5 @@
   </url>
   
 
-  
-  <url>
-    <loc>https://usmacd.com/categories/Security/</loc>
-    <lastmod>2025-01-13</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
   
 </urlset>
