@@ -9,8 +9,31 @@
     <atom:link href="https://usmacd.com/rss.xml" rel="self" type="application/rss+xml"/>
     
     <description></description>
-    <pubDate>Tue, 21 Jan 2025 16:00:00 GMT</pubDate>
+    <pubDate>Thu, 23 Jan 2025 04:36:09 GMT</pubDate>
     <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>静读天下电子书阅读器的排版</title>
+      <link>https://usmacd.com/cn/moon_reader_style/</link>
+      <guid>https://usmacd.com/cn/moon_reader_style/</guid>
+      <pubDate>Thu, 23 Jan 2025 04:36:09 GMT</pubDate>
+      
+        
+        
+      <description>&lt;p&gt;一直想找一款 Android 下的电子书阅读软件，可以支持多种格式的电子书。微信读书虽然做的挺不错，但是阅读一些杂书还是不太方便。&lt;/p&gt;
+&lt;p&gt;静读天下 Moon+ Reader，我试用一段时间后感到很满意，各方面都做到了专业电子书阅读器的水准。&lt;br&gt;&lt;a href=&quot;https://moondownload.com/chinese.html&quot;&gt;https://moondownload.</description>
+        
+      
+      
+      
+      
+      
+      <category domain="https://usmacd.com/tags/Software/">Software</category>
+      
+      
+      <comments>https://usmacd.com/cn/moon_reader_style/#disqus_thread</comments>
+      
+    </item>
     
     <item>
       <title>12306 买火车票的一些经验</title>
@@ -228,35 +251,6 @@
       
       
       <comments>https://usmacd.com/cn/Fedora_linux_wechat_4.0/#disqus_thread</comments>
-      
-    </item>
-    
-    <item>
-      <title>如何破除写博客的焦虑</title>
-      <link>https://usmacd.com/cn/write_blog_afraid/</link>
-      <guid>https://usmacd.com/cn/write_blog_afraid/</guid>
-      <pubDate>Tue, 24 Sep 2024 16:00:00 GMT</pubDate>
-      
-        
-        
-      <description>&lt;p&gt;中文独立博客犹如互联网上的一道靓丽风景线，众多博主在这片天地里记录人生百态，分享精彩纷呈的生活点滴。&lt;/p&gt;
-&lt;p&gt;从 Google Reader 开始，我用 RSS 订阅了很多中文独立博客。然而，如今能看到更新的博文寥寥无几，大多数博客陷入了长久的沉寂。&lt;/p&gt;
-&lt;p&gt;更糟糕的是，我的订阅列表中，越来越多的博客链接已经无法访问。&lt;/p&gt;
-&lt;p&gt;前不久，我在”积薪”平台上读到一篇有关博客写作</description>
-        
-      
-      
-      
-      
-      
-      <category domain="https://usmacd.com/tags/PKM/">PKM</category>
-      
-      <category domain="https://usmacd.com/tags/%E6%9B%BC%E7%A6%8F%E5%90%89%E7%9A%84%E5%88%86%E4%BA%AB/">曼福吉的分享</category>
-      
-      <category domain="https://usmacd.com/tags/KNOWLEDGE/">KNOWLEDGE</category>
-      
-      
-      <comments>https://usmacd.com/cn/write_blog_afraid/#disqus_thread</comments>
       
     </item>
     

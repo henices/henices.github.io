@@ -6,7 +6,7 @@
   <link href="https://usmacd.com/atom.xml" rel="self"/>
   
   <link href="https://usmacd.com/"/>
-  <updated>2025-01-21T16:00:00.000Z</updated>
+  <updated>2025-01-23T04:36:09.791Z</updated>
   <id>https://usmacd.com/</id>
   
   <author>
@@ -15,6 +15,27 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>静读天下电子书阅读器的排版</title>
+    <link href="https://usmacd.com/cn/moon_reader_style/"/>
+    <id>https://usmacd.com/cn/moon_reader_style/</id>
+    <published>2025-01-23T04:36:09.791Z</published>
+    <updated>2025-01-23T04:36:09.791Z</updated>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;一直想找一款 Android 下的电子书阅读软件，可以支持多种格式的电子书。微信读书虽然做的挺不错，但是阅读一些杂书还是不太方便。&lt;/p&gt;
+&lt;p&gt;静读天下 Moon+ Reader，我试用一段时间后感到很满意，各方面都做到了专业电子书阅读器的水准。&lt;br&gt;&lt;a href=&quot;https://moondownload.com/chinese.html&quot;&gt;https://moondownload.</summary>
+      
+    
+    
+    
+    
+    <category term="Software" scheme="https://usmacd.com/tags/Software/"/>
+    
+  </entry>
   
   <entry>
     <title>12306 买火车票的一些经验</title>
@@ -214,33 +235,6 @@
     
     
     <category term="linux" scheme="https://usmacd.com/tags/linux/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>如何破除写博客的焦虑</title>
-    <link href="https://usmacd.com/cn/write_blog_afraid/"/>
-    <id>https://usmacd.com/cn/write_blog_afraid/</id>
-    <published>2024-09-24T16:00:00.000Z</published>
-    <updated>2024-09-24T16:00:00.000Z</updated>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;中文独立博客犹如互联网上的一道靓丽风景线，众多博主在这片天地里记录人生百态，分享精彩纷呈的生活点滴。&lt;/p&gt;
-&lt;p&gt;从 Google Reader 开始，我用 RSS 订阅了很多中文独立博客。然而，如今能看到更新的博文寥寥无几，大多数博客陷入了长久的沉寂。&lt;/p&gt;
-&lt;p&gt;更糟糕的是，我的订阅列表中，越来越多的博客链接已经无法访问。&lt;/p&gt;
-&lt;p&gt;前不久，我在”积薪”平台上读到一篇有关博客写作</summary>
-      
-    
-    
-    
-    
-    <category term="PKM" scheme="https://usmacd.com/tags/PKM/"/>
-    
-    <category term="曼福吉的分享" scheme="https://usmacd.com/tags/%E6%9B%BC%E7%A6%8F%E5%90%89%E7%9A%84%E5%88%86%E4%BA%AB/"/>
-    
-    <category term="KNOWLEDGE" scheme="https://usmacd.com/tags/KNOWLEDGE/"/>
     
   </entry>
   
