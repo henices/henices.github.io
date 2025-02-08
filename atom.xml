@@ -6,7 +6,7 @@
   <link href="https://usmacd.com/atom.xml" rel="self"/>
   
   <link href="https://usmacd.com/"/>
-  <updated>2025-01-23T04:38:34.666Z</updated>
+  <updated>2025-02-07T16:00:00.000Z</updated>
   <id>https://usmacd.com/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>无意识偏见</title>
+    <link href="https://usmacd.com/cn/unconscious_Bias/"/>
+    <id>https://usmacd.com/cn/unconscious_Bias/</id>
+    <published>2025-02-07T16:00:00.000Z</published>
+    <updated>2025-02-07T16:00:00.000Z</updated>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;用一个简单的故事来解释无意识偏见。&lt;/p&gt;
+&lt;p&gt;你有一个玩具盒子，盒子里有很多不同的玩具，有的是蓝色的，有的是粉色的。有一天，你的好朋友小明来玩，你想跟他分享玩具。你可能会想：“小明是男孩子，他一定更喜欢蓝色的玩具” ，你直接拿了蓝色的玩具给他。&lt;/p&gt;
+&lt;p&gt;但其实你并不知道小明喜欢什么颜色，你只是“觉得”男孩子都喜欢蓝色。&lt;/p&gt;
+&lt;p&gt;这就是无意识偏见，就像我们的脑袋里有一个小声音，</summary>
+      
+    
+    
+    
+    
+    <category term="曼福吉的分享" scheme="https://usmacd.com/tags/%E6%9B%BC%E7%A6%8F%E5%90%89%E7%9A%84%E5%88%86%E4%BA%AB/"/>
+    
+  </entry>
   
   <entry>
     <title>静读天下电子书阅读器的排版</title>
@@ -213,28 +236,6 @@
     <category term="曼福吉的分享" scheme="https://usmacd.com/tags/%E6%9B%BC%E7%A6%8F%E5%90%89%E7%9A%84%E5%88%86%E4%BA%AB/"/>
     
     <category term="KNOWLEDGE" scheme="https://usmacd.com/tags/KNOWLEDGE/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Fedora linux 安装 wechat 4.0 的方法</title>
-    <link href="https://usmacd.com/cn/Fedora_linux_wechat_4.0/"/>
-    <id>https://usmacd.com/cn/Fedora_linux_wechat_4.0/</id>
-    <published>2024-11-04T16:00:00.000Z</published>
-    <updated>2024-11-05T16:00:00.000Z</updated>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;感谢国产化软件项目，多年后，Linux 终于有 wechat 的官方安装包了 🥳&lt;/p&gt;
-&lt;p&gt;从麒麟 Linux 的源中，下载 wechat deb 安装包，解压后可以正常在 Fedora Linux 上使用。&lt;/p&gt;
-&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;</summary>
-      
-    
-    
-    
-    
-    <category term="linux" scheme="https://usmacd.com/tags/linux/"/>
     
   </entry>
   
