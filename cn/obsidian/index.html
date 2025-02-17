@@ -293,7 +293,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          611 字
+          610 字
         
       </span>
     
@@ -369,7 +369,22 @@
 <li>Enable PlantUML 插件</li>
 </ol>
 <p>在  markdown 文档中，使用代码块 <code>```plantuml ```</code> 添加 mind map</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs plantuml">@startmindmap<br><br>* Debian<br>** Ubuntu<br>*** Linux Mint<br>*** Kubuntu<br>*** Lubuntu<br>*** KDE Neon<br>** LMDE<br>** SolydXK<br>** SteamOS<br>** Raspbian with a very long name<br>*** &lt;s&gt;Raspmbc&lt;/s&gt; =&gt; OSMC<br>*** &lt;s&gt;Raspyfi&lt;/s&gt; =&gt; Volumio<br><br>@endmindmap<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs plantuml">@startmindmap
+
+* Debian
+** Ubuntu
+*** Linux Mint
+*** Kubuntu
+*** Lubuntu
+*** KDE Neon
+** LMDE
+** SolydXK
+** SteamOS
+** Raspbian with a very long name
+*** &lt;s&gt;Raspmbc&lt;/s&gt; =&gt; OSMC
+*** &lt;s&gt;Raspyfi&lt;/s&gt; =&gt; Volumio
+
+@endmindmap</code></pre></div>
 
 <p>可以在 mind map 中点击鼠标右键 Export diagram 可以导出图片。</p>
 <h2 id="☆-Obsidian-如何插入图片"><a href="#☆-Obsidian-如何插入图片" class="headerlink" title="☆ Obsidian 如何插入图片"></a>☆ Obsidian 如何插入图片</h2><ol>
@@ -383,14 +398,14 @@
 <ol start="3">
 <li>插入外部图片</li>
 </ol>
-<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs less">!<span class="hljs-selector-attr">[Engelbart|100x145]</span>(<span class="hljs-attribute">https</span>:<span class="hljs-comment">//url/Engelbart.jpg)</span><br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs less">!<span class="hljs-selector-attr">[Engelbart|100x145]</span>(<span class="hljs-attribute">https</span>:<span class="hljs-comment">//url/Engelbart.jpg)</span></code></pre></div>
 
 <p><a target="_blank" rel="noopener" href="https://help.obsidian.md/Editing+and+formatting/Basic+formatting+syntax#External+images">https://help.obsidian.md/Editing+and+formatting/Basic+formatting+syntax#External+images</a></p>
 <ol start="4">
 <li>插入 vault 中的图片</li>
 </ol>
 <p>a. 将图片放入Obsidan 的 Vault 中<br>b. 在文档中使用下面的语法</p>
-<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs lua">!<span class="hljs-string">[[Engelbart.jpg]]</span><br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs lua">!<span class="hljs-string">[[Engelbart.jpg]]</span></code></pre></div>
 <p>技巧：在文档中输入 <code>[[]]</code> 可以浏览 Vault 中的文件。</p>
 <p><a target="_blank" rel="noopener" href="https://help.obsidian.md/Linking+notes+and+files/Embed+files#Embed+an+image+in+a+note">https://help.obsidian.md/Linking+notes+and+files/Embed+files#Embed+an+image+in+a+note</a></p>
 <ol start="5">
@@ -409,9 +424,9 @@
 </ol>
 <p><img src="https://raw.githubusercontent.com/henices/pictures/master/obcmd-0.png" srcset="/img/loading.gif" lazyload alt="obcmd-0"></p>
 <h2 id="☆-Obsidan-vim-key-bindings-列模式"><a href="#☆-Obsidan-vim-key-bindings-列模式" class="headerlink" title="☆ Obsidan vim key bindings 列模式"></a>☆ Obsidan vim key bindings 列模式</h2><p>Obsidian vim key bindings 已经支持列编辑模式，normal 模式下， ctrl + v 触发。</p>
-<h2 id="☆-Obsidian-设置代理的方法"><a href="#☆-Obsidian-设置代理的方法" class="headerlink" title="☆ Obsidian 设置代理的方法"></a>☆ Obsidian 设置代理的方法</h2><h3 id="MacOS"><a href="#MacOS" class="headerlink" title="MacOS"></a>MacOS</h3><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk"><span class="hljs-regexp">/Applications/</span>Obsidian.app<span class="hljs-regexp">/Contents/</span>MacOS<span class="hljs-regexp">/Obsidian --proxy-server=socks5:/</span>/<span class="hljs-number">127.0</span>.<span class="hljs-number">0.1</span>:<span class="hljs-number">7890</span><br></code></pre></td></tr></table></figure>
+<h2 id="☆-Obsidian-设置代理的方法"><a href="#☆-Obsidian-设置代理的方法" class="headerlink" title="☆ Obsidian 设置代理的方法"></a>☆ Obsidian 设置代理的方法</h2><h3 id="MacOS"><a href="#MacOS" class="headerlink" title="MacOS"></a>MacOS</h3><div class="code-wrapper"><pre><code class="hljs awk"><span class="hljs-regexp">/Applications/</span>Obsidian.app<span class="hljs-regexp">/Contents/</span>MacOS<span class="hljs-regexp">/Obsidian --proxy-server=socks5:/</span>/<span class="hljs-number">127.0</span>.<span class="hljs-number">0.1</span>:<span class="hljs-number">7890</span></code></pre></div>
 
-<h3 id="Linux"><a href="#Linux" class="headerlink" title="Linux"></a>Linux</h3><figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs jboss-cli"><span class="hljs-string">./Obsidian.AppImage</span> <span class="hljs-params">--proxy-server=</span><span class="hljs-string">&quot;socks5://127.0.0.1:9999&quot;</span><br></code></pre></td></tr></table></figure>
+<h3 id="Linux"><a href="#Linux" class="headerlink" title="Linux"></a>Linux</h3><div class="code-wrapper"><pre><code class="hljs jboss-cli"><span class="hljs-string">./Obsidian.AppImage</span> <span class="hljs-params">--proxy-server=</span><span class="hljs-string">&quot;socks5://127.0.0.1:9999&quot;</span></code></pre></div>
 
 <h2 id="☆-Obsidian-vim-key-bindings-输入法切换"><a href="#☆-Obsidian-vim-key-bindings-输入法切换" class="headerlink" title="☆ Obsidian vim key bindings 输入法切换"></a>☆ Obsidian vim key bindings 输入法切换</h2><p>首先需要安装 <a target="_blank" rel="noopener" href="https://github.com/hideakitai/obsidian-vim-im-control%EF%BC%8C">https://github.com/hideakitai/obsidian-vim-im-control，</a> Community Plugins 里搜索 Vim IM Control 可以直接安装。</p>
 <p>Vim IM Control 插件可以解决 Obsidian 使用 vim key bindings 时 Fcitx <code>InsertLeave</code> and <code>InsertEnter</code> 输入法切换问题，在作用相当于 fcitx.vim 插件。</p>
@@ -419,7 +434,7 @@
 <h3 id="Linux-1"><a href="#Linux-1" class="headerlink" title="Linux"></a>Linux</h3><p>Vim IM Control 配置参考：</p>
 <p><img src="https://raw.githubusercontent.com/henices/pictures/master/obcmd-2.png" srcset="/img/loading.gif" lazyload alt="obcmd-2"></p>
 <h3 id="MacOS-1"><a href="#MacOS-1" class="headerlink" title="MacOS"></a>MacOS</h3><p>需要安装 <a target="_blank" rel="noopener" href="https://github.com/daipeihust/im-select/">im-select</a></p>
-<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs vim">curl -Ls https://raw.githubusercontent.<span class="hljs-keyword">com</span>/daipeihust/<span class="hljs-keyword">im</span>-select/master/install_mac.<span class="hljs-keyword">sh</span> | <span class="hljs-keyword">sh</span><br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs vim">curl -Ls https://raw.githubusercontent.<span class="hljs-keyword">com</span>/daipeihust/<span class="hljs-keyword">im</span>-select/master/install_mac.<span class="hljs-keyword">sh</span> | <span class="hljs-keyword">sh</span></code></pre></div>
 
 <p>im-select 默认安装路径：<code>/usr/local/bin/im-select</code></p>
 <p>Vim IM Control 配置参考：</p>

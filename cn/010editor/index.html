@@ -355,18 +355,20 @@
                 <h2 id="软件介绍"><a href="#软件介绍" class="headerlink" title="软件介绍"></a>软件介绍</h2><p>010Editor是一款快速且强大的十六进制编辑器。用来编辑二进制文件。有一个友好易于使用的界面，无限次的<br>undo和redo操作。另外还可以打印十六进制的字节或者以书签的方式标出某些重要的字节。<br>支持二进制模板（binary template）系统。</p>
 <h2 id="保持试用"><a href="#保持试用" class="headerlink" title="保持试用"></a>保持试用</h2><p>国外软件很多时候相当厚道了，试用基本是全功能，轻微延时和不能自动更新二进制模板，就日常使用来说基本<br>是完全够用了。</p>
 <p>关键文件为 <code>~/.config/SweetScape/010 Editor.ini</code>，无法使用的时侯可以把这个文件清空，将恢复30天试用状态，<br>或者简单粗暴的将文件设置为只读。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">chmod</span> 444 <span class="hljs-string">&quot;010 Editor.ini&quot;</span><br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs bash"><span class="hljs-built_in">chmod</span> 444 <span class="hljs-string">&quot;010 Editor.ini&quot;</span></code></pre></div>
 
 <p>用IDA逆向的时侯没有发现这个文件比较奇怪。这个文件是 是使用strace命令发现的，strace命令支持 <code>-e</code> 的过<br>滤参数将有效减少输出，一般来说看strace日志文件可以从最后往前看。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">strace -e trace=file ./010editor<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs bash">strace -e trace=file ./010editor</code></pre></div>
 
 <p>从代码上看有使用网络验证需要在hosts文件中屏敝两个网站， 可以减少一些不必要的麻烦。</p>
-<figure class="highlight accesslog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs accesslog"><span class="hljs-number">127.0.0.1</span> www.sweetscape.com<br><span class="hljs-number">127.0.0.1</span> www.010editor.com<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs accesslog"><span class="hljs-number">127.0.0.1</span> www.sweetscape.com
+<span class="hljs-number">127.0.0.1</span> www.010editor.com</code></pre></div>
 
 <p>我现在已经是注册用户了，在很长的一段时间内，这方法是管用的，做个备忘。</p>
 <p>scz 补充：</p>
 <p>之前github上的那个开源keygen还能用，或者就用</p>
-<figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs crmsh"><span class="hljs-keyword">user</span>    <span class="hljs-title">user</span><br>pass    <span class="hljs-number">3470</span>D4AC7CEFACD9297A<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs crmsh"><span class="hljs-keyword">user</span>    <span class="hljs-title">user</span>
+pass    <span class="hljs-number">3470</span>D4AC7CEFACD9297A</code></pre></div>
 
 <p>只是hosts更改可能不够，windows上用wf.msc阻止010 Editor联网，Linux好像没有简单办法阻止特定进程联网，<br>只能变相利用uid、gid达成目的。</p>
 <p>How to block internet access to certain programs on Linux<br><a target="_blank" rel="noopener" href="https://serverfault.com/questions/550276/how-to-block-internet-access-to-certain-programs-on-linux">https://serverfault.com/questions/550276/how-to-block-internet-access-to-certain-programs-on-linux</a></p>

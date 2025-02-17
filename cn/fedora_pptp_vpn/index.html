@@ -289,7 +289,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          966 字
+          960 字
         
       </span>
     
@@ -362,51 +362,133 @@
 <p>基于上面几个原因折腾了一下pppd，用了一段时间非常不错，很稳定，在这里记录配置的方法。使用pppd的方法应该可以在其他Linux的发行版上正常使用，配置文件的路径或许有稍许差别。</p>
 <p>pppd是Point-to-Point Protocol Daemon的缩写，pppd 的源代码托管在GitHub上 <a target="_blank" rel="noopener" href="https://github.com/paulusmack/ppp">https://github.com/paulusmack/ppp</a> 可以访问 pppd 的官方网站获取更多信息 <a target="_blank" rel="noopener" href="https://ppp.samba.org/pppd.html">https://ppp.samba.org/pppd.html</a></p>
 <h2 id="安装所需要的软件"><a href="#安装所需要的软件" class="headerlink" title="安装所需要的软件"></a>安装所需要的软件</h2><p>首先需要看看哪个包提供了pppd，执行下面的命令</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># yum whatprovides pppd</span><br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs bash"><span class="hljs-comment"># yum whatprovides pppd</span></code></pre></div>
 
-<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs pgsql">ppp<span class="hljs-number">-2.4</span><span class="hljs-number">.5</span><span class="hljs-number">-33.</span>fc20.x86_64 : The <span class="hljs-type">Point</span>-<span class="hljs-keyword">to</span>-<span class="hljs-type">Point</span> Protocol daemon<br>源    ：fedora<br>匹配来源：<br>文件名    ：/usr/sbin/pppd<br><br>ppp<span class="hljs-number">-2.4</span><span class="hljs-number">.5</span><span class="hljs-number">-33.</span>fc20.x86_64 : The <span class="hljs-type">Point</span>-<span class="hljs-keyword">to</span>-<span class="hljs-type">Point</span> Protocol daemon<br>源    ：@koji-override<span class="hljs-number">-0</span>/$releasever<br>匹配来源：<br>文件名    ：/usr/sbin/pppd<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs pgsql">ppp<span class="hljs-number">-2.4</span><span class="hljs-number">.5</span><span class="hljs-number">-33.</span>fc20.x86_64 : The <span class="hljs-type">Point</span>-<span class="hljs-keyword">to</span>-<span class="hljs-type">Point</span> Protocol daemon
+源    ：fedora
+匹配来源：
+文件名    ：/usr/sbin/pppd
 
-<h2 id="安装pppd"><a href="#安装pppd" class="headerlink" title="安装pppd"></a>安装pppd</h2><figure class="highlight subunit"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs subunit"># yum install ppp<span class="hljs-string">-2</span>.4.5<span class="hljs-string">-33</span>.fc20.x86_64<br></code></pre></td></tr></table></figure>
+ppp<span class="hljs-number">-2.4</span><span class="hljs-number">.5</span><span class="hljs-number">-33.</span>fc20.x86_64 : The <span class="hljs-type">Point</span>-<span class="hljs-keyword">to</span>-<span class="hljs-type">Point</span> Protocol daemon
+源    ：@koji-override<span class="hljs-number">-0</span>/$releasever
+匹配来源：
+文件名    ：/usr/sbin/pppd</code></pre></div>
+
+<h2 id="安装pppd"><a href="#安装pppd" class="headerlink" title="安装pppd"></a>安装pppd</h2><div class="code-wrapper"><pre><code class="hljs subunit"># yum install ppp<span class="hljs-string">-2</span>.4.5<span class="hljs-string">-33</span>.fc20.x86_64</code></pre></div>
 
 <p>保证pppd版本高于2.4.2,然后开始修改配置文件。</p>
-<h2 id="设置用户名密码"><a href="#设置用户名密码" class="headerlink" title="设置用户名密码"></a>设置用户名密码</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs bash">&gt;  vi /etc/ppp/chap-secrets<br><br><span class="hljs-comment"># Secrets for authentication using CHAP</span><br><span class="hljs-comment"># client server secret IP addresses</span><br>user1 PPTP password123 *<br></code></pre></td></tr></table></figure>
+<h2 id="设置用户名密码"><a href="#设置用户名密码" class="headerlink" title="设置用户名密码"></a>设置用户名密码</h2><div class="code-wrapper"><pre><code class="hljs bash">&gt;  vi /etc/ppp/chap-secrets
+
+<span class="hljs-comment"># Secrets for authentication using CHAP</span>
+<span class="hljs-comment"># client server secret IP addresses</span>
+user1 PPTP password123 *</code></pre></div>
 
 <p>user1        vpn用户名<br>PPTP         后面的文件需要用到，和用户名密码相对应<br>password123  vpn密码</p>
-<h2 id="创建vpn-profile"><a href="#创建vpn-profile" class="headerlink" title="创建vpn profile"></a>创建vpn profile</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs bash">&gt; vi /etc/ppp/peers/vpn<br><br>pty <span class="hljs-string">&quot;pptp serverip --nolaunchpppd&quot;</span><br>name user1<br>remotename PPTP<br>require-mppe-128<br>file /etc/ppp/options.pptp<br>ipparam vpn<br></code></pre></td></tr></table></figure>
+<h2 id="创建vpn-profile"><a href="#创建vpn-profile" class="headerlink" title="创建vpn profile"></a>创建vpn profile</h2><div class="code-wrapper"><pre><code class="hljs bash">&gt; vi /etc/ppp/peers/vpn
 
-<h2 id="连接vpn"><a href="#连接vpn" class="headerlink" title="连接vpn"></a>连接vpn</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">&gt; <span class="hljs-built_in">sudo</span> pppd call vpn<br></code></pre></td></tr></table></figure>
+pty <span class="hljs-string">&quot;pptp serverip --nolaunchpppd&quot;</span>
+name user1
+remotename PPTP
+require-mppe-128
+file /etc/ppp/options.pptp
+ipparam vpn</code></pre></div>
 
-<h2 id="断开vpn"><a href="#断开vpn" class="headerlink" title="断开vpn"></a>断开vpn</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">&gt; <span class="hljs-built_in">sudo</span> killall pppd<br></code></pre></td></tr></table></figure>
+<h2 id="连接vpn"><a href="#连接vpn" class="headerlink" title="连接vpn"></a>连接vpn</h2><div class="code-wrapper"><pre><code class="hljs bash">&gt; <span class="hljs-built_in">sudo</span> pppd call vpn</code></pre></div>
+
+<h2 id="断开vpn"><a href="#断开vpn" class="headerlink" title="断开vpn"></a>断开vpn</h2><div class="code-wrapper"><pre><code class="hljs bash">&gt; <span class="hljs-built_in">sudo</span> killall pppd</code></pre></div>
 
 <h2 id="设置路由"><a href="#设置路由" class="headerlink" title="设置路由"></a>设置路由</h2><p>成功连接vpn后，发现访问不了需要访问的10.6网段，使用route命令查看路由情况</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs bash">&gt; route -n<br><br>Kernel IP routing table<br>Destination     Gateway         Genmask         Flags Metric Ref    Use Iface<br>0.0.0.0         10.51.255.*   0.0.0.0         UG    1024   0        0 em1<br>10.51.0.0       0.0.0.0         255.255.0.0     U     0      0        0 em1<br>172.16.58.1     0.0.0.0         255.255.255.255 UH    0      0        0 ppp0<br>*.99.*27.1*0  10.51.255.254   255.255.255.255 UGH   0      0        0 em1<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs bash">&gt; route -n
+
+Kernel IP routing table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+0.0.0.0         10.51.255.*   0.0.0.0         UG    1024   0        0 em1
+10.51.0.0       0.0.0.0         255.255.0.0     U     0      0        0 em1
+172.16.58.1     0.0.0.0         255.255.255.255 UH    0      0        0 ppp0
+*.99.*27.1*0  10.51.255.254   255.255.255.255 UGH   0      0        0 em1</code></pre></div>
 
 <p>因为需要访问10.6网段,需要添加下面的路由</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">&gt; <span class="hljs-built_in">sudo</span> route add -net 10.6.0.0/16 gw 10.58.*.* dev ppp0<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs bash">&gt; <span class="hljs-built_in">sudo</span> route add -net 10.6.0.0/16 gw 10.58.*.* dev ppp0</code></pre></div>
 
 <p>其中10.58.*.*为拨vpn后分配给你的IP地址，这里就有一个问题，每次连接后都需要重新设置路由，比较麻烦，摸索了一翻发现ip-up.local和ip-down.local可以解决这个问题，每次连接成功后会执行ip-up.local脚本，每次断开连接时会执行ip-down.local脚本。我们只要编写这两个脚本就可以自动设置路由，完全自动化，Cool !</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs bash">&gt; <span class="hljs-built_in">sudo</span> vi /etc/ppp/ip-up.local<br><br><span class="hljs-comment">#!/bin/bash</span><br><br>NET=<span class="hljs-string">&quot;10.6.0.0/16&quot;</span><br>IFACE=<span class="hljs-string">&quot;ppp0&quot;</span><br>IP=`ip addr show dev <span class="hljs-variable">$&#123;IFACE&#125;</span> | grep <span class="hljs-string">&#x27;inet&#x27;</span> | awk <span class="hljs-string">&#x27;&#123;print $2&#125;&#x27;</span>`<br><br>route add -net <span class="hljs-variable">$&#123;NET&#125;</span> gw <span class="hljs-variable">$&#123;IP&#125;</span> dev <span class="hljs-variable">$&#123;IFACE&#125;</span><br><br>&gt; <span class="hljs-built_in">sudo</span> vi /etc/ppp/ip-down.local<br><br><span class="hljs-comment">#!/bin/bash</span><br><br>route del *.99.*27.1*0 dev em1<br><br>&gt; <span class="hljs-built_in">sudo</span> <span class="hljs-built_in">chmod</span> +x /etc/ppp/ip-up.local<br>&gt; <span class="hljs-built_in">sudo</span> <span class="hljs-built_in">chmod</span> +x /etc/ppp/ip-down.local<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs bash">&gt; <span class="hljs-built_in">sudo</span> vi /etc/ppp/ip-up.local
+
+<span class="hljs-comment">#!/bin/bash</span>
+
+NET=<span class="hljs-string">&quot;10.6.0.0/16&quot;</span>
+IFACE=<span class="hljs-string">&quot;ppp0&quot;</span>
+IP=`ip addr show dev <span class="hljs-variable">$&#123;IFACE&#125;</span> | grep <span class="hljs-string">&#x27;inet&#x27;</span> | awk <span class="hljs-string">&#x27;&#123;print $2&#125;&#x27;</span>`
+
+route add -net <span class="hljs-variable">$&#123;NET&#125;</span> gw <span class="hljs-variable">$&#123;IP&#125;</span> dev <span class="hljs-variable">$&#123;IFACE&#125;</span>
+
+&gt; <span class="hljs-built_in">sudo</span> vi /etc/ppp/ip-down.local
+
+<span class="hljs-comment">#!/bin/bash</span>
+
+route del *.99.*27.1*0 dev em1
+
+&gt; <span class="hljs-built_in">sudo</span> <span class="hljs-built_in">chmod</span> +x /etc/ppp/ip-up.local
+&gt; <span class="hljs-built_in">sudo</span> <span class="hljs-built_in">chmod</span> +x /etc/ppp/ip-down.local</code></pre></div>
 
 <p>重新连接vpn，查看路由情况：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">&gt; <span class="hljs-built_in">sudo</span> pppd call vpn<br>&gt; route -n<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs bash">&gt; <span class="hljs-built_in">sudo</span> pppd call vpn
+&gt; route -n</code></pre></div>
 
-<figure class="highlight accesslog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs accesslog">Kernel IP routing table<br>Destination     Gateway         Genmask         Flags Metric Ref    Use Iface<br><span class="hljs-number">0.0.0.0</span>         <span class="hljs-number">10</span>.<span class="hljs-number">51</span>.<span class="hljs-number">255</span>.*   <span class="hljs-number">0</span>.<span class="hljs-number">0</span>.<span class="hljs-number">0</span>.<span class="hljs-number">0</span>         UG    <span class="hljs-number">1024</span>   <span class="hljs-number">0</span>        <span class="hljs-number">0</span> em1<br><span class="hljs-number">10.6.0.0</span>        <span class="hljs-number">172</span>.<span class="hljs-number">16</span>.<span class="hljs-number">58</span>.<span class="hljs-number">89</span>    <span class="hljs-number">255</span>.<span class="hljs-number">255</span>.<span class="hljs-number">0</span>.<span class="hljs-number">0</span>     UG    <span class="hljs-number">0</span>      <span class="hljs-number">0</span>        <span class="hljs-number">0</span> ppp0<br><span class="hljs-number">10.51.0.0</span>       <span class="hljs-number">0</span>.<span class="hljs-number">0</span>.<span class="hljs-number">0</span>.<span class="hljs-number">0</span>         <span class="hljs-number">255</span>.<span class="hljs-number">255</span>.<span class="hljs-number">0</span>.<span class="hljs-number">0</span>     U     <span class="hljs-number">0</span>      <span class="hljs-number">0</span>        <span class="hljs-number">0</span> em1<br><span class="hljs-number">172.16.58.1</span>     <span class="hljs-number">0</span>.<span class="hljs-number">0</span>.<span class="hljs-number">0</span>.<span class="hljs-number">0</span>         <span class="hljs-number">255</span>.<span class="hljs-number">255</span>.<span class="hljs-number">255</span>.<span class="hljs-number">255</span> UH    <span class="hljs-number">0</span>      <span class="hljs-number">0</span>        <span class="hljs-number">0</span> ppp0<br>*.<span class="hljs-number">99</span>.*<span class="hljs-number">27</span>.<span class="hljs-number">1</span>*<span class="hljs-number">0</span>  <span class="hljs-number">10</span>.<span class="hljs-number">51</span>.<span class="hljs-number">255</span>.<span class="hljs-number">254</span>   <span class="hljs-number">255</span>.<span class="hljs-number">255</span>.<span class="hljs-number">255</span>.<span class="hljs-number">255</span> UGH   <span class="hljs-number">0</span>      <span class="hljs-number">0</span>        <span class="hljs-number">0</span> em1<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs accesslog">Kernel IP routing table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+<span class="hljs-number">0.0.0.0</span>         <span class="hljs-number">10</span>.<span class="hljs-number">51</span>.<span class="hljs-number">255</span>.*   <span class="hljs-number">0</span>.<span class="hljs-number">0</span>.<span class="hljs-number">0</span>.<span class="hljs-number">0</span>         UG    <span class="hljs-number">1024</span>   <span class="hljs-number">0</span>        <span class="hljs-number">0</span> em1
+<span class="hljs-number">10.6.0.0</span>        <span class="hljs-number">172</span>.<span class="hljs-number">16</span>.<span class="hljs-number">58</span>.<span class="hljs-number">89</span>    <span class="hljs-number">255</span>.<span class="hljs-number">255</span>.<span class="hljs-number">0</span>.<span class="hljs-number">0</span>     UG    <span class="hljs-number">0</span>      <span class="hljs-number">0</span>        <span class="hljs-number">0</span> ppp0
+<span class="hljs-number">10.51.0.0</span>       <span class="hljs-number">0</span>.<span class="hljs-number">0</span>.<span class="hljs-number">0</span>.<span class="hljs-number">0</span>         <span class="hljs-number">255</span>.<span class="hljs-number">255</span>.<span class="hljs-number">0</span>.<span class="hljs-number">0</span>     U     <span class="hljs-number">0</span>      <span class="hljs-number">0</span>        <span class="hljs-number">0</span> em1
+<span class="hljs-number">172.16.58.1</span>     <span class="hljs-number">0</span>.<span class="hljs-number">0</span>.<span class="hljs-number">0</span>.<span class="hljs-number">0</span>         <span class="hljs-number">255</span>.<span class="hljs-number">255</span>.<span class="hljs-number">255</span>.<span class="hljs-number">255</span> UH    <span class="hljs-number">0</span>      <span class="hljs-number">0</span>        <span class="hljs-number">0</span> ppp0
+*.<span class="hljs-number">99</span>.*<span class="hljs-number">27</span>.<span class="hljs-number">1</span>*<span class="hljs-number">0</span>  <span class="hljs-number">10</span>.<span class="hljs-number">51</span>.<span class="hljs-number">255</span>.<span class="hljs-number">254</span>   <span class="hljs-number">255</span>.<span class="hljs-number">255</span>.<span class="hljs-number">255</span>.<span class="hljs-number">255</span> UGH   <span class="hljs-number">0</span>      <span class="hljs-number">0</span>        <span class="hljs-number">0</span> em1</code></pre></div>
 
 <p>已经自动添加10.6.0.0的路由了。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs bash">&gt; <span class="hljs-built_in">sudo</span> killall pppd<br>&gt; route -n<br>Kernel IP routing table<br>Destination     Gateway         Genmask         Flags Metric Ref    Use Iface<br>0.0.0.0         10.51.255.*   0.0.0.0         UG    1024   0        0 em1<br>10.51.0.0       0.0.0.0         255.255.0.0     U     0      0        0 em1<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs bash">&gt; <span class="hljs-built_in">sudo</span> killall pppd
+&gt; route -n
+Kernel IP routing table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+0.0.0.0         10.51.255.*   0.0.0.0         UG    1024   0        0 em1
+10.51.0.0       0.0.0.0         255.255.0.0     U     0      0        0 em1</code></pre></div>
 
 <h2 id="提升速度"><a href="#提升速度" class="headerlink" title="提升速度"></a>提升速度</h2><p>连接上vpn后发现速度很慢，经过研究 novj 选项可以大幅提高速度。</p>
-<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs pgsql">novj <span class="hljs-keyword">Disable</span> Van Jacobson style TCP/IP <span class="hljs-keyword">header</span> compression <span class="hljs-keyword">in</span> <span class="hljs-keyword">both</span> the transmit <span class="hljs-keyword">and</span> the receive direction.<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs pgsql">novj <span class="hljs-keyword">Disable</span> Van Jacobson style TCP/IP <span class="hljs-keyword">header</span> compression <span class="hljs-keyword">in</span> <span class="hljs-keyword">both</span> the transmit <span class="hljs-keyword">and</span> the receive direction.</code></pre></div>
 
 <p>编辑 &#x2F;etc&#x2F;ppp&#x2F;options.pptp 添加以下行</p>
-<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">novj</span><br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs ebnf"><span class="hljs-attribute">novj</span></code></pre></div>
 
 <h2 id="保持长时间在线"><a href="#保持长时间在线" class="headerlink" title="保持长时间在线"></a>保持长时间在线</h2><p>后面还发现一个问题，一段时间不用就自动断开连接了，发现lcp-echo-interval 可以缓解这个问题。</p>
 <p>编辑 &#x2F;etc&#x2F;ppp&#x2F;options.pptp 添加以下行</p>
-<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs angelscript">lcp-echo-<span class="hljs-built_in">int</span>erval <span class="hljs-number">30</span><br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs angelscript">lcp-echo-<span class="hljs-built_in">int</span>erval <span class="hljs-number">30</span></code></pre></div>
 
 <h2 id="Example-Config-file"><a href="#Example-Config-file" class="headerlink" title="Example Config file"></a>Example Config file</h2><p>最终使用的配置如下：&#x2F;etc&#x2F;ppp&#x2F;options.pptp</p>
-<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><code class="hljs gradle">lock<br>noauth<br>refuse-pap<br>refuse-eap<br>refuse-chap<br>refuse-mschap<br>usepeerdns<br>noipdefault<br>nodefaultroute<br>novj<br>require-mppe<br>nobsdcomp<br>nodeflate<br>lcp-echo-failure <span class="hljs-number">5</span><br>lcp-echo-interval <span class="hljs-number">30</span><br>mppe-stateful<br><br><span class="hljs-regexp">/etc/</span>ppp<span class="hljs-regexp">/peers/</span>vpn<br><br>pty <span class="hljs-string">&quot;pptp *.99.*27.1*0 --nolaunchpppd&quot;</span><br>name xxx<br>remotename PPTP<br><span class="hljs-keyword">file</span> <span class="hljs-regexp">/etc/</span>ppp/<span class="hljs-keyword">options</span>.pptp<br>ipparam vpn<br><br><span class="hljs-regexp">/etc/</span>ppp/chap-secrets<br><br>user PPTP password *.<span class="hljs-number">99</span>.*<span class="hljs-number">27.1</span>*<span class="hljs-number">0</span><br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs gradle">lock
+noauth
+refuse-pap
+refuse-eap
+refuse-chap
+refuse-mschap
+usepeerdns
+noipdefault
+nodefaultroute
+novj
+require-mppe
+nobsdcomp
+nodeflate
+lcp-echo-failure <span class="hljs-number">5</span>
+lcp-echo-interval <span class="hljs-number">30</span>
+mppe-stateful
+
+<span class="hljs-regexp">/etc/</span>ppp<span class="hljs-regexp">/peers/</span>vpn
+
+pty <span class="hljs-string">&quot;pptp *.99.*27.1*0 --nolaunchpppd&quot;</span>
+name xxx
+remotename PPTP
+<span class="hljs-keyword">file</span> <span class="hljs-regexp">/etc/</span>ppp/<span class="hljs-keyword">options</span>.pptp
+ipparam vpn
+
+<span class="hljs-regexp">/etc/</span>ppp/chap-secrets
+
+user PPTP password *.<span class="hljs-number">99</span>.*<span class="hljs-number">27.1</span>*<span class="hljs-number">0</span></code></pre></div>
 
 <h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><p><a target="_blank" rel="noopener" href="http://shyju.wordpress.com/2013/08/13/linux-as-a-pptp-vpn-client-configuration-centosfedora/">http://shyju.wordpress.com/2013/08/13/linux-as-a-pptp-vpn-client-configuration-centosfedora/</a><br><a target="_blank" rel="noopener" href="http://www.cyberciti.biz/tips/howto-configure-ubuntu-fedora-linux-pptp-client.html">http://www.cyberciti.biz/tips/howto-configure-ubuntu-fedora-linux-pptp-client.html</a><br><a target="_blank" rel="noopener" href="http://pptpclient.sourceforge.net/">http://pptpclient.sourceforge.net/</a><br><a target="_blank" rel="noopener" href="https://ppp.samba.org/index.html">https://ppp.samba.org/index.html</a></p>
 

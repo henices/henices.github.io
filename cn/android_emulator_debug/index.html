@@ -289,7 +289,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          403 字
+          401 字
         
       </span>
     
@@ -355,25 +355,33 @@
 <h2 id="使用-virutalbox-Extension-Pack"><a href="#使用-virutalbox-Extension-Pack" class="headerlink" title="使用 virutalbox Extension Pack"></a>使用 virutalbox Extension Pack</h2><p>首先的想法是直接使用中virutalBox 的USB 把手机给连到guest，折腾了一下比较麻烦， 首先需要安装virutalbox 的 Extension Pack，下载地址</p>
 <p><a target="_blank" rel="noopener" href="http://download.virtualbox.org/virtualbox/5.1.18/Oracle_VM_VirtualBox_Extension_Pack-5.1.18-114002.vbox-extpack">http://download.virtualbox.org/virtualbox/5.1.18/Oracle_VM_VirtualBox_Extension_Pack-5.1.18-114002.vbox-extpack</a></p>
 <p>管理-&gt;全局设定-&gt;扩展，选择下载的扩展包，安装。接下来这步很关键，上次就是这里没有搞定。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> usermod -a -G vboxusers &lt;username&gt;<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> usermod -a -G vboxusers &lt;username&gt;</code></pre></div>
 
 <p>执行命令后需要注销，重新登录。</p>
 <p>VirtualBox 虚拟机设置 -&gt; usb 添加需要接入 guest 的 usb 设备。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs bash">&gt; lsudo lsusb  <br>Bus 001 Device 002: ID 18d1:4ee7 Google Inc.<br>Bus 001 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub<br>Bus 002 Device 002: ID 80ee:0021 VirtualBox USB Tablet<br>Bus 002 Device 001: ID 1d6b:0001 Linux Foundation 1.1 root hub<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs bash">&gt; lsudo lsusb  
+Bus 001 Device 002: ID 18d1:4ee7 Google Inc.
+Bus 001 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
+Bus 002 Device 002: ID 80ee:0021 VirtualBox USB Tablet
+Bus 002 Device 001: ID 1d6b:0001 Linux Foundation 1.1 root hub</code></pre></div>
 
 <h2 id="使用端口映射"><a href="#使用端口映射" class="headerlink" title="使用端口映射"></a>使用端口映射</h2><p>后面想到adb 其实是通过tcp 和Android设备通讯， 所以只要做端口映射打个通道，就可以解决在virutalBox的虚拟机里调试手机的问题。</p>
-<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">tcp</span>        <span class="hljs-number">0</span>      <span class="hljs-number">0</span> <span class="hljs-number">127.0.0.1:5037</span>          <span class="hljs-number">0.0.0.0</span>:*               LISTEN      <span class="hljs-number">26706</span>/adb <br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs apache"><span class="hljs-attribute">tcp</span>        <span class="hljs-number">0</span>      <span class="hljs-number">0</span> <span class="hljs-number">127.0.0.1:5037</span>          <span class="hljs-number">0.0.0.0</span>:*               LISTEN      <span class="hljs-number">26706</span>/adb</code></pre></div>
 
 <p>在guest里执行下面两条命令</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell">autossh -nNL1234:localhost:1234  10.0.2.2 <br>autossh -nNL5037:localhost:5037  10.0.2.2 <br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs shell">autossh -nNL1234:localhost:1234  10.0.2.2 
+autossh -nNL5037:localhost:5037  10.0.2.2</code></pre></div>
 
 <p>其中 10.0.2.2 是host的ip，5037 是adb 默认监听的端口，1234 是gdbserver 监听的端 口，利用ssh在host和guest 打个通道。</p>
 <p>在host执行adb forward 命令</p>
-<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">adb</span> forward tcp:<span class="hljs-number">1234</span> tcp:<span class="hljs-number">1234</span> <br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs apache"><span class="hljs-attribute">adb</span> forward tcp:<span class="hljs-number">1234</span> tcp:<span class="hljs-number">1234</span></code></pre></div>
 
 <p>这条命令在host和手机上建立了一条通道。</p>
 <p>这样就搞定了adb的连接问题。执行这三行命令后在ubuntu下， adb devices 可以看到下面的输出, 问题得到解决。</p>
-<figure class="highlight node-repl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs node-repl"><span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">adb devices  </span><br>List of devices attached  01b00af93dc59e163        device <br><br>gdbclient system_server :1234 4475<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs node-repl"><span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">adb devices  </span>
+List of devices attached  01b00af93dc59e163        device 
+
+gdbclient system_server :1234 4475</code></pre></div>
 
 <p>输出正常，可以开始调试了。</p>
 

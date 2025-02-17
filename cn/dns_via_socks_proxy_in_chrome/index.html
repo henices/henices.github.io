@@ -21,12 +21,12 @@
   <meta name="author" content="henices">
   <meta name="keywords" content="">
   
-    <meta name="description" content="由于伟大的X火长城的存在，在境内进行 DNS 解析请求返回的报文不一定是靠谱的，有必要使用远程的服务器进行DNS 解析来缓解这个问题。根据 Google 的文档如果设置了 socks5 代理，URL 中的 hostname 将由代理服务器解析。 12The --proxy-server&#x3D;&quot;socks5:&#x2F;&#x2F;myproxy:8080&quot; flag tells Chrome to s">
+    <meta name="description" content="由于伟大的X火长城的存在，在境内进行 DNS 解析请求返回的报文不一定是靠谱的，有必要使用远程的服务器进行DNS 解析来缓解这个问题。根据 Google 的文档如果设置了 socks5 代理，URL 中的 hostname 将由代理服务器解析。 The --proxy-server&#x3D;&quot;socks5:&#x2F;&#x2F;myproxy:8080&quot; flag tells Chrome to sen">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Chrome 浏览器中的远程 DNS 解析">
 <meta property="og:url" content="https://usmacd.com/cn/dns_via_socks_proxy_in_chrome/index.html">
 <meta property="og:site_name" content="安全代码">
-<meta property="og:description" content="由于伟大的X火长城的存在，在境内进行 DNS 解析请求返回的报文不一定是靠谱的，有必要使用远程的服务器进行DNS 解析来缓解这个问题。根据 Google 的文档如果设置了 socks5 代理，URL 中的 hostname 将由代理服务器解析。 12The --proxy-server&#x3D;&quot;socks5:&#x2F;&#x2F;myproxy:8080&quot; flag tells Chrome to s">
+<meta property="og:description" content="由于伟大的X火长城的存在，在境内进行 DNS 解析请求返回的报文不一定是靠谱的，有必要使用远程的服务器进行DNS 解析来缓解这个问题。根据 Google 的文档如果设置了 socks5 代理，URL 中的 hostname 将由代理服务器解析。 The --proxy-server&#x3D;&quot;socks5:&#x2F;&#x2F;myproxy:8080&quot; flag tells Chrome to sen">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-02-22T16:00:00.000Z">
 <meta property="article:modified_time" content="2023-02-22T16:00:00.000Z">
@@ -289,7 +289,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          462 字
+          461 字
         
       </span>
     
@@ -352,19 +352,24 @@
               <div class="markdown-body">
                 
                 <p>由于伟大的X火长城的存在，在境内进行 DNS 解析请求返回的报文不一定是靠谱的，有必要使用远程的服务器进行DNS 解析来缓解这个问题。根据 Google 的文档如果设置了 socks5 代理，URL 中的 hostname 将由代理服务器解析。</p>
-<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs livecodeserver">The <span class="hljs-comment">--proxy-server=&quot;socks5://myproxy:8080&quot; flag tells Chrome to send all http:// and https:// URL requests through the SOCKS proxy server &quot;myproxy:8080&quot;,</span><br><span class="hljs-keyword">using</span> <span class="hljs-built_in">version</span> <span class="hljs-number">5</span> <span class="hljs-keyword">of</span> <span class="hljs-keyword">the</span> SOCKS protocol. The hostname <span class="hljs-keyword">for</span> these URLs will be resolved <span class="hljs-keyword">by</span> <span class="hljs-keyword">the</span> proxy server, <span class="hljs-keyword">and</span> <span class="hljs-keyword">not</span> locally <span class="hljs-keyword">by</span> Chrome.<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs livecodeserver">The <span class="hljs-comment">--proxy-server=&quot;socks5://myproxy:8080&quot; flag tells Chrome to send all http:// and https:// URL requests through the SOCKS proxy server &quot;myproxy:8080&quot;,</span>
+<span class="hljs-keyword">using</span> <span class="hljs-built_in">version</span> <span class="hljs-number">5</span> <span class="hljs-keyword">of</span> <span class="hljs-keyword">the</span> SOCKS protocol. The hostname <span class="hljs-keyword">for</span> these URLs will be resolved <span class="hljs-keyword">by</span> <span class="hljs-keyword">the</span> proxy server, <span class="hljs-keyword">and</span> <span class="hljs-keyword">not</span> locally <span class="hljs-keyword">by</span> Chrome.</code></pre></div>
 
 <p>但是由于 chrome 浏览器的 DNS prefetching  特性，即使设置了 socks5 代理 DNS prefetching 特性也会使用本地网络进行 DNS 解析。</p>
-<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs pgsql">The <span class="hljs-comment">--proxy-server flag applies to URL loads only. </span><br>There are other components <span class="hljs-keyword">of</span> Chrome which may issue DNS resolves directly <span class="hljs-keyword">and</span> hence bypass this proxy <span class="hljs-keyword">server</span>. <br>The most notable such component <span class="hljs-keyword">is</span> the &quot;DNS prefetcher&quot;. <br>Hence <span class="hljs-keyword">if</span> DNS prefetching <span class="hljs-keyword">is</span> <span class="hljs-keyword">not</span> disabled <span class="hljs-keyword">in</span> Chrome <span class="hljs-keyword">then</span> you will still see <span class="hljs-keyword">local</span> DNS requests being issued <span class="hljs-keyword">by</span> Chrome despite <span class="hljs-keyword">having</span> specified a SOCKS v5 proxy <span class="hljs-keyword">server</span>.<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs pgsql">The <span class="hljs-comment">--proxy-server flag applies to URL loads only. </span>
+There are other components <span class="hljs-keyword">of</span> Chrome which may issue DNS resolves directly <span class="hljs-keyword">and</span> hence bypass this proxy <span class="hljs-keyword">server</span>. 
+The most notable such component <span class="hljs-keyword">is</span> the &quot;DNS prefetcher&quot;. 
+Hence <span class="hljs-keyword">if</span> DNS prefetching <span class="hljs-keyword">is</span> <span class="hljs-keyword">not</span> disabled <span class="hljs-keyword">in</span> Chrome <span class="hljs-keyword">then</span> you will still see <span class="hljs-keyword">local</span> DNS requests being issued <span class="hljs-keyword">by</span> Chrome despite <span class="hljs-keyword">having</span> specified a SOCKS v5 proxy <span class="hljs-keyword">server</span>.</code></pre></div>
 
 <p>下面是禁用 DNS prefetching 的方法，新版本的 chrome 已经取消了直接针对 DNS prefetching 设置的选项，有一个预加载网页的选项，需要把这个选项关闭，具体设置方法为：</p>
-<figure class="highlight clean"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs clean">设置 -&gt; 隐私设置和安全性 -&gt; Cookie 及其他网站数据 -&gt; 预加载网页，以便实现更快速的浏览和搜索<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs clean">设置 -&gt; 隐私设置和安全性 -&gt; Cookie 及其他网站数据 -&gt; 预加载网页，以便实现更快速的浏览和搜索</code></pre></div>
 
 <p>禁用 DNS prefetching 的方案是脆弱的，Chrome 可能在其他的地方使用 raw dns requsts （ Chrome 发送 DNS 请求报文)， 绕过代理服务器直接使用本地网络进行 DNS 解析。</p>
-<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs applescript">Disabling DNS prefetching would solve this problem, <br>however <span class="hljs-keyword">it</span> <span class="hljs-keyword">is</span> a fragile solution <span class="hljs-keyword">since</span> once needs <span class="hljs-keyword">to</span> be aware <span class="hljs-keyword">of</span> all <span class="hljs-keyword">the</span> areas <span class="hljs-keyword">in</span> Chrome which issue raw DNS requests.<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs applescript">Disabling DNS prefetching would solve this problem, 
+however <span class="hljs-keyword">it</span> <span class="hljs-keyword">is</span> a fragile solution <span class="hljs-keyword">since</span> once needs <span class="hljs-keyword">to</span> be aware <span class="hljs-keyword">of</span> all <span class="hljs-keyword">the</span> areas <span class="hljs-keyword">in</span> Chrome which issue raw DNS requests.</code></pre></div>
 
 <p>所以最终的解决方案是使用 Google 文档中的命令行参数 <code>--host-resolver-rules=</code> ，经过测试可以使用下面的命令行来解决 DNS 远程解析</p>
-<figure class="highlight abnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs abnf">google-chrome --proxy-server<span class="hljs-operator">=</span><span class="hljs-string">&quot;socks5://127.0.0.1:9999&quot;</span> --host-resolver-rules<span class="hljs-operator">=</span><span class="hljs-string">&quot;MAP * 0.0.0.0, EXClUDE 127.0.0.1&quot;</span><br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs abnf">google-chrome --proxy-server<span class="hljs-operator">=</span><span class="hljs-string">&quot;socks5://127.0.0.1:9999&quot;</span> --host-resolver-rules<span class="hljs-operator">=</span><span class="hljs-string">&quot;MAP * 0.0.0.0, EXClUDE 127.0.0.1&quot;</span></code></pre></div>
 
 <p>–host-resolver-rules 将阻止Chrome 使用本地网络发起 DNS 请求，具体的方式是将 DNS 请求转向一个不存在的地址，注意需要排除 sock5 代理的地址。</p>
 <p>在实际使用过程中发现，如果不指定 –host-resolver-rules 命令行参数，有少量 DNS 请求会使用本地网络，比如 safebrowsing.googleapis.com</p>

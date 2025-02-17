@@ -339,7 +339,7 @@
       
       <a class="index-excerpt index-excerpt__noimg" href="/cn/Fedora_linux_wechat_4.0/" target="_self">
         <div>
-          感谢国产化软件项目，多年后，Linux 终于有 wechat 的官方安装包了 🥳 从麒麟 Linux 的源中，下载 wechat deb 安装包，解压后可以正常在 Fedora Linux 上使用。 123456wget https://archive2.kylinos.cn/DEB/KYLIN_DEB/pool/main/deb/wechat/wechat-beta_4.0.0.21_amd6
+          感谢国产化软件项目，多年后，Linux 终于有 wechat 的官方安装包了 🥳 从麒麟 Linux 的源中，下载 wechat deb 安装包，解压后可以正常在 Fedora Linux 上使用。 wget https://archive2.kylinos.cn/DEB/KYLIN_DEB/pool/main/deb/wechat/wechat-beta_4.0.0.21_amd64.deb
         </div>
       </a>
 
@@ -423,7 +423,7 @@
       
       <a class="index-excerpt index-excerpt__noimg" href="/cn/local_rag_llamaindex/" target="_self">
         <div>
-          非常粗糙的示例代码，使用 Ollama 和 LlamaIndex 打造全本地的知识检索系统。 LlamaIndex 的安装方法如下： 123456python3 -m venv .venvsource .venv/bin/activatepip3 install llama-indexpip3 install llama-index-llms-ollama pip3 install llama-i
+          非常粗糙的示例代码，使用 Ollama 和 LlamaIndex 打造全本地的知识检索系统。 LlamaIndex 的安装方法如下： python3 -m venv .venv source .venv/bin/activate pip3 install llama-index pip3 install llama-index-llms-ollama  pip3 install llama-ind
         </div>
       </a>
 
@@ -463,7 +463,7 @@
       
       <a class="index-excerpt index-excerpt__noimg" href="/cn/ssh-publickey-permission-denied/" target="_self">
         <div>
-          openssh publickey 登录的方式突然不好用了，检查 grep sshd /var/log/auth.log 1Aug 30 16:58:33 pm-65c50001 sshd[9118]: Authentication refused: bad ownership or modes for directory /root  执行下面的命令后，可以成功登录了。 1234chown ro
+          openssh publickey 登录的方式突然不好用了，检查 grep sshd /var/log/auth.log Aug 30 16:58:33 pm-65c50001 sshd[9118]: Authentication refused: bad ownership or modes for directory /root  执行下面的命令后，可以成功登录了。 chown root:ro
         </div>
       </a>
 
@@ -585,7 +585,7 @@
       
       <a class="index-excerpt index-excerpt__noimg" href="/cn/android_apk_extract/" target="_self">
         <div>
-          首先需要下载 Android Platform Tools 获取 adb 工具。 Android Platform Tools 的下载地址为：https://developer.android.com/tools/releases/platform-tools#downloads 在本机执行下面命令，可以提取 Android 手机上安装的 apk 文件。 123adb shell pm list
+          首先需要下载 Android Platform Tools 获取 adb 工具。 Android Platform Tools 的下载地址为：https://developer.android.com/tools/releases/platform-tools#downloads 在本机执行下面命令，可以提取 Android 手机上安装的 apk 文件。 adb shell pm list pac
         </div>
       </a>
 
@@ -625,7 +625,7 @@
       
       <a class="index-excerpt index-excerpt__noimg" href="/cn/Debian_Nvidia_Ollama/" target="_self">
         <div>
-          根据同事反馈，高版本的 NVIDIA 驱动兼容性有问题，需要安装 Nvidia 驱动 525.147.05 ，过程中可能需要升级内核。 安装 Nvidia 驱动查看 Debian 上显卡安装情况。 12lspci -nn | egrep -i &quot;3d|display|vga&quot;  01:00.0 VGA compatible controller [0300]: NVIDIA C
+          根据同事反馈，高版本的 NVIDIA 驱动兼容性有问题，需要安装 Nvidia 驱动 525.147.05 ，过程中可能需要升级内核。 安装 Nvidia 驱动查看 Debian 上显卡安装情况。 lspci -nn | egrep -i &quot;3d|display|vga&quot;   01:00.0 VGA compatible controller [0300]: NVIDIA Co
         </div>
       </a>
 

@@ -362,7 +362,7 @@
 <p><a target="_blank" rel="noopener" href="http://www.target.com/noexists/..%5clist.asp?id=1">http://www.target.com/noexists/..%5clist.asp?id=1</a></p>
 <p>这样大家就会有新的惊喜了，呵呵。</p>
 <p>补救方法也很简单，在conn.asp里 加入数据库文件的位置后面加上这句：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs asp">On Error Resume Next<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs asp">On Error Resume Next</code></pre></div>
 
 <p>就可以了。</p>
 <hr>
@@ -371,7 +371,11 @@
 <p>呵呵。虽然这个我们这个漏洞呵暴库关系不是很大， 但是明眼人还是看的出相关的地方，IIS 二次解码。大家知道在 url中 <code>\</code> 和 <code>/</code> 是一样的，也就是说 <a target="_blank" rel="noopener" href="http://www.example.com/abc/123.asp?id=5">http://www.example.com/abc/123.asp?id=5</a> 和 <a target="_blank" rel="noopener" href="http://www.example.com/abc/123.asp?id=5">http://www.example.com/abc\123.asp?id=5</a> 是一样的。</p>
 <p>而 <a target="_blank" rel="noopener" href="http://www.example.com/abc%5c123.asp?id=5">http://www.example.com/abc%5c123.asp?id=5</a> 经过一次解码后变成 <a target="_blank" rel="noopener" href="http://www.example.com/abc/123.asp?id=5">http://www.example.com/abc\123.asp?id=5</a> 这里是不会出错的。</p>
 <p>而经过 IIS 二次解码后就变成 <a target="_blank" rel="noopener" href="http://www.example.com/abc%5c123.asp?id=5">http://www.example.com/abc%5c123.asp?id=5</a>, 如果数据库连接文件用的相对路径的话。HOO, 找不到数据库文件，当然就出错了。还很老实呢，连物理路径都出来了。大家看。</p>
-<figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs 1c">Microsoft JET Database Engine 错误 &#x27;<span class="hljs-number">80004005</span>&#x27;<br><br>&#x27;D:\wwwroot\hell\wwwroot\data\abc.asp&#x27;不是一个有效的路径。 确定路径名称拼写是否正确，以及是否连接到文件存放的服务器。<br><br>/blog/conn.asp，行<span class="hljs-number">29</span><br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs 1c">Microsoft JET Database Engine 错误 &#x27;<span class="hljs-number">80004005</span>&#x27;
+
+&#x27;D:\wwwroot\hell\wwwroot\data\abc.asp&#x27;不是一个有效的路径。 确定路径名称拼写是否正确，以及是否连接到文件存放的服务器。
+
+/blog/conn.asp，行<span class="hljs-number">29</span></code></pre></div>
 
 <p>这个是我暴 Oblog 暴出来的，这个月的黑防大家都有看吧。(早知道我也去投稿了，我发现的比他早多了，郁闷)<br>很多人都在分析成功的条件，就象itbbs里的人讨论的一样。(itbbs最近我怎么上不去啊，知道告诉我)</p>
 <p>sykkk 认为：</p>

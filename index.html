@@ -457,7 +457,7 @@
       
       <a class="index-excerpt index-excerpt__noimg" href="/cn/dell_optiplex_tower_plus_7010_ddr5/" target="_self">
         <div>
-          Dell 台式机的内存兼容性问题原始的工作机配备两条 8G 内存，想再添加一条 16G 的内存，没想到遇到内存兼容性问题。 在Windows 下查看内存类型，频率，容量，品牌，可以使用下面的命令。 12345678powershellPS&gt; Get-WmiObject Win32_PhysicalMemory | Format-Table SMBIOSMemoryType, Speed, C
+          Dell 台式机的内存兼容性问题原始的工作机配备两条 8G 内存，想再添加一条 16G 的内存，没想到遇到内存兼容性问题。 在Windows 下查看内存类型，频率，容量，品牌，可以使用下面的命令。 powershell  PS&gt; Get-WmiObject Win32_PhysicalMemory | Format-Table SMBIOSMemoryType, Speed, Capacit
         </div>
       </a>
 
@@ -497,7 +497,7 @@
       
       <a class="index-excerpt index-excerpt__noimg" href="/cn/fcitx5_emoji_display/" target="_self">
         <div>
-          关于升级大版本的 Linux 发行版，我有个经验，不要太着急升级，至少等2个星期再说。 即便如此，还是会遇上各种使用的问题， 升级 Fedora 41 后，Color Emoji 无法在 Fcitx5 的输入法提示栏正常显示。 上网搜索了一番，估计和字体渲染相关，下面是具体的解决问题方法：  安装 Emoji 字体  12sudo dnf install google-noto-color-emo
+          关于升级大版本的 Linux 发行版，我有个经验，不要太着急升级，至少等2个星期再说。 即便如此，还是会遇上各种使用的问题， 升级 Fedora 41 后，Color Emoji 无法在 Fcitx5 的输入法提示栏正常显示。 上网搜索了一番，估计和字体渲染相关，下面是具体的解决问题方法：  安装 Emoji 字体  sudo dnf install google-noto-color-emoji
         </div>
       </a>
 
@@ -659,7 +659,7 @@
       
       <a class="index-excerpt index-excerpt__noimg" href="/cn/wps_fedora_linux_chinese_bad_char/" target="_self">
         <div>
-          不知从哪个版本开始，Fedora Linux 上的 wps 字体乱码，基本处于不可用状态。最近，又遇上要打开 Office 文件的需求，研究了一下解决的方法。 安装缺少的字体，wps 可能没有某些字体的版权123456git clone https://github.com/jayknoxqu/wps-symbol-fontscd wps-symbol-fontssudo mkdir /usr/s
+          不知从哪个版本开始，Fedora Linux 上的 wps 字体乱码，基本处于不可用状态。最近，又遇上要打开 Office 文件的需求，研究了一下解决的方法。 安装缺少的字体，wps 可能没有某些字体的版权git clone https://github.com/jayknoxqu/wps-symbol-fonts cd wps-symbol-fonts sudo mkdir /usr/share
         </div>
       </a>
 

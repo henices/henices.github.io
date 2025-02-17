@@ -21,12 +21,12 @@
   <meta name="author" content="henices">
   <meta name="keywords" content="">
   
-    <meta name="description" content="小技巧。但是用的人好像不多。例子：  Windows 2000 下 123456789101112131415161718NtQuerySystemInformationNo &#x3D; 0x97;_declspec(naked)NTSTATUS __stdcall PrivateNtQuerySystemInformation    (IN     SYSTEM_INFORMATION_CLASS,">
+    <meta name="description" content="小技巧。但是用的人好像不多。例子：  Windows 2000 下 NtQuerySystemInformationNo &#x3D; 0x97;  _declspec(naked) NTSTATUS __stdcall PrivateNtQuerySystemInformation     (IN     SYSTEM_INFORMATION_CLASS,     IN OUT PVOID,     IN">
 <meta property="og:type" content="article">
 <meta property="og:title" content="int 2eh 方式调用Native api">
 <meta property="og:url" content="https://usmacd.com/cn/int23_native_api/index.html">
 <meta property="og:site_name" content="安全代码">
-<meta property="og:description" content="小技巧。但是用的人好像不多。例子：  Windows 2000 下 123456789101112131415161718NtQuerySystemInformationNo &#x3D; 0x97;_declspec(naked)NTSTATUS __stdcall PrivateNtQuerySystemInformation    (IN     SYSTEM_INFORMATION_CLASS,">
+<meta property="og:description" content="小技巧。但是用的人好像不多。例子：  Windows 2000 下 NtQuerySystemInformationNo &#x3D; 0x97;  _declspec(naked) NTSTATUS __stdcall PrivateNtQuerySystemInformation     (IN     SYSTEM_INFORMATION_CLASS,     IN OUT PVOID,     IN">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2008-04-26T16:00:00.000Z">
 <meta property="article:modified_time" content="2008-04-26T16:00:00.000Z">
@@ -352,7 +352,24 @@
               <div class="markdown-body">
                 
                 <p>小技巧。但是用的人好像不多。例子：  Windows 2000 下</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs c">NtQuerySystemInformationNo = <span class="hljs-number">0x97</span>;<br><br>_declspec(naked)<br>NTSTATUS __stdcall <span class="hljs-title function_">PrivateNtQuerySystemInformation</span><br>    <span class="hljs-params">(IN     SYSTEM_INFORMATION_CLASS,</span><br><span class="hljs-params">    IN OUT PVOID,</span><br><span class="hljs-params">    IN     ULONG,</span><br><span class="hljs-params">    OUT    PULONG OPTIONAL)</span><br>&#123;<br><br>    _asm &#123;<br>        mov eax, NtQuerySystemInformationNo<br>        lea edx, [esp+<span class="hljs-number">4</span>]<br>        <span class="hljs-type">int</span> <span class="hljs-number">2</span>Eh<br>        ret <span class="hljs-number">10</span>h<br>    &#125;<br><br>&#125;<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs c">NtQuerySystemInformationNo = <span class="hljs-number">0x97</span>;
+
+_declspec(naked)
+NTSTATUS __stdcall <span class="hljs-title function_">PrivateNtQuerySystemInformation</span>
+    <span class="hljs-params">(IN     SYSTEM_INFORMATION_CLASS,</span>
+<span class="hljs-params">    IN OUT PVOID,</span>
+<span class="hljs-params">    IN     ULONG,</span>
+<span class="hljs-params">    OUT    PULONG OPTIONAL)</span>
+&#123;
+
+    _asm &#123;
+        mov eax, NtQuerySystemInformationNo
+        lea edx, [esp+<span class="hljs-number">4</span>]
+        <span class="hljs-type">int</span> <span class="hljs-number">2</span>Eh
+        ret <span class="hljs-number">10</span>h
+    &#125;
+
+&#125;</code></pre></div>
 
                 
               </div>

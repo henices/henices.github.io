@@ -356,14 +356,219 @@
 <p>关于挂钩API 请参见：<a target="_blank" rel="noopener" href="http://www.xfocus.net/articles/200403/681.html">www.xfocus.net/articles/200403/681.html</a></p>
 <p>文件删除的ring3 API 是DeleteFile, 此API 存在于kernel32.dll 中，用OD分析一下。(哪个都可以，IDA更不用说)</p>
 <p>DeleteFileA 的反汇编代码：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs asm">7C80D2FB &gt;/$ 8BFF mov edi, edi<br>7C80D2FD |. 55 push ebp<br>7C80D2FE |. 8BEC mov ebp, esp<br>7C80D300 |. FF75 08 push dword ptr [ebp+8]<br>7C80D303 |. E8 17790100 call 7C824C1F<br>7C80D308 |. 85C0 test eax, eax<br>7C80D30A |. 74 08 je short 7C80D314<br>7C80D30C |. FF70 04 push dword ptr [eax+4] ; /FileName<br>7C80D30F |. E8 3D170000 call DeleteFileW ; \DeleteFileW<br>7C80D314 |&gt; 5D pop ebp<br>7C80D315 \. C2 0400 retn 4<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs asm">7C80D2FB &gt;/$ 8BFF mov edi, edi
+7C80D2FD |. 55 push ebp
+7C80D2FE |. 8BEC mov ebp, esp
+7C80D300 |. FF75 08 push dword ptr [ebp+8]
+7C80D303 |. E8 17790100 call 7C824C1F
+7C80D308 |. 85C0 test eax, eax
+7C80D30A |. 74 08 je short 7C80D314
+7C80D30C |. FF70 04 push dword ptr [eax+4] ; /FileName
+7C80D30F |. E8 3D170000 call DeleteFileW ; \DeleteFileW
+7C80D314 |&gt; 5D pop ebp
+7C80D315 \. C2 0400 retn 4</code></pre></div>
 
 <p>可以得到一个流程 DeleteFileA –&gt; DeleteFileW</p>
 <p>DeleteFileW 的反汇编代码：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br></pre></td><td class="code"><pre><code class="hljs asm">7C80EA51 &gt; $ 8BFF mov edi, edi<br>7C80EA53 . 55 push ebp<br>7C80EA54 . 8BEC mov ebp, esp<br>7C80EA56 . 83EC 50 sub esp, 50<br>7C80EA59 . 56 push esi<br>7C80EA5A . 8D45 C8 lea eax, dword ptr [ebp-38]<br>7C80EA5D . 50 push eax<br>7C80EA5E . 33F6 xor esi, esi<br>7C80EA60 . 56 push esi<br>7C80EA61 . 8D45 E0 lea eax, dword ptr [ebp-20]<br>7C80EA64 . 50 push eax<br>7C80EA65 . FF75 08 push dword ptr [ebp+8]<br>7C80EA68 . C645 FF 00 mov byte ptr [ebp-1], 0<br>7C80EA6C . FF15 5411807C call dword ptr [&lt;&amp;ntdll.RtlDosPathNam&gt;; ntdll.RtlDosPathNameToRelativeNtPathName_U<br>7C80EA72 . 84C0 test al, al<br>7C80EA74 . 0F84 FBCC0200 je 7C83B775<br>7C80EA7A . 8B45 E4 mov eax, dword ptr [ebp-1C]<br>7C80EA7D . 8945 F4 mov dword ptr [ebp-C], eax<br>7C80EA80 . 8B45 C8 mov eax, dword ptr [ebp-38]<br>7C80EA83 . 66:3BC6 cmp ax, si<br>7C80EA86 . 0F85 E9660200 jnz 7C835175<br>7C80EA8C . 8975 D0 mov dword ptr [ebp-30], esi<br>7C80EA8F &gt; 8B45 D0 mov eax, dword ptr [ebp-30]<br>7C80EA92 . 53 push ebx<br>7C80EA93 . 57 push edi<br>7C80EA94 . 8945 B4 mov dword ptr [ebp-4C], eax<br>7C80EA97 . 8D45 E0 lea eax, dword ptr [ebp-20]<br>7C80EA9A . 8945 B8 mov dword ptr [ebp-48], eax<br>7C80EA9D . BF 40402000 mov edi, 204040<br>7C80EAA2 . 57 push edi<br>7C80EAA3 . 6A 07 push 7<br>7C80EAA5 . 8D45 E8 lea eax, dword ptr [ebp-18]<br>7C80EAA8 . 50 push eax<br>7C80EAA9 . 8D45 B0 lea eax, dword ptr [ebp-50]<br>7C80EAAC . 50 push eax<br>7C80EAAD . 68 80000100 push 10080 ; UNICODE &quot;ocuments and<br>7C80EAB2 . 8D45 F8 lea eax, dword ptr [ebp-8]<br>7C80EAB5 . 8975 C0 mov dword ptr [ebp-40], esi<br>7C80EAB8 . 8975 C4 mov dword ptr [ebp-3C], esi<br>7C80EABB . 8B35 1410807C mov esi, dword ptr [&lt;&amp;ntdll.NtOpenFi&gt;; ntdll.ZwOpenFile<br>7C80EAC1 . 50 push eax<br>7C80EAC2 . C745 B0 18000&gt;mov dword ptr [ebp-50], 18<br>7C80EAC9 . C745 BC 40000&gt;mov dword ptr [ebp-44], 40<br>7C80EAD0 . FFD6 call esi ; &lt;&amp;ntdll.NtOpenFile&gt;<br>7C80EAD2 . 8BD8 mov ebx, eax<br>7C80EAD4 . 85DB test ebx, ebx<br>7C80EAD6 .^ 0F8C F5F4FFFF jl 7C80DFD1<br>7C80EADC . 6A 23 push 23 ; /InfoClass = FileAttributeTagInformation<br>7C80EADE . 6A 08 push 8 ; |Bufsize = 8<br>7C80EAE0 . 8D45 D8 lea eax, dword ptr [ebp-28] ; |<br>7C80EAE3 . 50 push eax ; |Buffer<br>7C80EAE4 . 8D45 E8 lea eax, dword ptr [ebp-18] ; |<br>7C80EAE7 . 50 push eax ; |pStatusBlock<br>7C80EAE8 . FF75 F8 push dword ptr [ebp-8] ; |hFile<br>7C80EAEB . FF15 1810807C call dword ptr [&lt;&amp;ntdll.NtQueryInform&gt;; \ZwQueryInformationFile<br>7C80EAF1 . 8BD8 mov ebx, eax<br>7C80EAF3 . 85DB test ebx, ebx<br>7C80EAF5 . 0F8C D5CC0200 jl 7C83B7D0<br>7C80EAFB . 8B45 D8 mov eax, dword ptr [ebp-28]<br>7C80EAFE . 25 00040000 and eax, 400<br>7C80EB03 . 0F85 0ECD0200 jnz 7C83B817<br>7C80EB09 &gt; 85C0 test eax, eax<br>7C80EB0B . 0F85 1CCD0200 jnz 7C83B82D<br>7C80EB11 &gt; 8D45 C8 lea eax, dword ptr [ebp-38]<br>7C80EB14 . 50 push eax<br>7C80EB15 . FF15 5011807C call dword ptr [&lt;&amp;ntdll.RtlReleaseRel&gt;; ntdll.RtlReleaseRelativeName<br>7C80EB1B . FF75 F4 push dword ptr [ebp-C]<br>7C80EB1E . 64:A1 1800000&gt;mov eax, dword ptr fs:[18]<br>7C80EB24 . 8B40 30 mov eax, dword ptr [eax+30]<br>7C80EB27 . 6A 00 push 0<br>7C80EB29 . FF70 18 push dword ptr [eax+18]<br>7C80EB2C . FF15 1010807C call dword ptr [&lt;&amp;ntdll.RtlFreeHeap&gt;] ; ntdll.RtlFreeHeap<br>7C80EB32 . 6A 0D push 0D ; /InfoClass = FileDispositionInformation<br>7C80EB34 . 6A 01 push 1 ; |Bufsize = 1<br>7C80EB36 . 8D45 0B lea eax, dword ptr [ebp+B] ; |<br>7C80EB39 . 50 push eax ; |Buffer<br>7C80EB3A . 8D45 E8 lea eax, dword ptr [ebp-18] ; |<br>7C80EB3D . 50 push eax ; |pStatusBlock<br>7C80EB3E . FF75 F8 push dword ptr [ebp-8] ; |hFile<br>7C80EB41 . C645 0B 01 mov byte ptr [ebp+B], 1 ; |<br>7C80EB45 . FF15 3010807C call dword ptr [&lt;&amp;ntdll.NtSetInformat&gt;; \ntdll.ZwSetInformationFile<br>7C80EB4B . FF75 F8 push dword ptr [ebp-8] ; /Handle<br>7C80EB4E . 8BF0 mov esi, eax ; |<br>7C80EB50 . FF15 3810807C call dword ptr [&lt;&amp;ntdll.NtClose&gt;] ; \ZwClose<br>7C80EB56 . 85F6 test esi, esi<br>7C80EB58 .^ 0F8C 1F91FFFF jl 7C807C7D<br>7C80EB5E . 33C0 xor eax, eax<br>7C80EB60 . 40 inc eax<br>7C80EB61 &gt; 5F pop edi<br>7C80EB62 . 5B pop ebx<br>7C80EB63 &gt; 5E pop esi<br>7C80EB64 . C9 leave<br>7C80EB65 . C2 0400 retn 4<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs asm">7C80EA51 &gt; $ 8BFF mov edi, edi
+7C80EA53 . 55 push ebp
+7C80EA54 . 8BEC mov ebp, esp
+7C80EA56 . 83EC 50 sub esp, 50
+7C80EA59 . 56 push esi
+7C80EA5A . 8D45 C8 lea eax, dword ptr [ebp-38]
+7C80EA5D . 50 push eax
+7C80EA5E . 33F6 xor esi, esi
+7C80EA60 . 56 push esi
+7C80EA61 . 8D45 E0 lea eax, dword ptr [ebp-20]
+7C80EA64 . 50 push eax
+7C80EA65 . FF75 08 push dword ptr [ebp+8]
+7C80EA68 . C645 FF 00 mov byte ptr [ebp-1], 0
+7C80EA6C . FF15 5411807C call dword ptr [&lt;&amp;ntdll.RtlDosPathNam&gt;; ntdll.RtlDosPathNameToRelativeNtPathName_U
+7C80EA72 . 84C0 test al, al
+7C80EA74 . 0F84 FBCC0200 je 7C83B775
+7C80EA7A . 8B45 E4 mov eax, dword ptr [ebp-1C]
+7C80EA7D . 8945 F4 mov dword ptr [ebp-C], eax
+7C80EA80 . 8B45 C8 mov eax, dword ptr [ebp-38]
+7C80EA83 . 66:3BC6 cmp ax, si
+7C80EA86 . 0F85 E9660200 jnz 7C835175
+7C80EA8C . 8975 D0 mov dword ptr [ebp-30], esi
+7C80EA8F &gt; 8B45 D0 mov eax, dword ptr [ebp-30]
+7C80EA92 . 53 push ebx
+7C80EA93 . 57 push edi
+7C80EA94 . 8945 B4 mov dword ptr [ebp-4C], eax
+7C80EA97 . 8D45 E0 lea eax, dword ptr [ebp-20]
+7C80EA9A . 8945 B8 mov dword ptr [ebp-48], eax
+7C80EA9D . BF 40402000 mov edi, 204040
+7C80EAA2 . 57 push edi
+7C80EAA3 . 6A 07 push 7
+7C80EAA5 . 8D45 E8 lea eax, dword ptr [ebp-18]
+7C80EAA8 . 50 push eax
+7C80EAA9 . 8D45 B0 lea eax, dword ptr [ebp-50]
+7C80EAAC . 50 push eax
+7C80EAAD . 68 80000100 push 10080 ; UNICODE &quot;ocuments and
+7C80EAB2 . 8D45 F8 lea eax, dword ptr [ebp-8]
+7C80EAB5 . 8975 C0 mov dword ptr [ebp-40], esi
+7C80EAB8 . 8975 C4 mov dword ptr [ebp-3C], esi
+7C80EABB . 8B35 1410807C mov esi, dword ptr [&lt;&amp;ntdll.NtOpenFi&gt;; ntdll.ZwOpenFile
+7C80EAC1 . 50 push eax
+7C80EAC2 . C745 B0 18000&gt;mov dword ptr [ebp-50], 18
+7C80EAC9 . C745 BC 40000&gt;mov dword ptr [ebp-44], 40
+7C80EAD0 . FFD6 call esi ; &lt;&amp;ntdll.NtOpenFile&gt;
+7C80EAD2 . 8BD8 mov ebx, eax
+7C80EAD4 . 85DB test ebx, ebx
+7C80EAD6 .^ 0F8C F5F4FFFF jl 7C80DFD1
+7C80EADC . 6A 23 push 23 ; /InfoClass = FileAttributeTagInformation
+7C80EADE . 6A 08 push 8 ; |Bufsize = 8
+7C80EAE0 . 8D45 D8 lea eax, dword ptr [ebp-28] ; |
+7C80EAE3 . 50 push eax ; |Buffer
+7C80EAE4 . 8D45 E8 lea eax, dword ptr [ebp-18] ; |
+7C80EAE7 . 50 push eax ; |pStatusBlock
+7C80EAE8 . FF75 F8 push dword ptr [ebp-8] ; |hFile
+7C80EAEB . FF15 1810807C call dword ptr [&lt;&amp;ntdll.NtQueryInform&gt;; \ZwQueryInformationFile
+7C80EAF1 . 8BD8 mov ebx, eax
+7C80EAF3 . 85DB test ebx, ebx
+7C80EAF5 . 0F8C D5CC0200 jl 7C83B7D0
+7C80EAFB . 8B45 D8 mov eax, dword ptr [ebp-28]
+7C80EAFE . 25 00040000 and eax, 400
+7C80EB03 . 0F85 0ECD0200 jnz 7C83B817
+7C80EB09 &gt; 85C0 test eax, eax
+7C80EB0B . 0F85 1CCD0200 jnz 7C83B82D
+7C80EB11 &gt; 8D45 C8 lea eax, dword ptr [ebp-38]
+7C80EB14 . 50 push eax
+7C80EB15 . FF15 5011807C call dword ptr [&lt;&amp;ntdll.RtlReleaseRel&gt;; ntdll.RtlReleaseRelativeName
+7C80EB1B . FF75 F4 push dword ptr [ebp-C]
+7C80EB1E . 64:A1 1800000&gt;mov eax, dword ptr fs:[18]
+7C80EB24 . 8B40 30 mov eax, dword ptr [eax+30]
+7C80EB27 . 6A 00 push 0
+7C80EB29 . FF70 18 push dword ptr [eax+18]
+7C80EB2C . FF15 1010807C call dword ptr [&lt;&amp;ntdll.RtlFreeHeap&gt;] ; ntdll.RtlFreeHeap
+7C80EB32 . 6A 0D push 0D ; /InfoClass = FileDispositionInformation
+7C80EB34 . 6A 01 push 1 ; |Bufsize = 1
+7C80EB36 . 8D45 0B lea eax, dword ptr [ebp+B] ; |
+7C80EB39 . 50 push eax ; |Buffer
+7C80EB3A . 8D45 E8 lea eax, dword ptr [ebp-18] ; |
+7C80EB3D . 50 push eax ; |pStatusBlock
+7C80EB3E . FF75 F8 push dword ptr [ebp-8] ; |hFile
+7C80EB41 . C645 0B 01 mov byte ptr [ebp+B], 1 ; |
+7C80EB45 . FF15 3010807C call dword ptr [&lt;&amp;ntdll.NtSetInformat&gt;; \ntdll.ZwSetInformationFile
+7C80EB4B . FF75 F8 push dword ptr [ebp-8] ; /Handle
+7C80EB4E . 8BF0 mov esi, eax ; |
+7C80EB50 . FF15 3810807C call dword ptr [&lt;&amp;ntdll.NtClose&gt;] ; \ZwClose
+7C80EB56 . 85F6 test esi, esi
+7C80EB58 .^ 0F8C 1F91FFFF jl 7C807C7D
+7C80EB5E . 33C0 xor eax, eax
+7C80EB60 . 40 inc eax
+7C80EB61 &gt; 5F pop edi
+7C80EB62 . 5B pop ebx
+7C80EB63 &gt; 5E pop esi
+7C80EB64 . C9 leave
+7C80EB65 . C2 0400 retn 4</code></pre></div>
 
 <p>得到一个流程 DeleteFileA –&gt; DeleteFileW –&gt; ntdll.ZwSetInformationFile，因此我们只要挂钩了ZwSetInformationFile 就可以简单实现目标了。这里写出了新的 ZwSetInformationFile 函数。</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-keyword">typedef</span> LONG NTSTATUS;<br><span class="hljs-meta">#<span class="hljs-keyword">define</span> STATUS_SUCCESS ((NTSTATUS)0x00000000L)</span><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> STATUS_ACCESS_DENIED ((NTSTATUS)0xC0000022L)</span><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> STATUS_INFO_LENGTH_MISMATCH ((NTSTATUS)0xC0000004L)</span><br><br><span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> _<span class="hljs-title">IO_STATUS_BLOCK</span> &#123;</span><br>DWORD Status;<br>ULONG Information;<br>&#125; IO_STATUS_BLOCK, *PIO_STATUS_BLOCK;<br><br><span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">enum</span> _<span class="hljs-title">FILE_INFORMATION_CLASS</span> &#123;</span><br><span class="hljs-comment">// end_wdm</span><br>FileDirectoryInformation = <span class="hljs-number">1</span>,<br>FileFullDirectoryInformation, <span class="hljs-comment">// 2</span><br>FileBothDirectoryInformation, <span class="hljs-comment">// 3</span><br>FileBasicInformation, <span class="hljs-comment">// 4 wdm</span><br>FileStandardInformation, <span class="hljs-comment">// 5 wdm</span><br>FileInternalInformation, <span class="hljs-comment">// 6</span><br>FileEaInformation, <span class="hljs-comment">// 7</span><br>FileAccessInformation, <span class="hljs-comment">// 8</span><br>FileNameInformation, <span class="hljs-comment">// 9</span><br>FileRenameInformation, <span class="hljs-comment">// 10</span><br>FileLinkInformation, <span class="hljs-comment">// 11</span><br>FileNamesInformation, <span class="hljs-comment">// 12</span><br>FileDispositionInformation, <span class="hljs-comment">// 13</span><br>FilePositionInformation, <span class="hljs-comment">// 14 wdm</span><br>FileFullEaInformation, <span class="hljs-comment">// 15</span><br>FileModeInformation, <span class="hljs-comment">// 16</span><br>FileAlignmentInformation, <span class="hljs-comment">// 17</span><br>FileAllInformation, <span class="hljs-comment">// 18</span><br>FileAllocationInformation, <span class="hljs-comment">// 19</span><br>FileEndOfFileInformation, <span class="hljs-comment">// 20 wdm</span><br>FileAlternateNameInformation, <span class="hljs-comment">// 21</span><br>FileStreamInformation, <span class="hljs-comment">// 22</span><br>FilePipeInformation, <span class="hljs-comment">// 23</span><br>FilePipeLocalInformation, <span class="hljs-comment">// 24</span><br>FilePipeRemoteInformation, <span class="hljs-comment">// 25</span><br>FileMailslotQueryInformation, <span class="hljs-comment">// 26</span><br>FileMailslotSetInformation, <span class="hljs-comment">// 27</span><br>FileCompressionInformation, <span class="hljs-comment">// 28</span><br>FileObjectIdInformation, <span class="hljs-comment">// 29</span><br>FileCompletionInformation, <span class="hljs-comment">// 30</span><br>FileMoveClusterInformation, <span class="hljs-comment">// 31</span><br>FileQuotaInformation, <span class="hljs-comment">// 32</span><br>FileReparsePointInformation, <span class="hljs-comment">// 33</span><br>FileNetworkOpenInformation, <span class="hljs-comment">// 34</span><br>FileAttributeTagInformation, <span class="hljs-comment">// 35</span><br>FileTrackingInformation, <span class="hljs-comment">// 36</span><br>FileMaximumInformation<br><span class="hljs-comment">// begin_wdm</span><br>&#125; FILE_INFORMATION_CLASS, *PFILE_INFORMATION_CLASS;<br><br><span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> _<span class="hljs-title">FILE_NAME_INFORMATION</span> &#123;</span><br>ULONG FileNameLength;<br>WCHAR FileName[<span class="hljs-number">1</span>];<br>&#125; FILE_NAME_INFORMATION, *PFILE_NAME_INFORMATION;<br><br><span class="hljs-keyword">typedef</span> <span class="hljs-title function_">NTSTATUS</span> <span class="hljs-params">(__stdcall *ZWQUERYINFORMATIONFILE)</span><span class="hljs-params">(</span><br><span class="hljs-params">IN HANDLE FileHandle,</span><br><span class="hljs-params">OUT PIO_STATUS_BLOCK IoStatusBlock,</span><br><span class="hljs-params">OUT PVOID FileInformation,</span><br><span class="hljs-params">IN ULONG FileInformationLength,</span><br><span class="hljs-params">IN FILE_INFORMATION_CLASS FileInformationClass</span><br><span class="hljs-params">)</span>;<br><br>ZWQUERYINFORMATIONFILE ZwQueryInformationFile;<br><br>NTSTATUS __stdcall <span class="hljs-title function_">Hook_ZwSetInformationFile</span><span class="hljs-params">(IN HANDLE FileHandle,</span><br><span class="hljs-params">OUT PIO_STATUS_BLOCK IoStatusBlock,</span><br><span class="hljs-params">IN PVOID FileInformation,</span><br><span class="hljs-params">IN ULONG FileInformationLength,</span><br><span class="hljs-params">IN FILE_INFORMATION_CLASS FileInformationClass)</span><br>&#123;<br>NTSTATUS ntstatus = STATUS_ACCESS_DENIED;<br><br>HMODULE hNtdll = GetModuleHandle(<span class="hljs-string">&quot;ntdll.dll&quot;</span>);<br>ZwQueryInformationFile = (ZWQUERYINFORMATIONFILE)GetProcAddress(hNtdll, <span class="hljs-string">&quot;ZwQueryInformationFile&quot;</span>);<br><br>IO_STATUS_BLOCK ioStatus;<br>FILE_NAME_INFORMATION * psi = &#123;<span class="hljs-number">0</span>&#125;;<br><br>psi = (FILE_NAME_INFORMATION*)new WCHAR[<span class="hljs-keyword">sizeof</span>(FILE_NAME_INFORMATION) + <span class="hljs-number">1024</span>];<br><span class="hljs-built_in">memset</span>(psi, <span class="hljs-number">0</span>, (<span class="hljs-keyword">sizeof</span>(FILE_NAME_INFORMATION) + <span class="hljs-number">1024</span>)*<span class="hljs-number">2</span>);<br>psi-&gt;FileNameLength = <span class="hljs-number">1024</span>;<br><br>ntstatus = ZwQueryInformationFile(FileHandle, &amp;ioStatus, psi, <span class="hljs-keyword">sizeof</span>(FILE_NAME_INFORMATION) + <span class="hljs-number">1024</span> * <span class="hljs-keyword">sizeof</span>(WCHAR),<br><br>FileNameInformation);<br><br><span class="hljs-keyword">if</span> (ntstatus != STATUS_SUCCESS)<br>PrintZwError(<span class="hljs-string">&quot;ZwQueryInformationFile&quot;</span>, ntstatus);<br><br>ntstatus = STATUS_ACCESS_DENIED;<br><br><span class="hljs-keyword">if</span>( wcsstr(psi-&gt;FileName, <span class="hljs-string">L&quot;b.txt&quot;</span>) == <span class="hljs-literal">NULL</span>)<br>ntstatus = ((PFZWSETINFORMATIONFILE)(PROC)g_ZwSetInformationFile)<br><br>(FileHandle,IoStatusBlock,FileInformation,FileInformationLength,FileInformationClass);<br><br>delete psi;<br><span class="hljs-keyword">return</span> ntstatus;<br><br><br>&#125;<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs c"><span class="hljs-keyword">typedef</span> LONG NTSTATUS;
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> STATUS_SUCCESS ((NTSTATUS)0x00000000L)</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> STATUS_ACCESS_DENIED ((NTSTATUS)0xC0000022L)</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> STATUS_INFO_LENGTH_MISMATCH ((NTSTATUS)0xC0000004L)</span>
+
+<span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> _<span class="hljs-title">IO_STATUS_BLOCK</span> &#123;</span>
+DWORD Status;
+ULONG Information;
+&#125; IO_STATUS_BLOCK, *PIO_STATUS_BLOCK;
+
+<span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">enum</span> _<span class="hljs-title">FILE_INFORMATION_CLASS</span> &#123;</span>
+<span class="hljs-comment">// end_wdm</span>
+FileDirectoryInformation = <span class="hljs-number">1</span>,
+FileFullDirectoryInformation, <span class="hljs-comment">// 2</span>
+FileBothDirectoryInformation, <span class="hljs-comment">// 3</span>
+FileBasicInformation, <span class="hljs-comment">// 4 wdm</span>
+FileStandardInformation, <span class="hljs-comment">// 5 wdm</span>
+FileInternalInformation, <span class="hljs-comment">// 6</span>
+FileEaInformation, <span class="hljs-comment">// 7</span>
+FileAccessInformation, <span class="hljs-comment">// 8</span>
+FileNameInformation, <span class="hljs-comment">// 9</span>
+FileRenameInformation, <span class="hljs-comment">// 10</span>
+FileLinkInformation, <span class="hljs-comment">// 11</span>
+FileNamesInformation, <span class="hljs-comment">// 12</span>
+FileDispositionInformation, <span class="hljs-comment">// 13</span>
+FilePositionInformation, <span class="hljs-comment">// 14 wdm</span>
+FileFullEaInformation, <span class="hljs-comment">// 15</span>
+FileModeInformation, <span class="hljs-comment">// 16</span>
+FileAlignmentInformation, <span class="hljs-comment">// 17</span>
+FileAllInformation, <span class="hljs-comment">// 18</span>
+FileAllocationInformation, <span class="hljs-comment">// 19</span>
+FileEndOfFileInformation, <span class="hljs-comment">// 20 wdm</span>
+FileAlternateNameInformation, <span class="hljs-comment">// 21</span>
+FileStreamInformation, <span class="hljs-comment">// 22</span>
+FilePipeInformation, <span class="hljs-comment">// 23</span>
+FilePipeLocalInformation, <span class="hljs-comment">// 24</span>
+FilePipeRemoteInformation, <span class="hljs-comment">// 25</span>
+FileMailslotQueryInformation, <span class="hljs-comment">// 26</span>
+FileMailslotSetInformation, <span class="hljs-comment">// 27</span>
+FileCompressionInformation, <span class="hljs-comment">// 28</span>
+FileObjectIdInformation, <span class="hljs-comment">// 29</span>
+FileCompletionInformation, <span class="hljs-comment">// 30</span>
+FileMoveClusterInformation, <span class="hljs-comment">// 31</span>
+FileQuotaInformation, <span class="hljs-comment">// 32</span>
+FileReparsePointInformation, <span class="hljs-comment">// 33</span>
+FileNetworkOpenInformation, <span class="hljs-comment">// 34</span>
+FileAttributeTagInformation, <span class="hljs-comment">// 35</span>
+FileTrackingInformation, <span class="hljs-comment">// 36</span>
+FileMaximumInformation
+<span class="hljs-comment">// begin_wdm</span>
+&#125; FILE_INFORMATION_CLASS, *PFILE_INFORMATION_CLASS;
+
+<span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> _<span class="hljs-title">FILE_NAME_INFORMATION</span> &#123;</span>
+ULONG FileNameLength;
+WCHAR FileName[<span class="hljs-number">1</span>];
+&#125; FILE_NAME_INFORMATION, *PFILE_NAME_INFORMATION;
+
+<span class="hljs-keyword">typedef</span> <span class="hljs-title function_">NTSTATUS</span> <span class="hljs-params">(__stdcall *ZWQUERYINFORMATIONFILE)</span><span class="hljs-params">(</span>
+<span class="hljs-params">IN HANDLE FileHandle,</span>
+<span class="hljs-params">OUT PIO_STATUS_BLOCK IoStatusBlock,</span>
+<span class="hljs-params">OUT PVOID FileInformation,</span>
+<span class="hljs-params">IN ULONG FileInformationLength,</span>
+<span class="hljs-params">IN FILE_INFORMATION_CLASS FileInformationClass</span>
+<span class="hljs-params">)</span>;
+
+ZWQUERYINFORMATIONFILE ZwQueryInformationFile;
+
+NTSTATUS __stdcall <span class="hljs-title function_">Hook_ZwSetInformationFile</span><span class="hljs-params">(IN HANDLE FileHandle,</span>
+<span class="hljs-params">OUT PIO_STATUS_BLOCK IoStatusBlock,</span>
+<span class="hljs-params">IN PVOID FileInformation,</span>
+<span class="hljs-params">IN ULONG FileInformationLength,</span>
+<span class="hljs-params">IN FILE_INFORMATION_CLASS FileInformationClass)</span>
+&#123;
+NTSTATUS ntstatus = STATUS_ACCESS_DENIED;
+
+HMODULE hNtdll = GetModuleHandle(<span class="hljs-string">&quot;ntdll.dll&quot;</span>);
+ZwQueryInformationFile = (ZWQUERYINFORMATIONFILE)GetProcAddress(hNtdll, <span class="hljs-string">&quot;ZwQueryInformationFile&quot;</span>);
+
+IO_STATUS_BLOCK ioStatus;
+FILE_NAME_INFORMATION * psi = &#123;<span class="hljs-number">0</span>&#125;;
+
+psi = (FILE_NAME_INFORMATION*)new WCHAR[<span class="hljs-keyword">sizeof</span>(FILE_NAME_INFORMATION) + <span class="hljs-number">1024</span>];
+<span class="hljs-built_in">memset</span>(psi, <span class="hljs-number">0</span>, (<span class="hljs-keyword">sizeof</span>(FILE_NAME_INFORMATION) + <span class="hljs-number">1024</span>)*<span class="hljs-number">2</span>);
+psi-&gt;FileNameLength = <span class="hljs-number">1024</span>;
+
+ntstatus = ZwQueryInformationFile(FileHandle, &amp;ioStatus, psi, <span class="hljs-keyword">sizeof</span>(FILE_NAME_INFORMATION) + <span class="hljs-number">1024</span> * <span class="hljs-keyword">sizeof</span>(WCHAR),
+
+FileNameInformation);
+
+<span class="hljs-keyword">if</span> (ntstatus != STATUS_SUCCESS)
+PrintZwError(<span class="hljs-string">&quot;ZwQueryInformationFile&quot;</span>, ntstatus);
+
+ntstatus = STATUS_ACCESS_DENIED;
+
+<span class="hljs-keyword">if</span>( wcsstr(psi-&gt;FileName, <span class="hljs-string">L&quot;b.txt&quot;</span>) == <span class="hljs-literal">NULL</span>)
+ntstatus = ((PFZWSETINFORMATIONFILE)(PROC)g_ZwSetInformationFile)
+
+(FileHandle,IoStatusBlock,FileInformation,FileInformationLength,FileInformationClass);
+
+delete psi;
+<span class="hljs-keyword">return</span> ntstatus;
+
+
+&#125;</code></pre></div>
 
 <p>这只是一个证明性代码，要实战的兄弟自己动点手吧。</p>
 

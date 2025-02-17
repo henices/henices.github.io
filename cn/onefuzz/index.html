@@ -21,12 +21,12 @@
   <meta name="author" content="henices">
   <meta name="keywords" content="">
   
-    <meta name="description" content="deploy agent (部署)123unzip onefuzz-deployment-$VERSION.zippip install -r requirements.txt.&#x2F;deploy.py $REGION $RESOURCE_GROUP_NAME $ONEFUZZ_INSTANCE_NAME $CONTACT_EMAIL_ADDRESS  Azure CLI logged in 后，执行">
+    <meta name="description" content="deploy agent (部署)unzip onefuzz-deployment-$VERSION.zip pip install -r requirements.txt .&#x2F;deploy.py $REGION $RESOURCE_GROUP_NAME $ONEFUZZ_INSTANCE_NAME $CONTACT_EMAIL_ADDRESS  Azure CLI logged in 后，执行上">
 <meta property="og:type" content="article">
 <meta property="og:title" content="onefuzz 简单分析">
 <meta property="og:url" content="https://usmacd.com/cn/onefuzz/index.html">
 <meta property="og:site_name" content="安全代码">
-<meta property="og:description" content="deploy agent (部署)123unzip onefuzz-deployment-$VERSION.zippip install -r requirements.txt.&#x2F;deploy.py $REGION $RESOURCE_GROUP_NAME $ONEFUZZ_INSTANCE_NAME $CONTACT_EMAIL_ADDRESS  Azure CLI logged in 后，执行">
+<meta property="og:description" content="deploy agent (部署)unzip onefuzz-deployment-$VERSION.zip pip install -r requirements.txt .&#x2F;deploy.py $REGION $RESOURCE_GROUP_NAME $ONEFUZZ_INSTANCE_NAME $CONTACT_EMAIL_ADDRESS  Azure CLI logged in 后，执行上">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://raw.githubusercontent.com/microsoft/onefuzz/main/docs/screencasts/launching-job.gif">
 <meta property="article:published_time" content="2023-09-06T03:00:51.724Z">
@@ -353,13 +353,17 @@
             
               <div class="markdown-body">
                 
-                <h2 id="deploy-agent-部署"><a href="#deploy-agent-部署" class="headerlink" title="deploy agent (部署)"></a>deploy agent (部署)</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">unzip onefuzz-deployment-<span class="hljs-variable">$VERSION</span>.zip<br>pip install -r requirements.txt<br>./deploy.py <span class="hljs-variable">$REGION</span> <span class="hljs-variable">$RESOURCE_GROUP_NAME</span> <span class="hljs-variable">$ONEFUZZ_INSTANCE_NAME</span> <span class="hljs-variable">$CONTACT_EMAIL_ADDRESS</span><br></code></pre></td></tr></table></figure>
+                <h2 id="deploy-agent-部署"><a href="#deploy-agent-部署" class="headerlink" title="deploy agent (部署)"></a>deploy agent (部署)</h2><div class="code-wrapper"><pre><code class="hljs bash">unzip onefuzz-deployment-<span class="hljs-variable">$VERSION</span>.zip
+pip install -r requirements.txt
+./deploy.py <span class="hljs-variable">$REGION</span> <span class="hljs-variable">$RESOURCE_GROUP_NAME</span> <span class="hljs-variable">$ONEFUZZ_INSTANCE_NAME</span> <span class="hljs-variable">$CONTACT_EMAIL_ADDRESS</span></code></pre></div>
 
 <p><a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/cli/azure/authenticate-azure-cli?view=azure-cli-latest">Azure CLI logged in</a> 后，执行上面命令可以在 Azure 上部署 agent</p>
 <p>需要订阅 Azure， 可能要收费</p>
-<h2 id="安装-onefuzz-CLI"><a href="#安装-onefuzz-CLI" class="headerlink" title="安装 onefuzz CLI"></a>安装 onefuzz CLI</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">wget https://github.com/microsoft/onefuzz/releases/download/1.0.0/onefuzz-1.0.0-py3-none-any.whl<br>wget https://github.com/microsoft/onefuzz/releases/download/1.0.0/onefuzztypes-1.0.0-py3-none-any.whl<br>pip install ./onefuzz*.whl<br></code></pre></td></tr></table></figure>
+<h2 id="安装-onefuzz-CLI"><a href="#安装-onefuzz-CLI" class="headerlink" title="安装 onefuzz CLI"></a>安装 onefuzz CLI</h2><div class="code-wrapper"><pre><code class="hljs bash">wget https://github.com/microsoft/onefuzz/releases/download/1.0.0/onefuzz-1.0.0-py3-none-any.whl
+wget https://github.com/microsoft/onefuzz/releases/download/1.0.0/onefuzztypes-1.0.0-py3-none-any.whl
+pip install ./onefuzz*.whl</code></pre></div>
 
-<h2 id="执行-fuzz-任务"><a href="#执行-fuzz-任务" class="headerlink" title="执行 fuzz 任务"></a>执行 fuzz 任务</h2><figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs applescript">onefuzz template libfuzzer basic <span class="hljs-keyword">my</span>-project <span class="hljs-keyword">my</span>-target build<span class="hljs-number">-1</span> <span class="hljs-keyword">my</span>-pool <span class="hljs-comment">--target_exe fuzz.exe</span><br></code></pre></td></tr></table></figure>
+<h2 id="执行-fuzz-任务"><a href="#执行-fuzz-任务" class="headerlink" title="执行 fuzz 任务"></a>执行 fuzz 任务</h2><div class="code-wrapper"><pre><code class="hljs applescript">onefuzz template libfuzzer basic <span class="hljs-keyword">my</span>-project <span class="hljs-keyword">my</span>-target build<span class="hljs-number">-1</span> <span class="hljs-keyword">my</span>-pool <span class="hljs-comment">--target_exe fuzz.exe</span></code></pre></div>
 
 <h2 id="支持的平台"><a href="#支持的平台" class="headerlink" title="支持的平台"></a>支持的平台</h2><ol>
 <li>Python 的 CLI 客户端，需要 Python 3.7 +</li>

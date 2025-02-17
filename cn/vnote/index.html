@@ -385,25 +385,48 @@
 </ol>
 <p>git clone <a target="_blank" rel="noopener" href="https://gitlab.com/fcitx/fcitx-qt5.git">https://gitlab.com/fcitx/fcitx-qt5.git</a></p>
 <p>准备编译脚本 <code>build_linux.sh</code>， 指定下载的QT</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs sh">QTDIR=<span class="hljs-string">&quot;/home/henices/Qt5.9.0/5.9/gcc_64/&quot;</span><br>PATH=<span class="hljs-string">&quot;<span class="hljs-variable">$QTDIR</span>/bin:<span class="hljs-variable">$PATH</span>&quot;</span><br>LDFLAGS=-L<span class="hljs-variable">$QTDIR</span>/lib<br>CPPFLAGS=-I<span class="hljs-variable">$QTDIR</span>/include<br><br><span class="hljs-built_in">rm</span> -rf build<br><span class="hljs-built_in">mkdir</span> -p build<br><span class="hljs-built_in">cd</span> build<br>cmake ..<br>make -j8<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs sh">QTDIR=<span class="hljs-string">&quot;/home/henices/Qt5.9.0/5.9/gcc_64/&quot;</span>
+PATH=<span class="hljs-string">&quot;<span class="hljs-variable">$QTDIR</span>/bin:<span class="hljs-variable">$PATH</span>&quot;</span>
+LDFLAGS=-L<span class="hljs-variable">$QTDIR</span>/lib
+CPPFLAGS=-I<span class="hljs-variable">$QTDIR</span>/include
+
+<span class="hljs-built_in">rm</span> -rf build
+<span class="hljs-built_in">mkdir</span> -p build
+<span class="hljs-built_in">cd</span> build
+cmake ..
+make -j8</code></pre></div>
 
 <p>使用下面命令编译</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-built_in">chmod</span> a+x ./build_linux.sh<br>./build_linux.sh<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs sh"><span class="hljs-built_in">chmod</span> a+x ./build_linux.sh
+./build_linux.sh</code></pre></div>
 
 <p>将生成的 libfcitxplatforminputcontextplugin.so copy 到<br><code>/home/henices/Qt5.9.0/5.9/gcc_64/plugins/platforminputcontexts/</code></p>
 <ol start="3">
 <li>获取VNote 源码</li>
 </ol>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs sh">git <span class="hljs-built_in">clone</span> https://github.com/tamlok/vnote.git vnote.git<br><span class="hljs-built_in">cd</span> vnote.git<br>git submodule update --init<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs sh">git <span class="hljs-built_in">clone</span> https://github.com/tamlok/vnote.git vnote.git
+<span class="hljs-built_in">cd</span> vnote.git
+git submodule update --init</code></pre></div>
 
 <ol start="4">
 <li>编译</li>
 </ol>
 <p>build_linux.sh</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs sh">QTDIR=<span class="hljs-string">&quot;/home/henices/Qt5.9.0/5.9/gcc_64/&quot;</span><br>PATH=<span class="hljs-string">&quot;<span class="hljs-variable">$QTDIR</span>/bin:<span class="hljs-variable">$PATH</span>&quot;</span><br>LDFLAGS=-L<span class="hljs-variable">$QTDIR</span>/lib<br>CPPFLAGS=-I<span class="hljs-variable">$QTDIR</span>/include<br><br><span class="hljs-built_in">rm</span> -rf build<br><span class="hljs-built_in">mkdir</span> -p build<br><span class="hljs-built_in">cd</span> build<br>qmake -v<br>qmake PREFIX=/usr/local CONFIG-=debug CONFIG+=release ../VNote.pro<br>make -j8<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs sh">QTDIR=<span class="hljs-string">&quot;/home/henices/Qt5.9.0/5.9/gcc_64/&quot;</span>
+PATH=<span class="hljs-string">&quot;<span class="hljs-variable">$QTDIR</span>/bin:<span class="hljs-variable">$PATH</span>&quot;</span>
+LDFLAGS=-L<span class="hljs-variable">$QTDIR</span>/lib
+CPPFLAGS=-I<span class="hljs-variable">$QTDIR</span>/include
+
+<span class="hljs-built_in">rm</span> -rf build
+<span class="hljs-built_in">mkdir</span> -p build
+<span class="hljs-built_in">cd</span> build
+qmake -v
+qmake PREFIX=/usr/local CONFIG-=debug CONFIG+=release ../VNote.pro
+make -j8</code></pre></div>
 
 <p>使用下面命令编译</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">chmod</span> a+x ./build_linux.sh<br>./build_linux.sh<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs bash"><span class="hljs-built_in">chmod</span> a+x ./build_linux.sh
+./build_linux.sh</code></pre></div>
 
 <ol start="5">
 <li>安装</li>
@@ -413,7 +436,7 @@
 <ol>
 <li>vnote 的阅读模式不能正常显示 （Qt 5.12.11），解决这个问题需要禁用 Qtwebengine 的 sandbox</li>
 </ol>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">./vnote --no-sandbox<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs sh">./vnote --no-sandbox</code></pre></div>
 <ol start="2">
 <li>导出 pdf 文件 cpu 100%  （Fedora 系统自带 Qt 5.15.2 编译）</li>
 <li>官方提供的 Linux AppImage 文件无法打开 Fcitx5 输入法。</li>
@@ -423,25 +446,44 @@
 <p>2022.8.2 更新</p>
 <p>导出 pdf 文件 cpu 100% 的问题，我调试 Qt 5.15.5 代码时已经解决，可以参考：<br><a target="_blank" rel="noopener" href="https://github.com/vnotex/vnote/commit/53e2b3bfa8aff4f590471caf5e8cc55c8b8b538b">https://github.com/vnotex/vnote/commit/53e2b3bfa8aff4f590471caf5e8cc55c8b8b538b</a></p>
 <h3 id="Qt-5-15-3-的诡异问题"><a href="#Qt-5-15-3-的诡异问题" class="headerlink" title="Qt 5.15.3 的诡异问题"></a>Qt 5.15.3 的诡异问题</h3><p>使用 Qt 5.15.3 编译 VNOte 后，出现下面的报错</p>
-<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs elixir">[<span class="hljs-number">695784</span><span class="hljs-symbol">:</span><span class="hljs-number">695784</span><span class="hljs-symbol">:</span><span class="hljs-number">0401</span>/<span class="hljs-number">181224.580254</span><span class="hljs-symbol">:ERROR</span><span class="hljs-symbol">:network_service_instance_impl</span>.cc(<span class="hljs-number">286</span>)] <span class="hljs-title class_">Network</span> service crashed, restarting service.<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs elixir">[<span class="hljs-number">695784</span><span class="hljs-symbol">:</span><span class="hljs-number">695784</span><span class="hljs-symbol">:</span><span class="hljs-number">0401</span>/<span class="hljs-number">181224.580254</span><span class="hljs-symbol">:ERROR</span><span class="hljs-symbol">:network_service_instance_impl</span>.cc(<span class="hljs-number">286</span>)] <span class="hljs-title class_">Network</span> service crashed, restarting service.</code></pre></div>
 
 <p>bug 在这 <a target="_blank" rel="noopener" href="https://bugreports.qt.io/browse/QTBUG-91715">https://bugreports.qt.io/browse/QTBUG-91715</a> 可以先使用环境变量救急一下</p>
-<figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs jboss-cli">QTWEBENGINE_DISABLE_SANDBOX=1 QTWEBENGINE_CHROMIUM_FLAGS=<span class="hljs-params">--lang=de</span> <span class="hljs-string">./vnote</span> <span class="hljs-params">--no-sandbox</span> <span class="hljs-params">--disable-gpu</span><br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs jboss-cli">QTWEBENGINE_DISABLE_SANDBOX=1 QTWEBENGINE_CHROMIUM_FLAGS=<span class="hljs-params">--lang=de</span> <span class="hljs-string">./vnote</span> <span class="hljs-params">--no-sandbox</span> <span class="hljs-params">--disable-gpu</span></code></pre></div>
 
 <p>2022.8.2 更新: Qt 5.15.5 已经修复了这个问题。</p>
 <h2 id="Fedora-上使用-Qt6-编译-VNote"><a href="#Fedora-上使用-Qt6-编译-VNote" class="headerlink" title="Fedora 上使用 Qt6 编译 VNote"></a>Fedora 上使用 Qt6 编译 VNote</h2><p>最近，VNote 迎来了一个大更新，支持Qt6 并保留了对 Qt5 的支持。使用Qt6 编译 VNote 需要安装一些依赖库，下面的可能不全，需要根据具体情况调整。</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-built_in">sudo</span> dnf install qt6-qtbase-devel qt6-qt5compat-devel qt6-qtsvg-devel qt6-qtwebengine-devel<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs sh"><span class="hljs-built_in">sudo</span> dnf install qt6-qtbase-devel qt6-qt5compat-devel qt6-qtsvg-devel qt6-qtwebengine-devel</code></pre></div>
 
 <p>使用 Fedora 系统自带的 Qt6 编译比较简单，在 VNote 的源码目录新建一个脚本 build.sh，内容如下：</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs sh">VNOTEDIR=~/vnote/<br><span class="hljs-built_in">mkdir</span> -p build_system<br><span class="hljs-built_in">cd</span> build_system<br>/lib64/qt6/bin/qmake PREFIX=<span class="hljs-variable">$&#123;VNOTEDIR&#125;</span> CONFIG+=release -spec linux-g++-64 ../vnote.pro<br>make -j`<span class="hljs-built_in">nproc</span>` &amp;&amp; make install<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs sh">VNOTEDIR=~/vnote/
+<span class="hljs-built_in">mkdir</span> -p build_system
+<span class="hljs-built_in">cd</span> build_system
+/lib64/qt6/bin/qmake PREFIX=<span class="hljs-variable">$&#123;VNOTEDIR&#125;</span> CONFIG+=release -spec linux-g++-64 ../vnote.pro
+make -j`<span class="hljs-built_in">nproc</span>` &amp;&amp; make install</code></pre></div>
 
 <p>VNOTEDIR 为安装目录需要自己定义，然后执行命令 <code>chmod a+x .build.sh &amp;&amp; bash ./build.sh</code> 即可完成编译和安装。</p>
 <h3 id="Fedora-上使用-Qt6-编译-VNote-的新方法-（2024-6-14）"><a href="#Fedora-上使用-Qt6-编译-VNote-的新方法-（2024-6-14）" class="headerlink" title="Fedora 上使用 Qt6 编译 VNote 的新方法 （2024.6.14）"></a>Fedora 上使用 Qt6 编译 VNote 的新方法 （2024.6.14）</h3><p>一个好消息，VNote 的作者还在努力更新中。</p>
 <p>tamlok 重写了 vnote 的构建代码，较大的变化是项目文件下的 vnote.pro 被删除了，Linux 下也使用 cmake 进行编译，参考 <a target="_blank" rel="noopener" href="https://github.com/vnotex/vnote/blob/master/.github/workflows/ci-linux.yml">ci-linux</a> 的代码：</p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">Configure</span> <span class="hljs-string">Project</span><br>  <span class="hljs-attr">run:</span> <span class="hljs-string">|</span><br><span class="hljs-string">    qmake -v</span><br><span class="hljs-string">    cmake --version</span><br><span class="hljs-string">    cmake $&#123;GITHUB_WORKSPACE&#125;</span><br><span class="hljs-string"></span>  <span class="hljs-attr">working-directory:</span> <span class="hljs-string">$&#123;&#123;runner.workspace&#125;&#125;/build</span><br><br><span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">Build</span> <span class="hljs-string">Project</span><br>  <span class="hljs-attr">run:</span> <span class="hljs-string">|</span><br><span class="hljs-string">    cmake --build . --target pack</span><br><span class="hljs-string"></span>  <span class="hljs-attr">working-directory:</span> <span class="hljs-string">$&#123;&#123;runner.workspace&#125;&#125;/build</span><br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs yaml"><span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">Configure</span> <span class="hljs-string">Project</span>
+  <span class="hljs-attr">run:</span> <span class="hljs-string">|</span>
+<span class="hljs-string">    qmake -v</span>
+<span class="hljs-string">    cmake --version</span>
+<span class="hljs-string">    cmake $&#123;GITHUB_WORKSPACE&#125;</span>
+<span class="hljs-string"></span>  <span class="hljs-attr">working-directory:</span> <span class="hljs-string">$&#123;&#123;runner.workspace&#125;&#125;/build</span>
+
+<span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">Build</span> <span class="hljs-string">Project</span>
+  <span class="hljs-attr">run:</span> <span class="hljs-string">|</span>
+<span class="hljs-string">    cmake --build . --target pack</span>
+<span class="hljs-string"></span>  <span class="hljs-attr">working-directory:</span> <span class="hljs-string">$&#123;&#123;runner.workspace&#125;&#125;/build</span></code></pre></div>
 
 <p>重新写一个 <code>build.sh</code> , 进行自动化的 vnote 编译，内容如下：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs bash">VNOTEDIR=~/vnote/<br><span class="hljs-built_in">mkdir</span> -p build_system<br><span class="hljs-built_in">cd</span> build_system<br><span class="hljs-comment">#/lib64/qt6/bin/qmake PREFIX=$&#123;VNOTEDIR&#125; CONFIG+=release -spec linux-g++-64 ../vnote.pro</span><br>cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=<span class="hljs-variable">$&#123;VNOTEDIR&#125;</span> ..<br>make -j`<span class="hljs-built_in">nproc</span>` &amp;&amp; make install<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs bash">VNOTEDIR=~/vnote/
+<span class="hljs-built_in">mkdir</span> -p build_system
+<span class="hljs-built_in">cd</span> build_system
+<span class="hljs-comment">#/lib64/qt6/bin/qmake PREFIX=$&#123;VNOTEDIR&#125; CONFIG+=release -spec linux-g++-64 ../vnote.pro</span>
+cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=<span class="hljs-variable">$&#123;VNOTEDIR&#125;</span> ..
+make -j`<span class="hljs-built_in">nproc</span>` &amp;&amp; make install</code></pre></div>
 
 <p>然后执行命令 <code>chmod a+x .build.sh &amp;&amp; bash ./build.sh</code> 即可完成编译和安装。</p>
 <h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><p><a target="_blank" rel="noopener" href="https://tamlok.gitee.io/vnote/zh_cn/#!docs/%E5%BC%80%E5%8F%91%E8%80%85/%E6%9E%84%E5%BB%BAVNote.md">https://tamlok.gitee.io/vnote/zh_cn/#!docs/%E5%BC%80%E5%8F%91%E8%80%85/%E6%9E%84%E5%BB%BAVNote.md</a></p>

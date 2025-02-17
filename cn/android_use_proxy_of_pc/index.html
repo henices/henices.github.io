@@ -362,34 +362,57 @@
                 <p>在一些特殊的情况下，可能需要使用 Android 手机或者 PC 的线路访问外部网络资源，同时没有条件连接 wifi 网络，这时候可以使用 Android Platform Tools 的 adb 工具来达到目的。</p>
 <p>Android Platform Tools 的下载地址为：<br><a target="_blank" rel="noopener" href="https://developer.android.com/tools/releases/platform-tools#downloads">https://developer.android.com/tools/releases/platform-tools#downloads</a></p>
 <h2 id="Android-手机使用-PC-的代理上网的方法"><a href="#Android-手机使用-PC-的代理上网的方法" class="headerlink" title="Android 手机使用 PC 的代理上网的方法"></a>Android 手机使用 PC 的代理上网的方法</h2><p>用 USB 数据线连接 Android 手机和 PC，在 PC 中执行下面的命令</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">adb shell settings put global http_proxy 127.0.0.1:7890<br>adb reverse tcp:7890 tcp:7890<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs bash">adb shell settings put global http_proxy 127.0.0.1:7890
+adb reverse tcp:7890 tcp:7890</code></pre></div>
 
 <p>首先设置 Android 手机 http 全局代理为 127.0.0.1:7890，然后将手机的 127.0.0.1:7890 转发到 PC 127.0.0.1:7890 （没有找到设置 Android 系统全局使用 socks5 代理的方法）</p>
 <p>设置 Android 全局代理需要 android.permission.WRITE_SECURE_SETTINGS 权限，ColorOS 需要在开发者选项中开启 「禁止权限监控」具体方法可以参考：<a target="_blank" rel="noopener" href="https://sspai.com/post/67110">在 ColorOS 上免 root 玩机，请先打开这个开关</a>，如果是小米手机可能需要在开发者选项中打开 「USB调试（安全设置）」，我没有小米手机未测试。</p>
 <p>如果需要恢复Android 无代理状态，需要使用下面的命令，一定要记得执行这条恢复命令，否则手机可能无法联网。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">adb shell settings delete global http_proxy<br>adb shell settings delete global global_http_proxy_host<br>adb shell settings delete global global_http_proxy_port<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs bash">adb shell settings delete global http_proxy
+adb shell settings delete global global_http_proxy_host
+adb shell settings delete global global_http_proxy_port</code></pre></div>
 
 <p>执行 <code>adb reverse</code> 命令后，可以使用 <code>adb reverse --list</code> 查看连接建立情况：</p>
-<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">UsbFfs</span> tcp:<span class="hljs-number">7890</span> tcp:<span class="hljs-number">7890</span><br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs apache"><span class="hljs-attribute">UsbFfs</span> tcp:<span class="hljs-number">7890</span> tcp:<span class="hljs-number">7890</span></code></pre></div>
 
 <p>不需要使用时，可以使用 <code>adb reverse --remove</code> 移除转发</p>
-<figure class="highlight ada"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ada">adb <span class="hljs-keyword">reverse</span> <span class="hljs-comment">--remove tcp:7890</span><br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs ada">adb <span class="hljs-keyword">reverse</span> <span class="hljs-comment">--remove tcp:7890</span></code></pre></div>
 
 <p>参考 adb 的帮助，执行命令 <code>adb help</code></p>
-<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs vim"><span class="hljs-built_in">reverse</span> --<span class="hljs-keyword">list</span>           <span class="hljs-keyword">list</span> <span class="hljs-keyword">all</span> <span class="hljs-built_in">reverse</span> socket connections from device<br><span class="hljs-built_in">reverse</span> [--<span class="hljs-keyword">no</span>-rebind] REMOTE LOCAL<br>    <span class="hljs-built_in">reverse</span> socket connection using:<br>      tcp:<span class="hljs-symbol">&lt;port&gt;</span> (<span class="hljs-symbol">&lt;remote&gt;</span> may <span class="hljs-keyword">be</span> <span class="hljs-string">&quot;tcp:0&quot;</span> <span class="hljs-keyword">to</span> pick any <span class="hljs-keyword">open</span> port)<br>      localabstract:&lt;unix domain socket name&gt;<br>      localreserved:&lt;unix domain socket name&gt;<br>      localfilesystem:&lt;unix domain socket name&gt;<br><span class="hljs-built_in">reverse</span> --<span class="hljs-built_in">remove</span> REMOTE  <span class="hljs-built_in">remove</span> specific <span class="hljs-built_in">reverse</span> socket connection<br><span class="hljs-built_in">reverse</span> --<span class="hljs-built_in">remove</span>-<span class="hljs-keyword">all</span>     <span class="hljs-built_in">remove</span> <span class="hljs-keyword">all</span> <span class="hljs-built_in">reverse</span> socket connections from device<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs vim"><span class="hljs-built_in">reverse</span> --<span class="hljs-keyword">list</span>           <span class="hljs-keyword">list</span> <span class="hljs-keyword">all</span> <span class="hljs-built_in">reverse</span> socket connections from device
+<span class="hljs-built_in">reverse</span> [--<span class="hljs-keyword">no</span>-rebind] REMOTE LOCAL
+    <span class="hljs-built_in">reverse</span> socket connection using:
+      tcp:<span class="hljs-symbol">&lt;port&gt;</span> (<span class="hljs-symbol">&lt;remote&gt;</span> may <span class="hljs-keyword">be</span> <span class="hljs-string">&quot;tcp:0&quot;</span> <span class="hljs-keyword">to</span> pick any <span class="hljs-keyword">open</span> port)
+      localabstract:&lt;unix domain socket name&gt;
+      localreserved:&lt;unix domain socket name&gt;
+      localfilesystem:&lt;unix domain socket name&gt;
+<span class="hljs-built_in">reverse</span> --<span class="hljs-built_in">remove</span> REMOTE  <span class="hljs-built_in">remove</span> specific <span class="hljs-built_in">reverse</span> socket connection
+<span class="hljs-built_in">reverse</span> --<span class="hljs-built_in">remove</span>-<span class="hljs-keyword">all</span>     <span class="hljs-built_in">remove</span> <span class="hljs-keyword">all</span> <span class="hljs-built_in">reverse</span> socket connections from device</code></pre></div>
 
 <h2 id="PC-使用-Android-手机代理上网的方法"><a href="#PC-使用-Android-手机代理上网的方法" class="headerlink" title="PC 使用 Android 手机代理上网的方法"></a>PC 使用 Android 手机代理上网的方法</h2><p>首先在手机上开启 socks5 代理 127.0.0.1:9999, 然后用 USB 数据线连接 Android 手机和 PC，在 PC 中执行下面的命令</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">adb forward tcp:7890 tcp:9999<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs bash">adb forward tcp:7890 tcp:9999</code></pre></div>
 
 <p>这样会把 PC 127.0.0.1:7890 转发到手机 127.0.0.1:9999</p>
 <p>使用 <code>adb forward --list</code> 查看连接建立情况</p>
-<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">94e22910</span> tcp:<span class="hljs-number">7890</span> tcp:<span class="hljs-number">9999</span><br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs apache"><span class="hljs-attribute">94e22910</span> tcp:<span class="hljs-number">7890</span> tcp:<span class="hljs-number">9999</span></code></pre></div>
 
 <p>不需要使用时，可以使用 <code>adb forward --remove</code> 移除转发</p>
-<figure class="highlight oxygene"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs oxygene">adb <span class="hljs-keyword">forward</span> --<span class="hljs-keyword">remove</span> tcp:<span class="hljs-number">7890</span><br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs oxygene">adb <span class="hljs-keyword">forward</span> --<span class="hljs-keyword">remove</span> tcp:<span class="hljs-number">7890</span></code></pre></div>
 
 <p>参考 adb 的帮助，执行命令 <code>adb help</code></p>
-<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs vim">forward --<span class="hljs-keyword">list</span>           <span class="hljs-keyword">list</span> <span class="hljs-keyword">all</span> forward socket connections<br>forward [--<span class="hljs-keyword">no</span>-rebind] LOCAL REMOTE<br>    forward socket connection using:<br>      tcp:<span class="hljs-symbol">&lt;port&gt;</span> (<span class="hljs-symbol">&lt;local&gt;</span> may <span class="hljs-keyword">be</span> <span class="hljs-string">&quot;tcp:0&quot;</span> <span class="hljs-keyword">to</span> pick any <span class="hljs-keyword">open</span> port)<br>      localabstract:&lt;unix domain socket name&gt;<br>      localreserved:&lt;unix domain socket name&gt;<br>      localfilesystem:&lt;unix domain socket name&gt;<br>      dev:&lt;character device name&gt;<br>      jdwp:&lt;process pid&gt; (remote <span class="hljs-keyword">only</span>)<br>      vsock:<span class="hljs-symbol">&lt;CID&gt;</span>:<span class="hljs-symbol">&lt;port&gt;</span> (remote <span class="hljs-keyword">only</span>)<br>      acceptfd:<span class="hljs-symbol">&lt;fd&gt;</span> (listen <span class="hljs-keyword">only</span>)<br>forward --<span class="hljs-built_in">remove</span> LOCAL   <span class="hljs-built_in">remove</span> specific forward socket connection<br>forward --<span class="hljs-built_in">remove</span>-<span class="hljs-keyword">all</span>     <span class="hljs-built_in">remove</span> <span class="hljs-keyword">all</span> forward socket connections<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs vim">forward --<span class="hljs-keyword">list</span>           <span class="hljs-keyword">list</span> <span class="hljs-keyword">all</span> forward socket connections
+forward [--<span class="hljs-keyword">no</span>-rebind] LOCAL REMOTE
+    forward socket connection using:
+      tcp:<span class="hljs-symbol">&lt;port&gt;</span> (<span class="hljs-symbol">&lt;local&gt;</span> may <span class="hljs-keyword">be</span> <span class="hljs-string">&quot;tcp:0&quot;</span> <span class="hljs-keyword">to</span> pick any <span class="hljs-keyword">open</span> port)
+      localabstract:&lt;unix domain socket name&gt;
+      localreserved:&lt;unix domain socket name&gt;
+      localfilesystem:&lt;unix domain socket name&gt;
+      dev:&lt;character device name&gt;
+      jdwp:&lt;process pid&gt; (remote <span class="hljs-keyword">only</span>)
+      vsock:<span class="hljs-symbol">&lt;CID&gt;</span>:<span class="hljs-symbol">&lt;port&gt;</span> (remote <span class="hljs-keyword">only</span>)
+      acceptfd:<span class="hljs-symbol">&lt;fd&gt;</span> (listen <span class="hljs-keyword">only</span>)
+forward --<span class="hljs-built_in">remove</span> LOCAL   <span class="hljs-built_in">remove</span> specific forward socket connection
+forward --<span class="hljs-built_in">remove</span>-<span class="hljs-keyword">all</span>     <span class="hljs-built_in">remove</span> <span class="hljs-keyword">all</span> forward socket connections</code></pre></div>
 
 <h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p>[1] 在 ColorOS 上免 root 玩机，请先打开这个开关 - 克莱德 2021.06.08<br><a target="_blank" rel="noopener" href="https://sspai.com/post/67110">https://sspai.com/post/67110</a></p>
 <p>[2] 在 Android 手机上的使用 stunnel - zz 2021.2.24<br><a target="_blank" rel="noopener" href="https://www.usmacd.com/cn/android_stunnel/">https://www.usmacd.com/cn/android_stunnel/</a></p>

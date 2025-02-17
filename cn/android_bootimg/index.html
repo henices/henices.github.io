@@ -21,12 +21,12 @@
   <meta name="author" content="henices">
   <meta name="keywords" content="">
   
-    <meta name="description" content="首先需要搞到boot.img，网络上流传的方法是通过&#x2F;proc&#x2F;mtd 在获取需要的信息 1234567891011121314&gt; .&#x2F;adb shell&gt; su&gt; cat &#x2F;proc&#x2F;mtddev:    size   erasesize  namemtd0: 00700000 00020000 &quot;boot&quot;mtd1: 07c20000">
+    <meta name="description" content="首先需要搞到boot.img，网络上流传的方法是通过&#x2F;proc&#x2F;mtd 在获取需要的信息 &gt; .&#x2F;adb shell &gt; su &gt; cat &#x2F;proc&#x2F;mtd  dev:    size   erasesize  name mtd0: 00700000 00020000 &quot;boot&quot; mtd1: 07c20000 00020000 &amp;quo">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Android boot.img 格式分析">
 <meta property="og:url" content="https://usmacd.com/cn/android_bootimg/index.html">
 <meta property="og:site_name" content="安全代码">
-<meta property="og:description" content="首先需要搞到boot.img，网络上流传的方法是通过&#x2F;proc&#x2F;mtd 在获取需要的信息 1234567891011121314&gt; .&#x2F;adb shell&gt; su&gt; cat &#x2F;proc&#x2F;mtddev:    size   erasesize  namemtd0: 00700000 00020000 &quot;boot&quot;mtd1: 07c20000">
+<meta property="og:description" content="首先需要搞到boot.img，网络上流传的方法是通过&#x2F;proc&#x2F;mtd 在获取需要的信息 &gt; .&#x2F;adb shell &gt; su &gt; cat &#x2F;proc&#x2F;mtd  dev:    size   erasesize  name mtd0: 00700000 00020000 &quot;boot&quot; mtd1: 07c20000 00020000 &amp;quo">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2015-07-09T16:00:00.000Z">
 <meta property="article:modified_time" content="2015-07-09T16:00:00.000Z">
@@ -289,7 +289,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          669 字
+          666 字
         
       </span>
     
@@ -352,27 +352,168 @@
               <div class="markdown-body">
                 
                 <p>首先需要搞到boot.img，网络上流传的方法是通过&#x2F;proc&#x2F;mtd 在获取需要的信息</p>
-<figure class="highlight nix"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs nix"><span class="hljs-operator">&gt;</span> <span class="hljs-symbol">./adb</span> shell<br><span class="hljs-operator">&gt;</span> su<br><span class="hljs-operator">&gt;</span> cat <span class="hljs-symbol">/proc/mtd</span><br><br><span class="hljs-params">dev:</span>    size   erasesize  name<br><span class="hljs-params">mtd0:</span> <span class="hljs-number">00700000</span> <span class="hljs-number">00020000</span> <span class="hljs-string">&quot;boot&quot;</span><br><span class="hljs-params">mtd1:</span> <span class="hljs-number">07</span>c20000 <span class="hljs-number">00020000</span> <span class="hljs-string">&quot;cache&quot;</span><br><span class="hljs-params">mtd2:</span> <span class="hljs-number">00700000</span> <span class="hljs-number">00020000</span> <span class="hljs-string">&quot;recovery&quot;</span><br><span class="hljs-params">mtd3:</span> <span class="hljs-number">00140000</span> <span class="hljs-number">00020000</span> <span class="hljs-string">&quot;splash&quot;</span><br><span class="hljs-params">mtd4:</span> <span class="hljs-number">00700000</span> <span class="hljs-number">00020000</span> <span class="hljs-string">&quot;FOTA_STO&quot;</span><br><span class="hljs-params">mtd5:</span> <span class="hljs-number">09</span>e80000 <span class="hljs-number">00020000</span> <span class="hljs-string">&quot;system&quot;</span><br><span class="hljs-params">mtd6:</span> <span class="hljs-number">0</span>a4e0000 <span class="hljs-number">00020000</span> <span class="hljs-string">&quot;userdata&quot;</span><br><span class="hljs-params">mtd7:</span> <span class="hljs-number">00080000</span> <span class="hljs-number">00020000</span> <span class="hljs-string">&quot;misc&quot;</span><br><span class="hljs-params">mtd8:</span> <span class="hljs-number">00180000</span> <span class="hljs-number">00020000</span> <span class="hljs-string">&quot;persist&quot;</span><br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs nix"><span class="hljs-operator">&gt;</span> <span class="hljs-symbol">./adb</span> shell
+<span class="hljs-operator">&gt;</span> su
+<span class="hljs-operator">&gt;</span> cat <span class="hljs-symbol">/proc/mtd</span>
+
+<span class="hljs-params">dev:</span>    size   erasesize  name
+<span class="hljs-params">mtd0:</span> <span class="hljs-number">00700000</span> <span class="hljs-number">00020000</span> <span class="hljs-string">&quot;boot&quot;</span>
+<span class="hljs-params">mtd1:</span> <span class="hljs-number">07</span>c20000 <span class="hljs-number">00020000</span> <span class="hljs-string">&quot;cache&quot;</span>
+<span class="hljs-params">mtd2:</span> <span class="hljs-number">00700000</span> <span class="hljs-number">00020000</span> <span class="hljs-string">&quot;recovery&quot;</span>
+<span class="hljs-params">mtd3:</span> <span class="hljs-number">00140000</span> <span class="hljs-number">00020000</span> <span class="hljs-string">&quot;splash&quot;</span>
+<span class="hljs-params">mtd4:</span> <span class="hljs-number">00700000</span> <span class="hljs-number">00020000</span> <span class="hljs-string">&quot;FOTA_STO&quot;</span>
+<span class="hljs-params">mtd5:</span> <span class="hljs-number">09</span>e80000 <span class="hljs-number">00020000</span> <span class="hljs-string">&quot;system&quot;</span>
+<span class="hljs-params">mtd6:</span> <span class="hljs-number">0</span>a4e0000 <span class="hljs-number">00020000</span> <span class="hljs-string">&quot;userdata&quot;</span>
+<span class="hljs-params">mtd7:</span> <span class="hljs-number">00080000</span> <span class="hljs-number">00020000</span> <span class="hljs-string">&quot;misc&quot;</span>
+<span class="hljs-params">mtd8:</span> <span class="hljs-number">00180000</span> <span class="hljs-number">00020000</span> <span class="hljs-string">&quot;persist&quot;</span></code></pre></div>
 
 <p>但是在Nexus4, Android 4.4.4 已经找不到这个文件了</p>
-<figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs tcl">&gt; cat /<span class="hljs-keyword">proc</span>/mtd<span class="hljs-title"></span><br><span class="hljs-title"></span><br><span class="hljs-title">cat:</span> /<span class="hljs-keyword">proc</span>/mtd:<span class="hljs-title"> No</span> such<span class="hljs-title"> file</span> or<span class="hljs-title"> directory</span><br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs tcl">&gt; cat /<span class="hljs-keyword">proc</span>/mtd<span class="hljs-title"></span>
+<span class="hljs-title"></span>
+<span class="hljs-title">cat:</span> /<span class="hljs-keyword">proc</span>/mtd:<span class="hljs-title"> No</span> such<span class="hljs-title"> file</span> or<span class="hljs-title"> directory</span></code></pre></div>
 
 <p>但是还是有方法可以获取到需要的信息。</p>
-<figure class="highlight asciidoc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs asciidoc">&gt; mount<br><br><span class="hljs-code">.....</span><br><span class="hljs-code">/dev/block/platform/msm_sdcc.1/by-name/system /system ext4 ro,seclabel,relatime,data=ordered 0 0</span><br><span class="hljs-code">/dev/block/platform/msm_sdcc.1/by-name/cache /cache ext4 rw,seclabel,nosuid,nodev,noatime,data=ordered 0 0</span><br><span class="hljs-code">.....</span><br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs asciidoc">&gt; mount
+
+<span class="hljs-code">.....</span>
+<span class="hljs-code">/dev/block/platform/msm_sdcc.1/by-name/system /system ext4 ro,seclabel,relatime,data=ordered 0 0</span>
+<span class="hljs-code">/dev/block/platform/msm_sdcc.1/by-name/cache /cache ext4 rw,seclabel,nosuid,nodev,noatime,data=ordered 0 0</span>
+<span class="hljs-code">.....</span></code></pre></div>
 
 <p> 可以看到大致上面的输出（上面的输出省略了部分内容），从输出中可以看出 &#x2F;dev&#x2F;block&#x2F;platform&#x2F;msm_sdcc.1&#x2F;by-name<br>是一个比较有意思的路径，有by-name 的信息。</p>
-<figure class="highlight xl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><code class="hljs xl">&gt; ls /dev/<span class="hljs-keyword">block</span>/platform/msm_sdcc.<span class="hljs-number">1</span>/<span class="hljs-keyword">by</span>-<span class="hljs-keyword">name</span>/<br><br><span class="hljs-function"><span class="hljs-title">lrwxrwxrwx</span> root     root              2014-06-30 20:50 DDR -&gt;</span> /dev/<span class="hljs-keyword">block</span>/mmcblk0p24<br><span class="hljs-function"><span class="hljs-title">lrwxrwxrwx</span> root     root              2014-06-30 20:50 aboot -&gt;</span> /dev/<span class="hljs-keyword">block</span>/mmcblk0p12<br><span class="hljs-function"><span class="hljs-title">lrwxrwxrwx</span> root     root              2014-06-30 20:50 abootb -&gt;</span> /dev/<span class="hljs-keyword">block</span>/mmcblk0p15<br><span class="hljs-function"><span class="hljs-title">lrwxrwxrwx</span> root     root              2014-06-30 20:50 boot -&gt;</span> /dev/<span class="hljs-keyword">block</span>/mmcblk0p6<br><span class="hljs-function"><span class="hljs-title">lrwxrwxrwx</span> root     root              2014-06-30 20:50 cache -&gt;</span> /dev/<span class="hljs-keyword">block</span>/mmcblk0p22<br><span class="hljs-function"><span class="hljs-title">lrwxrwxrwx</span> root     root              2014-06-30 20:50 grow -&gt;</span> /dev/<span class="hljs-keyword">block</span>/mmcblk0p25<br><span class="hljs-function"><span class="hljs-title">lrwxrwxrwx</span> root     root              2014-06-30 20:50 m9kefs1 -&gt;</span> /dev/<span class="hljs-keyword">block</span>/mmcblk0p8<br><span class="hljs-function"><span class="hljs-title">lrwxrwxrwx</span> root     root              2014-06-30 20:50 m9kefs2 -&gt;</span> /dev/<span class="hljs-keyword">block</span>/mmcblk0p9<br><span class="hljs-function"><span class="hljs-title">lrwxrwxrwx</span> root     root              2014-06-30 20:50 m9kefs3 -&gt;</span> /dev/<span class="hljs-keyword">block</span>/mmcblk0p10<br><span class="hljs-function"><span class="hljs-title">lrwxrwxrwx</span> root     root              2014-06-30 20:50 metadata -&gt;</span> /dev/<span class="hljs-keyword">block</span>/mmcblk0p18<br><span class="hljs-function"><span class="hljs-title">lrwxrwxrwx</span> root     root              2014-06-30 20:50 misc -&gt;</span> /dev/<span class="hljs-keyword">block</span>/mmcblk0p19<br><span class="hljs-function"><span class="hljs-title">lrwxrwxrwx</span> root     root              2014-06-30 20:50 modem -&gt;</span> /dev/<span class="hljs-keyword">block</span>/mmcblk0p1<br><span class="hljs-function"><span class="hljs-title">lrwxrwxrwx</span> root     root              2014-06-30 20:50 persist -&gt;</span> /dev/<span class="hljs-keyword">block</span>/mmcblk0p20<br><span class="hljs-function"><span class="hljs-title">lrwxrwxrwx</span> root     root              2014-06-30 20:50 recovery -&gt;</span> /dev/<span class="hljs-keyword">block</span>/mmcblk0p7<br><span class="hljs-function"><span class="hljs-title">lrwxrwxrwx</span> root     root              2014-06-30 20:50 rpm -&gt;</span> /dev/<span class="hljs-keyword">block</span>/mmcblk0p11<br><span class="hljs-function"><span class="hljs-title">lrwxrwxrwx</span> root     root              2014-06-30 20:50 rpmb -&gt;</span> /dev/<span class="hljs-keyword">block</span>/mmcblk0p16<br><span class="hljs-function"><span class="hljs-title">lrwxrwxrwx</span> root     root              2014-06-30 20:50 sbl1 -&gt;</span> /dev/<span class="hljs-keyword">block</span>/mmcblk0p2<br><span class="hljs-function"><span class="hljs-title">lrwxrwxrwx</span> root     root              2014-06-30 20:50 sbl2 -&gt;</span> /dev/<span class="hljs-keyword">block</span>/mmcblk0p3<br><span class="hljs-function"><span class="hljs-title">lrwxrwxrwx</span> root     root              2014-06-30 20:50 sbl2b -&gt;</span> /dev/<span class="hljs-keyword">block</span>/mmcblk0p13<br><span class="hljs-function"><span class="hljs-title">lrwxrwxrwx</span> root     root              2014-06-30 20:50 sbl3 -&gt;</span> /dev/<span class="hljs-keyword">block</span>/mmcblk0p4<br><span class="hljs-function"><span class="hljs-title">lrwxrwxrwx</span> root     root              2014-06-30 20:50 sbl3b -&gt;</span> /dev/<span class="hljs-keyword">block</span>/mmcblk0p14<br><span class="hljs-function"><span class="hljs-title">lrwxrwxrwx</span> root     root              2014-06-30 20:50 system -&gt;</span> /dev/<span class="hljs-keyword">block</span>/mmcblk0p21<br><span class="hljs-function"><span class="hljs-title">lrwxrwxrwx</span> root     root              2014-06-30 20:50 tz -&gt;</span> /dev/<span class="hljs-keyword">block</span>/mmcblk0p5<br><span class="hljs-function"><span class="hljs-title">lrwxrwxrwx</span> root     root              2014-06-30 20:50 tzb -&gt;</span> /dev/<span class="hljs-keyword">block</span>/mmcblk0p17<br><span class="hljs-function"><span class="hljs-title">lrwxrwxrwx</span> root     root              2014-06-30 20:50 userdata -&gt;</span> /dev/<span class="hljs-keyword">block</span>/mmcblk0p23<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs xl">&gt; ls /dev/<span class="hljs-keyword">block</span>/platform/msm_sdcc.<span class="hljs-number">1</span>/<span class="hljs-keyword">by</span>-<span class="hljs-keyword">name</span>/
+
+<span class="hljs-function"><span class="hljs-title">lrwxrwxrwx</span> root     root              2014-06-30 20:50 DDR -&gt;</span> /dev/<span class="hljs-keyword">block</span>/mmcblk0p24
+<span class="hljs-function"><span class="hljs-title">lrwxrwxrwx</span> root     root              2014-06-30 20:50 aboot -&gt;</span> /dev/<span class="hljs-keyword">block</span>/mmcblk0p12
+<span class="hljs-function"><span class="hljs-title">lrwxrwxrwx</span> root     root              2014-06-30 20:50 abootb -&gt;</span> /dev/<span class="hljs-keyword">block</span>/mmcblk0p15
+<span class="hljs-function"><span class="hljs-title">lrwxrwxrwx</span> root     root              2014-06-30 20:50 boot -&gt;</span> /dev/<span class="hljs-keyword">block</span>/mmcblk0p6
+<span class="hljs-function"><span class="hljs-title">lrwxrwxrwx</span> root     root              2014-06-30 20:50 cache -&gt;</span> /dev/<span class="hljs-keyword">block</span>/mmcblk0p22
+<span class="hljs-function"><span class="hljs-title">lrwxrwxrwx</span> root     root              2014-06-30 20:50 grow -&gt;</span> /dev/<span class="hljs-keyword">block</span>/mmcblk0p25
+<span class="hljs-function"><span class="hljs-title">lrwxrwxrwx</span> root     root              2014-06-30 20:50 m9kefs1 -&gt;</span> /dev/<span class="hljs-keyword">block</span>/mmcblk0p8
+<span class="hljs-function"><span class="hljs-title">lrwxrwxrwx</span> root     root              2014-06-30 20:50 m9kefs2 -&gt;</span> /dev/<span class="hljs-keyword">block</span>/mmcblk0p9
+<span class="hljs-function"><span class="hljs-title">lrwxrwxrwx</span> root     root              2014-06-30 20:50 m9kefs3 -&gt;</span> /dev/<span class="hljs-keyword">block</span>/mmcblk0p10
+<span class="hljs-function"><span class="hljs-title">lrwxrwxrwx</span> root     root              2014-06-30 20:50 metadata -&gt;</span> /dev/<span class="hljs-keyword">block</span>/mmcblk0p18
+<span class="hljs-function"><span class="hljs-title">lrwxrwxrwx</span> root     root              2014-06-30 20:50 misc -&gt;</span> /dev/<span class="hljs-keyword">block</span>/mmcblk0p19
+<span class="hljs-function"><span class="hljs-title">lrwxrwxrwx</span> root     root              2014-06-30 20:50 modem -&gt;</span> /dev/<span class="hljs-keyword">block</span>/mmcblk0p1
+<span class="hljs-function"><span class="hljs-title">lrwxrwxrwx</span> root     root              2014-06-30 20:50 persist -&gt;</span> /dev/<span class="hljs-keyword">block</span>/mmcblk0p20
+<span class="hljs-function"><span class="hljs-title">lrwxrwxrwx</span> root     root              2014-06-30 20:50 recovery -&gt;</span> /dev/<span class="hljs-keyword">block</span>/mmcblk0p7
+<span class="hljs-function"><span class="hljs-title">lrwxrwxrwx</span> root     root              2014-06-30 20:50 rpm -&gt;</span> /dev/<span class="hljs-keyword">block</span>/mmcblk0p11
+<span class="hljs-function"><span class="hljs-title">lrwxrwxrwx</span> root     root              2014-06-30 20:50 rpmb -&gt;</span> /dev/<span class="hljs-keyword">block</span>/mmcblk0p16
+<span class="hljs-function"><span class="hljs-title">lrwxrwxrwx</span> root     root              2014-06-30 20:50 sbl1 -&gt;</span> /dev/<span class="hljs-keyword">block</span>/mmcblk0p2
+<span class="hljs-function"><span class="hljs-title">lrwxrwxrwx</span> root     root              2014-06-30 20:50 sbl2 -&gt;</span> /dev/<span class="hljs-keyword">block</span>/mmcblk0p3
+<span class="hljs-function"><span class="hljs-title">lrwxrwxrwx</span> root     root              2014-06-30 20:50 sbl2b -&gt;</span> /dev/<span class="hljs-keyword">block</span>/mmcblk0p13
+<span class="hljs-function"><span class="hljs-title">lrwxrwxrwx</span> root     root              2014-06-30 20:50 sbl3 -&gt;</span> /dev/<span class="hljs-keyword">block</span>/mmcblk0p4
+<span class="hljs-function"><span class="hljs-title">lrwxrwxrwx</span> root     root              2014-06-30 20:50 sbl3b -&gt;</span> /dev/<span class="hljs-keyword">block</span>/mmcblk0p14
+<span class="hljs-function"><span class="hljs-title">lrwxrwxrwx</span> root     root              2014-06-30 20:50 system -&gt;</span> /dev/<span class="hljs-keyword">block</span>/mmcblk0p21
+<span class="hljs-function"><span class="hljs-title">lrwxrwxrwx</span> root     root              2014-06-30 20:50 tz -&gt;</span> /dev/<span class="hljs-keyword">block</span>/mmcblk0p5
+<span class="hljs-function"><span class="hljs-title">lrwxrwxrwx</span> root     root              2014-06-30 20:50 tzb -&gt;</span> /dev/<span class="hljs-keyword">block</span>/mmcblk0p17
+<span class="hljs-function"><span class="hljs-title">lrwxrwxrwx</span> root     root              2014-06-30 20:50 userdata -&gt;</span> /dev/<span class="hljs-keyword">block</span>/mmcblk0p23</code></pre></div>
 
 <p>哈哈，一清二楚。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs bash">&gt; <span class="hljs-built_in">dd</span> <span class="hljs-keyword">if</span>=/dev/block/mmcblk0p6 of=/sdcard/boot.img bs=4096<br>5632+0 records <span class="hljs-keyword">in</span><br>5632+0 records out<br>23068672 bytes transferred <span class="hljs-keyword">in</span> 2.398 secs (9619963 bytes/sec)<br><br>&gt;./adb pull /sdcard/boot.img /tmp/boot.img<br>4270 KB/s (23068672 bytes <span class="hljs-keyword">in</span> 5.275s)<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs bash">&gt; <span class="hljs-built_in">dd</span> <span class="hljs-keyword">if</span>=/dev/block/mmcblk0p6 of=/sdcard/boot.img bs=4096
+5632+0 records <span class="hljs-keyword">in</span>
+5632+0 records out
+23068672 bytes transferred <span class="hljs-keyword">in</span> 2.398 secs (9619963 bytes/sec)
+
+&gt;./adb pull /sdcard/boot.img /tmp/boot.img
+4270 KB/s (23068672 bytes <span class="hljs-keyword">in</span> 5.275s)</code></pre></div>
 
 <p> boot.img 主要由两部分组成，kernel 和 ramdisk，下面使用010editor来写一个模版，解析boot.img。从Android的源码可以知道boot.img的结构 app&#x2F;aboot&#x2F;bootimg.h</p>
-<figure class="highlight asciidoc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs asciidoc"><span class="hljs-code">+-----------------+</span> <br><span class="hljs-section">| boot header     | 1 page</span><br><span class="hljs-section">+-----------------+</span><br><span class="hljs-section">| kernel          | n pages</span><br><span class="hljs-section">+-----------------+</span><br><span class="hljs-section">| ramdisk         | m pages</span><br><span class="hljs-section">+-----------------+</span><br><span class="hljs-section">| second stage    | o pages</span><br><span class="hljs-section">+-----------------+</span><br><span class="hljs-section">| device tree     | p pages</span><br><span class="hljs-section">+-----------------+</span><br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs asciidoc"><span class="hljs-code">+-----------------+</span> 
+<span class="hljs-section">| boot header     | 1 page</span>
+<span class="hljs-section">+-----------------+</span>
+<span class="hljs-section">| kernel          | n pages</span>
+<span class="hljs-section">+-----------------+</span>
+<span class="hljs-section">| ramdisk         | m pages</span>
+<span class="hljs-section">+-----------------+</span>
+<span class="hljs-section">| second stage    | o pages</span>
+<span class="hljs-section">+-----------------+</span>
+<span class="hljs-section">| device tree     | p pages</span>
+<span class="hljs-section">+-----------------+</span></code></pre></div>
 
-<pre><code class="hljs">  boot header 的结构定义如下：
-</code></pre>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">boot_img_hdr</span></span><br><span class="hljs-class">&#123;</span><br>    <span class="hljs-type">unsigned</span> <span class="hljs-type">char</span> magic[BOOT_MAGIC_SIZE];<br>    <span class="hljs-type">unsigned</span> kernel_size;  <span class="hljs-comment">/* size in bytes */</span><br>    <span class="hljs-type">unsigned</span> kernel_addr;  <span class="hljs-comment">/* physical load addr */</span><br>    <span class="hljs-type">unsigned</span> ramdisk_size; <span class="hljs-comment">/* size in bytes */</span><br>    <span class="hljs-type">unsigned</span> ramdisk_addr; <span class="hljs-comment">/* physical load addr */</span><br>    <span class="hljs-type">unsigned</span> second_size;  <span class="hljs-comment">/* size in bytes */</span><br>    <span class="hljs-type">unsigned</span> second_addr;  <span class="hljs-comment">/* physical load addr */</span><br>    <span class="hljs-type">unsigned</span> tags_addr;    <span class="hljs-comment">/* physical addr for kernel tags */</span><br>    <span class="hljs-type">unsigned</span> page_size;    <span class="hljs-comment">/* flash page size we assume */</span><br>    <span class="hljs-type">unsigned</span> dt_size;      <span class="hljs-comment">/* device_tree in bytes */</span><br>    <span class="hljs-type">unsigned</span> unused;    <span class="hljs-comment">/* future expansion: should be 0 */</span><br>    <span class="hljs-type">unsigned</span> <span class="hljs-type">char</span> name[BOOT_NAME_SIZE]; <span class="hljs-comment">/* asciiz product name */</span><br><br>    <span class="hljs-type">unsigned</span> <span class="hljs-type">char</span> cmdline[BOOT_ARGS_SIZE];<br>    <span class="hljs-type">unsigned</span> id[<span class="hljs-number">8</span>]; <span class="hljs-comment">/* timestamp / checksum / sha1 / etc */</span><br>&#125;;<br></code></pre></td></tr></table></figure>
-<h2 id="010editor-模板"><a href="#010editor-模板" class="headerlink" title="010editor 模板"></a>010editor 模板</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">define</span> BOOT_MAGIC_SIZE 8</span><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> BOOT_NAME_SIZE 16</span><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> BOOT_ARGS_SIZE 512</span><br><br><span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">boot_img_hdr</span></span><br><span class="hljs-class">&#123;</span><br>    <span class="hljs-type">char</span> magic[BOOT_MAGIC_SIZE];<br>    uint kernel_size;  <span class="hljs-comment">/* size in bytes */</span><br>    uint kernel_addr;  <span class="hljs-comment">/* physical load addr */</span><br>    uint ramdisk_size; <span class="hljs-comment">/* size in bytes */</span><br>    uint ramdisk_addr; <span class="hljs-comment">/* physical load addr */</span><br>    uint second_size;  <span class="hljs-comment">/* size in bytes */</span><br>    uint second_addr;  <span class="hljs-comment">/* physical load addr */</span><br>    uint tags_addr;    <span class="hljs-comment">/* physical addr for kernel tags */</span><br>    uint page_size;    <span class="hljs-comment">/* flash page size we assume */</span><br>    uint dt_size;      <span class="hljs-comment">/* device_tree in bytes */</span><br>    uint unused;    <span class="hljs-comment">/* future expansion: should be 0 */</span><br>    ubyte name[BOOT_NAME_SIZE]; <span class="hljs-comment">/* asciiz product name */</span><br>    <br>    ubyte cmdline[BOOT_ARGS_SIZE];<br>    uint id[<span class="hljs-number">8</span>]; <span class="hljs-comment">/* timestamp / checksum / sha1 / etc */</span><br>&#125;BOOT_IMG_HDR;<br><br><span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">boot_hdr</span> &#123;</span><br>    BOOT_IMG_HDR header;<br>    ubyte unused[header.page_size - <span class="hljs-keyword">sizeof</span>(header)];<br>&#125;HEADER;<br><br>LittleEndian();<br>HEADER header_section;<br><br>local uint page_size = header_section.header.page_size;<br>local uint kernel_size = header_section.header.kernel_size;<br>local uint ramdisk_size = header_section.header.ramdisk_size;<br>local uint second_size = header_section.header.second_size;<br><br>Printf(<span class="hljs-string">&quot;page_size: %x\nkernel_size: %x\nramdisk_size: %x\nsecond_size: %x\n&quot;</span>, page_size, kernel_size, ramdisk_size, second_size);<br><br>local uint n = (kernel_size + page_size - <span class="hljs-number">1</span>) / page_size;<br>local uint m = (ramdisk_size + page_size - <span class="hljs-number">1</span>) / page_size; <br>local uint o = (second_size + page_size - <span class="hljs-number">1</span>) / page_size;<br><br><span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">kernel</span> &#123;</span><br>    ubyte kernel_data[kernel_size];<br>    ubyte unused[n * page_size - kernel_size];<br>&#125;KERNEL;<br><br>KERNEL kernel_section;<br><br><span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">ramdisk</span> &#123;</span><br>    ubyte ramdisk_data[ramdisk_size];<br>    ubyte unused[m * page_size - ramdisk_size];<br>&#125;RAMDISK;<br><br>RAMDISK ramdisk_section;<br><br><span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">second</span> &#123;</span><br>    ubyte second_data[second_size];<br>    ubyte unused[o * page_size - second_size];<br><br>&#125;SECOND;<br><br>SECOND second_section;<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs">  boot header 的结构定义如下：
+</code></pre></div>
+<div class="code-wrapper"><pre><code class="hljs c"><span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">boot_img_hdr</span></span>
+<span class="hljs-class">&#123;</span>
+    <span class="hljs-type">unsigned</span> <span class="hljs-type">char</span> magic[BOOT_MAGIC_SIZE];
+    <span class="hljs-type">unsigned</span> kernel_size;  <span class="hljs-comment">/* size in bytes */</span>
+    <span class="hljs-type">unsigned</span> kernel_addr;  <span class="hljs-comment">/* physical load addr */</span>
+    <span class="hljs-type">unsigned</span> ramdisk_size; <span class="hljs-comment">/* size in bytes */</span>
+    <span class="hljs-type">unsigned</span> ramdisk_addr; <span class="hljs-comment">/* physical load addr */</span>
+    <span class="hljs-type">unsigned</span> second_size;  <span class="hljs-comment">/* size in bytes */</span>
+    <span class="hljs-type">unsigned</span> second_addr;  <span class="hljs-comment">/* physical load addr */</span>
+    <span class="hljs-type">unsigned</span> tags_addr;    <span class="hljs-comment">/* physical addr for kernel tags */</span>
+    <span class="hljs-type">unsigned</span> page_size;    <span class="hljs-comment">/* flash page size we assume */</span>
+    <span class="hljs-type">unsigned</span> dt_size;      <span class="hljs-comment">/* device_tree in bytes */</span>
+    <span class="hljs-type">unsigned</span> unused;    <span class="hljs-comment">/* future expansion: should be 0 */</span>
+    <span class="hljs-type">unsigned</span> <span class="hljs-type">char</span> name[BOOT_NAME_SIZE]; <span class="hljs-comment">/* asciiz product name */</span>
+
+    <span class="hljs-type">unsigned</span> <span class="hljs-type">char</span> cmdline[BOOT_ARGS_SIZE];
+    <span class="hljs-type">unsigned</span> id[<span class="hljs-number">8</span>]; <span class="hljs-comment">/* timestamp / checksum / sha1 / etc */</span>
+&#125;;</code></pre></div>
+<h2 id="010editor-模板"><a href="#010editor-模板" class="headerlink" title="010editor 模板"></a>010editor 模板</h2><div class="code-wrapper"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">define</span> BOOT_MAGIC_SIZE 8</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> BOOT_NAME_SIZE 16</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> BOOT_ARGS_SIZE 512</span>
+
+<span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">boot_img_hdr</span></span>
+<span class="hljs-class">&#123;</span>
+    <span class="hljs-type">char</span> magic[BOOT_MAGIC_SIZE];
+    uint kernel_size;  <span class="hljs-comment">/* size in bytes */</span>
+    uint kernel_addr;  <span class="hljs-comment">/* physical load addr */</span>
+    uint ramdisk_size; <span class="hljs-comment">/* size in bytes */</span>
+    uint ramdisk_addr; <span class="hljs-comment">/* physical load addr */</span>
+    uint second_size;  <span class="hljs-comment">/* size in bytes */</span>
+    uint second_addr;  <span class="hljs-comment">/* physical load addr */</span>
+    uint tags_addr;    <span class="hljs-comment">/* physical addr for kernel tags */</span>
+    uint page_size;    <span class="hljs-comment">/* flash page size we assume */</span>
+    uint dt_size;      <span class="hljs-comment">/* device_tree in bytes */</span>
+    uint unused;    <span class="hljs-comment">/* future expansion: should be 0 */</span>
+    ubyte name[BOOT_NAME_SIZE]; <span class="hljs-comment">/* asciiz product name */</span>
+    
+    ubyte cmdline[BOOT_ARGS_SIZE];
+    uint id[<span class="hljs-number">8</span>]; <span class="hljs-comment">/* timestamp / checksum / sha1 / etc */</span>
+&#125;BOOT_IMG_HDR;
+
+<span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">boot_hdr</span> &#123;</span>
+    BOOT_IMG_HDR header;
+    ubyte unused[header.page_size - <span class="hljs-keyword">sizeof</span>(header)];
+&#125;HEADER;
+
+LittleEndian();
+HEADER header_section;
+
+local uint page_size = header_section.header.page_size;
+local uint kernel_size = header_section.header.kernel_size;
+local uint ramdisk_size = header_section.header.ramdisk_size;
+local uint second_size = header_section.header.second_size;
+
+Printf(<span class="hljs-string">&quot;page_size: %x\nkernel_size: %x\nramdisk_size: %x\nsecond_size: %x\n&quot;</span>, page_size, kernel_size, ramdisk_size, second_size);
+
+local uint n = (kernel_size + page_size - <span class="hljs-number">1</span>) / page_size;
+local uint m = (ramdisk_size + page_size - <span class="hljs-number">1</span>) / page_size; 
+local uint o = (second_size + page_size - <span class="hljs-number">1</span>) / page_size;
+
+<span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">kernel</span> &#123;</span>
+    ubyte kernel_data[kernel_size];
+    ubyte unused[n * page_size - kernel_size];
+&#125;KERNEL;
+
+KERNEL kernel_section;
+
+<span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">ramdisk</span> &#123;</span>
+    ubyte ramdisk_data[ramdisk_size];
+    ubyte unused[m * page_size - ramdisk_size];
+&#125;RAMDISK;
+
+RAMDISK ramdisk_section;
+
+<span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">second</span> &#123;</span>
+    ubyte second_data[second_size];
+    ubyte unused[o * page_size - second_size];
+
+&#125;SECOND;
+
+SECOND second_section;</code></pre></div>
 
                 
               </div>

@@ -354,18 +354,20 @@
                 <h2 id="禁用-Phantom-Process-Killer"><a href="#禁用-Phantom-Process-Killer" class="headerlink" title="禁用 Phantom Process Killer"></a>禁用 Phantom Process Killer</h2><p>从 Android 12 开始，Google 引入了 <code>Phantom Process Killer</code> 机制，监控 app fork 出来的子进程，当子进程数大于 32 时，app 可能会被杀掉。</p>
 <p>默认的 32 进程数是所有 apps 的限制，不是单个 app 的限制。</p>
 <p>在 Android 14 或更高版本，可以在开发者选项中，禁用 Phantom Processes Killer </p>
-<figure class="highlight xl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs xl">A<span class="hljs-function"><span class="hljs-title">ndroid</span> Settings -&gt;</span> S<span class="hljs-function"><span class="hljs-title">ystem</span> -&gt;</span> D<span class="hljs-function"><span class="hljs-title">eveloper</span> options -&gt;</span> Disable child process restrictions<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs xl">A<span class="hljs-function"><span class="hljs-title">ndroid</span> Settings -&gt;</span> S<span class="hljs-function"><span class="hljs-title">ystem</span> -&gt;</span> D<span class="hljs-function"><span class="hljs-title">eveloper</span> options -&gt;</span> Disable child process restrictions</code></pre></div>
 
 <p>这个方法有个限制，当你关闭开发者选项后，<code>Disable child process restrictions</code> 会被自动关闭。</p>
 <p>在 Android 12L, 13 和更高版本中，执行下面的命令可以禁用 Phantom Processes Killer </p>
-<figure class="highlight avrasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs avrasm"><span class="hljs-symbol">root:</span> su -c <span class="hljs-string">&quot;settings put global settings_enable_monitor_phantom_procs false&quot;</span><br><span class="hljs-symbol">adb:</span> adb shell <span class="hljs-string">&quot;settings put global settings_enable_monitor_phantom_procs false&quot;</span><br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs avrasm"><span class="hljs-symbol">root:</span> su -c <span class="hljs-string">&quot;settings put global settings_enable_monitor_phantom_procs false&quot;</span>
+<span class="hljs-symbol">adb:</span> adb shell <span class="hljs-string">&quot;settings put global settings_enable_monitor_phantom_procs false&quot;</span></code></pre></div>
 
 <p>升级 ColorOS 15 后，发现 Termux 不能正常运行，在 Github 上的看到相关的 issue。<br><a target="_blank" rel="noopener" href="https://github.com/termux/termux-app/issues/4219">https://github.com/termux/termux-app/issues/4219</a></p>
 <p>如果运行的进程超过32个，则 Termux 应用超出限制的进程即使禁用了该应用的电池优化也会被裁减掉（trim）。</p>
 <p>由于限制是针对所有应用程序合计而言的，因此如果Termux尝试仅运行一个进程且处于后台状态，并且另一个（有bug）的应用正在运行≥ 32个进程，在杀掉这些进程时，如果其他应用的app进程oom adj值低于Termux app进程的oom adj值（而不是子进程中各自的oom adj值），那么单个Termux进程将首先被<code>PhantomProcessList.trimPhantomProcessesIfNecessary()</code>方法裁剪。</p>
 <p>ColorOS 15 后续的升级版本 303 ，修复了这个问题。</p>
 <h2 id="调整-Phantom-Process-最大的进程数"><a href="#调整-Phantom-Process-最大的进程数" class="headerlink" title="调整 Phantom Process 最大的进程数"></a>调整 <code>Phantom Process</code> 最大的进程数</h2><p>如果期望调整 <code>Phantom Process</code> 最大的进程数（设置超过 32 的值）可以执行下面的命令</p>
-<figure class="highlight avrasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs avrasm"><span class="hljs-symbol">root:</span> su -c <span class="hljs-string">&quot;/system/bin/device_config put activity_manager max_phantom_processes 2147483647&quot;</span><br><span class="hljs-symbol">adb:</span> adb shell <span class="hljs-string">&quot;/system/bin/device_config put activity_manager max_phantom_processes 2147483647&quot;</span><br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs avrasm"><span class="hljs-symbol">root:</span> su -c <span class="hljs-string">&quot;/system/bin/device_config put activity_manager max_phantom_processes 2147483647&quot;</span>
+<span class="hljs-symbol">adb:</span> adb shell <span class="hljs-string">&quot;/system/bin/device_config put activity_manager max_phantom_processes 2147483647&quot;</span></code></pre></div>
 
 <h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
 <li><a target="_blank" rel="noopener" href="https://issuetracker.google.com/issues/205156966">https://issuetracker.google.com/issues/205156966</a></li>

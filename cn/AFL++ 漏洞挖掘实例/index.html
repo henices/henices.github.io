@@ -365,33 +365,52 @@
 <p>目前 Google 的 oss-fuzz 项目已经使用 AFL++ 替换 AFL 作为其主要 fuzz 工具，AFL++ 在速度、变异算法和覆盖率分析方面都比 AFL 更优秀。</p>
 <h2 id="☆-2-AFL-的安装"><a href="#☆-2-AFL-的安装" class="headerlink" title="☆ 2. AFL++ 的安装"></a>☆ 2. AFL++ 的安装</h2><p>AFL++ 的源码有两个分支，stable 分支 [2] 为发布分支，dev 分支 [3] 为开发分支。dev 分支代码的更新频率很高，也不是很稳定可能出现 bug，推荐使用 stable 分支的源码。以 ubuntu 18.04 为例介绍如何安装 AFLplusplus</p>
 <p>下载源码：</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sh">git <span class="hljs-built_in">clone</span> https://github.com/AFLplusplus/AFLplusplus<br>git submodule update --init --recursive<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs sh">git <span class="hljs-built_in">clone</span> https://github.com/AFLplusplus/AFLplusplus
+git submodule update --init --recursive</code></pre></div>
 
 <p><strong>git submodule</strong> 这条命令很重要，要不编译一些 AFL++ mode 的时候会因为缺少源码而报错。</p>
 <p>要从源码编译 AFL++ 需要先安装系统的依赖库。</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-built_in">sudo</span> apt-get update<br><span class="hljs-built_in">sudo</span> apt-get install -y build-essential python3-dev automake git flex bison libglib2.0-dev libpixman-1-dev python3-setuptools curl ninja-build<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs sh"><span class="hljs-built_in">sudo</span> apt-get update
+<span class="hljs-built_in">sudo</span> apt-get install -y build-essential python3-dev automake git flex bison libglib2.0-dev libpixman-1-dev python3-setuptools curl ninja-build</code></pre></div>
 
 <p>AFL++ 在文档中推荐使用 llvm 13+ ,  所以先要升级 Ubuntu 系统的 llvm ，<a target="_blank" rel="noopener" href="https://apt.llvm.org/">https://apt.llvm.org/</a> 提供了编译好的 llvm binary 可以下载，也提供了 llvm.sh 可以非常方面的安装新版本的 llvm，下面的例子演示安装 llvm 15</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs sh">wget https://apt.llvm.org/llvm.sh<br><span class="hljs-built_in">chmod</span> +x llvm.sh<br><span class="hljs-built_in">sudo</span> ./llvm.sh 15 all<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs sh">wget https://apt.llvm.org/llvm.sh
+<span class="hljs-built_in">chmod</span> +x llvm.sh
+<span class="hljs-built_in">sudo</span> ./llvm.sh 15 all</code></pre></div>
 
 <p>编译 AFL++</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-built_in">export</span> LLVM_CONFIG=<span class="hljs-string">&quot;llvm-config-15&quot;</span><br>make distrib<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs sh"><span class="hljs-built_in">export</span> LLVM_CONFIG=<span class="hljs-string">&quot;llvm-config-15&quot;</span>
+make distrib</code></pre></div>
 <h2 id="☆-3-AFL-Linux-系统环境配置"><a href="#☆-3-AFL-Linux-系统环境配置" class="headerlink" title="☆ 3. AFL++ Linux 系统环境配置"></a>☆ 3. AFL++ Linux 系统环境配置</h2><p>为了使 AFL++ 在 fuzz 时获得更好的性能，可以使用 root 用户执行下面的脚本， 调整 linux 内核的参数。</p>
 <p><code>sudo bash afl-init.sh</code> </p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-built_in">echo</span> 1 &gt;/proc/sys/kernel/sched_child_runs_first<br><span class="hljs-built_in">echo</span> 1 &gt;/proc/sys/kernel/sched_autogroup_enabled<br><span class="hljs-built_in">echo</span> 1 &gt; /proc/sys/vm/overcommit_memory<br><span class="hljs-built_in">echo</span> core &gt;/proc/sys/kernel/core_pattern<br><span class="hljs-built_in">echo</span> never &gt; /sys/kernel/mm/transparent_hugepage/enabled<br><span class="hljs-built_in">test</span> -e /sys/devices/system/cpu/cpufreq/scaling_governor &amp;&amp; <span class="hljs-built_in">echo</span> performance | <span class="hljs-built_in">tee</span> /sys/devices/system/cpu/cpufreq/scaling_governor<br><span class="hljs-built_in">test</span> -e /sys/devices/system/cpu/cpufreq/policy0/scaling_governor &amp;&amp; <span class="hljs-built_in">echo</span> performance | <span class="hljs-built_in">tee</span> /sys/devices/system/cpu/cpufreq/policy*/scaling_governor<br><span class="hljs-built_in">test</span> -e /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor &amp;&amp; <span class="hljs-built_in">echo</span> performance | <span class="hljs-built_in">tee</span> /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor<br><span class="hljs-built_in">test</span> -e /sys/devices/system/cpu/cpufreq/boost &amp;&amp; <span class="hljs-built_in">echo</span> 1 &gt; /sys/devices/system/cpu/cpufreq/boost<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs sh"><span class="hljs-built_in">echo</span> 1 &gt;/proc/sys/kernel/sched_child_runs_first
+<span class="hljs-built_in">echo</span> 1 &gt;/proc/sys/kernel/sched_autogroup_enabled
+<span class="hljs-built_in">echo</span> 1 &gt; /proc/sys/vm/overcommit_memory
+<span class="hljs-built_in">echo</span> core &gt;/proc/sys/kernel/core_pattern
+<span class="hljs-built_in">echo</span> never &gt; /sys/kernel/mm/transparent_hugepage/enabled
+<span class="hljs-built_in">test</span> -e /sys/devices/system/cpu/cpufreq/scaling_governor &amp;&amp; <span class="hljs-built_in">echo</span> performance | <span class="hljs-built_in">tee</span> /sys/devices/system/cpu/cpufreq/scaling_governor
+<span class="hljs-built_in">test</span> -e /sys/devices/system/cpu/cpufreq/policy0/scaling_governor &amp;&amp; <span class="hljs-built_in">echo</span> performance | <span class="hljs-built_in">tee</span> /sys/devices/system/cpu/cpufreq/policy*/scaling_governor
+<span class="hljs-built_in">test</span> -e /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor &amp;&amp; <span class="hljs-built_in">echo</span> performance | <span class="hljs-built_in">tee</span> /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor
+<span class="hljs-built_in">test</span> -e /sys/devices/system/cpu/cpufreq/boost &amp;&amp; <span class="hljs-built_in">echo</span> 1 &gt; /sys/devices/system/cpu/cpufreq/boost</code></pre></div>
 
 <h2 id="☆-4-AFL-的基本使用方法"><a href="#☆-4-AFL-的基本使用方法" class="headerlink" title="☆ 4. AFL++ 的基本使用方法"></a>☆ 4. AFL++ 的基本使用方法</h2><h3 id="4-1-编译插桩模糊测试目标软件"><a href="#4-1-编译插桩模糊测试目标软件" class="headerlink" title="4.1 编译插桩模糊测试目标软件"></a>4.1 编译插桩模糊测试目标软件</h3><p>优先使用 llvm clang 对目标软件进行插桩，在最近几年的实战文章中已经很少看到使用 gcc 插桩目标软件的例子。AFL++ 提供了多种插桩方式，可以参考:<br><a target="_blank" rel="noopener" href="https://github.com/AFLplusplus/AFLplusplus/tree/stable/instrumentation">https://github.com/AFLplusplus/AFLplusplus/tree/stable/instrumentation</a></p>
 <p>使用  afl-clang-fast&#x2F;afl-clang-fast++ 或者 afl-clang-lto&#x2F;afl-clang-lto++ 可以应对大多数情况，afl-clang-lto&#x2F;afl-clang-lto++ 在编译大型程序的时候可能会失败，如果出现失败的情况，可以换用 afl-clang-fast&#x2F;afl-clang-fast++ 。 下面的示例分别针对三种不同编译系统情况，[a] 使用 Makefile , [b] 使用 cmake，[c] 使用 meson , 需要根据具体情况选择。</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs sh">CC=afl-cc CXX=afl-c++ ./configure --disable-shared <span class="hljs-comment"># [a]</span><br>cmake -DCMAKE_C_COMPILERC=afl-cc -DCMAKE_CXX_COMPILER=afl-c++ . <span class="hljs-comment"># [b]</span><br>CC=afl-cc CXX=afl-c++ meson <span class="hljs-comment"># [c]</span><br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs sh">CC=afl-cc CXX=afl-c++ ./configure --disable-shared <span class="hljs-comment"># [a]</span>
+cmake -DCMAKE_C_COMPILERC=afl-cc -DCMAKE_CXX_COMPILER=afl-c++ . <span class="hljs-comment"># [b]</span>
+CC=afl-cc CXX=afl-c++ meson <span class="hljs-comment"># [c]</span></code></pre></div>
 
 <p>下载 Xpdf 3.02 作为 fuzz 目标。</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sh">wget https://dl.xpdfreader.com/old/xpdf-3.02.tar.gz<br>tar -xvzf xpdf-3.02.tar.gz<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs sh">wget https://dl.xpdfreader.com/old/xpdf-3.02.tar.gz
+tar -xvzf xpdf-3.02.tar.gz</code></pre></div>
 
 <p>编译 Xpdf</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-built_in">cd</span> xpdf<br>CC=afl-cc CXX=afl-c++ ./configure --disable-shared --prefix=<span class="hljs-string">&quot;<span class="hljs-variable">$HOME</span>/fuzz_xpdf/install/&quot;</span><br>make<br>make install<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs sh"><span class="hljs-built_in">cd</span> xpdf
+CC=afl-cc CXX=afl-c++ ./configure --disable-shared --prefix=<span class="hljs-string">&quot;<span class="hljs-variable">$HOME</span>/fuzz_xpdf/install/&quot;</span>
+make
+make install</code></pre></div>
 
 <p>将得到我们的 fuzz 目标  <code>$HOME/fuzz_xpdf/install/bin/pdftotext</code></p>
-<h3 id="4-2-AFL-的命令行参数"><a href="#4-2-AFL-的命令行参数" class="headerlink" title="4.2 AFL++ 的命令行参数"></a>4.2 AFL++ 的命令行参数</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">afl-fuzz -i <span class="hljs-variable">$HOME</span>/AFLplusplus/testcases/others/pdf -o <span class="hljs-variable">$HOME</span>/fuzz_xpdf/out/ -s 123 -- <span class="hljs-variable">$HOME</span>/fuzz_xpdf/install/bin/pdftotext @@ <span class="hljs-variable">$HOME</span>/fuzz_xpdf/output<br></code></pre></td></tr></table></figure>
+<h3 id="4-2-AFL-的命令行参数"><a href="#4-2-AFL-的命令行参数" class="headerlink" title="4.2 AFL++ 的命令行参数"></a>4.2 AFL++ 的命令行参数</h3><div class="code-wrapper"><pre><code class="hljs sh">afl-fuzz -i <span class="hljs-variable">$HOME</span>/AFLplusplus/testcases/others/pdf -o <span class="hljs-variable">$HOME</span>/fuzz_xpdf/out/ -s 123 -- <span class="hljs-variable">$HOME</span>/fuzz_xpdf/install/bin/pdftotext @@ <span class="hljs-variable">$HOME</span>/fuzz_xpdf/output</code></pre></div>
 
 <ul>
 <li>-i  输入目录，用于存放初始 testcase</li>
@@ -400,31 +419,60 @@
 <li>-s  RNG 的 seed</li>
 </ul>
 <h2 id="☆-5-实战-vim-漏洞挖掘"><a href="#☆-5-实战-vim-漏洞挖掘" class="headerlink" title="☆ 5. 实战 vim 漏洞挖掘"></a>☆ 5. 实战 vim 漏洞挖掘</h2><p>首先需要研究 vim 的命令行参数，默认的配置下 vim 启动速度慢，并且有可能执行外部shell 命令 （不安全），最终需要使用的命令行参数如下：</p>
-<figure class="highlight asciidoc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs asciidoc"><span class="hljs-bullet">- </span>-u NONE 跳过初始化<br><span class="hljs-bullet">- </span>-X 加快启动速度<br><span class="hljs-bullet">- </span>-s 安静模式<br><span class="hljs-bullet">- </span>-Z 受限模式 (All commands that make use of an external shell are disabled.)<br><span class="hljs-bullet">- </span>-e 以 Ex 模式运行 vim<br><span class="hljs-bullet">- </span>-S 加载第一个文件后执行文件 &lt;session&gt;<br><span class="hljs-bullet">- </span>-c &lt;command&gt; 加载第一个文件后执行 &lt;command&gt;<br><span class="hljs-bullet">- </span>-n 不使用交换文件，只使用内存<br><span class="hljs-bullet">- </span>-m Modifications not allowed to be written<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs asciidoc"><span class="hljs-bullet">- </span>-u NONE 跳过初始化
+<span class="hljs-bullet">- </span>-X 加快启动速度
+<span class="hljs-bullet">- </span>-s 安静模式
+<span class="hljs-bullet">- </span>-Z 受限模式 (All commands that make use of an external shell are disabled.)
+<span class="hljs-bullet">- </span>-e 以 Ex 模式运行 vim
+<span class="hljs-bullet">- </span>-S 加载第一个文件后执行文件 &lt;session&gt;
+<span class="hljs-bullet">- </span>-c &lt;command&gt; 加载第一个文件后执行 &lt;command&gt;
+<span class="hljs-bullet">- </span>-n 不使用交换文件，只使用内存
+<span class="hljs-bullet">- </span>-m Modifications not allowed to be written</code></pre></div>
 
 <h3 id="5-0-vim-的-Ex-模式介绍"><a href="#5-0-vim-的-Ex-模式介绍" class="headerlink" title="5.0 vim 的 Ex 模式介绍"></a>5.0 vim 的 Ex 模式介绍</h3><p>Vim 编译器有三种模式：普通模式、插入模式和 ex 模式。ex 模式是 Vim 的底层命令模式，用于执行各种文件操作，如打开、编辑、保存、搜索、替换、排序等。要进入 ex 模式，可以按下 : 键。在 ex 模式下，可以输入各种命令来执行操作。命令由行号和命令组成，以回车键结束。</p>
 <p>最基本的 ex 命令是 p 命令，用于打印指定行号的行。例如，要打印第 10 行，可以输入 10p。</p>
 <p>其他常用的 ex 命令包括：</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs sql">e 命令：打开另一个文件<br>w 命令：保存当前文件<br>q 命令：退出 Vim<br>s 命令：将当前行替换为指定文本<br>g<span class="hljs-operator">/</span><span class="hljs-keyword">pattern</span><span class="hljs-operator">/</span>s<span class="hljs-operator">/</span><span class="hljs-keyword">old</span><span class="hljs-operator">/</span><span class="hljs-keyword">new</span><span class="hljs-operator">/</span> 命令：将所有匹配模式 <span class="hljs-keyword">pattern</span> 的行替换为 <span class="hljs-keyword">old</span> 替换为 <span class="hljs-keyword">new</span>。<br>:sort 命令：对当前文件进行排序。<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs sql">e 命令：打开另一个文件
+w 命令：保存当前文件
+q 命令：退出 Vim
+s 命令：将当前行替换为指定文本
+g<span class="hljs-operator">/</span><span class="hljs-keyword">pattern</span><span class="hljs-operator">/</span>s<span class="hljs-operator">/</span><span class="hljs-keyword">old</span><span class="hljs-operator">/</span><span class="hljs-keyword">new</span><span class="hljs-operator">/</span> 命令：将所有匹配模式 <span class="hljs-keyword">pattern</span> 的行替换为 <span class="hljs-keyword">old</span> 替换为 <span class="hljs-keyword">new</span>。
+:sort 命令：对当前文件进行排序。</code></pre></div>
 
 <p>ex 模式的使用方法如下：在普通模式下，按下 : 键进入 ex 模式，输入命令，按下回车键执行命令。</p>
 <p>以下是一些 ex 模式的使用示例：</p>
-<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs elixir"><span class="hljs-comment"># 打开文件</span><br><span class="hljs-symbol">:e</span> test.txt<br><br><span class="hljs-comment"># 编辑文件</span><br><span class="hljs-number">10</span>iHello, world!<br><br><span class="hljs-comment"># 保存文件</span><br><span class="hljs-symbol">:w</span><br><br><span class="hljs-comment"># 退出 Vim</span><br><span class="hljs-symbol">:q</span><br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs elixir"><span class="hljs-comment"># 打开文件</span>
+<span class="hljs-symbol">:e</span> test.txt
+
+<span class="hljs-comment"># 编辑文件</span>
+<span class="hljs-number">10</span>iHello, world!
+
+<span class="hljs-comment"># 保存文件</span>
+<span class="hljs-symbol">:w</span>
+
+<span class="hljs-comment"># 退出 Vim</span>
+<span class="hljs-symbol">:q</span></code></pre></div>
 
 <p>ex 模式提供了丰富的命令，可以用于执行各种文件操作。熟练掌握 ex 模式可以提高 Vim 的使用效率。</p>
 <h3 id="5-1-攻击面分析"><a href="#5-1-攻击面分析" class="headerlink" title="5.1 攻击面分析"></a>5.1 攻击面分析</h3><p>研究历史漏洞发现，vim 主要有两个攻击面， vim 正则表达式引擎和vim 脚本执行引擎。</p>
-<h4 id="vim-的正则表达式引擎"><a href="#vim-的正则表达式引擎" class="headerlink" title="vim 的正则表达式引擎"></a>vim 的正则表达式引擎</h4><figure class="highlight arcade"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs arcade">./vim -u <span class="hljs-built_in">NONE</span> -i <span class="hljs-built_in">NONE</span> -X -Z -m -n -e -s -c <span class="hljs-string">&#x27;call search(getline(&quot;.&quot;))&#x27;</span> -c <span class="hljs-string">&#x27;:qa!&#x27;</span> ./poc<br></code></pre></td></tr></table></figure>
+<h4 id="vim-的正则表达式引擎"><a href="#vim-的正则表达式引擎" class="headerlink" title="vim 的正则表达式引擎"></a>vim 的正则表达式引擎</h4><div class="code-wrapper"><pre><code class="hljs arcade">./vim -u <span class="hljs-built_in">NONE</span> -i <span class="hljs-built_in">NONE</span> -X -Z -m -n -e -s -c <span class="hljs-string">&#x27;call search(getline(&quot;.&quot;))&#x27;</span> -c <span class="hljs-string">&#x27;:qa!&#x27;</span> ./poc</code></pre></div>
 
-<h4 id="vim-的脚本执行引擎"><a href="#vim-的脚本执行引擎" class="headerlink" title="vim 的脚本执行引擎"></a>vim 的脚本执行引擎</h4><figure class="highlight arcade"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs arcade">vim -u <span class="hljs-built_in">NONE</span> -i <span class="hljs-built_in">NONE</span> -X -Z -m -n -e -s -S ./poc -c <span class="hljs-string">&#x27;:qa!&#x27;</span><br></code></pre></td></tr></table></figure>
+<h4 id="vim-的脚本执行引擎"><a href="#vim-的脚本执行引擎" class="headerlink" title="vim 的脚本执行引擎"></a>vim 的脚本执行引擎</h4><div class="code-wrapper"><pre><code class="hljs arcade">vim -u <span class="hljs-built_in">NONE</span> -i <span class="hljs-built_in">NONE</span> -X -Z -m -n -e -s -S ./poc -c <span class="hljs-string">&#x27;:qa!&#x27;</span></code></pre></div>
 
 <h3 id="5-2-编译-vim"><a href="#5-2-编译-vim" class="headerlink" title="5.2 编译 vim"></a>5.2 编译 vim</h3><p>首先下载 vim 的源码</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">git <span class="hljs-built_in">clone</span> https://github.com/vim/vim.git<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs sh">git <span class="hljs-built_in">clone</span> https://github.com/vim/vim.git</code></pre></div>
 
 <p>编译 vim ，使用 afl-cc 插桩</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-built_in">export</span> LLVM_CONFIG=<span class="hljs-string">&quot;llvm-config-15&quot;</span><br><span class="hljs-built_in">export</span> CFLAGS=<span class="hljs-string">&quot;-O1 -g -fno-omit-frame-pointer&quot;</span><br><span class="hljs-built_in">cd</span> vim<br>CC=afl-cc CXX=afl-c++ ./configure --with-features=huge --enable-gui=none --disable-shared<br>make<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs sh"><span class="hljs-built_in">export</span> LLVM_CONFIG=<span class="hljs-string">&quot;llvm-config-15&quot;</span>
+<span class="hljs-built_in">export</span> CFLAGS=<span class="hljs-string">&quot;-O1 -g -fno-omit-frame-pointer&quot;</span>
+<span class="hljs-built_in">cd</span> vim
+CC=afl-cc CXX=afl-c++ ./configure --with-features=huge --enable-gui=none --disable-shared
+make</code></pre></div>
 
 <h3 id="5-3-寻找-fuzz-vim-的-testcases-corpus"><a href="#5-3-寻找-fuzz-vim-的-testcases-corpus" class="headerlink" title="5.3 寻找 fuzz vim 的 testcases ( corpus)"></a>5.3 寻找 fuzz vim 的 testcases ( corpus)</h3><p>vim 官方仓库里有历史上造成 vim crash 的 poc ，正好拿来用。<br><a target="_blank" rel="noopener" href="https://github.com/vim/vim/tree/master/src/testdir/crash">https://github.com/vim/vim/tree/master/src/testdir/crash</a></p>
-<h3 id="5-4-fuzz-vim"><a href="#5-4-fuzz-vim" class="headerlink" title="5.4 fuzz vim"></a>5.4 fuzz vim</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs css">mkdir -<span class="hljs-selector-tag">p</span> ~/fuzz/vim<br>mkdir -<span class="hljs-selector-tag">p</span> /tmp/afl++<br>afl-fuzz -<span class="hljs-selector-tag">i</span> testdir/crash/ -o ~/fuzz/vim -mnone -<span class="hljs-selector-tag">p</span> fast -- ./vim -u <span class="hljs-attribute">NONE</span> -<span class="hljs-selector-tag">i</span> <span class="hljs-attribute">NONE</span> -<span class="hljs-attribute">X</span> -Z -m -n -e -s -S @@ -c <span class="hljs-string">&#x27;:qa!&#x27;</span><br></code></pre></td></tr></table></figure>
+<h3 id="5-4-fuzz-vim"><a href="#5-4-fuzz-vim" class="headerlink" title="5.4 fuzz vim"></a>5.4 fuzz vim</h3><div class="code-wrapper"><pre><code class="hljs css">mkdir -<span class="hljs-selector-tag">p</span> ~/fuzz/vim
+mkdir -<span class="hljs-selector-tag">p</span> /tmp/afl++
+afl-fuzz -<span class="hljs-selector-tag">i</span> testdir/crash/ -o ~/fuzz/vim -mnone -<span class="hljs-selector-tag">p</span> fast -- ./vim -u <span class="hljs-attribute">NONE</span> -<span class="hljs-selector-tag">i</span> <span class="hljs-attribute">NONE</span> -<span class="hljs-attribute">X</span> -Z -m -n -e -s -S @@ -c <span class="hljs-string">&#x27;:qa!&#x27;</span></code></pre></div>
 
 <ul>
 <li>-x 指定字典文件</li>
@@ -432,14 +480,24 @@
 </ul>
 <h3 id="5-5-fuzz-结果"><a href="#5-5-fuzz-结果" class="headerlink" title="5.5  fuzz 结果"></a>5.5  fuzz 结果</h3><p>经过 2天 16 小时的 fuzz， AFL++ 报告有 789 个 Crashes.</p>
 <h3 id="5-6-调整和改进"><a href="#5-6-调整和改进" class="headerlink" title="5.6 调整和改进"></a>5.6 调整和改进</h3><p><code>~/fuzz/vim/default</code> 目录出现了大量的 <code> _cur_inp.*</code> 文件，这是 AFL++ 生成的的临时文件，为了取得更好的效果，需要把这些文件放到 &#x2F;tmp 目录。</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-built_in">export</span> AFL_TMPDIR=/tmp/afl++<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs sh"><span class="hljs-built_in">export</span> AFL_TMPDIR=/tmp/afl++</code></pre></div>
 
 <p>使用 AFL++ 的 cmplog 特性，解决一些  fuzz 上的路径约束, 主要思路来自 <a target="_blank" rel="noopener" href="https://github.com/RUB-SysSec/redqueen">https://github.com/RUB-SysSec/redqueen</a> 。<br><a target="_blank" rel="noopener" href="https://github.com/AFLplusplus/AFLplusplus/blob/stable/instrumentation/README.cmplog.md">https://github.com/AFLplusplus/AFLplusplus/blob/stable/instrumentation/README.cmplog.md</a></p>
 <p>要使用 cmplog，需要重新编译 vim，使用 <code>AFL_LLVM_CMPLOG</code> 环境变量，指定使用 cmplog 的编译。</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-built_in">cp</span> src/vim src/vim-afl<br>make distclean<br><br><span class="hljs-built_in">export</span> LLVM_CONFIG=<span class="hljs-string">&quot;llvm-config-15&quot;</span><br><span class="hljs-built_in">export</span> CFLAGS=<span class="hljs-string">&quot;-O1 -g -fno-omit-frame-pointer&quot;</span><br><span class="hljs-built_in">cd</span> vim-cmplog<br><span class="hljs-built_in">export</span> AFL_LLVM_CMPLOG=1<br>CC=afl-cc CXX=afl-c++ ./configure --with-features=huge --enable-gui=none<br>make<br><span class="hljs-built_in">mv</span> src/vim src/vim-cmplog<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs sh"><span class="hljs-built_in">cp</span> src/vim src/vim-afl
+make distclean
+
+<span class="hljs-built_in">export</span> LLVM_CONFIG=<span class="hljs-string">&quot;llvm-config-15&quot;</span>
+<span class="hljs-built_in">export</span> CFLAGS=<span class="hljs-string">&quot;-O1 -g -fno-omit-frame-pointer&quot;</span>
+<span class="hljs-built_in">cd</span> vim-cmplog
+<span class="hljs-built_in">export</span> AFL_LLVM_CMPLOG=1
+CC=afl-cc CXX=afl-c++ ./configure --with-features=huge --enable-gui=none
+make
+<span class="hljs-built_in">mv</span> src/vim src/vim-cmplog</code></pre></div>
 
 <p>编译完成后，将编译好的 vim 重命名成 vim-cmplog，可以使用下面的 AFL++ 命令行，启用 cmplog</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-built_in">export</span> AFL_TMPDIR=/tmp/afl++-cmplog<br>afl-fuzz -i testdir/crash/ -o ~/fuzz/vim -mnone -p fast -S cmplog -c ./vim-cmplog -- ./vim-afl -u NONE -i NONE -X -Z -m -n -e -s -S @@ -c <span class="hljs-string">&#x27;:qa!&#x27;</span><br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs sh"><span class="hljs-built_in">export</span> AFL_TMPDIR=/tmp/afl++-cmplog
+afl-fuzz -i testdir/crash/ -o ~/fuzz/vim -mnone -p fast -S cmplog -c ./vim-cmplog -- ./vim-afl -u NONE -i NONE -X -Z -m -n -e -s -S @@ -c <span class="hljs-string">&#x27;:qa!&#x27;</span></code></pre></div>
 
 <p>同时运行两个 AFL++ 对 vim 进行 fuzz。</p>
 <h2 id="Trophy"><a href="#Trophy" class="headerlink" title="Trophy"></a>Trophy</h2><p>历史上使用上述方法发现了许多 vim 漏洞，部分漏洞 vim 官方已经修复。</p>

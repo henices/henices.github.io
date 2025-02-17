@@ -21,12 +21,12 @@
   <meta name="author" content="henices">
   <meta name="keywords" content="">
   
-    <meta name="description" content="Q：Fedora 31 提供的 Python3.7， 想使用 Python3.8， 用系统的pip3 只会给 Python3.7 安装库，如何解决 A: 12curl -O https:&#x2F;&#x2F;bootstrap.pypa.io&#x2F;get-pip.pypython3.8 get-pip.py  执行上面命令后，会在 &#x2F;usr&#x2F;local&#x2F;bin&#x2F; 下生成和 pip">
+    <meta name="description" content="Q：Fedora 31 提供的 Python3.7， 想使用 Python3.8， 用系统的pip3 只会给 Python3.7 安装库，如何解决 A: curl -O https:&#x2F;&#x2F;bootstrap.pypa.io&#x2F;get-pip.py python3.8 get-pip.py  执行上面命令后，会在 &#x2F;usr&#x2F;local&#x2F;bin&#x2F; 下生成和 pip">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Python 多版本使用 pip">
 <meta property="og:url" content="https://usmacd.com/cn/python_pip/index.html">
 <meta property="og:site_name" content="安全代码">
-<meta property="og:description" content="Q：Fedora 31 提供的 Python3.7， 想使用 Python3.8， 用系统的pip3 只会给 Python3.7 安装库，如何解决 A: 12curl -O https:&#x2F;&#x2F;bootstrap.pypa.io&#x2F;get-pip.pypython3.8 get-pip.py  执行上面命令后，会在 &#x2F;usr&#x2F;local&#x2F;bin&#x2F; 下生成和 pip">
+<meta property="og:description" content="Q：Fedora 31 提供的 Python3.7， 想使用 Python3.8， 用系统的pip3 只会给 Python3.7 安装库，如何解决 A: curl -O https:&#x2F;&#x2F;bootstrap.pypa.io&#x2F;get-pip.py python3.8 get-pip.py  执行上面命令后，会在 &#x2F;usr&#x2F;local&#x2F;bin&#x2F; 下生成和 pip">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-09-06T03:00:51.766Z">
 <meta property="article:modified_time" content="2023-09-06T03:00:51.766Z">
@@ -353,7 +353,8 @@
                 
                 <p>Q：Fedora 31 提供的 Python3.7， 想使用 Python3.8， 用系统的pip3 只会给 Python3.7 安装库，如何解决</p>
 <p>A:</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sh">curl -O https://bootstrap.pypa.io/get-pip.py<br>python3.8 get-pip.py<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs sh">curl -O https://bootstrap.pypa.io/get-pip.py
+python3.8 get-pip.py</code></pre></div>
 
 <p>执行上面命令后，会在 &#x2F;usr&#x2F;local&#x2F;bin&#x2F; 下生成和 pip 相关的脚本，把这些脚本删除，要不可能会和系统的 pip3 冲突。<br>接下来就可以使用下面的命令行安装 Python3.8 的库</p>
 <p><code>python3.8 -m pip install pyhash --user</code></p>

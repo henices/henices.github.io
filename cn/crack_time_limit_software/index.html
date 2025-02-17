@@ -21,12 +21,12 @@
   <meta name="author" content="henices">
   <meta name="keywords" content="">
   
-    <meta name="description" content="1234567891011Dim daytimedaytime &#x3D; formatdatetime(now(), 2)wscript.echo &quot;Now is: &quot; &amp; daytimewscript.echo &quot;Change system data to 2010&#x2F;12&#x2F;18...&quot;Set os &#x3D;WScript.CreateObject(&quot;">
+    <meta name="description" content="Dim daytime daytime &#x3D; formatdatetime(now(), 2) wscript.echo &quot;Now is: &quot; &amp; daytime wscript.echo &quot;Change system data to 2010&#x2F;12&#x2F;18...&quot; Set os &#x3D;WScript.CreateObject(&quot;WScript.S">
 <meta property="og:type" content="article">
 <meta property="og:title" content="破解软件时间限制的程序">
 <meta property="og:url" content="https://usmacd.com/cn/crack_time_limit_software/index.html">
 <meta property="og:site_name" content="安全代码">
-<meta property="og:description" content="1234567891011Dim daytimedaytime &#x3D; formatdatetime(now(), 2)wscript.echo &quot;Now is: &quot; &amp; daytimewscript.echo &quot;Change system data to 2010&#x2F;12&#x2F;18...&quot;Set os &#x3D;WScript.CreateObject(&quot;">
+<meta property="og:description" content="Dim daytime daytime &#x3D; formatdatetime(now(), 2) wscript.echo &quot;Now is: &quot; &amp; daytime wscript.echo &quot;Change system data to 2010&#x2F;12&#x2F;18...&quot; Set os &#x3D;WScript.CreateObject(&quot;WScript.S">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2010-12-18T16:00:00.000Z">
 <meta property="article:modified_time" content="2010-12-18T16:00:00.000Z">
@@ -351,7 +351,17 @@
             
               <div class="markdown-body">
                 
-                <figure class="highlight vbs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs vbs"><span class="hljs-keyword">Dim</span> daytime<br>daytime = <span class="hljs-built_in">formatdatetime</span>(<span class="hljs-built_in">now</span>(), <span class="hljs-number">2</span>)<br>wscript.echo <span class="hljs-string">&quot;Now is: &quot;</span> &amp; daytime<br>wscript.echo <span class="hljs-string">&quot;Change system data to 2010/12/18...&quot;</span><br><span class="hljs-keyword">Set</span> os =WScript.<span class="hljs-built_in">CreateObject</span>(<span class="hljs-string">&quot;WScript.Shell&quot;</span>)<br>os.run <span class="hljs-string">&quot;cmd /c date 2010/12/18&quot;</span>, <span class="hljs-number">0</span>, <span class="hljs-literal">True</span><br>wscript.sleep <span class="hljs-number">3000</span><br>wscript.echo <span class="hljs-string">&quot;Call some.exe&quot;</span><br>os.run <span class="hljs-string">&quot;.\some.exe&quot;</span>, <span class="hljs-number">1</span>, <span class="hljs-literal">True</span><br>wscript.echo <span class="hljs-string">&quot;Restore system data to &quot;</span> &amp; daytime<br>os.run <span class="hljs-string">&quot;cmd /c date &quot;</span> &amp; daytime, <span class="hljs-number">0</span>, <span class="hljs-literal">True</span><br></code></pre></td></tr></table></figure>
+                <div class="code-wrapper"><pre><code class="hljs vbs"><span class="hljs-keyword">Dim</span> daytime
+daytime = <span class="hljs-built_in">formatdatetime</span>(<span class="hljs-built_in">now</span>(), <span class="hljs-number">2</span>)
+wscript.echo <span class="hljs-string">&quot;Now is: &quot;</span> &amp; daytime
+wscript.echo <span class="hljs-string">&quot;Change system data to 2010/12/18...&quot;</span>
+<span class="hljs-keyword">Set</span> os =WScript.<span class="hljs-built_in">CreateObject</span>(<span class="hljs-string">&quot;WScript.Shell&quot;</span>)
+os.run <span class="hljs-string">&quot;cmd /c date 2010/12/18&quot;</span>, <span class="hljs-number">0</span>, <span class="hljs-literal">True</span>
+wscript.sleep <span class="hljs-number">3000</span>
+wscript.echo <span class="hljs-string">&quot;Call some.exe&quot;</span>
+os.run <span class="hljs-string">&quot;.\some.exe&quot;</span>, <span class="hljs-number">1</span>, <span class="hljs-literal">True</span>
+wscript.echo <span class="hljs-string">&quot;Restore system data to &quot;</span> &amp; daytime
+os.run <span class="hljs-string">&quot;cmd /c date &quot;</span> &amp; daytime, <span class="hljs-number">0</span>, <span class="hljs-literal">True</span></code></pre></div>
 
 
 

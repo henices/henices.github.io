@@ -366,20 +366,21 @@
 <li>文档：<a target="_blank" rel="noopener" href="https://docs.mitmproxy.org/stable/">https://docs.mitmproxy.org/stable/</a></li>
 </ul>
 <h2 id="☆-1-安装"><a href="#☆-1-安装" class="headerlink" title="☆ 1. 安装"></a>☆ 1. 安装</h2><p>参考 <a target="_blank" rel="noopener" href="https://docs.mitmproxy.org/stable/overview-installation/">https://docs.mitmproxy.org/stable/overview-installation/</a></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> dnf install -y python-pip python-devel libffi-devel openssl-devel libxml2-devel libxslt-devel libpng-devel libjpeg-devel<br><span class="hljs-built_in">sudo</span> pip install mitmproxy  <span class="hljs-comment"># or pip install --user mitmproxy</span><br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> dnf install -y python-pip python-devel libffi-devel openssl-devel libxml2-devel libxslt-devel libpng-devel libjpeg-devel
+<span class="hljs-built_in">sudo</span> pip install mitmproxy  <span class="hljs-comment"># or pip install --user mitmproxy</span></code></pre></div>
 <h2 id="☆-2-基本使用"><a href="#☆-2-基本使用" class="headerlink" title="☆ 2. 基本使用"></a>☆ 2. 基本使用</h2><p><code>mitmproxy --listen-host 127.0.0.1 -p 8080</code></p>
 <ul>
 <li><code>--listen-host</code> address to bind address</li>
 <li>-p bind port</li>
 <li>-s “script.py –bar”, –script “script.py –bar”  Run a script. Surround with quotes to pass script</li>
 </ul>
-<h3 id="2-1-mitmproxy-界面操作"><a href="#2-1-mitmproxy-界面操作" class="headerlink" title="2.1 mitmproxy 界面操作"></a>2.1 mitmproxy 界面操作</h3><pre><code class="hljs">- ？            显示帮助信息
+<h3 id="2-1-mitmproxy-界面操作"><a href="#2-1-mitmproxy-界面操作" class="headerlink" title="2.1 mitmproxy 界面操作"></a>2.1 mitmproxy 界面操作</h3><div class="code-wrapper"><pre><code class="hljs">- ？            显示帮助信息
 - h, j, k, l    上下左右，同 vi
 - enter         进入具体报文
 - q             退出界面
 - tab           详细报文内容页面
 - E             导出报文内容
-</code></pre>
+</code></pre></div>
 <h2 id="☆-3-导入mitmproxy的-CA"><a href="#☆-3-导入mitmproxy的-CA" class="headerlink" title="☆ 3. 导入mitmproxy的 CA"></a>☆ 3. 导入mitmproxy的 CA</h2><p>使用mitmproxy 最大的原因就是因为它可以对付https报文。<br>参考 <a target="_blank" rel="noopener" href="https://docs.mitmproxy.org/stable/concepts-certificates/">https://docs.mitmproxy.org/stable/concepts-certificates/</a></p>
 <p>mitmproxy 的 CA 证书放在 ~&#x2F;.mitmproxy 目录， 可以在不同设备中添加。</p>
 <h3 id="3-1-目标设备为Linux"><a href="#3-1-目标设备为Linux" class="headerlink" title="3.1 目标设备为Linux"></a>3.1 目标设备为Linux</h3><h4 id="导入证书"><a href="#导入证书" class="headerlink" title="导入证书"></a>导入证书</h4><ul>
@@ -396,7 +397,8 @@
 <h4 id="设置代理-1"><a href="#设置代理-1" class="headerlink" title="设置代理"></a>设置代理</h4><p>emulator 上可以通过下面的命令行，设置代理。</p>
 <p>.&#x2F;emulator -avd 7.0_x86 -http-proxy <a target="_blank" rel="noopener" href="http://127.0.0.1:8080/">http://127.0.0.1:8080</a></p>
 <p>真实的设备上，可以通过设置 wifi 代理，或者使用下面的命令行。</p>
-<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs vim">adb <span class="hljs-keyword">shell</span> settings <span class="hljs-keyword">put</span> <span class="hljs-keyword">global</span> http_proxy <span class="hljs-number">127.0</span>.<span class="hljs-number">0.1</span>:<span class="hljs-number">8888</span><br>adb <span class="hljs-built_in">reverse</span> tcp:<span class="hljs-number">8888</span> tcp:<span class="hljs-number">8080</span><br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs vim">adb <span class="hljs-keyword">shell</span> settings <span class="hljs-keyword">put</span> <span class="hljs-keyword">global</span> http_proxy <span class="hljs-number">127.0</span>.<span class="hljs-number">0.1</span>:<span class="hljs-number">8888</span>
+adb <span class="hljs-built_in">reverse</span> tcp:<span class="hljs-number">8888</span> tcp:<span class="hljs-number">8080</span></code></pre></div>
 
 <p>在 Android 上设置 http 全局代理 127.0.0.1:8888， 最后将 Android 的 8888 端口转发到本机 8080 端口。</p>
 <h2 id="☆-4-透明模式"><a href="#☆-4-透明模式" class="headerlink" title="☆ 4. 透明模式"></a>☆ 4. 透明模式</h2><p>mitmproxy 支持透明部署，具体的方法可以参考下面的文章。</p>
@@ -404,7 +406,8 @@
 <h2 id="☆-5-修改报文内容"><a href="#☆-5-修改报文内容" class="headerlink" title="☆ 5. 修改报文内容"></a>☆ 5. 修改报文内容</h2><p>github 上有很多例子，这次没有需求，可以参考</p>
 <p><a target="_blank" rel="noopener" href="https://github.com/mitmproxy/mitmproxy/tree/main/examples/addons">https://github.com/mitmproxy/mitmproxy/tree/main/examples/addons</a><br><a target="_blank" rel="noopener" href="https://github.com/mitmproxy/mitmproxy/tree/main/examples/contrib">https://github.com/mitmproxy/mitmproxy/tree/main/examples/contrib</a></p>
 <p>官方文档上给了个简单例子</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">response</span>(<span class="hljs-params">flow</span>):<br>    flow.response.headers[<span class="hljs-string">&quot;newheader&quot;</span>] = <span class="hljs-string">&quot;foo&quot;</span><br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">response</span>(<span class="hljs-params">flow</span>):
+    flow.response.headers[<span class="hljs-string">&quot;newheader&quot;</span>] = <span class="hljs-string">&quot;foo&quot;</span></code></pre></div>
 
 <p>给http响应报文的头部添加一个 newheader 的字段。</p>
 <h2 id="☆-6-socks-模式"><a href="#☆-6-socks-模式" class="headerlink" title="☆ 6. socks 模式"></a>☆ 6. socks 模式</h2><p>mitmproxy -m socks5</p>

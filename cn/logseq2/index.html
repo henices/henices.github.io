@@ -383,7 +383,7 @@
 <p>使用插件系统的方法和上面安装皮肤的步骤大致相同，依次点击 Plugins -&gt; Marketplace -&gt; Plugins ，选择插件点击 <code>Install</code> 即可。要加载 <code>unpacked plugin</code> 首先要打开开发者模式 Settings  -&gt;  Advanced -&gt; Developer mode ,  设置为打开。打开后使用插件管理系统 Plugins -&gt; Installed -&gt; Load unpacked plugin 选择相关目录就可以了。</p>
 <p>具体的插件可以参考 <a target="_blank" rel="noopener" href="https://github.com/logseq/awesome-logseq#Plugins">https://github.com/logseq/awesome-logseq#Plugins</a> 记录的插件都挺不错的。</p>
 <p>值得一提的是，插件系统的网络不太稳定（总所周知的原因），使用代理会方便一些。</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">https_proxy=127.0.0.1:3128 ./Logseq --proxy-server=http://127.0.0.1:3128<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs sh">https_proxy=127.0.0.1:3128 ./Logseq --proxy-server=http://127.0.0.1:3128</code></pre></div>
 
 <p>安装插件可能会出现 timeout 错误，多重试几次就应该可以安装上了。</p>
 <h2 id="query"><a href="#query" class="headerlink" title="query"></a>query</h2><p>query 算是 Logseq 的高级功能了，我用的也不多，输入 <code>/query</code> 回车就可以自动进入 query 了，具体的语法很灵活可以参考：<br><a target="_blank" rel="noopener" href="https://logseq.github.io/#/page/queries">https://logseq.github.io/#/page/queries</a></p>

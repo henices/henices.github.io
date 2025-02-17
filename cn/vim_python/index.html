@@ -21,12 +21,12 @@
   <meta name="author" content="henices">
   <meta name="keywords" content="">
   
-    <meta name="description" content="1. 判断vim支持python要判断你的vim是否支持python，可以执行下面命令： 1$ vim --version | grep python   如果显示的结果中有 +python 的话，你的vim已经支持python，如果没有的话，你需要重新编译vim，在windows中可以使用下面的命令行， 1nmake -f Make_mvc.mak FEATURES&#x3D;huge PYTHON&#x3D;D:">
+    <meta name="description" content="1. 判断vim支持python要判断你的vim是否支持python，可以执行下面命令： $ vim --version | grep python   如果显示的结果中有 +python 的话，你的vim已经支持python，如果没有的话，你需要重新编译vim，在windows中可以使用下面的命令行， nmake -f Make_mvc.mak FEATURES&#x3D;huge PYTHON&#x3D;D:\P">
 <meta property="og:type" content="article">
 <meta property="og:title" content="vim中的python">
 <meta property="og:url" content="https://usmacd.com/cn/vim_python/index.html">
 <meta property="og:site_name" content="安全代码">
-<meta property="og:description" content="1. 判断vim支持python要判断你的vim是否支持python，可以执行下面命令： 1$ vim --version | grep python   如果显示的结果中有 +python 的话，你的vim已经支持python，如果没有的话，你需要重新编译vim，在windows中可以使用下面的命令行， 1nmake -f Make_mvc.mak FEATURES&#x3D;huge PYTHON&#x3D;D:">
+<meta property="og:description" content="1. 判断vim支持python要判断你的vim是否支持python，可以执行下面命令： $ vim --version | grep python   如果显示的结果中有 +python 的话，你的vim已经支持python，如果没有的话，你需要重新编译vim，在windows中可以使用下面的命令行， nmake -f Make_mvc.mak FEATURES&#x3D;huge PYTHON&#x3D;D:\P">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2013-09-05T16:00:00.000Z">
 <meta property="article:modified_time" content="2013-09-05T16:00:00.000Z">
@@ -289,7 +289,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          894 字
+          888 字
         
       </span>
     
@@ -352,11 +352,11 @@
               <div class="markdown-body">
                 
                 <h2 id="1-判断vim支持python"><a href="#1-判断vim支持python" class="headerlink" title="1. 判断vim支持python"></a>1. 判断vim支持python</h2><p>要判断你的vim是否支持python，可以执行下面命令：</p>
-<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs vim">$ <span class="hljs-keyword">vim</span> --<span class="hljs-keyword">version</span> | <span class="hljs-keyword">grep</span> <span class="hljs-keyword">python</span><br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs vim">$ <span class="hljs-keyword">vim</span> --<span class="hljs-keyword">version</span> | <span class="hljs-keyword">grep</span> <span class="hljs-keyword">python</span></code></pre></div>
 
 
 <p>如果显示的结果中有 +python 的话，你的vim已经支持python，<br>如果没有的话，你需要重新编译vim，在windows中可以使用下面的命令行，</p>
-<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs routeros">nmake -f Make_mvc.mak <span class="hljs-attribute">FEATURES</span>=huge <span class="hljs-attribute">PYTHON</span>=D:\Python27 <span class="hljs-attribute">PYTHON_VER</span>=27 <span class="hljs-attribute">GUI</span>=<span class="hljs-literal">yes</span> <span class="hljs-attribute">IME</span>=<span class="hljs-literal">yes</span><br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs routeros">nmake -f Make_mvc.mak <span class="hljs-attribute">FEATURES</span>=huge <span class="hljs-attribute">PYTHON</span>=D:\Python27 <span class="hljs-attribute">PYTHON_VER</span>=27 <span class="hljs-attribute">GUI</span>=<span class="hljs-literal">yes</span> <span class="hljs-attribute">IME</span>=<span class="hljs-literal">yes</span></code></pre></div>
 
 <h2 id="2-为什么需要编译支持python的vim"><a href="#2-为什么需要编译支持python的vim" class="headerlink" title="2. 为什么需要编译支持python的vim"></a>2. 为什么需要编译支持python的vim</h2><p>主要的理由有两个，</p>
 <ol>
@@ -373,31 +373,36 @@
 <p>add IDE features (debugger integration, shell window)</p>
 </blockquote>
 <p>这个是排行老二的需求，不知道什么时侯能实现，期待中…</p>
-<h2 id="3-一些应用举例"><a href="#3-一些应用举例" class="headerlink" title="3. 一些应用举例"></a>3. 一些应用举例</h2><h3 id="3-1-python-commands"><a href="#3-1-python-commands" class="headerlink" title="3.1 python commands"></a>3.1 python commands</h3><figure class="highlight inform7"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs inform7">:<span class="hljs-comment">[range]</span>py<span class="hljs-comment">[thon]</span> &#123;stmt&#125;<br></code></pre></td></tr></table></figure>
+<h2 id="3-一些应用举例"><a href="#3-一些应用举例" class="headerlink" title="3. 一些应用举例"></a>3. 一些应用举例</h2><h3 id="3-1-python-commands"><a href="#3-1-python-commands" class="headerlink" title="3.1 python commands"></a>3.1 python commands</h3><div class="code-wrapper"><pre><code class="hljs inform7">:<span class="hljs-comment">[range]</span>py<span class="hljs-comment">[thon]</span> &#123;stmt&#125;</code></pre></div>
 
 <p>这个命令比较简单，详细解释如下:</p>
 <p>range 是标准的vim的range 熟悉vim替换命令的同学应该都不会陌生。range的作用的是指<br>定python命令影响哪些行，写法为 [行号，行号]，比如 1,2  影响第一行和第二行，1,$<br>影响整个文件。[] 的意思是这个range是可选的默认将影响整个文件。</p>
 <p>py[thon]的意思为，python 是命令的全写，可以简写为py。</p>
 <p>{stmt} python 语句</p>
 <p>可以写上下面命令，输出 Hello</p>
-<figure class="highlight mel"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mel">:<span class="hljs-keyword">python</span> <span class="hljs-keyword">print</span> <span class="hljs-string">&quot;Hello python&quot;</span><br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs mel">:<span class="hljs-keyword">python</span> <span class="hljs-keyword">print</span> <span class="hljs-string">&quot;Hello python&quot;</span></code></pre></div>
 
 <p>数学不好的同学可以像我一样使用</p>
-<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs routeros">:py <span class="hljs-built_in">print</span> 1+1<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs routeros">:py <span class="hljs-built_in">print</span> 1+1</code></pre></div>
 
 <p>将显示结果2  :)</p>
-<figure class="highlight dust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs dust"><span class="language-xml">:[range]py[thon] &lt;&lt; </span><span class="hljs-template-variable">&#123;endmarker&#125;</span><span class="language-xml"></span><br><span class="language-xml"></span><span class="hljs-template-variable">&#123;script&#125;</span><span class="language-xml"></span><br><span class="language-xml"></span><span class="hljs-template-variable">&#123;endmarker&#125;</span><br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs dust"><span class="language-xml">:[range]py[thon] &lt;&lt; </span><span class="hljs-template-variable">&#123;endmarker&#125;</span><span class="language-xml"></span>
+<span class="language-xml"></span><span class="hljs-template-variable">&#123;script&#125;</span><span class="language-xml"></span>
+<span class="language-xml"></span><span class="hljs-template-variable">&#123;endmarker&#125;</span></code></pre></div>
 
 <p>上面是这个命令是第二种用法，可以直接写python，相当爽，写法很象cat 命令</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-built_in">cat</span> &gt; /tmp/xx &lt;&lt; <span class="hljs-string">EOF</span><br><span class="hljs-string">....</span><br><span class="hljs-string">EOF</span><br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs sh"><span class="hljs-built_in">cat</span> &gt; /tmp/xx &lt;&lt; <span class="hljs-string">EOF</span>
+<span class="hljs-string">....</span>
+<span class="hljs-string">EOF</span></code></pre></div>
 
 <p>想用vim查询天气的同学可以参考一下，github上的这个脚本 <a target="_blank" rel="noopener" href="https://raw.github.com/liqunli/vim-plugin-dev/master/dairy.vim">https://raw.github.com/liqunli/vim-plugin-dev/master/dairy.vim</a></p>
 <h3 id="3-2-pydo"><a href="#3-2-pydo" class="headerlink" title="3.2 pydo"></a>3.2 pydo</h3><p>这个命令的格式为， :[range]pydo {body}</p>
 <p>vim 中有一个定义好的函数，这个命令将利用这个函数做一些事情</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">_vim_pydo</span>(<span class="hljs-params">line, linenr</span>):<br>    &#123;body&#125;<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">_vim_pydo</span>(<span class="hljs-params">line, linenr</span>):
+    &#123;body&#125;</code></pre></div>
 
 <p>pydo 这个命令同样是以行为单位的，range的用法和上面说的一样。 line 是原始的行，<br>linenr 是 line number (行号）。大家可以猜一下下面命令的意思，</p>
-<figure class="highlight asciidoc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs asciidoc"><span class="hljs-meta">:pydo if line:</span> return &quot;%4d: %s&quot; % (linenr, line)<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs asciidoc"><span class="hljs-meta">:pydo if line:</span> return &quot;%4d: %s&quot; % (linenr, line)</code></pre></div>
 
 
 
@@ -406,16 +411,25 @@
 
 
 <p>显示结果大致是这样， 直接用这个文件测试了一下，</p>
-<figure class="highlight ldif"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs ldif"><span class="hljs-attribute">55</span>: 将显示结果2  :)<br><br><br><span class="hljs-attribute">58</span>: :[range]py[thon] &lt;&lt; &#123;endmarker&#125;<br><span class="hljs-attribute">59</span>: &#123;script&#125;<br><span class="hljs-attribute">60</span>: &#123;endmarker&#125;<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs ldif"><span class="hljs-attribute">55</span>: 将显示结果2  :)
+
+
+<span class="hljs-attribute">58</span>: :[range]py[thon] &lt;&lt; &#123;endmarker&#125;
+<span class="hljs-attribute">59</span>: &#123;script&#125;
+<span class="hljs-attribute">60</span>: &#123;endmarker&#125;</code></pre></div>
 
 <p>没有指定range，默认为整个文件，”%4d: %s” % (linenr, line)  这句的意思是，<br>在每行前加行号，不足4位的数字的用空格补齐</p>
 <p>在早些时侯，vim命令要实现这个的效果，需要写一行诡异的命令，</p>
-<figure class="highlight asciidoc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs asciidoc"><span class="hljs-meta">:%s/^/\=printf(&#x27;%4d:</span> <span class="hljs-emphasis">&#x27;, line(&#x27;</span>.<span class="hljs-emphasis">&#x27;))</span><br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs asciidoc"><span class="hljs-meta">:%s/^/\=printf(&#x27;%4d:</span> <span class="hljs-emphasis">&#x27;, line(&#x27;</span>.<span class="hljs-emphasis">&#x27;))</span></code></pre></div>
 
 <p>挑战太大，vim 还专门写了一篇wiki <a target="_blank" rel="noopener" href="http://vim.wikia.com/wiki/Insert_line_numbers">http://vim.wikia.com/wiki/Insert_line_numbers</a></p>
 <h3 id="3-3-pyfile"><a href="#3-3-pyfile" class="headerlink" title="3.3 pyfile"></a>3.3 pyfile</h3><p>这条命令的格式为，:[range]pyf[ile] {file}</p>
 <p>可以直接使用python 文件，不需要一句一句的输入python 语句了。</p>
-<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs vim">:<span class="hljs-keyword">python</span> from <span class="hljs-keyword">vim</span> import *<br>:<span class="hljs-keyword">python</span> from <span class="hljs-built_in">string</span> import upper<br>:<span class="hljs-keyword">python</span> current.<span class="hljs-built_in">line</span> = upper(current.<span class="hljs-built_in">line</span>)<br>:<span class="hljs-keyword">python</span> <span class="hljs-keyword">print</span> <span class="hljs-string">&quot;Hello&quot;</span><br>:<span class="hljs-keyword">python</span> str = current.<span class="hljs-keyword">buffer</span>[<span class="hljs-number">42</span>]<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs vim">:<span class="hljs-keyword">python</span> from <span class="hljs-keyword">vim</span> import *
+:<span class="hljs-keyword">python</span> from <span class="hljs-built_in">string</span> import upper
+:<span class="hljs-keyword">python</span> current.<span class="hljs-built_in">line</span> = upper(current.<span class="hljs-built_in">line</span>)
+:<span class="hljs-keyword">python</span> <span class="hljs-keyword">print</span> <span class="hljs-string">&quot;Hello&quot;</span>
+:<span class="hljs-keyword">python</span> str = current.<span class="hljs-keyword">buffer</span>[<span class="hljs-number">42</span>]</code></pre></div>
 
 <h3 id="3-4-python3"><a href="#3-4-python3" class="headerlink" title="3.4  python3"></a>3.4  python3</h3><p>命令的格式和python是一样的，不过需要开启 +python3</p>
 <h3 id="3-5-vim的python-接口"><a href="#3-5-vim的python-接口" class="headerlink" title="3.5  vim的python 接口"></a>3.5  vim的python 接口</h3><p>这个不属于这个小文章的想说的了，写了这成vim的manual了，可以直接参看:<br><a target="_blank" rel="noopener" href="http://vimhelp.appspot.com/if_pyth.txt.html#python-vim">http://vimhelp.appspot.com/if_pyth.txt.html#python-vim</a></p>

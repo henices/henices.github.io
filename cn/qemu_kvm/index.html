@@ -21,12 +21,12 @@
   <meta name="author" content="henices">
   <meta name="keywords" content="">
   
-    <meta name="description" content="这里在 VMware Workstation Guset OS 里使用 qemu 的用法，有点像俄罗斯套娃。 qemu.sh 123456789101112qemu-system-x86_64 \  -m 2G \  -smp 2 \  -kernel $KERNEL&#x2F;arch&#x2F;x86——64&#x2F;boot&#x2F;bzImage \  -append &quot;console&#x3D;ttyS0 root&#x3D;&#x2F;de">
+    <meta name="description" content="这里在 VMware Workstation Guset OS 里使用 qemu 的用法，有点像俄罗斯套娃。 qemu.sh qemu-system-x86_64 \   -m 2G \   -smp 2 \   -kernel $KERNEL&#x2F;arch&#x2F;x86——64&#x2F;boot&#x2F;bzImage \   -append &quot;console&#x3D;ttyS0 root&#x3D;&#x2F;dev&#x2F;sda early">
 <meta property="og:type" content="article">
 <meta property="og:title" content="VMware Workstation Windows 10 host Ubuntu 18.04 Guest 中加载 Linux 内核 kvm 模块">
 <meta property="og:url" content="https://usmacd.com/cn/qemu_kvm/index.html">
 <meta property="og:site_name" content="安全代码">
-<meta property="og:description" content="这里在 VMware Workstation Guset OS 里使用 qemu 的用法，有点像俄罗斯套娃。 qemu.sh 123456789101112qemu-system-x86_64 \  -m 2G \  -smp 2 \  -kernel $KERNEL&#x2F;arch&#x2F;x86——64&#x2F;boot&#x2F;bzImage \  -append &quot;console&#x3D;ttyS0 root&#x3D;&#x2F;de">
+<meta property="og:description" content="这里在 VMware Workstation Guset OS 里使用 qemu 的用法，有点像俄罗斯套娃。 qemu.sh qemu-system-x86_64 \   -m 2G \   -smp 2 \   -kernel $KERNEL&#x2F;arch&#x2F;x86——64&#x2F;boot&#x2F;bzImage \   -append &quot;console&#x3D;ttyS0 root&#x3D;&#x2F;dev&#x2F;sda early">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-11-27T16:00:00.000Z">
 <meta property="article:modified_time" content="2023-11-30T16:00:00.000Z">
@@ -362,14 +362,29 @@
                 
                 <p>这里在 VMware Workstation Guset OS 里使用 qemu 的用法，有点像俄罗斯套娃。</p>
 <p>qemu.sh</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs sh">qemu-system-x86_64 \<br>  -m 2G \<br>  -smp 2 \<br>  -kernel <span class="hljs-variable">$KERNEL</span>/arch/x86——64/boot/bzImage \<br>  -append <span class="hljs-string">&quot;console=ttyS0 root=/dev/sda earlyprintk=serial net.ifnames=0&quot;</span> \<br>  -drive file=<span class="hljs-variable">$IMAGE</span>/bullseye.img,format=raw \<br>  -net user,host=10.0.2.10,hostfwd=tcp:127.0.0.1:10021-:22 \<br>  -net nic,model=e1000 \<br>  -enable-kvm \<br>  -nographic \<br>  -pidfile vm.pid \<br>  2&gt;&amp;1 | <span class="hljs-built_in">tee</span> vm.log<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs sh">qemu-system-x86_64 \
+  -m 2G \
+  -smp 2 \
+  -kernel <span class="hljs-variable">$KERNEL</span>/arch/x86——64/boot/bzImage \
+  -append <span class="hljs-string">&quot;console=ttyS0 root=/dev/sda earlyprintk=serial net.ifnames=0&quot;</span> \
+  -drive file=<span class="hljs-variable">$IMAGE</span>/bullseye.img,format=raw \
+  -net user,host=10.0.2.10,hostfwd=tcp:127.0.0.1:10021-:22 \
+  -net nic,model=e1000 \
+  -enable-kvm \
+  -nographic \
+  -pidfile vm.pid \
+  2&gt;&amp;1 | <span class="hljs-built_in">tee</span> vm.log</code></pre></div>
 
 <p>执行命令后 <code>bash ./qemu.sh</code> 后报错</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sh">Could not access KVM kernel module: No such file or directory. <br>qemu-system-x86_64: failed to initialize KVM: No such file or directory<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs sh">Could not access KVM kernel module: No such file or directory. 
+qemu-system-x86_64: failed to initialize KVM: No such file or directory</code></pre></div>
 
 <h2 id="解决-failed-to-initialize-KVM-错误"><a href="#解决-failed-to-initialize-KVM-错误" class="headerlink" title="解决 failed to initialize KVM 错误"></a>解决 failed to initialize KVM 错误</h2><p><code>lsmod | grep -i kvm</code> 发现没有加载 kvm 内核模块</p>
 <p>使用 kvm-ok 检查具体情况。</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-built_in">sudo</span> /usr/sbin/kvm-ok<br><br>INFO: Your CPU does not support KVM extension<br>KVM acceleration can NOT be used<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs sh"><span class="hljs-built_in">sudo</span> /usr/sbin/kvm-ok
+
+INFO: Your CPU does not support KVM extension
+KVM acceleration can NOT be used</code></pre></div>
 
 <p>首先检查 VMware Workstation 的设置，发现处理器没有勾选虚拟化相关的设置。</p>
 <ul>
@@ -382,12 +397,15 @@
 <li>以管理员权限打开 CMD 执行命令 <code>bcdedit /set hypervisorlaunchtype off</code> 关闭 hypervisorlaunchtype，重启系统</li>
 </ul>
 <p>重新执行 <code>/usr/sbin/kvm-ok</code> 显示一切正常</p>
-<figure class="highlight dts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs dts"><span class="hljs-symbol">INFO:</span> <span class="hljs-keyword">/dev/</span>kvm exists<br>KVM acceleration can be used<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs dts"><span class="hljs-symbol">INFO:</span> <span class="hljs-keyword">/dev/</span>kvm exists
+KVM acceleration can be used</code></pre></div>
 
 <p><code>egrep &quot;vmx|svm&quot; /proc/cpuinfo</code> 匹配 vmx，<code>lsmod | grep -i kvm</code> 显示加载了 <code>kvm_intel</code> 和 <code>kvm</code> 内核模块。</p>
 <p>重新验证 Ubuntu Guest 里 qemu 是否正常工作，执行执行 qemu.sh，报错 <code>Could not access KVM kernel module: Permission denied</code></p>
 <h2 id="解决-failed-to-initialize-KVM-Permission-denied"><a href="#解决-failed-to-initialize-KVM-Permission-denied" class="headerlink" title="解决 failed to initialize KVM: Permission denied"></a>解决 failed to initialize KVM: Permission denied</h2><p>看上去是权限问题，将当前用户添加在 kvm 组，<code>sudo usermod -a -G kvm &quot;test&quot;</code>，重启系统，执行 <code>bash ./qemu.sh</code> 成功启动</p>
-<figure class="highlight arcade"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs arcade">early <span class="hljs-built_in">console</span> <span class="hljs-keyword">in</span> setup code<br>early <span class="hljs-built_in">console</span> <span class="hljs-keyword">in</span> extract_kerne<br>...<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs arcade">early <span class="hljs-built_in">console</span> <span class="hljs-keyword">in</span> setup code
+early <span class="hljs-built_in">console</span> <span class="hljs-keyword">in</span> extract_kerne
+...</code></pre></div>
 
 <p>此文档可能有不完备之处，后续会继续更新此文档。</p>
 <h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a target="_blank" rel="noopener" href="https://www.xda-developers.com/disable-hyper-v-windows-11/">https://www.xda-developers.com/disable-hyper-v-windows-11/</a></p>

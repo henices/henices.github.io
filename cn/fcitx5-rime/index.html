@@ -361,59 +361,101 @@
                 
                 <p>现在 fcitx 已经升级到了 fcitx5, 本来用着 fcitx4 挺好，也没有想着升级，在折腾 fcitx.vim 的时候发现 fcitx 居然升级了，使得我的 vim 插件无法正常工作了，一顿折腾，本来以为很简单没想到进了个大坑 。<br>主要是不愿意放弃我的一万多行的 rime 用户词库，多年的积累了，不过 Linux 用户不就是老折腾吗， 唉。</p>
 <p>fcitx5-rime 的默认的配置目录已经变为 <code>~/.local/share/fcitx5/rime</code>， fcitx4 默认的配置目录是 <code>~/.config/fcitx/rime</code></p>
-<h2 id="安装-fcitx5-和-fcitx5-rime"><a href="#安装-fcitx5-和-fcitx5-rime" class="headerlink" title="安装 fcitx5 和 fcitx5 rime"></a>安装 fcitx5 和 fcitx5 rime</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> dnf install -y fcitx5 fcitx5-autostart fcitx5-chinese-addons fcitx5-configtool fcitx5-gtk fcitx5-qt kcm-fcitx5<br><span class="hljs-built_in">sudo</span> dnf install -y fcitx5-rime<br></code></pre></td></tr></table></figure>
+<h2 id="安装-fcitx5-和-fcitx5-rime"><a href="#安装-fcitx5-和-fcitx5-rime" class="headerlink" title="安装 fcitx5 和 fcitx5 rime"></a>安装 fcitx5 和 fcitx5 rime</h2><div class="code-wrapper"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> dnf install -y fcitx5 fcitx5-autostart fcitx5-chinese-addons fcitx5-configtool fcitx5-gtk fcitx5-qt kcm-fcitx5
+<span class="hljs-built_in">sudo</span> dnf install -y fcitx5-rime</code></pre></div>
 
 <p>Fedora dnf 已经默认有 fcitx5-rime 的安装包了，不用自己重新编译了，非常不错。 <code>fcitx5-chinese-addons </code> 为 fcitx5 自己默认带的中文输入法，这些和 rime 没有什么关系，网络上有人说， fcitx 的中文输入较以前有较大改进。<code>fcitx5-autostart</code> 用于自启动，不安装其实也没有什么问题。</p>
 <p>Fcitx5 官方说明需要设置启动文件。</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-built_in">mkdir</span> -p ~/.config/autostart &amp;&amp; <span class="hljs-built_in">cp</span> /usr/share/applications/org.fcitx.Fcitx5.desktop ~/.config/autostart<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs sh"><span class="hljs-built_in">mkdir</span> -p ~/.config/autostart &amp;&amp; <span class="hljs-built_in">cp</span> /usr/share/applications/org.fcitx.Fcitx5.desktop ~/.config/autostart</code></pre></div>
 
 <p>执行命令 <code>sudo alternatives --config xinputrc</code>  ，选择 fcitx5。执行命令 <code>im-chooser</code> 选择 fcitx5</p>
 <p>启动输入法很简单，自己手动执行 <code>fcitx5 -d</code> 即可。</p>
 <h2 id="设置正确的环境变量"><a href="#设置正确的环境变量" class="headerlink" title="设置正确的环境变量"></a>设置正确的环境变量</h2><p>修改  <code>~/.xprofile</code>， <code>~/.zshrc</code> ，  <code>~/.xinitrc</code> ，<code>~/.bash_profile</code> ， <code>/etc/profile</code> 等文件</p>
-<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs routeros"><span class="hljs-built_in">export</span> <span class="hljs-attribute">GTK_IM_MODULE</span>=fcitx<br><span class="hljs-built_in">export</span> <span class="hljs-attribute">QT_IM_MODULE</span>=fcitx<br><span class="hljs-built_in">export</span> <span class="hljs-attribute">XMODIFIERS</span>=<span class="hljs-string">&quot;@im=fcitx&quot;</span><br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs routeros"><span class="hljs-built_in">export</span> <span class="hljs-attribute">GTK_IM_MODULE</span>=fcitx
+<span class="hljs-built_in">export</span> <span class="hljs-attribute">QT_IM_MODULE</span>=fcitx
+<span class="hljs-built_in">export</span> <span class="hljs-attribute">XMODIFIERS</span>=<span class="hljs-string">&quot;@im=fcitx&quot;</span></code></pre></div>
 
 <p>有的文章中说要设置成 fcitx5 但是根据 <code>fcitx5-diagnose</code> 正确的环境变量应该是 fcitx</p>
 <p> environment.d 是 system.d 引入的，被  GDM 或 Plasma 5.22+ 支持，可以往 <code>~/.config/environment/</code> 目录写文件，注意不要写 <strong>export</strong> 。</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-built_in">cat</span> &lt;&lt; <span class="hljs-string">EOF &gt; ~/.config/environment.d/00-fcitx5.conf</span><br><span class="hljs-string">INPUT_METHOD=fcitx5</span><br><span class="hljs-string">GTK_IM_MODULE=fcitx</span><br><span class="hljs-string">QT_IM_MODULE=fcitx</span><br><span class="hljs-string">XMODIFIERS=@im=fcitx</span><br><span class="hljs-string">EOF</span><br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs sh"><span class="hljs-built_in">cat</span> &lt;&lt; <span class="hljs-string">EOF &gt; ~/.config/environment.d/00-fcitx5.conf</span>
+<span class="hljs-string">INPUT_METHOD=fcitx5</span>
+<span class="hljs-string">GTK_IM_MODULE=fcitx</span>
+<span class="hljs-string">QT_IM_MODULE=fcitx</span>
+<span class="hljs-string">XMODIFIERS=@im=fcitx</span>
+<span class="hljs-string">EOF</span></code></pre></div>
 
-<h2 id="配置中文环境"><a href="#配置中文环境" class="headerlink" title="配置中文环境"></a>配置中文环境</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> vim /etc/locale.conf<br><br><span class="hljs-built_in">export</span> LANG=<span class="hljs-string">&quot;zh_CN.UTF-8&quot;</span><br><span class="hljs-built_in">export</span> LC_CTYPE=<span class="hljs-string">&quot;zh_CN.UTF-8&quot;</span><br></code></pre></td></tr></table></figure>
+<h2 id="配置中文环境"><a href="#配置中文环境" class="headerlink" title="配置中文环境"></a>配置中文环境</h2><div class="code-wrapper"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> vim /etc/locale.conf
+
+<span class="hljs-built_in">export</span> LANG=<span class="hljs-string">&quot;zh_CN.UTF-8&quot;</span>
+<span class="hljs-built_in">export</span> LC_CTYPE=<span class="hljs-string">&quot;zh_CN.UTF-8&quot;</span></code></pre></div>
 
 <h2 id="安装-rime-词库"><a href="#安装-rime-词库" class="headerlink" title="安装 rime 词库"></a>安装 rime 词库</h2><p>rime 现在已经使用 plum 管理词库，如果需要安装双拼输入法的，可以执行下面的命令：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">curl -fsSL https://git.io/rime-install | bash<br>rime_frontend=fcitx5-rime bash rime-install double_pinyin<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs bash">curl -fsSL https://git.io/rime-install | bash
+rime_frontend=fcitx5-rime bash rime-install double_pinyin</code></pre></div>
 
 <p>rime 为了保证输入速度，词库很小，为了能够自动显示更多的词组，就需要使用拓展词库。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">git <span class="hljs-built_in">clone</span> https://github.com/rime-aca/dictionaries.git<br><span class="hljs-built_in">cp</span> dictionaries/luna_pinyin.dict/* ~/.local/share/fcitx5/rime/<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs bash">git <span class="hljs-built_in">clone</span> https://github.com/rime-aca/dictionaries.git
+<span class="hljs-built_in">cp</span> dictionaries/luna_pinyin.dict/* ~/.local/share/fcitx5/rime/</code></pre></div>
 
 <p>安装了上面的拓展词库后，输入特殊符号的能力还是比较弱，需要把 symbols.yaml 也给加进来。</p>
 <p><a target="_blank" rel="noopener" href="https://github.com/rime/rime-prelude">https://github.com/rime/rime-prelude</a> 提供了我们所需要的 symbols.yaml 和 default.yaml，可以使用 <a target="_blank" rel="noopener" href="https://github.com/rime/plum">東風破</a> 安裝： <code>rime_frontend=fcitx5-rime bash rime-install prelude</code></p>
 <p>由于我们使用的是自然码双拼，需要修改的文件为 <code>double_pinyin.custom.yaml</code></p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-attr">patch:</span><br>  <span class="hljs-comment"># 載入朙月拼音擴充詞庫</span><br>  <span class="hljs-attr">&quot;translator/dictionary&quot;:</span> <span class="hljs-string">luna_pinyin.extended</span><br>  <span class="hljs-attr">&quot;punctuator/import_preset&quot;:</span> <span class="hljs-string">symbols</span><br>  <span class="hljs-attr">&quot;recognizer/patterns/punct&quot;:</span> <span class="hljs-string">&quot;^/([A-Z|a-z]*|[0-9]|10)$&quot;</span><br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs yaml"><span class="hljs-attr">patch:</span>
+  <span class="hljs-comment"># 載入朙月拼音擴充詞庫</span>
+  <span class="hljs-attr">&quot;translator/dictionary&quot;:</span> <span class="hljs-string">luna_pinyin.extended</span>
+  <span class="hljs-attr">&quot;punctuator/import_preset&quot;:</span> <span class="hljs-string">symbols</span>
+  <span class="hljs-attr">&quot;recognizer/patterns/punct&quot;:</span> <span class="hljs-string">&quot;^/([A-Z|a-z]*|[0-9]|10)$&quot;</span></code></pre></div>
 
 <p>设置完成后，要重新启动输入法，比如要输入 ☆ ，输入  <code>/xh</code> 即可</p>
 <h2 id="rime-安装-Emoji"><a href="#rime-安装-Emoji" class="headerlink" title="rime 安装 Emoji"></a>rime 安装 Emoji</h2><p>😄️ Emoji 表情在现在的聊天中已经很常见了，rime 对 emoji 也提供了支持。参考 <a target="_blank" rel="noopener" href="https://github.com/rime/rime-emoji">https://github.com/rime/rime-emoji</a>  安装 emoji 同样需要使用 <a target="_blank" rel="noopener" href="https://github.com/rime/plum">東風破</a>，我常用的输入法是双拼，将 double_pinyin 替换成你的输入法就可以了。</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sh">rime_frontend=fcitx5-rime bash rime-install emoji<br>rime_frontend=fcitx5-rime bash rime-install emoji:customize:schema=double_pinyin<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs sh">rime_frontend=fcitx5-rime bash rime-install emoji
+rime_frontend=fcitx5-rime bash rime-install emoji:customize:schema=double_pinyin</code></pre></div>
 
 <p>核心的码表在 <a target="_blank" rel="noopener" href="https://github.com/rime/rime-emoji/blob/master/opencc/emoji_category.txt">https://github.com/rime/rime-emoji/blob/master/opencc/emoji_category.txt</a> 在输入汉字的时候会自动提示相应的 emoji。rime-emoji 有时候不能很准确地输出想要的 emoji 符号，这时候可以利用 emoji_category.txt 查询相关分类，例如输入 「颜色」就会显示出各种颜色。</p>
 <h2 id="添加自己词库的方法"><a href="#添加自己词库的方法" class="headerlink" title="添加自己词库的方法"></a>添加自己词库的方法</h2><p>在用户档案目录，新建一个 custom.extended.dict.yaml 内容如下</p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-comment"># custom.extended.dict.yaml</span><br><span class="hljs-meta">---</span><br><span class="hljs-attr">name:</span> <span class="hljs-string">custom.extended</span><br><span class="hljs-attr">version:</span> <span class="hljs-string">&quot;2024.4.26&quot;</span><br><span class="hljs-attr">sort:</span> <span class="hljs-string">by_weight</span><br><span class="hljs-attr">use_preset_vocabulary:</span> <span class="hljs-literal">true</span><br><span class="hljs-attr">import_tables:</span><br>  <span class="hljs-bullet">-</span> <span class="hljs-string">luna_pinyin</span><br>  <span class="hljs-bullet">-</span> <span class="hljs-string">luna_pinyin.extended</span><br>  <span class="hljs-bullet">-</span> <span class="hljs-string">gemoji</span><br><span class="hljs-string">...</span><br><br><span class="hljs-string">我的新词</span><br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs yaml"><span class="hljs-comment"># custom.extended.dict.yaml</span>
+<span class="hljs-meta">---</span>
+<span class="hljs-attr">name:</span> <span class="hljs-string">custom.extended</span>
+<span class="hljs-attr">version:</span> <span class="hljs-string">&quot;2024.4.26&quot;</span>
+<span class="hljs-attr">sort:</span> <span class="hljs-string">by_weight</span>
+<span class="hljs-attr">use_preset_vocabulary:</span> <span class="hljs-literal">true</span>
+<span class="hljs-attr">import_tables:</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-string">luna_pinyin</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-string">luna_pinyin.extended</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-string">gemoji</span>
+<span class="hljs-string">...</span>
+
+<span class="hljs-string">我的新词</span></code></pre></div>
 
 <p>这里可以自由导入你想要添加的码表，也可以添加自己的自定义词组。我导入了 <a target="_blank" rel="noopener" href="https://gist.githubusercontent.com/chuangzhu/f60b128fbdae2e30d6edeaf3307489eb/raw/d9b6e250ca035d85190e6b6dd99c4dc1ad4f78c5/gemoji.dict.yaml">github rime Emoji 码表</a></p>
 <p>接着再于 *.schema.yaml 或 *.custom.yaml 中将 translator&#x2F;dictionary 设置成此字典档即可，例如：</p>
-<figure class="highlight nestedtext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs nestedtext"><span class="hljs-attribute">patch</span><span class="hljs-punctuation">:</span><br>  <span class="hljs-attribute">translator/dictionary</span><span class="hljs-punctuation">:</span> <span class="hljs-string">custom.extended</span><br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs nestedtext"><span class="hljs-attribute">patch</span><span class="hljs-punctuation">:</span>
+  <span class="hljs-attribute">translator/dictionary</span><span class="hljs-punctuation">:</span> <span class="hljs-string">custom.extended</span></code></pre></div>
 
 <p>这样以后 luna_pinyin.extended 升级后，不会对自己添加的词组造成影响，可以直接升级覆盖。</p>
 <h2 id="将用户词库导入-rime"><a href="#将用户词库导入-rime" class="headerlink" title="将用户词库导入 rime"></a>将用户词库导入 rime</h2><p><code>rime_dict_manager -i luna_pinyin luna_pinyin.userdb.txt</code></p>
 <p>这一步很关键啊，多年的积累不能浪费了。</p>
 <h2 id="配置-fcitx5-皮肤"><a href="#配置-fcitx5-皮肤" class="headerlink" title="配置 fcitx5 皮肤"></a>配置 fcitx5 皮肤</h2><p>fcitx5 默认的皮肤不太好看，所以下载更新了皮肤，这款简约风格的皮肤非常符合老夫的胃口。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">git <span class="hljs-built_in">clone</span> https://github.com/thep0y/fcitx5-themes.git<br><span class="hljs-built_in">cp</span> spring ~/.local/share/fcitx5/themes -r<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs bash">git <span class="hljs-built_in">clone</span> https://github.com/thep0y/fcitx5-themes.git
+<span class="hljs-built_in">cp</span> spring ~/.local/share/fcitx5/themes -r</code></pre></div>
 
 <p>修改配置文件 <code>~/.config/fcitx5/conf/classicui.conf</code></p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-comment"># 垂直候选列表</span><br><span class="hljs-string">Vertical</span> <span class="hljs-string">Candidate</span> <span class="hljs-string">List=False</span><br><br><span class="hljs-comment"># 按屏幕 DPI 使用</span><br><span class="hljs-string">PerScreenDPI=True</span><br><br><span class="hljs-comment"># Font (设置成你喜欢的字体)</span><br><span class="hljs-string">Font=&quot;Smartisan</span> <span class="hljs-string">Compact</span> <span class="hljs-string">CNS</span> <span class="hljs-number">13</span><span class="hljs-string">&quot;</span><br><span class="hljs-string"></span><br><span class="hljs-string"># 主题(这里要改成你想要使用的主题名，主题名就在下面)</span><br><span class="hljs-string">Theme=spring</span><br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs yaml"><span class="hljs-comment"># 垂直候选列表</span>
+<span class="hljs-string">Vertical</span> <span class="hljs-string">Candidate</span> <span class="hljs-string">List=False</span>
+
+<span class="hljs-comment"># 按屏幕 DPI 使用</span>
+<span class="hljs-string">PerScreenDPI=True</span>
+
+<span class="hljs-comment"># Font (设置成你喜欢的字体)</span>
+<span class="hljs-string">Font=&quot;Smartisan</span> <span class="hljs-string">Compact</span> <span class="hljs-string">CNS</span> <span class="hljs-number">13</span><span class="hljs-string">&quot;</span>
+<span class="hljs-string"></span>
+<span class="hljs-string"># 主题(这里要改成你想要使用的主题名，主题名就在下面)</span>
+<span class="hljs-string">Theme=spring</span></code></pre></div>
 
 <p>另外还有一款 fcitx5 皮肤相对流行：<a target="_blank" rel="noopener" href="https://github.com/hosxy/Fcitx5-Material-Color">https://github.com/hosxy/Fcitx5-Material-Color</a></p>
 <p>切换皮肤的方法是，点击鼠标右键点击 配置 -&gt; 附加组件 -&gt; 经典用户界面 -&gt; 点击右边图标 -&gt; 选择皮肤</p>
 <h2 id="设置-fcitx-rime-单行模式"><a href="#设置-fcitx-rime-单行模式" class="headerlink" title="设置 fcitx rime 单行模式"></a>设置 fcitx rime 单行模式</h2><p>如果要将输入法设置为单行模式，需要修改配置文件 <code>~/.config/fcitx5/conf/rime.conf</code></p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-string">PreeditInApplication=True</span><br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs yaml"><span class="hljs-string">PreeditInApplication=True</span></code></pre></div>
 
 <p>或者按快捷键 <code>ctrl + alt + p</code>, 这个快捷键可以来回切换很方便，单行还是双行就因人而异了，我个人觉得单行好点。</p>
 <h2 id="让-fcitx5-正确显示菜单"><a href="#让-fcitx5-正确显示菜单" class="headerlink" title="让 fcitx5 正确显示菜单"></a>让 fcitx5 正确显示菜单</h2><p>要做这个步骤是因为 rime 有 「部署」、「同步」这几个操作按钮，如果不正确配置的话在 fcitx5 上没法正常显示。fcitx5 在任务上有个托盘图标，点击右键就可以看到这些菜单。</p>
@@ -427,7 +469,9 @@
 <p>fcitx.vim 就是为解决这个痛点而生的插件，个人觉得这是vim 必装的几个插件之一。fcitx.vim 的github 仓库地址为：<a target="_blank" rel="noopener" href="https://github.com/lilydjwg/fcitx.vim">https://github.com/lilydjwg/fcitx.vim</a></p>
 <p>值得一提的是这个仓库有两个分支，fcitx4 分支 和 fcitx5 分支，使用的时候一定要分清楚，这两个分支如果使用错了，就没法正常使用 fcitx.vim 插件了。fcitx4 和 fcitx5 dbus 对象名字有变化，导致代码通用性不好。现在默认分支为 fcitx5，如果你使用 fcitx4 可能直接 git clone 下来就会发现插件用不了，我也是因为这个原因才发现 fcitx 居然更新了。</p>
 <h2 id="中英文混合输入技巧"><a href="#中英文混合输入技巧" class="headerlink" title="中英文混合输入技巧"></a>中英文混合输入技巧</h2><p>在 default.custom.yaml 中添加下面的配置，可以开启右键 shift 回车上屏功能，非常实用。</p>
-<figure class="highlight dts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs dts"><span class="hljs-symbol">ascii_composer:</span><br><span class="hljs-symbol">   switch_key:</span><br><span class="hljs-symbol">     Shift_R:</span> inline_ascii <span class="hljs-meta"># 按右 shift 键，切换为英文输入，同时保留已输入字符继续输入，回车上屏</span><br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs dts"><span class="hljs-symbol">ascii_composer:</span>
+<span class="hljs-symbol">   switch_key:</span>
+<span class="hljs-symbol">     Shift_R:</span> inline_ascii <span class="hljs-meta"># 按右 shift 键，切换为英文输入，同时保留已输入字符继续输入，回车上屏</span></code></pre></div>
 
 <h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>可能有些人不知道为什么要折腾 rime，rime 的用户词库文件是个宝贝，这个词库是都是你真实的在日常使用中用到的词库，小巧又实用还能到处同步，上传到云后永不丢失，符合自己的数据自己掌握的硬道理。至于国内的那些输入法，我就不加以评价了，在这商业的社会要保持基本的做人底线不易。</p>
 <h3 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h3><ul>

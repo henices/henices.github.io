@@ -337,7 +337,7 @@
       
       <a class="index-excerpt index-excerpt__noimg" href="/cn/root_android_emulator/" target="_self">
         <div>
-          一个的简单的脚本就可以实现自动化root，以下代码在 Android 4.4.2 的 emulator上实验成功。 123456sudo ./adb start-server./adb shell mount -o rw,remount -t yaffs2 /dev/block/mtdblock0 /system./adb push su /system/xbin/su./adb install
+          一个的简单的脚本就可以实现自动化root，以下代码在 Android 4.4.2 的 emulator上实验成功。 sudo ./adb start-server ./adb shell mount -o rw,remount -t yaffs2 /dev/block/mtdblock0 /system ./adb push su /system/xbin/su ./adb install Sup
         </div>
       </a>
 
@@ -417,7 +417,7 @@
       
       <a class="index-excerpt index-excerpt__noimg" href="/cn/vim_tips/" target="_self">
         <div>
-          0.  将tab 替换为空格1:ret  1. 全文格式化normal模式下，gg=G 2. 跳转到上次编辑处normal模式下，&#39;. 3. 替换行尾多余的空格1:%s= *$==  4. Source your vimrc.1:so $MYVIMRC  5. 在文件中跳转normal 模式下，ctrl-o 6. 内置文件浏览器1:Exp 7. 一眼看出tab和空格的区别在.vimrc 中
+          0.  将tab 替换为空格:ret  1. 全文格式化normal模式下，gg=G 2. 跳转到上次编辑处normal模式下，&#39;. 3. 替换行尾多余的空格:%s= *$==  4. Source your vimrc.:so $MYVIMRC  5. 在文件中跳转normal 模式下，ctrl-o 6. 内置文件浏览器:Exp 7. 一眼看出tab和空格的区别在.vimrc 中添加下面
         </div>
       </a>
 
@@ -459,7 +459,7 @@
       
       <a class="index-excerpt index-excerpt__noimg" href="/cn/vim_python/" target="_self">
         <div>
-          1. 判断vim支持python要判断你的vim是否支持python，可以执行下面命令： 1$ vim --version | grep python   如果显示的结果中有 +python 的话，你的vim已经支持python，如果没有的话，你需要重新编译vim，在windows中可以使用下面的命令行， 1nmake -f Make_mvc.mak FEATURES=huge PYTHON=D:
+          1. 判断vim支持python要判断你的vim是否支持python，可以执行下面命令： $ vim --version | grep python   如果显示的结果中有 +python 的话，你的vim已经支持python，如果没有的话，你需要重新编译vim，在windows中可以使用下面的命令行， nmake -f Make_mvc.mak FEATURES=huge PYTHON=D:\P
         </div>
       </a>
 
@@ -499,7 +499,7 @@
       
       <a class="index-excerpt index-excerpt__noimg" href="/cn/oracle_statement_trace/" target="_self">
         <div>
-          Q.  Oracle 数据库如何trace执行的SQL statement 1. 开启trace方法(1) : 执行SQL语句 12SQL&gt; alter system set sql_trace = true;SQL&gt; alter system SET EVENTS &#x27;10046 trace name context forever, level 12&#x27;;  方法(
+          Q.  Oracle 数据库如何trace执行的SQL statement 1. 开启trace方法(1) : 执行SQL语句 SQL&gt; alter system set sql_trace = true; SQL&gt; alter system SET EVENTS &#x27;10046 trace name context forever, level 12&#x27;;  方法(2
         </div>
       </a>
 
@@ -539,7 +539,7 @@
       
       <a class="index-excerpt index-excerpt__noimg" href="/cn/linux_ida_pro/" target="_self">
         <div>
-          IDA Pro 6.2 + 的Linux 版本提供了Qt 界面，可以在各大平台正常运行。买不起也有办法 ，使用 wine 可以很好地运行IDA Pro，显示效果基本OK，爱折腾的同学可以自行调整字体。 1$ wine idag.exe  IDA Pro 6.1 成功运行.但是idapython 有些问题需要处理，引起idapython不能正常运行的原因主要有下面两个： 文件缺失大概会报下面错误
+          IDA Pro 6.2 + 的Linux 版本提供了Qt 界面，可以在各大平台正常运行。买不起也有办法 ，使用 wine 可以很好地运行IDA Pro，显示效果基本OK，爱折腾的同学可以自行调整字体。 $ wine idag.exe  IDA Pro 6.1 成功运行.但是idapython 有些问题需要处理，引起idapython不能正常运行的原因主要有下面两个： 文件缺失大概会报下面错误  e
         </div>
       </a>
 
@@ -579,7 +579,7 @@
       
       <a class="index-excerpt index-excerpt__noimg" href="/cn/crack_time_limit_software/" target="_self">
         <div>
-          1234567891011Dim daytimedaytime = formatdatetime(now(), 2)wscript.echo &quot;Now is: &quot; &amp; daytimewscript.echo &quot;Change system data to 2010/12/18...&quot;Set os =WScript.CreateObject(&quot;
+          Dim daytime daytime = formatdatetime(now(), 2) wscript.echo &quot;Now is: &quot; &amp; daytime wscript.echo &quot;Change system data to 2010/12/18...&quot; Set os =WScript.CreateObject(&quot;WScript.S
         </div>
       </a>
 
@@ -619,7 +619,7 @@
       
       <a class="index-excerpt index-excerpt__noimg" href="/cn/get_system_shell_windows/" target="_self">
         <div>
-          12sc Create SuperCMD binPath=&quot;cmd /K start&quot; type=own type=interactsc start SuperCMD
+          sc Create SuperCMD binPath=&quot;cmd /K start&quot; type=own type=interact sc start SuperCMD
         </div>
       </a>
 
@@ -659,7 +659,7 @@
       
       <a class="index-excerpt index-excerpt__noimg" href="/cn/sqlserver2005_xpcmdshell/" target="_self">
         <div>
-          SQL Server 2005 中引入的 xp_cmdshell 选项是服务器配置选项，使系统管理员能够控制是否可以在系统上执行 xp_cmdshell 扩展存储过程。 1.  如何在sql server 2005 中开启xp_cmdshell123456789101112-- To allow advanced options to be changed.EXEC sp_configure &#
+          SQL Server 2005 中引入的 xp_cmdshell 选项是服务器配置选项，使系统管理员能够控制是否可以在系统上执行 xp_cmdshell 扩展存储过程。 1.  如何在sql server 2005 中开启xp_cmdshell-- To allow advanced options to be changed. EXEC sp_configure &#x27;show advan
         </div>
       </a>
 

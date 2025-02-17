@@ -21,12 +21,12 @@
   <meta name="author" content="henices">
   <meta name="keywords" content="">
   
-    <meta name="description" content="公司使用svn管理源代码，避免不了要和svn打交道，有几个比较好的解决方案。 1. vcscommand.vimhttp:&#x2F;&#x2F;www.vim.org&#x2F;scripts&#x2F;script.php?script_id&#x3D;90 这个插件的特点是支持的版本管理工具多,支持git，svn等常见版本管理工具。vcscommand.vim插件默认绑定了无差别的快捷键，使用起来非常方便。 1234567891011121">
+    <meta name="description" content="公司使用svn管理源代码，避免不了要和svn打交道，有几个比较好的解决方案。 1. vcscommand.vimhttp:&#x2F;&#x2F;www.vim.org&#x2F;scripts&#x2F;script.php?script_id&#x3D;90 这个插件的特点是支持的版本管理工具多,支持git，svn等常见版本管理工具。vcscommand.vim插件默认绑定了无差别的快捷键，使用起来非常方便。 |&lt;Leader&gt;|">
 <meta property="og:type" content="article">
 <meta property="og:title" content="VIM + SVN 管理">
 <meta property="og:url" content="https://usmacd.com/cn/svn_vim/index.html">
 <meta property="og:site_name" content="安全代码">
-<meta property="og:description" content="公司使用svn管理源代码，避免不了要和svn打交道，有几个比较好的解决方案。 1. vcscommand.vimhttp:&#x2F;&#x2F;www.vim.org&#x2F;scripts&#x2F;script.php?script_id&#x3D;90 这个插件的特点是支持的版本管理工具多,支持git，svn等常见版本管理工具。vcscommand.vim插件默认绑定了无差别的快捷键，使用起来非常方便。 1234567891011121">
+<meta property="og:description" content="公司使用svn管理源代码，避免不了要和svn打交道，有几个比较好的解决方案。 1. vcscommand.vimhttp:&#x2F;&#x2F;www.vim.org&#x2F;scripts&#x2F;script.php?script_id&#x3D;90 这个插件的特点是支持的版本管理工具多,支持git，svn等常见版本管理工具。vcscommand.vim插件默认绑定了无差别的快捷键，使用起来非常方便。 |&lt;Leader&gt;|">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-09-06T03:00:51.812Z">
 <meta property="article:modified_time" content="2023-09-06T03:00:51.812Z">
@@ -290,7 +290,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          347 字
+          346 字
         
       </span>
     
@@ -355,7 +355,22 @@
                 <p>公司使用svn管理源代码，避免不了要和svn打交道，有几个比较好的解决方案。</p>
 <h2 id="1-vcscommand-vim"><a href="#1-vcscommand-vim" class="headerlink" title="1. vcscommand.vim"></a>1. vcscommand.vim</h2><p><a target="_blank" rel="noopener" href="http://www.vim.org/scripts/script.php?script_id=90">http://www.vim.org/scripts/script.php?script_id=90</a></p>
 <p>这个插件的特点是支持的版本管理工具多,支持git，svn等常见版本管理工具。<br>vcscommand.vim插件默认绑定了无差别的快捷键，使用起来非常方便。</p>
-<figure class="highlight coq"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs coq">|<span class="hljs-type">&lt;Leader</span>&gt;|<span class="hljs-type">ca</span> VCSAdd<br>|<span class="hljs-type">&lt;Leader</span>&gt;|<span class="hljs-type">cn</span> VCSAnnotate<br>|<span class="hljs-type">&lt;Leader</span>&gt;|<span class="hljs-type">cN</span> VCSAnnotate!<br>|<span class="hljs-type">&lt;Leader</span>&gt;|<span class="hljs-type">cc</span> VCSCommit<br>|<span class="hljs-type">&lt;Leader</span>&gt;|<span class="hljs-type">cD</span> VCSDelete<br>|<span class="hljs-type">&lt;Leader</span>&gt;|<span class="hljs-type">cd</span> VCSDiff<br>|<span class="hljs-type">&lt;Leader</span>&gt;|<span class="hljs-type">cg</span> VCSGotoOriginal<br>|<span class="hljs-type">&lt;Leader</span>&gt;|<span class="hljs-type">cG</span> VCSGotoOriginal!<br>|<span class="hljs-type">&lt;Leader</span>&gt;|<span class="hljs-type">ci</span> VCSInfo<br>|<span class="hljs-type">&lt;Leader</span>&gt;|<span class="hljs-type">cl</span> VCSLog<br>|<span class="hljs-type">&lt;Leader</span>&gt;|<span class="hljs-type">cL</span> VCSLock<br>|<span class="hljs-type">&lt;Leader</span>&gt;|<span class="hljs-type">cr</span> VCSReview<br>|<span class="hljs-type">&lt;Leader</span>&gt;|<span class="hljs-type">cs</span> VCSStatus<br>|<span class="hljs-type">&lt;Leader</span>&gt;|<span class="hljs-type">cu</span> VCSUpdate<br>|<span class="hljs-type">&lt;Leader</span>&gt;|<span class="hljs-type">cU</span> VCSUnlock<br>|<span class="hljs-type">&lt;Leader</span>&gt;|<span class="hljs-type">cv</span> VCSVimDiff<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs coq">|<span class="hljs-type">&lt;Leader</span>&gt;|<span class="hljs-type">ca</span> VCSAdd
+|<span class="hljs-type">&lt;Leader</span>&gt;|<span class="hljs-type">cn</span> VCSAnnotate
+|<span class="hljs-type">&lt;Leader</span>&gt;|<span class="hljs-type">cN</span> VCSAnnotate!
+|<span class="hljs-type">&lt;Leader</span>&gt;|<span class="hljs-type">cc</span> VCSCommit
+|<span class="hljs-type">&lt;Leader</span>&gt;|<span class="hljs-type">cD</span> VCSDelete
+|<span class="hljs-type">&lt;Leader</span>&gt;|<span class="hljs-type">cd</span> VCSDiff
+|<span class="hljs-type">&lt;Leader</span>&gt;|<span class="hljs-type">cg</span> VCSGotoOriginal
+|<span class="hljs-type">&lt;Leader</span>&gt;|<span class="hljs-type">cG</span> VCSGotoOriginal!
+|<span class="hljs-type">&lt;Leader</span>&gt;|<span class="hljs-type">ci</span> VCSInfo
+|<span class="hljs-type">&lt;Leader</span>&gt;|<span class="hljs-type">cl</span> VCSLog
+|<span class="hljs-type">&lt;Leader</span>&gt;|<span class="hljs-type">cL</span> VCSLock
+|<span class="hljs-type">&lt;Leader</span>&gt;|<span class="hljs-type">cr</span> VCSReview
+|<span class="hljs-type">&lt;Leader</span>&gt;|<span class="hljs-type">cs</span> VCSStatus
+|<span class="hljs-type">&lt;Leader</span>&gt;|<span class="hljs-type">cu</span> VCSUpdate
+|<span class="hljs-type">&lt;Leader</span>&gt;|<span class="hljs-type">cU</span> VCSUnlock
+|<span class="hljs-type">&lt;Leader</span>&gt;|<span class="hljs-type">cv</span> VCSVimDiff</code></pre></div>
 
 <p>这个 <code>&lt;Leader&gt;</code> 得看你定义了什么快捷键，vim 默认的是 <code>\</code></p>
 <h2 id="2-vim-unite-svn"><a href="#2-vim-unite-svn" class="headerlink" title="2.  vim-unite-svn"></a>2.  vim-unite-svn</h2><p>小日本写的unite.vim的svn插件，unite.vim 是一个非常不错的vim插件，<br>它的作用是 为vim 写简单界面，要使用vim-unite-svn首先需要安装unite.vim 插件，<br>折腾这个插件的原因是vcscommand.vim有些不太好的地方。</p>
@@ -369,7 +384,9 @@
 <p><a target="_blank" rel="noopener" href="https://github.com/henices/vim-unite-svn">https://github.com/henices/vim-unite-svn</a></p>
 <p>支持基本的svn命令， svn status, svn info, svn diff, svn commit, svn up</p>
 <p>使用示例</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">:Unite svn/status<br>:Unite svn/diff<br>:Unite svn/blame<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs bash">:Unite svn/status
+:Unite svn/diff
+:Unite svn/blame</code></pre></div>
 
                 
               </div>

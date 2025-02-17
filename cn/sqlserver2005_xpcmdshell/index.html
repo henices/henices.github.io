@@ -21,12 +21,12 @@
   <meta name="author" content="henices">
   <meta name="keywords" content="">
   
-    <meta name="description" content="SQL Server 2005 中引入的 xp_cmdshell 选项是服务器配置选项，使系统管理员能够控制是否可以在系统上执行 xp_cmdshell 扩展存储过程。 1.  如何在sql server 2005 中开启xp_cmdshell123456789101112-- To allow advanced options to be changed.EXEC sp_configure &amp;#">
+    <meta name="description" content="SQL Server 2005 中引入的 xp_cmdshell 选项是服务器配置选项，使系统管理员能够控制是否可以在系统上执行 xp_cmdshell 扩展存储过程。 1.  如何在sql server 2005 中开启xp_cmdshell-- To allow advanced options to be changed. EXEC sp_configure &#x27;show advan">
 <meta property="og:type" content="article">
 <meta property="og:title" content="SQL Server 2005 xp_cmdshell">
 <meta property="og:url" content="https://usmacd.com/cn/sqlserver2005_xpcmdshell/index.html">
 <meta property="og:site_name" content="安全代码">
-<meta property="og:description" content="SQL Server 2005 中引入的 xp_cmdshell 选项是服务器配置选项，使系统管理员能够控制是否可以在系统上执行 xp_cmdshell 扩展存储过程。 1.  如何在sql server 2005 中开启xp_cmdshell123456789101112-- To allow advanced options to be changed.EXEC sp_configure &amp;#">
+<meta property="og:description" content="SQL Server 2005 中引入的 xp_cmdshell 选项是服务器配置选项，使系统管理员能够控制是否可以在系统上执行 xp_cmdshell 扩展存储过程。 1.  如何在sql server 2005 中开启xp_cmdshell-- To allow advanced options to be changed. EXEC sp_configure &#x27;show advan">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2009-09-17T16:00:00.000Z">
 <meta property="article:modified_time" content="2009-09-17T16:00:00.000Z">
@@ -352,14 +352,32 @@
               <div class="markdown-body">
                 
                 <p>SQL Server 2005 中引入的 xp_cmdshell 选项是服务器配置选项，<br>使系统管理员能够控制是否可以在系统上执行 xp_cmdshell 扩展存储过程。</p>
-<h2 id="1-如何在sql-server-2005-中开启xp-cmdshell"><a href="#1-如何在sql-server-2005-中开启xp-cmdshell" class="headerlink" title="1.  如何在sql server 2005 中开启xp_cmdshell"></a>1.  如何在sql server 2005 中开启xp_cmdshell</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-comment">-- To allow advanced options to be changed.</span><br><span class="hljs-keyword">EXEC</span> sp_configure <span class="hljs-string">&#x27;show advanced options&#x27;</span>, <span class="hljs-number">1</span><br>GO<br><span class="hljs-comment">-- To update the currently configured value for advanced options.</span><br>RECONFIGURE<br>GO<br><span class="hljs-comment">-- To enable the feature.</span><br><span class="hljs-keyword">EXEC</span> sp_configure <span class="hljs-string">&#x27;xp_cmdshell&#x27;</span>, <span class="hljs-number">1</span><br>GO<br><span class="hljs-comment">-- To update the currently configured value for this feature.</span><br>RECONFIGURE<br>GO<br></code></pre></td></tr></table></figure>
+<h2 id="1-如何在sql-server-2005-中开启xp-cmdshell"><a href="#1-如何在sql-server-2005-中开启xp-cmdshell" class="headerlink" title="1.  如何在sql server 2005 中开启xp_cmdshell"></a>1.  如何在sql server 2005 中开启xp_cmdshell</h2><div class="code-wrapper"><pre><code class="hljs sql"><span class="hljs-comment">-- To allow advanced options to be changed.</span>
+<span class="hljs-keyword">EXEC</span> sp_configure <span class="hljs-string">&#x27;show advanced options&#x27;</span>, <span class="hljs-number">1</span>
+GO
+<span class="hljs-comment">-- To update the currently configured value for advanced options.</span>
+RECONFIGURE
+GO
+<span class="hljs-comment">-- To enable the feature.</span>
+<span class="hljs-keyword">EXEC</span> sp_configure <span class="hljs-string">&#x27;xp_cmdshell&#x27;</span>, <span class="hljs-number">1</span>
+GO
+<span class="hljs-comment">-- To update the currently configured value for this feature.</span>
+RECONFIGURE
+GO</code></pre></div>
 
-<h2 id="2-如何查询sql-server-2005-拓展存储过程xp-cmdshell-状态"><a href="#2-如何查询sql-server-2005-拓展存储过程xp-cmdshell-状态" class="headerlink" title="2. 如何查询sql server 2005 拓展存储过程xp_cmdshell 状态"></a>2. 如何查询sql server 2005 拓展存储过程xp_cmdshell 状态</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">FROM</span> sys.configurations <span class="hljs-keyword">where</span> name<span class="hljs-operator">=</span><span class="hljs-string">&#x27;xp_cmdshell&#x27;</span><br>GO<br></code></pre></td></tr></table></figure>
+<h2 id="2-如何查询sql-server-2005-拓展存储过程xp-cmdshell-状态"><a href="#2-如何查询sql-server-2005-拓展存储过程xp-cmdshell-状态" class="headerlink" title="2. 如何查询sql server 2005 拓展存储过程xp_cmdshell 状态"></a>2. 如何查询sql server 2005 拓展存储过程xp_cmdshell 状态</h2><div class="code-wrapper"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">FROM</span> sys.configurations <span class="hljs-keyword">where</span> name<span class="hljs-operator">=</span><span class="hljs-string">&#x27;xp_cmdshell&#x27;</span>
+GO</code></pre></div>
 
 <p>查看value的值， 1 为开启， 0 为关闭</p>
-<h2 id="3-如何查看public角色对哪些拓展存储过程有执行权限"><a href="#3-如何查看public角色对哪些拓展存储过程有执行权限" class="headerlink" title="3. 如何查看public角色对哪些拓展存储过程有执行权限"></a>3. 如何查看public角色对哪些拓展存储过程有执行权限</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">select</span> sysusers.name, sysobjects.name, sysprotects.action <span class="hljs-keyword">from</span> sysobjects, sysusers, sysprotects<br><span class="hljs-keyword">where</span> sysobjects.id<span class="hljs-operator">=</span>sysprotects.id <span class="hljs-keyword">and</span> sysprotects.uid <span class="hljs-operator">=</span> sysusers.uid <span class="hljs-keyword">and</span> <br>sysprotects.protecttype<span class="hljs-operator">=</span><span class="hljs-number">205</span> <span class="hljs-keyword">and</span> sysprotects.action<span class="hljs-operator">=</span> <span class="hljs-number">224</span> <span class="hljs-keyword">and</span> (sysusers.name<span class="hljs-operator">=</span><span class="hljs-string">&#x27;public&#x27;</span> <span class="hljs-keyword">or</span><br>sysusers.name<span class="hljs-operator">=</span><span class="hljs-string">&#x27;guest&#x27;</span> ) <span class="hljs-keyword">and</span> sysobjects.type<span class="hljs-operator">=</span><span class="hljs-string">&#x27;X&#x27;</span><br><br>GO<br></code></pre></td></tr></table></figure>
+<h2 id="3-如何查看public角色对哪些拓展存储过程有执行权限"><a href="#3-如何查看public角色对哪些拓展存储过程有执行权限" class="headerlink" title="3. 如何查看public角色对哪些拓展存储过程有执行权限"></a>3. 如何查看public角色对哪些拓展存储过程有执行权限</h2><div class="code-wrapper"><pre><code class="hljs sql"><span class="hljs-keyword">select</span> sysusers.name, sysobjects.name, sysprotects.action <span class="hljs-keyword">from</span> sysobjects, sysusers, sysprotects
+<span class="hljs-keyword">where</span> sysobjects.id<span class="hljs-operator">=</span>sysprotects.id <span class="hljs-keyword">and</span> sysprotects.uid <span class="hljs-operator">=</span> sysusers.uid <span class="hljs-keyword">and</span> 
+sysprotects.protecttype<span class="hljs-operator">=</span><span class="hljs-number">205</span> <span class="hljs-keyword">and</span> sysprotects.action<span class="hljs-operator">=</span> <span class="hljs-number">224</span> <span class="hljs-keyword">and</span> (sysusers.name<span class="hljs-operator">=</span><span class="hljs-string">&#x27;public&#x27;</span> <span class="hljs-keyword">or</span>
+sysusers.name<span class="hljs-operator">=</span><span class="hljs-string">&#x27;guest&#x27;</span> ) <span class="hljs-keyword">and</span> sysobjects.type<span class="hljs-operator">=</span><span class="hljs-string">&#x27;X&#x27;</span>
 
-<h2 id="4-如何去掉public角色对拓展存储过程的执行权限"><a href="#4-如何去掉public角色对拓展存储过程的执行权限" class="headerlink" title="4. 如何去掉public角色对拓展存储过程的执行权限"></a>4. 如何去掉public角色对拓展存储过程的执行权限</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sql">deny <span class="hljs-keyword">execute</span> <span class="hljs-keyword">on</span> xp_dirtree <span class="hljs-keyword">to</span> public<br>GO<br></code></pre></td></tr></table></figure>
+GO</code></pre></div>
+
+<h2 id="4-如何去掉public角色对拓展存储过程的执行权限"><a href="#4-如何去掉public角色对拓展存储过程的执行权限" class="headerlink" title="4. 如何去掉public角色对拓展存储过程的执行权限"></a>4. 如何去掉public角色对拓展存储过程的执行权限</h2><div class="code-wrapper"><pre><code class="hljs sql">deny <span class="hljs-keyword">execute</span> <span class="hljs-keyword">on</span> xp_dirtree <span class="hljs-keyword">to</span> public
+GO</code></pre></div>
 
                 
               </div>

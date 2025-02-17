@@ -372,54 +372,137 @@
 <p>更多信息请参考： <a target="_blank" rel="noopener" href="https://www.gnu.org/software/global/globaldoc_toc.html">https://www.gnu.org/software/global/globaldoc_toc.html</a> 1.3 Features</p>
 <h2 id="☆-2-GNU-Global-的安装"><a href="#☆-2-GNU-Global-的安装" class="headerlink" title="☆ 2. GNU Global 的安装"></a>☆ 2. GNU Global 的安装</h2><p>下载地址： <a target="_blank" rel="noopener" href="https://ftp.gnu.org/pub/gnu/global/global-6.6.9.tar.gz">https://ftp.gnu.org/pub/gnu/global/global-6.6.9.tar.gz</a></p>
 <p><a target="_blank" rel="noopener" href="https://www.gnu.org/software/global/download.html">https://www.gnu.org/software/global/download.html</a> 中说明了源码编译方法：</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs sh">% sh reconf.sh <br>% ./configure<br>% make<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs sh">% sh reconf.sh 
+% ./configure
+% make</code></pre></div>
 
 <p>Fedora&#x2F;Debian 等系统可以使用仓库直接安装，下面以 Fedora Linux 为例</p>
-<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs vim">sudo dnf install <span class="hljs-keyword">global</span>-ctags <span class="hljs-keyword">global</span> <span class="hljs-keyword">cscope</span><br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs vim">sudo dnf install <span class="hljs-keyword">global</span>-ctags <span class="hljs-keyword">global</span> <span class="hljs-keyword">cscope</span></code></pre></div>
 
 <p>如果不安装 <code>global-ctags</code> 在 Fedora 下可能会报 <code>Cannot enable custom plug-in parser for GNU GLOBAL</code> 的错误。</p>
 <p>gtags-cscope 由 global 安装包提供不用另外安装了。</p>
-<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs vim">sudo dnf whatprovides gtags-<span class="hljs-keyword">cscope</span><br><br><span class="hljs-keyword">global</span>-<span class="hljs-number">6.6</span>.<span class="hljs-number">5</span>-<span class="hljs-number">7</span>.fc37.x86_64 : Source code <span class="hljs-keyword">tag</span> <span class="hljs-built_in">system</span><br>仓库        ：@System<br>匹配来源：<br>文件名    ：/usr/bin/gtags-<span class="hljs-keyword">cscope</span><br><br><span class="hljs-keyword">global</span>-<span class="hljs-number">6.6</span>.<span class="hljs-number">5</span>-<span class="hljs-number">7</span>.fc37.x86_64 : Source code <span class="hljs-keyword">tag</span> <span class="hljs-built_in">system</span><br>仓库        ：fedora<br>匹配来源：<br>文件名    ：/usr/bin/gtags-<span class="hljs-keyword">cscope</span><br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs vim">sudo dnf whatprovides gtags-<span class="hljs-keyword">cscope</span>
+
+<span class="hljs-keyword">global</span>-<span class="hljs-number">6.6</span>.<span class="hljs-number">5</span>-<span class="hljs-number">7</span>.fc37.x86_64 : Source code <span class="hljs-keyword">tag</span> <span class="hljs-built_in">system</span>
+仓库        ：@System
+匹配来源：
+文件名    ：/usr/bin/gtags-<span class="hljs-keyword">cscope</span>
+
+<span class="hljs-keyword">global</span>-<span class="hljs-number">6.6</span>.<span class="hljs-number">5</span>-<span class="hljs-number">7</span>.fc37.x86_64 : Source code <span class="hljs-keyword">tag</span> <span class="hljs-built_in">system</span>
+仓库        ：fedora
+匹配来源：
+文件名    ：/usr/bin/gtags-<span class="hljs-keyword">cscope</span></code></pre></div>
 
 <p>macOS 下可以使用 brew 安装 global，执行 <code>brew install global</code> 即可。<br>参见 <a target="_blank" rel="noopener" href="https://www.gnu.org/software/global/download.html">https://www.gnu.org/software/global/download.html</a></p>
 <p>如果需要gtags支持 C&#x2F;C++&#x2F;Java 之外的语言，需要安装 <code>pygments</code>。</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">pip3 install pygments<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs sh">pip3 install pygments</code></pre></div>
 
 <h2 id="☆-3-GNU-global-和-cscope-vim-集成"><a href="#☆-3-GNU-global-和-cscope-vim-集成" class="headerlink" title="☆ 3.  GNU global 和 cscope, vim 集成"></a>☆ 3.  GNU global 和 cscope, vim 集成</h2><p>vim 的 cscope 支持可能需要重新编译 vim，可以通过下面的命令查询。</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sh">vim --version | grep cscope<br>+cscope            +localmap          +ruby/dyn          +wildignore<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs sh">vim --version | grep cscope
++cscope            +localmap          +ruby/dyn          +wildignore</code></pre></div>
 
 <p>GNU global 提供了两个 vim 插件用于和 vim 结合，分别为 gtags.vim 和 gtags-cscope.vim，可以直接拷贝到 vim 的插件目录使用。</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-built_in">cp</span> /usr/local/share/gtags/gtags.vim <span class="hljs-variable">$HOME</span>/.vim/plugin<br><span class="hljs-built_in">cp</span> /usr/local/share/gtags/gtags-cscope.vim <span class="hljs-variable">$HOME</span>/.vim/plugin<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs sh"><span class="hljs-built_in">cp</span> /usr/local/share/gtags/gtags.vim <span class="hljs-variable">$HOME</span>/.vim/plugin
+<span class="hljs-built_in">cp</span> /usr/local/share/gtags/gtags-cscope.vim <span class="hljs-variable">$HOME</span>/.vim/plugin</code></pre></div>
 <p>如果是系统仓库安装路径可能有变化，Fedora 上的 gtags.vim 路径为 <code>/usr/share/gtags/gtags.vim</code> 。</p>
 <p>gtags-cscope.vim 定义了一组快捷键和以前的 <code>cscope_maps.vim</code> 一致</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs sh">:nmap &lt;C-\&gt;s :cs find s &lt;C-R&gt;=<span class="hljs-built_in">expand</span>(<span class="hljs-string">&quot;&lt;cword&gt;&quot;</span>)&lt;CR&gt;&lt;CR&gt;<br>:nmap &lt;C-\&gt;g :cs find g &lt;C-R&gt;=<span class="hljs-built_in">expand</span>(<span class="hljs-string">&quot;&lt;cword&gt;&quot;</span>)&lt;CR&gt;&lt;CR&gt;<br>:nmap &lt;C-\&gt;c :cs find c &lt;C-R&gt;=<span class="hljs-built_in">expand</span>(<span class="hljs-string">&quot;&lt;cword&gt;&quot;</span>)&lt;CR&gt;&lt;CR&gt;<br>:nmap &lt;C-\&gt;t :cs find t &lt;C-R&gt;=<span class="hljs-built_in">expand</span>(<span class="hljs-string">&quot;&lt;cword&gt;&quot;</span>)&lt;CR&gt;&lt;CR&gt;<br>:nmap &lt;C-\&gt;e :cs find e &lt;C-R&gt;=<span class="hljs-built_in">expand</span>(<span class="hljs-string">&quot;&lt;cword&gt;&quot;</span>)&lt;CR&gt;&lt;CR&gt;<br>:nmap &lt;C-\&gt;f :cs find f &lt;C-R&gt;=<span class="hljs-built_in">expand</span>(<span class="hljs-string">&quot;&lt;cfile&gt;&quot;</span>)&lt;CR&gt;&lt;CR&gt;<br>:nmap &lt;C-\&gt;i :cs find i &lt;C-R&gt;=<span class="hljs-built_in">expand</span>(<span class="hljs-string">&quot;&lt;cfile&gt;&quot;</span>)&lt;CR&gt;&lt;CR&gt;<br>:nmap &lt;C-\&gt;a :cs find a &lt;C-R&gt;=<span class="hljs-built_in">expand</span>(<span class="hljs-string">&quot;&lt;cword&gt;&quot;</span>)&lt;CR&gt;&lt;CR&gt;<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs sh">:nmap &lt;C-\&gt;s :cs find s &lt;C-R&gt;=<span class="hljs-built_in">expand</span>(<span class="hljs-string">&quot;&lt;cword&gt;&quot;</span>)&lt;CR&gt;&lt;CR&gt;
+:nmap &lt;C-\&gt;g :cs find g &lt;C-R&gt;=<span class="hljs-built_in">expand</span>(<span class="hljs-string">&quot;&lt;cword&gt;&quot;</span>)&lt;CR&gt;&lt;CR&gt;
+:nmap &lt;C-\&gt;c :cs find c &lt;C-R&gt;=<span class="hljs-built_in">expand</span>(<span class="hljs-string">&quot;&lt;cword&gt;&quot;</span>)&lt;CR&gt;&lt;CR&gt;
+:nmap &lt;C-\&gt;t :cs find t &lt;C-R&gt;=<span class="hljs-built_in">expand</span>(<span class="hljs-string">&quot;&lt;cword&gt;&quot;</span>)&lt;CR&gt;&lt;CR&gt;
+:nmap &lt;C-\&gt;e :cs find e &lt;C-R&gt;=<span class="hljs-built_in">expand</span>(<span class="hljs-string">&quot;&lt;cword&gt;&quot;</span>)&lt;CR&gt;&lt;CR&gt;
+:nmap &lt;C-\&gt;f :cs find f &lt;C-R&gt;=<span class="hljs-built_in">expand</span>(<span class="hljs-string">&quot;&lt;cfile&gt;&quot;</span>)&lt;CR&gt;&lt;CR&gt;
+:nmap &lt;C-\&gt;i :cs find i &lt;C-R&gt;=<span class="hljs-built_in">expand</span>(<span class="hljs-string">&quot;&lt;cfile&gt;&quot;</span>)&lt;CR&gt;&lt;CR&gt;
+:nmap &lt;C-\&gt;a :cs find a &lt;C-R&gt;=<span class="hljs-built_in">expand</span>(<span class="hljs-string">&quot;&lt;cword&gt;&quot;</span>)&lt;CR&gt;&lt;CR&gt;</code></pre></div>
 
 <p>gtags-cscope.vim 的使用注释里有详细的说明：</p>
-<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><code class="hljs vim"><span class="hljs-comment">&quot; Usage</span><br><span class="hljs-comment">&quot; -----</span><br><span class="hljs-comment">&quot; First of all, you must execute gtags(1) at the root of source directory</span><br><span class="hljs-comment">&quot; to make tag files. Assuming that your source directory is &#x27;/var/src&#x27;,</span><br><span class="hljs-comment">&quot; it is neccessary to execute the following commands.</span><br><span class="hljs-comment">&quot;</span><br><span class="hljs-comment">&quot; [Load vim]</span><br><span class="hljs-comment">&quot;	$ cd /var/src</span><br><span class="hljs-comment">&quot;	$ gtags</span><br><span class="hljs-comment">&quot;	$ vim</span><br><span class="hljs-comment">&quot; [Load gtags-cscope]</span><br><span class="hljs-comment">&quot;	:GtagsCscope &lt;ENTER&gt;            (in vim command line)</span><br><span class="hljs-comment">&quot;</span><br><span class="hljs-comment">&quot; Basic command</span><br><span class="hljs-comment">&quot; -------------</span><br><span class="hljs-comment">&quot; Then you can use cs commands except for the &#x27;d&#x27;(2) command.</span><br><span class="hljs-comment">&quot; Profitable commands are assigned to keys like follows:</span><br><span class="hljs-comment">&quot;</span><br><span class="hljs-comment">&quot;	explanation		command	</span><br><span class="hljs-comment">&quot;	----------------------------------------------------------</span><br><span class="hljs-comment">&quot;	Find symbol		:cs find 0 or s</span><br><span class="hljs-comment">&quot;	Find definition		:cs find 1 or g</span><br><span class="hljs-comment">&quot;	Find functions called by this function	(not implemented)</span><br><span class="hljs-comment">&quot;	Find reference		:cs find 3 or c</span><br><span class="hljs-comment">&quot;	Find text string	:cs find 4 or t</span><br><span class="hljs-comment">&quot;	Find egrep pattern	:cs find 6 or e</span><br><span class="hljs-comment">&quot;	Find path		:cs find 7 or f</span><br><span class="hljs-comment">&quot;	Find include file	:cs find 8 or i</span><br><span class="hljs-comment">&quot;	Find assignments	:cs find 9 or a</span><br><span class="hljs-comment">&quot;</span><br><span class="hljs-comment">&quot; You can move tag list using:</span><br><span class="hljs-comment">&quot;	Go to the next tag	 :tn</span><br><span class="hljs-comment">&quot;	Go to the previous tag	 :tp</span><br><span class="hljs-comment">&quot;	Pop tag stack		 :pop</span><br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs vim"><span class="hljs-comment">&quot; Usage</span>
+<span class="hljs-comment">&quot; -----</span>
+<span class="hljs-comment">&quot; First of all, you must execute gtags(1) at the root of source directory</span>
+<span class="hljs-comment">&quot; to make tag files. Assuming that your source directory is &#x27;/var/src&#x27;,</span>
+<span class="hljs-comment">&quot; it is neccessary to execute the following commands.</span>
+<span class="hljs-comment">&quot;</span>
+<span class="hljs-comment">&quot; [Load vim]</span>
+<span class="hljs-comment">&quot;	$ cd /var/src</span>
+<span class="hljs-comment">&quot;	$ gtags</span>
+<span class="hljs-comment">&quot;	$ vim</span>
+<span class="hljs-comment">&quot; [Load gtags-cscope]</span>
+<span class="hljs-comment">&quot;	:GtagsCscope &lt;ENTER&gt;            (in vim command line)</span>
+<span class="hljs-comment">&quot;</span>
+<span class="hljs-comment">&quot; Basic command</span>
+<span class="hljs-comment">&quot; -------------</span>
+<span class="hljs-comment">&quot; Then you can use cs commands except for the &#x27;d&#x27;(2) command.</span>
+<span class="hljs-comment">&quot; Profitable commands are assigned to keys like follows:</span>
+<span class="hljs-comment">&quot;</span>
+<span class="hljs-comment">&quot;	explanation		command	</span>
+<span class="hljs-comment">&quot;	----------------------------------------------------------</span>
+<span class="hljs-comment">&quot;	Find symbol		:cs find 0 or s</span>
+<span class="hljs-comment">&quot;	Find definition		:cs find 1 or g</span>
+<span class="hljs-comment">&quot;	Find functions called by this function	(not implemented)</span>
+<span class="hljs-comment">&quot;	Find reference		:cs find 3 or c</span>
+<span class="hljs-comment">&quot;	Find text string	:cs find 4 or t</span>
+<span class="hljs-comment">&quot;	Find egrep pattern	:cs find 6 or e</span>
+<span class="hljs-comment">&quot;	Find path		:cs find 7 or f</span>
+<span class="hljs-comment">&quot;	Find include file	:cs find 8 or i</span>
+<span class="hljs-comment">&quot;	Find assignments	:cs find 9 or a</span>
+<span class="hljs-comment">&quot;</span>
+<span class="hljs-comment">&quot; You can move tag list using:</span>
+<span class="hljs-comment">&quot;	Go to the next tag	 :tn</span>
+<span class="hljs-comment">&quot;	Go to the previous tag	 :tp</span>
+<span class="hljs-comment">&quot;	Pop tag stack		 :pop</span></code></pre></div>
 
 <p>除了不能使用 <code>:cs find d</code>  命令，可以使用其他所有的命令，gtags-cscope.vim 使用快捷键替代了输入命令，常用的快捷键的含义如下：</p>
-<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-section">&lt;C-\&gt;</span><span class="hljs-attribute">g</span> - 查看光标下符号的定义<br><span class="hljs-section">&lt;C-\&gt;</span><span class="hljs-attribute">s</span> - 查看光标下符号<br><span class="hljs-section">&lt;C-\&gt;</span><span class="hljs-attribute">c</span> - 查看光标下符号的引用<br><span class="hljs-section">&lt;C-\&gt;</span><span class="hljs-attribute">f</span> - 查找光标下的文件<br><span class="hljs-section">&lt;C-\&gt;</span><span class="hljs-attribute">i</span> - 查找哪些文件 include 了本文件<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs apache"><span class="hljs-section">&lt;C-\&gt;</span><span class="hljs-attribute">g</span> - 查看光标下符号的定义
+<span class="hljs-section">&lt;C-\&gt;</span><span class="hljs-attribute">s</span> - 查看光标下符号
+<span class="hljs-section">&lt;C-\&gt;</span><span class="hljs-attribute">c</span> - 查看光标下符号的引用
+<span class="hljs-section">&lt;C-\&gt;</span><span class="hljs-attribute">f</span> - 查找光标下的文件
+<span class="hljs-section">&lt;C-\&gt;</span><span class="hljs-attribute">i</span> - 查找哪些文件 include 了本文件</code></pre></div>
 
 <p><code>&lt;C-\&gt;g</code>  是同时按下 Ctrl 和 <code>\</code> ，接着再按 g ， 其他的同理。</p>
 <p>在 .vimrc 中添加下面的配置</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-keyword">if</span> <span class="hljs-title function_">has</span><span class="hljs-params">(<span class="hljs-string">&quot;cscope&quot;</span>)</span><br>&quot; To use the <span class="hljs-keyword">default</span> key/mouse mapping:<br>    let GtagsCscope_Auto_Map = <span class="hljs-number">1</span><br><br><span class="hljs-string">&quot; To deterring interruption:</span><br><span class="hljs-string">    let GtagsCscope_Keep_Alive = 1</span><br><span class="hljs-string">    </span><br><span class="hljs-string">    set cscopetag</span><br><span class="hljs-string">    set csprg=/usr/bin/gtags-cscope</span><br><span class="hljs-string">    set csto=1</span><br><span class="hljs-string">    set nocsverb</span><br><span class="hljs-string"></span><br><span class="hljs-string">&quot;</span> Set enviroment values<br>    let $GTAGSLABEL=<span class="hljs-string">&#x27;native-pygments&#x27;</span><br>    let $GTAGSCONF=<span class="hljs-string">&#x27;/etc/gtags.conf&#x27;</span><br><br>endif<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs c"><span class="hljs-keyword">if</span> <span class="hljs-title function_">has</span><span class="hljs-params">(<span class="hljs-string">&quot;cscope&quot;</span>)</span>
+&quot; To use the <span class="hljs-keyword">default</span> key/mouse mapping:
+    let GtagsCscope_Auto_Map = <span class="hljs-number">1</span>
+
+<span class="hljs-string">&quot; To deterring interruption:</span>
+<span class="hljs-string">    let GtagsCscope_Keep_Alive = 1</span>
+<span class="hljs-string">    </span>
+<span class="hljs-string">    set cscopetag</span>
+<span class="hljs-string">    set csprg=/usr/bin/gtags-cscope</span>
+<span class="hljs-string">    set csto=1</span>
+<span class="hljs-string">    set nocsverb</span>
+<span class="hljs-string"></span>
+<span class="hljs-string">&quot;</span> Set enviroment values
+    let $GTAGSLABEL=<span class="hljs-string">&#x27;native-pygments&#x27;</span>
+    let $GTAGSCONF=<span class="hljs-string">&#x27;/etc/gtags.conf&#x27;</span>
+
+endif</code></pre></div>
 
 <h2 id="☆-4-GUN-global-的使用方法"><a href="#☆-4-GUN-global-的使用方法" class="headerlink" title="☆ 4.  GUN global 的使用方法"></a>☆ 4.  GUN global 的使用方法</h2><p>切换到源码目录，执行下面的命令将生成 Global 所需要的索引文件。</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sh">find . -<span class="hljs-built_in">type</span> f -name <span class="hljs-string">&quot;*.h&quot;</span> -o -name <span class="hljs-string">&quot;*.hpp&quot;</span> -o -name <span class="hljs-string">&quot;*.hh&quot;</span> -o -name <span class="hljs-string">&quot;*.hxx&quot;</span> -o -name <span class="hljs-string">&quot;*.c&quot;</span> -o -name <span class="hljs-string">&quot;*.cc&quot;</span> -o -name <span class="hljs-string">&quot;*.cpp&quot;</span> -o -name <span class="hljs-string">&quot;*.cxx&quot;</span> &gt; gtags.files<br>gtags -f gtags.files<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs sh">find . -<span class="hljs-built_in">type</span> f -name <span class="hljs-string">&quot;*.h&quot;</span> -o -name <span class="hljs-string">&quot;*.hpp&quot;</span> -o -name <span class="hljs-string">&quot;*.hh&quot;</span> -o -name <span class="hljs-string">&quot;*.hxx&quot;</span> -o -name <span class="hljs-string">&quot;*.c&quot;</span> -o -name <span class="hljs-string">&quot;*.cc&quot;</span> -o -name <span class="hljs-string">&quot;*.cpp&quot;</span> -o -name <span class="hljs-string">&quot;*.cxx&quot;</span> &gt; gtags.files
+gtags -f gtags.files</code></pre></div>
 
 <p>上面的命令执行完毕后，会生成 GPATH、GRTAGS、GTAGS 几个索引文件。</p>
 <p>在 vim 中执行 <code>:GtagsCscope &lt;ENTER&gt; </code> 即可加载索引文件，最后就是使用快捷键愉快地浏览源码文件了。</p>
 <h2 id="☆-5-Ubuntu-下-global-安装的一些说明"><a href="#☆-5-Ubuntu-下-global-安装的一些说明" class="headerlink" title="☆ 5. Ubuntu 下 global 安装的一些说明"></a>☆ 5. Ubuntu 下 global 安装的一些说明</h2><p>首先需要安装 global <code>sudo apt-get install global</code>, 安装完成后还有一些工作需要处理。</p>
-<h3 id="解决-python-路径问题"><a href="#解决-python-路径问题" class="headerlink" title="解决 python 路径问题"></a>解决 python 路径问题</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-built_in">cd</span> <span class="hljs-string">&quot;/home/henices/code/x&quot;</span> &amp;&amp; &#123; git ls-files --recurse-submodules; &#125; | /usr/bin/gtags -i --skip-symlink --gtagsconf <span class="hljs-string">&quot;/etc/gtags/gtags.conf&quot;</span> --gtagslabel native-pygments -f- <span class="hljs-string">&quot;/home/henices/.cache/LeaderF/gtags/_home_henices_code_x&quot;</span><br>/usr/bin/env: ‘python’: No such file or directory<br>gtags: unexpected EOF.<br></code></pre></td></tr></table></figure>
+<h3 id="解决-python-路径问题"><a href="#解决-python-路径问题" class="headerlink" title="解决 python 路径问题"></a>解决 python 路径问题</h3><div class="code-wrapper"><pre><code class="hljs sh"><span class="hljs-built_in">cd</span> <span class="hljs-string">&quot;/home/henices/code/x&quot;</span> &amp;&amp; &#123; git ls-files --recurse-submodules; &#125; | /usr/bin/gtags -i --skip-symlink --gtagsconf <span class="hljs-string">&quot;/etc/gtags/gtags.conf&quot;</span> --gtagslabel native-pygments -f- <span class="hljs-string">&quot;/home/henices/.cache/LeaderF/gtags/_home_henices_code_x&quot;</span>
+/usr/bin/env: ‘python’: No such file or directory
+gtags: unexpected EOF.</code></pre></div>
 
 <p>在 ubuntu 24.04 执行上面的命令会报错，新系统没有 <code>/usr/bin/python</code> 只有 <code>/usr/bin/python3</code></p>
 <p>安装 python-is-python3 可以解决这个报错。 <code>sudo apt install python-is-python3</code></p>
 <p>或者建立一个符号链接 <code>sudo ln -s /usr/bin/python3 /usr/bin/python</code>，应该也是可行的。</p>
 <h3 id="安装-ctags"><a href="#安装-ctags" class="headerlink" title="安装 ctags"></a>安装 ctags</h3><p>ctags 的情况比较复杂，理论上安装 <code>universal-ctags </code> 或者 <code>exuberant-ctags</code> 都可以。</p>
-<figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs mipsasm">$ ctags<br>Command <span class="hljs-string">&#x27;ctags&#x27;</span> not found, <span class="hljs-keyword">but </span>can <span class="hljs-keyword">be </span><span class="hljs-keyword">installed </span>with: <br>sudo snap <span class="hljs-keyword">install </span>universal-ctags  <span class="hljs-comment"># version 0.2024-05-27+09:10:28+653ca9204, or</span><br>sudo apt  <span class="hljs-keyword">install </span>exuberant-ctags  <span class="hljs-comment"># version 1:5.9~svn20110310-19</span><br>sudo apt  <span class="hljs-keyword">install </span>universal-ctags  <span class="hljs-comment"># version 5.9.20210829.0-1</span><br>See <span class="hljs-string">&#x27;snap info universal-ctags&#x27;</span> for <span class="hljs-keyword">additional </span>versions.<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs mipsasm">$ ctags
+Command <span class="hljs-string">&#x27;ctags&#x27;</span> not found, <span class="hljs-keyword">but </span>can <span class="hljs-keyword">be </span><span class="hljs-keyword">installed </span>with: 
+sudo snap <span class="hljs-keyword">install </span>universal-ctags  <span class="hljs-comment"># version 0.2024-05-27+09:10:28+653ca9204, or</span>
+sudo apt  <span class="hljs-keyword">install </span>exuberant-ctags  <span class="hljs-comment"># version 1:5.9~svn20110310-19</span>
+sudo apt  <span class="hljs-keyword">install </span>universal-ctags  <span class="hljs-comment"># version 5.9.20210829.0-1</span>
+See <span class="hljs-string">&#x27;snap info universal-ctags&#x27;</span> for <span class="hljs-keyword">additional </span>versions.</code></pre></div>
 
 <p>选择一个 ctags 安装 ：）</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-comment">#sudo apt-get -y install exuberant-ctags</span><br><span class="hljs-built_in">sudo</span> apt install universal-ctags<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs sh"><span class="hljs-comment">#sudo apt-get -y install exuberant-ctags</span>
+<span class="hljs-built_in">sudo</span> apt install universal-ctags</code></pre></div>
 
 <h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><ul>
 <li><a target="_blank" rel="noopener" href="https://www.gnu.org/software/global/global.html">https://www.gnu.org/software/global/global.html</a></li>

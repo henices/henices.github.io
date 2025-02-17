@@ -21,12 +21,12 @@
   <meta name="author" content="henices">
   <meta name="keywords" content="">
   
-    <meta name="description" content="下载 Android 源代码，编译 12345$ source build&#x2F;envsetup.sh$ lunch$ make$ mmm development&#x2F;tools&#x2F;idegen&#x2F;$ .&#x2F;development&#x2F;tools&#x2F;idegen&#x2F;idegen.sh  运行后将生成下面几个文件 123android.ipr (IntelliJ &#x2F; Android Studio)android.iml">
+    <meta name="description" content="下载 Android 源代码，编译 $ source build&#x2F;envsetup.sh $ lunch $ make $ mmm development&#x2F;tools&#x2F;idegen&#x2F; $ .&#x2F;development&#x2F;tools&#x2F;idegen&#x2F;idegen.sh  运行后将生成下面几个文件 android.ipr (IntelliJ &#x2F; Android Studio) android.iml (In">
 <meta property="og:type" content="article">
 <meta property="og:title" content="调试AOSP Java 代码">
 <meta property="og:url" content="https://usmacd.com/cn/debug_aosp_java_code/index.html">
 <meta property="og:site_name" content="安全代码">
-<meta property="og:description" content="下载 Android 源代码，编译 12345$ source build&#x2F;envsetup.sh$ lunch$ make$ mmm development&#x2F;tools&#x2F;idegen&#x2F;$ .&#x2F;development&#x2F;tools&#x2F;idegen&#x2F;idegen.sh  运行后将生成下面几个文件 123android.ipr (IntelliJ &#x2F; Android Studio)android.iml">
+<meta property="og:description" content="下载 Android 源代码，编译 $ source build&#x2F;envsetup.sh $ lunch $ make $ mmm development&#x2F;tools&#x2F;idegen&#x2F; $ .&#x2F;development&#x2F;tools&#x2F;idegen&#x2F;idegen.sh  运行后将生成下面几个文件 android.ipr (IntelliJ &#x2F; Android Studio) android.iml (In">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-09-06T03:00:51.339Z">
 <meta property="article:modified_time" content="2023-09-06T03:00:51.339Z">
@@ -289,7 +289,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          273 字
+          272 字
         
       </span>
     
@@ -352,10 +352,16 @@
               <div class="markdown-body">
                 
                 <p>下载 Android 源代码，编译</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ <span class="hljs-built_in">source</span> build/envsetup.sh<br>$ lunch<br>$ make<br>$ mmm development/tools/idegen/<br>$ ./development/tools/idegen/idegen.sh<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs bash">$ <span class="hljs-built_in">source</span> build/envsetup.sh
+$ lunch
+$ make
+$ mmm development/tools/idegen/
+$ ./development/tools/idegen/idegen.sh</code></pre></div>
 
 <p>运行后将生成下面几个文件</p>
-<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs scss">android<span class="hljs-selector-class">.ipr</span> (IntelliJ / Android Studio)<br>android<span class="hljs-selector-class">.iml</span> (IntelliJ / Android Studio)<br><span class="hljs-selector-class">.classpath</span>  (Eclipse)<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs scss">android<span class="hljs-selector-class">.ipr</span> (IntelliJ / Android Studio)
+android<span class="hljs-selector-class">.iml</span> (IntelliJ / Android Studio)
+<span class="hljs-selector-class">.classpath</span>  (Eclipse)</code></pre></div>
 
 
 <ol>
