@@ -1388,6 +1388,20 @@
 
   
   <url>
+    <loc>https://usmacd.com/tags/linux/</loc>
+    <lastmod>2025-02-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://usmacd.com/tags/Crack/</loc>
+    <lastmod>2025-02-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://usmacd.com/tags/Misc/</loc>
     <lastmod>2025-02-18</lastmod>
     <changefreq>weekly</changefreq>
@@ -1409,14 +1423,7 @@
   </url>
   
   <url>
-    <loc>https://usmacd.com/tags/Crack/</loc>
-    <lastmod>2025-02-18</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://usmacd.com/tags/linux/</loc>
+    <loc>https://usmacd.com/tags/Android/</loc>
     <lastmod>2025-02-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1430,7 +1437,7 @@
   </url>
   
   <url>
-    <loc>https://usmacd.com/tags/Android/</loc>
+    <loc>https://usmacd.com/tags/Malware/</loc>
     <lastmod>2025-02-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1438,13 +1445,6 @@
   
   <url>
     <loc>https://usmacd.com/tags/ai/</loc>
-    <lastmod>2025-02-18</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://usmacd.com/tags/Malware/</loc>
     <lastmod>2025-02-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
