@@ -26,8 +26,8 @@
     
       
       
-    <summary type="html">&lt;p&gt;有用户提出给 Ollama API 添加认证的需求 &lt;a href=&quot;https://github.com/ollama/ollama/issues/1053&quot;&gt;Requesting support for basic auth or API key authentication&lt;/a&gt;， Ollama 官方没有处理，所以在默认设置下 Ollama 存在未授权访问问题。&lt;/p&gt;
-&lt;p&gt;参见：</summary>
+    <summary type="html">&lt;p&gt;Ollama 是一个简单易用的本地大模型运行框架，它可以让你在本地电脑上轻松运行和管理各种大语言模型。&lt;br&gt;Github 地址：&lt;a href=&quot;https://github.com/ollama/ollama&quot;&gt;https://github.com/ollama/ollama&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;有用户提出给 Ollama API 添加认证的需求 &lt;a href=&quot;https://gi</summary>
       
     
     
