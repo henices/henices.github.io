@@ -9,8 +9,31 @@
     <atom:link href="https://usmacd.com/rss.xml" rel="self" type="application/rss+xml"/>
     
     <description></description>
-    <pubDate>Mon, 17 Feb 2025 16:00:00 GMT</pubDate>
+    <pubDate>Wed, 19 Feb 2025 16:00:00 GMT</pubDate>
     <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>Ollama 的未授权访问问题</title>
+      <link>https://usmacd.com/cn/ollama_unauthenticated/</link>
+      <guid>https://usmacd.com/cn/ollama_unauthenticated/</guid>
+      <pubDate>Wed, 19 Feb 2025 16:00:00 GMT</pubDate>
+      
+        
+        
+      <description>&lt;p&gt;有用户提出给 Ollama API 添加认证的需求 &lt;a href=&quot;https://github.com/ollama/ollama/issues/1053&quot;&gt;Requesting support for basic auth or API key authentication&lt;/a&gt;， Ollama 官方没有处理，所以在默认设置下 Ollama 存在未授权访问问题。&lt;/p&gt;
+&lt;p&gt;参见：</description>
+        
+      
+      
+      
+      
+      
+      <category domain="https://usmacd.com/tags/Security/">Security</category>
+      
+      
+      <comments>https://usmacd.com/cn/ollama_unauthenticated/#disqus_thread</comments>
+      
+    </item>
     
     <item>
       <title>一个永无止境的纯文本生产力工具</title>
@@ -226,29 +249,6 @@
       
       
       <comments>https://usmacd.com/cn/andorid_disable_Phantom_Process_Killer/#disqus_thread</comments>
-      
-    </item>
-    
-    <item>
-      <title>解决 Fedora Linux WPS 中文乱码问题</title>
-      <link>https://usmacd.com/cn/wps_fedora_linux_chinese_bad_char/</link>
-      <guid>https://usmacd.com/cn/wps_fedora_linux_chinese_bad_char/</guid>
-      <pubDate>Mon, 18 Nov 2024 16:00:00 GMT</pubDate>
-      
-        
-        
-      <description>&lt;p&gt;不知从哪个版本开始，Fedora Linux 上的 wps 字体乱码，基本处于不可用状态。最近，又遇上要打开 Office 文件的需求，研究了一下解决的方法。&lt;/p&gt;
-&lt;h2 id=&quot;安装缺少的字体，wps-可能没有某些字体的版权&quot;&gt;&lt;a href=&quot;#安装缺少的字体，wps-可能没有某些字体的版权&quot; class=&quot;headerlink&quot; title=&quot;安装缺少的字体，wps 可能没有某些字</description>
-        
-      
-      
-      
-      
-      
-      <category domain="https://usmacd.com/tags/linux/">linux</category>
-      
-      
-      <comments>https://usmacd.com/cn/wps_fedora_linux_chinese_bad_char/#disqus_thread</comments>
       
     </item>
     
