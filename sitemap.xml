@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://usmacd.com/cn/jishufenxi/</loc>
+    
+    <lastmod>2025-02-23</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://usmacd.com/cn/task_management_7_tips/</loc>
     
     <lastmod>2025-02-22</lastmod>
@@ -32,15 +41,6 @@
     <loc>https://usmacd.com/cn/single_txt_productive_tool/</loc>
     
     <lastmod>2025-02-17</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://usmacd.com/cn/jishufenxi/</loc>
-    
-    <lastmod>2025-02-09</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
