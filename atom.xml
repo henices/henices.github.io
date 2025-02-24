@@ -6,7 +6,7 @@
   <link href="https://usmacd.com/atom.xml" rel="self"/>
   
   <link href="https://usmacd.com/"/>
-  <updated>2025-02-20T16:00:00.000Z</updated>
+  <updated>2025-02-22T16:00:00.000Z</updated>
   <id>https://usmacd.com/</id>
   
   <author>
@@ -15,6 +15,28 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>7个高效任务管理技巧，让你告别忙乱人生</title>
+    <link href="https://usmacd.com/cn/task_management_7_tips/"/>
+    <id>https://usmacd.com/cn/task_management_7_tips/</id>
+    <published>2025-02-22T16:00:00.000Z</published>
+    <updated>2025-02-22T16:00:00.000Z</updated>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;在上篇文章《一个永无止境的纯文本生产力工具》中，Jeff Huang教授分享了他使用UltraEdit手写51,690行纯文本文件作为生产力工具的经验，这一实践持续了14年。&lt;/p&gt;
+&lt;p&gt;仔细观察这个纯文本文件，我们可以发现它本质上是一个任务管理工具。Jeff Huang的.txt工作流可以简化为三个核心步骤：记录任务、选择要完成的任务、记录任务完成情况。&lt;/p&gt;
+&lt;p&gt;虽然多数人都使用任</summary>
+      
+    
+    
+    
+    
+    <category term="曼福吉的分享" scheme="https://usmacd.com/tags/%E6%9B%BC%E7%A6%8F%E5%90%89%E7%9A%84%E5%88%86%E4%BA%AB/"/>
+    
+  </entry>
   
   <entry>
     <title>如何思考</title>
@@ -213,30 +235,6 @@
     
     
     <category term="Android" scheme="https://usmacd.com/tags/Android/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>旧文：拓展训练心得</title>
-    <link href="https://usmacd.com/cn/some_thoughts/"/>
-    <id>https://usmacd.com/cn/some_thoughts/</id>
-    <published>2024-12-04T16:00:00.000Z</published>
-    <updated>2024-12-04T16:00:00.000Z</updated>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;转眼间拓展训练已经结束快一周的时间了。但是其中的很多经历或许一辈子也忘记不了，我忘记不了火箭队亲爱的队友，也忘记不了这两天的艰辛。&lt;/p&gt;
-&lt;p&gt;拓展训练的项目不是很多，但都很有特点。这次我们的拓展主要的目的是团队融炼，培养团队的协作能力，锻炼自我的韧性，挑战自我，挑战极限。&lt;/p&gt;
-&lt;p&gt;训练的时间安排的很紧，即使难度很大的项目也只是安排了一个小时左右的时间，要在这么短的时间内高效地完成项</summary>
-      
-    
-    
-    
-    
-    <category term="Misc" scheme="https://usmacd.com/tags/Misc/"/>
-    
-    <category term="曼福吉的分享" scheme="https://usmacd.com/tags/%E6%9B%BC%E7%A6%8F%E5%90%89%E7%9A%84%E5%88%86%E4%BA%AB/"/>
     
   </entry>
   

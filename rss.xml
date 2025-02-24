@@ -9,8 +9,32 @@
     <atom:link href="https://usmacd.com/rss.xml" rel="self" type="application/rss+xml"/>
     
     <description></description>
-    <pubDate>Thu, 20 Feb 2025 16:00:00 GMT</pubDate>
+    <pubDate>Sat, 22 Feb 2025 16:00:00 GMT</pubDate>
     <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>7个高效任务管理技巧，让你告别忙乱人生</title>
+      <link>https://usmacd.com/cn/task_management_7_tips/</link>
+      <guid>https://usmacd.com/cn/task_management_7_tips/</guid>
+      <pubDate>Sat, 22 Feb 2025 16:00:00 GMT</pubDate>
+      
+        
+        
+      <description>&lt;p&gt;在上篇文章《一个永无止境的纯文本生产力工具》中，Jeff Huang教授分享了他使用UltraEdit手写51,690行纯文本文件作为生产力工具的经验，这一实践持续了14年。&lt;/p&gt;
+&lt;p&gt;仔细观察这个纯文本文件，我们可以发现它本质上是一个任务管理工具。Jeff Huang的.txt工作流可以简化为三个核心步骤：记录任务、选择要完成的任务、记录任务完成情况。&lt;/p&gt;
+&lt;p&gt;虽然多数人都使用任</description>
+        
+      
+      
+      
+      
+      
+      <category domain="https://usmacd.com/tags/%E6%9B%BC%E7%A6%8F%E5%90%89%E7%9A%84%E5%88%86%E4%BA%AB/">曼福吉的分享</category>
+      
+      
+      <comments>https://usmacd.com/cn/task_management_7_tips/#disqus_thread</comments>
+      
+    </item>
     
     <item>
       <title>如何思考</title>
@@ -227,32 +251,6 @@
       
       
       <comments>https://usmacd.com/cn/fcitx5-android/#disqus_thread</comments>
-      
-    </item>
-    
-    <item>
-      <title>旧文：拓展训练心得</title>
-      <link>https://usmacd.com/cn/some_thoughts/</link>
-      <guid>https://usmacd.com/cn/some_thoughts/</guid>
-      <pubDate>Wed, 04 Dec 2024 16:00:00 GMT</pubDate>
-      
-        
-        
-      <description>&lt;p&gt;转眼间拓展训练已经结束快一周的时间了。但是其中的很多经历或许一辈子也忘记不了，我忘记不了火箭队亲爱的队友，也忘记不了这两天的艰辛。&lt;/p&gt;
-&lt;p&gt;拓展训练的项目不是很多，但都很有特点。这次我们的拓展主要的目的是团队融炼，培养团队的协作能力，锻炼自我的韧性，挑战自我，挑战极限。&lt;/p&gt;
-&lt;p&gt;训练的时间安排的很紧，即使难度很大的项目也只是安排了一个小时左右的时间，要在这么短的时间内高效地完成项</description>
-        
-      
-      
-      
-      
-      
-      <category domain="https://usmacd.com/tags/Misc/">Misc</category>
-      
-      <category domain="https://usmacd.com/tags/%E6%9B%BC%E7%A6%8F%E5%90%89%E7%9A%84%E5%88%86%E4%BA%AB/">曼福吉的分享</category>
-      
-      
-      <comments>https://usmacd.com/cn/some_thoughts/#disqus_thread</comments>
       
     </item>
     
