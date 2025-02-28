@@ -6,7 +6,7 @@
   <link href="https://usmacd.com/atom.xml" rel="self"/>
   
   <link href="https://usmacd.com/"/>
-  <updated>2025-02-22T16:00:00.000Z</updated>
+  <updated>2025-02-27T16:00:00.000Z</updated>
   <id>https://usmacd.com/</id>
   
   <author>
@@ -15,6 +15,27 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>中年人的成长指南：掌握这8个原则，让你的人生开挂</title>
+    <link href="https://usmacd.com/cn/seven_tips_for_growth/"/>
+    <id>https://usmacd.com/cn/seven_tips_for_growth/</id>
+    <published>2025-02-27T16:00:00.000Z</published>
+    <updated>2025-02-27T16:00:00.000Z</updated>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;从小毛老师的故事说起&quot;&gt;&lt;a href=&quot;#从小毛老师的故事说起&quot; class=&quot;headerlink&quot; title=&quot;从小毛老师的故事说起&quot;&gt;&lt;/a&gt;从小毛老师的故事说起&lt;/h2&gt;&lt;blockquote&gt;
+&lt;p&gt;我发现“底层”人有一个特点，得到恩惠理所应当，昨天打扫请了三个阿姨，考虑到晚上走的比较晚，我主动加了100元，而且中途订了麦当劳套餐赠送，结算时，阿姨说她给我家买了一瓶洗</summary>
+      
+    
+    
+    
+    
+    <category term="曼福吉的分享" scheme="https://usmacd.com/tags/%E6%9B%BC%E7%A6%8F%E5%90%89%E7%9A%84%E5%88%86%E4%BA%AB/"/>
+    
+  </entry>
   
   <entry>
     <title>7个高效任务管理技巧，让你告别忙乱人生</title>
@@ -214,27 +235,6 @@
     
     
     <category term="linux" scheme="https://usmacd.com/tags/linux/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Android 上使用 Fcitx5 和 Rime</title>
-    <link href="https://usmacd.com/cn/fcitx5-android/"/>
-    <id>https://usmacd.com/cn/fcitx5-android/</id>
-    <published>2024-12-04T16:00:00.000Z</published>
-    <updated>2024-12-04T16:00:00.000Z</updated>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;我一直在寻找 Rime 输入法的 Android 解决方案，最先是找到 Trime&lt;br&gt;&lt;a href=&quot;https://github.com/osfans/trime&quot;&gt;https://github.com/osfans/trime&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;Trime 我试过三次，有三个不理想的点：&lt;br&gt;1）不够流畅，有卡顿的感觉&lt;br&gt;2）不够稳定，经常出现崩溃&lt;br&gt;3）Trime </summary>
-      
-    
-    
-    
-    
-    <category term="Android" scheme="https://usmacd.com/tags/Android/"/>
     
   </entry>
   
