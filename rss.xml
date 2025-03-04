@@ -9,8 +9,31 @@
     <atom:link href="https://usmacd.com/rss.xml" rel="self" type="application/rss+xml"/>
     
     <description></description>
-    <pubDate>Thu, 27 Feb 2025 16:00:00 GMT</pubDate>
+    <pubDate>Mon, 03 Mar 2025 16:00:00 GMT</pubDate>
     <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>努力的悖论：当坚持不懈成为一种天赋</title>
+      <link>https://usmacd.com/cn/effort_as_talent/</link>
+      <guid>https://usmacd.com/cn/effort_as_talent/</guid>
+      <pubDate>Mon, 03 Mar 2025 16:00:00 GMT</pubDate>
+      
+        
+        
+      <description>&lt;p&gt;“天道酬勤”、“只要努力就会成功”，这些耳熟能详的格言似乎为成功指明了方向。然而，现实却常常令人费解：为何有人能不知疲倦地追逐目标，将努力转化为习惯，而另一些人却在坚持的过程中倍感煎熬，焦虑丛生？答案或许隐藏在一个发人深省的假设中：持续努力的能力，可能并非完全后天习得，而是与生俱来的一种“天赋”。&lt;/p&gt;
+&lt;h2 id=&quot;1-努力背后的神经密码&quot;&gt;&lt;a href=&quot;#1-努力背后的神经密码&quot;</description>
+        
+      
+      
+      
+      
+      
+      <category domain="https://usmacd.com/tags/%E6%9B%BC%E7%A6%8F%E5%90%89%E7%9A%84%E5%88%86%E4%BA%AB/">曼福吉的分享</category>
+      
+      
+      <comments>https://usmacd.com/cn/effort_as_talent/#disqus_thread</comments>
+      
+    </item>
     
     <item>
       <title>中年人的成长指南：掌握这8个原则，让你的人生开挂</title>
@@ -223,34 +246,6 @@
       
       
       <comments>https://usmacd.com/cn/dell_optiplex_tower_plus_7010_ddr5/#disqus_thread</comments>
-      
-    </item>
-    
-    <item>
-      <title>Emoji 在 Fcitx5 提示栏正常显示的字体配置</title>
-      <link>https://usmacd.com/cn/fcitx5_emoji_display/</link>
-      <guid>https://usmacd.com/cn/fcitx5_emoji_display/</guid>
-      <pubDate>Wed, 11 Dec 2024 16:00:00 GMT</pubDate>
-      
-        
-        
-      <description>&lt;p&gt;关于升级大版本的 Linux 发行版，我有个经验，不要太着急升级，至少等2个星期再说。&lt;/p&gt;
-&lt;p&gt;即便如此，还是会遇上各种使用的问题，&lt;/p&gt;
-&lt;p&gt;升级 Fedora 41 后，Color Emoji 无法在 Fcitx5 的输入法提示栏正常显示。&lt;/p&gt;
-&lt;p&gt;上网搜索了一番，估计和字体渲染相关，下面是具体的解决问题方法：&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;安装 Emoji 字体&lt;/li&gt;
-</description>
-        
-      
-      
-      
-      
-      
-      <category domain="https://usmacd.com/tags/linux/">linux</category>
-      
-      
-      <comments>https://usmacd.com/cn/fcitx5_emoji_display/#disqus_thread</comments>
       
     </item>
     
