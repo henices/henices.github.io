@@ -29,8 +29,8 @@
     <summary type="html">&lt;p&gt;2025年更新Chrome后提示某些插件不受支持、需要移除。可不理会，手工重新启用这&lt;br&gt;些插件，但有些烦人。&lt;/p&gt;
 &lt;p&gt;使用Chrome企业策略，可继续开启Chrome对Manifest V2的支持&lt;/p&gt;
 &lt;p&gt;For Windows&lt;/p&gt;
-&lt;p&gt;在管理员级cmd中执行&lt;/p&gt;
-&lt;p&gt;reg.exe add “HKLM&#92;SOFTWARE&#92;Policies&#92;Google&#92;Chrom</summary>
+&lt;p&gt;在管理员级 cmd 中执行&lt;/p&gt;
+&lt;div class=&quot;code-wrapper&quot;&gt;&lt;pre&gt;&lt;code class=&quot;hljs </summary>
       
     
     
