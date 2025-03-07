@@ -6,7 +6,7 @@
   <link href="https://usmacd.com/atom.xml" rel="self"/>
   
   <link href="https://usmacd.com/"/>
-  <updated>2025-03-05T16:00:00.000Z</updated>
+  <updated>2025-03-06T16:00:00.000Z</updated>
   <id>https://usmacd.com/</id>
   
   <author>
@@ -21,16 +21,16 @@
     <link href="https://usmacd.com/cn/chrome_manifest_v2_2025/"/>
     <id>https://usmacd.com/cn/chrome_manifest_v2_2025/</id>
     <published>2025-03-05T16:00:00.000Z</published>
-    <updated>2025-03-05T16:00:00.000Z</updated>
+    <updated>2025-03-06T16:00:00.000Z</updated>
     
     
       
       
-    <summary type="html">&lt;p&gt;2025年更新Chrome后提示某些插件不受支持、需要移除。可不理会，手工重新启用这&lt;br&gt;些插件，但有些烦人。&lt;/p&gt;
+    <summary type="html">&lt;p&gt;2025年更新Chrome后提示某些插件不受支持、需要移除。可不理会，手工重新启用这些插件，但有些烦人。&lt;/p&gt;
 &lt;p&gt;使用Chrome企业策略，可继续开启Chrome对Manifest V2的支持&lt;/p&gt;
 &lt;p&gt;For Windows&lt;/p&gt;
 &lt;p&gt;在管理员级 cmd 中执行&lt;/p&gt;
-&lt;div class=&quot;code-wrapper&quot;&gt;&lt;pre&gt;&lt;code class=&quot;hljs </summary>
+&lt;div class=&quot;code-wrapper&quot;&gt;&lt;pre&gt;&lt;code class=&quot;hljs nix&quot;</summary>
       
     
     

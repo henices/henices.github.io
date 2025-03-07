@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://usmacd.com/cn/luck_and_success/</loc>
+    <loc>https://usmacd.com/cn/chrome_manifest_v2_2025/</loc>
     
     <lastmod>2025-03-06</lastmod>
     
@@ -11,9 +11,9 @@
   </url>
   
   <url>
-    <loc>https://usmacd.com/cn/chrome_manifest_v2_2025/</loc>
+    <loc>https://usmacd.com/cn/luck_and_success/</loc>
     
-    <lastmod>2025-03-05</lastmod>
+    <lastmod>2025-03-06</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -1456,14 +1456,14 @@
   </url>
   
   <url>
-    <loc>https://usmacd.com/tags/Misc/</loc>
+    <loc>https://usmacd.com/tags/Archives/</loc>
     <lastmod>2025-03-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://usmacd.com/tags/Archives/</loc>
+    <loc>https://usmacd.com/tags/Misc/</loc>
     <lastmod>2025-03-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>

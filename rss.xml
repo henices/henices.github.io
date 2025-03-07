@@ -9,7 +9,7 @@
     <atom:link href="https://usmacd.com/rss.xml" rel="self" type="application/rss+xml"/>
     
     <description></description>
-    <pubDate>Wed, 05 Mar 2025 16:00:00 GMT</pubDate>
+    <pubDate>Thu, 06 Mar 2025 16:00:00 GMT</pubDate>
     <generator>http://hexo.io/</generator>
     
     <item>
@@ -20,11 +20,11 @@
       
         
         
-      <description>&lt;p&gt;2025年更新Chrome后提示某些插件不受支持、需要移除。可不理会，手工重新启用这&lt;br&gt;些插件，但有些烦人。&lt;/p&gt;
+      <description>&lt;p&gt;2025年更新Chrome后提示某些插件不受支持、需要移除。可不理会，手工重新启用这些插件，但有些烦人。&lt;/p&gt;
 &lt;p&gt;使用Chrome企业策略，可继续开启Chrome对Manifest V2的支持&lt;/p&gt;
 &lt;p&gt;For Windows&lt;/p&gt;
 &lt;p&gt;在管理员级 cmd 中执行&lt;/p&gt;
-&lt;div class=&quot;code-wrapper&quot;&gt;&lt;pre&gt;&lt;code class=&quot;hljs </description>
+&lt;div class=&quot;code-wrapper&quot;&gt;&lt;pre&gt;&lt;code class=&quot;hljs nix&quot;</description>
         
       
       
