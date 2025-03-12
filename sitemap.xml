@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://usmacd.com/cn/thinking-logic-generative-ai-era/</loc>
+    
+    <lastmod>2025-03-11</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://usmacd.com/cn/luck_and_success/</loc>
     
     <lastmod>2025-03-09</lastmod>
@@ -1442,6 +1451,20 @@
 
   
   <url>
+    <loc>https://usmacd.com/tags/linux/</loc>
+    <lastmod>2025-03-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://usmacd.com/tags/Crack/</loc>
+    <lastmod>2025-03-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://usmacd.com/tags/Misc/</loc>
     <lastmod>2025-03-12</lastmod>
     <changefreq>weekly</changefreq>
@@ -1463,13 +1486,6 @@
   </url>
   
   <url>
-    <loc>https://usmacd.com/tags/Crack/</loc>
-    <lastmod>2025-03-12</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://usmacd.com/tags/Android/</loc>
     <lastmod>2025-03-12</lastmod>
     <changefreq>weekly</changefreq>
@@ -1478,13 +1494,6 @@
   
   <url>
     <loc>https://usmacd.com/tags/investment/</loc>
-    <lastmod>2025-03-12</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://usmacd.com/tags/linux/</loc>
     <lastmod>2025-03-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
