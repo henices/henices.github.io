@@ -9,8 +9,33 @@
     <atom:link href="https://usmacd.com/rss.xml" rel="self" type="application/rss+xml"/>
     
     <description></description>
-    <pubDate>Mon, 07 Apr 2025 16:00:00 GMT</pubDate>
+    <pubDate>Wed, 16 Apr 2025 16:00:00 GMT</pubDate>
     <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>一个文章总结提示词</title>
+      <link>https://usmacd.com/cn/ai_article_summary_prompt/</link>
+      <guid>https://usmacd.com/cn/ai_article_summary_prompt/</guid>
+      <pubDate>Wed, 16 Apr 2025 16:00:00 GMT</pubDate>
+      
+        
+        
+      <description>&lt;p&gt;分享一个文章总结提示词，在 Reddit 用户 custodiam99 的提示词上修改而来，我用了一段时间感觉挺好。&lt;/p&gt;
+&lt;div class=&quot;code-wrapper&quot;&gt;&lt;pre&gt;&lt;code class=&quot;hljs markdown&quot;&gt;CAUTION: PROVIDE YOUR ENTIRE RESPONSE IN CHINESE.
+
+For any text analysis ta</description>
+        
+      
+      
+      
+      
+      
+      <category domain="https://usmacd.com/tags/ai/">ai</category>
+      
+      
+      <comments>https://usmacd.com/cn/ai_article_summary_prompt/#disqus_thread</comments>
+      
+    </item>
     
     <item>
       <title>1%的坚持，37倍的人生：复利思维如何重塑你的财富、关系与健康</title>
@@ -232,30 +257,6 @@
       
       
       <comments>https://usmacd.com/cn/ollama_unauthenticated/#disqus_thread</comments>
-      
-    </item>
-    
-    <item>
-      <title>一个永无止境的纯文本生产力工具</title>
-      <link>https://usmacd.com/cn/single_txt_productive_tool/</link>
-      <guid>https://usmacd.com/cn/single_txt_productive_tool/</guid>
-      <pubDate>Sun, 16 Feb 2025 16:00:00 GMT</pubDate>
-      
-        
-        
-      <description>&lt;p&gt;Jeff Huang 是布朗大学计算机科学系副教授兼副系主任，研究领域是人机交互，重点是根据用户行为数据构建个性化系统。他在 14 年的时间里，使用 UltraEdit 手写一个 51,690 行的纯文本文件，作为其生产力工具。&lt;/p&gt;
-&lt;p&gt;这个庞大的纯文本文档(.txt)记录了他作为教授所做的一切，他遇到的几乎每个人，以及关于他们讨论的内容或想法的笔记。&lt;/p&gt;
-&lt;p&gt;我阅读 Jeff </description>
-        
-      
-      
-      
-      
-      
-      <category domain="https://usmacd.com/tags/%E6%9B%BC%E7%A6%8F%E5%90%89%E7%9A%84%E5%88%86%E4%BA%AB/">曼福吉的分享</category>
-      
-      
-      <comments>https://usmacd.com/cn/single_txt_productive_tool/#disqus_thread</comments>
       
     </item>
     
