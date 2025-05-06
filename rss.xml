@@ -9,8 +9,33 @@
     <atom:link href="https://usmacd.com/rss.xml" rel="self" type="application/rss+xml"/>
     
     <description></description>
-    <pubDate>Wed, 16 Apr 2025 16:00:00 GMT</pubDate>
+    <pubDate>Tue, 06 May 2025 16:00:00 GMT</pubDate>
     <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>如何保持身体健康</title>
+      <link>https://usmacd.com/cn/keep_health/</link>
+      <guid>https://usmacd.com/cn/keep_health/</guid>
+      <pubDate>Tue, 06 May 2025 16:00:00 GMT</pubDate>
+      
+        
+        
+      <description>&lt;p&gt;From Gemini:&lt;/p&gt;
+&lt;p&gt;好的，我们来详细展开讨论维持身体健康的四大核心支柱：营养、运动、睡眠和压力管理，包括它们的细节和一些最佳实践建议。请注意，这些是通用建议，个体差异很大，最佳方案可能需要根据个人情况调整，并在必要时咨询专业人士（医生、注册营养师、认证教练、心理咨询师等）。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;1. 合理营养 (Nutrition)&lt;/strong&gt;&lt;/p&gt;
+&lt;</description>
+        
+      
+      
+      
+      
+      
+      <category domain="https://usmacd.com/tags/Life/">Life</category>
+      
+      
+      <comments>https://usmacd.com/cn/keep_health/#disqus_thread</comments>
+      
+    </item>
     
     <item>
       <title>一个文章总结提示词</title>
@@ -232,31 +257,6 @@ For any text analysis ta</description>
       
       
       <comments>https://usmacd.com/cn/how_to_think/#disqus_thread</comments>
-      
-    </item>
-    
-    <item>
-      <title>Ollama 的未授权访问问题</title>
-      <link>https://usmacd.com/cn/ollama_unauthenticated/</link>
-      <guid>https://usmacd.com/cn/ollama_unauthenticated/</guid>
-      <pubDate>Wed, 19 Feb 2025 16:00:00 GMT</pubDate>
-      
-        
-        
-      <description>&lt;p&gt;Ollama 是一个简单易用的本地大模型运行框架，它可以让你在本地电脑上轻松运行和管理各种大语言模型。&lt;br&gt;Github 地址：&lt;a href=&quot;https://github.com/ollama/ollama&quot;&gt;https://github.com/ollama/ollama&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;有用户提出给 Ollama API 添加认证的需求 &lt;a href=&quot;https://gi</description>
-        
-      
-      
-      
-      
-      
-      <category domain="https://usmacd.com/tags/Security/">Security</category>
-      
-      <category domain="https://usmacd.com/tags/ai/">ai</category>
-      
-      
-      <comments>https://usmacd.com/cn/ollama_unauthenticated/#disqus_thread</comments>
       
     </item>
     
