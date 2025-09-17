@@ -6,7 +6,7 @@
   <link href="https://usmacd.com/atom.xml" rel="self"/>
   
   <link href="https://usmacd.com/"/>
-  <updated>2025-08-28T16:00:00.000Z</updated>
+  <updated>2025-09-16T16:00:00.000Z</updated>
   <id>https://usmacd.com/</id>
   
   <author>
@@ -15,6 +15,27 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>一份书单</title>
+    <link href="https://usmacd.com/cn/books/"/>
+    <id>https://usmacd.com/cn/books/</id>
+    <published>2025-09-16T16:00:00.000Z</published>
+    <updated>2025-09-16T16:00:00.000Z</updated>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;书单中的书目没有去重，我是故意的，书籍出现的次数越多，就越有可能是好书。&lt;/p&gt;
+&lt;h2 id=&quot;01-纳瓦尔的书单-（来自《纳瓦尔宝典》）&quot;&gt;&lt;a href=&quot;#01-纳瓦尔的书单-（来自《纳瓦尔宝典》）&quot; class=&quot;headerlink&quot; title=&quot;01&amp;#x2F; 纳瓦尔的书单 （来自《纳瓦尔宝典》）&quot;&gt;&lt;/a&gt;01&amp;#x2F; 纳瓦尔的书单 （来自《纳瓦尔宝典》）&lt;/h2&gt;&lt;</summary>
+      
+    
+    
+    
+    
+    <category term="曼福吉的分享" scheme="https://usmacd.com/tags/%E6%9B%BC%E7%A6%8F%E5%90%89%E7%9A%84%E5%88%86%E4%BA%AB/"/>
+    
+  </entry>
   
   <entry>
     <title>如何在 macOS 中连接 VNC 服务器</title>
@@ -208,28 +229,6 @@ For any text analysis ta</summary>
       
     <summary type="html">&lt;h2 id=&quot;从小毛老师的故事说起&quot;&gt;&lt;a href=&quot;#从小毛老师的故事说起&quot; class=&quot;headerlink&quot; title=&quot;从小毛老师的故事说起&quot;&gt;&lt;/a&gt;从小毛老师的故事说起&lt;/h2&gt;&lt;blockquote&gt;
 &lt;p&gt;我发现“底层”人有一个特点，得到恩惠理所应当，昨天打扫请了三个阿姨，考虑到晚上走的比较晚，我主动加了100元，而且中途订了麦当劳套餐赠送，结算时，阿姨说她给我家买了一瓶洗</summary>
-      
-    
-    
-    
-    
-    <category term="曼福吉的分享" scheme="https://usmacd.com/tags/%E6%9B%BC%E7%A6%8F%E5%90%89%E7%9A%84%E5%88%86%E4%BA%AB/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>7个高效任务管理技巧，让你告别忙乱人生</title>
-    <link href="https://usmacd.com/cn/task_management_7_tips/"/>
-    <id>https://usmacd.com/cn/task_management_7_tips/</id>
-    <published>2025-02-22T16:00:00.000Z</published>
-    <updated>2025-02-22T16:00:00.000Z</updated>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;在上篇文章《一个永无止境的纯文本生产力工具》中，Jeff Huang教授分享了他使用UltraEdit手写51,690行纯文本文件作为生产力工具的经验，这一实践持续了14年。&lt;/p&gt;
-&lt;p&gt;仔细观察这个纯文本文件，我们可以发现它本质上是一个任务管理工具。Jeff Huang的.txt工作流可以简化为三个核心步骤：记录任务、选择要完成的任务、记录任务完成情况。&lt;/p&gt;
-&lt;p&gt;虽然多数人都使用任</summary>
       
     
     

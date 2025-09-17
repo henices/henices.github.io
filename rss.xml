@@ -9,8 +9,31 @@
     <atom:link href="https://usmacd.com/rss.xml" rel="self" type="application/rss+xml"/>
     
     <description></description>
-    <pubDate>Thu, 28 Aug 2025 16:00:00 GMT</pubDate>
+    <pubDate>Tue, 16 Sep 2025 16:00:00 GMT</pubDate>
     <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>一份书单</title>
+      <link>https://usmacd.com/cn/books/</link>
+      <guid>https://usmacd.com/cn/books/</guid>
+      <pubDate>Tue, 16 Sep 2025 16:00:00 GMT</pubDate>
+      
+        
+        
+      <description>&lt;p&gt;书单中的书目没有去重，我是故意的，书籍出现的次数越多，就越有可能是好书。&lt;/p&gt;
+&lt;h2 id=&quot;01-纳瓦尔的书单-（来自《纳瓦尔宝典》）&quot;&gt;&lt;a href=&quot;#01-纳瓦尔的书单-（来自《纳瓦尔宝典》）&quot; class=&quot;headerlink&quot; title=&quot;01&amp;#x2F; 纳瓦尔的书单 （来自《纳瓦尔宝典》）&quot;&gt;&lt;/a&gt;01&amp;#x2F; 纳瓦尔的书单 （来自《纳瓦尔宝典》）&lt;/h2&gt;&lt;</description>
+        
+      
+      
+      
+      
+      
+      <category domain="https://usmacd.com/tags/%E6%9B%BC%E7%A6%8F%E5%90%89%E7%9A%84%E5%88%86%E4%BA%AB/">曼福吉的分享</category>
+      
+      
+      <comments>https://usmacd.com/cn/books/#disqus_thread</comments>
+      
+    </item>
     
     <item>
       <title>如何在 macOS 中连接 VNC 服务器</title>
@@ -228,30 +251,6 @@ For any text analysis ta</description>
       
       
       <comments>https://usmacd.com/cn/seven_tips_for_growth/#disqus_thread</comments>
-      
-    </item>
-    
-    <item>
-      <title>7个高效任务管理技巧，让你告别忙乱人生</title>
-      <link>https://usmacd.com/cn/task_management_7_tips/</link>
-      <guid>https://usmacd.com/cn/task_management_7_tips/</guid>
-      <pubDate>Sat, 22 Feb 2025 16:00:00 GMT</pubDate>
-      
-        
-        
-      <description>&lt;p&gt;在上篇文章《一个永无止境的纯文本生产力工具》中，Jeff Huang教授分享了他使用UltraEdit手写51,690行纯文本文件作为生产力工具的经验，这一实践持续了14年。&lt;/p&gt;
-&lt;p&gt;仔细观察这个纯文本文件，我们可以发现它本质上是一个任务管理工具。Jeff Huang的.txt工作流可以简化为三个核心步骤：记录任务、选择要完成的任务、记录任务完成情况。&lt;/p&gt;
-&lt;p&gt;虽然多数人都使用任</description>
-        
-      
-      
-      
-      
-      
-      <category domain="https://usmacd.com/tags/%E6%9B%BC%E7%A6%8F%E5%90%89%E7%9A%84%E5%88%86%E4%BA%AB/">曼福吉的分享</category>
-      
-      
-      <comments>https://usmacd.com/cn/task_management_7_tips/#disqus_thread</comments>
       
     </item>
     
