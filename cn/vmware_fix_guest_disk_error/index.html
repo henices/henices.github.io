@@ -289,7 +289,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          222 字
+          358 字
         
       </span>
     
@@ -300,7 +300,7 @@
         
         
         
-          2 分钟
+          3 分钟
         
       </span>
     
@@ -372,7 +372,45 @@ See <span class="hljs-string">&quot;man sudo_root&quot;</span> <span class="hljs
 /swapfile       none    swap    sw      <span class="hljs-number">0</span>       <span class="hljs-number">0</span></code></pre></div>
 </li>
 <li><p>修复 <code>/dev/sda3</code> 分区： <code>sudo fsck /dev/sda3</code> ，修复完成后重启，正常进入 ubuntu guest 系统。</p>
-</li>
+<div class="code-wrapper"><pre><code class="hljs routeros">zz@VM:/$ sudo fsck /dev/sda3
+fsck <span class="hljs-keyword">from</span> util-linux 2.39.3
+e2fsck 1.47.0 (5-Feb-2023)
+/dev/sda3 contains a file<span class="hljs-built_in"> system </span>with errors, check forced.
+Pass 1: Checking inodes, blocks, <span class="hljs-keyword">and</span> sizes
+Inodes that were part of a corrupted orphan linked list found.  Fix&lt;y&gt;? <span class="hljs-literal">yes</span>
+Inode 23855356 was part of the orphaned inode list.  FIXED.
+Inode 23870520 was part of the orphaned inode list.  FIXED.
+Pass 2: Checking directory structure
+Pass 3: Checking directory connectivity
+Pass 4: Checking reference counts
+Pass 5: Checking<span class="hljs-built_in"> group </span>summary information
+Block bitmap differences:  -(39202343--39202351) -(50175535--50175536)
+Fix&lt;y&gt;? <span class="hljs-literal">yes</span>
+Free blocks count wrong <span class="hljs-keyword">for</span><span class="hljs-built_in"> group </span>#1196 (627, <span class="hljs-attribute">counted</span>=636).
+Fix&lt;y&gt;? <span class="hljs-literal">yes</span>
+Free blocks count wrong <span class="hljs-keyword">for</span><span class="hljs-built_in"> group </span>#1531 (182, <span class="hljs-attribute">counted</span>=184).
+Fix&lt;y&gt;? <span class="hljs-literal">yes</span>
+Free blocks count wrong (53847217, <span class="hljs-attribute">counted</span>=53846886).
+Fix&lt;y&gt;? <span class="hljs-literal">yes</span>
+Inode bitmap differences:  -23855147 -23855356 -23870520
+Fix&lt;y&gt;? <span class="hljs-literal">yes</span>
+Free inodes count wrong <span class="hljs-keyword">for</span><span class="hljs-built_in"> group </span>#2912 (1, <span class="hljs-attribute">counted</span>=3).
+Fix&lt;y&gt;? <span class="hljs-literal">yes</span>
+Free inodes count wrong <span class="hljs-keyword">for</span><span class="hljs-built_in"> group </span>#2913 (0, <span class="hljs-attribute">counted</span>=1).
+Fix&lt;y&gt;? <span class="hljs-literal">yes</span>
+Free inodes count wrong (25263684, <span class="hljs-attribute">counted</span>=25263646).
+Fix&lt;y&gt;? <span class="hljs-literal">yes</span>
+
+/dev/sda3: ***** FILE<span class="hljs-built_in"> SYSTEM </span>WAS MODIFIED *****
+/dev/sda3: 4473314/29736960 files (0.1% non-contiguous), 65095066/118941952 blocks
+henices@VM:/$
+henices@VM:/$ sudo reboot
+
+Broadcast message <span class="hljs-keyword">from</span> root@VM on pts/1 (Tue 2025-09-23 11:35:12 CST):
+The<span class="hljs-built_in"> system </span>will reboot now!
+
+zz@VM:/$<span class="hljs-built_in"> Connection </span><span class="hljs-keyword">to</span> 192.168.2.128 closed by remote host.<span class="hljs-built_in"></span>
+<span class="hljs-built_in">Connection </span><span class="hljs-keyword">to</span> 192.168.2.128 closed.</code></pre></div></li>
 </ol>
 
                 
