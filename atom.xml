@@ -6,7 +6,7 @@
   <link href="https://usmacd.com/atom.xml" rel="self"/>
   
   <link href="https://usmacd.com/"/>
-  <updated>2025-09-16T16:00:00.000Z</updated>
+  <updated>2025-09-22T16:00:00.000Z</updated>
   <id>https://usmacd.com/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>修复 VMware Workstation Ubuntu Guest 磁盘错误</title>
+    <link href="https://usmacd.com/cn/vmware_fix_guest_disk_error/"/>
+    <id>https://usmacd.com/cn/vmware_fix_guest_disk_error/</id>
+    <published>2025-09-22T16:00:00.000Z</published>
+    <updated>2025-09-22T16:00:00.000Z</updated>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;VMware Workstation 17.6.4 build-24832109 不稳定，几次出错后 Ubuntu Guest 无法正常登录系统。&lt;/p&gt;
+&lt;p&gt;主要异常为：输入用户和密码后卡在 GUI 的登录界面，使用 fsck 修复分区后问题解决，具体步骤如下：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;菜单：VMWare -&amp;gt; 虚拟机 -&amp;gt; SSH -&amp;gt; 连接到 SSH，弹出 </summary>
+      
+    
+    
+    
+    
+    <category term="linux" scheme="https://usmacd.com/tags/linux/"/>
+    
+  </entry>
   
   <entry>
     <title>我整理的一份书单</title>
@@ -208,27 +231,6 @@ For any text analysis ta</summary>
       
     <summary type="html">&lt;p&gt;“天道酬勤”、“只要努力就会成功”，这些耳熟能详的格言似乎为成功指明了方向。然而，现实却常常令人费解：为何有人能不知疲倦地追逐目标，将努力转化为习惯，而另一些人却在坚持的过程中倍感煎熬，焦虑丛生？答案或许隐藏在一个发人深省的假设中：持续努力的能力，可能并非完全后天习得，而是与生俱来的一种“天赋”。&lt;/p&gt;
 &lt;h2 id=&quot;1-努力背后的神经密码&quot;&gt;&lt;a href=&quot;#1-努力背后的神经密码&quot;</summary>
-      
-    
-    
-    
-    
-    <category term="曼福吉的分享" scheme="https://usmacd.com/tags/%E6%9B%BC%E7%A6%8F%E5%90%89%E7%9A%84%E5%88%86%E4%BA%AB/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>中年人的成长指南：掌握这8个原则，让你的人生开挂</title>
-    <link href="https://usmacd.com/cn/seven_tips_for_growth/"/>
-    <id>https://usmacd.com/cn/seven_tips_for_growth/</id>
-    <published>2025-02-27T16:00:00.000Z</published>
-    <updated>2025-02-27T16:00:00.000Z</updated>
-    
-    
-      
-      
-    <summary type="html">&lt;h2 id=&quot;从小毛老师的故事说起&quot;&gt;&lt;a href=&quot;#从小毛老师的故事说起&quot; class=&quot;headerlink&quot; title=&quot;从小毛老师的故事说起&quot;&gt;&lt;/a&gt;从小毛老师的故事说起&lt;/h2&gt;&lt;blockquote&gt;
-&lt;p&gt;我发现“底层”人有一个特点，得到恩惠理所应当，昨天打扫请了三个阿姨，考虑到晚上走的比较晚，我主动加了100元，而且中途订了麦当劳套餐赠送，结算时，阿姨说她给我家买了一瓶洗</summary>
       
     
     
