@@ -29,7 +29,7 @@
 <meta property="og:description" content="早上四哥 (scz) 发了条微博，7-Zip 最近有相关的CVE，CVE-2025-11001、CVE-2025-11002，建议升级到 25.01。 如果使用 Windows 系统，在 https:&#x2F;&#x2F;7-zip.org&#x2F; 下载 7-Zip 25.01，升级安装即可。 在 Linux 系统中 7-zip 的版本比较复杂，关于 p7zip 和 7-zip 可以参考7-zip 官方readme.tx">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-10-12T16:00:00.000Z">
-<meta property="article:modified_time" content="2025-10-12T16:00:00.000Z">
+<meta property="article:modified_time" content="2025-10-13T16:00:00.000Z">
 <meta property="article:author" content="henices">
 <meta property="article:tag" content="linux">
 <meta name="twitter:card" content="summary_large_image">
@@ -289,7 +289,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          765 字
+          799 字
         
       </span>
     
@@ -347,6 +347,14 @@
         <div id="board">
           <article class="post-content mx-auto">
             <h1 id="seo-header">Fedora Linux 升级系统中的 7-Zip</h1>
+            
+              <p id="updated-time" class="note note-info" style="">
+                
+                  
+                    本文最后更新于 2025年10月14日 凌晨
+                  
+                
+              </p>
             
             
               <div class="markdown-body">
@@ -483,6 +491,11 @@ Filename     : /usr/bin/7z
 <div class="code-wrapper"><pre><code class="hljs livecodeserver"><span class="hljs-number">7</span>-Zip plugin: supports <span class="hljs-keyword">the</span> <span class="hljs-number">7</span>-Zip <span class="hljs-built_in">format</span> <span class="hljs-keyword">by</span> <span class="hljs-keyword">using</span> <span class="hljs-keyword">the</span> <span class="hljs-number">7</span>z binary.</code></pre></div>
 
 <p>先这样，目前看系统中缺少 <code>7z.so</code> ，等遇上问题再说。</p>
+<hr>
+<p>2025.10.16 更新： p7zip-plugins 在 <code>dnf up</code> 时会自动安装，只好覆盖 <code>/usr/bin/7z</code> 。</p>
+<div class="code-wrapper"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> <span class="hljs-built_in">cp</span> 7zzs /usr/bin/7z
+<span class="hljs-built_in">sudo</span> <span class="hljs-built_in">cp</span> 7zzs /usr/libexec/p7zip/7z
+<span class="hljs-built_in">sudo</span> <span class="hljs-built_in">rm</span> /usr/libexec/p7zip/7z.so</code></pre></div>
 
                 
               </div>
