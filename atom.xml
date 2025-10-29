@@ -6,7 +6,7 @@
   <link href="https://usmacd.com/atom.xml" rel="self"/>
   
   <link href="https://usmacd.com/"/>
-  <updated>2025-10-13T16:00:00.000Z</updated>
+  <updated>2025-10-28T16:00:00.000Z</updated>
   <id>https://usmacd.com/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>纳瓦尔的阅读方法</title>
+    <link href="https://usmacd.com/cn/naval_reading/"/>
+    <id>https://usmacd.com/cn/naval_reading/</id>
+    <published>2025-10-28T16:00:00.000Z</published>
+    <updated>2025-10-28T16:00:00.000Z</updated>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;阅读对于现代人越来越难了，我们的大脑接受了互相矛盾的两种训练。&lt;/p&gt;
+&lt;p&gt;一方面，我们的注意力持续时间越来越短。在海量信息的冲击下，我们希望快速略读，总结要点，直奔主题。&lt;/p&gt;
+&lt;p&gt;另一方面，我们从小接受的教育是书必须读完一本再读下一本。&lt;/p&gt;
+&lt;p&gt;我认识的很多人都被卡在某一本书上，无法开始阅读下一本书。&lt;/p&gt;
+&lt;p&gt;推特，脸书，降低了我的阅读能力，但也大大提升了我的写作能力。</summary>
+      
+    
+    
+    
+    
+    <category term="曼福吉的分享" scheme="https://usmacd.com/tags/%E6%9B%BC%E7%A6%8F%E5%90%89%E7%9A%84%E5%88%86%E4%BA%AB/"/>
+    
+  </entry>
   
   <entry>
     <title>Fedora Linux 升级系统中的 7-Zip</title>
@@ -218,26 +242,6 @@ For any text analysis ta</summary>
     <category term="ai" scheme="https://usmacd.com/tags/ai/"/>
     
     <category term="曼福吉的分享" scheme="https://usmacd.com/tags/%E6%9B%BC%E7%A6%8F%E5%90%89%E7%9A%84%E5%88%86%E4%BA%AB/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>2025年Chrome继续使用旧版插件</title>
-    <link href="https://usmacd.com/cn/chrome_manifest_v2_2025/"/>
-    <id>https://usmacd.com/cn/chrome_manifest_v2_2025/</id>
-    <published>2025-03-05T16:00:00.000Z</published>
-    <updated>2025-08-05T16:00:00.000Z</updated>
-    
-    
-      
-      
-    <summary type="html">&lt;h2 id=&quot;0-开启企业策略继续使用-Mainifest-V2&quot;&gt;&lt;a href=&quot;#0-开启企业策略继续使用-Mainifest-V2&quot; class=&quot;headerlink&quot; title=&quot;0. 开启企业策略继续使用 Mainifest V2&quot;&gt;&lt;/a&gt;0. 开启企业策略继续使用 Mainifest V2&lt;/h2&gt;&lt;p&gt;2025年更新Chrome后提示某些插件不受支持、需要移除。可不理会，手</summary>
-      
-    
-    
-    
-    
-    <category term="Software" scheme="https://usmacd.com/tags/Software/"/>
     
   </entry>
   
