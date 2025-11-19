@@ -1,373 +1,176 @@
-
-
-<!DOCTYPE html>
-<html lang="zh-CN" data-default-color-scheme=auto>
-
-
-
-<head>
-  <meta charset="UTF-8">
-
-  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
-  <link rel="icon" href="/img/fluid.png">
-  
-
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
-  <meta http-equiv="x-ua-compatible" content="ie=edge">
-  
-    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
-  
-  <meta name="theme-color" content="#2f4154">
-  <meta name="author" content="henices">
-  <meta name="keywords" content="">
-  
-    <meta name="description" content="下载源码先在 https:&#x2F;&#x2F;pdfium.googlesource.com&#x2F;pdfium&#x2F; 下载源码. mkdir repo cd repo gclient config --unmanaged https:&#x2F;&#x2F;pdfium.googlesource.com&#x2F;pdfium.git gclient sync cd pdfium  gclient 命令在 depot_tools 中, 需要安装 参考">
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>使用 afl-fuzz fuzz pdfium | 安全代码</title><meta name="author" content="henices"><meta name="copyright" content="henices"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="下载源码先在 https:&#x2F;&#x2F;pdfium.googlesource.com&#x2F;pdfium&#x2F; 下载源码. 12345mkdir repocd repogclient config --unmanaged https:&#x2F;&#x2F;pdfium.googlesource.com&#x2F;pdfium.gitgclient synccd pdfium  gclient 命令在 depot_tools 中, 需要安装 参">
 <meta property="og:type" content="article">
 <meta property="og:title" content="使用 afl-fuzz fuzz pdfium">
 <meta property="og:url" content="https://usmacd.com/cn/pdfium-fuzz.public/index.html">
 <meta property="og:site_name" content="安全代码">
-<meta property="og:description" content="下载源码先在 https:&#x2F;&#x2F;pdfium.googlesource.com&#x2F;pdfium&#x2F; 下载源码. mkdir repo cd repo gclient config --unmanaged https:&#x2F;&#x2F;pdfium.googlesource.com&#x2F;pdfium.git gclient sync cd pdfium  gclient 命令在 depot_tools 中, 需要安装 参考">
+<meta property="og:description" content="下载源码先在 https:&#x2F;&#x2F;pdfium.googlesource.com&#x2F;pdfium&#x2F; 下载源码. 12345mkdir repocd repogclient config --unmanaged https:&#x2F;&#x2F;pdfium.googlesource.com&#x2F;pdfium.gitgclient synccd pdfium  gclient 命令在 depot_tools 中, 需要安装 参">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://images.unsplash.com/photo-1646026371686-79950ceb6daa?w=640">
 <meta property="article:published_time" content="2022-12-07T16:00:00.000Z">
 <meta property="article:modified_time" content="2022-12-07T16:00:00.000Z">
 <meta property="article:author" content="henices">
 <meta property="article:tag" content="Security">
-<meta name="twitter:card" content="summary_large_image">
-  
-  
-    <meta name="referrer" content="no-referrer-when-downgrade">
-  
-  
-  <title>使用 afl-fuzz fuzz pdfium - 安全代码</title>
-
-  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
-
-
-
-  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
-
-  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
-
-  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
-
-
-
-<!-- 主题依赖的图标库，不要自行修改 -->
-<!-- Do not modify the link that theme dependent icons -->
-
-<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
-
-
-
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
-
-
-<link  rel="stylesheet" href="/css/main.css" />
-
-
-  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
-  
-    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
-  
-
-
-
-
-  <script id="fluid-configs">
-    var Fluid = window.Fluid || {};
-    Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"usmacd.com","root":"/","version":"1.9.8","typing":{"enable":false,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":false,"default":"TEXT"},"copy_btn":false,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null},"woyaola":null,"cnzz":null},"search_path":"/local-search.xml","include_content_in_search":true};
-
-    if (CONFIG.web_analytics.follow_dnt) {
-      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
-      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://images.unsplash.com/photo-1646026371686-79950ceb6daa?w=640"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "使用 afl-fuzz fuzz pdfium",
+  "url": "https://usmacd.com/cn/pdfium-fuzz.public/",
+  "image": "https://images.unsplash.com/photo-1646026371686-79950ceb6daa?w=640",
+  "datePublished": "2022-12-07T16:00:00.000Z",
+  "dateModified": "2022-12-07T16:00:00.000Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "henices",
+      "url": "https://usmacd.com"
     }
-  </script>
-  <script  src="/js/utils.js" ></script>
-  <script  src="/js/color-schema.js" ></script>
-  
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://usmacd.com/cn/pdfium-fuzz.public/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css?v=5.5.2"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.1.0/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
 
-
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
   
-<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="安全代码" type="application/atom+xml">
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'undefined')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'undefined')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"pagination":{"enable":false,"hitsPerPage":8},"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.12.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '使用 afl-fuzz fuzz pdfium',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 8.1.0"><link rel="alternate" href="/atom.xml" title="安全代码" type="application/atom+xml">
 <link rel="alternate" href="/rss.xml" title="安全代码" type="application/rss+xml">
-</head>
-
-
-<body>
-  
-
-  <header>
-    
-
-<div class="header-inner" style="height: 40vh;">
-  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
-  <div class="container">
-    <a class="navbar-brand" href="/">
-      <strong>安全代码</strong>
-    </a>
-
-    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
-            data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <div class="animated-icon"><span></span><span></span><span></span></div>
-    </button>
-
-    <!-- Collapsible content -->
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav ml-auto text-center">
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/" target="_self">
-                <i class="iconfont icon-home-fill"></i>
-                <span>首页</span>
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/archives/" target="_self">
-                <i class="iconfont icon-archive-fill"></i>
-                <span>归档</span>
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/tags/" target="_self">
-                <i class="iconfont icon-tags-fill"></i>
-                <span>标签</span>
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/about/" target="_self">
-                <i class="iconfont icon-user-fill"></i>
-                <span>关于</span>
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/subscription/" target="_self">
-                <i class="iconfont icon-user-fill"></i>
-                <span>订阅</span>
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/links/" target="_self">
-                <i class="iconfont icon-link-fill"></i>
-                <span>友链</span>
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/thoughts" target="_self">
-                <i class="iconfont icon-exp-fill"></i>
-                <span>thoughts</span>
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/rss.xml" target="_self">
-                <i class="iconfont icon-rss"></i>
-                <span>rss</span>
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/random.html" target="_self">
-                
-                <span>random</span>
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/sitemap.xml" target="_self">
-                
-                <span>sitemap</span>
-              </a>
-            </li>
-          
-        
-        
-          <li class="nav-item" id="search-btn">
-            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
-              <i class="iconfont icon-search"></i>
-            </a>
-          </li>
-          
-        
-        
-          <li class="nav-item" id="color-toggle-btn">
-            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
-              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
-            </a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-</nav>
-
-  
-
-<div id="banner" class="banner" parallax=true
-     style="background: url('https://images.unsplash.com/photo-1473181488821-2d23949a045a?w=640') no-repeat center center; background-size: cover;">
-  <div class="full-bg-img">
-    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
-      <div class="banner-text text-center fade-in-up">
-        <div class="h2">
-          
-            <span id="subtitle">使用 afl-fuzz fuzz pdfium</span>
-          
-        </div>
-
-        
-          
-  <div class="mt-3">
-    
-    
-      <span class="post-meta">
-        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2022-12-08 00:00" pubdate>
-          2022年12月8日 凌晨
-        </time>
-      </span>
-    
-  </div>
-
-  <div class="mt-1">
-    
-      <span class="post-meta mr-2">
-        <i class="iconfont icon-chart"></i>
-        
-          832 字
-        
-      </span>
-    
-
-    
-      <span class="post-meta mr-2">
-        <i class="iconfont icon-clock-fill"></i>
-        
-        
-        
-          7 分钟
-        
-      </span>
-    
-
-    
-    
-      
-        <span id="busuanzi_container_page_pv" style="display: none">
-          <i class="iconfont icon-eye" aria-hidden="true"></i>
-          <span id="busuanzi_value_page_pv"></span> 次
-        </span>
-        
-
-      
-    
-  </div>
-
-
-        
-      </div>
-
-      
-    </div>
-  </div>
-</div>
-
-</div>
-
-  </header>
-
-  <main>
-    
-      
-
-<div class="container-fluid nopadding-x">
-  <div class="row nomargin-x">
-    <div class="side-col d-none d-lg-block col-lg-2">
-      
-
-    </div>
-
-    <div class="col-lg-8 nopadding-x-md">
-      <div class="container nopadding-x-md" id="board-ctn">
-        <div id="board">
-          <article class="post-content mx-auto">
-            <h1 id="seo-header">使用 afl-fuzz fuzz pdfium</h1>
-            
-            
-              <div class="markdown-body">
-                
-                <h2 id="下载源码"><a href="#下载源码" class="headerlink" title="下载源码"></a>下载源码</h2><p>先在 <a target="_blank" rel="noopener" href="https://pdfium.googlesource.com/pdfium/">https://pdfium.googlesource.com/pdfium/</a> 下载源码.</p>
-<div class="code-wrapper"><pre><code class="hljs sh"><span class="hljs-built_in">mkdir</span> repo
-<span class="hljs-built_in">cd</span> repo
-gclient config --unmanaged https://pdfium.googlesource.com/pdfium.git
-gclient <span class="hljs-built_in">sync</span>
-<span class="hljs-built_in">cd</span> pdfium</code></pre></div>
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/images/avatar.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">164</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">17</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/thoughts"><i class="fa-fw fas fa-cloud"></i><span> 想法</span></a></div><div class="menus_item"><a class="site-page" href="/links/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page" href="/sitemap.xml"><span> sitemap</span></a></div><div class="menus_item"><a class="site-page" href="/random.html"><span> random</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(https://images.unsplash.com/photo-1646026371686-79950ceb6daa?w=640);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">安全代码</span></a><a class="nav-page-title" href="/"><span class="site-name">使用 afl-fuzz fuzz pdfium</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/thoughts"><i class="fa-fw fas fa-cloud"></i><span> 想法</span></a></div><div class="menus_item"><a class="site-page" href="/links/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page" href="/sitemap.xml"><span> sitemap</span></a></div><div class="menus_item"><a class="site-page" href="/random.html"><span> random</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">使用 afl-fuzz fuzz pdfium</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-12-07T16:00:00.000Z" title="发表于 2022-12-08 00:00:00">2022-12-08</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-12-07T16:00:00.000Z" title="更新于 2022-12-08 00:00:00">2022-12-08</time></span></div><div class="meta-secondline"></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h2 id="下载源码"><a href="#下载源码" class="headerlink" title="下载源码"></a>下载源码</h2><p>先在 <a target="_blank" rel="noopener" href="https://pdfium.googlesource.com/pdfium/">https://pdfium.googlesource.com/pdfium/</a> 下载源码.</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">mkdir</span> repo</span><br><span class="line"><span class="built_in">cd</span> repo</span><br><span class="line">gclient config --unmanaged https://pdfium.googlesource.com/pdfium.git</span><br><span class="line">gclient <span class="built_in">sync</span></span><br><span class="line"><span class="built_in">cd</span> pdfium</span><br></pre></td></tr></table></figure>
 
 <p>gclient 命令在 depot_tools 中, 需要安装 参考下面的文章</p>
 <p><a target="_blank" rel="noopener" href="http://www.chromium.org/developers/how-tos/install-depot-tools">http://www.chromium.org/developers/how-tos/install-depot-tools</a></p>
-<div class="code-wrapper"><pre><code class="hljs bash">git <span class="hljs-built_in">clone</span> https://chromium.googlesource.com/chromium/tools/depot_tools.git
-<span class="hljs-built_in">export</span> PATH=`<span class="hljs-built_in">pwd</span>`/depot_tools:<span class="hljs-string">&quot;<span class="hljs-variable">$PATH</span>&quot;</span></code></pre></div>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git clone https://chromium.googlesource.com/chromium/tools/depot_tools.git</span><br><span class="line">export PATH=`pwd`/depot_tools:&quot;$PATH&quot;</span><br></pre></td></tr></table></figure>
 
 <p>主要gclient sync 同步时需要翻墙，可以简单的使用环境变量的方法。</p>
 <p><code>https_proxy=http://localhost:8118 gclient sync</code> 下载 download google storage过<br>程中还会遇到一个网络问题，需要编写配置文件 ~&#x2F;.boto</p>
-<div class="code-wrapper"><pre><code class="hljs ini"><span class="hljs-section">[Boto]</span>
-<span class="hljs-attr">proxy</span> = <span class="hljs-number">127.0</span>.<span class="hljs-number">0.1</span>  <span class="hljs-comment"># 不带 http://</span>
-<span class="hljs-attr">proxy_port</span>= <span class="hljs-number">8118</span></code></pre></div>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[Boto]</span><br><span class="line">proxy = 127.0.0.1  # 不带 http://</span><br><span class="line">proxy_port= 8118</span><br></pre></td></tr></table></figure>
 
 <p><code>export NO_AUTH_BOTO_CONFIG=~/.boto</code></p>
 <p>源码包非常大，大概有1G多，需要耐心等待。</p>
@@ -375,29 +178,7 @@ gclient <span class="hljs-built_in">sync</span>
 <p><code>./build/install-build-deps.sh</code></p>
 <p>安装完所以依赖后就可以开始编译了，首先要先生成 gn 文件 (2016 年google 放弃使用原来的 gyp 编译方式)</p>
 <p><code>gn args out/afl</code> 会调用vim 编译器， 输入下面的内容</p>
-<div class="code-wrapper"><pre><code class="hljs ini">
-<span class="hljs-comment"># Build arguments go here.</span>
-<span class="hljs-comment"># See &quot;gn args &lt;out_dir&gt; --list&quot; for available build arguments.</span>
-<span class="hljs-attr">use_goma</span> = <span class="hljs-literal">false</span> <span class="hljs-comment"># Googlers only. Make sure goma is installed and running first.</span>
-<span class="hljs-attr">is_debug</span> = <span class="hljs-literal">false</span>  <span class="hljs-comment"># Enable debugging features.</span>
-
-<span class="hljs-attr">pdf_use_skia</span> = <span class="hljs-literal">true</span> <span class="hljs-comment"># Set true to enable experimental skia backend.</span>
-<span class="hljs-attr">pdf_use_skia_paths</span> = <span class="hljs-literal">false</span>  <span class="hljs-comment"># Set true to enable experimental skia backend (paths only).</span>
-
-<span class="hljs-attr">pdf_enable_xfa</span> = <span class="hljs-literal">true</span>  <span class="hljs-comment"># Set false to remove XFA support (implies JS support).</span>
-<span class="hljs-attr">pdf_enable_v8</span> = <span class="hljs-literal">true</span>  <span class="hljs-comment"># Set false to remove Javascript support.</span>
-<span class="hljs-attr">pdf_is_standalone</span> = <span class="hljs-literal">true</span>  <span class="hljs-comment"># Set for a non-embedded build.</span>
-<span class="hljs-attr">is_component_build</span> = <span class="hljs-literal">false</span> <span class="hljs-comment"># Disable component build (must be false)</span>
-<span class="hljs-attr">v8_static_library</span> = <span class="hljs-literal">true</span>
-
-<span class="hljs-attr">clang_use_chrome_plugins</span> = <span class="hljs-literal">false</span>  <span class="hljs-comment"># Currently must be false.</span>
-<span class="hljs-attr">use_sysroot</span> = <span class="hljs-literal">false</span>  <span class="hljs-comment"># Currently must be false on Linux, but entirely omitted on windows.</span>
-
-<span class="hljs-attr">use_afl</span> = <span class="hljs-literal">true</span>
-<span class="hljs-comment">#is_asan = true</span>
-<span class="hljs-attr">enable_nacl</span> = <span class="hljs-literal">true</span>
-<span class="hljs-attr">optimize_for_fuzzing</span> = <span class="hljs-literal">true</span>
-<span class="hljs-attr">symbol_level</span>=<span class="hljs-number">1</span></code></pre></div>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"># Build arguments go here.</span><br><span class="line"># See &quot;gn args &lt;out_dir&gt; --list&quot; for available build arguments.</span><br><span class="line">use_goma = false # Googlers only. Make sure goma is installed and running first.</span><br><span class="line">is_debug = false  # Enable debugging features.</span><br><span class="line"></span><br><span class="line">pdf_use_skia = true # Set true to enable experimental skia backend.</span><br><span class="line">pdf_use_skia_paths = false  # Set true to enable experimental skia backend (paths only).</span><br><span class="line"></span><br><span class="line">pdf_enable_xfa = true  # Set false to remove XFA support (implies JS support).</span><br><span class="line">pdf_enable_v8 = true  # Set false to remove Javascript support.</span><br><span class="line">pdf_is_standalone = true  # Set for a non-embedded build.</span><br><span class="line">is_component_build = false # Disable component build (must be false)</span><br><span class="line">v8_static_library = true</span><br><span class="line"></span><br><span class="line">clang_use_chrome_plugins = false  # Currently must be false.</span><br><span class="line">use_sysroot = false  # Currently must be false on Linux, but entirely omitted on windows.</span><br><span class="line"></span><br><span class="line">use_afl = true</span><br><span class="line">#is_asan = true</span><br><span class="line">enable_nacl = true</span><br><span class="line">optimize_for_fuzzing = true</span><br><span class="line">symbol_level=1</span><br></pre></td></tr></table></figure>
 
 <p>使用 ASAN 编译会报错，暂时不开启，接下来要解决 afl 的问题了， pdfium 的 third_party<br>中不包含 afl-fuzz 的源代码，需要到 chromium.googlesource.com 项目下载。<br>chromium 项目支持 libfuzzer 和 afl-fuzz，只要使用开关， <code>use_libfuzzer = true</code><br>或者 <code>use_afl = true</code> 即可打开。</p>
 <p>要编译生成 pdfium_test, 必须指定 pdf_is_standalone &#x3D; true, pdfium 源码仓库中没有<br>afl-fuzz 的代码，需要自己下载。</p>
@@ -406,37 +187,11 @@ gclient <span class="hljs-built_in">sync</span>
 <p>下载后将源码 copy 到 ~&#x2F;repo&#x2F;pdfium&#x2F;third_party&#x2F;afl 中, 使用 <code>ninja -C out/afl</code> 编译整个项目。</p>
 <p>使用 <code>is_debug=false</code> 可以明显提高fuzzing 速度，应该开启。另外一个比较有用的是<br><code>symbol_level</code>, 设置 symbol_level&#x3D;1 可以添加必要的调试符号，便于gdb调试。</p>
 <p>在编译 skia backend 支持时，需要额外处理， 使用 C++14</p>
-<div class="code-wrapper"><pre><code class="hljs ini"><span class="hljs-attr">use_cxx11</span> = <span class="hljs-literal">false</span></code></pre></div>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">use_cxx11 = false </span><br></pre></td></tr></table></figure>
 
 <h2 id="afl-fuzz"><a href="#afl-fuzz" class="headerlink" title="afl-fuzz"></a>afl-fuzz</h2><p>随着 chromium 代码的更新， afl 源码编译出现了一些小问题，需要处理。</p>
 <p>src&#x2F;third_party&#x2F;afl&#x2F;patches&#x2F;0001-fix-build-with-std-c11.patch</p>
-<div class="code-wrapper"><pre><code class="hljs diff"><span class="hljs-comment">diff --git a/afl-fuzz.c b/afl-fuzz.c</span>
-<span class="hljs-comment">index 01b4afef0ecc..f0d564a33037 100644</span>
-<span class="hljs-comment">--- a/afl-fuzz.c</span>
-<span class="hljs-comment">+++ b/afl-fuzz.c</span>
-<span class="hljs-meta">@@ -23,7 +23,9 @@</span>
- #define AFL_MAIN
- #define MESSAGES_TO_STDOUT
- 
-<span class="hljs-addition">+#ifndef _GNU_SOURCE</span>
- #define _GNU_SOURCE
-<span class="hljs-addition">+#endif</span>
- #define _FILE_OFFSET_BITS 64
- 
- #include &quot;config.h&quot;
-<span class="hljs-comment">diff --git a/types.h b/types.h</span>
-<span class="hljs-comment">index 784d3a7a286d..d24d1fdd97e8 100644</span>
-<span class="hljs-comment">--- a/types.h</span>
-<span class="hljs-comment">+++ b/types.h</span>
-<span class="hljs-meta">@@ -78,7 +78,7 @@</span> typedef int64_t  s64;
- #define STRINGIFY(x) STRINGIFY_INTERNAL(x)
- 
- #define MEM_BARRIER() \
-<span class="hljs-deletion">-  asm volatile(&quot;&quot; ::: &quot;memory&quot;)</span>
-<span class="hljs-addition">+  __asm__ volatile(&quot;&quot; ::: &quot;memory&quot;)</span>
- 
- #define likely(_x)   __builtin_expect(!!(_x), 1)
- #define unlikely(_x)  __builtin_expect(!!(_x), 0)</code></pre></div>
+<figure class="highlight diff"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">diff --git a/afl-fuzz.c b/afl-fuzz.c</span></span><br><span class="line"><span class="comment">index 01b4afef0ecc..f0d564a33037 100644</span></span><br><span class="line"><span class="comment">--- a/afl-fuzz.c</span></span><br><span class="line"><span class="comment">+++ b/afl-fuzz.c</span></span><br><span class="line"><span class="meta">@@ -23,7 +23,9 @@</span></span><br><span class="line"> #define AFL_MAIN</span><br><span class="line"> #define MESSAGES_TO_STDOUT</span><br><span class="line"> </span><br><span class="line"><span class="addition">+#ifndef _GNU_SOURCE</span></span><br><span class="line"> #define _GNU_SOURCE</span><br><span class="line"><span class="addition">+#endif</span></span><br><span class="line"> #define _FILE_OFFSET_BITS 64</span><br><span class="line"> </span><br><span class="line"> #include &quot;config.h&quot;</span><br><span class="line"><span class="comment">diff --git a/types.h b/types.h</span></span><br><span class="line"><span class="comment">index 784d3a7a286d..d24d1fdd97e8 100644</span></span><br><span class="line"><span class="comment">--- a/types.h</span></span><br><span class="line"><span class="comment">+++ b/types.h</span></span><br><span class="line"><span class="meta">@@ -78,7 +78,7 @@</span> typedef int64_t  s64;</span><br><span class="line"> #define STRINGIFY(x) STRINGIFY_INTERNAL(x)</span><br><span class="line"> </span><br><span class="line"> #define MEM_BARRIER() \</span><br><span class="line"><span class="deletion">-  asm volatile(&quot;&quot; ::: &quot;memory&quot;)</span></span><br><span class="line"><span class="addition">+  __asm__ volatile(&quot;&quot; ::: &quot;memory&quot;)</span></span><br><span class="line"> </span><br><span class="line"> #define likely(_x)   __builtin_expect(!!(_x), 1)</span><br><span class="line"> #define unlikely(_x)  __builtin_expect(!!(_x), 0)</span><br></pre></td></tr></table></figure>
 
 <p>afl-fuzz 的使用和其他项目一样。初始的种子文件有几个地方可以获取：</p>
 <ul>
@@ -457,330 +212,57 @@ gclient <span class="hljs-built_in">sync</span>
 <li><a target="_blank" rel="noopener" href="https://mariomalwareanalysis.blogspot.com/2012/02/how-to-manually-create-pdf.html">https://mariomalwareanalysis.blogspot.com/2012/02/how-to-manually-create-pdf.html</a></li>
 <li><a target="_blank" rel="noopener" href="https://mariomalwareanalysis.blogspot.com/2012/02/how-to-embed-javascript-into-pdf.html">https://mariomalwareanalysis.blogspot.com/2012/02/how-to-embed-javascript-into-pdf.html</a></li>
 </ul>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://usmacd.com">henices</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://usmacd.com/cn/pdfium-fuzz.public/">https://usmacd.com/cn/pdfium-fuzz.public/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://usmacd.com" target="_blank">安全代码</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Security/">Security</a></div><div class="post-share"><div class="social-share" data-image="https://images.unsplash.com/photo-1646026371686-79950ceb6daa?w=640" data-sites="facebook,x,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/cn/linyuan_interview/" title="林园谈投资"><img class="cover" src="https://images.unsplash.com/photo-1646026371686-79950ceb6daa?w=640" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">林园谈投资</div></div><div class="info-2"><div class="info-item-1">看了一个2012年采访林园的视频，每个成功的人士对投资都有自己的看法。   投资最重要的要少犯错 虽然没法预测股票走势，但是股票价格的高低还是需要清楚的，虽然价格低的可能继续走低，价格高的可能继续走高 投机和投资没有本质区别，投机的「机」是择时，价值投资也是择时，市场上的股票供需关系会影响价格 需要知道市场周期，牛熊轮回，不同的市场时期，选择的投资策略也不同 做3到5年的长线投资，关注市场的主线，在龙头股上赚大钱 注重风险管理，投资前测算最差情况，只在有把握时下注，平时不太看盘 使用资产配置来分摊风险，房地产、债券、股票等均有涉猎 每个人都有自己擅长的标的(能力圈)，林园的投资主线是和吃的有关系的消费股  这篇采访出了个彩蛋🎉，主持人问林园平日都有啥爱好。林园说他有两个爱好：1. 逛夜总会 2. 走长路林园逛夜总会的段子已经广泛流传，主持人也接不住这话茬 ：）认真分析 逛夜总会是看高端消费，走长路是看日常消费。一般成功的投资人都有自己独特的指标。 </div></div></div></a><a class="pagination-related" href="/cn/logseq3/" title="Logseq 使用小结 （三）"><img class="cover" src="https://images.unsplash.com/photo-1646026371686-79950ceb6daa?w=640" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">Logseq 使用小结 （三）</div></div><div class="info-2"><div class="info-item-1">使用 Logseq 写笔记已经大半年了，Logseq 是这么多年来除了 vim 之外，唯一可以在使用上螺旋上升的软件。我把 Logseq 推荐给媳妇，她用来写会议纪要，写备忘录，管理待办事项，也用得挺好。 Logseq 的成功之处在于它降低了记录的成本，不需要大段大段的文字，也不需要太多的文章结构，随时都可以记录。Logseq 比较严重的问题是它的使用太灵活了，前后记录的标准、格式、标签等要素可能不一致，容易造成笔记凌乱。笔记一凌乱就没法有效的聚合，笔记的有效聚合形成一个有意义的想法群是 Logseq 等双链软件和其他笔记软件相比最有价值的地方。 我这半年来总结出笔记系统成功的关键是： 在同一个地方，用同样的格式和一致的标准记录你的洞见。但是由于 Logseq 缺乏有效的工作流，没法自动化提示必要的步骤，只能通过不断的练习来强化学习。另外 Logseq 中 page 和 tag 只是起到过滤笔记的作用，最关键的笔记之间的链接却很容易被忽视，tag 的数量一多又会开始笔记凌乱了。 总而言之，如果只是把 Logseq 作为备忘，或者简单作为信息记录，挺好用也不需要学习太多的东西，但是...</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/cn/ollama_unauthenticated/" title="Ollama 的未授权访问问题"><img class="cover" src="https://images.unsplash.com/photo-1646026371686-79950ceb6daa?w=640" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-02-20</div><div class="info-item-2">Ollama 的未授权访问问题</div></div><div class="info-2"><div class="info-item-1">Ollama 是一个简单易用的本地大模型运行框架，它可以让你在本地电脑上轻松运行和管理各种大语言模型。Github 地址：https://github.com/ollama/ollama 有用户提出给 Ollama API 添加认证的需求 Requesting support for basic auth or API key authentication， Ollama 官方没有处理，所以在默认设置下 Ollama 存在未授权访问问题。 以下的代码在 Ollama v0.5.11 下测试成功。 判断是否 Ollama 运行在 11434 端口1234567curl -i http://127.0.0.1:11434HTTP/1.1 200 OKContent-Type: text/plain; charset=utf-8Date: Tue, 18 Feb 2025 11:12:57 GMTContent-Length: 17Ollama is running   列出 Ollama 提供的 LLM 模型curl http://127.0.0.1:11434/api/tags |...</div></div></div></a><a class="pagination-related" href="/cn/AFL++%20%E6%BC%8F%E6%B4%9E%E6%8C%96%E6%8E%98%E5%AE%9E%E4%BE%8B/" title="AFL++ 漏洞挖掘实例"><img class="cover" src="https://images.unsplash.com/photo-1646026371686-79950ceb6daa?w=640" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2024-04-01</div><div class="info-item-2">AFL++ 漏洞挖掘实例</div></div><div class="info-2"><div class="info-item-1">☆ 1. 模糊测试工具 AFL &#x2F; AFL++介绍模糊测试是一种黑盒测试方法，它通过向软件输入随机或异常的数据，来触发软件中的错误或异常。AFL 是 Google 开发的一款 fuzz 工具，它最初由 Michal Zalewski 开发，被设计为一种模糊测试工具，用于自动发现程序中的漏洞。 在 AFL 之前，模糊测试工具大多采用随机生成输入数据的方法。这种方法虽然简单，但效率低下，很难发现软件中的隐藏路径。AFL 引入了覆盖率导向的模糊测试方法，它会根据软件的执行路径来优化输入数据。这种方法可以有效地提高模糊测试的效率，并更容易发现软件中的隐藏路径。 AFL 的发布，标志着模糊测试工具进入了新的时代。AFL 的成功，激发了许多其他研究人员和开发人员对模糊测试工具的改进和研究。它对软件安全领域产生了深远的影响。AFL 的成功，证明了模糊测试是一种有效的软件安全测试方法。 AFL 在模糊测试工具发展史上的具体贡献主要有：1）开创了覆盖率导向模糊测试的新时代2）极大地提高了模糊测试的效率和效果3）激发了其他研究人员和开发人员对模糊测试工具的改进和研究 AFL作为一款开创性的...</div></div></div></a><a class="pagination-related" href="/cn/qemu_kvm/" title="VMware Workstation Windows 10 host Ubuntu 18.04 Guest 中加载 Linux 内核 kvm 模块"><img class="cover" src="https://images.unsplash.com/photo-1646026371686-79950ceb6daa?w=640" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2023-11-28</div><div class="info-item-2">VMware Workstation Windows 10 host Ubuntu 18.04 Guest 中加载 Linux 内核 kvm 模块</div></div><div class="info-2"><div class="info-item-1">这里在 VMware Workstation Guset OS 里使用 qemu 的用法，有点像俄罗斯套娃。 qemu.sh 123456789101112qemu-system-x86_64 \  -m 2G \  -smp 2 \  -kernel $KERNEL/arch/x86——64/boot/bzImage \  -append &quot;console=ttyS0 root=/dev/sda earlyprintk=serial net.ifnames=0&quot; \  -drive file=$IMAGE/bullseye.img,format=raw \  -net user,host=10.0.2.10,hostfwd=tcp:127.0.0.1:10021-:22 \  -net nic,model=e1000 \  -enable-kvm \  -nographic \  -pidfile vm.pid \  2&gt;&amp;1 | tee vm.log  执行命令后 bash ./qemu.sh 后报错 12Could not access K...</div></div></div></a><a class="pagination-related" href="/cn/webview_java/" title="Android WebView 漏洞"><img class="cover" src="https://images.unsplash.com/photo-1646026371686-79950ceb6daa?w=640" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2023-09-06</div><div class="info-item-2">Android WebView 漏洞</div></div><div class="info-2"><div class="info-item-1">☆ 来自 developer.android.com 的信息Android 官方网站对addJavascriptInterface的介绍如下： 123456789101112public void addJavascriptInterface (Object object, String name)  Added in API level 1Injects the supplied Java object into this WebView. The object is injected intothe JavaScript context of the main frame, using the supplied name. This allows the Java object&#x27;s methods to be accessed from JavaScript. For applicationstargeted to API level JELLY_BEAN_MR1 and above, only public methods that are annotated w...</div></div></div></a><a class="pagination-related" href="/cn/request_RESERVED_CVE/" title="How to request a RESERVED CVE"><img class="cover" src="https://images.unsplash.com/photo-1646026371686-79950ceb6daa?w=640" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2023-09-06</div><div class="info-item-2">How to request a RESERVED CVE</div></div><div class="info-2"><div class="info-item-1">在申请 CVE 过程中会遇到一个问题，向软件官方提交漏洞修复后，由于软件官方不是CNA 无法直接分配CVE，而申请CVE 通常需要一个软件官方确认的链接，而有些比较正规的软件在漏洞修复之前是不会有公开链接的，这就无法申请CVE了。 有点鸡生蛋，蛋生鸡的感觉。解决这个问题的办法是申请一个 RESERVED CVE。 申请 RESERVED CVE 方法申请 RESERVED CVE，也是需要填写的CVE 申请表格的 https://cveform.mitre.org/，选择 Request CVE ID 根据提示的重要信息： 12345IMPORTANT: Once a CVE ID is assigned to your vulnerability, it will not be published in the CVE List until you have submitted a URL pointing to public information about the vulnerability. Without a public reference, the CVE ID ...</div></div></div></a><a class="pagination-related" href="/cn/process_injection/" title="Windows 进程注入"><img class="cover" src="https://images.unsplash.com/photo-1646026371686-79950ceb6daa?w=640" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2023-09-06</div><div class="info-item-2">Windows 进程注入</div></div><div class="info-2"><div class="info-item-1">1. Process Injection 方法总结  进程注入是windows病毒和恶意软件最常用的手法之一，Windows下进程注入的方法比较多，这里介绍常见的一些方法，以及相应的检查手段。 1.1 SetWindowsHookEx SetWindowsHookEx估计是大家最熟悉的方法了，这个是微软提供给我们使用正规用法。往Windows的hook chain中安装hook 例程，监控系统某种类型的event, 使用这种方法需要实现一个dll。 123456HHOOK WINAPI SetWindowsHookEx(  _In_  int idHook,  _In_  HOOKPROC lpfn,  _In_  HINSTANCE hMod,  _In_  DWORD dwThreadId);   dwThread 为0，将监管系统中所有线程。 idHook        指定监控event的类型 hMod          dll句柄 lpfn          hook例程的指针  MSDN给出了一个使用的例子： 123456789101112HOOKPROC hkprc...</div></div></div></a></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/images/avatar.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">henices</div><div class="author-info-description"></div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">164</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">17</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><div class="card-info-social-icons"><a class="social-icon" href="/rss.xml" target="_blank" title="RSS"><i class="fas fa-rss" style="color: #4c566a;"></i></a><a class="social-icon" href="https://x.com/henices" target="_blank" title="Twitter"><i class="fab fa-x-twitter" style="color: #4c566a;"></i></a><a class="social-icon" href="mailto:zhouzhenster@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4c566a;"></i></a></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%8B%E8%BD%BD%E6%BA%90%E7%A0%81"><span class="toc-number">1.</span> <span class="toc-text">下载源码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BC%96%E8%AF%91"><span class="toc-number">2.</span> <span class="toc-text">编译</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#afl-fuzz"><span class="toc-number">3.</span> <span class="toc-text">afl-fuzz</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="toc-number">4.</span> <span class="toc-text">参考资料</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/cn/duanyongping/" title="段永平退休20多年后罕见公开访谈">段永平退休20多年后罕见公开访谈</a><time datetime="2025-11-11T16:00:00.000Z" title="发表于 2025-11-12 00:00:00">2025-11-12</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/cn/how_to_tell_a_story/" title="如何讲好一个故事">如何讲好一个故事</a><time datetime="2025-11-11T16:00:00.000Z" title="发表于 2025-11-12 00:00:00">2025-11-12</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/cn/naval_reading/" title="纳瓦尔的阅读方法">纳瓦尔的阅读方法</a><time datetime="2025-10-28T16:00:00.000Z" title="发表于 2025-10-29 00:00:00">2025-10-29</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/cn/fedora_linux_7z/" title="Fedora Linux 升级系统中的 7-Zip">Fedora Linux 升级系统中的 7-Zip</a><time datetime="2025-10-12T16:00:00.000Z" title="发表于 2025-10-13 00:00:00">2025-10-13</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/cn/vmware_fix_guest_disk_error/" title="修复 VMware Workstation Ubuntu Guest 磁盘错误">修复 VMware Workstation Ubuntu Guest 磁盘错误</a><time datetime="2025-09-22T16:00:00.000Z" title="发表于 2025-09-23 00:00:00">2025-09-23</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url(https://images.unsplash.com/photo-1646026371686-79950ceb6daa?w=640);"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 By henices</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.5.2"></script><script src="/js/main.js?v=5.5.2"></script><script src="/js/tw_cn.js?v=5.5.2"></script><div class="js-pjax"><script>(() => {
+  const runMermaid = ele => {
+    window.loadMermaid = true
+    const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
 
-                
-              </div>
-            
-            <hr/>
-            <div>
-              <div class="post-metas my-3">
-  
-  
-    <div class="post-meta">
-      <i class="iconfont icon-tags"></i>
-      
-        <a href="/tags/Security/" class="print-no-link">#Security</a>
-      
-    </div>
-  
-</div>
+    ele.forEach((item, index) => {
+      const mermaidSrc = item.firstElementChild
+      const config = mermaidSrc.dataset.config ? JSON.parse(mermaidSrc.dataset.config) : {}
+      if (!config.theme) {
+        config.theme = theme
+      }
+      const mermaidThemeConfig = `%%{init: ${JSON.stringify(config)}}%%\n`
+      const mermaidID = `mermaid-${index}`
+      const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
 
+      const renderFn = mermaid.render(mermaidID, mermaidDefinition)
+      const renderMermaid = svg => {
+        mermaidSrc.insertAdjacentHTML('afterend', svg)
+      }
 
-              
-  
-
-  <div class="license-box my-3">
-    <div class="license-title">
-      <div>使用 afl-fuzz fuzz pdfium</div>
-      <div>https://usmacd.com/cn/pdfium-fuzz.public/</div>
-    </div>
-    <div class="license-meta">
-      
-        <div class="license-meta-item">
-          <div>作者</div>
-          <div>henices</div>
-        </div>
-      
-      
-        <div class="license-meta-item license-meta-date">
-          <div>发布于</div>
-          <div>2022年12月8日</div>
-        </div>
-      
-      
-      
-        <div class="license-meta-item">
-          <div>许可协议</div>
-          <div>
-            
-              
-              
-                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
-                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
-                    <i class="iconfont icon-cc-by"></i>
-                  </span>
-                </a>
-              
-            
-          </div>
-        </div>
-      
-    </div>
-    <div class="license-icon iconfont"></div>
-  </div>
-
-
-
-              
-                <div class="post-prevnext my-3">
-                  <article class="post-prev col-6">
-                    
-                    
-                      <a href="/cn/linyuan_interview/" title="林园谈投资">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">林园谈投资</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
-                  </article>
-                  <article class="post-next col-6">
-                    
-                    
-                      <a href="/cn/logseq3/" title="Logseq 使用小结 （三）">
-                        <span class="hidden-mobile">Logseq 使用小结 （三）</span>
-                        <span class="visible-mobile">下一篇</span>
-                        <i class="iconfont icon-arrowright"></i>
-                      </a>
-                    
-                  </article>
-                </div>
-              
-            </div>
-
-            
-          </article>
-        </div>
-      </div>
-    </div>
-
-    <div class="side-col d-none d-lg-block col-lg-2">
-      
-  <aside class="sidebar" style="margin-left: -1rem">
-    <div id="toc">
-  <p class="toc-header">
-    <i class="iconfont icon-list"></i>
-    <span>目录</span>
-  </p>
-  <div class="toc-body" id="toc-body"></div>
-</div>
-
-
-
-  </aside>
-
-
-    </div>
-  </div>
-</div>
-
-
-
-
-
-  
-
-
-
-
-  
-
-
-
-  
-
-
-
-  
-
-
-
-
-
-
-
-    
-
-    
-      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
-        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
-      </a>
-    
-
-    
-      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
-     aria-hidden="true">
-  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
-        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body mx-3">
-        <div class="md-form mb-5">
-          <input type="text" id="local-search-input" class="form-control validate">
-          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
-        </div>
-        <div class="list-group" id="local-search-result"></div>
-      </div>
-    </div>
-  </div>
-</div>
-
-    
-
-    
-  </main>
-
-  <footer>
-    <div class="footer-inner">
-  
-    <div class="footer-content">
-       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
-    </div>
-  
-  
-  
-</div>
-
-  </footer>
-
-  <!-- Scripts -->
-  
-  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
-  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
-
-  <script>
-    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
-    NProgress.start()
-    window.addEventListener('load', function() {
-      NProgress.done();
+      // mermaid v9 and v10 compatibility
+      typeof renderFn === 'string' ? renderMermaid(renderFn) : renderFn.then(({ svg }) => renderMermaid(svg))
     })
-  </script>
+  }
 
+  const codeToMermaid = () => {
+    const codeMermaidEle = document.querySelectorAll('pre > code.mermaid')
+    if (codeMermaidEle.length === 0) return
 
-<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
-<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
-<script  src="/js/events.js" ></script>
-<script  src="/js/plugins.js" ></script>
+    codeMermaidEle.forEach(ele => {
+      const preEle = document.createElement('pre')
+      preEle.className = 'mermaid-src'
+      preEle.hidden = true
+      preEle.textContent = ele.textContent
+      const newEle = document.createElement('div')
+      newEle.className = 'mermaid-wrap'
+      newEle.appendChild(preEle)
+      ele.parentNode.replaceWith(newEle)
+    })
+  }
 
+  const loadMermaid = () => {
+    if (false) codeToMermaid()
+    const $mermaid = document.querySelectorAll('#article-container .mermaid-wrap')
+    if ($mermaid.length === 0) return
 
+    const runMermaidFn = () => runMermaid($mermaid)
+    btf.addGlobalFn('themeChange', runMermaidFn, 'mermaid')
+    window.loadMermaid ? runMermaidFn() : btf.getScript('https://cdn.jsdelivr.net/npm/mermaid@11.12.1/dist/mermaid.min.js').then(runMermaidFn)
+  }
 
-
-
-  
-    <script  src="/js/img-lazyload.js" ></script>
-  
-
-
-
-
-  
-<script>
-  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
-    var toc = jQuery('#toc');
-    if (toc.length === 0 || !window.tocbot) { return; }
-    var boardCtn = jQuery('#board-ctn');
-    var boardTop = boardCtn.offset().top;
-
-    window.tocbot.init(Object.assign({
-      tocSelector     : '#toc-body',
-      contentSelector : '.markdown-body',
-      linkClass       : 'tocbot-link',
-      activeLinkClass : 'tocbot-active-link',
-      listClass       : 'tocbot-list',
-      isCollapsedClass: 'tocbot-is-collapsed',
-      collapsibleClass: 'tocbot-is-collapsible',
-      scrollSmooth    : true,
-      includeTitleTags: true,
-      headingsOffset  : -boardTop,
-    }, CONFIG.toc));
-    if (toc.find('.toc-list-item').length > 0) {
-      toc.css('visibility', 'visible');
-    }
-
-    Fluid.events.registerRefreshCallback(function() {
-      if ('tocbot' in window) {
-        tocbot.refresh();
-        var toc = jQuery('#toc');
-        if (toc.length === 0 || !tocbot) {
-          return;
-        }
-        if (toc.find('.toc-list-item').length > 0) {
-          toc.css('visibility', 'visible');
-        }
-      }
-    });
-  });
-</script>
-
-
-  
-<script>
-  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
-    window.anchors.options = {
-      placement: CONFIG.anchorjs.placement,
-      visible  : CONFIG.anchorjs.visible
-    };
-    if (CONFIG.anchorjs.icon) {
-      window.anchors.options.icon = CONFIG.anchorjs.icon;
-    }
-    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
-    var res = [];
-    for (var item of el) {
-      res.push('.markdown-body > ' + item.trim());
-    }
-    if (CONFIG.anchorjs.placement === 'left') {
-      window.anchors.options.class = 'anchorjs-link-left';
-    }
-    window.anchors.add(res.join(', '));
-
-    Fluid.events.registerRefreshCallback(function() {
-      if ('anchors' in window) {
-        anchors.removeAll();
-        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
-        var res = [];
-        for (var item of el) {
-          res.push('.markdown-body > ' + item.trim());
-        }
-        if (CONFIG.anchorjs.placement === 'left') {
-          anchors.options.class = 'anchorjs-link-left';
-        }
-        anchors.add(res.join(', '));
-      }
-    });
-  });
-</script>
-
-
-  
-<script>
-  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
-    Fluid.plugins.fancyBox();
-  });
-</script>
-
-
-  <script>Fluid.plugins.imageCaption();</script>
-
-  <script  src="/js/local-search.js" ></script>
-
-  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
-
-
-
-
-
-<!-- 主题的启动项，将它保持在最底部 -->
-<!-- the boot of the theme, keep it at the bottom -->
-<script  src="/js/boot.js" ></script>
-
-
-  
-
-  <noscript>
-    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
-  </noscript>
-</body>
-</html>
+  btf.addGlobalFn('encrypt', loadMermaid, 'mermaid')
+  window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+})()</script></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><i class="fas fa-spinner fa-pulse" id="loading-status" hidden="hidden"></i><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="local-search-input"><input placeholder="搜索文章" type="text"/></div><hr/><div id="local-search-results"></div><div class="ais-Pagination" id="local-search-pagination" style="display:none;"><ul class="ais-Pagination-list"></ul></div><div id="local-search-stats"></div></div><div id="search-mask"></div><script src="/js/search/local-search.js?v=5.5.2"></script></div></div></body></html>

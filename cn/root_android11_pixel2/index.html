@@ -1,695 +1,231 @@
-
-
-<!DOCTYPE html>
-<html lang="zh-CN" data-default-color-scheme=auto>
-
-
-
-<head>
-  <meta charset="UTF-8">
-
-  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
-  <link rel="icon" href="/img/fluid.png">
-  
-
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
-  <meta http-equiv="x-ua-compatible" content="ie=edge">
-  
-    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
-  
-  <meta name="theme-color" content="#2f4154">
-  <meta name="author" content="henices">
-  <meta name="keywords" content="">
-  
-    <meta name="description" content="要正常使用 frida 首先需要把手机给 root 了， 在最近测试的情况发现 Android 10 和 Android 11 系统工作比较正常， Android 6 和其他系统似乎差一些？ 要刷机首先需要下载 adb 等工具，这些工具由 Android 的 SDK platform tools 提供，下载地址为：https:&#x2F;&#x2F;developer.android.com&#x2F;studio&#x2F;relea">
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>root Pixel2 Android 11 的方法 | 安全代码</title><meta name="author" content="henices"><meta name="copyright" content="henices"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="要正常使用 frida 首先需要把手机给 root 了， 在最近测试的情况发现 Android 10 和 Android 11 系统工作比较正常， Android 6 和其他系统似乎差一些？ 要刷机首先需要下载 adb 等工具，这些工具由 Android 的 SDK platform tools 提供，下载地址为：https:&#x2F;&#x2F;developer.android.com&#x2F;studio&#x2F;relea">
 <meta property="og:type" content="article">
 <meta property="og:title" content="root Pixel2 Android 11 的方法">
 <meta property="og:url" content="https://usmacd.com/cn/root_android11_pixel2/index.html">
 <meta property="og:site_name" content="安全代码">
 <meta property="og:description" content="要正常使用 frida 首先需要把手机给 root 了， 在最近测试的情况发现 Android 10 和 Android 11 系统工作比较正常， Android 6 和其他系统似乎差一些？ 要刷机首先需要下载 adb 等工具，这些工具由 Android 的 SDK platform tools 提供，下载地址为：https:&#x2F;&#x2F;developer.android.com&#x2F;studio&#x2F;relea">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://images.unsplash.com/photo-1646026371686-79950ceb6daa?w=640">
 <meta property="article:published_time" content="2022-09-05T16:00:00.000Z">
 <meta property="article:modified_time" content="2022-09-05T16:00:00.000Z">
 <meta property="article:author" content="henices">
 <meta property="article:tag" content="Android">
-<meta name="twitter:card" content="summary_large_image">
-  
-  
-    <meta name="referrer" content="no-referrer-when-downgrade">
-  
-  
-  <title>root Pixel2 Android 11 的方法 - 安全代码</title>
-
-  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
-
-
-
-  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
-
-  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
-
-  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
-
-
-
-<!-- 主题依赖的图标库，不要自行修改 -->
-<!-- Do not modify the link that theme dependent icons -->
-
-<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
-
-
-
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
-
-
-<link  rel="stylesheet" href="/css/main.css" />
-
-
-  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
-  
-    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
-  
-
-
-
-
-  <script id="fluid-configs">
-    var Fluid = window.Fluid || {};
-    Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"usmacd.com","root":"/","version":"1.9.8","typing":{"enable":false,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":false,"default":"TEXT"},"copy_btn":false,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null},"woyaola":null,"cnzz":null},"search_path":"/local-search.xml","include_content_in_search":true};
-
-    if (CONFIG.web_analytics.follow_dnt) {
-      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
-      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://images.unsplash.com/photo-1646026371686-79950ceb6daa?w=640"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "root Pixel2 Android 11 的方法",
+  "url": "https://usmacd.com/cn/root_android11_pixel2/",
+  "image": "https://images.unsplash.com/photo-1646026371686-79950ceb6daa?w=640",
+  "datePublished": "2022-09-05T16:00:00.000Z",
+  "dateModified": "2022-09-05T16:00:00.000Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "henices",
+      "url": "https://usmacd.com"
     }
-  </script>
-  <script  src="/js/utils.js" ></script>
-  <script  src="/js/color-schema.js" ></script>
-  
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://usmacd.com/cn/root_android11_pixel2/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css?v=5.5.2"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.1.0/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
 
-
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
   
-<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="安全代码" type="application/atom+xml">
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'undefined')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'undefined')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"pagination":{"enable":false,"hitsPerPage":8},"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.12.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'root Pixel2 Android 11 的方法',
+  isHighlightShrink: false,
+  isToc: false,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 8.1.0"><link rel="alternate" href="/atom.xml" title="安全代码" type="application/atom+xml">
 <link rel="alternate" href="/rss.xml" title="安全代码" type="application/rss+xml">
-</head>
-
-
-<body>
-  
-
-  <header>
-    
-
-<div class="header-inner" style="height: 40vh;">
-  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
-  <div class="container">
-    <a class="navbar-brand" href="/">
-      <strong>安全代码</strong>
-    </a>
-
-    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
-            data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <div class="animated-icon"><span></span><span></span><span></span></div>
-    </button>
-
-    <!-- Collapsible content -->
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav ml-auto text-center">
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/" target="_self">
-                <i class="iconfont icon-home-fill"></i>
-                <span>首页</span>
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/archives/" target="_self">
-                <i class="iconfont icon-archive-fill"></i>
-                <span>归档</span>
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/tags/" target="_self">
-                <i class="iconfont icon-tags-fill"></i>
-                <span>标签</span>
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/about/" target="_self">
-                <i class="iconfont icon-user-fill"></i>
-                <span>关于</span>
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/subscription/" target="_self">
-                <i class="iconfont icon-user-fill"></i>
-                <span>订阅</span>
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/links/" target="_self">
-                <i class="iconfont icon-link-fill"></i>
-                <span>友链</span>
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/thoughts" target="_self">
-                <i class="iconfont icon-exp-fill"></i>
-                <span>thoughts</span>
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/rss.xml" target="_self">
-                <i class="iconfont icon-rss"></i>
-                <span>rss</span>
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/random.html" target="_self">
-                
-                <span>random</span>
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/sitemap.xml" target="_self">
-                
-                <span>sitemap</span>
-              </a>
-            </li>
-          
-        
-        
-          <li class="nav-item" id="search-btn">
-            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
-              <i class="iconfont icon-search"></i>
-            </a>
-          </li>
-          
-        
-        
-          <li class="nav-item" id="color-toggle-btn">
-            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
-              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
-            </a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-</nav>
-
-  
-
-<div id="banner" class="banner" parallax=true
-     style="background: url('https://images.unsplash.com/photo-1473181488821-2d23949a045a?w=640') no-repeat center center; background-size: cover;">
-  <div class="full-bg-img">
-    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
-      <div class="banner-text text-center fade-in-up">
-        <div class="h2">
-          
-            <span id="subtitle">root Pixel2 Android 11 的方法</span>
-          
-        </div>
-
-        
-          
-  <div class="mt-3">
-    
-    
-      <span class="post-meta">
-        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2022-09-06 00:00" pubdate>
-          2022年9月6日 凌晨
-        </time>
-      </span>
-    
-  </div>
-
-  <div class="mt-1">
-    
-      <span class="post-meta mr-2">
-        <i class="iconfont icon-chart"></i>
-        
-          453 字
-        
-      </span>
-    
-
-    
-      <span class="post-meta mr-2">
-        <i class="iconfont icon-clock-fill"></i>
-        
-        
-        
-          4 分钟
-        
-      </span>
-    
-
-    
-    
-      
-        <span id="busuanzi_container_page_pv" style="display: none">
-          <i class="iconfont icon-eye" aria-hidden="true"></i>
-          <span id="busuanzi_value_page_pv"></span> 次
-        </span>
-        
-
-      
-    
-  </div>
-
-
-        
-      </div>
-
-      
-    </div>
-  </div>
-</div>
-
-</div>
-
-  </header>
-
-  <main>
-    
-      
-
-<div class="container-fluid nopadding-x">
-  <div class="row nomargin-x">
-    <div class="side-col d-none d-lg-block col-lg-2">
-      
-
-    </div>
-
-    <div class="col-lg-8 nopadding-x-md">
-      <div class="container nopadding-x-md" id="board-ctn">
-        <div id="board">
-          <article class="post-content mx-auto">
-            <h1 id="seo-header">root Pixel2 Android 11 的方法</h1>
-            
-            
-              <div class="markdown-body">
-                
-                <p>要正常使用 frida 首先需要把手机给 root 了， 在最近测试的情况发现 Android 10 和 Android 11 系统工作比较正常， Android 6 和其他系统似乎差一些？</p>
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/images/avatar.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">164</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">17</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/thoughts"><i class="fa-fw fas fa-cloud"></i><span> 想法</span></a></div><div class="menus_item"><a class="site-page" href="/links/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page" href="/sitemap.xml"><span> sitemap</span></a></div><div class="menus_item"><a class="site-page" href="/random.html"><span> random</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(https://images.unsplash.com/photo-1646026371686-79950ceb6daa?w=640);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">安全代码</span></a><a class="nav-page-title" href="/"><span class="site-name">root Pixel2 Android 11 的方法</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/thoughts"><i class="fa-fw fas fa-cloud"></i><span> 想法</span></a></div><div class="menus_item"><a class="site-page" href="/links/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page" href="/sitemap.xml"><span> sitemap</span></a></div><div class="menus_item"><a class="site-page" href="/random.html"><span> random</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">root Pixel2 Android 11 的方法</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-09-05T16:00:00.000Z" title="发表于 2022-09-06 00:00:00">2022-09-06</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-09-05T16:00:00.000Z" title="更新于 2022-09-06 00:00:00">2022-09-06</time></span></div><div class="meta-secondline"></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><p>要正常使用 frida 首先需要把手机给 root 了， 在最近测试的情况发现 Android 10 和 Android 11 系统工作比较正常， Android 6 和其他系统似乎差一些？</p>
 <p>要刷机首先需要下载 <code>adb</code> 等工具，这些工具由 Android 的 SDK platform tools 提供，下载地址为：<a target="_blank" rel="noopener" href="https://developer.android.com/studio/releases/platform-tools">https://developer.android.com/studio/releases/platform-tools</a><br>选择相应的操作系统版本下载即可， Google 提供了 Windows、Linux、Mac 等系统的支持。</p>
 <p>基础镜像可以选择的 Google 的官方镜像 Factory Image，如果能自己编译 Android 系统则更好，在调试的时候可以看到系统库的符号。</p>
 <p>我的 Android 手机为 Pixel 2 在 <a target="_blank" rel="noopener" href="https://developers.google.com/android/images#walleye">https://developers.google.com/android/images#walleye</a> 上可以查找相应的镜像， 下个最新的 <a target="_blank" rel="noopener" href="https://dl.google.com/dl/android/aosp/walleye-rp1a.201005.004.a1-factory-0c23f6cf.zip">https://dl.google.com/dl/android/aosp/walleye-rp1a.201005.004.a1-factory-0c23f6cf.zip</a></p>
 <p>要想刷镜像前提条件是先要解锁 bootloader， Pixel2 新手机解锁的命令和以前有变化，可以参考 <a target="_blank" rel="noopener" href="https://source.android.com/devices/bootloader/locking_unlocking">https://source.android.com/devices/bootloader/locking_unlocking</a></p>
-<div class="code-wrapper"><pre><code class="hljs bash">adb reboot bootloader
-fastboot flashing unlock_critical</code></pre></div>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">adb reboot bootloader</span><br><span class="line">fastboot flashing unlock_critical</span><br></pre></td></tr></table></figure>
 
 <p>下载解压后，里面有个 flash-all 的脚本，将手机重启到 fastboot 模式后可以直接运行， <code>adb reboot bootloader</code>， 重启到 fastboot 模式后，执行 flash-all 脚本，刷机系统镜像就完成了。</p>
 <p>以前 root  Android 用的都是 SuperSU 和 TWRP， 这次使用了一个不同的方法 <a target="_blank" rel="noopener" href="https://github.com/topjohnwu/Magisk">Magisk</a> ， 安装的方法参见：<br><a target="_blank" rel="noopener" href="https://topjohnwu.github.io/Magisk/install.html">https://topjohnwu.github.io/Magisk/install.html</a></p>
 <p>有两种模式， patch boot 或者 patch recovery， 安装 Magisk app 后如果界面显示  <code>Ramdisk：Yes</code>，则需要 patch boot。<br>Magisk app 的下载地址 <a target="_blank" rel="noopener" href="https://github.com/topjohnwu/Magisk/releases/download/v23.0/Magisk-v23.0.apk">https://github.com/topjohnwu/Magisk/releases/download/v23.0/Magisk-v23.0.apk</a></p>
 <p>安装 Magisk app 后， 选择需要 patch 的镜像文件，选择后会自动生成新的修改过后的镜像文件。<br>获得修改后的镜像文件后，需要将修改后的镜像文件重新刷一次</p>
-<div class="code-wrapper"><pre><code class="hljs bash">fastboot flash boot /path/to/magisk_patched.img <span class="hljs-comment">#or fastboot flash recovery /path/to/magisk_patched.img</span></code></pre></div>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fastboot flash boot /path/to/magisk_patched.img <span class="comment">#or fastboot flash recovery /path/to/magisk_patched.img</span></span><br></pre></td></tr></table></figure>
 
 <p>刷完新的修改后的镜像，重启系统，Root 就完成了。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://usmacd.com">henices</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://usmacd.com/cn/root_android11_pixel2/">https://usmacd.com/cn/root_android11_pixel2/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://usmacd.com" target="_blank">安全代码</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Android/">Android</a></div><div class="post-share"><div class="social-share" data-image="https://images.unsplash.com/photo-1646026371686-79950ceb6daa?w=640" data-sites="facebook,x,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/cn/trader_vic/" title="专业投机原理中的技术分析法则摘要"><img class="cover" src="https://images.unsplash.com/photo-1646026371686-79950ceb6daa?w=640" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">专业投机原理中的技术分析法则摘要</div></div><div class="info-2"><div class="info-item-1">有关金融市场方面的书我个人的图书馆里至少有1200本。它们主要是讨论证券分析、期权策略、期货策略、技术分析以及其他相关方面的书。这些书大多都包含相当不错的构想，其中约2%是真正优秀的作品。然而，它们大多存在一个共同的问题：试图推销一种“战胜市场”的方法，很多方法甚至没有经过实际市场的完整测试。 如何正确的绘制趋势线使用以下方法绘制趋势线可以提供一致而精确的结果，而且绝对不会产生错误的信号：  选择考虑的时间：长期（数月至数年）、中期（数个星期至数月）或短期（数天至数个星期）。 上升趋势线：在考虑的时间内，以最低的低点为起点，向右上方绘制一条直线，连接最高点前的某一个低点，使这条直线在两个低点之间未穿越任何价位。延伸这条直线而经过最高点（这是指水平轴上的位置而言）。趋势线经过所考虑的最高点以后，它可能穿越某些价位。事实上，这是趋势发生变化的一种现象。 下降趋势线：在考虑的时间内，以最高的高点为起点，向右下方绘制一条直线，连接最低点前的某一个高点，而使这条直线在两个高点之间未穿越任何价位。延伸这条直线而经过最低点。  这个方法的优点在于其明确性，并可以用来判断趋势是否可能变动或已经变...</div></div></div></a><a class="pagination-related" href="/cn/winafl/" title="winafl fuzz 工具的使用"><img class="cover" src="https://images.unsplash.com/photo-1646026371686-79950ceb6daa?w=640" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">winafl fuzz 工具的使用</div></div><div class="info-2"><div class="info-item-1">0. 下载 Visual Studio Community 2022下载地址：https://aka.ms/vs/17/release/vs_community.exe 从微软网站下载并安装 Visual Studio Community 的时候速度只有2 K，一下午没能下载成功。咨询同事小钻风，指出可能是 DNS 问题，将 DNS 切换成阿里的 DNS 223.5.5.5 后下载速度达到 4 M。中国开发者网络总是个问题，大家都挺不容易的。 1. 编译 winafl 下载 DynamoRIO 解压到 D:\DynamoRIO 下载 cmake 解压到 D:\cmake 从 Github 下载 winafl 编译 intel PT 需要同步 third_party 的源码  123git clone https://github.com/googleprojectzero/winafl.gitcd winaflgit submodule update --init --recursive   从菜单中选择  X64 native tool command prompt for V...</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/cn/fcitx5-android/" title="Android 上使用 Fcitx5 和 Rime"><img class="cover" src="https://images.unsplash.com/photo-1646026371686-79950ceb6daa?w=640" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2024-12-05</div><div class="info-item-2">Android 上使用 Fcitx5 和 Rime</div></div><div class="info-2"><div class="info-item-1">我一直在寻找 Rime 输入法的 Android 解决方案，最先是找到 Trimehttps://github.com/osfans/trime Trime 我试过三次，有三个不理想的点：1）不够流畅，有卡顿的感觉2）不够稳定，经常出现崩溃3）Trime 自己有一套配置，要学习 trime.yaml  昨天看到有朋友 Fcitx5 Android 替换了 Google Gborad，上次看到时它不支持 Rime。https://github.com/fcitx5-android/fcitx5-android 惊喜的发现，Fcitx5 Android 已经比较完善了，通过插件的形式支持了 fcitx5 Rime 。 在 Android 上使用 Fcitx5 Rime，需要安装两个 APK ： Fcitx5 主程序：https://github.com/fcitx5-android/fcitx5-android/releases/download/0.1.0/org.fcitx.fcitx5.android-0.1.0-0-g78c03d12-arm64-v8a-release.ap...</div></div></div></a><a class="pagination-related" href="/cn/andorid_disable_Phantom_Process_Killer/" title="禁用 Phantom Process Killer"><img class="cover" src="https://images.unsplash.com/photo-1646026371686-79950ceb6daa?w=640" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2024-11-27</div><div class="info-item-2">禁用 Phantom Process Killer</div></div><div class="info-2"><div class="info-item-1">禁用 Phantom Process Killer从 Android 12 开始，Google 引入了 Phantom Process Killer 机制，监控 app fork 出来的子进程，当子进程数大于 32 时，app 可能会被杀掉。 默认的 32 进程数是所有 apps 的限制，不是单个 app 的限制。 在 Android 14 或更高版本，可以在开发者选项中，禁用 Phantom Processes Killer  1Android Settings -&gt; System -&gt; Developer options -&gt; Disable child process restrictions  这个方法有个限制，当你关闭开发者选项后，Disable child process restrictions 会被自动关闭。 在 Android 12L, 13 和更高版本中，执行下面的命令可以禁用 Phantom Processes Killer  12root: su -c &quot;settings put global settings_enable_m...</div></div></div></a><a class="pagination-related" href="/cn/android_apk_extract/" title="如何提取 Android 手机中已经安装的 APK 文件"><img class="cover" src="https://images.unsplash.com/photo-1646026371686-79950ceb6daa?w=640" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2024-08-22</div><div class="info-item-2">如何提取 Android 手机中已经安装的 APK 文件</div></div><div class="info-2"><div class="info-item-1">首先需要下载 Android Platform Tools 获取 adb 工具。 Android Platform Tools 的下载地址为：https://developer.android.com/tools/releases/platform-tools#downloads 在本机执行下面命令，可以提取 Android 手机上安装的 apk 文件。 123adb shell pm list packagesadb shell pm path &lt;package name&gt;adb pull &lt;apk_path_on_device&gt;  如果要在另外一台手机上安装 Android 应用，则需要在本机执行另外两条命令。 12adb install base.apk # or adb install-multiple base.apk split_config.arm64_v8a.apk *.apk  注：本篇需要一些专业知识，至少需要知道 Android 应用 package name 的含义。 </div></div></div></a><a class="pagination-related" href="/cn/android_usb_tethering/" title="Android 系统的 USB Tethering 功能"><img class="cover" src="https://images.unsplash.com/photo-1646026371686-79950ceb6daa?w=640" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2024-05-06</div><div class="info-item-2">Android 系统的 USB Tethering 功能</div></div><div class="info-2"><div class="info-item-1">Android 系统的 USB Tethering 可以共享 Android 手机的 Internet 连接，使用这个功能后，如果 Android 能够通过 Wi-Fi上网或者移动数据网络上网，则你的电脑也能够通过USB数据线共享网络上网了。 Android 手机的设置方法：Settings &#x3D;&gt; Network &amp; internet &#x3D;&gt; Hotspot &amp; tethering &#x3D;&gt; USB tethering 不同厂商的系统名字可能不同，ColorOS 上叫 「USB 网络共享」。 用 USB 数据线连接 Android 手机和 PC 后，在 Android 系统中开启 USB 网络共享，我的Fedora linux 可以利用 Android 的网络上网了（Windows 系统应该也可以）。Fedora linux 自动添加了一个网络连接， linux  PC 和 Android 手机处于同一局域网下。 123        IPv4 地址：192.168.203.204    IPv4 默认网关：192.168...</div></div></div></a><a class="pagination-related" href="/cn/android_use_proxy_of_pc/" title="Android 手机使用 PC 代理上网的方法"><img class="cover" src="https://images.unsplash.com/photo-1646026371686-79950ceb6daa?w=640" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2024-02-27</div><div class="info-item-2">Android 手机使用 PC 代理上网的方法</div></div><div class="info-2"><div class="info-item-1">在一些特殊的情况下，可能需要使用 Android 手机或者 PC 的线路访问外部网络资源，同时没有条件连接 wifi 网络，这时候可以使用 Android Platform Tools 的 adb 工具来达到目的。 Android Platform Tools 的下载地址为：https://developer.android.com/tools/releases/platform-tools#downloads Android 手机使用 PC 的代理上网的方法用 USB 数据线连接 Android 手机和 PC，在 PC 中执行下面的命令 12adb shell settings put global http_proxy 127.0.0.1:7890adb reverse tcp:7890 tcp:7890  首先设置 Android 手机 http 全局代理为 127.0.0.1:7890，然后将手机的 127.0.0.1:7890 转发到 PC 127.0.0.1:7890 （没有找到设置 Android 系统全局使用 socks5 代理的方法） 设置 Android 全局...</div></div></div></a><a class="pagination-related" href="/cn/webview_java/" title="Android WebView 漏洞"><img class="cover" src="https://images.unsplash.com/photo-1646026371686-79950ceb6daa?w=640" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2023-09-06</div><div class="info-item-2">Android WebView 漏洞</div></div><div class="info-2"><div class="info-item-1">☆ 来自 developer.android.com 的信息Android 官方网站对addJavascriptInterface的介绍如下： 123456789101112public void addJavascriptInterface (Object object, String name)  Added in API level 1Injects the supplied Java object into this WebView. The object is injected intothe JavaScript context of the main frame, using the supplied name. This allows the Java object&#x27;s methods to be accessed from JavaScript. For applicationstargeted to API level JELLY_BEAN_MR1 and above, only public methods that are annotated w...</div></div></div></a></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/images/avatar.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">henices</div><div class="author-info-description"></div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">164</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">17</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><div class="card-info-social-icons"><a class="social-icon" href="/rss.xml" target="_blank" title="RSS"><i class="fas fa-rss" style="color: #4c566a;"></i></a><a class="social-icon" href="https://x.com/henices" target="_blank" title="Twitter"><i class="fab fa-x-twitter" style="color: #4c566a;"></i></a><a class="social-icon" href="mailto:zhouzhenster@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4c566a;"></i></a></div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/cn/duanyongping/" title="段永平退休20多年后罕见公开访谈">段永平退休20多年后罕见公开访谈</a><time datetime="2025-11-11T16:00:00.000Z" title="发表于 2025-11-12 00:00:00">2025-11-12</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/cn/how_to_tell_a_story/" title="如何讲好一个故事">如何讲好一个故事</a><time datetime="2025-11-11T16:00:00.000Z" title="发表于 2025-11-12 00:00:00">2025-11-12</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/cn/naval_reading/" title="纳瓦尔的阅读方法">纳瓦尔的阅读方法</a><time datetime="2025-10-28T16:00:00.000Z" title="发表于 2025-10-29 00:00:00">2025-10-29</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/cn/fedora_linux_7z/" title="Fedora Linux 升级系统中的 7-Zip">Fedora Linux 升级系统中的 7-Zip</a><time datetime="2025-10-12T16:00:00.000Z" title="发表于 2025-10-13 00:00:00">2025-10-13</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/cn/vmware_fix_guest_disk_error/" title="修复 VMware Workstation Ubuntu Guest 磁盘错误">修复 VMware Workstation Ubuntu Guest 磁盘错误</a><time datetime="2025-09-22T16:00:00.000Z" title="发表于 2025-09-23 00:00:00">2025-09-23</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url(https://images.unsplash.com/photo-1646026371686-79950ceb6daa?w=640);"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 By henices</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.5.2"></script><script src="/js/main.js?v=5.5.2"></script><script src="/js/tw_cn.js?v=5.5.2"></script><div class="js-pjax"><script>(() => {
+  const runMermaid = ele => {
+    window.loadMermaid = true
+    const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
 
-                
-              </div>
-            
-            <hr/>
-            <div>
-              <div class="post-metas my-3">
-  
-  
-    <div class="post-meta">
-      <i class="iconfont icon-tags"></i>
-      
-        <a href="/tags/Android/" class="print-no-link">#Android</a>
-      
-    </div>
-  
-</div>
+    ele.forEach((item, index) => {
+      const mermaidSrc = item.firstElementChild
+      const config = mermaidSrc.dataset.config ? JSON.parse(mermaidSrc.dataset.config) : {}
+      if (!config.theme) {
+        config.theme = theme
+      }
+      const mermaidThemeConfig = `%%{init: ${JSON.stringify(config)}}%%\n`
+      const mermaidID = `mermaid-${index}`
+      const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
 
+      const renderFn = mermaid.render(mermaidID, mermaidDefinition)
+      const renderMermaid = svg => {
+        mermaidSrc.insertAdjacentHTML('afterend', svg)
+      }
 
-              
-  
-
-  <div class="license-box my-3">
-    <div class="license-title">
-      <div>root Pixel2 Android 11 的方法</div>
-      <div>https://usmacd.com/cn/root_android11_pixel2/</div>
-    </div>
-    <div class="license-meta">
-      
-        <div class="license-meta-item">
-          <div>作者</div>
-          <div>henices</div>
-        </div>
-      
-      
-        <div class="license-meta-item license-meta-date">
-          <div>发布于</div>
-          <div>2022年9月6日</div>
-        </div>
-      
-      
-      
-        <div class="license-meta-item">
-          <div>许可协议</div>
-          <div>
-            
-              
-              
-                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
-                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
-                    <i class="iconfont icon-cc-by"></i>
-                  </span>
-                </a>
-              
-            
-          </div>
-        </div>
-      
-    </div>
-    <div class="license-icon iconfont"></div>
-  </div>
-
-
-
-              
-                <div class="post-prevnext my-3">
-                  <article class="post-prev col-6">
-                    
-                    
-                      <a href="/cn/trader_vic/" title="专业投机原理中的技术分析法则摘要">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">专业投机原理中的技术分析法则摘要</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
-                  </article>
-                  <article class="post-next col-6">
-                    
-                    
-                      <a href="/cn/winafl/" title="winafl fuzz 工具的使用">
-                        <span class="hidden-mobile">winafl fuzz 工具的使用</span>
-                        <span class="visible-mobile">下一篇</span>
-                        <i class="iconfont icon-arrowright"></i>
-                      </a>
-                    
-                  </article>
-                </div>
-              
-            </div>
-
-            
-          </article>
-        </div>
-      </div>
-    </div>
-
-    <div class="side-col d-none d-lg-block col-lg-2">
-      
-  <aside class="sidebar" style="margin-left: -1rem">
-    <div id="toc">
-  <p class="toc-header">
-    <i class="iconfont icon-list"></i>
-    <span>目录</span>
-  </p>
-  <div class="toc-body" id="toc-body"></div>
-</div>
-
-
-
-  </aside>
-
-
-    </div>
-  </div>
-</div>
-
-
-
-
-
-  
-
-
-
-
-  
-
-
-
-  
-
-
-
-  
-
-
-
-
-
-
-
-    
-
-    
-      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
-        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
-      </a>
-    
-
-    
-      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
-     aria-hidden="true">
-  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
-        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body mx-3">
-        <div class="md-form mb-5">
-          <input type="text" id="local-search-input" class="form-control validate">
-          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
-        </div>
-        <div class="list-group" id="local-search-result"></div>
-      </div>
-    </div>
-  </div>
-</div>
-
-    
-
-    
-  </main>
-
-  <footer>
-    <div class="footer-inner">
-  
-    <div class="footer-content">
-       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
-    </div>
-  
-  
-  
-</div>
-
-  </footer>
-
-  <!-- Scripts -->
-  
-  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
-  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
-
-  <script>
-    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
-    NProgress.start()
-    window.addEventListener('load', function() {
-      NProgress.done();
+      // mermaid v9 and v10 compatibility
+      typeof renderFn === 'string' ? renderMermaid(renderFn) : renderFn.then(({ svg }) => renderMermaid(svg))
     })
-  </script>
+  }
 
+  const codeToMermaid = () => {
+    const codeMermaidEle = document.querySelectorAll('pre > code.mermaid')
+    if (codeMermaidEle.length === 0) return
 
-<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
-<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
-<script  src="/js/events.js" ></script>
-<script  src="/js/plugins.js" ></script>
+    codeMermaidEle.forEach(ele => {
+      const preEle = document.createElement('pre')
+      preEle.className = 'mermaid-src'
+      preEle.hidden = true
+      preEle.textContent = ele.textContent
+      const newEle = document.createElement('div')
+      newEle.className = 'mermaid-wrap'
+      newEle.appendChild(preEle)
+      ele.parentNode.replaceWith(newEle)
+    })
+  }
 
+  const loadMermaid = () => {
+    if (false) codeToMermaid()
+    const $mermaid = document.querySelectorAll('#article-container .mermaid-wrap')
+    if ($mermaid.length === 0) return
 
+    const runMermaidFn = () => runMermaid($mermaid)
+    btf.addGlobalFn('themeChange', runMermaidFn, 'mermaid')
+    window.loadMermaid ? runMermaidFn() : btf.getScript('https://cdn.jsdelivr.net/npm/mermaid@11.12.1/dist/mermaid.min.js').then(runMermaidFn)
+  }
 
-
-
-  
-    <script  src="/js/img-lazyload.js" ></script>
-  
-
-
-
-
-  
-<script>
-  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
-    var toc = jQuery('#toc');
-    if (toc.length === 0 || !window.tocbot) { return; }
-    var boardCtn = jQuery('#board-ctn');
-    var boardTop = boardCtn.offset().top;
-
-    window.tocbot.init(Object.assign({
-      tocSelector     : '#toc-body',
-      contentSelector : '.markdown-body',
-      linkClass       : 'tocbot-link',
-      activeLinkClass : 'tocbot-active-link',
-      listClass       : 'tocbot-list',
-      isCollapsedClass: 'tocbot-is-collapsed',
-      collapsibleClass: 'tocbot-is-collapsible',
-      scrollSmooth    : true,
-      includeTitleTags: true,
-      headingsOffset  : -boardTop,
-    }, CONFIG.toc));
-    if (toc.find('.toc-list-item').length > 0) {
-      toc.css('visibility', 'visible');
-    }
-
-    Fluid.events.registerRefreshCallback(function() {
-      if ('tocbot' in window) {
-        tocbot.refresh();
-        var toc = jQuery('#toc');
-        if (toc.length === 0 || !tocbot) {
-          return;
-        }
-        if (toc.find('.toc-list-item').length > 0) {
-          toc.css('visibility', 'visible');
-        }
-      }
-    });
-  });
-</script>
-
-
-  
-<script>
-  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
-    window.anchors.options = {
-      placement: CONFIG.anchorjs.placement,
-      visible  : CONFIG.anchorjs.visible
-    };
-    if (CONFIG.anchorjs.icon) {
-      window.anchors.options.icon = CONFIG.anchorjs.icon;
-    }
-    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
-    var res = [];
-    for (var item of el) {
-      res.push('.markdown-body > ' + item.trim());
-    }
-    if (CONFIG.anchorjs.placement === 'left') {
-      window.anchors.options.class = 'anchorjs-link-left';
-    }
-    window.anchors.add(res.join(', '));
-
-    Fluid.events.registerRefreshCallback(function() {
-      if ('anchors' in window) {
-        anchors.removeAll();
-        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
-        var res = [];
-        for (var item of el) {
-          res.push('.markdown-body > ' + item.trim());
-        }
-        if (CONFIG.anchorjs.placement === 'left') {
-          anchors.options.class = 'anchorjs-link-left';
-        }
-        anchors.add(res.join(', '));
-      }
-    });
-  });
-</script>
-
-
-  
-<script>
-  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
-    Fluid.plugins.fancyBox();
-  });
-</script>
-
-
-  <script>Fluid.plugins.imageCaption();</script>
-
-  <script  src="/js/local-search.js" ></script>
-
-  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
-
-
-
-
-
-<!-- 主题的启动项，将它保持在最底部 -->
-<!-- the boot of the theme, keep it at the bottom -->
-<script  src="/js/boot.js" ></script>
-
-
-  
-
-  <noscript>
-    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
-  </noscript>
-</body>
-</html>
+  btf.addGlobalFn('encrypt', loadMermaid, 'mermaid')
+  window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+})()</script></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><i class="fas fa-spinner fa-pulse" id="loading-status" hidden="hidden"></i><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="local-search-input"><input placeholder="搜索文章" type="text"/></div><hr/><div id="local-search-results"></div><div class="ais-Pagination" id="local-search-pagination" style="display:none;"><ul class="ais-Pagination-list"></ul></div><div id="local-search-stats"></div></div><div id="search-mask"></div><script src="/js/search/local-search.js?v=5.5.2"></script></div></div></body></html>

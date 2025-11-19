@@ -1,804 +1,282 @@
-
-
-<!DOCTYPE html>
-<html lang="zh-CN" data-default-color-scheme=auto>
-
-
-
-<head>
-  <meta charset="UTF-8">
-
-  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
-  <link rel="icon" href="/img/fluid.png">
-  
-
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
-  <meta http-equiv="x-ua-compatible" content="ie=edge">
-  
-    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
-  
-  <meta name="theme-color" content="#2f4154">
-  <meta name="author" content="henices">
-  <meta name="keywords" content="">
-  
-    <meta property="og:type" content="website">
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>安全代码</title><meta name="author" content="henices"><meta name="copyright" content="henices"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta property="og:type" content="website">
 <meta property="og:title" content="安全代码">
 <meta property="og:url" content="https://usmacd.com/page/11/index.html">
 <meta property="og:site_name" content="安全代码">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://usmacd.com/images/avatar.png">
 <meta property="article:author" content="henices">
-<meta name="twitter:card" content="summary_large_image">
-  
-  
-    <meta name="referrer" content="no-referrer-when-downgrade">
-  
-  
-  <title>安全代码</title>
-
-  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
-
-
-
-
-
-<!-- 主题依赖的图标库，不要自行修改 -->
-<!-- Do not modify the link that theme dependent icons -->
-
-<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
-
-
-
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
-
-
-<link  rel="stylesheet" href="/css/main.css" />
-
-
-  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
-  
-    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
-  
-
-
-
-
-  <script id="fluid-configs">
-    var Fluid = window.Fluid || {};
-    Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"usmacd.com","root":"/","version":"1.9.8","typing":{"enable":false,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":false,"default":"TEXT"},"copy_btn":false,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null},"woyaola":null,"cnzz":null},"search_path":"/local-search.xml","include_content_in_search":true};
-
-    if (CONFIG.web_analytics.follow_dnt) {
-      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
-      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://usmacd.com/images/avatar.png"><script type="application/ld+json"></script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://usmacd.com/page/11/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css?v=5.5.2"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.1.0/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
     }
-  </script>
-  <script  src="/js/utils.js" ></script>
-  <script  src="/js/color-schema.js" ></script>
-  
 
-
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
   
-<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="安全代码" type="application/atom+xml">
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'undefined')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'undefined')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"pagination":{"enable":false,"hitsPerPage":8},"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.12.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '安全代码',
+  isHighlightShrink: false,
+  isToc: false,
+  pageType: 'home'
+}</script><meta name="generator" content="Hexo 8.1.0"><link rel="alternate" href="/atom.xml" title="安全代码" type="application/atom+xml">
 <link rel="alternate" href="/rss.xml" title="安全代码" type="application/rss+xml">
-</head>
-
-
-<body>
-  
-
-  <header>
-    
-
-<div class="header-inner" style="height: 60vh;">
-  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
-  <div class="container">
-    <a class="navbar-brand" href="/">
-      <strong>安全代码</strong>
-    </a>
-
-    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
-            data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <div class="animated-icon"><span></span><span></span><span></span></div>
-    </button>
-
-    <!-- Collapsible content -->
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav ml-auto text-center">
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/" target="_self">
-                <i class="iconfont icon-home-fill"></i>
-                <span>首页</span>
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/archives/" target="_self">
-                <i class="iconfont icon-archive-fill"></i>
-                <span>归档</span>
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/tags/" target="_self">
-                <i class="iconfont icon-tags-fill"></i>
-                <span>标签</span>
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/about/" target="_self">
-                <i class="iconfont icon-user-fill"></i>
-                <span>关于</span>
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/subscription/" target="_self">
-                <i class="iconfont icon-user-fill"></i>
-                <span>订阅</span>
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/links/" target="_self">
-                <i class="iconfont icon-link-fill"></i>
-                <span>友链</span>
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/thoughts" target="_self">
-                <i class="iconfont icon-exp-fill"></i>
-                <span>thoughts</span>
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/rss.xml" target="_self">
-                <i class="iconfont icon-rss"></i>
-                <span>rss</span>
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/random.html" target="_self">
-                
-                <span>random</span>
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/sitemap.xml" target="_self">
-                
-                <span>sitemap</span>
-              </a>
-            </li>
-          
-        
-        
-          <li class="nav-item" id="search-btn">
-            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
-              <i class="iconfont icon-search"></i>
-            </a>
-          </li>
-          
-        
-        
-          <li class="nav-item" id="color-toggle-btn">
-            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
-              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
-            </a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-</nav>
-
-  
-
-<div id="banner" class="banner" parallax=true
-     style="background: url('https://images.unsplash.com/photo-1646026371686-79950ceb6daa?w=640') no-repeat center center; background-size: cover;">
-  <div class="full-bg-img">
-    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.1)">
-      <div class="banner-text text-center fade-in-up">
-        <div class="h2">
-          
-            <span id="subtitle">关注 网络安全、金融投资，和个人成长</span>
-          
-        </div>
-
-        
-      </div>
-
-      
-    </div>
-  </div>
-</div>
-
-</div>
-
-  </header>
-
-  <main>
-    
-      <div class="container nopadding-x-md">
-        <div id="board"
-          >
-          
-          <div class="container">
-            <div class="row">
-              <div class="col-12 col-md-10 m-auto">
-                
-
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/cn/AS3_Sorcerer_crack/" target="_self">
-          AS3 Sorcerer 3.0 破解思路
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/cn/AS3_Sorcerer_crack/" target="_self">
-        <div>
-          AS3 Sorcerer是一款flash action Script的商业反编译软件。  www.as3sorcerer.com    软件为Delphi编写，加了未知壳，使用PEID 0.94无法正确查出，使用核心扫描发现是   Delphi编写，这个软件有一个特点修改一个字节就报错。由于时间原因没有具体跟相关代码。    破解方法使用LPK.dll动态修改as3.exe内存达到破解目前，
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2023-09-06 11:00" pubdate>
-              2023-09-06
-            </time>
-          </div>
-        
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/Crack/">#Crack</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/cn/apk_debug/" target="_self">
-          使用Android Studio 调试无源码apk程序
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/cn/apk_debug/" target="_self">
-        <div>
-          Apk无源码调试的方法有很多，现在发现使用Android Studio 结合 JEB　感觉良好，主要是参考　http://www.jianshu.com/p/c7899e5ea182　这篇记录下了具体步骤。 1. 下载 smalideahttps://bitbucket.org/JesusFreke/smali/downloads/smalidea-0.03.zip 在Android studio
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2023-09-06 11:00" pubdate>
-              2023-09-06
-            </time>
-          </div>
-        
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/Android/">#Android</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/cn/anti_sandbox/" target="_self">
-          一些反沙盒的新技术
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/cn/anti_sandbox/" target="_self">
-        <div>
-          Upatre 使用了一些新的逃逸技术来逃逸动态沙盒引擎的检查，这些技巧都非常的简单，但是非常的有效果。事实上，VirusTotal上Upatre的检出率并不高，新变种出来基本都检测不出来，说明现在的恶意软件对付杀毒软件是越来越有办法了。 目前在恶意软件上加壳倒是越来越少了，因为加壳容易引起杀软引擎的注意，相反地目前的恶意软件大量使用边执行边修改自身代码的方法来躲避杀软，不执行的话看起来就像是一个正
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2023-09-06 11:00" pubdate>
-              2023-09-06
-            </time>
-          </div>
-        
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/Malware/">#Malware</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/cn/Android_SSL_Pinning/" target="_self">
-          Andorid 绕过 SSL Pinning 抓 https 报文
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/cn/Android_SSL_Pinning/" target="_self">
-        <div>
-          SSL pinningSSL Pinning是一种防止中间人攻击的技术，主要机制是在客户端发起请求–&gt;收到服务器发来的证书进行校验，如果收到的证书不被客户端信任，就直接断开连接不继续请求。可以发现中间人攻击的要点是伪造了一个假的服务端证书给了客户端，客户端误以为真。解决思路就是，客户端也预置一份服务端的证书，比较一下就知道真假了。 SSL-pinning有两种方式：证书锁定（Certific
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2023-09-06 11:00" pubdate>
-              2023-09-06
-            </time>
-          </div>
-        
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/Security/">#Security</a>
-            
-              <a href="/tags/Android/">#Android</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/cn/android_intent_base_attack/" target="_self">
-          Intent Spoofing 攻击
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/cn/android_intent_base_attack/" target="_self">
-        <div>
-          0. Android的安全模型 application sandbox selinux permissions application signing  正是因为Application sandbox的存在，App进程之间是相互隔离的。有下面一个场景一个App需要调用weixin来分享内容，如何处理？这就需要用到intent，告诉Android系统你的意图是什么，Android系统将调用相应的处理
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2023-09-06 11:00" pubdate>
-              2023-09-06
-            </time>
-          </div>
-        
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/Security/">#Security</a>
-            
-              <a href="/tags/Android/">#Android</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/cn/Android_binder_fuzzing/" target="_self">
-          Android Binder Fuzzing 的一些思路
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/cn/Android_binder_fuzzing/" target="_self">
-        <div>
-          1. binder 简介Android安全模型的一个关键部分是每一个应用程序都被赋予一个唯一的 Linux 用户 ID 和组 ID，运行在自己的进程和 Dalvik 虚拟机里。在应用程序安装的过程中，Android系统设备上创建一个专门的目录（文件夹），用于存储此应用程序的数据，并且仅允许应用程序利用Linux 用户 ID 和组 ID 的相应访问权限对这些数据进行访问。此外，此应用程序的 Dalv
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2023-09-06 11:00" pubdate>
-              2023-09-06
-            </time>
-          </div>
-        
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/Security/">#Security</a>
-            
-              <a href="/tags/Android/">#Android</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/cn/afl/" target="_self">
-          afl-fuzz 框架
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/cn/afl/" target="_self">
-        <div>
-          afl-fuzz 的整体架构，新手理解起来还是比较费劲，网络上发现一张图觉得不错，放上来大家看看，感谢原作者。
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2023-09-06 11:00" pubdate>
-              2023-09-06
-            </time>
-          </div>
-        
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/Security/">#Security</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/cn/afl-fuzz1/" target="_self">
-          Dissecting American Fuzzy Lop A FuzzBench Evaluation 要点
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/cn/afl-fuzz1/" target="_self">
-        <div>
-          paper: https://www.s3.eurecom.fr/docs/fuzzing22_fioraldi_report.pdf 两个实验的结论 (主要基于 FuzzBench) Our conclusion after this experiment is that AFL, and follow-ups fuzzers like AFL++, should provide an opti
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2023-09-06 11:00" pubdate>
-              2023-09-06
-            </time>
-          </div>
-        
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/Security/">#Security</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/cn/a_change/" target="_self">
-          关于A股变盘的假期效应思考
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/cn/a_change/" target="_self">
-        <div>
-          沉浮 A股多年，发现一个比较重要的规律，A 股变盘的时间节点大多发生在重大节假日期间，分别举例如下：  「1」重大节日 （包括阳历和农历： 劳动节，国庆节，中秋节，端午节，过年 等） 「2」周一&#x2F;周五 「3」月初&#x2F;月末  有人总结出 A 股变盘时间节点和农历的 24 节气相关，每个节气的时间间隔大致在 15 到 16 天左右，这条规律其实和上面的 「1」 说法是一致的。 思考其
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2023-09-06 11:00" pubdate>
-              2023-09-06
-            </time>
-          </div>
-        
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/investment/">#investment</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/cn/010editor/" target="_self">
-          010editor 保持试用
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/cn/010editor/" target="_self">
-        <div>
-          软件介绍010Editor是一款快速且强大的十六进制编辑器。用来编辑二进制文件。有一个友好易于使用的界面，无限次的undo和redo操作。另外还可以打印十六进制的字节或者以书签的方式标出某些重要的字节。支持二进制模板（binary template）系统。 保持试用国外软件很多时候相当厚道了，试用基本是全功能，轻微延时和不能自动更新二进制模板，就日常使用来说基本是完全够用了。 关键文件为 ~/.c
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2023-09-06 11:00" pubdate>
-              2023-09-06
-            </time>
-          </div>
-        
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/linux/">#linux</a>
-            
-              <a href="/tags/Crack/">#Crack</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-
-
-  <nav aria-label="navigation">
-    <span class="pagination" id="pagination">
-      <a class="extend prev" rel="prev" href="/page/10/#board"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/#board">9</a><a class="page-number" href="/page/10/#board">10</a><span class="page-number current">11</span><a class="page-number" href="/page/12/#board">12</a><a class="page-number" href="/page/13/#board">13</a><span class="space">&hellip;</span><a class="page-number" href="/page/17/#board">17</a><a class="extend next" rel="next" href="/page/12/#board"><i class="iconfont icon-arrowright"></i></a>
-    </span>
-  </nav>
-
-
-
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    
-
-    
-      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
-        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
-      </a>
-    
-
-    
-      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
-     aria-hidden="true">
-  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
-        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body mx-3">
-        <div class="md-form mb-5">
-          <input type="text" id="local-search-input" class="form-control validate">
-          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
-        </div>
-        <div class="list-group" id="local-search-result"></div>
-      </div>
-    </div>
-  </div>
-</div>
-
-    
-
-    
-  </main>
-
-  <footer>
-    <div class="footer-inner">
-  
-    <div class="footer-content">
-       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/images/avatar.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">164</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">17</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/thoughts"><i class="fa-fw fas fa-cloud"></i><span> 想法</span></a></div><div class="menus_item"><a class="site-page" href="/links/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page" href="/sitemap.xml"><span> sitemap</span></a></div><div class="menus_item"><a class="site-page" href="/random.html"><span> random</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header" style="background-image: url(https://images.unsplash.com/photo-1646026371686-79950ceb6daa?w=640);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">安全代码</span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/thoughts"><i class="fa-fw fas fa-cloud"></i><span> 想法</span></a></div><div class="menus_item"><a class="site-page" href="/links/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page" href="/sitemap.xml"><span> sitemap</span></a></div><div class="menus_item"><a class="site-page" href="/random.html"><span> random</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="site-info"><h1 id="site-title">安全代码</h1><div id="site_social_icons"><a class="social-icon" href="/rss.xml" target="_blank" title="RSS"><i class="fas fa-rss" style="color: #4c566a;"></i></a><a class="social-icon" href="https://x.com/henices" target="_blank" title="Twitter"><i class="fab fa-x-twitter" style="color: #4c566a;"></i></a><a class="social-icon" href="mailto:zhouzhenster@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4c566a;"></i></a></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts nc" id="recent-posts"><div class="recent-post-items"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/cn/AS3_Sorcerer_crack/" title="AS3 Sorcerer 3.0 破解思路">AS3 Sorcerer 3.0 破解思路</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-09-06T03:00:51.277Z" title="发表于 2023-09-06 11:00:51">2023-09-06</time></span></div><div class="content">   AS3 Sorcerer是一款flash action Script的商业反编译软件。  www.as3sorcerer.com    软件为Delphi编写，加了未知壳，使用PEID 0.94无法正确查出，使用核心扫描发现是   Delphi编写，这个软件有一个特点修改一个字节就报错。由于时间原因没有具体跟相关代码。    破解方法使用LPK.dll动态修改as3.exe内存达到破解目前，在Windows Xp下比较完美，   在Windows 7下已经无法通过LPK.dll进行DLL hijack，可以通过DLL注入达到同样的目的。    难点有几个，OD加载报错，attack也报错。使用海风月影的StrongOD可以正常attach。   OD 1.1目前最大的问题是插件冲突严重，安装了OllyAdv后，无法成功加载as3.exe.   遇上强壳时可以使用phantom的protect DRx，可以解决一下问题，总之要尽量避免冲突。   接下来的难点就是如何找到破解的关键点，进行内存patch。    使用OD查找字符串参考Unicode，搜索trial 123450...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/cn/apk_debug/" title="使用Android Studio 调试无源码apk程序">使用Android Studio 调试无源码apk程序</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-09-06T03:00:51.276Z" title="发表于 2023-09-06 11:00:51">2023-09-06</time></span></div><div class="content">Apk无源码调试的方法有很多，现在发现使用Android Studio 结合 JEB　感觉良好，主要是参考　http://www.jianshu.com/p/c7899e5ea182　这篇记录下了具体步骤。 1. 下载 smalideahttps://bitbucket.org/JesusFreke/smali/downloads/smalidea-0.03.zip 在Android studio的插件仓库中没有找到这个插件，需要下载本地安装File -&gt; Settings -&gt; Plugins -&gt; Install plugin from disk  选择下载的插件，重启后生效。 2. apktool 输出源码文件https://github.com/iBotPeaches/Apktool/releases/download/2.2.0/apktool_2.2.0.jar 1java -jar apktool_2.2.0.jar d -f xx.apk -o xx  如果正常的将输出 smali 源码文件 3. Android Studio 导入源码File ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/cn/anti_sandbox/" title="一些反沙盒的新技术">一些反沙盒的新技术</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-09-06T03:00:51.275Z" title="发表于 2023-09-06 11:00:51">2023-09-06</time></span></div><div class="content">Upatre 使用了一些新的逃逸技术来逃逸动态沙盒引擎的检查，这些技巧都非常的简单，但是非常的有效果。事实上，VirusTotal上Upatre的检出率并不高，新变种出来基本都检测不出来，说明现在的恶意软件对付杀毒软件是越来越有办法了。 目前在恶意软件上加壳倒是越来越少了，因为加壳容易引起杀软引擎的注意，相反地目前的恶意软件大量使用边执行边修改自身代码的方法来躲避杀软，不执行的话看起来就像是一个正常的软件，而真正执行起来代码却全变了，这也算是一种进化。 下面说说两种最近遇到的沙盒逃逸的办法，样本md5: ac3558b973402ef6a27e03c391f20533 检查开机时间一般使用沙盒的分析引擎的做法都是安装一个全新的系统，做系统镜像。然后在检查的时候加载镜像，执行样本。而开机的时间往往都被忽略了，基本都不会超过10分钟。 Upatre 样本所采取的方法是利用GetTickCount 获取开机的毫秒数，当开机时间小于12分钟是就不执行恶意的行为。 12345678004013B3    BB D8FE0A00         MOV EBX,0AFED8004013B8 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/cn/Android_SSL_Pinning/" title="Andorid 绕过 SSL Pinning 抓 https 报文">Andorid 绕过 SSL Pinning 抓 https 报文</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-09-06T03:00:51.254Z" title="发表于 2023-09-06 11:00:51">2023-09-06</time></span></div><div class="content">SSL pinningSSL Pinning是一种防止中间人攻击的技术，主要机制是在客户端发起请求–&gt;收到服务器发来的证书进行校验，如果收到的证书不被客户端信任，就直接断开连接不继续请求。可以发现中间人攻击的要点是伪造了一个假的服务端证书给了客户端，客户端误以为真。解决思路就是，客户端也预置一份服务端的证书，比较一下就知道真假了。 SSL-pinning有两种方式：证书锁定（Certificate Pinning） 和公钥锁定（ Public Key Pinning）。 证书锁定需要在客户端代码内置仅接受指定域名的证书，而不接受操作系统或浏览器内置的CA根证书对应的任何证书，通过这种授权方式，保障了APP与服务端通信的唯一性和安全性，因此客户端与服务端（例如API网关）之间的通信是可以保证绝对安全。但是CA签发证书都存在有效期问题，缺点是在证书续期后需要将证书重新内置到APP中。 公钥锁定提取证书中的公钥并内置到客户端中，通过与服务器对比公钥值来验证连接的正确性。制作证书密钥时，公钥在证书的续期前后都可以保持不变（即密钥对不变），所以可以避免证书有效期问题，一般推荐这种做法...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/cn/android_intent_base_attack/" title="Intent Spoofing 攻击">Intent Spoofing 攻击</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-09-06T03:00:51.236Z" title="发表于 2023-09-06 11:00:51">2023-09-06</time></span></div><div class="content">0. Android的安全模型 application sandbox selinux permissions application signing  正是因为Application sandbox的存在，App进程之间是相互隔离的。有下面一个场景一个App需要调用weixin来分享内容，如何处理？这就需要用到intent，告诉Android系统你的意图是什么，Android系统将调用相应的处理程序来处理。 Intent 是一个将要执行的动作的抽象的描述，一般来说是作为参数来使用，由Intent来协助完成android各个组件之间的通讯。比如说调用startActivity()来启动一个activity,或者由broadcaseIntent()来传递给所有感兴趣的BroadcaseReceiver, 再或者由startService()&#x2F;bindservice()来启动一个后台的service.所以可以看出来，intent主要是用来启动其他的activity 或者service，所以可以将intent理解成activity之间的粘合剂。 1. IntentIntent...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/cn/Android_binder_fuzzing/" title="Android Binder Fuzzing 的一些思路">Android Binder Fuzzing 的一些思路</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-09-06T03:00:51.188Z" title="发表于 2023-09-06 11:00:51">2023-09-06</time></span></div><div class="content">1. binder 简介Android安全模型的一个关键部分是每一个应用程序都被赋予一个唯一的 Linux 用户 ID 和组 ID，运行在自己的进程和 Dalvik 虚拟机里。在应用程序安装的过程中，Android系统设备上创建一个专门的目录（文件夹），用于存储此应用程序的数据，并且仅允许应用程序利用Linux 用户 ID 和组 ID 的相应访问权限对这些数据进行访问。此外，此应用程序的 Dalvik 虚拟机使用应用程序的用户 ID 运行在自己的进程中。这些关键的机制在操作系统层面上强制数据安全，因为应用程序之间不共享内存、访问权限及磁盘存储。应用程序只能在它们自己的 Dalvik 虚拟机范围内访问内存和数据。 1234567891011121314151617$ ps...u0_a16        2757   882 2574956 116944 SyS_epoll+          0 S com.google.android.gms.persistentu0_a128       2774   883 1939084  87720 SyS_epoll+        ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/cn/afl/" title="afl-fuzz 框架">afl-fuzz 框架</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-09-06T03:00:51.175Z" title="发表于 2023-09-06 11:00:51">2023-09-06</time></span></div><div class="content">afl-fuzz 的整体架构，新手理解起来还是比较费劲，网络上发现一张图觉得不错，放上来大家看看，感谢原作者。  </div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/cn/afl-fuzz1/" title="Dissecting American Fuzzy Lop A FuzzBench Evaluation 要点">Dissecting American Fuzzy Lop A FuzzBench Evaluation 要点</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-09-06T03:00:51.151Z" title="发表于 2023-09-06 11:00:51">2023-09-06</time></span></div><div class="content">paper: https://www.s3.eurecom.fr/docs/fuzzing22_fioraldi_report.pdf 两个实验的结论 (主要基于 FuzzBench) Our conclusion after this experiment is that AFL, and follow-ups fuzzers like AFL++, should provide an optionto disable hitcounts. AFL++ provides many different op-tions, and the users are suggested to run an instance of each variant when doing parallel fuzzing, a common use-case in real-world setups. The fact that in our experiments,hitcounts have shown a highly variadic behavior suggests that users ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/cn/a_change/" title="关于A股变盘的假期效应思考">关于A股变盘的假期效应思考</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-09-06T03:00:51.150Z" title="发表于 2023-09-06 11:00:51">2023-09-06</time></span></div><div class="content">沉浮 A股多年，发现一个比较重要的规律，A 股变盘的时间节点大多发生在重大节假日期间，分别举例如下：  「1」重大节日 （包括阳历和农历： 劳动节，国庆节，中秋节，端午节，过年 等） 「2」周一&#x2F;周五 「3」月初&#x2F;月末  有人总结出 A 股变盘时间节点和农历的 24 节气相关，每个节气的时间间隔大致在 15 到 16 天左右，这条规律其实和上面的 「1」 说法是一致的。 思考其背后的原因，平时交易日都是连续的中间无间断，大家的交易思路和看法也比较容易连续一致。每逢重大节日，或者月初月末，往往都是放假休息的时间，外加期间各种信息的输入量比平时大很多，这样容易有思维波动。重大节日后，主力一带节奏，容易对大家的思维进行强化，分歧转一致后，就真的变盘了。 A股还有个月初，月末效应，月初赚钱，月末亏钱，比较奇怪，可能和基金经理的月初建仓和月末考核相关，这条规律几乎是对称的，如果月末没有大跌，月初基本就没有大赚效应。 后面发现居然有一个股票技术分析流派叫季节派。（季节理论 Season Theory） </div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/cn/010editor/" title="010editor 保持试用">010editor 保持试用</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-09-06T03:00:51.111Z" title="发表于 2023-09-06 11:00:51">2023-09-06</time></span></div><div class="content">软件介绍010Editor是一款快速且强大的十六进制编辑器。用来编辑二进制文件。有一个友好易于使用的界面，无限次的undo和redo操作。另外还可以打印十六进制的字节或者以书签的方式标出某些重要的字节。支持二进制模板（binary template）系统。 保持试用国外软件很多时候相当厚道了，试用基本是全功能，轻微延时和不能自动更新二进制模板，就日常使用来说基本是完全够用了。 关键文件为 ~/.config/SweetScape/010 Editor.ini，无法使用的时侯可以把这个文件清空，将恢复30天试用状态，或者简单粗暴的将文件设置为只读。 1chmod 444 &quot;010 Editor.ini&quot;  用IDA逆向的时侯没有发现这个文件比较奇怪。这个文件是 是使用strace命令发现的，strace命令支持 -e 的过滤参数将有效减少输出，一般来说看strace日志文件可以从最后往前看。 1strace -e trace=file ./010editor  从代码上看有使用网络验证需要在hosts文件中屏敝两个网站， 可以减少一些不必要的麻烦。 12127....</div></div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/10/#content-inner"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/#content-inner">10</a><span class="page-number current">11</span><a class="page-number" href="/page/12/#content-inner">12</a><span class="space">&hellip;</span><a class="page-number" href="/page/17/#content-inner">17</a><a class="extend next" rel="next" href="/page/12/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/images/avatar.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">henices</div><div class="author-info-description"></div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">164</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">17</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><div class="card-info-social-icons"><a class="social-icon" href="/rss.xml" target="_blank" title="RSS"><i class="fas fa-rss" style="color: #4c566a;"></i></a><a class="social-icon" href="https://x.com/henices" target="_blank" title="Twitter"><i class="fab fa-x-twitter" style="color: #4c566a;"></i></a><a class="social-icon" href="mailto:zhouzhenster@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4c566a;"></i></a></div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/cn/duanyongping/" title="段永平退休20多年后罕见公开访谈">段永平退休20多年后罕见公开访谈</a><time datetime="2025-11-11T16:00:00.000Z" title="发表于 2025-11-12 00:00:00">2025-11-12</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/cn/how_to_tell_a_story/" title="如何讲好一个故事">如何讲好一个故事</a><time datetime="2025-11-11T16:00:00.000Z" title="发表于 2025-11-12 00:00:00">2025-11-12</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/cn/naval_reading/" title="纳瓦尔的阅读方法">纳瓦尔的阅读方法</a><time datetime="2025-10-28T16:00:00.000Z" title="发表于 2025-10-29 00:00:00">2025-10-29</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/cn/fedora_linux_7z/" title="Fedora Linux 升级系统中的 7-Zip">Fedora Linux 升级系统中的 7-Zip</a><time datetime="2025-10-12T16:00:00.000Z" title="发表于 2025-10-13 00:00:00">2025-10-13</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/cn/vmware_fix_guest_disk_error/" title="修复 VMware Workstation Ubuntu Guest 磁盘错误">修复 VMware Workstation Ubuntu Guest 磁盘错误</a><time datetime="2025-09-22T16:00:00.000Z" title="发表于 2025-09-23 00:00:00">2025-09-23</time></div></div></div></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/tags/Crack/" style="font-size: 1.13em; color: #999a9c">Crack</a> <a href="/tags/Archives/" style="font-size: 1.1em; color: #999">Archives</a> <a href="/tags/Malware/" style="font-size: 1.21em; color: #999ea4">Malware</a> <a href="/tags/linux/" style="font-size: 1.44em; color: #99a7ba">linux</a> <a href="/tags/%E6%9B%BC%E7%A6%8F%E5%90%89%E7%9A%84%E5%88%86%E4%BA%AB/" style="font-size: 1.5em; color: #99a9bf">曼福吉的分享</a> <a href="/tags/Life/" style="font-size: 1.16em; color: #999b9e">Life</a> <a href="/tags/windows/" style="font-size: 1.24em; color: #999fa7">windows</a> <a href="/tags/Misc/" style="font-size: 1.13em; color: #999a9c">Misc</a> <a href="/tags/Security/" style="font-size: 1.47em; color: #99a8bc">Security</a> <a href="/tags/Software/" style="font-size: 1.33em; color: #99a2af">Software</a> <a href="/tags/vim/" style="font-size: 1.19em; color: #999ca1">vim</a> <a href="/tags/Programming/" style="font-size: 1.27em; color: #99a0a9">Programming</a> <a href="/tags/PKM/" style="font-size: 1.36em; color: #99a3b1">PKM</a> <a href="/tags/Android/" style="font-size: 1.41em; color: #99a6b7">Android</a> <a href="/tags/ai/" style="font-size: 1.19em; color: #999ca1">ai</a> <a href="/tags/KNOWLEDGE/" style="font-size: 1.3em; color: #99a1ac">KNOWLEDGE</a> <a href="/tags/investment/" style="font-size: 1.39em; color: #99a4b4">investment</a></div></div><div class="card-widget card-archives">
+    <div class="item-headline">
+      <i class="fas fa-archive"></i>
+      <span>归档</span>
+      <a class="card-more-btn" href="/archives/"
+            title="查看更多">
+            <i class="fas fa-angle-right"></i>
+          </a>
     </div>
   
-  
-  
-</div>
+    <ul class="card-archive-list">
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2025/11/">
+            <span class="card-archive-list-date">
+              十一月 2025
+            </span>
+            <span class="card-archive-list-count">2</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2025/10/">
+            <span class="card-archive-list-date">
+              十月 2025
+            </span>
+            <span class="card-archive-list-count">2</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2025/09/">
+            <span class="card-archive-list-date">
+              九月 2025
+            </span>
+            <span class="card-archive-list-count">2</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2025/08/">
+            <span class="card-archive-list-date">
+              八月 2025
+            </span>
+            <span class="card-archive-list-count">1</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2025/05/">
+            <span class="card-archive-list-date">
+              五月 2025
+            </span>
+            <span class="card-archive-list-count">1</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2025/04/">
+            <span class="card-archive-list-date">
+              四月 2025
+            </span>
+            <span class="card-archive-list-count">2</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2025/03/">
+            <span class="card-archive-list-date">
+              三月 2025
+            </span>
+            <span class="card-archive-list-count">4</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2025/02/">
+            <span class="card-archive-list-date">
+              二月 2025
+            </span>
+            <span class="card-archive-list-count">6</span>
+          </a>
+        </li>
+      
+    </ul>
+  </div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站信息</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">164</div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2025-11-19T03:31:00.125Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer" style="background-image: url(https://images.unsplash.com/photo-1646026371686-79950ceb6daa?w=640);"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 By henices</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.5.2"></script><script src="/js/main.js?v=5.5.2"></script><script src="/js/tw_cn.js?v=5.5.2"></script><div class="js-pjax"><script>(() => {
+  const runMermaid = ele => {
+    window.loadMermaid = true
+    const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
 
-  </footer>
+    ele.forEach((item, index) => {
+      const mermaidSrc = item.firstElementChild
+      const config = mermaidSrc.dataset.config ? JSON.parse(mermaidSrc.dataset.config) : {}
+      if (!config.theme) {
+        config.theme = theme
+      }
+      const mermaidThemeConfig = `%%{init: ${JSON.stringify(config)}}%%\n`
+      const mermaidID = `mermaid-${index}`
+      const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
 
-  <!-- Scripts -->
-  
-  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
-  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+      const renderFn = mermaid.render(mermaidID, mermaidDefinition)
+      const renderMermaid = svg => {
+        mermaidSrc.insertAdjacentHTML('afterend', svg)
+      }
 
-  <script>
-    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
-    NProgress.start()
-    window.addEventListener('load', function() {
-      NProgress.done();
+      // mermaid v9 and v10 compatibility
+      typeof renderFn === 'string' ? renderMermaid(renderFn) : renderFn.then(({ svg }) => renderMermaid(svg))
     })
-  </script>
+  }
 
+  const codeToMermaid = () => {
+    const codeMermaidEle = document.querySelectorAll('pre > code.mermaid')
+    if (codeMermaidEle.length === 0) return
 
-<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
-<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
-<script  src="/js/events.js" ></script>
-<script  src="/js/plugins.js" ></script>
+    codeMermaidEle.forEach(ele => {
+      const preEle = document.createElement('pre')
+      preEle.className = 'mermaid-src'
+      preEle.hidden = true
+      preEle.textContent = ele.textContent
+      const newEle = document.createElement('div')
+      newEle.className = 'mermaid-wrap'
+      newEle.appendChild(preEle)
+      ele.parentNode.replaceWith(newEle)
+    })
+  }
 
+  const loadMermaid = () => {
+    if (false) codeToMermaid()
+    const $mermaid = document.querySelectorAll('#article-container .mermaid-wrap')
+    if ($mermaid.length === 0) return
 
+    const runMermaidFn = () => runMermaid($mermaid)
+    btf.addGlobalFn('themeChange', runMermaidFn, 'mermaid')
+    window.loadMermaid ? runMermaidFn() : btf.getScript('https://cdn.jsdelivr.net/npm/mermaid@11.12.1/dist/mermaid.min.js').then(runMermaidFn)
+  }
 
-
-
-  
-    <script  src="/js/img-lazyload.js" ></script>
-  
-
-
-
-
-  <script  src="/js/local-search.js" ></script>
-
-
-
-
-
-<!-- 主题的启动项，将它保持在最底部 -->
-<!-- the boot of the theme, keep it at the bottom -->
-<script  src="/js/boot.js" ></script>
-
-
-  
-
-  <noscript>
-    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
-  </noscript>
-</body>
-</html>
+  btf.addGlobalFn('encrypt', loadMermaid, 'mermaid')
+  window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+})()</script></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><i class="fas fa-spinner fa-pulse" id="loading-status" hidden="hidden"></i><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="local-search-input"><input placeholder="搜索文章" type="text"/></div><hr/><div id="local-search-results"></div><div class="ais-Pagination" id="local-search-pagination" style="display:none;"><ul class="ais-Pagination-list"></ul></div><div id="local-search-stats"></div></div><div id="search-mask"></div><script src="/js/search/local-search.js?v=5.5.2"></script></div></div></body></html>

@@ -1,481 +1,201 @@
-
-
-<!DOCTYPE html>
-<html lang="zh-CN" data-default-color-scheme=auto>
-
-
-
-<head>
-  <meta charset="UTF-8">
-
-  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
-  <link rel="icon" href="/img/fluid.png">
-  
-
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
-  <meta http-equiv="x-ua-compatible" content="ie=edge">
-  
-    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
-  
-  <meta name="theme-color" content="#2f4154">
-  <meta name="author" content="henices">
-  <meta name="keywords" content="">
-  
-    <meta name="description" content="早上四哥 (scz) 发了条微博，7-Zip 最近有相关的CVE，CVE-2025-11001、CVE-2025-11002，建议升级到 25.01。 如果使用 Windows 系统，在 https:&#x2F;&#x2F;7-zip.org&#x2F; 下载 7-Zip 25.01，升级安装即可。 在 Linux 系统中 7-zip 的版本比较复杂，关于 p7zip 和 7-zip 可以参考7-zip 官方readme.tx">
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Fedora Linux 升级系统中的 7-Zip | 安全代码</title><meta name="author" content="henices"><meta name="copyright" content="henices"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="早上四哥 (scz) 发了条微博，7-Zip 最近有相关的CVE，CVE-2025-11001、CVE-2025-11002，建议升级到 25.01。 如果使用 Windows 系统，在 https:&#x2F;&#x2F;7-zip.org&#x2F; 下载 7-Zip 25.01，升级安装即可。 在 Linux 系统中 7-zip 的版本比较复杂，关于 p7zip 和 7-zip 可以参考7-zip 官方readme.tx">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Fedora Linux 升级系统中的 7-Zip">
 <meta property="og:url" content="https://usmacd.com/cn/fedora_linux_7z/index.html">
 <meta property="og:site_name" content="安全代码">
 <meta property="og:description" content="早上四哥 (scz) 发了条微博，7-Zip 最近有相关的CVE，CVE-2025-11001、CVE-2025-11002，建议升级到 25.01。 如果使用 Windows 系统，在 https:&#x2F;&#x2F;7-zip.org&#x2F; 下载 7-Zip 25.01，升级安装即可。 在 Linux 系统中 7-zip 的版本比较复杂，关于 p7zip 和 7-zip 可以参考7-zip 官方readme.tx">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://images.unsplash.com/photo-1646026371686-79950ceb6daa?w=640">
 <meta property="article:published_time" content="2025-10-12T16:00:00.000Z">
 <meta property="article:modified_time" content="2025-10-13T16:00:00.000Z">
 <meta property="article:author" content="henices">
 <meta property="article:tag" content="linux">
-<meta name="twitter:card" content="summary_large_image">
-  
-  
-    <meta name="referrer" content="no-referrer-when-downgrade">
-  
-  
-  <title>Fedora Linux 升级系统中的 7-Zip - 安全代码</title>
-
-  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
-
-
-
-  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
-
-  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
-
-  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
-
-
-
-<!-- 主题依赖的图标库，不要自行修改 -->
-<!-- Do not modify the link that theme dependent icons -->
-
-<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
-
-
-
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
-
-
-<link  rel="stylesheet" href="/css/main.css" />
-
-
-  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
-  
-    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
-  
-
-
-
-
-  <script id="fluid-configs">
-    var Fluid = window.Fluid || {};
-    Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"usmacd.com","root":"/","version":"1.9.8","typing":{"enable":false,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":false,"default":"TEXT"},"copy_btn":false,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null},"woyaola":null,"cnzz":null},"search_path":"/local-search.xml","include_content_in_search":true};
-
-    if (CONFIG.web_analytics.follow_dnt) {
-      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
-      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://images.unsplash.com/photo-1646026371686-79950ceb6daa?w=640"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Fedora Linux 升级系统中的 7-Zip",
+  "url": "https://usmacd.com/cn/fedora_linux_7z/",
+  "image": "https://images.unsplash.com/photo-1646026371686-79950ceb6daa?w=640",
+  "datePublished": "2025-10-12T16:00:00.000Z",
+  "dateModified": "2025-10-13T16:00:00.000Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "henices",
+      "url": "https://usmacd.com"
     }
-  </script>
-  <script  src="/js/utils.js" ></script>
-  <script  src="/js/color-schema.js" ></script>
-  
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://usmacd.com/cn/fedora_linux_7z/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css?v=5.5.2"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.1.0/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
 
-
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
   
-<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="安全代码" type="application/atom+xml">
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'undefined')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'undefined')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"pagination":{"enable":false,"hitsPerPage":8},"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.12.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Fedora Linux 升级系统中的 7-Zip',
+  isHighlightShrink: false,
+  isToc: false,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 8.1.0"><link rel="alternate" href="/atom.xml" title="安全代码" type="application/atom+xml">
 <link rel="alternate" href="/rss.xml" title="安全代码" type="application/rss+xml">
-</head>
-
-
-<body>
-  
-
-  <header>
-    
-
-<div class="header-inner" style="height: 40vh;">
-  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
-  <div class="container">
-    <a class="navbar-brand" href="/">
-      <strong>安全代码</strong>
-    </a>
-
-    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
-            data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <div class="animated-icon"><span></span><span></span><span></span></div>
-    </button>
-
-    <!-- Collapsible content -->
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav ml-auto text-center">
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/" target="_self">
-                <i class="iconfont icon-home-fill"></i>
-                <span>首页</span>
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/archives/" target="_self">
-                <i class="iconfont icon-archive-fill"></i>
-                <span>归档</span>
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/tags/" target="_self">
-                <i class="iconfont icon-tags-fill"></i>
-                <span>标签</span>
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/about/" target="_self">
-                <i class="iconfont icon-user-fill"></i>
-                <span>关于</span>
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/subscription/" target="_self">
-                <i class="iconfont icon-user-fill"></i>
-                <span>订阅</span>
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/links/" target="_self">
-                <i class="iconfont icon-link-fill"></i>
-                <span>友链</span>
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/thoughts" target="_self">
-                <i class="iconfont icon-exp-fill"></i>
-                <span>thoughts</span>
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/rss.xml" target="_self">
-                <i class="iconfont icon-rss"></i>
-                <span>rss</span>
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/random.html" target="_self">
-                
-                <span>random</span>
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/sitemap.xml" target="_self">
-                
-                <span>sitemap</span>
-              </a>
-            </li>
-          
-        
-        
-          <li class="nav-item" id="search-btn">
-            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
-              <i class="iconfont icon-search"></i>
-            </a>
-          </li>
-          
-        
-        
-          <li class="nav-item" id="color-toggle-btn">
-            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
-              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
-            </a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-</nav>
-
-  
-
-<div id="banner" class="banner" parallax=true
-     style="background: url('https://images.unsplash.com/photo-1473181488821-2d23949a045a?w=640') no-repeat center center; background-size: cover;">
-  <div class="full-bg-img">
-    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
-      <div class="banner-text text-center fade-in-up">
-        <div class="h2">
-          
-            <span id="subtitle">Fedora Linux 升级系统中的 7-Zip</span>
-          
-        </div>
-
-        
-          
-  <div class="mt-3">
-    
-    
-      <span class="post-meta">
-        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2025-10-13 00:00" pubdate>
-          2025年10月13日 凌晨
-        </time>
-      </span>
-    
-  </div>
-
-  <div class="mt-1">
-    
-      <span class="post-meta mr-2">
-        <i class="iconfont icon-chart"></i>
-        
-          799 字
-        
-      </span>
-    
-
-    
-      <span class="post-meta mr-2">
-        <i class="iconfont icon-clock-fill"></i>
-        
-        
-        
-          7 分钟
-        
-      </span>
-    
-
-    
-    
-      
-        <span id="busuanzi_container_page_pv" style="display: none">
-          <i class="iconfont icon-eye" aria-hidden="true"></i>
-          <span id="busuanzi_value_page_pv"></span> 次
-        </span>
-        
-
-      
-    
-  </div>
-
-
-        
-      </div>
-
-      
-    </div>
-  </div>
-</div>
-
-</div>
-
-  </header>
-
-  <main>
-    
-      
-
-<div class="container-fluid nopadding-x">
-  <div class="row nomargin-x">
-    <div class="side-col d-none d-lg-block col-lg-2">
-      
-
-    </div>
-
-    <div class="col-lg-8 nopadding-x-md">
-      <div class="container nopadding-x-md" id="board-ctn">
-        <div id="board">
-          <article class="post-content mx-auto">
-            <h1 id="seo-header">Fedora Linux 升级系统中的 7-Zip</h1>
-            
-              <p id="updated-time" class="note note-info" style="">
-                
-                  
-                    本文最后更新于 2025年10月14日 凌晨
-                  
-                
-              </p>
-            
-            
-              <div class="markdown-body">
-                
-                <p>早上四哥 (scz) 发了条微博，7-Zip 最近有相关的CVE，CVE-2025-11001、CVE-2025-11002，建议升级到 25.01。</p>
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/images/avatar.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">164</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">17</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/thoughts"><i class="fa-fw fas fa-cloud"></i><span> 想法</span></a></div><div class="menus_item"><a class="site-page" href="/links/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page" href="/sitemap.xml"><span> sitemap</span></a></div><div class="menus_item"><a class="site-page" href="/random.html"><span> random</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(https://images.unsplash.com/photo-1646026371686-79950ceb6daa?w=640);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">安全代码</span></a><a class="nav-page-title" href="/"><span class="site-name">Fedora Linux 升级系统中的 7-Zip</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/thoughts"><i class="fa-fw fas fa-cloud"></i><span> 想法</span></a></div><div class="menus_item"><a class="site-page" href="/links/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page" href="/sitemap.xml"><span> sitemap</span></a></div><div class="menus_item"><a class="site-page" href="/random.html"><span> random</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">Fedora Linux 升级系统中的 7-Zip</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-10-12T16:00:00.000Z" title="发表于 2025-10-13 00:00:00">2025-10-13</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-10-13T16:00:00.000Z" title="更新于 2025-10-14 00:00:00">2025-10-14</time></span></div><div class="meta-secondline"></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><p>早上四哥 (scz) 发了条微博，7-Zip 最近有相关的CVE，CVE-2025-11001、CVE-2025-11002，建议升级到 25.01。</p>
 <p>如果使用 Windows 系统，在 <a target="_blank" rel="noopener" href="https://7-zip.org/">https://7-zip.org/</a> 下载 7-Zip 25.01，升级安装即可。</p>
 <p>在 Linux 系统中 7-zip 的版本比较复杂，关于 p7zip 和 7-zip 可以参考7-zip 官方readme.txt 的说明。</p>
-<div class="code-wrapper"><pre><code class="hljs applescript"><span class="hljs-number">7</span>-Zip <span class="hljs-keyword">and</span> p7zip
-===============
-Now there are two different ports <span class="hljs-keyword">of</span> <span class="hljs-number">7</span>-Zip <span class="hljs-keyword">for</span> Linux/macOS:
-
-<span class="hljs-number">1</span>) p7zip - another port <span class="hljs-keyword">of</span> <span class="hljs-number">7</span>-Zip <span class="hljs-keyword">for</span> Linux, made <span class="hljs-keyword">by</span> an independent developer.
-   The latest <span class="hljs-built_in">version</span> <span class="hljs-keyword">of</span> p7zip now <span class="hljs-keyword">is</span> <span class="hljs-number">16.02</span>, <span class="hljs-keyword">and</span> <span class="hljs-keyword">that</span> p7zip <span class="hljs-number">16.02</span> <span class="hljs-keyword">is</span> outdated now.
-
-<span class="hljs-number">2</span>) <span class="hljs-number">7</span>-Zip <span class="hljs-keyword">for</span> Linux/macOS - this package - <span class="hljs-keyword">it</span>&#x27;s new code <span class="hljs-keyword">with</span> all changes <span class="hljs-keyword">from</span> latest <span class="hljs-number">7</span>-Zip <span class="hljs-keyword">for</span> Windows.
-
-These two ports are <span class="hljs-keyword">not</span> identical. 
-Note also <span class="hljs-keyword">that</span> <span class="hljs-keyword">some</span> Linux specific things can be implemented better <span class="hljs-keyword">in</span> p7zip than <span class="hljs-keyword">in</span> new <span class="hljs-number">7</span>-Zip <span class="hljs-keyword">for</span> Linux.
-
-
-There are several main executables <span class="hljs-keyword">in</span> <span class="hljs-number">7</span>-Zip <span class="hljs-keyword">and</span> p7zip:
-    
-    <span class="hljs-number">7</span>zz  (<span class="hljs-number">7</span>-Zip) - standalone full <span class="hljs-built_in">version</span> <span class="hljs-keyword">of</span> <span class="hljs-number">7</span>-Zip <span class="hljs-keyword">that</span> supports all formats. 
-
-    <span class="hljs-number">7</span>zzs (<span class="hljs-number">7</span>-Zip) - standalone full <span class="hljs-built_in">version</span> <span class="hljs-keyword">of</span> <span class="hljs-number">7</span>-Zip <span class="hljs-keyword">that</span> supports all formats (static library linking).
-
-
-    <span class="hljs-number">7</span>z  (p7zip) - <span class="hljs-number">7</span>-Zip <span class="hljs-keyword">that</span> requires <span class="hljs-number">7</span>z.so shared library, <span class="hljs-keyword">and</span> <span class="hljs-keyword">it</span> supports all formats via <span class="hljs-number">7</span>z.so.
-    
-    <span class="hljs-number">7</span>zr (p7zip) - standalone reduced <span class="hljs-built_in">version</span> <span class="hljs-keyword">of</span> <span class="hljs-number">7</span>-Zip <span class="hljs-keyword">that</span> supports <span class="hljs-keyword">some</span> <span class="hljs-number">7</span>-Zip&#x27;s formats:
-                  <span class="hljs-number">7</span>z, xz, lzma <span class="hljs-keyword">and</span> split.
-    
-    <span class="hljs-number">7</span>za (p7zip) - standalone <span class="hljs-built_in">version</span> <span class="hljs-keyword">of</span> <span class="hljs-number">7</span>-Zip <span class="hljs-keyword">that</span> supports <span class="hljs-keyword">some</span> main formats: 
-                  <span class="hljs-number">7</span>z, xz, lzma, zip, bzip2, gzip, tar, cab, ppmd <span class="hljs-keyword">and</span> split.
-
-<span class="hljs-number">7</span>zzs <span class="hljs-keyword">is</span> similar <span class="hljs-keyword">to</span> <span class="hljs-number">7</span>zz, <span class="hljs-keyword">but</span> <span class="hljs-number">7</span>zzs was compiled <span class="hljs-keyword">for</span> static library linking,
-so <span class="hljs-number">7</span>zzs <span class="hljs-keyword">does</span> <span class="hljs-keyword">not</span> use external shared library (<span class="hljs-string">&quot;.so&quot;</span>) files. 
-You can use <span class="hljs-number">7</span>zzs, <span class="hljs-keyword">if</span> <span class="hljs-number">7</span>zz <span class="hljs-keyword">does</span> <span class="hljs-keyword">not</span> work due <span class="hljs-keyword">to</span> lack <span class="hljs-keyword">of</span> required shared library (<span class="hljs-string">&quot;.so&quot;</span>) files.
-
-The command line syntax <span class="hljs-keyword">for</span> executables <span class="hljs-keyword">from</span> p7zip <span class="hljs-keyword">is</span> similar <span class="hljs-keyword">to</span> <span class="hljs-number">7</span>zz syntax <span class="hljs-keyword">from</span> this package.
-
-The manual <span class="hljs-keyword">of</span> <span class="hljs-number">7</span>-Zip <span class="hljs-keyword">and</span> p7zip can show `<span class="hljs-number">7</span>z` <span class="hljs-keyword">in</span> command examples. 
-But you can use `<span class="hljs-number">7</span>zz`, `<span class="hljs-number">7</span>zr`, `<span class="hljs-number">7</span>za` <span class="hljs-keyword">instead of</span> `<span class="hljs-number">7</span>z` <span class="hljs-keyword">from</span> examples.
-</code></pre></div>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">7-Zip and p7zip</span><br><span class="line">===============</span><br><span class="line">Now there are two different ports of 7-Zip for Linux/macOS:</span><br><span class="line"></span><br><span class="line">1) p7zip - another port of 7-Zip for Linux, made by an independent developer.</span><br><span class="line">   The latest version of p7zip now is 16.02, and that p7zip 16.02 is outdated now.</span><br><span class="line"></span><br><span class="line">2) 7-Zip for Linux/macOS - this package - it&#x27;s new code with all changes from latest 7-Zip for Windows.</span><br><span class="line"></span><br><span class="line">These two ports are not identical. </span><br><span class="line">Note also that some Linux specific things can be implemented better in p7zip than in new 7-Zip for Linux.</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">There are several main executables in 7-Zip and p7zip:</span><br><span class="line">    </span><br><span class="line">    7zz  (7-Zip) - standalone full version of 7-Zip that supports all formats. </span><br><span class="line"></span><br><span class="line">    7zzs (7-Zip) - standalone full version of 7-Zip that supports all formats (static library linking).</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    7z  (p7zip) - 7-Zip that requires 7z.so shared library, and it supports all formats via 7z.so.</span><br><span class="line">    </span><br><span class="line">    7zr (p7zip) - standalone reduced version of 7-Zip that supports some 7-Zip&#x27;s formats:</span><br><span class="line">                  7z, xz, lzma and split.</span><br><span class="line">    </span><br><span class="line">    7za (p7zip) - standalone version of 7-Zip that supports some main formats: </span><br><span class="line">                  7z, xz, lzma, zip, bzip2, gzip, tar, cab, ppmd and split.</span><br><span class="line"></span><br><span class="line">7zzs is similar to 7zz, but 7zzs was compiled for static library linking,</span><br><span class="line">so 7zzs does not use external shared library (&quot;.so&quot;) files. </span><br><span class="line">You can use 7zzs, if 7zz does not work due to lack of required shared library (&quot;.so&quot;) files.</span><br><span class="line"></span><br><span class="line">The command line syntax for executables from p7zip is similar to 7zz syntax from this package.</span><br><span class="line"></span><br><span class="line">The manual of 7-Zip and p7zip can show `7z` in command examples. </span><br><span class="line">But you can use `7zz`, `7zr`, `7za` instead of `7z` from examples.</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 <p>实在是有点混乱，7-Zip 官方为了和 p7zip 的二进制文件区别，引入了 7zz 和 7zzs。</p>
 <p>看看 Fedora Linux 的情况：</p>
-<div class="code-wrapper"><pre><code class="hljs bash">$ dnf search 7z
-
-Matched fields: name, summary
- p7zip-gui.x86_64       7zG - 7-Zip GUI version
- p7zip-plugins.x86_64   Additional plugins <span class="hljs-keyword">for</span> p7zip
- python3-extractcode-7z.noarch  ScanCode Toolkit plugin to use pre-installed 7zip executables
-Matched fields: name
- p7zip.x86_64   Very high compression ratio file archiver
- p7zip-doc.noarch       Manual documentation and contrib directory
-Matched fields: summary
- golang-github-kjk-lzmadec.x86_64       Decompress .7z files <span class="hljs-keyword">in</span> Go using 7z executable
- golang-github-kjk-lzmadec-devel.noarch Decompress .7z files <span class="hljs-keyword">in</span> Go using 7z executable
-</code></pre></div>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">$ dnf search 7z</span><br><span class="line"></span><br><span class="line">Matched fields: name, summary</span><br><span class="line"> p7zip-gui.x86_64       7zG - 7-Zip GUI version</span><br><span class="line"> p7zip-plugins.x86_64   Additional plugins <span class="keyword">for</span> p7zip</span><br><span class="line"> python3-extractcode-7z.noarch  ScanCode Toolkit plugin to use pre-installed 7zip executables</span><br><span class="line">Matched fields: name</span><br><span class="line"> p7zip.x86_64   Very high compression ratio file archiver</span><br><span class="line"> p7zip-doc.noarch       Manual documentation and contrib directory</span><br><span class="line">Matched fields: summary</span><br><span class="line"> golang-github-kjk-lzmadec.x86_64       Decompress .7z files <span class="keyword">in</span> Go using 7z executable</span><br><span class="line"> golang-github-kjk-lzmadec-devel.noarch Decompress .7z files <span class="keyword">in</span> Go using 7z executable</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 <p>Fedora Linux 官方的软件仓库中，没有 7zip 只有 p7zip 。p7zip 已经很久没有更新过了，参见：<br><a target="_blank" rel="noopener" href="https://sourceforge.net/projects/p7zip/files/p7zip/">https://sourceforge.net/projects/p7zip/files/p7zip/</a></p>
 <p>检查 Fedora 系统中， 7z 的版本。</p>
-<div class="code-wrapper"><pre><code class="hljs stata">$ /usr/bin/7z i
-
-7-<span class="hljs-keyword">Zip</span> [64] 16.02 : <span class="hljs-keyword">Copyright</span> (c) 1999-2016 Igor Pavlov : 2016-05-21
-p7zip <span class="hljs-keyword">Version</span> 16.02  ...</code></pre></div>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ /usr/bin/7z i</span><br><span class="line"></span><br><span class="line">7-Zip [64] 16.02 : Copyright (c) 1999-2016 Igor Pavlov : 2016-05-21</span><br><span class="line">p7zip Version 16.02  ...</span><br></pre></td></tr></table></figure>
 
 
 <p>版本非常古老了，卸载 p7zip，免得以后出现问题。</p>
-<div class="code-wrapper"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> dnf remove p7zip</code></pre></div>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> dnf remove p7zip</span><br></pre></td></tr></table></figure>
 
 <p>执行 <code>dnf remove p7zip</code> 后， <code>/usr/bin/7z</code> 居然没有删除，只好使用 <code>dnf provides</code> 查看 7z 是那个软件包提供的。</p>
-<div class="code-wrapper"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> dnf provides 7z
-
-p7zip-plugins-16.02-32.fc42.x86_64 : Additional plugins <span class="hljs-keyword">for</span> p7zip
-Repo         : @System
-Matched From :
-Filename     : /usr/bin/7z
-
-p7zip-plugins-16.02-32.fc42.x86_64 : Additional plugins <span class="hljs-keyword">for</span> p7zip
-Repo         : fedora
-Matched From :
-Filename     : /usr/bin/7z
-</code></pre></div>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> dnf provides 7z</span><br><span class="line"></span><br><span class="line">p7zip-plugins-16.02-32.fc42.x86_64 : Additional plugins <span class="keyword">for</span> p7zip</span><br><span class="line">Repo         : @System</span><br><span class="line">Matched From :</span><br><span class="line">Filename     : /usr/bin/7z</span><br><span class="line"></span><br><span class="line">p7zip-plugins-16.02-32.fc42.x86_64 : Additional plugins <span class="keyword">for</span> p7zip</span><br><span class="line">Repo         : fedora</span><br><span class="line">Matched From :</span><br><span class="line">Filename     : /usr/bin/7z</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 <p><a target="_blank" rel="noopener" href="https://amazonlinux.pkgs.org/2023/amazonlinux-x86_64/p7zip-plugins-16.02-20.amzn2023.0.4.x86_64.rpm.html">https://amazonlinux.pkgs.org/2023/amazonlinux-x86_64/p7zip-plugins-16.02-20.amzn2023.0.4.x86_64.rpm.html</a></p>
-<div class="code-wrapper"><pre><code class="hljs awk"><span class="hljs-regexp">/usr/</span>bin/<span class="hljs-number">7</span>z
-<span class="hljs-regexp">/usr/</span>lib<span class="hljs-regexp">/.build-id/</span><span class="hljs-number">8</span>c/a62e905852cf8576d9686792c13e968b50d498
-<span class="hljs-regexp">/usr/</span>lib<span class="hljs-regexp">/.build-id/</span>a0/<span class="hljs-number">7</span>a5306a2c92c1c8c662c03f8d8b3e3687e455d
-<span class="hljs-regexp">/usr/</span>libexec<span class="hljs-regexp">/p7zip/</span><span class="hljs-number">7</span>z
-<span class="hljs-regexp">/usr/</span>libexec<span class="hljs-regexp">/p7zip/</span><span class="hljs-number">7</span>z.so
-<span class="hljs-regexp">/usr/</span>share<span class="hljs-regexp">/man/m</span>an1/<span class="hljs-number">7</span>z.<span class="hljs-number">1</span>.gz</code></pre></div>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">/usr/bin/7z</span><br><span class="line">/usr/lib/.build-id/8c/a62e905852cf8576d9686792c13e968b50d498</span><br><span class="line">/usr/lib/.build-id/a0/7a5306a2c92c1c8c662c03f8d8b3e3687e455d</span><br><span class="line">/usr/libexec/p7zip/7z</span><br><span class="line">/usr/libexec/p7zip/7z.so</span><br><span class="line">/usr/share/man/man1/7z.1.gz</span><br></pre></td></tr></table></figure>
 
 <p>比较意外，p7zip-plugins 提供了 &#x2F;usr&#x2F;bin&#x2F;7z ，将其卸载看看 <code>sudo dnf remove p7zip-plugins</code></p>
-<div class="code-wrapper"><pre><code class="hljs apache"><span class="hljs-attribute">sudo</span> dnf remove p7zip-plugins
-<span class="hljs-attribute">Package</span>                                                                 Arch            Version                                                                 Repository                                    Size
-<span class="hljs-attribute">Removing</span>:
- <span class="hljs-attribute">p7zip</span>-plugins                                                          x86_64          <span class="hljs-number">16</span>.<span class="hljs-number">02</span>-<span class="hljs-number">32</span>.fc42                                                           fedora                                     <span class="hljs-number">2</span>.<span class="hljs-number">7</span> MiB
-<span class="hljs-attribute">Removing</span> dependent packages:
- <span class="hljs-attribute">ark</span>                                                                    x86_64          <span class="hljs-number">25</span>.<span class="hljs-number">08</span>.<span class="hljs-number">1</span>-<span class="hljs-number">1</span>.fc42                                                          updates                                    <span class="hljs-number">3</span>.<span class="hljs-number">3</span> MiB
-<span class="hljs-attribute">Removing</span> unused dependencies:
- <span class="hljs-attribute">ark</span>-libs                                                               x86_64          <span class="hljs-number">25</span>.<span class="hljs-number">08</span>.<span class="hljs-number">1</span>-<span class="hljs-number">1</span>.fc42                                                          updates                                    <span class="hljs-number">1</span>.<span class="hljs-number">8</span> MiB
- <span class="hljs-attribute">gnustep</span>-base-libs                                                      x86_64          <span class="hljs-number">1</span>.<span class="hljs-number">30</span>.<span class="hljs-number">0</span>-<span class="hljs-number">7</span>.fc42                                                           fedora                                     <span class="hljs-number">8</span>.<span class="hljs-number">0</span> MiB
- <span class="hljs-attribute">libobjc</span>                                                                x86_64          <span class="hljs-number">15</span>.<span class="hljs-number">2</span>.<span class="hljs-number">1</span>-<span class="hljs-number">1</span>.fc42                                                           updates                                   <span class="hljs-number">91</span>.<span class="hljs-number">7</span> KiB
- <span class="hljs-attribute">unar</span>                                                                   x86_64          <span class="hljs-number">1</span>.<span class="hljs-number">10</span>.<span class="hljs-number">8</span>-<span class="hljs-number">10</span>.fc42                                                          fedora                                     <span class="hljs-number">4</span>.<span class="hljs-number">7</span> MiB
-
-<span class="hljs-attribute">Transaction</span> Summary:
- <span class="hljs-attribute">Removing</span>:           <span class="hljs-number">6</span> packages
-</code></pre></div>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">sudo dnf remove p7zip-plugins</span><br><span class="line">Package                                                                 Arch            Version                                                                 Repository                                    Size</span><br><span class="line">Removing:</span><br><span class="line"> p7zip-plugins                                                          x86_64          16.02-32.fc42                                                           fedora                                     2.7 MiB</span><br><span class="line">Removing dependent packages:</span><br><span class="line"> ark                                                                    x86_64          25.08.1-1.fc42                                                          updates                                    3.3 MiB</span><br><span class="line">Removing unused dependencies:</span><br><span class="line"> ark-libs                                                               x86_64          25.08.1-1.fc42                                                          updates                                    1.8 MiB</span><br><span class="line"> gnustep-base-libs                                                      x86_64          1.30.0-7.fc42                                                           fedora                                     8.0 MiB</span><br><span class="line"> libobjc                                                                x86_64          15.2.1-1.fc42                                                           updates                                   91.7 KiB</span><br><span class="line"> unar                                                                   x86_64          1.10.8-10.fc42                                                          fedora                                     4.7 MiB</span><br><span class="line"></span><br><span class="line">Transaction Summary:</span><br><span class="line"> Removing:           6 packages</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 <p>Fedora 下的解压软件对 <code>p7zip-plugins</code> 依赖比较严重，只能使用 rpm 命令删除。</p>
-<div class="code-wrapper"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> rpm -e --nodeps p7zip-plugins</code></pre></div>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> rpm -e --nodeps p7zip-plugins</span><br></pre></td></tr></table></figure>
 
 <p>检查一下 <code>/usr/bin/7z</code> 是否已经删除了。</p>
-<div class="code-wrapper"><pre><code class="hljs bash"><span class="hljs-built_in">ls</span> /usr/bin/7z
-<span class="hljs-built_in">ls</span>: 无法访问 <span class="hljs-string">&#x27;/usr/bin/7z&#x27;</span>: 没有那个文件或目录</code></pre></div>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ls /usr/bin/7z</span><br><span class="line">ls: 无法访问 &#x27;/usr/bin/7z&#x27;: 没有那个文件或目录</span><br></pre></td></tr></table></figure>
 
 
 <p>接下来需要升级 7-zip，在 Linux 系统中升级 7zip 通用的方法，是到官方网站下载编译好的 7-zip 二进制程序。<br>(其他不同架构可以在 <a target="_blank" rel="noopener" href="https://7-zip.org/download.html">https://7-zip.org/download.html</a> 页面查找下载链接)</p>
-<div class="code-wrapper"><pre><code class="hljs bash">wget https://7-zip.org/a/7z2501-linux-x64.tar.xz</code></pre></div>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget https://7-zip.org/a/7z2501-linux-x64.tar.xz</span><br></pre></td></tr></table></figure>
 
 <p>解压 7z2501-linux-x64.tar.xz 后，可以发现有两个二进制程序 7zz 和 7zzs。</p>
 <ul>
@@ -483,343 +203,67 @@ Filename     : /usr/bin/7z
 <li>7zzs        - standalone console version of 7-Zip (version compiled with static system library linking)</li>
 </ul>
 <p>然后利用路径优先级，可以在使用命令行时，使用升级过的 7z。</p>
-<div class="code-wrapper"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> <span class="hljs-built_in">cp</span> 7zzs /usr/bin/7z
-<span class="hljs-built_in">export</span> PATH=/usr/local/bin/:<span class="hljs-variable">$PATH</span></code></pre></div>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> <span class="built_in">cp</span> 7zzs /usr/bin/7z</span><br><span class="line"><span class="built_in">export</span> PATH=/usr/local/bin/:<span class="variable">$PATH</span></span><br></pre></td></tr></table></figure>
 
 <p>我在 Fedora 上使用 Ark 解压文件，测试解压 .7z 压缩包文件正常。</p>
 <p>Ark 的 7-Zip plugin 使用的是 7z 二进制，同时支持 p7zip 和 官方的 7-zip 提供的二进制程序。<br>参见： <a target="_blank" rel="noopener" href="https://invent.kde.org/utilities/ark/-/blob/release/25.08/plugins/cli7zplugin/cliplugin.cpp">https://invent.kde.org/utilities/ark/-/blob/release/25.08/plugins/cli7zplugin/cliplugin.cpp</a></p>
-<div class="code-wrapper"><pre><code class="hljs livecodeserver"><span class="hljs-number">7</span>-Zip plugin: supports <span class="hljs-keyword">the</span> <span class="hljs-number">7</span>-Zip <span class="hljs-built_in">format</span> <span class="hljs-keyword">by</span> <span class="hljs-keyword">using</span> <span class="hljs-keyword">the</span> <span class="hljs-number">7</span>z binary.</code></pre></div>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">7-Zip plugin: supports the 7-Zip format by using the 7z binary.</span><br></pre></td></tr></table></figure>
 
 <p>先这样，目前看系统中缺少 <code>7z.so</code> ，等遇上问题再说。</p>
 <hr>
 <p>2025.10.16 更新： p7zip-plugins 在 <code>dnf up</code> 时会自动安装，只好覆盖 <code>/usr/bin/7z</code> 。</p>
-<div class="code-wrapper"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> <span class="hljs-built_in">cp</span> 7zzs /usr/bin/7z
-<span class="hljs-built_in">sudo</span> <span class="hljs-built_in">cp</span> 7zzs /usr/libexec/p7zip/7z
-<span class="hljs-built_in">sudo</span> <span class="hljs-built_in">rm</span> /usr/libexec/p7zip/7z.so</code></pre></div>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> <span class="built_in">cp</span> 7zzs /usr/bin/7z</span><br><span class="line"><span class="built_in">sudo</span> <span class="built_in">cp</span> 7zzs /usr/libexec/p7zip/7z</span><br><span class="line"><span class="built_in">sudo</span> <span class="built_in">rm</span> /usr/libexec/p7zip/7z.so</span><br></pre></td></tr></table></figure>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://usmacd.com">henices</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://usmacd.com/cn/fedora_linux_7z/">https://usmacd.com/cn/fedora_linux_7z/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://usmacd.com" target="_blank">安全代码</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/linux/">linux</a></div><div class="post-share"><div class="social-share" data-image="https://images.unsplash.com/photo-1646026371686-79950ceb6daa?w=640" data-sites="facebook,x,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/cn/naval_reading/" title="纳瓦尔的阅读方法"><img class="cover" src="https://images.unsplash.com/photo-1646026371686-79950ceb6daa?w=640" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">纳瓦尔的阅读方法</div></div><div class="info-2"><div class="info-item-1">阅读对于现代人越来越难了，我们的大脑接受了互相矛盾的两种训练。 一方面，我们的注意力持续时间越来越短。在海量信息的冲击下，我们希望快速略读，总结要点，直奔主题。 另一方面，我们从小接受的教育是书必须读完一本再读下一本。 我认识的很多人都被卡在某一本书上，无法开始阅读下一本书。 推特，脸书，降低了我的阅读能力，但也大大提升了我的写作能力。 上网的每一天我都是在吃多巴胺零食，每块零食就是140个字符。 回归阅读非常困难，大脑被训练成只会浏览140个字的碎片化内容。 我想到了一个阅读的方法，把书当成博客文章集锦或推文合集，这样我就不用读完整本书了。我会同时阅读 10本，20本书，一目十行，囫囵吞枣地读。 书籍的某段内容枯燥，我就跳过这部分。如果有内容强烈吸引着我，我会从中间开始读。 我想读多少就读多少，并不觉得必须从头到尾全部读完。 – 来自《纳瓦尔宝典》 本文来自 「曼福吉的分享」https://xiaobot.net/p/MindForge 小报童专栏  详情请见：付费专栏：《曼福吉的分享》  </div></div></div></a><a class="pagination-related" href="/cn/vmware_fix_guest_disk_error/" title="修复 VMware Workstation Ubuntu Guest 磁盘错误"><img class="cover" src="https://images.unsplash.com/photo-1646026371686-79950ceb6daa?w=640" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">修复 VMware Workstation Ubuntu Guest 磁盘错误</div></div><div class="info-2"><div class="info-item-1">VMware Workstation 17.6.4 build-24832109 不稳定，几次出错后 Ubuntu Guest 无法正常登录系统。 主要异常为：输入用户和密码后卡在 GUI 的登录界面，使用 fsck 修复分区后问题解决，具体步骤如下：  菜单：VMWare -&gt; 虚拟机 -&gt; SSH -&gt; 连接到 SSH，弹出 cmd ，输入用户密码后成功登录。  登录后发现 Ubuntu 系统报错信息。 1234Last login: Tue Sep 16 10:37:29 2025 from 127.0.0.1Could not chdir to home directory /home/zz: No such file or directoryTo run a command as administrator (user &quot;root&quot;), use &quot;sudo &lt;command&gt;&quot;.See &quot;man sudo_root&quot; for details.  查看 &#x2F;etc&#x2F;...</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/cn/vmware_fix_guest_disk_error/" title="修复 VMware Workstation Ubuntu Guest 磁盘错误"><img class="cover" src="https://images.unsplash.com/photo-1646026371686-79950ceb6daa?w=640" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-09-23</div><div class="info-item-2">修复 VMware Workstation Ubuntu Guest 磁盘错误</div></div><div class="info-2"><div class="info-item-1">VMware Workstation 17.6.4 build-24832109 不稳定，几次出错后 Ubuntu Guest 无法正常登录系统。 主要异常为：输入用户和密码后卡在 GUI 的登录界面，使用 fsck 修复分区后问题解决，具体步骤如下：  菜单：VMWare -&gt; 虚拟机 -&gt; SSH -&gt; 连接到 SSH，弹出 cmd ，输入用户密码后成功登录。  登录后发现 Ubuntu 系统报错信息。 1234Last login: Tue Sep 16 10:37:29 2025 from 127.0.0.1Could not chdir to home directory /home/zz: No such file or directoryTo run a command as administrator (user &quot;root&quot;), use &quot;sudo &lt;command&gt;&quot;.See &quot;man sudo_root&quot; for details.  查看 &#x2F;etc&#x2F;...</div></div></div></a><a class="pagination-related" href="/cn/fcitx5_emoji_display/" title="Emoji 在 Fcitx5 提示栏正常显示的字体配置"><img class="cover" src="https://images.unsplash.com/photo-1646026371686-79950ceb6daa?w=640" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2024-12-12</div><div class="info-item-2">Emoji 在 Fcitx5 提示栏正常显示的字体配置</div></div><div class="info-2"><div class="info-item-1">关于升级大版本的 Linux 发行版，我有个经验，不要太着急升级，至少等2个星期再说。 即便如此，还是会遇上各种使用的问题， 升级 Fedora 41 后，Color Emoji 无法在 Fcitx5 的输入法提示栏正常显示。 上网搜索了一番，估计和字体渲染相关，下面是具体的解决问题方法：  安装 Emoji 字体  12sudo dnf install google-noto-color-emoji-fontssudo dnf install default-fonts-core-emoji   添加 color emoji 字体配置文件 /etc/fonts/conf.d/68-color-emoji.conf  123456789101112131415161718&lt;?xml version=&#x27;1.0&#x27;?&gt;&lt;!DOCTYPE fontconfig SYSTEM &#x27;fonts.dtd&#x27;&gt;&lt;fontconfig&gt;    &lt;match target=&quot;font&quot;&gt;     ...</div></div></div></a><a class="pagination-related" href="/cn/wps_fedora_linux_chinese_bad_char/" title="解决 Fedora Linux WPS 中文乱码问题"><img class="cover" src="https://images.unsplash.com/photo-1646026371686-79950ceb6daa?w=640" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2024-11-19</div><div class="info-item-2">解决 Fedora Linux WPS 中文乱码问题</div></div><div class="info-2"><div class="info-item-1">不知从哪个版本开始，Fedora Linux 上的 wps 字体乱码，基本处于不可用状态。最近，又遇上要打开 Office 文件的需求，研究了一下解决的方法。 安装缺少的字体，wps 可能没有某些字体的版权123456git clone https://github.com/jayknoxqu/wps-symbol-fontscd wps-symbol-fontssudo mkdir /usr/share/fonts/wps-fontssudo mv *.ttf /usr/share/fonts/wps-fontssudo chmod 644 /usr/share/fonts/wps-fonts/*sudo fc-cache -vfs  安装上面的字体，可以解决 wps 汉字显示为小方块的问题。 解决 wps 字体粗体显示不正常的问题wps 版本 11.1.0.11704-1 与 freetype2 版本 2.13.1 和 2.13.2 兼容性不佳。freetype2 会通过算法生成伪粗体（fakebold），但在这种情况下，wps-office 也自行将字体设为粗体，结果是文本...</div></div></div></a><a class="pagination-related" href="/cn/Fedora_linux_wechat_4.0/" title="Fedora linux 安装 wechat 4.0 的方法"><img class="cover" src="https://images.unsplash.com/photo-1646026371686-79950ceb6daa?w=640" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2024-11-05</div><div class="info-item-2">Fedora linux 安装 wechat 4.0 的方法</div></div><div class="info-2"><div class="info-item-1">感谢国产化软件项目，多年后，Linux 终于有 wechat 的官方安装包了 🥳 从麒麟 Linux 的源中，下载 wechat deb 安装包，解压后可以正常在 Fedora Linux 上使用。 123456wget https://archive2.kylinos.cn/DEB/KYLIN_DEB/pool/main/deb/wechat/wechat-beta_4.0.0.21_amd64.debsudo dnf install dpkg vlcdpkg-deb -xv ./wechat-beta_4.0.0.21_amd64.deb /tmp/wechatcd /tmp/wechat/opt/wechat-betasudo ln -sf /usr/lib64/libbz2.so.1.0.8 /usr/lib64/libbz2.so.1.0./wechat  我的 Fedora Linux 上安装了许多软件，常见的依赖库都已安装，大家可能还会遇到找不到动态库的情况。 其他 Linux 发行版 wechat 的适配原理上是一样的。 1）将 deb 包解开，执行 wecha...</div></div></div></a><a class="pagination-related" href="/cn/ssh-publickey-permission-denied/" title="ssh publickey permission denied 错误的解决方法"><img class="cover" src="https://images.unsplash.com/photo-1646026371686-79950ceb6daa?w=640" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2024-09-05</div><div class="info-item-2">ssh publickey permission denied 错误的解决方法</div></div><div class="info-2"><div class="info-item-1">openssh publickey 登录的方式突然不好用了，检查 grep sshd /var/log/auth.log 1Aug 30 16:58:33 pm-65c50001 sshd[9118]: Authentication refused: bad ownership or modes for directory /root  执行下面的命令后，可以成功登录了。 1234chown root:root /rootchown root:root /root/.sshchmod 700 /root/.sshchmod 600 /root/.ssh/authorized_keys  &#x2F;etc&#x2F;ssh&#x2F;sshd_config 文件中最关键的配置项 1PasswordAuthentication yes  我以前也遇到过这个问题，都是 file permession 设置错误，这次是 directory ownership 设置错误。排查此类错误，最靠谱的方法还是看日志，我折腾了 1 个小时。 Claude 3.5 Sonnet 没有回答出正确答案。...</div></div></div></a><a class="pagination-related" href="/cn/Debian_Nvidia_Ollama/" title="Nvidia 驱动安装和 Ollama 的使用"><img class="cover" src="https://images.unsplash.com/photo-1646026371686-79950ceb6daa?w=640" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2024-07-26</div><div class="info-item-2">Nvidia 驱动安装和 Ollama 的使用</div></div><div class="info-2"><div class="info-item-1">根据同事反馈，高版本的 NVIDIA 驱动兼容性有问题，需要安装 Nvidia 驱动 525.147.05 ，过程中可能需要升级内核。 安装 Nvidia 驱动查看 Debian 上显卡安装情况。 12lspci -nn | egrep -i &quot;3d|display|vga&quot;  01:00.0 VGA compatible controller [0300]: NVIDIA Corporation AD102 [GeForce RTX 4090] [10de:2684] (rev a1)  查看驱动安装具体的情况。 123456789101112lsmod | grep nouveau  nouveau              2433024  0  mxm_wmi                16384  1 nouveau  i2c_algo_bit           16384  1 nouveau  drm_display_helper    184320  1 nouveau  drm_ttm_helper         16384  1 n...</div></div></div></a></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/images/avatar.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">henices</div><div class="author-info-description"></div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">164</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">17</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><div class="card-info-social-icons"><a class="social-icon" href="/rss.xml" target="_blank" title="RSS"><i class="fas fa-rss" style="color: #4c566a;"></i></a><a class="social-icon" href="https://x.com/henices" target="_blank" title="Twitter"><i class="fab fa-x-twitter" style="color: #4c566a;"></i></a><a class="social-icon" href="mailto:zhouzhenster@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4c566a;"></i></a></div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/cn/duanyongping/" title="段永平退休20多年后罕见公开访谈">段永平退休20多年后罕见公开访谈</a><time datetime="2025-11-11T16:00:00.000Z" title="发表于 2025-11-12 00:00:00">2025-11-12</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/cn/how_to_tell_a_story/" title="如何讲好一个故事">如何讲好一个故事</a><time datetime="2025-11-11T16:00:00.000Z" title="发表于 2025-11-12 00:00:00">2025-11-12</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/cn/naval_reading/" title="纳瓦尔的阅读方法">纳瓦尔的阅读方法</a><time datetime="2025-10-28T16:00:00.000Z" title="发表于 2025-10-29 00:00:00">2025-10-29</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/cn/fedora_linux_7z/" title="Fedora Linux 升级系统中的 7-Zip">Fedora Linux 升级系统中的 7-Zip</a><time datetime="2025-10-12T16:00:00.000Z" title="发表于 2025-10-13 00:00:00">2025-10-13</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/cn/vmware_fix_guest_disk_error/" title="修复 VMware Workstation Ubuntu Guest 磁盘错误">修复 VMware Workstation Ubuntu Guest 磁盘错误</a><time datetime="2025-09-22T16:00:00.000Z" title="发表于 2025-09-23 00:00:00">2025-09-23</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url(https://images.unsplash.com/photo-1646026371686-79950ceb6daa?w=640);"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 By henices</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.5.2"></script><script src="/js/main.js?v=5.5.2"></script><script src="/js/tw_cn.js?v=5.5.2"></script><div class="js-pjax"><script>(() => {
+  const runMermaid = ele => {
+    window.loadMermaid = true
+    const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
 
-                
-              </div>
-            
-            <hr/>
-            <div>
-              <div class="post-metas my-3">
-  
-  
-    <div class="post-meta">
-      <i class="iconfont icon-tags"></i>
-      
-        <a href="/tags/linux/" class="print-no-link">#linux</a>
-      
-    </div>
-  
-</div>
+    ele.forEach((item, index) => {
+      const mermaidSrc = item.firstElementChild
+      const config = mermaidSrc.dataset.config ? JSON.parse(mermaidSrc.dataset.config) : {}
+      if (!config.theme) {
+        config.theme = theme
+      }
+      const mermaidThemeConfig = `%%{init: ${JSON.stringify(config)}}%%\n`
+      const mermaidID = `mermaid-${index}`
+      const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
 
+      const renderFn = mermaid.render(mermaidID, mermaidDefinition)
+      const renderMermaid = svg => {
+        mermaidSrc.insertAdjacentHTML('afterend', svg)
+      }
 
-              
-  
-
-  <div class="license-box my-3">
-    <div class="license-title">
-      <div>Fedora Linux 升级系统中的 7-Zip</div>
-      <div>https://usmacd.com/cn/fedora_linux_7z/</div>
-    </div>
-    <div class="license-meta">
-      
-        <div class="license-meta-item">
-          <div>作者</div>
-          <div>henices</div>
-        </div>
-      
-      
-        <div class="license-meta-item license-meta-date">
-          <div>发布于</div>
-          <div>2025年10月13日</div>
-        </div>
-      
-      
-      
-        <div class="license-meta-item">
-          <div>许可协议</div>
-          <div>
-            
-              
-              
-                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
-                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
-                    <i class="iconfont icon-cc-by"></i>
-                  </span>
-                </a>
-              
-            
-          </div>
-        </div>
-      
-    </div>
-    <div class="license-icon iconfont"></div>
-  </div>
-
-
-
-              
-                <div class="post-prevnext my-3">
-                  <article class="post-prev col-6">
-                    
-                    
-                      <a href="/cn/naval_reading/" title="纳瓦尔的阅读方法">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">纳瓦尔的阅读方法</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
-                  </article>
-                  <article class="post-next col-6">
-                    
-                    
-                      <a href="/cn/vmware_fix_guest_disk_error/" title="修复 VMware Workstation Ubuntu Guest 磁盘错误">
-                        <span class="hidden-mobile">修复 VMware Workstation Ubuntu Guest 磁盘错误</span>
-                        <span class="visible-mobile">下一篇</span>
-                        <i class="iconfont icon-arrowright"></i>
-                      </a>
-                    
-                  </article>
-                </div>
-              
-            </div>
-
-            
-          </article>
-        </div>
-      </div>
-    </div>
-
-    <div class="side-col d-none d-lg-block col-lg-2">
-      
-  <aside class="sidebar" style="margin-left: -1rem">
-    <div id="toc">
-  <p class="toc-header">
-    <i class="iconfont icon-list"></i>
-    <span>目录</span>
-  </p>
-  <div class="toc-body" id="toc-body"></div>
-</div>
-
-
-
-  </aside>
-
-
-    </div>
-  </div>
-</div>
-
-
-
-
-
-  
-
-
-
-
-  
-
-
-
-  
-
-
-
-  
-
-
-
-
-
-
-
-    
-
-    
-      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
-        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
-      </a>
-    
-
-    
-      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
-     aria-hidden="true">
-  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
-        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body mx-3">
-        <div class="md-form mb-5">
-          <input type="text" id="local-search-input" class="form-control validate">
-          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
-        </div>
-        <div class="list-group" id="local-search-result"></div>
-      </div>
-    </div>
-  </div>
-</div>
-
-    
-
-    
-  </main>
-
-  <footer>
-    <div class="footer-inner">
-  
-    <div class="footer-content">
-       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
-    </div>
-  
-  
-  
-</div>
-
-  </footer>
-
-  <!-- Scripts -->
-  
-  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
-  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
-
-  <script>
-    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
-    NProgress.start()
-    window.addEventListener('load', function() {
-      NProgress.done();
+      // mermaid v9 and v10 compatibility
+      typeof renderFn === 'string' ? renderMermaid(renderFn) : renderFn.then(({ svg }) => renderMermaid(svg))
     })
-  </script>
+  }
 
+  const codeToMermaid = () => {
+    const codeMermaidEle = document.querySelectorAll('pre > code.mermaid')
+    if (codeMermaidEle.length === 0) return
 
-<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
-<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
-<script  src="/js/events.js" ></script>
-<script  src="/js/plugins.js" ></script>
+    codeMermaidEle.forEach(ele => {
+      const preEle = document.createElement('pre')
+      preEle.className = 'mermaid-src'
+      preEle.hidden = true
+      preEle.textContent = ele.textContent
+      const newEle = document.createElement('div')
+      newEle.className = 'mermaid-wrap'
+      newEle.appendChild(preEle)
+      ele.parentNode.replaceWith(newEle)
+    })
+  }
 
+  const loadMermaid = () => {
+    if (false) codeToMermaid()
+    const $mermaid = document.querySelectorAll('#article-container .mermaid-wrap')
+    if ($mermaid.length === 0) return
 
+    const runMermaidFn = () => runMermaid($mermaid)
+    btf.addGlobalFn('themeChange', runMermaidFn, 'mermaid')
+    window.loadMermaid ? runMermaidFn() : btf.getScript('https://cdn.jsdelivr.net/npm/mermaid@11.12.1/dist/mermaid.min.js').then(runMermaidFn)
+  }
 
-
-
-  
-    <script  src="/js/img-lazyload.js" ></script>
-  
-
-
-
-
-  
-<script>
-  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
-    var toc = jQuery('#toc');
-    if (toc.length === 0 || !window.tocbot) { return; }
-    var boardCtn = jQuery('#board-ctn');
-    var boardTop = boardCtn.offset().top;
-
-    window.tocbot.init(Object.assign({
-      tocSelector     : '#toc-body',
-      contentSelector : '.markdown-body',
-      linkClass       : 'tocbot-link',
-      activeLinkClass : 'tocbot-active-link',
-      listClass       : 'tocbot-list',
-      isCollapsedClass: 'tocbot-is-collapsed',
-      collapsibleClass: 'tocbot-is-collapsible',
-      scrollSmooth    : true,
-      includeTitleTags: true,
-      headingsOffset  : -boardTop,
-    }, CONFIG.toc));
-    if (toc.find('.toc-list-item').length > 0) {
-      toc.css('visibility', 'visible');
-    }
-
-    Fluid.events.registerRefreshCallback(function() {
-      if ('tocbot' in window) {
-        tocbot.refresh();
-        var toc = jQuery('#toc');
-        if (toc.length === 0 || !tocbot) {
-          return;
-        }
-        if (toc.find('.toc-list-item').length > 0) {
-          toc.css('visibility', 'visible');
-        }
-      }
-    });
-  });
-</script>
-
-
-  
-<script>
-  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
-    window.anchors.options = {
-      placement: CONFIG.anchorjs.placement,
-      visible  : CONFIG.anchorjs.visible
-    };
-    if (CONFIG.anchorjs.icon) {
-      window.anchors.options.icon = CONFIG.anchorjs.icon;
-    }
-    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
-    var res = [];
-    for (var item of el) {
-      res.push('.markdown-body > ' + item.trim());
-    }
-    if (CONFIG.anchorjs.placement === 'left') {
-      window.anchors.options.class = 'anchorjs-link-left';
-    }
-    window.anchors.add(res.join(', '));
-
-    Fluid.events.registerRefreshCallback(function() {
-      if ('anchors' in window) {
-        anchors.removeAll();
-        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
-        var res = [];
-        for (var item of el) {
-          res.push('.markdown-body > ' + item.trim());
-        }
-        if (CONFIG.anchorjs.placement === 'left') {
-          anchors.options.class = 'anchorjs-link-left';
-        }
-        anchors.add(res.join(', '));
-      }
-    });
-  });
-</script>
-
-
-  
-<script>
-  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
-    Fluid.plugins.fancyBox();
-  });
-</script>
-
-
-  <script>Fluid.plugins.imageCaption();</script>
-
-  <script  src="/js/local-search.js" ></script>
-
-  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
-
-
-
-
-
-<!-- 主题的启动项，将它保持在最底部 -->
-<!-- the boot of the theme, keep it at the bottom -->
-<script  src="/js/boot.js" ></script>
-
-
-  
-
-  <noscript>
-    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
-  </noscript>
-</body>
-</html>
+  btf.addGlobalFn('encrypt', loadMermaid, 'mermaid')
+  window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+})()</script></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><i class="fas fa-spinner fa-pulse" id="loading-status" hidden="hidden"></i><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="local-search-input"><input placeholder="搜索文章" type="text"/></div><hr/><div id="local-search-results"></div><div class="ais-Pagination" id="local-search-pagination" style="display:none;"><ul class="ais-Pagination-list"></ul></div><div id="local-search-stats"></div></div><div id="search-mask"></div><script src="/js/search/local-search.js?v=5.5.2"></script></div></div></body></html>

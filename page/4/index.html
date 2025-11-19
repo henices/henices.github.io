@@ -1,812 +1,282 @@
-
-
-<!DOCTYPE html>
-<html lang="zh-CN" data-default-color-scheme=auto>
-
-
-
-<head>
-  <meta charset="UTF-8">
-
-  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
-  <link rel="icon" href="/img/fluid.png">
-  
-
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
-  <meta http-equiv="x-ua-compatible" content="ie=edge">
-  
-    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
-  
-  <meta name="theme-color" content="#2f4154">
-  <meta name="author" content="henices">
-  <meta name="keywords" content="">
-  
-    <meta property="og:type" content="website">
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>安全代码</title><meta name="author" content="henices"><meta name="copyright" content="henices"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta property="og:type" content="website">
 <meta property="og:title" content="安全代码">
 <meta property="og:url" content="https://usmacd.com/page/4/index.html">
 <meta property="og:site_name" content="安全代码">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://usmacd.com/images/avatar.png">
 <meta property="article:author" content="henices">
-<meta name="twitter:card" content="summary_large_image">
-  
-  
-    <meta name="referrer" content="no-referrer-when-downgrade">
-  
-  
-  <title>安全代码</title>
-
-  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
-
-
-
-
-
-<!-- 主题依赖的图标库，不要自行修改 -->
-<!-- Do not modify the link that theme dependent icons -->
-
-<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
-
-
-
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
-
-
-<link  rel="stylesheet" href="/css/main.css" />
-
-
-  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
-  
-    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
-  
-
-
-
-
-  <script id="fluid-configs">
-    var Fluid = window.Fluid || {};
-    Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"usmacd.com","root":"/","version":"1.9.8","typing":{"enable":false,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":false,"default":"TEXT"},"copy_btn":false,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null},"woyaola":null,"cnzz":null},"search_path":"/local-search.xml","include_content_in_search":true};
-
-    if (CONFIG.web_analytics.follow_dnt) {
-      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
-      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://usmacd.com/images/avatar.png"><script type="application/ld+json"></script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://usmacd.com/page/4/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css?v=5.5.2"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.1.0/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
     }
-  </script>
-  <script  src="/js/utils.js" ></script>
-  <script  src="/js/color-schema.js" ></script>
-  
 
-
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
   
-<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="安全代码" type="application/atom+xml">
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'undefined')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'undefined')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"pagination":{"enable":false,"hitsPerPage":8},"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.12.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '安全代码',
+  isHighlightShrink: false,
+  isToc: false,
+  pageType: 'home'
+}</script><meta name="generator" content="Hexo 8.1.0"><link rel="alternate" href="/atom.xml" title="安全代码" type="application/atom+xml">
 <link rel="alternate" href="/rss.xml" title="安全代码" type="application/rss+xml">
-</head>
-
-
-<body>
-  
-
-  <header>
-    
-
-<div class="header-inner" style="height: 60vh;">
-  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
-  <div class="container">
-    <a class="navbar-brand" href="/">
-      <strong>安全代码</strong>
-    </a>
-
-    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
-            data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <div class="animated-icon"><span></span><span></span><span></span></div>
-    </button>
-
-    <!-- Collapsible content -->
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav ml-auto text-center">
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/" target="_self">
-                <i class="iconfont icon-home-fill"></i>
-                <span>首页</span>
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/archives/" target="_self">
-                <i class="iconfont icon-archive-fill"></i>
-                <span>归档</span>
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/tags/" target="_self">
-                <i class="iconfont icon-tags-fill"></i>
-                <span>标签</span>
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/about/" target="_self">
-                <i class="iconfont icon-user-fill"></i>
-                <span>关于</span>
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/subscription/" target="_self">
-                <i class="iconfont icon-user-fill"></i>
-                <span>订阅</span>
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/links/" target="_self">
-                <i class="iconfont icon-link-fill"></i>
-                <span>友链</span>
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/thoughts" target="_self">
-                <i class="iconfont icon-exp-fill"></i>
-                <span>thoughts</span>
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/rss.xml" target="_self">
-                <i class="iconfont icon-rss"></i>
-                <span>rss</span>
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/random.html" target="_self">
-                
-                <span>random</span>
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/sitemap.xml" target="_self">
-                
-                <span>sitemap</span>
-              </a>
-            </li>
-          
-        
-        
-          <li class="nav-item" id="search-btn">
-            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
-              <i class="iconfont icon-search"></i>
-            </a>
-          </li>
-          
-        
-        
-          <li class="nav-item" id="color-toggle-btn">
-            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
-              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
-            </a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-</nav>
-
-  
-
-<div id="banner" class="banner" parallax=true
-     style="background: url('https://images.unsplash.com/photo-1646026371686-79950ceb6daa?w=640') no-repeat center center; background-size: cover;">
-  <div class="full-bg-img">
-    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.1)">
-      <div class="banner-text text-center fade-in-up">
-        <div class="h2">
-          
-            <span id="subtitle">关注 网络安全、金融投资，和个人成长</span>
-          
-        </div>
-
-        
-      </div>
-
-      
-    </div>
-  </div>
-</div>
-
-</div>
-
-  </header>
-
-  <main>
-    
-      <div class="container nopadding-x-md">
-        <div id="board"
-          >
-          
-          <div class="container">
-            <div class="row">
-              <div class="col-12 col-md-10 m-auto">
-                
-
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/cn/write_blog_afraid/" target="_self">
-          如何破除写博客的焦虑
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/cn/write_blog_afraid/" target="_self">
-        <div>
-          中文独立博客犹如互联网上的一道靓丽风景线，众多博主在这片天地里记录人生百态，分享精彩纷呈的生活点滴。 从 Google Reader 开始，我用 RSS 订阅了很多中文独立博客。然而，如今能看到更新的博文寥寥无几，大多数博客陷入了长久的沉寂。 更糟糕的是，我的订阅列表中，越来越多的博客链接已经无法访问。 前不久，我在”积薪”平台上读到一篇有关博客写作的文章，引发了我的一些思考，跟大家分享一些我的看
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2024-09-25 00:00" pubdate>
-              2024-09-25
-            </time>
-          </div>
-        
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/PKM/">#PKM</a>
-            
-              <a href="/tags/%E6%9B%BC%E7%A6%8F%E5%90%89%E7%9A%84%E5%88%86%E4%BA%AB/">#曼福吉的分享</a>
-            
-              <a href="/tags/KNOWLEDGE/">#KNOWLEDGE</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/cn/local_rag_llamaindex/" target="_self">
-          50 行代码打造全本地的 RAG 知识检索系统
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/cn/local_rag_llamaindex/" target="_self">
-        <div>
-          非常粗糙的示例代码，使用 Ollama 和 LlamaIndex 打造全本地的知识检索系统。 LlamaIndex 的安装方法如下： python3 -m venv .venv source .venv/bin/activate pip3 install llama-index pip3 install llama-index-llms-ollama  pip3 install llama-ind
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2024-09-23 00:00" pubdate>
-              2024-09-23
-            </time>
-          </div>
-        
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/ai/">#ai</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/cn/ssh-publickey-permission-denied/" target="_self">
-          ssh publickey permission denied 错误的解决方法
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/cn/ssh-publickey-permission-denied/" target="_self">
-        <div>
-          openssh publickey 登录的方式突然不好用了，检查 grep sshd /var/log/auth.log Aug 30 16:58:33 pm-65c50001 sshd[9118]: Authentication refused: bad ownership or modes for directory /root  执行下面的命令后，可以成功登录了。 chown root:ro
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2024-09-05 00:00" pubdate>
-              2024-09-05
-            </time>
-          </div>
-        
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/linux/">#linux</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/cn/obsidian/" target="_self">
-          Obsidian 使用技巧
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/cn/obsidian/" target="_self">
-        <div>
-          ☆ 在 Obsidian 中使用 mind maphttps://github.com/joethei/obsidian-plantuml  Settings -&gt; community plugins -&gt; Browse 安装 plantUML 插件 Enable PlantUML 插件  在  markdown 文档中，使用代码块 ```plantuml ``` 添加 mind ma
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2024-09-02 00:00" pubdate>
-              2024-09-02
-            </time>
-          </div>
-        
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/Software/">#Software</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/cn/PARA_methd/" target="_self">
-          几秒钟内整理数字生活的系统
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/cn/PARA_methd/" target="_self">
-        <div>
-          我们在使用知识管理系统对信息进行整理时，最令人头痛的地方是很难将信息划分到一个具体的类别 （打标签） 。 虽然现代的知识管理软件，支持多个标签联合查询或支持标签的级联查询，在具体的信息分类问题上依然没有找到好方法。 时间一长，我们甚至难以记起我们使用了哪些标签。 Tiago Forte 是知名的生产力效率专家，在 《Build a Second Bain》一书中，介绍了一种 PARA 的信息组织方
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2024-08-26 00:00" pubdate>
-              2024-08-26
-            </time>
-          </div>
-        
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/PKM/">#PKM</a>
-            
-              <a href="/tags/%E6%9B%BC%E7%A6%8F%E5%90%89%E7%9A%84%E5%88%86%E4%BA%AB/">#曼福吉的分享</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/cn/android_apk_extract/" target="_self">
-          如何提取 Android 手机中已经安装的 APK 文件
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/cn/android_apk_extract/" target="_self">
-        <div>
-          首先需要下载 Android Platform Tools 获取 adb 工具。 Android Platform Tools 的下载地址为：https://developer.android.com/tools/releases/platform-tools#downloads 在本机执行下面命令，可以提取 Android 手机上安装的 apk 文件。 adb shell pm list pac
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2024-08-22 00:00" pubdate>
-              2024-08-22
-            </time>
-          </div>
-        
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/Android/">#Android</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/cn/Debian_Nvidia_Ollama/" target="_self">
-          Nvidia 驱动安装和 Ollama 的使用
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/cn/Debian_Nvidia_Ollama/" target="_self">
-        <div>
-          根据同事反馈，高版本的 NVIDIA 驱动兼容性有问题，需要安装 Nvidia 驱动 525.147.05 ，过程中可能需要升级内核。 安装 Nvidia 驱动查看 Debian 上显卡安装情况。 lspci -nn | egrep -i &quot;3d|display|vga&quot;   01:00.0 VGA compatible controller [0300]: NVIDIA Co
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2024-07-26 00:00" pubdate>
-              2024-07-26
-            </time>
-          </div>
-        
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/linux/">#linux</a>
-            
-              <a href="/tags/ai/">#ai</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/cn/elon_philosophy/" target="_self">
-          马斯克的哲学
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/cn/elon_philosophy/" target="_self">
-        <div>
-          马斯克的五步工作法马斯克提炼出了一个五步工作法，称之为“算法”，自称每天的工作就是「算法复读机」😄️ 这五个步骤按顺序分别是: 1）质疑每项需求，让要求不那么愚蠢  提出任何一项要求时，都应该附上提出这一要求的人。 永远不要接受一项来自某个部门的要求，比如来自“法务部门”的要求。  2）删除要求当中所有你能删除的部分和流程  虽然你可能还得把它们加回来，如果最后加来的部分还不到删除部分的10%，
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2024-07-25 00:00" pubdate>
-              2024-07-25
-            </time>
-          </div>
-        
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/%E6%9B%BC%E7%A6%8F%E5%90%89%E7%9A%84%E5%88%86%E4%BA%AB/">#曼福吉的分享</a>
-            
-              <a href="/tags/KNOWLEDGE/">#KNOWLEDGE</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/cn/Fedora_usage/" target="_self">
-          Fedora 使用日常小记
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/cn/Fedora_usage/" target="_self">
-        <div>
-          这是一份很久远的笔记，质量也不高，以我现在的标准看是不合格的笔记。 但我觉得有些信息对大家可能还是能有一些帮助，不完善的地方，需要自行上网搜索，见谅！ ☆ 如何切换默认的桌面管理器Fedora 16 后使用新的方法来切换默认的桌面管理器。 sudo systemctl enable --force lightdm.service  在以前的版本需要使用 &#x2F;etc&#x2F;sysconf
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2024-07-24 00:00" pubdate>
-              2024-07-24
-            </time>
-          </div>
-        
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/linux/">#linux</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-      <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/cn/share_knowledge/" target="_self">
-          <img src="/images/xiaobot.jpg" srcset="/img/loading.gif" lazyload alt="付费专栏：《曼福吉的分享》第一季">
-        </a>
-      </div>
-    
-    <article class="col-12 col-md-8 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/cn/share_knowledge/" target="_self">
-          付费专栏：《曼福吉的分享》第一季
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt " href="/cn/share_knowledge/" target="_self">
-        <div>
-          2024 年，我尝试小报童《曼福吉的分享》专栏写作，分享平日的 读书笔记、心得体会、经历经验。 主要关注：金融投资，知识管理，产品开发，生产效率，和个人成长。因为不是公开分享，信息量比推上公开分享要大。 如果您觉得我分享的内容对您有帮助，欢迎以订阅专栏的形式支持我。这样，您在打赏的同时，还能收获高价值专栏内容。 小报童的 newsletter 功能可以直接将内容发到您的邮箱，方便您日后查看。 定价
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2024-07-21 00:00" pubdate>
-              2024-07-21
-            </time>
-          </div>
-        
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/KNOWLEDGE/">#KNOWLEDGE</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-
-
-  <nav aria-label="navigation">
-    <span class="pagination" id="pagination">
-      <a class="extend prev" rel="prev" href="/page/3/#board"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/#board">2</a><a class="page-number" href="/page/3/#board">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/#board">5</a><a class="page-number" href="/page/6/#board">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/17/#board">17</a><a class="extend next" rel="next" href="/page/5/#board"><i class="iconfont icon-arrowright"></i></a>
-    </span>
-  </nav>
-
-
-
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    
-
-    
-      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
-        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
-      </a>
-    
-
-    
-      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
-     aria-hidden="true">
-  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
-        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body mx-3">
-        <div class="md-form mb-5">
-          <input type="text" id="local-search-input" class="form-control validate">
-          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
-        </div>
-        <div class="list-group" id="local-search-result"></div>
-      </div>
-    </div>
-  </div>
-</div>
-
-    
-
-    
-  </main>
-
-  <footer>
-    <div class="footer-inner">
-  
-    <div class="footer-content">
-       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/images/avatar.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">164</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">17</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/thoughts"><i class="fa-fw fas fa-cloud"></i><span> 想法</span></a></div><div class="menus_item"><a class="site-page" href="/links/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page" href="/sitemap.xml"><span> sitemap</span></a></div><div class="menus_item"><a class="site-page" href="/random.html"><span> random</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header" style="background-image: url(https://images.unsplash.com/photo-1646026371686-79950ceb6daa?w=640);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">安全代码</span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/thoughts"><i class="fa-fw fas fa-cloud"></i><span> 想法</span></a></div><div class="menus_item"><a class="site-page" href="/links/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page" href="/sitemap.xml"><span> sitemap</span></a></div><div class="menus_item"><a class="site-page" href="/random.html"><span> random</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="site-info"><h1 id="site-title">安全代码</h1><div id="site_social_icons"><a class="social-icon" href="/rss.xml" target="_blank" title="RSS"><i class="fas fa-rss" style="color: #4c566a;"></i></a><a class="social-icon" href="https://x.com/henices" target="_blank" title="Twitter"><i class="fab fa-x-twitter" style="color: #4c566a;"></i></a><a class="social-icon" href="mailto:zhouzhenster@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4c566a;"></i></a></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts nc" id="recent-posts"><div class="recent-post-items"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/cn/write_blog_afraid/" title="如何破除写博客的焦虑">如何破除写博客的焦虑</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-09-24T16:00:00.000Z" title="发表于 2024-09-25 00:00:00">2024-09-25</time></span></div><div class="content">中文独立博客犹如互联网上的一道靓丽风景线，众多博主在这片天地里记录人生百态，分享精彩纷呈的生活点滴。 从 Google Reader 开始，我用 RSS 订阅了很多中文独立博客。然而，如今能看到更新的博文寥寥无几，大多数博客陷入了长久的沉寂。 更糟糕的是，我的订阅列表中，越来越多的博客链接已经无法访问。 前不久，我在”积薪”平台上读到一篇有关博客写作的文章，引发了我的一些思考，跟大家分享一些我的看法。 比较尴尬的是，积薪也没法访问了 … 《写博客的焦虑》 https://homura.live/2023/11/22/Other/anxiety-of-blogging/ 作者 Homura 总结写博客的焦虑有下面几点： 负面想法很重，想一些负面的东西要不要写 纠结要不要放上去，有的内容因为比较短，有的内容因为不那么“好” 自己的想法太少 觉得自己内容不佳，觉得自己水平不佳 想写好文章：具体点来说就是“内容长”，”看起来高深“，这种看起来好的内容 最后，发出感叹「我何时才能真正能写出好文章呢？」。 homura 写博客遇到的困难，我总结下来有 4 个，选题困难、篇幅较短、内容不佳、想...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/cn/local_rag_llamaindex/" title="50 行代码打造全本地的 RAG 知识检索系统">50 行代码打造全本地的 RAG 知识检索系统</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-09-22T16:00:00.000Z" title="发表于 2024-09-23 00:00:00">2024-09-23</time></span></div><div class="content">非常粗糙的示例代码，使用 Ollama 和 LlamaIndex 打造全本地的知识检索系统。 LlamaIndex 的安装方法如下： 123456python3 -m venv .venvsource .venv/bin/activatepip3 install llama-indexpip3 install llama-index-llms-ollama pip3 install llama-index-embeddings-huggingfacepip3 install llama-index-embeddings-ollama  Ollama 的安装可以参考：Debian 12 安装 Nvidia 驱动和 Ollama 在例子中，检索目标为 markdown 格式的笔记，供参考。 使用方法：python3 rag_query.py &quot;分析全部文本内容，分点列出个人成长的建议&quot; 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/cn/ssh-publickey-permission-denied/" title="ssh publickey permission denied 错误的解决方法">ssh publickey permission denied 错误的解决方法</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-09-04T16:00:00.000Z" title="发表于 2024-09-05 00:00:00">2024-09-05</time></span></div><div class="content">openssh publickey 登录的方式突然不好用了，检查 grep sshd /var/log/auth.log 1Aug 30 16:58:33 pm-65c50001 sshd[9118]: Authentication refused: bad ownership or modes for directory /root  执行下面的命令后，可以成功登录了。 1234chown root:root /rootchown root:root /root/.sshchmod 700 /root/.sshchmod 600 /root/.ssh/authorized_keys  &#x2F;etc&#x2F;ssh&#x2F;sshd_config 文件中最关键的配置项 1PasswordAuthentication yes  我以前也遇到过这个问题，都是 file permession 设置错误，这次是 directory ownership 设置错误。排查此类错误，最靠谱的方法还是看日志，我折腾了 1 个小时。 Claude 3.5 Sonnet 没有回答出正确答案。...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/cn/obsidian/" title="Obsidian 使用技巧">Obsidian 使用技巧</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-09-01T16:00:00.000Z" title="发表于 2024-09-02 00:00:00">2024-09-02</time></span></div><div class="content">☆ 在 Obsidian 中使用 mind maphttps://github.com/joethei/obsidian-plantuml  Settings -&gt; community plugins -&gt; Browse 安装 plantUML 插件 Enable PlantUML 插件  在  markdown 文档中，使用代码块 ```plantuml ``` 添加 mind map 12345678910111213141516@startmindmap* Debian** Ubuntu*** Linux Mint*** Kubuntu*** Lubuntu*** KDE Neon** LMDE** SolydXK** SteamOS** Raspbian with a very long name*** &lt;s&gt;Raspmbc&lt;/s&gt; =&gt; OSMC*** &lt;s&gt;Raspyfi&lt;/s&gt; =&gt; Volumio@endmindmap  可以在 mind map 中点击鼠标右键 Export diagram ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/cn/PARA_methd/" title="几秒钟内整理数字生活的系统">几秒钟内整理数字生活的系统</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-08-25T16:00:00.000Z" title="发表于 2024-08-26 00:00:00">2024-08-26</time></span></div><div class="content">我们在使用知识管理系统对信息进行整理时，最令人头痛的地方是很难将信息划分到一个具体的类别 （打标签） 。 虽然现代的知识管理软件，支持多个标签联合查询或支持标签的级联查询，在具体的信息分类问题上依然没有找到好方法。 时间一长，我们甚至难以记起我们使用了哪些标签。 Tiago Forte 是知名的生产力效率专家，在 《Build a Second Bain》一书中，介绍了一种 PARA 的信息组织方法。 PARA 是一个简单、灵活的系统，可以组织任何类型的数字信息，更重要的是它可以极大地加速你完成最重要的项目和实现目标。  下面文字将总结 PARA 方法的核心要点： 01&#x2F; PARA 使用的分类方法PARA 将所有的信息分成四类：Projects (可操作的短期目标)，Areas (持续关注的责任领域)，Resources (感兴趣的主题)，Archives (前三类中不活跃的)  Projects：短期目标，有截止时间 ： 购买新电脑，写研究报告，设置新客厅家具 等 Areas：长期目标和负责的内容：如 父亲，产品管理，健康，财务 等 Resources： 感兴趣的主题...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/cn/android_apk_extract/" title="如何提取 Android 手机中已经安装的 APK 文件">如何提取 Android 手机中已经安装的 APK 文件</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-08-21T16:00:00.000Z" title="发表于 2024-08-22 00:00:00">2024-08-22</time></span></div><div class="content">首先需要下载 Android Platform Tools 获取 adb 工具。 Android Platform Tools 的下载地址为：https://developer.android.com/tools/releases/platform-tools#downloads 在本机执行下面命令，可以提取 Android 手机上安装的 apk 文件。 123adb shell pm list packagesadb shell pm path &lt;package name&gt;adb pull &lt;apk_path_on_device&gt;  如果要在另外一台手机上安装 Android 应用，则需要在本机执行另外两条命令。 12adb install base.apk # or adb install-multiple base.apk split_config.arm64_v8a.apk *.apk  注：本篇需要一些专业知识，至少需要知道 Android 应用 package name 的含义。 </div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/cn/Debian_Nvidia_Ollama/" title="Nvidia 驱动安装和 Ollama 的使用">Nvidia 驱动安装和 Ollama 的使用</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-07-25T16:00:00.000Z" title="发表于 2024-07-26 00:00:00">2024-07-26</time></span></div><div class="content">根据同事反馈，高版本的 NVIDIA 驱动兼容性有问题，需要安装 Nvidia 驱动 525.147.05 ，过程中可能需要升级内核。 安装 Nvidia 驱动查看 Debian 上显卡安装情况。 12lspci -nn | egrep -i &quot;3d|display|vga&quot;  01:00.0 VGA compatible controller [0300]: NVIDIA Corporation AD102 [GeForce RTX 4090] [10de:2684] (rev a1)  查看驱动安装具体的情况。 123456789101112lsmod | grep nouveau  nouveau              2433024  0  mxm_wmi                16384  1 nouveau  i2c_algo_bit           16384  1 nouveau  drm_display_helper    184320  1 nouveau  drm_ttm_helper         16384  1 n...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/cn/elon_philosophy/" title="马斯克的哲学">马斯克的哲学</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-07-24T16:00:00.000Z" title="发表于 2024-07-25 00:00:00">2024-07-25</time></span></div><div class="content">马斯克的五步工作法马斯克提炼出了一个五步工作法，称之为“算法”，自称每天的工作就是「算法复读机」😄️ 这五个步骤按顺序分别是: 1）质疑每项需求，让要求不那么愚蠢  提出任何一项要求时，都应该附上提出这一要求的人。 永远不要接受一项来自某个部门的要求，比如来自“法务部门”的要求。  2）删除要求当中所有你能删除的部分和流程  虽然你可能还得把它们加回来，如果最后加来的部分还不到删除部分的10%，那就说明删减得还不够。  3）简化和优化  这应该放在第2步之后，因为人们常犯的错误就是简化和优化一个原本不应该存在的部分或者流程。  4）加快周转时间  每个流程都可以加快，但只有遵循了前三个步骤之后才能这么做。  5）自动化  过早的自动化会产生问题，自动化是最后一个步骤，在此之前必须经过质疑、删除、简化等步骤  马斯克五步工作法的重要推论 所有技术经理都必须有实战经验，软件团队的管理人员至少花 20% 的时间编程 犯错没关系，但错了还不肯低头就不行 唯一要遵守的规则就是物理学定律能推导出来的规则，其他一切都只是建议 深度调研需要跨级沟通，直接和你下属的下属交流，不要只和你直接管理的...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/cn/Fedora_usage/" title="Fedora 使用日常小记">Fedora 使用日常小记</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-07-23T16:00:00.000Z" title="发表于 2024-07-24 00:00:00">2024-07-24</time></span></div><div class="content">这是一份很久远的笔记，质量也不高，以我现在的标准看是不合格的笔记。 但我觉得有些信息对大家可能还是能有一些帮助，不完善的地方，需要自行上网搜索，见谅！ ☆ 如何切换默认的桌面管理器Fedora 16 后使用新的方法来切换默认的桌面管理器。 1sudo systemctl enable --force lightdm.service  在以前的版本需要使用 &#x2F;etc&#x2F;sysconfig&#x2F;desktop 文件来切换。 参考链接 : https://docs.fedoraproject.org/en-US/Fedora/18/html/Release_Notes/sect-Release_Notes-Changes_for_Desktop.html ☆ 如何为 dnf 设置代理方法1: 使用环境变量设置 socks5 代码 1sudo http_proxy=socks5h://localhost:9999 dnf update  方法2: 修改文件设置 socks5 代码 编辑 /etc/dnf/dnf.conf 添加下面几行 123456[main]pr...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/cn/share_knowledge/" title="付费专栏：《曼福吉的分享》第一季">付费专栏：《曼福吉的分享》第一季</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-07-20T16:00:00.000Z" title="发表于 2024-07-21 00:00:00">2024-07-21</time></span></div><div class="content">2024 年，我尝试小报童《曼福吉的分享》专栏写作，分享平日的 读书笔记、心得体会、经历经验。 主要关注：金融投资，知识管理，产品开发，生产效率，和个人成长。因为不是公开分享，信息量比推上公开分享要大。 如果您觉得我分享的内容对您有帮助，欢迎以订阅专栏的形式支持我。这样，您在打赏的同时，还能收获高价值专栏内容。 小报童的 newsletter 功能可以直接将内容发到您的邮箱，方便您日后查看。 定价   ：30 元，一次性买断 保底 60 篇，1 篇对您有帮助，就值回票价。感谢您的支持 ☕️ 专栏地址: 曼福吉的分享 , 目前已包含的内容：  @62 现代世界上升的快速管道 @61 纳瓦尔的读书方法 @60 书单 @59 德鲁肯米勒最新采访 @58 精选 - 11052024 @57 两种增长曲线 @56 破解 Exploration-expoitation 困境的3个策略 @55 高手的信息管理方法 @54 精选 - 09242024 @53 如何理解发散思维 @52 破除思维定势的四种方法 @51 如何破除写博客的焦虑 @50 思维导图的使用方法 @49 刻意练习的方法 @48...</div></div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/3/#content-inner"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/#content-inner">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/#content-inner">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/17/#content-inner">17</a><a class="extend next" rel="next" href="/page/5/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/images/avatar.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">henices</div><div class="author-info-description"></div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">164</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">17</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><div class="card-info-social-icons"><a class="social-icon" href="/rss.xml" target="_blank" title="RSS"><i class="fas fa-rss" style="color: #4c566a;"></i></a><a class="social-icon" href="https://x.com/henices" target="_blank" title="Twitter"><i class="fab fa-x-twitter" style="color: #4c566a;"></i></a><a class="social-icon" href="mailto:zhouzhenster@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4c566a;"></i></a></div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/cn/duanyongping/" title="段永平退休20多年后罕见公开访谈">段永平退休20多年后罕见公开访谈</a><time datetime="2025-11-11T16:00:00.000Z" title="发表于 2025-11-12 00:00:00">2025-11-12</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/cn/how_to_tell_a_story/" title="如何讲好一个故事">如何讲好一个故事</a><time datetime="2025-11-11T16:00:00.000Z" title="发表于 2025-11-12 00:00:00">2025-11-12</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/cn/naval_reading/" title="纳瓦尔的阅读方法">纳瓦尔的阅读方法</a><time datetime="2025-10-28T16:00:00.000Z" title="发表于 2025-10-29 00:00:00">2025-10-29</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/cn/fedora_linux_7z/" title="Fedora Linux 升级系统中的 7-Zip">Fedora Linux 升级系统中的 7-Zip</a><time datetime="2025-10-12T16:00:00.000Z" title="发表于 2025-10-13 00:00:00">2025-10-13</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/cn/vmware_fix_guest_disk_error/" title="修复 VMware Workstation Ubuntu Guest 磁盘错误">修复 VMware Workstation Ubuntu Guest 磁盘错误</a><time datetime="2025-09-22T16:00:00.000Z" title="发表于 2025-09-23 00:00:00">2025-09-23</time></div></div></div></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/tags/Crack/" style="font-size: 1.13em; color: #999a9c">Crack</a> <a href="/tags/Archives/" style="font-size: 1.1em; color: #999">Archives</a> <a href="/tags/Malware/" style="font-size: 1.21em; color: #999ea4">Malware</a> <a href="/tags/linux/" style="font-size: 1.44em; color: #99a7ba">linux</a> <a href="/tags/%E6%9B%BC%E7%A6%8F%E5%90%89%E7%9A%84%E5%88%86%E4%BA%AB/" style="font-size: 1.5em; color: #99a9bf">曼福吉的分享</a> <a href="/tags/Life/" style="font-size: 1.16em; color: #999b9e">Life</a> <a href="/tags/windows/" style="font-size: 1.24em; color: #999fa7">windows</a> <a href="/tags/Misc/" style="font-size: 1.13em; color: #999a9c">Misc</a> <a href="/tags/Security/" style="font-size: 1.47em; color: #99a8bc">Security</a> <a href="/tags/Software/" style="font-size: 1.33em; color: #99a2af">Software</a> <a href="/tags/vim/" style="font-size: 1.19em; color: #999ca1">vim</a> <a href="/tags/Programming/" style="font-size: 1.27em; color: #99a0a9">Programming</a> <a href="/tags/PKM/" style="font-size: 1.36em; color: #99a3b1">PKM</a> <a href="/tags/Android/" style="font-size: 1.41em; color: #99a6b7">Android</a> <a href="/tags/ai/" style="font-size: 1.19em; color: #999ca1">ai</a> <a href="/tags/KNOWLEDGE/" style="font-size: 1.3em; color: #99a1ac">KNOWLEDGE</a> <a href="/tags/investment/" style="font-size: 1.39em; color: #99a4b4">investment</a></div></div><div class="card-widget card-archives">
+    <div class="item-headline">
+      <i class="fas fa-archive"></i>
+      <span>归档</span>
+      <a class="card-more-btn" href="/archives/"
+            title="查看更多">
+            <i class="fas fa-angle-right"></i>
+          </a>
     </div>
   
-  
-  
-</div>
+    <ul class="card-archive-list">
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2025/11/">
+            <span class="card-archive-list-date">
+              十一月 2025
+            </span>
+            <span class="card-archive-list-count">2</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2025/10/">
+            <span class="card-archive-list-date">
+              十月 2025
+            </span>
+            <span class="card-archive-list-count">2</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2025/09/">
+            <span class="card-archive-list-date">
+              九月 2025
+            </span>
+            <span class="card-archive-list-count">2</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2025/08/">
+            <span class="card-archive-list-date">
+              八月 2025
+            </span>
+            <span class="card-archive-list-count">1</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2025/05/">
+            <span class="card-archive-list-date">
+              五月 2025
+            </span>
+            <span class="card-archive-list-count">1</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2025/04/">
+            <span class="card-archive-list-date">
+              四月 2025
+            </span>
+            <span class="card-archive-list-count">2</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2025/03/">
+            <span class="card-archive-list-date">
+              三月 2025
+            </span>
+            <span class="card-archive-list-count">4</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2025/02/">
+            <span class="card-archive-list-date">
+              二月 2025
+            </span>
+            <span class="card-archive-list-count">6</span>
+          </a>
+        </li>
+      
+    </ul>
+  </div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站信息</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">164</div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2025-11-19T03:31:00.125Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer" style="background-image: url(https://images.unsplash.com/photo-1646026371686-79950ceb6daa?w=640);"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 By henices</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.5.2"></script><script src="/js/main.js?v=5.5.2"></script><script src="/js/tw_cn.js?v=5.5.2"></script><div class="js-pjax"><script>(() => {
+  const runMermaid = ele => {
+    window.loadMermaid = true
+    const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
 
-  </footer>
+    ele.forEach((item, index) => {
+      const mermaidSrc = item.firstElementChild
+      const config = mermaidSrc.dataset.config ? JSON.parse(mermaidSrc.dataset.config) : {}
+      if (!config.theme) {
+        config.theme = theme
+      }
+      const mermaidThemeConfig = `%%{init: ${JSON.stringify(config)}}%%\n`
+      const mermaidID = `mermaid-${index}`
+      const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
 
-  <!-- Scripts -->
-  
-  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
-  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+      const renderFn = mermaid.render(mermaidID, mermaidDefinition)
+      const renderMermaid = svg => {
+        mermaidSrc.insertAdjacentHTML('afterend', svg)
+      }
 
-  <script>
-    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
-    NProgress.start()
-    window.addEventListener('load', function() {
-      NProgress.done();
+      // mermaid v9 and v10 compatibility
+      typeof renderFn === 'string' ? renderMermaid(renderFn) : renderFn.then(({ svg }) => renderMermaid(svg))
     })
-  </script>
+  }
 
+  const codeToMermaid = () => {
+    const codeMermaidEle = document.querySelectorAll('pre > code.mermaid')
+    if (codeMermaidEle.length === 0) return
 
-<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
-<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
-<script  src="/js/events.js" ></script>
-<script  src="/js/plugins.js" ></script>
+    codeMermaidEle.forEach(ele => {
+      const preEle = document.createElement('pre')
+      preEle.className = 'mermaid-src'
+      preEle.hidden = true
+      preEle.textContent = ele.textContent
+      const newEle = document.createElement('div')
+      newEle.className = 'mermaid-wrap'
+      newEle.appendChild(preEle)
+      ele.parentNode.replaceWith(newEle)
+    })
+  }
 
+  const loadMermaid = () => {
+    if (false) codeToMermaid()
+    const $mermaid = document.querySelectorAll('#article-container .mermaid-wrap')
+    if ($mermaid.length === 0) return
 
+    const runMermaidFn = () => runMermaid($mermaid)
+    btf.addGlobalFn('themeChange', runMermaidFn, 'mermaid')
+    window.loadMermaid ? runMermaidFn() : btf.getScript('https://cdn.jsdelivr.net/npm/mermaid@11.12.1/dist/mermaid.min.js').then(runMermaidFn)
+  }
 
-
-
-  
-    <script  src="/js/img-lazyload.js" ></script>
-  
-
-
-
-
-  <script  src="/js/local-search.js" ></script>
-
-
-
-
-
-<!-- 主题的启动项，将它保持在最底部 -->
-<!-- the boot of the theme, keep it at the bottom -->
-<script  src="/js/boot.js" ></script>
-
-
-  
-
-  <noscript>
-    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
-  </noscript>
-</body>
-</html>
+  btf.addGlobalFn('encrypt', loadMermaid, 'mermaid')
+  window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+})()</script></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><i class="fas fa-spinner fa-pulse" id="loading-status" hidden="hidden"></i><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="local-search-input"><input placeholder="搜索文章" type="text"/></div><hr/><div id="local-search-results"></div><div class="ais-Pagination" id="local-search-pagination" style="display:none;"><ul class="ais-Pagination-list"></ul></div><div id="local-search-stats"></div></div><div id="search-mask"></div><script src="/js/search/local-search.js?v=5.5.2"></script></div></div></body></html>
