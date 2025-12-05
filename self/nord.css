@@ -1,0 +1,342 @@
+/*
+ * Copyright (c) 2017-present Arctic Ice Studio <development@arcticicestudio.com>
+ * Copyright (c) 2017-present Sven Greb <development@svengreb.de>
+ *
+ * Project:    Nord highlight.js
+ * Version:    0.1.0
+ * Repository: https://github.com/arcticicestudio/nord-highlightjs
+ * License:    MIT
+ * References:
+ *   https://github.com/arcticicestudio/nord
+ */
+
+/*
+
+Polar Night
+
+#2E3440
+#3B4252
+#434C5E
+#4C566A
+
+Snow Storm
+
+#D8DEE9
+#E5E9F0
+#ECEFF4
+
+Frost
+
+#8FBCBB
+#88C0D0
+#81A1C1
+#5E81AC
+
+Aurora
+
+#BF616A
+#D08770
+#EBCB8B
+#A3BE8C
+#B48EAD
+
+*/
+
+[data-theme="dark"] .hljs {
+  background: #2E3440;
+}
+
+[data-theme="dark"] .hljs,
+[data-theme="dark"] .hljs-subst {
+  color: #D8DEE9;
+}
+
+[data-theme="dark"] .hljs-selector-tag {
+  color: #81A1C1;
+}
+
+[data-theme="dark"] .hljs-selector-id {
+  color: #8FBCBB;
+  font-weight: bold;
+}
+
+[data-theme="dark"] .hljs-selector-class {
+  color: #8FBCBB;
+}
+
+[data-theme="dark"] .hljs-selector-attr {
+  color: #8FBCBB;
+}
+
+[data-theme="dark"] .hljs-property {
+  color: #88C0D0;
+}
+
+[data-theme="dark"] .hljs-selector-pseudo {
+  color: #88C0D0;
+}
+
+[data-theme="dark"] .hljs-addition {
+  background-color: rgba(163, 190, 140, 0.5);
+}
+
+[data-theme="dark"] .hljs-deletion {
+  background-color: rgba(191, 97, 106, 0.5);
+}
+
+[data-theme="dark"] .hljs-built_in,
+[data-theme="dark"] .hljs-type {
+  color: #8FBCBB;
+}
+
+[data-theme="dark"] .hljs-class {
+  color: #8FBCBB;
+}
+
+[data-theme="dark"] .hljs-function {
+  color: #88C0D0;
+}
+
+[data-theme="dark"] .hljs-title[data-theme="dark"] .hljs-function,
+[data-theme="dark"] .hljs-function > [data-theme="dark"] .hljs-title {
+  color: #88C0D0;
+}
+
+[data-theme="dark"] .hljs-keyword,
+[data-theme="dark"] .hljs-literal,
+[data-theme="dark"] .hljs-symbol {
+  color: #81A1C1;
+}
+
+[data-theme="dark"] .hljs-number {
+  color: #B48EAD;
+}
+
+[data-theme="dark"] .hljs-regexp {
+  color: #EBCB8B;
+}
+
+[data-theme="dark"] .hljs-string {
+  color: #A3BE8C;
+}
+
+[data-theme="dark"] .hljs-title {
+  color: #8FBCBB;
+}
+
+[data-theme="dark"] .hljs-params {
+  color: #D8DEE9;
+}
+
+[data-theme="dark"] .hljs-bullet {
+  color: #81A1C1;
+}
+
+[data-theme="dark"] .hljs-code {
+  color: #8FBCBB;
+}
+
+[data-theme="dark"] .hljs-emphasis {
+  font-style: italic;
+}
+
+[data-theme="dark"] .hljs-formula {
+  color: #8FBCBB;
+}
+
+[data-theme="dark"] .hljs-strong {
+  font-weight: bold;
+}
+
+[data-theme="dark"] .hljs-link:hover {
+  text-decoration: underline;
+}
+
+[data-theme="dark"] .hljs-quote {
+  color: #4C566A;
+}
+
+[data-theme="dark"] .hljs-comment {
+  color: #4C566A;
+}
+
+[data-theme="dark"] .hljs-doctag {
+  color: #8FBCBB;
+}
+
+[data-theme="dark"] .hljs-meta,
+[data-theme="dark"] .hljs-meta [data-theme="dark"] .hljs-keyword {
+
+  color: #5E81AC;
+}
+
+[data-theme="dark"] .hljs-meta [data-theme="dark"] .hljs-string {
+  color: #A3BE8C;
+}
+
+[data-theme="dark"] .hljs-attr {
+  color: #8FBCBB;
+}
+
+[data-theme="dark"] .hljs-attribute {
+  color: #D8DEE9;
+}
+
+[data-theme="dark"] .hljs-name {
+  color: #81A1C1;
+}
+
+[data-theme="dark"] .hljs-section {
+  color: #88C0D0;
+}
+
+[data-theme="dark"] .hljs-tag {
+  color: #81A1C1;
+}
+
+[data-theme="dark"] .hljs-variable {
+  color: #D8DEE9;
+}
+
+[data-theme="dark"] .hljs-template-variable {
+  color: #D8DEE9;
+}
+
+[data-theme="dark"] .hljs-template-tag {
+  color: #5E81AC;
+}
+
+/* per language customizations */
+
+.language-abnf [data-theme="dark"] .hljs-attribute {
+  color: #88C0D0;
+}
+
+.language-abnf [data-theme="dark"] .hljs-symbol {
+  color: #EBCB8B;
+}
+
+.language-apache [data-theme="dark"] .hljs-attribute {
+  color: #88C0D0;
+}
+
+.language-apache [data-theme="dark"] .hljs-section {
+  color: #81A1C1;
+}
+
+.language-arduino [data-theme="dark"] .hljs-built_in {
+  color: #88C0D0;
+}
+
+.language-aspectj [data-theme="dark"] .hljs-meta {
+  color: #D08770;
+}
+
+.language-aspectj > [data-theme="dark"] .hljs-title {
+  color: #88C0D0;
+}
+
+.language-bnf [data-theme="dark"] .hljs-attribute {
+  color: #8FBCBB;
+}
+
+.language-clojure [data-theme="dark"] .hljs-name {
+  color: #88C0D0;
+}
+
+.language-clojure [data-theme="dark"] .hljs-symbol {
+  color: #EBCB8B;
+}
+
+.language-coq [data-theme="dark"] .hljs-built_in {
+  color: #88C0D0;
+}
+
+.language-cpp [data-theme="dark"] .hljs-meta [data-theme="dark"] .hljs-string {
+  color: #8FBCBB;
+}
+
+.language-css [data-theme="dark"] .hljs-built_in {
+  color: #88C0D0;
+}
+
+.language-css [data-theme="dark"] .hljs-keyword {
+  color: #D08770;
+}
+
+.language-diff [data-theme="dark"] .hljs-meta {
+  color: #8FBCBB;
+}
+
+.language-ebnf [data-theme="dark"] .hljs-attribute {
+  color: #8FBCBB;
+}
+
+.language-glsl [data-theme="dark"] .hljs-built_in {
+  color: #88C0D0;
+}
+
+.language-groovy [data-theme="dark"] .hljs-meta:not(:first-child) {
+  color: #D08770;
+}
+
+.language-haxe [data-theme="dark"] .hljs-meta {
+  color: #D08770;
+}
+
+.language-java [data-theme="dark"] .hljs-meta {
+  color: #D08770;
+}
+
+.language-ldif [data-theme="dark"] .hljs-attribute {
+  color: #8FBCBB;
+}
+
+.language-lisp [data-theme="dark"] .hljs-name {
+  color: #88C0D0;
+}
+
+.language-lua [data-theme="dark"] .hljs-built_in {
+  color: #88C0D0;
+}
+
+.language-moonscript [data-theme="dark"] .hljs-built_in {
+  color: #88C0D0;
+}
+
+.language-nginx [data-theme="dark"] .hljs-attribute {
+  color: #88C0D0;
+}
+
+.language-nginx [data-theme="dark"] .hljs-section {
+  color: #5E81AC;
+}
+
+.language-pf [data-theme="dark"] .hljs-built_in {
+  color: #88C0D0;
+}
+
+.language-processing [data-theme="dark"] .hljs-built_in {
+  color: #88C0D0;
+}
+
+.language-scss [data-theme="dark"] .hljs-keyword {
+  color: #81A1C1;
+}
+
+.language-stylus [data-theme="dark"] .hljs-keyword {
+  color: #81A1C1;
+}
+
+.language-swift [data-theme="dark"] .hljs-meta {
+  color: #D08770;
+}
+
+.language-vim [data-theme="dark"] .hljs-built_in {
+  color: #88C0D0;
+  font-style: italic;
+}
+
+.language-yaml [data-theme="dark"] .hljs-meta {
+  color: #D08770;
+}
