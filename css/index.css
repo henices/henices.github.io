@@ -3790,7 +3790,7 @@ blockquote > :last-child {
   color: #5e81ac;
 }
 #aside-content #card-toc .toc-content .toc-link.active {
-  background: #8fbcbb;
+  background: #5e81ac;
   color: #fff;
 }
 #aside-content .sticky_layout:only-child > :first-child {
