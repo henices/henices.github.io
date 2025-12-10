@@ -6,7 +6,7 @@
   <link href="https://usmacd.com/atom.xml" rel="self"/>
   
   <link href="https://usmacd.com/"/>
-  <updated>2025-12-04T16:00:00.000Z</updated>
+  <updated>2025-12-09T16:00:00.000Z</updated>
   <id>https://usmacd.com/</id>
   
   <author>
@@ -15,6 +15,26 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>金融市场中的不同流派 (2)</title>
+    <link href="https://usmacd.com/cn/investment_category2/"/>
+    <id>https://usmacd.com/cn/investment_category2/</id>
+    <published>2025-12-09T16:00:00.000Z</published>
+    <updated>2025-12-09T16:00:00.000Z</updated>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;维度一：基于“决策依据与世界观”的流派（核心分类）&quot;&gt;&lt;a href=&quot;#维度一：基于“决策依据与世界观”的流派（核心分类）&quot; class=&quot;headerlink&quot; title=&quot;维度一：基于“决策依据与世界观”的流派（核心分类）&quot;&gt;&lt;/a&gt;维度一：基于“决策依据与世界观”的流派（核心分类）&lt;/h2&gt;&lt;h3 id=&quot;1-基本面派-Fundamentalism&quot;&gt;&lt;a href=&quot;#</summary>
+      
+    
+    
+    
+    
+    <category term="investment" scheme="https://usmacd.com/tags/investment/"/>
+    
+  </entry>
   
   <entry>
     <title>如何设定一个好目标</title>
@@ -218,29 +238,6 @@
     
     
     <category term="曼福吉的分享" scheme="https://usmacd.com/tags/%E6%9B%BC%E7%A6%8F%E5%90%89%E7%9A%84%E5%88%86%E4%BA%AB/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>如何在 macOS 中连接 VNC 服务器</title>
-    <link href="https://usmacd.com/cn/macOS_vnc/"/>
-    <id>https://usmacd.com/cn/macOS_vnc/</id>
-    <published>2025-08-28T16:00:00.000Z</published>
-    <updated>2025-08-28T16:00:00.000Z</updated>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;MacOS 自带 VNC 客户端，不用使用第三方软件。&lt;/p&gt;
-&lt;p&gt;打开 Finder , 快捷键打开 command + k ，在地址栏输入  vnc:&amp;#x2F;&amp;#x2F;1.1.1.1:590x&lt;/p&gt;
-&lt;p&gt;若 vnc 以 vncserver :2  启动，则需要在地址栏输入 vnc:&amp;#x2F;&amp;#x2F;1.1.1.1:5902&lt;/p&gt;
-</summary>
-      
-    
-    
-    
-    
-    <category term="Software" scheme="https://usmacd.com/tags/Software/"/>
     
   </entry>
   
