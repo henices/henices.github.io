@@ -6,7 +6,7 @@
   <link href="https://usmacd.com/atom.xml" rel="self"/>
   
   <link href="https://usmacd.com/"/>
-  <updated>2025-12-15T16:00:00.000Z</updated>
+  <updated>2025-12-30T16:00:00.000Z</updated>
   <id>https://usmacd.com/</id>
   
   <author>
@@ -15,6 +15,37 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>反脆弱式的学习方法</title>
+    <link href="https://usmacd.com/cn/anti-weakness-learning/"/>
+    <id>https://usmacd.com/cn/anti-weakness-learning/</id>
+    <published>2025-12-30T16:00:00.000Z</published>
+    <updated>2025-12-30T16:00:00.000Z</updated>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;英雄人物应该主动拥抱不确定性，一定程度的不确定性对普通人有好处。&lt;/p&gt;
+&lt;p&gt;How we learn 这本书中进行了两个实验：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;1）网球发球练习&lt;/li&gt;
+&lt;li&gt;&lt;ol start=&quot;2&quot;&gt;
+&lt;li&gt;学习识别不同绘画的风格。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;参加两个实验的同学都分成两组，一组是按照一定规律的练习，另一组按随机没有规律的练习，</summary>
+      
+    
+    
+    
+    
+    <category term="曼福吉的分享" scheme="https://usmacd.com/tags/%E6%9B%BC%E7%A6%8F%E5%90%89%E7%9A%84%E5%88%86%E4%BA%AB/"/>
+    
+    <category term="Learning" scheme="https://usmacd.com/tags/Learning/"/>
+    
+  </entry>
   
   <entry>
     <title>坚持的秘诀</title>
@@ -211,29 +242,6 @@
     <summary type="html">&lt;p&gt;早上四哥 (scz) 发了条微博，7-Zip 最近有相关的CVE，CVE-2025-11001、CVE-2025-11002，建议升级到 25.01。&lt;/p&gt;
 &lt;p&gt;如果使用 Windows 系统，在 &lt;a href=&quot;https://7-zip.org/&quot;&gt;https://7-zip.org/&lt;/a&gt; 下载 7-Zip 25.01，升级安装即可。&lt;/p&gt;
 &lt;p&gt;在 Linux 系统中 7-</summary>
-      
-    
-    
-    
-    
-    <category term="linux" scheme="https://usmacd.com/tags/linux/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>修复 VMware Workstation Ubuntu Guest 磁盘错误</title>
-    <link href="https://usmacd.com/cn/vmware_fix_guest_disk_error/"/>
-    <id>https://usmacd.com/cn/vmware_fix_guest_disk_error/</id>
-    <published>2025-09-22T16:00:00.000Z</published>
-    <updated>2025-09-22T16:00:00.000Z</updated>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;VMware Workstation 17.6.4 build-24832109 不稳定，几次出错后 Ubuntu Guest 无法正常登录系统。&lt;/p&gt;
-&lt;p&gt;主要异常为：输入用户和密码后卡在 GUI 的登录界面，使用 fsck 修复分区后问题解决，具体步骤如下：&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;&lt;p&gt;菜单：VMWare -&amp;gt; 虚拟机 -&amp;gt; SSH -&amp;gt; 连接到 SSH，弹出 </summary>
       
     
     
