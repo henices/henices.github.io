@@ -1,0 +1,231 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>利用 AI Studio 整理播客音频的逐字稿 | 安全代码</title><meta name="author" content="曼福吉"><meta name="copyright" content="曼福吉"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="AI Studio 可以直接提取播客的 Transcript，可以使用 Google 的各种模型，更重要的是免费。 选择 Chat with models， 模型 Gemini 3 Flash Preview, temperature 0.2。 具体步骤如下：  上传播客的音频文件（一般后缀为 .mp3 或 .m4a) 使用下面的提示词  12345678910111213141516171819">
+<meta property="og:type" content="article">
+<meta property="og:title" content="利用 AI Studio 整理播客音频的逐字稿">
+<meta property="og:url" content="https://usmacd.com/cn/ai_studio_podcast_transcript/index.html">
+<meta property="og:site_name" content="安全代码">
+<meta property="og:description" content="AI Studio 可以直接提取播客的 Transcript，可以使用 Google 的各种模型，更重要的是免费。 选择 Chat with models， 模型 Gemini 3 Flash Preview, temperature 0.2。 具体步骤如下：  上传播客的音频文件（一般后缀为 .mp3 或 .m4a) 使用下面的提示词  12345678910111213141516171819">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://images.unsplash.com/photo-1646026371686-79950ceb6daa?w=640">
+<meta property="article:published_time" content="2026-01-07T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-01-07T16:00:00.000Z">
+<meta property="article:author" content="曼福吉">
+<meta property="article:tag" content="ai">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://images.unsplash.com/photo-1646026371686-79950ceb6daa?w=640"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "利用 AI Studio 整理播客音频的逐字稿",
+  "url": "https://usmacd.com/cn/ai_studio_podcast_transcript/",
+  "image": "https://images.unsplash.com/photo-1646026371686-79950ceb6daa?w=640",
+  "datePublished": "2026-01-07T16:00:00.000Z",
+  "dateModified": "2026-01-07T16:00:00.000Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "曼福吉",
+      "url": "https://usmacd.com"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://usmacd.com/cn/ai_studio_podcast_transcript/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css?v=5.5.3"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.1.0/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'undefined')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'undefined')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"pagination":{"enable":false,"hitsPerPage":8},"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":false,"highlightHeightLimit":false,"highlightFullpage":true,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.12.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '利用 AI Studio 整理播客音频的逐字稿',
+  isHighlightShrink: false,
+  isToc: false,
+  pageType: 'post'
+}</script><link rel="stylesheet" href="/self/atom-one-light.css"><link rel="stylesheet" href="/self/nord.css"><meta name="generator" content="Hexo 8.1.0"><link rel="alternate" href="/atom.xml" title="安全代码" type="application/atom+xml">
+<link rel="alternate" href="/rss.xml" title="安全代码" type="application/rss+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/images/avatar.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">171</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">18</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/thoughts"><i class="fa-fw fas fa-cloud"></i><span> 想法</span></a></div><div class="menus_item"><a class="site-page" href="/links/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page" href="/sitemap.xml"><span> sitemap</span></a></div><div class="menus_item"><a class="site-page" href="/random.html"><span> random</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(https://images.unsplash.com/photo-1646026371686-79950ceb6daa?w=640);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">安全代码</span></a><a class="nav-page-title" href="/"><span class="site-name">利用 AI Studio 整理播客音频的逐字稿</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/thoughts"><i class="fa-fw fas fa-cloud"></i><span> 想法</span></a></div><div class="menus_item"><a class="site-page" href="/links/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page" href="/sitemap.xml"><span> sitemap</span></a></div><div class="menus_item"><a class="site-page" href="/random.html"><span> random</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">利用 AI Studio 整理播客音频的逐字稿</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2026-01-07T16:00:00.000Z" title="发表于 2026-01-08 00:00:00">2026-01-08</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-01-07T16:00:00.000Z" title="更新于 2026-01-08 00:00:00">2026-01-08</time></span></div><div class="meta-secondline"></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><p>AI Studio 可以直接提取播客的 Transcript，可以使用 Google 的各种模型，更重要的是免费。</p>
+<p>选择 Chat with models， 模型 Gemini 3 Flash Preview, temperature 0.2。</p>
+<p>具体步骤如下：</p>
+<ol>
+<li>上传播客的音频文件（一般后缀为 .mp3 或 .m4a)</li>
+<li>使用下面的提示词</li>
+</ol>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><code class="hljs markdown"><span class="hljs-section">## 任务</span><br><span class="hljs-bullet">*</span> 根据提供的音频文件，提取主题为 xxx 的播客逐字稿 (transcript) 。<br><span class="hljs-bullet">*</span> 按照 &#123;规则&#125; 要求，参考 &#123;Show notes&#125; 编辑 &#123;逐字稿&#125;。<br><span class="hljs-bullet">*</span> 为 &#123;逐字稿&#125; 划分段落，并拟定段落标题。<br><span class="hljs-bullet">*</span> <span class="hljs-strong">**注意： 保留全部信息，不可添加、删减或遗漏任何内容。**</span><br><br><span class="hljs-section">## 输出</span><br><span class="hljs-bullet">*</span> 使用Markdown格式输出逐字稿，段落标题使用 <span class="hljs-code">`##`</span>。<br><span class="hljs-bullet">*</span> 在中英文单词之间添加空格。<br><span class="hljs-bullet">*</span> 输出语言和音频的语言保持一致。<br><br><span class="hljs-section">## 规则</span><br><span class="hljs-bullet">*</span> <span class="hljs-strong">**去除口语化词语**</span>：删除所有不必要的语气词、口头禅和重复词句，例如“嗯”、“啊”、“那个”、“这个”、“对吧”、“然后” 等。<br><span class="hljs-bullet">*</span> <span class="hljs-strong">**增加必要标点**</span>：根据语境和语义进行断句，正确地添加和修改标点符号，确保文稿节奏清晰。<br><span class="hljs-bullet">*</span> <span class="hljs-strong">**划分内容段落**</span>：根据内容关联度和发言人转换，把内容分成独立的段落，清晰展示发言。<br><span class="hljs-bullet">*</span> <span class="hljs-strong">**修正核心词汇**</span>：根据逐字稿涉及的领域，参考 &#123;Show notes&#125;，修改关键的词汇和术语（如人名、书名、概念），确保内容正确性和严谨性。<br><span class="hljs-bullet">*</span> <span class="hljs-strong">**处理模糊内容**</span>：如果原始意图极其模糊，请保留原句并在其后用 <span class="hljs-code">`[编辑标记：此处意思不明确]`</span> 的格式进行标注。<br><br><span class="hljs-section">## Show notes</span><br><br><span class="hljs-section">## 约束</span><br><span class="hljs-bullet">*</span> <span class="hljs-strong">**禁止删改原意**</span>：严禁对文稿进行摘要、总结或改写，必须保留所有实质性信息。<br><span class="hljs-bullet">*</span> <span class="hljs-strong">**禁止过度清洗**</span>：仅删除“嗯、啊、那个”等无意义语气词；如果口语词涉及上下文逻辑（如“但是...”），必须保留。<br><br><span class="hljs-section">## 指令</span><br>遵循 &#123;任务&#125; ，&#123;输出&#125; ， &#123;规则&#125; ， &#123;指令&#125; 的各项要求，启动任务。<br></code></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>点击 AI studio 的 run</li>
+<li>Enjoy ！</li>
+</ol>
+<p>至于如何下载播客的音频文件，不再这篇博客的讨论范围。 :)</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://usmacd.com">曼福吉</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://usmacd.com/cn/ai_studio_podcast_transcript/">https://usmacd.com/cn/ai_studio_podcast_transcript/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://usmacd.com" target="_blank">安全代码</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/ai/">ai</a></div><div class="post-share"><div class="social-share" data-image="https://images.unsplash.com/photo-1646026371686-79950ceb6daa?w=640" data-sites="facebook,x,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related full-width" href="/cn/anti-weakness-learning/" title="反脆弱式的学习方法"><img class="cover" src="https://images.unsplash.com/photo-1646026371686-79950ceb6daa?w=640" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">反脆弱式的学习方法</div></div><div class="info-2"><div class="info-item-1">英雄人物应该主动拥抱不确定性，一定程度的不确定性对普通人有好处。 How we learn 这本书中进行了两个实验：   网球发球练习    学习识别不同绘画的风格。    参加两个实验的同学都分成两组，一组是按照一定规律的练习，另一组按随机没有规律的练习，练习完毕后进行测试。在两个实验中随机练习的组的同学的平均成绩都好于按一定规律练习组的同学。 根据两组实验的结果，不但学习内容应该随机安排，学习的地点、学习的环境，最好也能随机化。 在一定范围内，人体是反脆弱的，越折腾我们越强大。人的身体中有一定潜能，平时不用，遇到紧急情况这些潜能就能发挥作用。健身、断食这些活动的原理就是人体的反脆弱，给身体一些刺激，过一段时间身体恢复后，将变得更加强大。 放到人生的各个阶段也一样，要相当警惕“舒适区”，在大多数时间里应该让自己处于“学习区”，我们需要更多的挑战。 在学习过程中，也应该增加一些不确定性，读一些自己专业领域外的书，接触一些和自己关系不大的业务，说不定能带来意外的惊喜。 还有一点值得注意，我们不能在生活的所有方面追求不确定性，越是在生活的某个方面冒险，就越应该保证其他的方面相对稳定。...</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/cn/ollama_unauthenticated/" title="Ollama 的未授权访问问题"><img class="cover" src="https://images.unsplash.com/photo-1646026371686-79950ceb6daa?w=640" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-02-20</div><div class="info-item-2">Ollama 的未授权访问问题</div></div><div class="info-2"><div class="info-item-1">Ollama 是一个简单易用的本地大模型运行框架，它可以让你在本地电脑上轻松运行和管理各种大语言模型。Github 地址：https://github.com/ollama/ollama 有用户提出给 Ollama API 添加认证的需求 Requesting support for basic auth or API key authentication， Ollama 官方没有处理，所以在默认设置下 Ollama 存在未授权访问问题。 以下的代码在 Ollama v0.5.11 下测试成功。 判断是否 Ollama 运行在 11434 端口1234567curl -i http://127.0.0.1:11434HTTP/1.1 200 OKContent-Type: text/plain; charset=utf-8Date: Tue, 18 Feb 2025 11:12:57 GMTContent-Length: 17Ollama is running   列出 Ollama 提供的 LLM 模型curl http://127.0.0.1:11434/api/tags |...</div></div></div></a><a class="pagination-related" href="/cn/thinking-logic-generative-ai-era/" title="思考的新征程：生成式AI时代的逻辑与思辨"><img class="cover" src="https://images.unsplash.com/photo-1646026371686-79950ceb6daa?w=640" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-03-12</div><div class="info-item-2">思考的新征程：生成式AI时代的逻辑与思辨</div></div><div class="info-2"><div class="info-item-1">在信息泛滥的数字时代，生成式AI的崛起既带来知识获取便利，也改变了人类与信息的关系。 当ChatGPT能在几秒钟内生成看似专业的论文，我们要问：在这个新世界中，什么将成为人类不可替代的能力？答案是我们古老的认知工具——逻辑思维和思辨能力。 曾经，信息本身是稀缺资源。而今天，信息触手可及，AI将这种获取推向新高度。 当所有人都轻松获取相同信息时，真正的价值不在信息本身， 而是转移到了对信息的判断和利用能力上。 1. 识别AI的海市蜃楼生成式AI有一个特性——“幻觉”。它们可以捏造看似合理但错误的信息。 想象一个情境，某大学教授要求学生使用AI撰写关于特定历史事件的论文，然后用批判性思维分析准确性，许多学生无法识别AI生成内容中的事实错误，甚至有学生为这些错误辩护，因为它们来自“权威”的AI。 在信息过载的世界中，辨别真伪的能力比获取信息更为关键。在AI时代，知识不再是力量，判断力才是。 2. 问题定义：人类思维的堡垒生成式AI擅长回答问题，但在提出有价值的问题方面却不足。 诺贝尔物理学奖获得者理查德·费曼强调，科学是关于理解事物，而不仅仅是知道它们的名称。提出正确的问题比找到答案更...</div></div></div></a><a class="pagination-related" href="/cn/ai_article_summary_prompt/" title="一个文章总结提示词"><img class="cover" src="https://images.unsplash.com/photo-1646026371686-79950ceb6daa?w=640" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-04-17</div><div class="info-item-2">一个文章总结提示词</div></div><div class="info-2"><div class="info-item-1">分享一个文章总结提示词，在 Reddit 用户 custodiam99 的提示词上修改而来，我用了一段时间感觉挺好。 1234567891011121314CAUTION: PROVIDE YOUR ENTIRE RESPONSE IN CHINESE.For any text analysis task I provide, please follow this structured approach:1. Walk through your reasoning step by step before providing your final analysis.2. Analyze the input text and generate [3,8] essential questions that reveal the core meaning of the text. These questions should, when answered, capture the main points and fundamental understanding of the text....</div></div></div></a><a class="pagination-related" href="/cn/Debian_Nvidia_Ollama/" title="Nvidia 驱动安装和 Ollama 的使用"><img class="cover" src="https://images.unsplash.com/photo-1646026371686-79950ceb6daa?w=640" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2024-07-26</div><div class="info-item-2">Nvidia 驱动安装和 Ollama 的使用</div></div><div class="info-2"><div class="info-item-1">根据同事反馈，高版本的 NVIDIA 驱动兼容性有问题，需要安装 Nvidia 驱动 525.147.05 ，过程中可能需要升级内核。 安装 Nvidia 驱动查看 Debian 上显卡安装情况。 12lspci -nn | egrep -i &quot;3d|display|vga&quot;  01:00.0 VGA compatible controller [0300]: NVIDIA Corporation AD102 [GeForce RTX 4090] [10de:2684] (rev a1)  查看驱动安装具体的情况。 123456789101112lsmod | grep nouveau  nouveau              2433024  0  mxm_wmi                16384  1 nouveau  i2c_algo_bit           16384  1 nouveau  drm_display_helper    184320  1 nouveau  drm_ttm_helper         16384  1 n...</div></div></div></a><a class="pagination-related" href="/cn/local_rag_llamaindex/" title="50 行代码打造全本地的 RAG 知识检索系统"><img class="cover" src="https://images.unsplash.com/photo-1646026371686-79950ceb6daa?w=640" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2024-09-23</div><div class="info-item-2">50 行代码打造全本地的 RAG 知识检索系统</div></div><div class="info-2"><div class="info-item-1">非常粗糙的示例代码，使用 Ollama 和 LlamaIndex 打造全本地的知识检索系统。 LlamaIndex 的安装方法如下： 123456python3 -m venv .venvsource .venv/bin/activatepip3 install llama-indexpip3 install llama-index-llms-ollama pip3 install llama-index-embeddings-huggingfacepip3 install llama-index-embeddings-ollama  Ollama 的安装可以参考：Debian 12 安装 Nvidia 驱动和 Ollama 在例子中，检索目标为 markdown 格式的笔记，供参考。 使用方法：python3 rag_query.py &quot;分析全部文本内容，分点列出个人成长的建议&quot; 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495...</div></div></div></a><a class="pagination-related" href="/cn/ai_thinking/" title="认知被 AI 暴击的瞬间"><img class="cover" src="https://images.unsplash.com/photo-1646026371686-79950ceb6daa?w=640" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2023-05-23</div><div class="info-item-2">认知被 AI 暴击的瞬间</div></div><div class="info-2"><div class="info-item-1">https://podcasts.apple.com/us/podcast/%E8%AE%A4%E7%9F%A5%E8%A2%ABai%E6%9A%B4%E5%87%BB%E7%9A%84%E7%9E%AC%E9%97%B4/id1614381317?i=1000598827531 今天听了一期「认知被 AI 暴击的瞬间》，里面有几个挺有意思的话题 。 “AGI”技术目前存在的哪些问题  ？首先是算力的问题，早期大家在使用 ChatGPT 的时候应该都遇上了无法响应的情况，包括后来大范围的封号，限制特定机房 IP 段的访问，这些其实都是算力不足的表现。虽然 Google 号称 PaLM 2 的 Gecko 模型可以在手机上运行，具体的文本生成效果和能量消耗情况都没有详细的信息。 其次，ChatGPT 这些 Ai 程序生成的内容并不总能满足需求，有时候甚至觉得有点傻，受限于学习的数据和算法模型，人工智能领域正在挑战其不太擅长的通用人工智能，在专用人工智能方面（比如下围棋）的许多地方，人类早已经不是对手了。 最后，AGI 程序是不能有「价值判断」的，没有价值观就可能生成有害的内容，这...</div></div></div></a></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/images/avatar.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">曼福吉</div><div class="author-info-description"></div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">171</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">18</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><div class="card-info-social-icons"><a class="social-icon" href="/rss.xml" target="_blank" title="RSS"><i class="fas fa-rss" style="color: #4c566a;"></i></a><a class="social-icon" href="https://x.com/henices" target="_blank" title="Twitter"><i class="fab fa-x-twitter" style="color: #4c566a;"></i></a><a class="social-icon" href="mailto:zhouzhenster@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4c566a;"></i></a></div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/cn/ai_studio_podcast_transcript/" title="利用 AI Studio 整理播客音频的逐字稿">利用 AI Studio 整理播客音频的逐字稿</a><time datetime="2026-01-07T16:00:00.000Z" title="发表于 2026-01-08 00:00:00">2026-01-08</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/cn/anti-weakness-learning/" title="反脆弱式的学习方法">反脆弱式的学习方法</a><time datetime="2025-12-30T16:00:00.000Z" title="发表于 2025-12-31 00:00:00">2025-12-31</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/cn/keep_hard/" title="坚持的秘诀">坚持的秘诀</a><time datetime="2025-12-15T16:00:00.000Z" title="发表于 2025-12-16 00:00:00">2025-12-16</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/cn/investment_category2/" title="金融市场中的不同流派 (2)">金融市场中的不同流派 (2)</a><time datetime="2025-12-09T16:00:00.000Z" title="发表于 2025-12-10 00:00:00">2025-12-10</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/cn/how_to_set_a_goal/" title="如何设定一个好目标">如何设定一个好目标</a><time datetime="2025-12-04T16:00:00.000Z" title="发表于 2025-12-05 00:00:00">2025-12-05</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url(https://images.unsplash.com/photo-1646026371686-79950ceb6daa?w=640);"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By 曼福吉</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.5.3"></script><script src="/js/main.js?v=5.5.3"></script><script src="/js/tw_cn.js?v=5.5.3"></script><div class="js-pjax"><script>(() => {
+  const runMermaid = ele => {
+    window.loadMermaid = true
+    const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+    ele.forEach((item, index) => {
+      const mermaidSrc = item.firstElementChild
+      const config = mermaidSrc.dataset.config ? JSON.parse(mermaidSrc.dataset.config) : {}
+      if (!config.theme) {
+        config.theme = theme
+      }
+      const mermaidThemeConfig = `%%{init: ${JSON.stringify(config)}}%%\n`
+      const mermaidID = `mermaid-${index}`
+      const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+
+      const renderFn = mermaid.render(mermaidID, mermaidDefinition)
+      const renderMermaid = svg => {
+        mermaidSrc.insertAdjacentHTML('afterend', svg)
+      }
+
+      // mermaid v9 and v10 compatibility
+      typeof renderFn === 'string' ? renderMermaid(renderFn) : renderFn.then(({ svg }) => renderMermaid(svg))
+    })
+  }
+
+  const codeToMermaid = () => {
+    const codeMermaidEle = document.querySelectorAll('pre > code.mermaid')
+    if (codeMermaidEle.length === 0) return
+
+    codeMermaidEle.forEach(ele => {
+      const preEle = document.createElement('pre')
+      preEle.className = 'mermaid-src'
+      preEle.hidden = true
+      preEle.textContent = ele.textContent
+      const newEle = document.createElement('div')
+      newEle.className = 'mermaid-wrap'
+      newEle.appendChild(preEle)
+      ele.parentNode.replaceWith(newEle)
+    })
+  }
+
+  const loadMermaid = () => {
+    if (false) codeToMermaid()
+    const $mermaid = document.querySelectorAll('#article-container .mermaid-wrap')
+    if ($mermaid.length === 0) return
+
+    const runMermaidFn = () => runMermaid($mermaid)
+    btf.addGlobalFn('themeChange', runMermaidFn, 'mermaid')
+    window.loadMermaid ? runMermaidFn() : btf.getScript('https://cdn.jsdelivr.net/npm/mermaid@11.12.2/dist/mermaid.min.js').then(runMermaidFn)
+  }
+
+  btf.addGlobalFn('encrypt', loadMermaid, 'mermaid')
+  window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+})()</script></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><i class="fas fa-spinner fa-pulse" id="loading-status" hidden="hidden"></i><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="local-search-input"><input placeholder="搜索文章" type="text"/></div><hr/><div id="local-search-results"></div><div class="ais-Pagination" id="local-search-pagination" style="display:none;"><ul class="ais-Pagination-list"></ul></div><div id="local-search-stats"></div></div><div id="search-mask"></div><script src="/js/search/local-search.js?v=5.5.3"></script></div></div></body></html>
