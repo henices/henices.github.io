@@ -9,8 +9,31 @@
     <atom:link href="https://usmacd.com/rss.xml" rel="self" type="application/rss+xml"/>
     
     <description></description>
-    <pubDate>Tue, 27 Jan 2026 16:00:00 GMT</pubDate>
+    <pubDate>Thu, 29 Jan 2026 16:00:00 GMT</pubDate>
     <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>开启 Gemini in Chrome 的方法</title>
+      <link>https://usmacd.com/cn/gemini_in_chrome/</link>
+      <guid>https://usmacd.com/cn/gemini_in_chrome/</guid>
+      <pubDate>Thu, 29 Jan 2026 16:00:00 GMT</pubDate>
+      
+        
+        
+      <description>&lt;p&gt;Gemini in Chrome 这个功能我等很久了，以前用的是 Randy Liu 的 SumBuddy Chrome 插件。&lt;br&gt;Gemini in Chrome 利用侧边栏共享其他 Chrome Tab 的内容，做到随时可以基于网页内容在 Gemini 提问。&lt;/p&gt;
+&lt;p&gt;(1)  在 Chrome 浏览器的地址栏输入 chrome:&amp;#x2F;&amp;#x2F;flags ，打开两个 </description>
+        
+      
+      
+      
+      
+      
+      <category domain="https://usmacd.com/tags/Software/">Software</category>
+      
+      
+      <comments>https://usmacd.com/cn/gemini_in_chrome/#disqus_thread</comments>
+      
+    </item>
     
     <item>
       <title>成功是成功之母</title>
@@ -244,31 +267,6 @@
       
       
       <comments>https://usmacd.com/cn/duanyongping/#disqus_thread</comments>
-      
-    </item>
-    
-    <item>
-      <title>如何讲好一个故事</title>
-      <link>https://usmacd.com/cn/how_to_tell_a_story/</link>
-      <guid>https://usmacd.com/cn/how_to_tell_a_story/</guid>
-      <pubDate>Tue, 11 Nov 2025 16:00:00 GMT</pubDate>
-      
-        
-        
-      <description>&lt;p&gt;《像TED一样讲话：世界顶级大脑的九个演讲秘密》的作者卡迈恩·加洛（Carmine Gallo）分析了 TED 成功的演讲，总结了演讲成功的秘密。 故事是一种传播手段，听故事能让听众和你的大脑同步，这就是故事的力量。&lt;/p&gt;
-&lt;p&gt;亚里士多德的理论，要说服别人你得提供三个东西：&lt;/p&gt;
-&lt;p&gt;Ethos ：个人信用，听众相信你是因为你的成绩，或者你拥有的头衔&lt;/p&gt;
-&lt;p&gt;Logos：逻辑，</description>
-        
-      
-      
-      
-      
-      
-      <category domain="https://usmacd.com/tags/%E6%9B%BC%E7%A6%8F%E5%90%89%E7%9A%84%E5%88%86%E4%BA%AB/">曼福吉的分享</category>
-      
-      
-      <comments>https://usmacd.com/cn/how_to_tell_a_story/#disqus_thread</comments>
       
     </item>
     
