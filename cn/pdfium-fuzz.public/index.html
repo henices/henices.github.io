@@ -26,7 +26,7 @@
       "url": "https://usmacd.com"
     }
   ]
-}</script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://usmacd.com/cn/pdfium-fuzz.public/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css?v=5.5.3"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.1.0/css/all.min.css"><script>
+}</script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://usmacd.com/cn/pdfium-fuzz.public/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css?v=5.5.4"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.1.0/css/all.min.css"><script>
     (() => {
       
     const saveToLocal = {
@@ -143,7 +143,7 @@
   lightbox: 'null',
   Snackbar: undefined,
   infinitegrid: {
-    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.12.0/dist/infinitegrid.min.js',
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.13.0/dist/infinitegrid.min.js',
     buttonText: '加载更多'
   },
   isPhotoFigcaption: false,
@@ -159,7 +159,7 @@
   isHighlightShrink: false,
   isToc: true,
   pageType: 'post'
-}</script><link rel="stylesheet" href="/self/atom-one-light.css"><link rel="stylesheet" href="/self/nord.css"><meta name="generator" content="Hexo 8.1.0"><link rel="alternate" href="/atom.xml" title="安全代码" type="application/atom+xml">
+}</script><link rel="stylesheet" href="/self/atom-one-light.css"><link rel="stylesheet" href="/self/nord.css"><meta name="generator" content="Hexo 8.1.1"><link rel="alternate" href="/atom.xml" title="安全代码" type="application/atom+xml">
 <link rel="alternate" href="/rss.xml" title="安全代码" type="application/rss+xml">
 </head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/images/avatar.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">173</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">18</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/thoughts"><i class="fa-fw fas fa-cloud"></i><span> 想法</span></a></div><div class="menus_item"><a class="site-page" href="/links/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page" href="/sitemap.xml"><span> sitemap</span></a></div><div class="menus_item"><a class="site-page" href="/random.html"><span> random</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(https://images.unsplash.com/photo-1646026371686-79950ceb6daa?w=640);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">安全代码</span></a><a class="nav-page-title" href="/"><span class="site-name">使用 afl-fuzz fuzz pdfium</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/thoughts"><i class="fa-fw fas fa-cloud"></i><span> 想法</span></a></div><div class="menus_item"><a class="site-page" href="/links/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page" href="/sitemap.xml"><span> sitemap</span></a></div><div class="menus_item"><a class="site-page" href="/random.html"><span> random</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">使用 afl-fuzz fuzz pdfium</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-12-07T16:00:00.000Z" title="发表于 2022-12-08 00:00:00">2022-12-08</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-12-07T16:00:00.000Z" title="更新于 2022-12-08 00:00:00">2022-12-08</time></span></div><div class="meta-secondline"></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h2 id="下载源码"><a href="#下载源码" class="headerlink" title="下载源码"></a>下载源码</h2><p>先在 <a target="_blank" rel="noopener" href="https://pdfium.googlesource.com/pdfium/">https://pdfium.googlesource.com/pdfium/</a> 下载源码.</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-built_in">mkdir</span> repo<br><span class="hljs-built_in">cd</span> repo<br>gclient config --unmanaged https://pdfium.googlesource.com/pdfium.git<br>gclient <span class="hljs-built_in">sync</span><br><span class="hljs-built_in">cd</span> pdfium<br></code></pre></td></tr></table></figure>
@@ -212,13 +212,277 @@
 <li><a target="_blank" rel="noopener" href="https://mariomalwareanalysis.blogspot.com/2012/02/how-to-manually-create-pdf.html">https://mariomalwareanalysis.blogspot.com/2012/02/how-to-manually-create-pdf.html</a></li>
 <li><a target="_blank" rel="noopener" href="https://mariomalwareanalysis.blogspot.com/2012/02/how-to-embed-javascript-into-pdf.html">https://mariomalwareanalysis.blogspot.com/2012/02/how-to-embed-javascript-into-pdf.html</a></li>
 </ul>
-</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://usmacd.com">曼福吉</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://usmacd.com/cn/pdfium-fuzz.public/">https://usmacd.com/cn/pdfium-fuzz.public/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://usmacd.com" target="_blank">安全代码</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Security/">Security</a></div><div class="post-share"><div class="social-share" data-image="https://images.unsplash.com/photo-1646026371686-79950ceb6daa?w=640" data-sites="facebook,x,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/cn/linyuan_interview/" title="林园谈投资"><img class="cover" src="https://images.unsplash.com/photo-1646026371686-79950ceb6daa?w=640" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">林园谈投资</div></div><div class="info-2"><div class="info-item-1">看了一个2012年采访林园的视频，每个成功的人士对投资都有自己的看法。   投资最重要的要少犯错 虽然没法预测股票走势，但是股票价格的高低还是需要清楚的，虽然价格低的可能继续走低，价格高的可能继续走高 投机和投资没有本质区别，投机的「机」是择时，价值投资也是择时，市场上的股票供需关系会影响价格 需要知道市场周期，牛熊轮回，不同的市场时期，选择的投资策略也不同 做3到5年的长线投资，关注市场的主线，在龙头股上赚大钱 注重风险管理，投资前测算最差情况，只在有把握时下注，平时不太看盘 使用资产配置来分摊风险，房地产、债券、股票等均有涉猎 每个人都有自己擅长的标的(能力圈)，林园的投资主线是和吃的有关系的消费股  这篇采访出了个彩蛋🎉，主持人问林园平日都有啥爱好。林园说他有两个爱好：1. 逛夜总会 2. 走长路林园逛夜总会的段子已经广泛流传，主持人也接不住这话茬 ：）认真分析 逛夜总会是看高端消费，走长路是看日常消费。一般成功的投资人都有自己独特的指标。 </div></div></div></a><a class="pagination-related" href="/cn/logseq3/" title="Logseq 使用小结 （三）"><img class="cover" src="https://images.unsplash.com/photo-1646026371686-79950ceb6daa?w=640" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">Logseq 使用小结 （三）</div></div><div class="info-2"><div class="info-item-1">使用 Logseq 写笔记已经大半年了，Logseq 是这么多年来除了 vim 之外，唯一可以在使用上螺旋上升的软件。我把 Logseq 推荐给媳妇，她用来写会议纪要，写备忘录，管理待办事项，也用得挺好。 Logseq 的成功之处在于它降低了记录的成本，不需要大段大段的文字，也不需要太多的文章结构，随时都可以记录。Logseq 比较严重的问题是它的使用太灵活了，前后记录的标准、格式、标签等要素可能不一致，容易造成笔记凌乱。笔记一凌乱就没法有效的聚合，笔记的有效聚合形成一个有意义的想法群是 Logseq 等双链软件和其他笔记软件相比最有价值的地方。 我这半年来总结出笔记系统成功的关键是： 在同一个地方，用同样的格式和一致的标准记录你的洞见。但是由于 Logseq 缺乏有效的工作流，没法自动化提示必要的步骤，只能通过不断的练习来强化学习。另外 Logseq 中 page 和 tag 只是起到过滤笔记的作用，最关键的笔记之间的链接却很容易被忽视，tag 的数量一多又会开始笔记凌乱了。 总而言之，如果只是把 Logseq 作为备忘，或者简单作为信息记录，挺好用也不需要学习太多的东西，但是...</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/cn/linux_ida_pro/" title="Linux 下运行 IDA Pro"><img class="cover" src="https://images.unsplash.com/photo-1646026371686-79950ceb6daa?w=640" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2013-06-19</div><div class="info-item-2">Linux 下运行 IDA Pro</div></div><div class="info-2"><div class="info-item-1">IDA Pro 6.2 + 的Linux 版本提供了Qt 界面，可以在各大平台正常运行。买不起也有办法 ，使用 wine 可以很好地运行IDA Pro，显示效果基本OK，爱折腾的同学可以自行调整字体。 1$ wine idag.exe  IDA Pro 6.1 成功运行.但是idapython 有些问题需要处理，引起idapython不能正常运行的原因主要有下面两个： 文件缺失大概会报下面错误  1err:module:import_dll Library python27.dll (which is needed by L&quot;C:\\ida61\\plugins\\python.plw&quot;) not found  要解决这个错误，需要从windows下拷贝两个文件过来，这两个文件是 msvcr90.dll，python27.dll 环境变量1$ wine idag.exe  会报下面类似错误， ImportError: No module named site，发生这个错误的原因是找不到python安装路径，可以使用unix下的python使用shell命令设置...</div></div></div></a><a class="pagination-related" href="/en/How_do_you_actually_find_bugs/" title="Keynote - How Do You Actually Find Bugs?"><img class="cover" src="https://images.unsplash.com/photo-1646026371686-79950ceb6daa?w=640" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2023-09-06</div><div class="info-item-2">Keynote - How Do You Actually Find Bugs?</div></div><div class="info-2"><div class="info-item-1">https://www.youtube.com/watch?v=7Ysy6iA2sqA&amp;ab_channel=OffensiveCon  Temperament Curiosity Detail-oriented Ability to deal with failure and continual evidence that you’re wrong   Learn how to deal with failure Two projects (can be unrealeted, or different parts of the same) Learn to recognize whe you have hit a wall and have become unproductive Switch to your secondary project   Consider having a development project as your seconary project Do an achiveable, measurable task Regain a sense...</div></div></div></a><a class="pagination-related" href="/cn/search_sql_injection/" title="站内搜索写法的一个 SQL inject 漏洞"><img class="cover" src="https://images.unsplash.com/photo-1646026371686-79950ceb6daa?w=640" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2004-10-13</div><div class="info-item-2">站内搜索写法的一个 SQL inject 漏洞</div></div><div class="info-2"><div class="info-item-1">最近sql inject 可是说是红遍了整个中国，不知道多少网站在sql inject 面前轰然倒下，其实 Sql inject 在国外技术已经很成熟了，而国内则是在近一两年内慢慢走向成熟。在一个个惨痛的实例面前，脚本工作者不得不重视起来，最好的例子就是动网了。然而今天脚本是不是就很安全的呢。请看我对几个安全站点的测试结果。结果是令人吃惊的， 影子鹰， 华夏， 黑客动画吧 都存在着这个站内搜索的漏洞。 请看一段常见的站内搜索写法。 例一： 123456789101112131415161718&lt;form name=&quot;form4&quot; method=&quot;post&quot; action=&quot;search.asp&quot;&gt;&lt;tr&gt;&lt;td height=&quot;25&quot;&gt; &lt;div align=center&gt;&lt;input type=&quot;text&quot; name=&quot;txtfind&quot; size=&quot;18&quot; onMouseOver=&qu...</div></div></div></a><a class="pagination-related" href="/cn/disable_security_flags/" title="恢复 Android App 的截屏功能"><img class="cover" src="https://images.unsplash.com/photo-1646026371686-79950ceb6daa?w=640" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2023-09-06</div><div class="info-item-2">恢复 Android App 的截屏功能</div></div><div class="info-2"><div class="info-item-1">今天遇上某 App 禁止截屏，其实就是使用了下面这段代码 1getWindow().setFlags(LayoutParams.FLAG_SECURE, LayoutParams.FLAG_SECURE);   使用 frida 脚本可以绕过绕过这个限制 （使用 frida 需要将手机 root）。 12345678910111213Java.perform(function () &#123;   // https://developer.android.com/reference/android/view/WindowManager.LayoutParams.html#FLAG_SECURE   var FLAG_SECURE = 0x2000;   var Window = Java.use(&quot;android.view.Window&quot;);   var setFlags = Window.setFlags;  //.overload(&quot;int&quot;, &quot;int&quot;)   setFlags.implementation = ...</div></div></div></a><a class="pagination-related" href="/cn/cve-2012-3137/" title="Oracle Database身份验证协议安全限制绕过漏洞(CVE-2012-3137)"><img class="cover" src="https://images.unsplash.com/photo-1646026371686-79950ceb6daa?w=640" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2023-09-06</div><div class="info-item-2">Oracle Database身份验证协议安全限制绕过漏洞(CVE-2012-3137)</div></div><div class="info-2"><div class="info-item-1">12345678910111213NSFOCUS ID:    20847BUGTRAQ ID:    55651CVE ID:        CVE-2012-3137远程漏洞：      是本地漏洞：      是漏洞类型：漏洞影响：      远程攻击者可以密码进行离线密码暴力破解危险指数：      高创建时间：      2012-9-27更新时间：攻击代码：      无跟踪工程师：    zz  漏洞概述:Oracle是一款广泛被使用的商业数据库。 Oracle O5LOGON认证协议存在漏洞，这个漏洞可以使攻击者离线暴力破解Oracle数据库密码，从而访问受保护的Oracle数据库中的数据。要利用这个漏洞攻击者只需要知道一个合法的数据库用户名和一个正确的数据库名(SID)，不需要使用中间人攻击。 Martinez Fayo 在2010年5月向Oracle报告了这个问题，Oracle在2011年的中期通过patch set 11.2.0.3修复了这个漏洞，使用了新版本的协议。但是Oracle没有在 11.1和11.2 中修复这个问题，因此这些版本仍然存在漏洞。 由于...</div></div></div></a><a class="pagination-related" href="/cn/winafl/" title="winafl fuzz 工具的使用"><img class="cover" src="https://images.unsplash.com/photo-1646026371686-79950ceb6daa?w=640" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2022-08-23</div><div class="info-item-2">winafl fuzz 工具的使用</div></div><div class="info-2"><div class="info-item-1">0. 下载 Visual Studio Community 2022下载地址：https://aka.ms/vs/17/release/vs_community.exe 从微软网站下载并安装 Visual Studio Community 的时候速度只有2 K，一下午没能下载成功。咨询同事小钻风，指出可能是 DNS 问题，将 DNS 切换成阿里的 DNS 223.5.5.5 后下载速度达到 4 M。中国开发者网络总是个问题，大家都挺不容易的。 1. 编译 winafl 下载 DynamoRIO 解压到 D:\DynamoRIO 下载 cmake 解压到 D:\cmake 从 Github 下载 winafl 编译 intel PT 需要同步 third_party 的源码  123git clone https://github.com/googleprojectzero/winafl.gitcd winaflgit submodule update --init --recursive   从菜单中选择  X64 native tool command prompt for V...</div></div></div></a></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/images/avatar.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">曼福吉</div><div class="author-info-description"></div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">173</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">18</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><div class="card-info-social-icons"><a class="social-icon" href="/rss.xml" target="_blank" title="RSS"><i class="fas fa-rss" style="color: #4c566a;"></i></a><a class="social-icon" href="https://x.com/henices" target="_blank" title="Twitter"><i class="fab fa-x-twitter" style="color: #4c566a;"></i></a><a class="social-icon" href="mailto:zhouzhenster@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4c566a;"></i></a></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%8B%E8%BD%BD%E6%BA%90%E7%A0%81"><span class="toc-number">1.</span> <span class="toc-text">下载源码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BC%96%E8%AF%91"><span class="toc-number">2.</span> <span class="toc-text">编译</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#afl-fuzz"><span class="toc-number">3.</span> <span class="toc-text">afl-fuzz</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="toc-number">4.</span> <span class="toc-text">参考资料</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/cn/gemini_in_chrome/" title="开启 Gemini in Chrome 的方法">开启 Gemini in Chrome 的方法</a><time datetime="2026-01-29T16:00:00.000Z" title="发表于 2026-01-30 00:00:00">2026-01-30</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/cn/sucess_is_the_mother_of_sucess/" title="成功是成功之母">成功是成功之母</a><time datetime="2026-01-27T16:00:00.000Z" title="发表于 2026-01-28 00:00:00">2026-01-28</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/cn/ai_studio_podcast_transcript/" title="利用 AI Studio 整理播客音频的逐字稿">利用 AI Studio 整理播客音频的逐字稿</a><time datetime="2026-01-07T16:00:00.000Z" title="发表于 2026-01-08 00:00:00">2026-01-08</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/cn/anti-weakness-learning/" title="反脆弱式的学习方法">反脆弱式的学习方法</a><time datetime="2025-12-30T16:00:00.000Z" title="发表于 2025-12-31 00:00:00">2025-12-31</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/cn/keep_hard/" title="坚持的秘诀">坚持的秘诀</a><time datetime="2025-12-15T16:00:00.000Z" title="发表于 2025-12-16 00:00:00">2025-12-16</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url(https://images.unsplash.com/photo-1646026371686-79950ceb6daa?w=640);"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By 曼福吉</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.5.3"></script><script src="/js/main.js?v=5.5.3"></script><script src="/js/tw_cn.js?v=5.5.3"></script><div class="js-pjax"><script>(() => {
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://usmacd.com">曼福吉</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://usmacd.com/cn/pdfium-fuzz.public/">https://usmacd.com/cn/pdfium-fuzz.public/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://usmacd.com" target="_blank">安全代码</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Security/">Security</a></div><div class="post-share"><div class="social-share" data-image="https://images.unsplash.com/photo-1646026371686-79950ceb6daa?w=640" data-sites="facebook,x,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/cn/linyuan_interview/" title="林园谈投资"><img class="cover" src="https://images.unsplash.com/photo-1646026371686-79950ceb6daa?w=640" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">林园谈投资</div></div><div class="info-2"><div class="info-item-1">看了一个2012年采访林园的视频，每个成功的人士对投资都有自己的看法。   投资最重要的要少犯错 虽然没法预测股票走势，但是股票价格的高低还是需要清楚的，虽然价格低的可能继续走低，价格高的可能继续走高 投机和投资没有本质区别，投机的「机」是择时，价值投资也是择时，市场上的股票供需关系会影响价格 需要知道市场周期，牛熊轮回，不同的市场时期，选择的投资策略也不同 做3到5年的长线投资，关注市场的主线，在龙头股上赚大钱 注重风险管理，投资前测算最差情况，只在有把握时下注，平时不太看盘 使用资产配置来分摊风险，房地产、债券、股票等均有涉猎 每个人都有自己擅长的标的(能力圈)，林园的投资主线是和吃的有关系的消费股  这篇采访出了个彩蛋🎉，主持人问林园平日都有啥爱好。林园说他有两个爱好：1. 逛夜总会 2. 走长路林园逛夜总会的段子已经广泛流传，主持人也接不住这话茬 ：）认真分析 逛夜总会是看高端消费，走长路是看日常消费。一般成功的投资人都有自己独特的指标。 </div></div></div></a><a class="pagination-related" href="/cn/logseq3/" title="Logseq 使用小结 （三）"><img class="cover" src="https://images.unsplash.com/photo-1646026371686-79950ceb6daa?w=640" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">Logseq 使用小结 （三）</div></div><div class="info-2"><div class="info-item-1">使用 Logseq 写笔记已经大半年了，Logseq 是这么多年来除了 vim 之外，唯一可以在使用上螺旋上升的软件。我把 Logseq 推荐给媳妇，她用来写会议纪要，写备忘录，管理待办事项，也用得挺好。 Logseq 的成功之处在于它降低了记录的成本，不需要大段大段的文字，也不需要太多的文章结构，随时都可以记录。Logseq 比较严重的问题是它的使用太灵活了，前后记录的标准、格式、标签等要素可能不一致，容易造成笔记凌乱。笔记一凌乱就没法有效的聚合，笔记的有效聚合形成一个有意义的想法群是 Logseq 等双链软件和其他笔记软件相比最有价值的地方。 我这半年来总结出笔记系统成功的关键是： 在同一个地方，用同样的格式和一致的标准记录你的洞见。但是由于 Logseq 缺乏有效的工作流，没法自动化提示必要的步骤，只能通过不断的练习来强化学习。另外 Logseq 中 page 和 tag 只是起到过滤笔记的作用，最关键的笔记之间的链接却很容易被忽视，tag 的数量一多又会开始笔记凌乱了。 总而言之，如果只是把 Logseq 作为备忘，或者简单作为信息记录，挺好用也不需要学习太多的东西，但是...</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/cn/sqlmap_sql_injection/" title="sqlmap 中的 SQL Injection 检测技术"><img class="cover" src="https://images.unsplash.com/photo-1646026371686-79950ceb6daa?w=640" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2017-07-07</div><div class="info-item-2">sqlmap 中的 SQL Injection 检测技术</div></div><div class="info-2"><div class="info-item-1">https://github.com/henices/sqlihttps://www.owasp.org/index.php/Testing_for_SQL_Injection_(OWASP-DV-005) 基于信道的 sql injection 分类InbandSQL代码注入和SQL injection 结果的获取在同一频道(e.g. 浏览器), 获得的数据直接显示在应用程序页面的正常输出或者错误信息中,这是最简单的攻击类型。 Out-of-bandSQL查询数据的传输使用不同的频道(e.g HTTP，DNS)， 这是从数据库中获取大量数据简单的方法。 Inferential没用真实有用的数据传输，但是攻击者可以通过发送特定的请求，观察数据库服务器的返回的结果的行为重建信息。 基于 sql inject 检测技术的分类boolean-based blind SQL injection也被称为推理SQL注入：SqlMap替换或追加HTTP请求中受影响的参数，一个有效的SQL语句字符串包含 SELECT 子语句，或任何其他用户要检索输出的SQL语句。对于每个HTTP响应，将其 he...</div></div></div></a><a class="pagination-related" href="/cn/cve-2012-3137/" title="Oracle Database身份验证协议安全限制绕过漏洞(CVE-2012-3137)"><img class="cover" src="https://images.unsplash.com/photo-1646026371686-79950ceb6daa?w=640" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2023-09-06</div><div class="info-item-2">Oracle Database身份验证协议安全限制绕过漏洞(CVE-2012-3137)</div></div><div class="info-2"><div class="info-item-1">12345678910111213NSFOCUS ID:    20847BUGTRAQ ID:    55651CVE ID:        CVE-2012-3137远程漏洞：      是本地漏洞：      是漏洞类型：漏洞影响：      远程攻击者可以密码进行离线密码暴力破解危险指数：      高创建时间：      2012-9-27更新时间：攻击代码：      无跟踪工程师：    zz  漏洞概述:Oracle是一款广泛被使用的商业数据库。 Oracle O5LOGON认证协议存在漏洞，这个漏洞可以使攻击者离线暴力破解Oracle数据库密码，从而访问受保护的Oracle数据库中的数据。要利用这个漏洞攻击者只需要知道一个合法的数据库用户名和一个正确的数据库名(SID)，不需要使用中间人攻击。 Martinez Fayo 在2010年5月向Oracle报告了这个问题，Oracle在2011年的中期通过patch set 11.2.0.3修复了这个漏洞，使用了新版本的协议。但是Oracle没有在 11.1和11.2 中修复这个问题，因此这些版本仍然存在漏洞。 由于...</div></div></div></a><a class="pagination-related" href="/en/How_do_you_actually_find_bugs/" title="Keynote - How Do You Actually Find Bugs?"><img class="cover" src="https://images.unsplash.com/photo-1646026371686-79950ceb6daa?w=640" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2023-09-06</div><div class="info-item-2">Keynote - How Do You Actually Find Bugs?</div></div><div class="info-2"><div class="info-item-1">https://www.youtube.com/watch?v=7Ysy6iA2sqA&amp;ab_channel=OffensiveCon  Temperament Curiosity Detail-oriented Ability to deal with failure and continual evidence that you’re wrong   Learn how to deal with failure Two projects (can be unrealeted, or different parts of the same) Learn to recognize whe you have hit a wall and have become unproductive Switch to your secondary project   Consider having a development project as your seconary project Do an achiveable, measurable task Regain a sense...</div></div></div></a><a class="pagination-related" href="/cn/process_injection/" title="Windows 进程注入"><img class="cover" src="https://images.unsplash.com/photo-1646026371686-79950ceb6daa?w=640" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2023-09-06</div><div class="info-item-2">Windows 进程注入</div></div><div class="info-2"><div class="info-item-1">1. Process Injection 方法总结  进程注入是windows病毒和恶意软件最常用的手法之一，Windows下进程注入的方法比较多，这里介绍常见的一些方法，以及相应的检查手段。 1.1 SetWindowsHookEx SetWindowsHookEx估计是大家最熟悉的方法了，这个是微软提供给我们使用正规用法。往Windows的hook chain中安装hook 例程，监控系统某种类型的event, 使用这种方法需要实现一个dll。 123456HHOOK WINAPI SetWindowsHookEx(  _In_  int idHook,  _In_  HOOKPROC lpfn,  _In_  HINSTANCE hMod,  _In_  DWORD dwThreadId);   dwThread 为0，将监管系统中所有线程。 idHook        指定监控event的类型 hMod          dll句柄 lpfn          hook例程的指针  MSDN给出了一个使用的例子： 123456789101112HOOKPROC hkprc...</div></div></div></a><a class="pagination-related" href="/cn/onefuzz/" title="onefuzz 简单分析"><img class="cover" src="https://images.unsplash.com/photo-1646026371686-79950ceb6daa?w=640" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2023-09-06</div><div class="info-item-2">onefuzz 简单分析</div></div><div class="info-2"><div class="info-item-1">deploy agent (部署)123unzip onefuzz-deployment-$VERSION.zippip install -r requirements.txt./deploy.py $REGION $RESOURCE_GROUP_NAME $ONEFUZZ_INSTANCE_NAME $CONTACT_EMAIL_ADDRESS  Azure CLI logged in 后，执行上面命令可以在 Azure 上部署 agent 需要订阅 Azure， 可能要收费 安装 onefuzz CLI123wget https://github.com/microsoft/onefuzz/releases/download/1.0.0/onefuzz-1.0.0-py3-none-any.whlwget https://github.com/microsoft/onefuzz/releases/download/1.0.0/onefuzztypes-1.0.0-py3-none-any.whlpip install ./onefuzz*.whl  执行 fuzz 任务1on...</div></div></div></a><a class="pagination-related" href="/cn/webview_java/" title="Android WebView 漏洞"><img class="cover" src="https://images.unsplash.com/photo-1646026371686-79950ceb6daa?w=640" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2023-09-06</div><div class="info-item-2">Android WebView 漏洞</div></div><div class="info-2"><div class="info-item-1">☆ 来自 developer.android.com 的信息Android 官方网站对addJavascriptInterface的介绍如下： 123456789101112public void addJavascriptInterface (Object object, String name)  Added in API level 1Injects the supplied Java object into this WebView. The object is injected intothe JavaScript context of the main frame, using the supplied name. This allows the Java object&#x27;s methods to be accessed from JavaScript. For applicationstargeted to API level JELLY_BEAN_MR1 and above, only public methods that are annotated w...</div></div></div></a></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/images/avatar.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">曼福吉</div><div class="author-info-description"></div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">173</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">18</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><div class="card-info-social-icons"><a class="social-icon" href="/rss.xml" target="_blank" title="RSS"><i class="fas fa-rss" style="color: #4c566a;"></i></a><a class="social-icon" href="https://x.com/henices" target="_blank" title="Twitter"><i class="fab fa-x-twitter" style="color: #4c566a;"></i></a><a class="social-icon" href="mailto:zhouzhenster@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4c566a;"></i></a></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%8B%E8%BD%BD%E6%BA%90%E7%A0%81"><span class="toc-number">1.</span> <span class="toc-text">下载源码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BC%96%E8%AF%91"><span class="toc-number">2.</span> <span class="toc-text">编译</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#afl-fuzz"><span class="toc-number">3.</span> <span class="toc-text">afl-fuzz</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="toc-number">4.</span> <span class="toc-text">参考资料</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/cn/gemini_in_chrome/" title="开启 Gemini in Chrome 的方法">开启 Gemini in Chrome 的方法</a><time datetime="2026-01-29T16:00:00.000Z" title="发表于 2026-01-30 00:00:00">2026-01-30</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/cn/sucess_is_the_mother_of_sucess/" title="成功是成功之母">成功是成功之母</a><time datetime="2026-01-27T16:00:00.000Z" title="发表于 2026-01-28 00:00:00">2026-01-28</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/cn/ai_studio_podcast_transcript/" title="利用 AI Studio 整理播客音频的逐字稿">利用 AI Studio 整理播客音频的逐字稿</a><time datetime="2026-01-07T16:00:00.000Z" title="发表于 2026-01-08 00:00:00">2026-01-08</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/cn/anti-weakness-learning/" title="反脆弱式的学习方法">反脆弱式的学习方法</a><time datetime="2025-12-30T16:00:00.000Z" title="发表于 2025-12-31 00:00:00">2025-12-31</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/cn/keep_hard/" title="坚持的秘诀">坚持的秘诀</a><time datetime="2025-12-15T16:00:00.000Z" title="发表于 2025-12-16 00:00:00">2025-12-16</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url(https://images.unsplash.com/photo-1646026371686-79950ceb6daa?w=640);"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By 曼福吉</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.5.4"></script><script src="/js/main.js?v=5.5.4"></script><script src="/js/tw_cn.js?v=5.5.4"></script><div class="js-pjax"><script>(() => {
+  const parseViewBox = viewBox => {
+    if (!viewBox) return null
+    const parts = viewBox.trim().split(/[\s,]+/).map(n => Number(n))
+    if (parts.length !== 4 || parts.some(n => Number.isNaN(n))) return null
+    return parts
+  }
+
+  const getSvgViewBox = svg => {
+    const attr = parseViewBox(svg.getAttribute('viewBox'))
+    if (attr) return attr
+
+    // Fallback: use bbox to build a viewBox
+    try {
+      const bbox = svg.getBBox()
+      if (bbox && bbox.width && bbox.height) return [bbox.x, bbox.y, bbox.width, bbox.height]
+    } catch (e) {
+      // getBBox may fail on some edge cases; ignore
+    }
+
+    const w = Number(svg.getAttribute('width')) || 0
+    const h = Number(svg.getAttribute('height')) || 0
+    if (w > 0 && h > 0) return [0, 0, w, h]
+    return [0, 0, 100, 100]
+  }
+
+  const setSvgViewBox = (svg, vb) => {
+    svg.setAttribute('viewBox', `${vb[0]} ${vb[1]} ${vb[2]} ${vb[3]}`)
+  }
+
+  const clamp = (v, min, max) => Math.max(min, Math.min(max, v))
+
+  const openSvgInNewTab = ({ source, initViewBox }) => {
+    const getClonedSvg = () => {
+      if (typeof source === 'string') {
+        const template = document.createElement('template')
+        template.innerHTML = source.trim()
+        const svg = template.content.querySelector('svg')
+        return svg ? svg.cloneNode(true) : null
+      }
+      if (source && typeof source.cloneNode === 'function') {
+        return source.cloneNode(true)
+      }
+      return null
+    }
+
+    const clone = getClonedSvg()
+    if (!clone) return
+    if (initViewBox && initViewBox.length === 4) {
+      clone.setAttribute('viewBox', initViewBox.join(' '))
+    }
+    if (!clone.getAttribute('xmlns')) clone.setAttribute('xmlns', 'http://www.w3.org/2000/svg')
+    if (!clone.getAttribute('xmlns:xlink') && clone.outerHTML.includes('xlink:')) {
+      clone.setAttribute('xmlns:xlink', 'http://www.w3.org/1999/xlink')
+    }
+    // inject background to match current theme
+    const isDark = document.documentElement.getAttribute('data-theme') === 'dark'
+    const bg = getComputedStyle(document.body).backgroundColor || (isDark ? '#1e1e1e' : '#ffffff')
+    if (!clone.style.background) clone.style.background = bg
+
+    const serializer = new XMLSerializer()
+    const svgSource = serializer.serializeToString(clone)
+    const htmlSource = `<!doctype html><html><head><meta charset="utf-8" />
+      <style>
+        html, body { width: 100%; height: 100%; margin: 0; display: flex; align-items: center; justify-content: center; background: ${bg}; }
+        svg { max-width: 100%; max-height: 100%; height: auto; width: auto; }
+      </style>
+      </head><body>${svgSource}</body></html>`
+    const blob = new Blob([htmlSource], { type: 'text/html;charset=utf-8' })
+    const url = URL.createObjectURL(blob)
+    window.open(url, '_blank', 'noopener')
+    setTimeout(() => URL.revokeObjectURL(url), 30000)
+  }
+
+  const attachMermaidViewerButton = wrap => {
+    let btn = wrap.querySelector('.mermaid-open-btn')
+    if (!btn) {
+      btn = document.createElement('button')
+      btn.type = 'button'
+      btn.className = 'mermaid-open-btn'
+      wrap.appendChild(btn)
+    }
+
+    btn.innerHTML = '<i class="fa fa-search fa-fw" aria-hidden="true"></i>'
+
+    if (!btn.__mermaidViewerBound) {
+      btn.addEventListener('click', e => {
+        e.preventDefault()
+        e.stopPropagation()
+        const svg = wrap.__mermaidOriginalSvg || wrap.querySelector('svg')
+        if (!svg) return
+        const initViewBox = wrap.__mermaidInitViewBox
+        if (typeof svg === 'string') {
+          openSvgInNewTab({ source: svg, initViewBox })
+          return
+        }
+        openSvgInNewTab({ source: svg, initViewBox })
+      })
+      btn.__mermaidViewerBound = true
+    }
+  }
+
+  // Zoom around a point (px, py) in the SVG viewport (in viewBox coordinates)
+  const zoomAtPoint = (vb, factor, px, py) => {
+    const w = vb[2] * factor
+    const h = vb[3] * factor
+    const nx = px - (px - vb[0]) * factor
+    const ny = py - (py - vb[1]) * factor
+    return [nx, ny, w, h]
+  }
+
+  const initMermaidGestures = wrap => {
+    const svg = wrap.querySelector('svg')
+    if (!svg) return
+
+    // Ensure viewBox exists so gestures always work
+    const initVb = getSvgViewBox(svg)
+    wrap.__mermaidInitViewBox = initVb
+    wrap.__mermaidCurViewBox = initVb.slice()
+    setSvgViewBox(svg, initVb)
+
+    // Avoid binding multiple times on themeChange/pjax
+    if (wrap.__mermaidGestureBound) return
+    wrap.__mermaidGestureBound = true
+
+    // Helper: map client (viewport) coordinate -> viewBox coordinate
+    const clientToViewBox = (clientX, clientY) => {
+      const rect = svg.getBoundingClientRect()
+      const vb = wrap.__mermaidCurViewBox || getSvgViewBox(svg)
+      const x = vb[0] + (clientX - rect.left) * (vb[2] / rect.width)
+      const y = vb[1] + (clientY - rect.top) * (vb[3] / rect.height)
+      return { x, y, rect, vb }
+    }
+
+    const state = {
+      pointers: new Map(),
+      startVb: null,
+      startDist: 0,
+      startCenter: null
+    }
+
+    const clampVb = vb => {
+      const init = wrap.__mermaidInitViewBox || vb
+      const minW = init[2] * 0.1
+      const maxW = init[2] * 10
+      const minH = init[3] * 0.1
+      const maxH = init[3] * 10
+      vb[2] = clamp(vb[2], minW, maxW)
+      vb[3] = clamp(vb[3], minH, maxH)
+      return vb
+    }
+
+    const setCurVb = vb => {
+      vb = clampVb(vb)
+      wrap.__mermaidCurViewBox = vb
+      setSvgViewBox(svg, vb)
+    }
+
+    const onPointerDown = e => {
+      // Allow only primary button for mouse
+      if (e.pointerType === 'mouse' && e.button !== 0) return
+      svg.setPointerCapture(e.pointerId)
+      state.pointers.set(e.pointerId, { x: e.clientX, y: e.clientY })
+
+      if (state.pointers.size === 1) {
+        state.startVb = (wrap.__mermaidCurViewBox || getSvgViewBox(svg)).slice()
+      } else if (state.pointers.size === 2) {
+        const pts = [...state.pointers.values()]
+        const dx = pts[0].x - pts[1].x
+        const dy = pts[0].y - pts[1].y
+        state.startDist = Math.hypot(dx, dy)
+        state.startVb = (wrap.__mermaidCurViewBox || getSvgViewBox(svg)).slice()
+        state.startCenter = { x: (pts[0].x + pts[1].x) / 2, y: (pts[0].y + pts[1].y) / 2 }
+      }
+    }
+
+    const onPointerMove = e => {
+      if (!state.pointers.has(e.pointerId)) return
+      state.pointers.set(e.pointerId, { x: e.clientX, y: e.clientY })
+
+      // Pan with 1 pointer
+      if (state.pointers.size === 1 && state.startVb) {
+        const p = [...state.pointers.values()][0]
+        const prev = { x: e.clientX - e.movementX, y: e.clientY - e.movementY }
+        // movementX/Y unreliable on touch, compute from stored last position
+        const last = wrap.__mermaidLastSinglePointer || p
+        const dxClient = p.x - last.x
+        const dyClient = p.y - last.y
+        wrap.__mermaidLastSinglePointer = p
+
+        const { rect } = clientToViewBox(p.x, p.y)
+        const vb = (wrap.__mermaidCurViewBox || getSvgViewBox(svg)).slice()
+        const dx = dxClient * (vb[2] / rect.width)
+        const dy = dyClient * (vb[3] / rect.height)
+        setCurVb([vb[0] - dx, vb[1] - dy, vb[2], vb[3]])
+        return
+      }
+
+      // Pinch zoom with 2 pointers
+      if (state.pointers.size === 2 && state.startVb && state.startDist > 0) {
+        const pts = [...state.pointers.values()]
+        const dx = pts[0].x - pts[1].x
+        const dy = pts[0].y - pts[1].y
+        const dist = Math.hypot(dx, dy)
+        if (!dist) return
+        const factor = state.startDist / dist // dist bigger => zoom in (viewBox smaller)
+
+        const cx = (pts[0].x + pts[1].x) / 2
+        const cy = (pts[0].y + pts[1].y) / 2
+        const centerClient = { x: cx, y: cy }
+
+        const pxy = clientToViewBox(centerClient.x, centerClient.y)
+        const cpx = pxy.x
+        const cpy = pxy.y
+
+        const vb = zoomAtPoint(state.startVb, factor, cpx, cpy)
+        setCurVb(vb)
+      }
+    }
+
+    const onPointerUpOrCancel = e => {
+      state.pointers.delete(e.pointerId)
+      if (state.pointers.size === 0) {
+        state.startVb = null
+        state.startDist = 0
+        state.startCenter = null
+        wrap.__mermaidLastSinglePointer = null
+      } else if (state.pointers.size === 1) {
+        // reset single pointer baseline to avoid jump
+        wrap.__mermaidLastSinglePointer = [...state.pointers.values()][0]
+      }
+    }
+
+    // Wheel zoom (mouse/trackpad)
+    const onWheel = e => {
+      // ctrlKey on mac trackpad pinch; we treat both as zoom
+      e.preventDefault()
+      const delta = e.deltaY
+      const zoomFactor = delta > 0 ? 1.1 : 0.9
+      const { x, y } = clientToViewBox(e.clientX, e.clientY)
+      const vb = (wrap.__mermaidCurViewBox || getSvgViewBox(svg)).slice()
+      setCurVb(zoomAtPoint(vb, zoomFactor, x, y))
+    }
+
+    const onDblClick = () => {
+      const init = wrap.__mermaidInitViewBox
+      if (!init) return
+      wrap.__mermaidCurViewBox = init.slice()
+      setSvgViewBox(svg, init)
+    }
+
+    svg.addEventListener('pointerdown', onPointerDown)
+    svg.addEventListener('pointermove', onPointerMove)
+    svg.addEventListener('pointerup', onPointerUpOrCancel)
+    svg.addEventListener('pointercancel', onPointerUpOrCancel)
+    svg.addEventListener('wheel', onWheel, { passive: false })
+    svg.addEventListener('dblclick', onDblClick)
+  }
+
   const runMermaid = ele => {
     window.loadMermaid = true
     const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
 
     ele.forEach((item, index) => {
       const mermaidSrc = item.firstElementChild
+
+      // Clear old render (themeChange/pjax will rerun)
+      const oldSvg = item.querySelector('svg')
+      if (oldSvg) oldSvg.remove()
+      item.__mermaidGestureBound = false
+
       const config = mermaidSrc.dataset.config ? JSON.parse(mermaidSrc.dataset.config) : {}
       if (!config.theme) {
         config.theme = theme
@@ -230,7 +494,11 @@
       const renderFn = mermaid.render(mermaidID, mermaidDefinition)
       const renderMermaid = svg => {
         mermaidSrc.insertAdjacentHTML('afterend', svg)
+        if (true) initMermaidGestures(item)
+        item.__mermaidOriginalSvg = svg
+        if (true) attachMermaidViewerButton(item)
       }
+
 
       // mermaid v9 and v10 compatibility
       typeof renderFn === 'string' ? renderMermaid(renderFn) : renderFn.then(({ svg }) => renderMermaid(svg))
@@ -265,4 +533,4 @@
 
   btf.addGlobalFn('encrypt', loadMermaid, 'mermaid')
   window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
-})()</script></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><i class="fas fa-spinner fa-pulse" id="loading-status" hidden="hidden"></i><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="local-search-input"><input placeholder="搜索文章" type="text"/></div><hr/><div id="local-search-results"></div><div class="ais-Pagination" id="local-search-pagination" style="display:none;"><ul class="ais-Pagination-list"></ul></div><div id="local-search-stats"></div></div><div id="search-mask"></div><script src="/js/search/local-search.js?v=5.5.3"></script></div></div></body></html>
+})()</script></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><i class="fas fa-spinner fa-pulse" id="loading-status" hidden="hidden"></i><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="local-search-input"><input placeholder="搜索文章" type="text"/></div><hr/><div id="local-search-results"></div><div class="ais-Pagination" id="local-search-pagination" style="display:none;"><ul class="ais-Pagination-list"></ul></div><div id="local-search-stats"></div></div><div id="search-mask"></div><script src="/js/search/local-search.js?v=5.5.4"></script></div></div></body></html>
