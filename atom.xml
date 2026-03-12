@@ -6,7 +6,7 @@
   <link href="https://usmacd.com/atom.xml" rel="self"/>
   
   <link href="https://usmacd.com/"/>
-  <updated>2026-03-05T16:00:00.000Z</updated>
+  <updated>2026-03-11T16:00:00.000Z</updated>
   <id>https://usmacd.com/</id>
   
   <author>
@@ -15,6 +15,26 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>破解 Exploration-expoitation 困境的 3 个策略</title>
+    <link href="https://usmacd.com/cn/explore_and_exploit/"/>
+    <id>https://usmacd.com/cn/explore_and_exploit/</id>
+    <published>2026-03-11T16:00:00.000Z</published>
+    <updated>2026-03-11T16:00:00.000Z</updated>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;Exploration-exploitation-困境&quot;&gt;&lt;a href=&quot;#Exploration-exploitation-困境&quot; class=&quot;headerlink&quot; title=&quot;Exploration-exploitation 困境&quot;&gt;&lt;/a&gt;Exploration-exploitation 困境&lt;/h2&gt;&lt;p&gt;探索-利用权衡，是决策中的一个基本概念，在许多领域都会出现。</summary>
+      
+    
+    
+    
+    
+    <category term="曼福吉的分享" scheme="https://usmacd.com/tags/%E6%9B%BC%E7%A6%8F%E5%90%89%E7%9A%84%E5%88%86%E4%BA%AB/"/>
+    
+  </entry>
   
   <entry>
     <title>J 曲线 - 先下降后上升</title>
@@ -229,28 +249,6 @@
     <category term="曼福吉的分享" scheme="https://usmacd.com/tags/%E6%9B%BC%E7%A6%8F%E5%90%89%E7%9A%84%E5%88%86%E4%BA%AB/"/>
     
     <category term="KNOWLEDGE" scheme="https://usmacd.com/tags/KNOWLEDGE/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>金融投资中的预期思维</title>
-    <link href="https://usmacd.com/cn/investment_expectation/"/>
-    <id>https://usmacd.com/cn/investment_expectation/</id>
-    <published>2025-11-19T16:00:00.000Z</published>
-    <updated>2025-11-19T16:00:00.000Z</updated>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;香帅老师在《北大的金融学课》中讲预期思维一节，有几个观点值得关注。&lt;/p&gt;
-&lt;p&gt;1）金融市场喜欢讲「预期管理」，想尽办法向市场传达信号，让市场相信你的未来，这样能最大限度撬动资金资源，加大预期变成现实的概率。金融市场是不在意过去的，一切金融资产的价格取决于市场对它的未来的预期。&lt;/p&gt;
-&lt;p&gt;金融学者喜欢用历史数据来预测未来资产的价格，是因为资产价格服从于某些随机数的分布规律，分析历史数据</summary>
-      
-    
-    
-    
-    
-    <category term="investment" scheme="https://usmacd.com/tags/investment/"/>
     
   </entry>
   

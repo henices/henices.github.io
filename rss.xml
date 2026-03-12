@@ -9,8 +9,30 @@
     <atom:link href="https://usmacd.com/rss.xml" rel="self" type="application/rss+xml"/>
     
     <description></description>
-    <pubDate>Thu, 05 Mar 2026 16:00:00 GMT</pubDate>
+    <pubDate>Wed, 11 Mar 2026 16:00:00 GMT</pubDate>
     <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>破解 Exploration-expoitation 困境的 3 个策略</title>
+      <link>https://usmacd.com/cn/explore_and_exploit/</link>
+      <guid>https://usmacd.com/cn/explore_and_exploit/</guid>
+      <pubDate>Wed, 11 Mar 2026 16:00:00 GMT</pubDate>
+      
+        
+        
+      <description>&lt;h2 id=&quot;Exploration-exploitation-困境&quot;&gt;&lt;a href=&quot;#Exploration-exploitation-困境&quot; class=&quot;headerlink&quot; title=&quot;Exploration-exploitation 困境&quot;&gt;&lt;/a&gt;Exploration-exploitation 困境&lt;/h2&gt;&lt;p&gt;探索-利用权衡，是决策中的一个基本概念，在许多领域都会出现。</description>
+        
+      
+      
+      
+      
+      
+      <category domain="https://usmacd.com/tags/%E6%9B%BC%E7%A6%8F%E5%90%89%E7%9A%84%E5%88%86%E4%BA%AB/">曼福吉的分享</category>
+      
+      
+      <comments>https://usmacd.com/cn/explore_and_exploit/#disqus_thread</comments>
+      
+    </item>
     
     <item>
       <title>J 曲线 - 先下降后上升</title>
@@ -243,30 +265,6 @@
       
       
       <comments>https://usmacd.com/cn/know_Evolution/#disqus_thread</comments>
-      
-    </item>
-    
-    <item>
-      <title>金融投资中的预期思维</title>
-      <link>https://usmacd.com/cn/investment_expectation/</link>
-      <guid>https://usmacd.com/cn/investment_expectation/</guid>
-      <pubDate>Wed, 19 Nov 2025 16:00:00 GMT</pubDate>
-      
-        
-        
-      <description>&lt;p&gt;香帅老师在《北大的金融学课》中讲预期思维一节，有几个观点值得关注。&lt;/p&gt;
-&lt;p&gt;1）金融市场喜欢讲「预期管理」，想尽办法向市场传达信号，让市场相信你的未来，这样能最大限度撬动资金资源，加大预期变成现实的概率。金融市场是不在意过去的，一切金融资产的价格取决于市场对它的未来的预期。&lt;/p&gt;
-&lt;p&gt;金融学者喜欢用历史数据来预测未来资产的价格，是因为资产价格服从于某些随机数的分布规律，分析历史数据</description>
-        
-      
-      
-      
-      
-      
-      <category domain="https://usmacd.com/tags/investment/">investment</category>
-      
-      
-      <comments>https://usmacd.com/cn/investment_expectation/#disqus_thread</comments>
       
     </item>
     
