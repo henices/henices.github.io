@@ -4915,7 +4915,7 @@ blockquote > :last-child {
 }
 .layout .pagination > * {
   display: inline-block;
-  margin: 0 6px;
+  margin: 6px;
   width: 2.5em;
   height: 2.5em;
   line-height: 2.5em;
@@ -5768,8 +5768,9 @@ blockquote > :last-child {
   filter: none;
 }
 @media screen and (max-width: 768px) {
-  .fancybox__toolbar__column.is-middle {
-    display: none;
+  .fancybox__toolbar__column.is-middle,
+  .f-carousel__toolbar__column.is-middle {
+    visibility: hidden;
   }
 }
 .container .btn-center {
