@@ -1,270 +1,142 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0"
-  xmlns:atom="http://www.w3.org/2005/Atom"
-  xmlns:content="http://purl.org/rss/1.0/modules/content/">
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>安全代码</title>
     <link>https://usmacd.com/</link>
-    
+    <language>zh-CN</language>
+    <copyright>All rights reserved 2026, 曼福吉</copyright>
+    <lastBuildDate>Wed, 24 Jun 2026 16:00:00 GMT</lastBuildDate>
+    <generator>Hexo</generator>
     <atom:link href="https://usmacd.com/rss.xml" rel="self" type="application/rss+xml"/>
-    
-    <description></description>
-    <pubDate>Wed, 24 Jun 2026 16:00:00 GMT</pubDate>
-    <generator>http://hexo.io/</generator>
-    
     <item>
       <title>认知科学角度的写作八原则</title>
       <link>https://usmacd.com/cn/scientific_writing/</link>
-      <guid>https://usmacd.com/cn/scientific_writing/</guid>
-      <pubDate>Wed, 24 Jun 2026 16:00:00 GMT</pubDate>
-      
-        
-        
-      <description>&lt;p&gt;爱尔兰国立高威大学学者约翰·达纳赫（John Danaher）将认知科学家史蒂芬·平克（Steven Pinker）的写作指导书 《The Sense of Style》整理为写作八原则。&lt;/p&gt;
-&lt;h2 id=&quot;砍掉元话语&quot;&gt;&lt;a href=&quot;#砍掉元话语&quot; class=&quot;headerlink&quot; title=&quot;砍掉元话语&quot;&gt;&lt;/a&gt;砍掉元话语&lt;/h2&gt;&lt;p&gt;元话语是指语篇中能标示的话语结构</description>
-        
-      
-      
-      
-      
-      
+      <description>
+        <![CDATA[<p>爱尔兰国立高威大学学者约翰·达纳赫（John Danaher）将认知科学家史蒂芬·平克（Steven Pinker）的写作指导书 《The Sense of Style》整理为写作八原则。</p>
+<h2 id="砍掉元话语"><a href="#砍掉元话语" class="headerlink" title="砍掉元话语"></a>砍掉元话语</h2><p>元话语是指语篇中能标示的话语结构]]>
+      </description>
+      <author>曼福吉</author>
       <category domain="https://usmacd.com/tags/%E6%9B%BC%E7%A6%8F%E5%90%89%E7%9A%84%E5%88%86%E4%BA%AB/">曼福吉的分享</category>
-      
       <category domain="https://usmacd.com/tags/KNOWLEDGE/">KNOWLEDGE</category>
-      
-      
-      <comments>https://usmacd.com/cn/scientific_writing/#disqus_thread</comments>
-      
+      <pubDate>Wed, 24 Jun 2026 16:00:00 GMT</pubDate>
     </item>
-    
     <item>
       <title>破解 Exploration-expoitation 困境的 3 个策略</title>
       <link>https://usmacd.com/cn/explore_and_exploit/</link>
-      <guid>https://usmacd.com/cn/explore_and_exploit/</guid>
-      <pubDate>Wed, 11 Mar 2026 16:00:00 GMT</pubDate>
-      
-        
-        
-      <description>&lt;h2 id=&quot;Exploration-exploitation-困境&quot;&gt;&lt;a href=&quot;#Exploration-exploitation-困境&quot; class=&quot;headerlink&quot; title=&quot;Exploration-exploitation 困境&quot;&gt;&lt;/a&gt;Exploration-exploitation 困境&lt;/h2&gt;&lt;p&gt;探索-利用权衡，是决策中的一个基本概念，在许多领域都会出现。</description>
-        
-      
-      
-      
-      
-      
+      <description>
+        <![CDATA[<h2 id="Exploration-exploitation-困境"><a href="#Exploration-exploitation-困境" class="headerlink" title="Exploration-exploitation 困境"></a>Exploration-exploitation 困境</h2><p>探索-利用权衡，是决策中的一个基本概念，在许多领域都会出现。]]>
+      </description>
+      <author>曼福吉</author>
       <category domain="https://usmacd.com/tags/%E6%9B%BC%E7%A6%8F%E5%90%89%E7%9A%84%E5%88%86%E4%BA%AB/">曼福吉的分享</category>
-      
-      
-      <comments>https://usmacd.com/cn/explore_and_exploit/#disqus_thread</comments>
-      
+      <pubDate>Wed, 11 Mar 2026 16:00:00 GMT</pubDate>
     </item>
-    
     <item>
       <title>J 曲线 - 先下降后上升</title>
       <link>https://usmacd.com/cn/j_curve/</link>
-      <guid>https://usmacd.com/cn/j_curve/</guid>
-      <pubDate>Thu, 05 Mar 2026 16:00:00 GMT</pubDate>
-      
-        
-        
-      <description>&lt;h2 id=&quot;J-曲线介绍&quot;&gt;&lt;a href=&quot;#J-曲线介绍&quot; class=&quot;headerlink&quot; title=&quot;J 曲线介绍&quot;&gt;&lt;/a&gt;J 曲线介绍&lt;/h2&gt;&lt;p&gt;美国政治学家伊恩∙布雷默（Ian Bremmer），发现一个规律，落后的国家如果按照最舒服的现状继续发展是没有希望的。&lt;/p&gt;
-&lt;p&gt;如果能幸运地找到一条合适的道路尝试，在刚开始时发展的方向和预期相反，如果继续坚持，到了一定时间</description>
-        
-      
-      
-      
-      
-      
+      <description>
+        <![CDATA[<h2 id="J-曲线介绍"><a href="#J-曲线介绍" class="headerlink" title="J 曲线介绍"></a>J 曲线介绍</h2><p>美国政治学家伊恩∙布雷默（Ian Bremmer），发现一个规律，落后的国家如果按照最舒服的现状继续发展是没有希望的。</p>
+<p>如果能幸运地找到一条合适的道路尝试，在刚开始时发展的方向和预期相反，如果继续坚持，到了一定时间]]>
+      </description>
+      <author>曼福吉</author>
       <category domain="https://usmacd.com/tags/%E6%9B%BC%E7%A6%8F%E5%90%89%E7%9A%84%E5%88%86%E4%BA%AB/">曼福吉的分享</category>
-      
       <category domain="https://usmacd.com/tags/KNOWLEDGE/">KNOWLEDGE</category>
-      
-      
-      <comments>https://usmacd.com/cn/j_curve/#disqus_thread</comments>
-      
+      <pubDate>Thu, 05 Mar 2026 16:00:00 GMT</pubDate>
     </item>
-    
     <item>
       <title>开启 Gemini in Chrome 的方法</title>
       <link>https://usmacd.com/cn/gemini_in_chrome/</link>
-      <guid>https://usmacd.com/cn/gemini_in_chrome/</guid>
-      <pubDate>Thu, 29 Jan 2026 16:00:00 GMT</pubDate>
-      
-        
-        
-      <description>&lt;h2 id=&quot;开启-Gemini-in-Chrome&quot;&gt;&lt;a href=&quot;#开启-Gemini-in-Chrome&quot; class=&quot;headerlink&quot; title=&quot;开启 Gemini in Chrome&quot;&gt;&lt;/a&gt;开启 Gemini in Chrome&lt;/h2&gt;&lt;p&gt;Gemini in Chrome 这个功能我等很久了，以前用的是 Randy Liu 的 SumBuddy Chrome 插</description>
-        
-      
-      
-      
-      
-      
+      <description>
+        <![CDATA[<h2 id="开启-Gemini-in-Chrome"><a href="#开启-Gemini-in-Chrome" class="headerlink" title="开启 Gemini in Chrome"></a>开启 Gemini in Chrome</h2><p>Gemini in Chrome 这个功能我等很久了，以前用的是 Randy Liu 的 SumBuddy Chrome 插]]>
+      </description>
+      <author>曼福吉</author>
       <category domain="https://usmacd.com/tags/Software/">Software</category>
-      
-      
-      <comments>https://usmacd.com/cn/gemini_in_chrome/#disqus_thread</comments>
-      
+      <pubDate>Thu, 29 Jan 2026 16:00:00 GMT</pubDate>
     </item>
-    
     <item>
       <title>成功是成功之母</title>
       <link>https://usmacd.com/cn/sucess_is_the_mother_of_sucess/</link>
-      <guid>https://usmacd.com/cn/sucess_is_the_mother_of_sucess/</guid>
-      <pubDate>Tue, 27 Jan 2026 16:00:00 GMT</pubDate>
-      
-        
-        
-      <description>&lt;p&gt;哈佛大学的研究者对1975年到2003年所有美国创业者的统计发现，创业失败者再次创业和从未创业者相比没有任何优势。&lt;/p&gt;
-&lt;p&gt;Shane Snow 在 《Smartcuts: How Hackers, Innovators, and Icons Accelerate Success》中的研究表明，如果上一次的创业成功了，这一次创业成功的概率可能增加 50%，从这个角度上说成功才是成功之母</description>
-        
-      
-      
-      
-      
-      
+      <description>
+        <![CDATA[<p>哈佛大学的研究者对1975年到2003年所有美国创业者的统计发现，创业失败者再次创业和从未创业者相比没有任何优势。</p>
+<p>Shane Snow 在 《Smartcuts: How Hackers, Innovators, and Icons Accelerate Success》中的研究表明，如果上一次的创业成功了，这一次创业成功的概率可能增加 50%，从这个角度上说成功才是成功之母]]>
+      </description>
+      <author>曼福吉</author>
       <category domain="https://usmacd.com/tags/%E6%9B%BC%E7%A6%8F%E5%90%89%E7%9A%84%E5%88%86%E4%BA%AB/">曼福吉的分享</category>
-      
       <category domain="https://usmacd.com/tags/KNOWLEDGE/">KNOWLEDGE</category>
-      
-      
-      <comments>https://usmacd.com/cn/sucess_is_the_mother_of_sucess/#disqus_thread</comments>
-      
+      <pubDate>Tue, 27 Jan 2026 16:00:00 GMT</pubDate>
     </item>
-    
     <item>
       <title>利用 AI Studio 整理播客音频的逐字稿</title>
       <link>https://usmacd.com/cn/ai_studio_podcast_transcript/</link>
-      <guid>https://usmacd.com/cn/ai_studio_podcast_transcript/</guid>
-      <pubDate>Wed, 07 Jan 2026 16:00:00 GMT</pubDate>
-      
-        
-        
-      <description>&lt;p&gt;AI Studio 可以直接提取播客的 Transcript，可以使用 Google 的各种模型，更重要的是免费。&lt;/p&gt;
-&lt;p&gt;选择 Chat with models， 模型 Gemini 3 Flash Preview, temperature 0.2。&lt;/p&gt;
-&lt;p&gt;具体步骤如下：&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;上传播客的音频文件（一般后缀为 .mp3 或 .m4a)&lt;/li&gt;
-&lt;li&gt;使</description>
-        
-      
-      
-      
-      
-      
+      <description>
+        <![CDATA[<p>AI Studio 可以直接提取播客的 Transcript，可以使用 Google 的各种模型，更重要的是免费。</p>
+<p>选择 Chat with models， 模型 Gemini 3 Flash Preview, temperature 0.2。</p>
+<p>具体步骤如下：</p>
+<ol>
+<li>上传播客的音频文件（一般后缀为 .mp3 或 .m4a)</li>
+<li>使]]>
+      </description>
+      <author>曼福吉</author>
       <category domain="https://usmacd.com/tags/ai/">ai</category>
-      
-      
-      <comments>https://usmacd.com/cn/ai_studio_podcast_transcript/#disqus_thread</comments>
-      
+      <pubDate>Wed, 07 Jan 2026 16:00:00 GMT</pubDate>
     </item>
-    
     <item>
       <title>反脆弱式的学习方法</title>
       <link>https://usmacd.com/cn/anti-weakness-learning/</link>
-      <guid>https://usmacd.com/cn/anti-weakness-learning/</guid>
-      <pubDate>Tue, 30 Dec 2025 16:00:00 GMT</pubDate>
-      
-        
-        
-      <description>&lt;p&gt;英雄人物应该主动拥抱不确定性，一定程度的不确定性对普通人有好处。&lt;/p&gt;
-&lt;p&gt;How we learn 这本书中进行了两个实验：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;ol&gt;
-&lt;li&gt;网球发球练习&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;ol start=&quot;2&quot;&gt;
-&lt;li&gt;学习识别不同绘画的风格。&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;参加两个实验的同学都分成两组，一组是按照一定规</description>
-        
-      
-      
-      
-      
-      
+      <description>
+        <![CDATA[<p>英雄人物应该主动拥抱不确定性，一定程度的不确定性对普通人有好处。</p>
+<p>How we learn 这本书中进行了两个实验：</p>
+<ul>
+<li><ol>
+<li>网球发球练习</li>
+</ol>
+</li>
+<li><ol start="2">
+<li>学习识别不同绘画的风格。</li>
+</ol>
+</li>
+</ul>
+<p>参加两个实验的同学都分成两组，一组是按照一定规]]>
+      </description>
+      <author>曼福吉</author>
       <category domain="https://usmacd.com/tags/%E6%9B%BC%E7%A6%8F%E5%90%89%E7%9A%84%E5%88%86%E4%BA%AB/">曼福吉的分享</category>
-      
       <category domain="https://usmacd.com/tags/Learning/">Learning</category>
-      
-      
-      <comments>https://usmacd.com/cn/anti-weakness-learning/#disqus_thread</comments>
-      
+      <pubDate>Tue, 30 Dec 2025 16:00:00 GMT</pubDate>
     </item>
-    
     <item>
       <title>坚持的秘诀</title>
       <link>https://usmacd.com/cn/keep_hard/</link>
-      <guid>https://usmacd.com/cn/keep_hard/</guid>
-      <pubDate>Mon, 15 Dec 2025 16:00:00 GMT</pubDate>
-      
-        
-        
-      <description>&lt;p&gt;人生的道路上总有起起落落，成功需要长期的努力和坚持。然而，真正能够坚持到底的人却寥寥无几。&lt;/p&gt;
-&lt;p&gt;坚持不懈的秘诀是什么? 是天生的毅力，还是后天的培养?&lt;/p&gt;
-&lt;p&gt;有策略可以让我们坚持地更久吗？&lt;/p&gt;
-&lt;h2 id=&quot;美国百万富翁的共同点&quot;&gt;&lt;a href=&quot;#美国百万富翁的共同点&quot; class=&quot;headerlink&quot; title=&quot;美国百万富翁的共同点&quot;&gt;&lt;/a&gt;美国百万富</description>
-        
-      
-      
-      
-      
-      
+      <description>
+        <![CDATA[<p>人生的道路上总有起起落落，成功需要长期的努力和坚持。然而，真正能够坚持到底的人却寥寥无几。</p>
+<p>坚持不懈的秘诀是什么? 是天生的毅力，还是后天的培养?</p>
+<p>有策略可以让我们坚持地更久吗？</p>
+<h2 id="美国百万富翁的共同点"><a href="#美国百万富翁的共同点" class="headerlink" title="美国百万富翁的共同点"></a>美国百万富]]>
+      </description>
+      <author>曼福吉</author>
       <category domain="https://usmacd.com/tags/%E6%9B%BC%E7%A6%8F%E5%90%89%E7%9A%84%E5%88%86%E4%BA%AB/">曼福吉的分享</category>
-      
-      
-      <comments>https://usmacd.com/cn/keep_hard/#disqus_thread</comments>
-      
+      <pubDate>Mon, 15 Dec 2025 16:00:00 GMT</pubDate>
     </item>
-    
     <item>
       <title>金融市场中的不同流派 (2)</title>
       <link>https://usmacd.com/cn/investment_category2/</link>
-      <guid>https://usmacd.com/cn/investment_category2/</guid>
-      <pubDate>Tue, 09 Dec 2025 16:00:00 GMT</pubDate>
-      
-        
-        
-      <description>&lt;h2 id=&quot;维度一：基于“决策依据与世界观”的流派（核心分类）&quot;&gt;&lt;a href=&quot;#维度一：基于“决策依据与世界观”的流派（核心分类）&quot; class=&quot;headerlink&quot; title=&quot;维度一：基于“决策依据与世界观”的流派（核心分类）&quot;&gt;&lt;/a&gt;维度一：基于“决策依据与世界观”的流派（核心分类）&lt;/h2&gt;&lt;p&gt;现实中几乎没有人纯粹属于某一个流派。巴菲特的框架中有估值回归的成分，索罗斯的</description>
-        
-      
-      
-      
-      
-      
+      <description>
+        <![CDATA[<h2 id="维度一：基于“决策依据与世界观”的流派（核心分类）"><a href="#维度一：基于“决策依据与世界观”的流派（核心分类）" class="headerlink" title="维度一：基于“决策依据与世界观”的流派（核心分类）"></a>维度一：基于“决策依据与世界观”的流派（核心分类）</h2><p>现实中几乎没有人纯粹属于某一个流派。巴菲特的框架中有估值回归的成分，索罗斯的]]>
+      </description>
+      <author>曼福吉</author>
       <category domain="https://usmacd.com/tags/investment/">investment</category>
-      
-      
-      <comments>https://usmacd.com/cn/investment_category2/#disqus_thread</comments>
-      
+      <pubDate>Tue, 09 Dec 2025 16:00:00 GMT</pubDate>
     </item>
-    
     <item>
       <title>如何设定一个好目标</title>
       <link>https://usmacd.com/cn/how_to_set_a_goal/</link>
-      <guid>https://usmacd.com/cn/how_to_set_a_goal/</guid>
-      <pubDate>Thu, 04 Dec 2025 16:00:00 GMT</pubDate>
-      
-        
-        
-      <description>&lt;p&gt;第一次认真地对待设定目标这个问题，是看了《高效能人士的七个习惯》一书。以终为始，要事第一，这两个习惯，其实就是先设定目标，再做好计划。&lt;/p&gt;
-&lt;p&gt;第一次觉察目标的力量则是从《不可能的技艺》中看到下面的内容：&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;为了理解目标的力量，我们需要了解目标是如何影响大脑的。&lt;br&gt;大脑是一个预测引擎，它总是预测下一步会发生什么。有三个系统在发挥作用，信息获取，</description>
-        
-      
-      
-      
-      
-      
+      <description>
+        <![CDATA[<p>第一次认真地对待设定目标这个问题，是看了《高效能人士的七个习惯》一书。以终为始，要事第一，这两个习惯，其实就是先设定目标，再做好计划。</p>
+<p>第一次觉察目标的力量则是从《不可能的技艺》中看到下面的内容：</p>
+<blockquote>
+<p>为了理解目标的力量，我们需要了解目标是如何影响大脑的。<br>大脑是一个预测引擎，它总是预测下一步会发生什么。有三个系统在发挥作用，信息获取，]]>
+      </description>
+      <author>曼福吉</author>
       <category domain="https://usmacd.com/tags/%E6%9B%BC%E7%A6%8F%E5%90%89%E7%9A%84%E5%88%86%E4%BA%AB/">曼福吉的分享</category>
-      
-      
-      <comments>https://usmacd.com/cn/how_to_set_a_goal/#disqus_thread</comments>
-      
+      <pubDate>Thu, 04 Dec 2025 16:00:00 GMT</pubDate>
     </item>
-    
   </channel>
 </rss>
