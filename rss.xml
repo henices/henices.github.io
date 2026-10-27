@@ -5,9 +5,23 @@
     <link>https://usmacd.com/</link>
     <language>zh-CN</language>
     <copyright>All rights reserved 2026, 曼福吉</copyright>
-    <lastBuildDate>Wed, 24 Jun 2026 16:00:00 GMT</lastBuildDate>
+    <lastBuildDate>Mon, 26 Oct 2026 16:00:00 GMT</lastBuildDate>
     <generator>Hexo</generator>
     <atom:link href="https://usmacd.com/rss.xml" rel="self" type="application/rss+xml"/>
+    <item>
+      <title>认知不易，循环反馈</title>
+      <link>https://usmacd.com/cn/knowledge_and_feedback/</link>
+      <description>
+        <![CDATA[<p>前段时间看到一段话：</p>
+<blockquote>
+<p>普通人通常在35岁至40岁才会明白社会运行的真相和逻辑，但这时的人们正好被钉在生活的十字架上无力挣扎。而上层阶级出生的人，在20几岁时就已经通透，而且还不用考虑过多的试错成本，因那是一种传承，用几代人的智慧浇灌出来的。人生最大的浪费不是金钱的浪费，而是时间的浪费，认知的迟到。</p>
+</blockquote>
+<p>当我看到这段]]>
+      </description>
+      <author>曼福吉</author>
+      <category domain="https://usmacd.com/tags/%E6%9B%BC%E7%A6%8F%E5%90%89%E7%9A%84%E5%88%86%E4%BA%AB/">曼福吉的分享</category>
+      <pubDate>Mon, 26 Oct 2026 16:00:00 GMT</pubDate>
+    </item>
     <item>
       <title>认知科学角度的写作八原则</title>
       <link>https://usmacd.com/cn/scientific_writing/</link>
@@ -124,19 +138,6 @@
       <author>曼福吉</author>
       <category domain="https://usmacd.com/tags/investment/">investment</category>
       <pubDate>Tue, 09 Dec 2025 16:00:00 GMT</pubDate>
-    </item>
-    <item>
-      <title>如何设定一个好目标</title>
-      <link>https://usmacd.com/cn/how_to_set_a_goal/</link>
-      <description>
-        <![CDATA[<p>第一次认真地对待设定目标这个问题，是看了《高效能人士的七个习惯》一书。以终为始，要事第一，这两个习惯，其实就是先设定目标，再做好计划。</p>
-<p>第一次觉察目标的力量则是从《不可能的技艺》中看到下面的内容：</p>
-<blockquote>
-<p>为了理解目标的力量，我们需要了解目标是如何影响大脑的。<br>大脑是一个预测引擎，它总是预测下一步会发生什么。有三个系统在发挥作用，信息获取，]]>
-      </description>
-      <author>曼福吉</author>
-      <category domain="https://usmacd.com/tags/%E6%9B%BC%E7%A6%8F%E5%90%89%E7%9A%84%E5%88%86%E4%BA%AB/">曼福吉的分享</category>
-      <pubDate>Thu, 04 Dec 2025 16:00:00 GMT</pubDate>
     </item>
   </channel>
 </rss>
